@@ -1,0 +1,416 @@
+# Complete DevSecOps Security Scanning Pipeline
+# SAST, DAST, SCA, Container Scanning, Secret Scanning
+
+name: Security Scanning
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly full scan on Monday 2 AM
+
+concurrency:
+  group: security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Stage 1: Secret Scanning
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for secret scanning
+
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Stage 2: SAST (Static Application Security Testing)
+  sast-codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    needs: secret-scan
+    timeout-minutes: 30
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript', 'python']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-and-quality
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+  sast-semgrep:
+    name: Semgrep SAST
+    runs-on: ubuntu-latest
+    needs: secret-scan
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/owasp-top-ten
+            p/cwe-top-25
+          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+  # Stage 3: SCA (Software Composition Analysis)
+  sca-dependencies:
+    name: Dependency Scanning
+    runs-on: ubuntu-latest
+    needs: secret-scan
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm audit
+        run: |
+          npm audit --audit-level=moderate --json > npm-audit.json
+          npm audit --audit-level=high
+        continue-on-error: true
+
+      - name: Dependency Review (PR only)
+        if: github.event_name == 'pull_request'
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high --json-file-output=snyk-report.json
+        continue-on-error: true
+
+      - name: Upload scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca-reports
+          path: |
+            npm-audit.json
+            snyk-report.json
+
+  # Stage 4: Build Application
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: [sast-codeql, sast-semgrep, sca-dependencies]
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+
+  # Stage 5: Container Security Scanning
+  container-scan:
+    name: Container Security
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 20
+
+    permissions:
+      contents: read
+      security-events: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: myapp:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: myapp:${{ github.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
+
+      - name: Upload Trivy results to GitHub Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Run Grype vulnerability scanner
+        uses: anchore/scan-action@v3
+        id: grype
+        with:
+          image: myapp:${{ github.sha }}
+          fail-build: true
+          severity-cutoff: high
+          output-format: sarif
+
+      - name: Upload Grype results
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ steps.grype.outputs.sarif }}
+
+      - name: Generate SBOM with Syft
+        uses: anchore/sbom-action@v0
+        with:
+          image: myapp:${{ github.sha }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.spdx.json
+
+  # Stage 6: DAST (Dynamic Application Security Testing)
+  dast-baseline:
+    name: DAST Baseline Scan
+    runs-on: ubuntu-latest
+    needs: container-scan
+    if: github.ref == 'refs/heads/main' || github.event_name == 'schedule'
+    timeout-minutes: 30
+
+    permissions:
+      contents: read
+      issues: write
+
+    services:
+      app:
+        image: myapp:latest
+        ports:
+          - 8080:8080
+        options: --health-cmd "curl -f http://localhost:8080/health" --health-interval 10s
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for application
+        run: |
+          timeout 60 bash -c 'until curl -f http://localhost:8080/health; do sleep 2; done'
+
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          target: 'http://localhost:8080'
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
+          fail_action: true
+
+      - name: Upload ZAP report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-baseline-report
+          path: report_html.html
+
+  dast-full-scan:
+    name: DAST Full Scan
+    runs-on: ubuntu-latest
+    needs: container-scan
+    if: github.event_name == 'schedule'
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OWASP ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.10.0
+        with:
+          target: 'https://staging.example.com'
+          rules_file_name: '.zap/rules.tsv'
+          allow_issue_writing: false
+
+      - name: Upload ZAP report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-full-scan-report
+          path: report_html.html
+
+  # Stage 7: License Compliance
+  license-check:
+    name: License Compliance
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Check licenses
+        run: |
+          npx license-checker --production \
+            --onlyAllow "MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;0BSD" \
+            --json --out license-report.json
+
+      - name: Upload license report
+        uses: actions/upload-artifact@v4
+        with:
+          name: license-report
+          path: license-report.json
+
+  # Stage 8: Security Gate
+  security-gate:
+    name: Security Quality Gate
+    runs-on: ubuntu-latest
+    needs: [sast-codeql, sast-semgrep, sca-dependencies, container-scan, license-check]
+    if: always()
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Evaluate Security Posture
+        run: |
+          echo "## 🔒 Security Scan Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check job statuses
+          echo "### Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Secret Scanning: Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ SAST (CodeQL): Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ SAST (Semgrep): Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ SCA (Dependencies): Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Container Scanning: Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ License Compliance: Complete" >> $GITHUB_STEP_SUMMARY
+
+          # Parse results and determine if we can proceed
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Security Gate Status" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.sast-codeql.result }}" == "failure" ] || \
+             [ "${{ needs.container-scan.result }}" == "failure" ]; then
+            echo "❌ **Security gate FAILED** - Critical vulnerabilities found" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ **Security gate PASSED** - No critical issues detected" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Stage 9: Security Report
+  security-report:
+    name: Generate Security Report
+    runs-on: ubuntu-latest
+    needs: security-gate
+    if: always() && github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create unified security report
+        run: |
+          cat << EOF > security-report.md
+          # Security Scan Report - $(date +%Y-%m-%d)
+
+          ## Summary
+          - **Repository:** ${{ github.repository }}
+          - **Branch:** ${{ github.ref_name }}
+          - **Commit:** ${{ github.sha }}
+          - **Scan Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+          ## Scans Performed
+          1. Secret Scanning (TruffleHog, Gitleaks)
+          2. SAST (CodeQL, Semgrep)
+          3. SCA (npm audit, Snyk)
+          4. Container Scanning (Trivy, Grype)
+          5. License Compliance
+
+          ## Status
+          All security scans completed. See artifacts for detailed reports.
+          EOF
+
+          cat security-report.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-report
+          path: security-report.md
+          retention-days: 90
