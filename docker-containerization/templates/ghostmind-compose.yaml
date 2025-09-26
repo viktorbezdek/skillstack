@@ -1,0 +1,19 @@
+services:
+  app:
+    container_name: my-app
+    build:
+      context: ${SRC}/app
+      dockerfile: ${SRC}/docker/Dockerfile.dev
+      args:
+        LOCAL: "true"
+    env_file:
+      - ${SRC}/.env.base
+      - ${SRC}/.env.local
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      APP: app
+      LOCALHOST_SRC: ${LOCALHOST_SRC}
+    volumes:
+      - ${LOCALHOST_SRC}/app:/app/app
+    command: ["npm", "run", "dev"]
