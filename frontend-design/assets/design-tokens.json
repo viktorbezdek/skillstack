@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schemas.org/design-tokens/v1",
+  "name": "Default Design System",
+  "description": "A comprehensive design token system for UI projects",
+  "version": "1.0.0",
+  "colors": {
+    "primary": {
+      "50": { "value": "#eff6ff", "type": "color" },
+      "100": { "value": "#dbeafe", "type": "color" },
+      "200": { "value": "#bfdbfe", "type": "color" },
+      "300": { "value": "#93c5fd", "type": "color" },
+      "400": { "value": "#60a5fa", "type": "color" },
+      "500": { "value": "#3b82f6", "type": "color", "description": "Primary brand color" },
+      "600": { "value": "#2563eb", "type": "color" },
+      "700": { "value": "#1d4ed8", "type": "color" },
+      "800": { "value": "#1e40af", "type": "color" },
+      "900": { "value": "#1e3a8a", "type": "color" },
+      "950": { "value": "#172554", "type": "color" }
+    },
+    "neutral": {
+      "50": { "value": "#f9fafb", "type": "color" },
+      "100": { "value": "#f3f4f6", "type": "color" },
+      "200": { "value": "#e5e7eb", "type": "color" },
+      "300": { "value": "#d1d5db", "type": "color" },
+      "400": { "value": "#9ca3af", "type": "color" },
+      "500": { "value": "#6b7280", "type": "color", "description": "Secondary text" },
+      "600": { "value": "#4b5563", "type": "color" },
+      "700": { "value": "#374151", "type": "color", "description": "Primary text" },
+      "800": { "value": "#1f2937", "type": "color" },
+      "900": { "value": "#111827", "type": "color", "description": "Headings" },
+      "950": { "value": "#030712", "type": "color" }
+    },
+    "success": {
+      "light": { "value": "#d1fae5", "type": "color" },
+      "default": { "value": "#10b981", "type": "color", "description": "Success state" },
+      "dark": { "value": "#059669", "type": "color" }
+    },
+    "warning": {
+      "light": { "value": "#fef3c7", "type": "color" },
+      "default": { "value": "#f59e0b", "type": "color", "description": "Warning state" },
+      "dark": { "value": "#d97706", "type": "color" }
+    },
+    "error": {
+      "light": { "value": "#fee2e2", "type": "color" },
+      "default": { "value": "#ef4444", "type": "color", "description": "Error state" },
+      "dark": { "value": "#dc2626", "type": "color" }
+    },
+    "info": {
+      "light": { "value": "#dbeafe", "type": "color" },
+      "default": { "value": "#3b82f6", "type": "color", "description": "Info state" },
+      "dark": { "value": "#2563eb", "type": "color" }
+    }
+  },
+  "spacing": {
+    "description": "8-point grid system",
+    "0": { "value": "0px", "type": "dimension" },
+    "1": { "value": "4px", "type": "dimension", "description": "Tight spacing" },
+    "2": { "value": "8px", "type": "dimension" },
+    "3": { "value": "12px", "type": "dimension" },
+    "4": { "value": "16px", "type": "dimension", "description": "Base spacing" },
+    "5": { "value": "20px", "type": "dimension" },
+    "6": { "value": "24px", "type": "dimension" },
+    "8": { "value": "32px", "type": "dimension" },
+    "10": { "value": "40px", "type": "dimension" },
+    "12": { "value": "48px", "type": "dimension", "description": "Section spacing" },
+    "16": { "value": "64px", "type": "dimension" },
+    "20": { "value": "80px", "type": "dimension" },
+    "24": { "value": "96px", "type": "dimension" }
+  },
+  "typography": {
+    "fontFamily": {
+      "sans": { "value": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", "type": "fontFamily" },
+      "serif": { "value": "'Playfair Display', Georgia, serif", "type": "fontFamily" },
+      "mono": { "value": "'Fira Code', 'Courier New', monospace", "type": "fontFamily" }
+    },
+    "fontSize": {
+      "xs": { "value": "12px", "type": "dimension" },
+      "sm": { "value": "14px", "type": "dimension" },
+      "base": { "value": "16px", "type": "dimension", "description": "Body text" },
+      "lg": { "value": "18px", "type": "dimension" },
+      "xl": { "value": "20px", "type": "dimension" },
+      "2xl": { "value": "24px", "type": "dimension" },
+      "3xl": { "value": "30px", "type": "dimension" },
+      "4xl": { "value": "36px", "type": "dimension" },
+      "5xl": { "value": "48px", "type": "dimension" },
+      "6xl": { "value": "60px", "type": "dimension" },
+      "7xl": { "value": "72px", "type": "dimension" }
+    },
+    "fontWeight": {
+      "light": { "value": "300", "type": "fontWeight" },
+      "normal": { "value": "400", "type": "fontWeight" },
+      "medium": { "value": "500", "type": "fontWeight" },
+      "semibold": { "value": "600", "type": "fontWeight" },
+      "bold": { "value": "700", "type": "fontWeight" }
+    },
+    "lineHeight": {
+      "none": { "value": "1", "type": "lineHeight" },
+      "tight": { "value": "1.25", "type": "lineHeight" },
+      "snug": { "value": "1.375", "type": "lineHeight" },
+      "normal": { "value": "1.5", "type": "lineHeight", "description": "Body text" },
+      "relaxed": { "value": "1.625", "type": "lineHeight" },
+      "loose": { "value": "2", "type": "lineHeight" }
+    },
+    "letterSpacing": {
+      "tighter": { "value": "-0.05em", "type": "letterSpacing" },
+      "tight": { "value": "-0.025em", "type": "letterSpacing" },
+      "normal": { "value": "0em", "type": "letterSpacing" },
+      "wide": { "value": "0.025em", "type": "letterSpacing" },
+      "wider": { "value": "0.05em", "type": "letterSpacing" },
+      "widest": { "value": "0.1em", "type": "letterSpacing" }
+    }
+  },
+  "borderRadius": {
+    "none": { "value": "0px", "type": "dimension" },
+    "sm": { "value": "4px", "type": "dimension", "description": "Buttons, inputs" },
+    "base": { "value": "8px", "type": "dimension", "description": "Cards, panels" },
+    "md": { "value": "12px", "type": "dimension" },
+    "lg": { "value": "16px", "type": "dimension", "description": "Modals" },
+    "xl": { "value": "24px", "type": "dimension" },
+    "full": { "value": "9999px", "type": "dimension", "description": "Pills, avatars" }
+  },
+  "borderWidth": {
+    "0": { "value": "0px", "type": "dimension" },
+    "1": { "value": "1px", "type": "dimension", "description": "Default border" },
+    "2": { "value": "2px", "type": "dimension" },
+    "4": { "value": "4px", "type": "dimension" },
+    "8": { "value": "8px", "type": "dimension" }
+  },
+  "shadows": {
+    "none": { "value": "none", "type": "shadow" },
+    "sm": { "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "type": "shadow" },
+    "base": { "value": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)", "type": "shadow", "description": "Cards" },
+    "md": { "value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)", "type": "shadow", "description": "Dropdowns" },
+    "lg": { "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)", "type": "shadow", "description": "Modals" },
+    "xl": { "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)", "type": "shadow" },
+    "2xl": { "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)", "type": "shadow" }
+  },
+  "animation": {
+    "duration": {
+      "instant": { "value": "0ms", "type": "duration" },
+      "fast": { "value": "150ms", "type": "duration", "description": "Hover states" },
+      "base": { "value": "200ms", "type": "duration", "description": "Most UI animations" },
+      "slow": { "value": "300ms", "type": "duration" },
+      "slower": { "value": "500ms", "type": "duration", "description": "Large movements" }
+    },
+    "easing": {
+      "linear": { "value": "linear", "type": "cubicBezier" },
+      "easeIn": { "value": "cubic-bezier(0.4, 0, 1, 1)", "type": "cubicBezier" },
+      "easeOut": { "value": "cubic-bezier(0, 0, 0.2, 1)", "type": "cubicBezier", "description": "Most common" },
+      "easeInOut": { "value": "cubic-bezier(0.4, 0, 0.2, 1)", "type": "cubicBezier" }
+    }
+  },
+  "breakpoints": {
+    "sm": { "value": "640px", "type": "dimension", "description": "Mobile landscape" },
+    "md": { "value": "768px", "type": "dimension", "description": "Tablet" },
+    "lg": { "value": "1024px", "type": "dimension", "description": "Desktop" },
+    "xl": { "value": "1280px", "type": "dimension", "description": "Large desktop" },
+    "2xl": { "value": "1536px", "type": "dimension", "description": "Extra large desktop" }
+  },
+  "zIndex": {
+    "base": { "value": "0", "type": "zIndex" },
+    "dropdown": { "value": "10", "type": "zIndex" },
+    "sticky": { "value": "20", "type": "zIndex" },
+    "fixed": { "value": "30", "type": "zIndex" },
+    "modal": { "value": "40", "type": "zIndex" },
+    "popover": { "value": "50", "type": "zIndex" },
+    "tooltip": { "value": "60", "type": "zIndex" }
+  }
+}
