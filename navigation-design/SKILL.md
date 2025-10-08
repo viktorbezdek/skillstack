@@ -1,0 +1,87 @@
+---
+name: navigation-design
+description: Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications. Use when organizing content structure, designing menus, creating sitemaps, improving findability, or planning content hierarchy. Triggers include navigation, information architecture, wayfinding, breadcrumbs, sitemap, menu structure, and content hierarchy.
+---
+
+# Navigation Design
+
+Create intuitive wayfinding systems for content and applications.
+
+## Navigation Types
+
+| Type | Use Case | Example |
+|------|----------|---------|
+| Global | Site-wide access | Top nav, sidebar |
+| Local | Section-specific | Sub-menu |
+| Contextual | In-content links | Related articles |
+| Utility | Tools/settings | Search, login |
+| Breadcrumb | Location trail | Home > Docs > API |
+
+## Information Architecture Patterns
+
+### Hierarchy (Tree)
+```
+Home
+├── Products
+│   ├── Category A
+│   └── Category B
+├── Docs
+│   ├── Getting Started
+│   └── Reference
+└── Support
+```
+
+### Hub and Spoke
+Central hub with satellite pages, return to hub.
+
+### Flat
+Few levels, broad categories.
+
+### Faceted
+Multiple classification dimensions (filter + sort).
+
+## Navigation Rules
+
+| Rule | Description |
+|------|-------------|
+| 7 +/- 2 | Limit top-level items |
+| 3-click | Reach any page in 3 clicks |
+| Recognition > Recall | Show options, don't require memory |
+| Consistency | Same nav across pages |
+
+## Breadcrumb Template
+
+```
+Home > [Category] > [Subcategory] > Current Page
+```
+
+Clickable except current page.
+
+## Sitemap Template
+
+```markdown
+## Sitemap: [Product]
+
+### Primary Navigation
+1. Home
+2. Features
+   - Feature A
+   - Feature B
+3. Documentation
+   - Quick Start
+   - Tutorials
+   - API Reference
+4. Pricing
+
+### Utility Navigation
+- Search
+- Login/Signup
+- Help
+```
+
+## Anti-Patterns
+
+- Mystery meat navigation (unclear labels)
+- Too many levels (deep nesting)
+- Inconsistent placement
+- Missing current location indicator
