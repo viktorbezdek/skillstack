@@ -1,0 +1,88 @@
+---
+name: {{SKILL_NAME}}
+description: {{DESCRIPTION}}. Use when {{USE_CASES}}. Keywords - {{KEYWORDS}}.
+---
+
+# {{TOOL_NAME}} Guide
+
+{{TOOL_OVERVIEW}}
+
+{{#IF_HAS_PREREQUISITES}}
+## Prerequisites
+
+**IMPORTANT:** {{PREREQUISITES_TEXT}}
+
+### First-Time Setup
+
+{{SETUP_INSTRUCTIONS}}
+
+{{/IF_HAS_PREREQUISITES}}
+
+## Quick Start
+
+```bash
+{{QUICK_START_COMMANDS}}
+```
+
+## Core Tasks
+
+{{CORE_TASKS_SECTIONS}}
+
+## Command Reference
+
+**Common flags:**
+{{COMMON_FLAGS}}
+
+**See also:** {{#IF_HAS_REFERENCES}}[references/cli-reference.md](references/cli-reference.md){{/IF_HAS_REFERENCES}} for complete flag documentation.
+
+## Configuration Files
+
+{{CONFIGURATION_SECTIONS}}
+
+## Proven Patterns
+
+{{#IF_HAS_MANDATORY_WORKFLOW}}
+**⚠️ MANDATORY:** {{MANDATORY_WORKFLOW_TEXT}}
+{{/IF_HAS_MANDATORY_WORKFLOW}}
+
+{{PATTERN_SECTIONS}}
+
+## Troubleshooting
+
+**Quick fixes for common issues:**
+
+| Issue | Solution |
+|-------|----------|
+{{TROUBLESHOOTING_TABLE}}
+
+{{#IF_HAS_DETAILED_TROUBLESHOOTING}}
+**For detailed solutions:** [references/troubleshooting.md](references/troubleshooting.md)
+{{/IF_HAS_DETAILED_TROUBLESHOOTING}}
+
+## Helper Scripts
+
+{{HELPER_SCRIPTS_LIST}}
+
+## Workflow Requirements
+
+{{#IF_HAS_REQUIRED_WORKFLOW}}
+**⚠️ MANDATORY: Always follow this workflow{{WORKFLOW_CONTEXT}}:**
+
+{{WORKFLOW_STEPS}}
+
+**Why this prevents failures:**
+{{WORKFLOW_BENEFITS}}
+{{/IF_HAS_REQUIRED_WORKFLOW}}
+
+---
+
+## Common Workflows
+
+{{COMMON_WORKFLOWS_SECTIONS}}
+
+## Tips
+
+{{TIPS_SECTIONS}}
+
+**See also:**
+{{REFERENCES_LIST}}
