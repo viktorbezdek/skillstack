@@ -1007,3 +1007,4 @@ export function PostCard({ post, onDelete }: PostCardProps) {
 **Skill Version**: 1.0.0
 **Next.js Versions**: 13+, 15, 16
 **Last Updated**: January 2026
+
