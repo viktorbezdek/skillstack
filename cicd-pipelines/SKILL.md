@@ -400,3 +400,4 @@ This curated skill combines content from:
 - **OpenSSF Scorecard**: https://securityscorecards.dev/
 - **SLSA Framework**: https://slsa.dev/
 - **semantic-release**: https://semantic-release.gitbook.io/
+
