@@ -596,3 +596,4 @@ This skill targets:
 - NestJS 10+
 
 All patterns are compatible with both ESM and CommonJS module systems.
+
