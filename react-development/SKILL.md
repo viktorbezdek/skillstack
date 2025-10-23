@@ -527,3 +527,4 @@ Component templates for rapid scaffolding:
 - [React Docs - Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks)
 - [TanStack Query](https://tanstack.com/query)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+
