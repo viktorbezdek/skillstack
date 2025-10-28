@@ -114,3 +114,4 @@ Documentation
 - **HTML in fields**: Mixing content with presentation
 - **Monolithic types**: One type for everything
 - **Redundant fields**: Same data in multiple places
+
