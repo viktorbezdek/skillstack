@@ -69,3 +69,4 @@ R = Reinforcing, B = Balancing
 - Event focus (symptoms vs structures)
 - Boundary errors (too narrow/wide)
 - Delay blindness
+

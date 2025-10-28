@@ -62,3 +62,4 @@ Create research-backed user personas that drive product and documentation decisi
 - Too many personas (aim for 3-5)
 - Demographic-only (missing goals/behaviors)
 - Static personas (never updated)
+
