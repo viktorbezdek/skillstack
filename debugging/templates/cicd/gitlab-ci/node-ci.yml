@@ -1,0 +1,334 @@
+# GitLab CI/CD Pipeline for Node.js
+# Optimized with caching, parallel execution, and deployment
+
+stages:
+  - security
+  - validate
+  - test
+  - build
+  - deploy
+
+# Global variables
+variables:
+  NODE_VERSION: "20"
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/Cypress"
+
+# Global cache configuration
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+    - .npm/
+    - .cache/Cypress/
+  policy: pull
+
+# Reusable configuration
+.node_template:
+  image: node:${NODE_VERSION}
+  before_script:
+    - node --version
+    - npm --version
+    - npm ci
+
+# Validation stage
+lint:
+  extends: .node_template
+  stage: validate
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+      - .npm/
+    policy: pull-push
+  script:
+    - npm run lint
+    - npm run format:check
+  only:
+    - merge_requests
+    - main
+    - develop
+
+# Test stage
+unit-test:
+  extends: .node_template
+  stage: test
+  parallel:
+    matrix:
+      - NODE_VERSION: ["18", "20", "22"]
+  script:
+    - npm run test:unit -- --coverage
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+    paths:
+      - coverage/
+    expire_in: 30 days
+
+integration-test:
+  extends: .node_template
+  stage: test
+  services:
+    - postgres:15
+    - redis:7-alpine
+  variables:
+    POSTGRES_DB: testdb
+    POSTGRES_USER: testuser
+    POSTGRES_PASSWORD: testpass
+    DATABASE_URL: "postgresql://testuser:testpass@postgres:5432/testdb"
+    REDIS_URL: "redis://redis:6379"
+  script:
+    - npm run test:integration
+  artifacts:
+    when: always
+    reports:
+      junit: test-results/junit.xml
+    paths:
+      - test-results/
+    expire_in: 7 days
+
+# Build stage
+build:
+  extends: .node_template
+  stage: build
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+      - .npm/
+    policy: pull
+  script:
+    - npm run build
+    - echo "BUILD_VERSION=$(node -p "require('./package.json').version")" >> build.env
+  artifacts:
+    paths:
+      - dist/
+    reports:
+      dotenv: build.env
+    expire_in: 7 days
+  only:
+    - main
+    - develop
+    - tags
+
+# Security: Secret Scanning
+secret-scan:trufflehog:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog filesystem . --json --fail > trufflehog-report.json || true
+    - |
+      if [ -s trufflehog-report.json ]; then
+        echo "❌ Secrets detected!"
+        cat trufflehog-report.json
+        exit 1
+      fi
+  artifacts:
+    when: always
+    paths:
+      - trufflehog-report.json
+    expire_in: 30 days
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+    - develop
+
+secret-scan:gitleaks:
+  stage: security
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --source . --report-format json --report-path gitleaks-report.json
+  artifacts:
+    when: always
+    paths:
+      - gitleaks-report.json
+    expire_in: 30 days
+  allow_failure: true
+  only:
+    - merge_requests
+    - main
+    - develop
+
+# Security: SAST
+sast:semgrep:
+  stage: security
+  image: returntocorp/semgrep
+  script:
+    - semgrep scan --config=auto --sarif --output=semgrep.sarif .
+    - semgrep scan --config=p/owasp-top-ten --json --output=semgrep-owasp.json .
+  artifacts:
+    reports:
+      sast: semgrep.sarif
+    paths:
+      - semgrep.sarif
+      - semgrep-owasp.json
+    expire_in: 30 days
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+    - develop
+
+sast:nodejs:
+  stage: security
+  image: node:20-alpine
+  script:
+    - npm install -g eslint eslint-plugin-security
+    - eslint . --plugin=security --format=json --output-file=eslint-security.json || true
+  artifacts:
+    paths:
+      - eslint-security.json
+    expire_in: 30 days
+  only:
+    exists:
+      - package.json
+  allow_failure: true
+
+# Security: Dependency Scanning
+dependency-scan:npm:
+  extends: .node_template
+  stage: security
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - node_modules/
+      - .npm/
+    policy: pull-push
+  script:
+    - npm audit --audit-level=moderate --json > npm-audit.json || true
+    - npm audit --audit-level=high  # Fail on high severity
+  artifacts:
+    paths:
+      - npm-audit.json
+    expire_in: 30 days
+  allow_failure: false
+  only:
+    - merge_requests
+    - main
+    - develop
+
+# GitLab built-in security templates
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+# E2E tests (only on main)
+e2e-test:
+  extends: .node_template
+  stage: test
+  needs: [build]
+  dependencies:
+    - build
+  script:
+    - npm run test:e2e
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/
+      - cypress/screenshots/
+    expire_in: 7 days
+  only:
+    - main
+
+# Deploy to staging
+deploy:staging:
+  stage: deploy
+  image: node:${NODE_VERSION}
+  needs: [build]
+  dependencies:
+    - build
+  environment:
+    name: staging
+    url: https://staging.example.com
+    on_stop: stop:staging
+  script:
+    - echo "Deploying to staging..."
+    - npm install -g aws-cli
+    - aws s3 sync dist/ s3://${STAGING_BUCKET}
+    - aws cloudfront create-invalidation --distribution-id ${STAGING_CF_DIST} --paths "/*"
+  only:
+    - develop
+  when: manual
+
+stop:staging:
+  stage: deploy
+  image: node:${NODE_VERSION}
+  environment:
+    name: staging
+    action: stop
+  script:
+    - echo "Stopping staging environment..."
+  when: manual
+  only:
+    - develop
+
+# Deploy to production
+deploy:production:
+  stage: deploy
+  image: node:${NODE_VERSION}
+  needs: [build, e2e-test]
+  dependencies:
+    - build
+  environment:
+    name: production
+    url: https://example.com
+  before_script:
+    - echo "Deploying version ${BUILD_VERSION} to production"
+  script:
+    - npm install -g aws-cli
+    - aws s3 sync dist/ s3://${PRODUCTION_BUCKET}
+    - aws cloudfront create-invalidation --distribution-id ${PRODUCTION_CF_DIST} --paths "/*"
+    # Health check
+    - sleep 10
+    - curl -f https://example.com/health || exit 1
+  after_script:
+    - echo "Deployed successfully"
+  only:
+    - main
+  when: manual
+
+# Create release
+release:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs: [deploy:production]
+  script:
+    - echo "Creating release for version ${BUILD_VERSION}"
+  release:
+    tag_name: 'v${BUILD_VERSION}'
+    description: 'Release v${BUILD_VERSION}'
+  only:
+    - main
+
+# Workflow rules
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_TAG'
+
+# Additional optimizations
+.interruptible_template:
+  interruptible: true
+
+lint:
+  extends: [.node_template, .interruptible_template]
+
+unit-test:
+  extends: [.node_template, .interruptible_template]
+
+integration-test:
+  extends: [.node_template, .interruptible_template]
