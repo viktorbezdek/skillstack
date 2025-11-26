@@ -1,0 +1,298 @@
+# GitLab CI/CD Docker Build Pipeline
+# Multi-platform build with DinD, security scanning, and Container Registry
+
+stages:
+  - build
+  - scan
+  - sign
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  # Use project's container registry
+  IMAGE_NAME: $CI_REGISTRY_IMAGE
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  # BuildKit for better caching
+  DOCKER_BUILDKIT: 1
+
+# Build multi-platform Docker image
+build:
+  stage: build
+  image: docker:24-cli
+  services:
+    - docker:24-dind
+  before_script:
+    # Login to GitLab Container Registry
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    # Set up buildx for multi-platform builds
+    - docker buildx create --use --name builder || docker buildx use builder
+    - docker buildx inspect --bootstrap
+  script:
+    # Build and push multi-platform image
+    - |
+      docker buildx build \
+        --platform linux/amd64,linux/arm64 \
+        --cache-from type=registry,ref=$IMAGE_NAME:buildcache \
+        --cache-to type=registry,ref=$IMAGE_NAME:buildcache,mode=max \
+        --tag $IMAGE_NAME:$IMAGE_TAG \
+        --tag $IMAGE_NAME:latest \
+        --push \
+        --build-arg CI_COMMIT_SHA=$CI_COMMIT_SHA \
+        --build-arg CI_COMMIT_REF_NAME=$CI_COMMIT_REF_NAME \
+        .
+    - echo "IMAGE_FULL_NAME=$IMAGE_NAME:$IMAGE_TAG" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+  only:
+    - branches
+    - tags
+  tags:
+    - docker
+
+# Alternative: Simple build without multi-arch
+build:simple:
+  stage: build
+  image: docker:24-cli
+  services:
+    - docker:24-dind
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  script:
+    # Pull previous image for layer caching
+    - docker pull $IMAGE_NAME:latest || true
+
+    # Build with cache
+    - |
+      docker build \
+        --cache-from $IMAGE_NAME:latest \
+        --tag $IMAGE_NAME:$IMAGE_TAG \
+        --tag $IMAGE_NAME:latest \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        .
+
+    # Push images
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+    - docker push $IMAGE_NAME:latest
+
+    - echo "IMAGE_FULL_NAME=$IMAGE_NAME:$IMAGE_TAG" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+  only:
+    - branches
+    - tags
+  when: manual  # Use this OR the multi-arch build above
+  tags:
+    - docker
+
+# Trivy vulnerability scanning
+trivy:scan:
+  stage: scan
+  image: aquasec/trivy:latest
+  needs: [build]
+  variables:
+    GIT_STRATEGY: none
+  script:
+    # Scan for HIGH and CRITICAL vulnerabilities
+    - trivy image --severity HIGH,CRITICAL --exit-code 0 --format json --output trivy-report.json $IMAGE_FULL_NAME
+    - trivy image --severity HIGH,CRITICAL --exit-code 1 $IMAGE_FULL_NAME
+  artifacts:
+    when: always
+    paths:
+      - trivy-report.json
+    expire_in: 30 days
+  allow_failure: false
+  only:
+    - branches
+    - tags
+
+# Grype scanning (alternative/additional)
+grype:scan:
+  stage: scan
+  image: anchore/grype:latest
+  needs: [build]
+  variables:
+    GIT_STRATEGY: none
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | grype registry login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  script:
+    - grype $IMAGE_FULL_NAME --fail-on high --output json --file grype-report.json
+  artifacts:
+    when: always
+    paths:
+      - grype-report.json
+    expire_in: 30 days
+  allow_failure: true
+  only:
+    - branches
+    - tags
+
+# GitLab Container Scanning (uses Trivy)
+container_scanning:
+  stage: scan
+  needs: [build]
+  variables:
+    CS_IMAGE: $IMAGE_FULL_NAME
+    GIT_STRATEGY: none
+  allow_failure: true
+include:
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+# Generate SBOM (Software Bill of Materials)
+sbom:
+  stage: scan
+  image: anchore/syft:latest
+  needs: [build]
+  variables:
+    GIT_STRATEGY: none
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | syft registry login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  script:
+    - syft $IMAGE_FULL_NAME -o spdx-json > sbom.spdx.json
+    - syft $IMAGE_FULL_NAME -o cyclonedx-json > sbom.cyclonedx.json
+  artifacts:
+    paths:
+      - sbom.spdx.json
+      - sbom.cyclonedx.json
+    expire_in: 90 days
+  only:
+    - main
+    - tags
+
+# Sign container image (requires cosign setup)
+sign:image:
+  stage: sign
+  image: gcr.io/projectsigstore/cosign:latest
+  needs: [build, trivy:scan]
+  variables:
+    GIT_STRATEGY: none
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | cosign login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+  script:
+    # Sign using keyless mode with OIDC
+    - cosign sign --yes $IMAGE_FULL_NAME
+  only:
+    - main
+    - tags
+  when: manual  # Require manual approval for signing
+
+# Deploy to Kubernetes
+deploy:staging:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  needs: [build, trivy:scan]
+  environment:
+    name: staging
+    url: https://staging.example.com
+    on_stop: stop:staging
+  before_script:
+    - kubectl config use-context staging-cluster
+  script:
+    - kubectl set image deployment/myapp myapp=$IMAGE_FULL_NAME --namespace=staging --record
+    - kubectl rollout status deployment/myapp --namespace=staging --timeout=5m
+    # Verify deployment
+    - |
+      POD=$(kubectl get pod -n staging -l app=myapp -o jsonpath="{.items[0].metadata.name}")
+      kubectl exec -n staging $POD -- curl -f http://localhost:8080/health || exit 1
+  only:
+    - develop
+  when: manual
+
+stop:staging:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  environment:
+    name: staging
+    action: stop
+  script:
+    - kubectl scale deployment/myapp --replicas=0 --namespace=staging
+  when: manual
+  only:
+    - develop
+
+deploy:production:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  needs: [build, trivy:scan, sign:image]
+  environment:
+    name: production
+    url: https://example.com
+  before_script:
+    - kubectl config use-context production-cluster
+  script:
+    - |
+      echo "Deploying version $IMAGE_TAG to production"
+    - kubectl set image deployment/myapp myapp=$IMAGE_FULL_NAME --namespace=production --record
+    - kubectl rollout status deployment/myapp --namespace=production --timeout=5m
+
+    # Health check
+    - sleep 10
+    - |
+      for i in {1..10}; do
+        POD=$(kubectl get pod -n production -l app=myapp -o jsonpath="{.items[0].metadata.name}")
+        if kubectl exec -n production $POD -- curl -f http://localhost:8080/health; then
+          echo "Health check passed"
+          exit 0
+        fi
+        echo "Attempt $i failed, retrying..."
+        sleep 10
+      done
+      echo "Health check failed"
+      exit 1
+  only:
+    - main
+  when: manual  # Require manual approval for production
+
+# Create GitLab release
+release:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs: [deploy:production]
+  script:
+    - echo "Creating release for $CI_COMMIT_TAG"
+  release:
+    tag_name: $CI_COMMIT_TAG
+    description: |
+      Docker Image: $IMAGE_FULL_NAME
+
+      Changes in this release:
+      $CI_COMMIT_MESSAGE
+  only:
+    - tags
+
+# Cleanup old images from Container Registry
+cleanup:registry:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache curl jq
+  script:
+    - |
+      # Keep last 10 images, delete older ones
+      echo "Cleaning up old container images..."
+      # Use GitLab API to manage container registry
+      # This is a placeholder - implement based on your retention policy
+  only:
+    - schedules
+  when: manual
+
+# Workflow rules
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_TAG'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+
+# Additional optimizations
+.interruptible_jobs:
+  interruptible: true
+
+build:
+  extends: .interruptible_jobs
+
+trivy:scan:
+  extends: .interruptible_jobs
