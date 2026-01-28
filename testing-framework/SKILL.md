@@ -416,3 +416,4 @@ scripts/validate_test_results.py actual.txt expected.txt
 ---
 
 **Remember**: The goal is deployment confidence, not coverage theater. Focus testing effort where failures hurt most.
+
