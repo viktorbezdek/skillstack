@@ -88,7 +88,7 @@ wait_for() {
     local interval="${3:-1}"
     
     local elapsed=0
-    while ! eval "$cmd" 2>/dev/null; do
+    while ! bash -c "$cmd" 2>/dev/null; do
         sleep "$interval"
         elapsed=$((elapsed + interval))
         if [ "$elapsed" -ge "$timeout" ]; then

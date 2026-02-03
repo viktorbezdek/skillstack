@@ -149,7 +149,7 @@ validate_all_ports() {
         echo "  docker stop <container-name> # Stop conflicting container"
         echo ""
         echo "Option 2: Stop Main SoftTrak Project"
-        echo "  cd /Users/{{POSTGRES_USERNAME}}/Github_Projects/SoftTrak"
+        echo "  cd {{MAIN_PROJECT_PATH}}"
         echo "  docker-compose down"
         echo ""
         echo "Option 3: Check Other Worktrees"
@@ -780,12 +780,9 @@ list_worktrees() {
 
     for i in $(seq 0 $((count - 1))); do
         local worktree=$(jq -r ".worktrees[$i]" "$WORKTREES_JSON")
-        local name=$(echo "$worktree" | jq -r '.name')
-        local path=$(echo "$worktree" | jq -r '.path')
-        local branch=$(echo "$worktree" | jq -r '.branch')
-        local created=$(echo "$worktree" | jq -r '.created')
-        local docker_running=$(echo "$worktree" | jq -r '.docker_running')
-        local ports=$(echo "$worktree" | jq -r '.ports')
+        local name path branch created docker_running ports
+        read -r name path branch created docker_running ports <<< \
+            "$(echo "$worktree" | jq -r '[.name, .path, .branch, .created, (.docker_running | tostring), (.ports | tostring)] | @tsv')"
 
         echo ""
         echo "$((i + 1)). $name"
@@ -829,9 +826,9 @@ remove_worktree() {
 
     # Get worktree info
     local worktree=$(jq -r ".worktrees[] | select(.name == \"SoftTrak-$worktree_name\")" "$WORKTREES_JSON")
-    local path=$(echo "$worktree" | jq -r '.path')
-    local branch=$(echo "$worktree" | jq -r '.branch')
-    local docker_running=$(echo "$worktree" | jq -r '.docker_running')
+    local path branch docker_running
+    read -r path branch docker_running <<< \
+        "$(echo "$worktree" | jq -r '[.path, .branch, (.docker_running | tostring)] | @tsv')"
 
     # Check for uncommitted changes
     if [ "$force" != true ]; then

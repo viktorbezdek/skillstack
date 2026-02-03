@@ -37,6 +37,9 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
   return (
     <article>
       <h1>{post.title}</h1>
+      {/* WARNING: Always sanitize HTML content before rendering. Use DOMPurify:
+         import DOMPurify from 'dompurify';
+         __html: DOMPurify.sanitize(post.content) */}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
       {/* Show search query if present */}

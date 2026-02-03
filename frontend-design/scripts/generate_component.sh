@@ -43,7 +43,7 @@ prompt_input() {
             continue
         fi
 
-        eval "$var_name='$input'"
+        printf -v "$var_name" '%s' "$input"
         break
     done
 }
@@ -58,7 +58,7 @@ prompt_select() {
     PS3="Select (1-${#options[@]}): "
     select opt in "${options[@]}"; do
         if [ -n "$opt" ]; then
-            eval "$var_name='$opt'"
+            printf -v "$var_name" '%s' "$opt"
             break
         else
             print_error "Invalid selection. Try again."
