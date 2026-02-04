@@ -406,3 +406,4 @@ This skill was merged from:
 2. `managing-commits-skill`
 3. `git-commit-assistant`
 4. `git-workflow-manager-skill`
+
