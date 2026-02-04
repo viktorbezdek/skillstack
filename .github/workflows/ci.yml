@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck on all shell scripts
+        run: |
+          find . -name "*.sh" -not -path "./.git/*" | xargs shellcheck --severity=warning
+
+  pytest-docker:
+    name: pytest / docker-containerization
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: "**/requirements*.txt"
+
+      - name: Run docker-containerization tests
+        working-directory: docker-containerization/scripts
+        run: |
+          pip install pytest
+          pytest tests/ -v
+
+  pytest-mcp:
+    name: pytest / mcp-template-python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: "**/requirements*.txt"
+
+      - name: Install dependencies
+        working-directory: mcp-server/templates/mcp-template-python
+        run: pip install pytest -r requirements.txt
+
+      - name: Run MCP template tests
+        working-directory: mcp-server/templates/mcp-template-python
+        run: pytest tests/ -v
+
+  node-test:
+    name: Node.js test / chrome-devtools
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: debugging/scripts/chrome-devtools/package-lock.json
+
+      - name: Install dependencies
+        working-directory: debugging/scripts/chrome-devtools
+        run: npm ci --ignore-scripts
+
+      - name: Run selector tests
+        working-directory: debugging/scripts/chrome-devtools
+        run: node --test __tests__/selector.test.js
