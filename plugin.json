@@ -1,11 +1,11 @@
 {
-  "name": "claude-skills",
+  "name": "skillstack",
   "version": "1.0.0",
   "description": "The definitive collection of 34 curated skills for Claude Code — covering development, DevOps, testing, API design, documentation, and strategic thinking.",
-  "author": "claude-skills",
+  "author": "skillstack",
   "license": "MIT",
-  "repository": "https://github.com/claude-skills/claude-skills",
-  "keywords": ["claude-code", "skills", "plugin"],
+  "repository": "https://github.com/skillstack/skillstack",
+  "keywords": ["claude-code", "skills", "plugin", "skillstack"],
   "skills": [
     {
       "name": "api-design",
