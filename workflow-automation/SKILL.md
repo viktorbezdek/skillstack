@@ -1,6 +1,14 @@
 ---
 name: workflow-automation
-description: "Automate development workflows end-to-end: CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management. Use when: automating a workflow, building a CI/CD pipeline, orchestrating parallel tasks, setting up release automation, coordinating multi-agent workflows, or managing complex task dependencies. Triggers: 'automate workflow', 'CI/CD pipeline', 'parallel tasks', 'task orchestration', 'build pipeline', 'release automation', 'multi-agent workflow', 'automate deployment', 'pipeline setup', 'workflow orchestration', 'automate build'."
+description: Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.
+triggers:
+  - automate workflow
+  - CI/CD pipeline
+  - parallel tasks
+  - task orchestration
+  - release automation
+  - multi-agent workflow
+  - pipeline setup
 ---
 
 # Workflow Automation Skill

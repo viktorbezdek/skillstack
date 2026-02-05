@@ -1,6 +1,10 @@
 ---
 name: skill-template
-description: Template for creating Claude Code skills. Replace this description with a clear explanation of what this skill does and when it should be used. Be specific about triggers and use cases.
+description: Template for creating Claude Code skills. Replace this description with a clear explanation of what this skill does and when it should be used.
+triggers:
+  - skill template
+  - new skill
+  - create skill
 ---
 
 # Skill Template

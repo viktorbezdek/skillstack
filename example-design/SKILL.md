@@ -1,6 +1,13 @@
 ---
 name: example-design
-description: Design effective code examples, tutorials, and runnable samples with progressive complexity. Use when creating code samples, writing tutorials, designing quickstarts, building example projects, or structuring hands-on learning. Triggers include code examples, tutorials, quickstart, sample code, runnable examples, and progressive disclosure.
+description: Design effective code examples, tutorials, and runnable samples with progressive complexity.
+triggers:
+  - code examples
+  - tutorials
+  - quickstart
+  - sample code
+  - runnable examples
+  - progressive disclosure
 ---
 
 # Example Design

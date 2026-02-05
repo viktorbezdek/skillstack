@@ -1,6 +1,12 @@
 ---
 name: risk-management
-description: Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices. Use when identifying project risks, planning contingencies, evaluating decisions, creating risk registers, or managing uncertainty. Triggers include risk assessment, mitigation, risk register, contingency planning, and uncertainty management.
+description: Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
+triggers:
+  - risk assessment
+  - mitigation
+  - risk register
+  - contingency planning
+  - uncertainty management
 ---
 
 # Risk Management
