@@ -1,30 +1,30 @@
-# Layout階層設計
+# Layout Hierarchy Design
 
 ## Layout vs Template
 
-| 特性           | Layout                 | Template                     |
-| -------------- | ---------------------- | ---------------------------- |
-| 再レンダリング | ナビゲーション時に維持 | ナビゲーション毎に再マウント |
-| 状態保持       | 維持される             | リセットされる               |
-| Effect         | 再実行されない         | ナビゲーション毎に実行       |
-| 主な用途       | 共有UI、重い初期化     | ページ遷移アニメーション     |
+| Property        | Layout                              | Template                              |
+| --------------- | ----------------------------------- | ------------------------------------- |
+| Re-rendering    | Preserved during navigation         | Remounted on every navigation         |
+| State retention | Preserved                           | Reset                                 |
+| Effect          | Not re-executed                     | Executed on every navigation          |
+| Primary use     | Shared UI, heavy initialization     | Page transition animations            |
 
-## Layout階層構造
+## Layout Hierarchy Structure
 
 ```
 app/
-├── layout.tsx           # Root Layout（必須）
+├── layout.tsx           # Root Layout (required)
 │   ├── (marketing)/
-│   │   ├── layout.tsx   # マーケティング用Layout
+│   │   ├── layout.tsx   # Marketing Layout
 │   │   └── page.tsx
 │   ├── (dashboard)/
-│   │   ├── layout.tsx   # ダッシュボード用Layout
+│   │   ├── layout.tsx   # Dashboard Layout
 │   │   └── settings/
-│   │       ├── layout.tsx  # 設定用Layout
+│   │       ├── layout.tsx  # Settings Layout
 │   │       └── page.tsx
 ```
 
-**レンダリング順序**:
+**Rendering order**:
 
 ```
 Root Layout
@@ -35,7 +35,7 @@ Root Layout
 
 ## Root Layout
 
-### 必須要件
+### Required Elements
 
 ```typescript
 // app/layout.tsx
@@ -48,7 +48,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: {
     default: 'My App',
-    template: '%s | My App',  // 子ページで上書き時のテンプレート
+    template: '%s | My App',  // Template used when overridden by child pages
   },
   description: 'My application description',
 }
@@ -59,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <body className={inter.className}>
         {children}
       </body>
@@ -68,23 +68,23 @@ export default function RootLayout({
 }
 ```
 
-### Root Layoutの責務
+### Responsibilities of Root Layout
 
-- **必須**: `<html>` と `<body>` タグ
-- グローバルCSS
-- フォント設定（next/font）
-- サイト全体のメタデータ
-- グローバルプロバイダー（Theme、Auth等）
+- **Required**: `<html>` and `<body>` tags
+- Global CSS
+- Font configuration (next/font)
+- Site-wide metadata
+- Global providers (Theme, Auth, etc.)
 
-### Root Layoutに含めないもの
+### What NOT to Include in Root Layout
 
-- ページ固有のナビゲーション
-- 認証状態に依存するUI
-- 特定のRoute Groupのみで使うUI
+- Page-specific navigation
+- UI dependent on authentication state
+- UI used only by specific Route Groups
 
 ## Group Layout
 
-### 認証境界の実装
+### Implementing Authentication Boundaries
 
 ```typescript
 // app/(protected)/layout.tsx
@@ -111,7 +111,7 @@ export default async function ProtectedLayout({
 }
 ```
 
-### 共有UIの実装
+### Implementing Shared UI
 
 ```typescript
 // app/(dashboard)/layout.tsx
@@ -132,7 +132,7 @@ export default function DashboardLayout({
 }
 ```
 
-## 並列ルートでのLayout
+## Layout with Parallel Routes
 
 ```typescript
 // app/dashboard/layout.tsx
@@ -157,9 +157,9 @@ export default function DashboardLayout({
 }
 ```
 
-## Template（特殊ケース）
+## Template (Special Cases)
 
-### ページ遷移アニメーション
+### Page Transition Animations
 
 ```typescript
 // app/template.tsx
@@ -180,11 +180,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### フィードバックフォームのリセット
+### Resetting Feedback Forms
 
 ```typescript
 // app/feedback/template.tsx
-// ナビゲーション毎にフォーム状態をリセット
+// Reset form state on every navigation
 export default function FeedbackTemplate({
   children,
 }: {
@@ -194,31 +194,31 @@ export default function FeedbackTemplate({
 }
 ```
 
-## 設計判断フロー
+## Design Decision Flow
 
 ```
-このUIは...
-├─ 全ページで共通？
+This UI is...
+├─ Common across all pages?
 │  └─ Yes → Root Layout
-├─ 複数ページで共有？
-│  ├─ 認証状態で分離が必要？
-│  │  └─ Yes → Route Group Layout（(public)、(protected)等）
-│  └─ 特定機能グループで共有？
+├─ Shared across multiple pages?
+│  ├─ Needs separation by authentication state?
+│  │  └─ Yes → Route Group Layout ((public), (protected), etc.)
+│  └─ Shared within a specific feature group?
 │     └─ Yes → Group Layout
-├─ ナビゲーション時に状態リセットが必要？
+├─ Needs state reset on navigation?
 │  └─ Yes → Template
-└─ ページ固有？
-   └─ Yes → Page内で実装
+└─ Page-specific?
+   └─ Yes → Implement within the Page
 ```
 
-## パフォーマンス考慮
+## Performance Considerations
 
-### Layoutの最適化
+### Layout Optimization
 
 ```typescript
-// ✅ 重い初期化はLayoutで（1回のみ実行）
+// ✅ Heavy initialization in Layout (executed only once)
 export default async function Layout({ children }: { children: React.ReactNode }) {
-  const config = await fetchAppConfig() // ナビゲーション時は再実行されない
+  const config = await fetchAppConfig() // Not re-executed on navigation
   return (
     <ConfigProvider config={config}>
       {children}
@@ -226,50 +226,50 @@ export default async function Layout({ children }: { children: React.ReactNode }
   )
 }
 
-// ❌ 重い処理をPageで（毎回実行）
+// ❌ Heavy processing in Page (executed every time)
 export default async function Page() {
-  const config = await fetchAppConfig() // ナビゲーション毎に実行
+  const config = await fetchAppConfig() // Executed on every navigation
   // ...
 }
 ```
 
-### データフェッチの重複排除
+### Data Fetch Deduplication
 
 ```typescript
-// LayoutとPageで同じデータをフェッチしても自動的に重複排除される
+// Even if Layout and Page fetch the same data, it is automatically deduplicated
 // app/(dashboard)/layout.tsx
 export default async function Layout({ children }: { children: React.ReactNode }) {
-  const user = await getUser() // この結果はキャッシュされる
+  const user = await getUser() // This result is cached
   return <UserNav user={user}>{children}</UserNav>
 }
 
 // app/(dashboard)/settings/page.tsx
 export default async function SettingsPage() {
-  const user = await getUser() // キャッシュからデータを取得（重複リクエストなし）
+  const user = await getUser() // Data retrieved from cache (no duplicate request)
   return <SettingsForm user={user} />
 }
 ```
 
-## チェックリスト
+## Checklist
 
 ### Root Layout
 
-- [ ] `<html>` と `<body>` タグが含まれている
-- [ ] グローバルCSSがインポートされている
-- [ ] next/fontでフォントが設定されている
-- [ ] 基本メタデータが設定されている
-- [ ] グローバルプロバイダーが配置されている
+- [ ] Contains `<html>` and `<body>` tags
+- [ ] Global CSS is imported
+- [ ] Font is configured with next/font
+- [ ] Basic metadata is configured
+- [ ] Global providers are set up
 
 ### Group Layout
 
-- [ ] 認証境界が適切に実装されている
-- [ ] 共有UIが正しく配置されている
-- [ ] Route Groupの命名が論理的
-- [ ] 必要なメタデータが上書きされている
+- [ ] Authentication boundaries are properly implemented
+- [ ] Shared UI is correctly placed
+- [ ] Route Group naming is logical
+- [ ] Required metadata is overridden
 
-### 全般
+### General
 
-- [ ] Layoutの再レンダリング特性を理解している
-- [ ] Template と Layout の使い分けが適切
-- [ ] 重い処理がLayoutに配置されている
-- [ ] 並列ルートが適切に受け取られている
+- [ ] Re-rendering behavior of Layout is understood
+- [ ] Template and Layout are used appropriately
+- [ ] Heavy processing is placed in Layout
+- [ ] Parallel routes are properly received

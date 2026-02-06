@@ -1,4 +1,4 @@
-# Layout コンポーネントテンプレート
+# Layout Component Template
 
 ## Root Layout
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   creator: '{{CreatorName}}',
   openGraph: {
     type: 'website',
-    locale: 'ja_JP',
+    locale: 'en_US',
     url: '{{SiteUrl}}',
     siteName: '{{SiteName}}',
     images: [
@@ -63,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" className={inter.variable}>
+    <html lang="en" className={inter.variable}>
       <body className={inter.className}>
         {children}
       </body>
@@ -72,7 +72,7 @@ export default function RootLayout({
 }
 ```
 
-## Providers を含む Root Layout
+## Root Layout with Providers
 
 ```typescript
 // app/layout.tsx
@@ -84,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
           {children}
@@ -111,7 +111,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 ```
 
-## 認証付き Group Layout
+## Authenticated Group Layout
 
 ```typescript
 // app/(protected)/layout.tsx
@@ -145,7 +145,7 @@ export default async function ProtectedLayout({
 }
 ```
 
-## 共有 UI を含む Group Layout
+## Group Layout with Shared UI
 
 ```typescript
 // app/(marketing)/layout.tsx
@@ -169,7 +169,7 @@ export default function MarketingLayout({
 }
 ```
 
-## 並列ルート対応 Layout
+## Parallel Routes Layout
 
 ```typescript
 // app/dashboard/layout.tsx
@@ -186,12 +186,12 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="grid grid-cols-12 gap-6 p-6">
-      {/* メインコンテンツ */}
+      {/* Main Content */}
       <main className="col-span-8">
         {children}
       </main>
 
-      {/* サイドパネル */}
+      {/* Side Panel */}
       <aside className="col-span-4 space-y-6">
         <section className="rounded-lg border p-4">
           <h2 className="mb-4 font-semibold">Analytics</h2>
@@ -213,7 +213,7 @@ export default function DashboardLayout({
 }
 ```
 
-## Metadata 継承 Layout
+## Metadata Inheritance Layout
 
 ```typescript
 // app/blog/layout.tsx
@@ -245,7 +245,7 @@ export default function BlogLayout({
 }
 ```
 
-## Template（ページ遷移アニメーション用）
+## Template (For Page Transition Animations)
 
 ```typescript
 // app/template.tsx
@@ -271,15 +271,15 @@ export default function Template({ children }: { children: React.ReactNode }) {
 }
 ```
 
-## 変数説明
+## Variable Descriptions
 
-| 変数                           | 説明            | 例                           |
-| ------------------------------ | --------------- | ---------------------------- |
-| `{{SiteName}}`                 | サイト名        | `My App`                     |
-| `{{SiteDescription}}`          | サイト説明      | `最高のWebアプリケーション`  |
-| `{{SiteUrl}}`                  | サイトURL       | `https://example.com`        |
-| `{{OgImageUrl}}`               | OGP画像URL      | `https://example.com/og.png` |
-| `{{TwitterHandle}}`            | Twitterハンドル | `myapp`                      |
-| `{{AuthorName}}`               | 著者名          | `John Doe`                   |
-| `{{CreatorName}}`              | 制作者名        | `My Company`                 |
-| `{{keyword1}}`, `{{keyword2}}` | SEOキーワード   | `web app`, `next.js`         |
+| Variable                       | Description      | Example                      |
+| ------------------------------ | ---------------- | ---------------------------- |
+| `{{SiteName}}`                 | Site name        | `My App`                     |
+| `{{SiteDescription}}`          | Site description | `The best web application`   |
+| `{{SiteUrl}}`                  | Site URL         | `https://example.com`        |
+| `{{OgImageUrl}}`               | OGP image URL    | `https://example.com/og.png` |
+| `{{TwitterHandle}}`            | Twitter handle   | `myapp`                      |
+| `{{AuthorName}}`               | Author name      | `John Doe`                   |
+| `{{CreatorName}}`              | Creator name     | `My Company`                 |
+| `{{keyword1}}`, `{{keyword2}}` | SEO keywords     | `web app`, `next.js`         |

@@ -17,7 +17,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 
 This skill is a curated merge of four complementary code review skills:
 
-1. **Kanitsal Kod Incelemesi**: Evidence-based multi-agent swarm review with specialized reviewers
+1. **Evidence-Based Code Review**: Evidence-based multi-agent swarm review with specialized reviewers
 2. **PR Comment Analysis**: Extract, consolidate, and prioritize GitHub PR comments
 3. **Development Workflow Specialist**: TDD, debugging, performance optimization, and automated code review
 4. **Consultant**: AI-powered deep analysis for complex architectural and security reviews
@@ -83,9 +83,9 @@ Five specialized review agents working in parallel:
 
 ## Severity Levels
 
-- **SONKEIGO (CRITICAL)**: Architecture-level issues (security vulnerabilities, data loss risks)
-- **TEINEIGO (MAJOR)**: Module-level issues (performance bottlenecks, maintainability problems)
-- **CASUAL (MINOR)**: Function-level improvements (code style, readability)
+- **CRITICAL**: Architecture-level issues (security vulnerabilities, data loss risks)
+- **MAJOR**: Module-level issues (performance bottlenecks, maintainability problems)
+- **MINOR**: Function-level improvements (code style, readability)
 - **NIT**: Line-level suggestions (formatting, naming)
 
 ## Validation Rules

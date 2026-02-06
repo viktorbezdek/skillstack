@@ -1,103 +1,103 @@
-# Server/Client Components 判断フロー
+# Server/Client Components Decision Flow
 
-## 基本判断フローチャート
+## Basic Decision Flowchart
 
 ```
-このコンポーネントは...
+This component...
 
-1. データフェッチが必要？
+1. Needs data fetching?
    ├─ Yes
-   │  ├─ サーバー専用リソース（DB、ファイルシステム）？
-   │  │  └─ Server Component（async/await）
-   │  └─ 外部API + クライアントインタラクション？
-   │     └─ Server Component + Client Component（子に分離）
-   └─ No → 次へ
+   │  ├─ Server-only resources (DB, file system)?
+   │  │  └─ Server Component (async/await)
+   │  └─ External API + client interaction?
+   │     └─ Server Component + Client Component (separate into children)
+   └─ No → Next
 
-2. インタラクティブ性が必要？
+2. Needs interactivity?
    ├─ Yes
-   │  ├─ onClick、onChange等のイベントハンドラ？
-   │  │  └─ Client Component（"use client"）
-   │  ├─ useState、useEffect等のReact Hooks？
+   │  ├─ Event handlers like onClick, onChange?
+   │  │  └─ Client Component ("use client")
+   │  ├─ React Hooks like useState, useEffect?
    │  │  └─ Client Component
-   │  └─ Context、Custom Hooks？
-   │     └─ Client Component（Providerは分離）
-   └─ No → 次へ
+   │  └─ Context, Custom Hooks?
+   │     └─ Client Component (separate Provider)
+   └─ No → Next
 
-3. ブラウザAPIが必要？
-   ├─ Yes（window、localStorage、document等）
+3. Needs browser APIs?
+   ├─ Yes (window, localStorage, document, etc.)
    │  └─ Client Component
-   └─ No → Server Component（デフォルト）
+   └─ No → Server Component (default)
 ```
 
 ## Server Components
 
-### 特徴
+### Characteristics
 
-- **デフォルト**: "use client" なしのコンポーネントはすべてServer Component
-- **async/await対応**: 直接データフェッチ可能
-- **バンドルサイズ**: クライアントに送信されない
-- **アクセス**: サーバー専用リソース（DB、環境変数）に直接アクセス可能
+- **Default**: All components without "use client" are Server Components
+- **async/await support**: Can fetch data directly
+- **Bundle size**: Not sent to the client
+- **Access**: Can directly access server-only resources (DB, environment variables)
 
-### 適用ケース
+### Use Cases
 
 ```typescript
-// ✅ Server Component - データフェッチ
+// ✅ Server Component - Data fetching
 async function UserProfile({ userId }: { userId: string }) {
   const user = await db.user.findUnique({ where: { id: userId } })
   return <div>{user.name}</div>
 }
 
-// ✅ Server Component - 静的コンテンツ
+// ✅ Server Component - Static content
 function Footer() {
   return <footer>© 2025 Company</footer>
 }
 
-// ✅ Server Component - 環境変数アクセス
+// ✅ Server Component - Environment variable access
 function ApiInfo() {
   return <div>Version: {process.env.APP_VERSION}</div>
 }
 ```
 
-### 禁止事項
+### Restrictions
 
 ```typescript
-// ❌ Server Componentでは使用不可
+// ❌ Cannot be used in Server Components
 import { useState, useEffect } from "react";
 
 function ServerComponent() {
-  const [count, setCount] = useState(0); // エラー
-  useEffect(() => {}, []); // エラー
-  const handleClick = () => {}; // onClick使用不可
+  const [count, setCount] = useState(0); // Error
+  useEffect(() => {}, []); // Error
+  const handleClick = () => {}; // Cannot use onClick
 }
 ```
 
 ## Client Components
 
-### 特徴
+### Characteristics
 
-- **明示的宣言**: ファイル先頭に `"use client"` が必要
-- **Hooks使用可能**: useState、useEffect、useContext等
-- **イベントハンドラ**: onClick、onChange等が使用可能
-- **ブラウザAPI**: window、localStorage等にアクセス可能
+- **Explicit declaration**: Requires `"use client"` at the top of the file
+- **Hooks available**: useState, useEffect, useContext, etc.
+- **Event handlers**: onClick, onChange, etc. can be used
+- **Browser APIs**: Can access window, localStorage, etc.
 
-### 適用ケース
+### Use Cases
 
 ```typescript
 'use client'
 
-// ✅ Client Component - インタラクティブUI
+// ✅ Client Component - Interactive UI
 function Counter() {
   const [count, setCount] = useState(0)
   return <button onClick={() => setCount(c => c + 1)}>{count}</button>
 }
 
-// ✅ Client Component - フォーム
+// ✅ Client Component - Form
 function LoginForm() {
   const [email, setEmail] = useState('')
   return <input value={email} onChange={(e) => setEmail(e.target.value)} />
 }
 
-// ✅ Client Component - ブラウザAPI
+// ✅ Client Component - Browser API
 function ThemeToggle() {
   const [theme, setTheme] = useState(() =>
     window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
@@ -106,13 +106,13 @@ function ThemeToggle() {
 }
 ```
 
-## 境界最適化パターン
+## Boundary Optimization Patterns
 
-### パターン1: Client Componentを葉に配置
+### Pattern 1: Place Client Components at the Leaves
 
 ```typescript
-// ✅ 推奨: Client Componentは最下層に
-// Server Component (親)
+// ✅ Recommended: Client Components at the lowest level
+// Server Component (parent)
 async function ProductPage({ id }: { id: string }) {
   const product = await getProduct(id)
   return (
@@ -124,7 +124,7 @@ async function ProductPage({ id }: { id: string }) {
   )
 }
 
-// Client Component (葉)
+// Client Component (leaf)
 'use client'
 function AddToCartButton({ productId }: { productId: string }) {
   const [loading, setLoading] = useState(false)
@@ -137,7 +137,7 @@ function AddToCartButton({ productId }: { productId: string }) {
 }
 ```
 
-### パターン2: children propsでServer Componentを渡す
+### Pattern 2: Pass Server Components via children props
 
 ```typescript
 // Client Component (Provider)
@@ -146,12 +146,12 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState('light')
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}  {/* Server Componentを含められる */}
+      {children}  {/* Can contain Server Components */}
     </ThemeContext.Provider>
   )
 }
 
-// Server Component (親)
+// Server Component (parent)
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
@@ -163,7 +163,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### パターン3: Context Providerの分離
+### Pattern 3: Separating Context Providers
 
 ```typescript
 // providers.tsx (Client Component)
@@ -197,21 +197,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-## 判断チェックリスト
+## Decision Checklist
 
-### Server Component にすべきか？
+### Should it be a Server Component?
 
-- [ ] データベースに直接アクセスする
-- [ ] 環境変数（シークレット）を使用する
-- [ ] ファイルシステムを読み取る
-- [ ] 大きなnpmパッケージを使用する（バンドル除外したい）
-- [ ] インタラクティブ性が不要
+- [ ] Directly accesses the database
+- [ ] Uses environment variables (secrets)
+- [ ] Reads from the file system
+- [ ] Uses large npm packages (want to exclude from bundle)
+- [ ] No interactivity required
 
-### Client Component にすべきか？
+### Should it be a Client Component?
 
-- [ ] onClick、onChange等のイベントハンドラを使用
-- [ ] useState、useReducer、useEffect を使用
-- [ ] useContext でContextを消費
-- [ ] カスタムHooksを使用
-- [ ] ブラウザAPI（window、localStorage）を使用
-- [ ] React.lazy、Suspenseを使用
+- [ ] Uses event handlers like onClick, onChange
+- [ ] Uses useState, useReducer, useEffect
+- [ ] Consumes Context with useContext
+- [ ] Uses custom Hooks
+- [ ] Uses browser APIs (window, localStorage)
+- [ ] Uses React.lazy, Suspense
