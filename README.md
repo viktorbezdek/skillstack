@@ -91,6 +91,8 @@ Skills activate automatically based on your conversation. No special syntax need
 
 ## Skill Catalog
 
+> Click any skill name to view its detailed documentation, including full file listings, usage examples, and quick start guides.
+
 ### Development (7 skills)
 
 | Skill | Problem it Solves | What You Get |
