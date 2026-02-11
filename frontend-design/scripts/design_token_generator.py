@@ -61,9 +61,7 @@ class DesignTokenGenerator:
                 },
                 'warning': {
                     'base': '#F59E0B',
-                    'light': '#FBB
-
-D24',
+                    'light': '#FBBD24',
                     'dark': '#D97706',
                     'contrast': '#FFFFFF'
                 },

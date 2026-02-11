@@ -361,8 +361,8 @@ Update context format in:
 
 - Agent System Prompt: `agents/{name}-agent.prompt`
 - Configuration: `agents/{name}-config.json`
-{f'- SDK Implementation: `index.{\"ts\" if sdk == \"typescript\" else \"py\" if sdk == \"python\" else \"\"}`' if sdk else ''}
-- Tests: `tests/integration.test.{\"ts\" if sdk == \"typescript\" else \"py\" if sdk == \"python\" else \"md\"}`
+{('- SDK Implementation: `index.' + ('ts' if sdk == 'typescript' else 'py' if sdk == 'python' else '') + '`') if sdk else ''}
+- Tests: `tests/integration.test.{'ts' if sdk == 'typescript' else 'py' if sdk == 'python' else 'md'}`
 - Examples: `examples/basic-usage.md`
 
 ---
