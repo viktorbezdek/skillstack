@@ -1,0 +1,31 @@
+{
+  "name": "mcp-server-template",
+  "version": "1.0.0",
+  "description": "MCP Server template for Claude Code",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-server-template": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["mcp", "claude-code", "plugin"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
+    "jest": "^30.3.0",
+    "typescript": "^5.9.3"
+  }
+}

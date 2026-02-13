@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# {{SCRIPT_NAME}} - {{SCRIPT_DESCRIPTION}}
+#
+# {{SCRIPT_PURPOSE}}
+#
+# Usage:
+#   ./{{SCRIPT_NAME}}.sh {{USAGE_PATTERN}}
+#
+# Examples:
+#   {{EXAMPLES}}
+
+# Color output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Helper functions
+info() {
+    echo -e "${BLUE}ℹ️  $*${NC}"
+}
+
+success() {
+    echo -e "${GREEN}✅ $*${NC}"
+}
+
+warning() {
+    echo -e "${YELLOW}⚠️  $*${NC}"
+}
+
+error() {
+    echo -e "${RED}❌ $*${NC}" >&2
+}
+
+# Check dependencies
+check_dependencies() {
+    {{DEPENDENCY_CHECKS}}
+}
+
+# Main script logic
+main() {
+    {{MAIN_LOGIC}}
+}
+
+{{HELPER_FUNCTIONS}}
+
+# Run main function
+check_dependencies
+main "$@"

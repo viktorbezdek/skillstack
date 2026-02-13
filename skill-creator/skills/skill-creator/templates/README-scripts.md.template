@@ -1,0 +1,19 @@
+# {{TOOL_NAME}} Helper Scripts
+
+This directory contains helper scripts that simplify common {{TOOL_NAME}} workflows.
+
+## Available Scripts
+
+{{SCRIPTS_LIST}}
+
+## Usage Patterns
+
+{{USAGE_PATTERNS}}
+
+## Script Dependencies
+
+{{DEPENDENCIES_INFO}}
+
+## Troubleshooting
+
+{{TROUBLESHOOTING_INFO}}

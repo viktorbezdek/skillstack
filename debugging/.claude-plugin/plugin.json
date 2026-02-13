@@ -1,0 +1,17 @@
+{
+  "name": "debugging",
+  "version": "1.0.0",
+  "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/debugging",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "debug",
+    "debugging",
+    "bug",
+    "error",
+    "stack trace"
+  ]
+}

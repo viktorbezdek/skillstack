@@ -1,0 +1,17 @@
+{
+  "name": "prompt-engineering",
+  "version": "1.0.0",
+  "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/prompt-engineering",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "prompt engineering",
+    "prompt design",
+    "prompt optimization",
+    "system prompt",
+    "LLM optimization"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@USER/semantic-release-config",
+  "version": "1.0.0",
+  "description": "Shareable semantic-release configuration (2025)",
+  "main": "index.js",
+  "keywords": [
+    "semantic-release",
+    "config",
+    "2025"
+  ],
+  "author": "USER",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "peerDependencies": {
+    "semantic-release": ">=25.0.0"
+  },
+  "dependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.1"
+  }
+}

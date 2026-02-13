@@ -1,0 +1,17 @@
+{
+  "name": "test-driven-development",
+  "version": "1.0.0",
+  "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/test-driven-development",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "TDD",
+    "test-driven",
+    "red-green-refactor",
+    "pytest",
+    "vitest"
+  ]
+}

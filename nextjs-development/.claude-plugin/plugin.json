@@ -1,0 +1,17 @@
+{
+  "name": "nextjs-development",
+  "version": "1.0.0",
+  "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/nextjs-development",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "Next.js",
+    "App Router",
+    "Server Components",
+    "Server Actions",
+    "SSR"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "navigation-design",
+  "version": "1.0.0",
+  "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/navigation-design",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "navigation",
+    "information architecture",
+    "wayfinding",
+    "breadcrumbs",
+    "sitemap"
+  ]
+}

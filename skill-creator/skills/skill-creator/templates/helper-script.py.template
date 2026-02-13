@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""
+{{SCRIPT_NAME}} - {{SCRIPT_DESCRIPTION}}
+
+{{SCRIPT_PURPOSE}}
+
+Usage:
+    python {{SCRIPT_NAME}}.py {{USAGE_PATTERN}}
+
+Examples:
+    {{EXAMPLES}}
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+
+{{ADDITIONAL_IMPORTS}}
+
+
+def main():
+    """Main entry point for {{SCRIPT_NAME}}"""
+    parser = argparse.ArgumentParser(
+        description="{{SCRIPT_DESCRIPTION}}",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__
+    )
+
+    {{ARGUMENT_DEFINITIONS}}
+
+    args = parser.parse_args()
+
+    try:
+        {{MAIN_LOGIC}}
+    except KeyboardInterrupt:
+        print("\n⚠️  Operation cancelled by user", file=sys.stderr)
+        sys.exit(130)
+    except Exception as e:
+        print(f"❌ Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+{{HELPER_FUNCTIONS}}
+
+
+if __name__ == "__main__":
+    main()

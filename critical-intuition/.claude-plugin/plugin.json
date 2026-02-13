@@ -1,0 +1,17 @@
+{
+  "name": "critical-intuition",
+  "version": "1.0.0",
+  "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/critical-intuition",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "read between the lines",
+    "hidden pattern",
+    "detect bias",
+    "critical analysis",
+    "red flags"
+  ]
+}

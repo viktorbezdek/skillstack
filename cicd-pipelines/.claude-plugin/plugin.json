@@ -1,0 +1,17 @@
+{
+  "name": "cicd-pipelines",
+  "version": "1.0.0",
+  "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/cicd-pipelines",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "CI/CD",
+    "GitHub Actions",
+    "GitLab CI",
+    "Jenkins",
+    "Terraform"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "GENERATE_UNIQUE_ID",
+  "name": "my-app",
+  "version": "0.0.1",
+  "type": "app",
+  "description": "Application description",
+  "port": 5001,
+  "tags": ["tag1", "tag2"],
+  "secrets": {
+    "base": "base"
+  },
+  "docker": {
+    "default": {
+      "root": "docker",
+      "image": "gcr.io/project-id/app-name",
+      "env_based": false,
+      "context_dir": "app"
+    }
+  },
+  "compose": {
+    "default": {
+      "root": "local",
+      "filename": "compose.yaml"
+    }
+  },
+  "terraform": {
+    "run": {
+      "path": "infra",
+      "global": false,
+      "containers": ["default"]
+    }
+  },
+  "custom": {
+    "root": "scripts"
+  },
+  "routines": {
+    "dev": "run custom dev build up",
+    "deploy": "run docker build && run docker push && run terraform apply",
+    "tmux_init": "run tmux init app --all",
+    "tmux_attach": "run tmux attach app"
+  },
+  "mcp": {
+    "server-name": {
+      "type": "http",
+      "url": "https://mcp.example.com"
+    }
+  },
+  "tunnel": {
+    "default": {
+      "hostname": "app.example.com",
+      "service": "http://localhost:${PORT}"
+    }
+  },
+  "tmux": {
+    "sessions": [
+      {
+        "name": "app",
+        "windows": [
+          {
+            "name": "dev",
+            "layout": "compact",
+            "compact": {
+              "type": "main-side",
+              "panes": {
+                "main": "run custom dev build up",
+                "logs": "run custom logs",
+                "execution-shell": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

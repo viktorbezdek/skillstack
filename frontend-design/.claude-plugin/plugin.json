@@ -1,0 +1,17 @@
+{
+  "name": "frontend-design",
+  "version": "1.0.0",
+  "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/frontend-design",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "UI",
+    "UX",
+    "design system",
+    "Tailwind",
+    "CSS"
+  ]
+}
