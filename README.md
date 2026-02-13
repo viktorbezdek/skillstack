@@ -4,11 +4,15 @@
 
 # SkillStack
 
-34 individually installable skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Browse the catalog, install only what you need, and extend Claude with deep domain expertise.
+34 individually installable expert skills for AI coding assistants. First-class support for Claude Code with one-command install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
+
+```bash
+claude plugin add github:viktorbezdek/skillstack/python-development
+```
 
 <div align="center">
 
-**[Install a Skill](#installation)** &nbsp;&middot;&nbsp; **[Browse Catalog](#skill-catalog)** &nbsp;&middot;&nbsp; **[Usage Examples](#usage-examples)** &nbsp;&middot;&nbsp; **[Create Your Own](#contributing)**
+**[Install](#installation)** &nbsp;&middot;&nbsp; **[Browse Skills](#skill-catalog)** &nbsp;&middot;&nbsp; **[Examples](#usage-examples)** &nbsp;&middot;&nbsp; **[Other AI Tools](#using-with-other-ai-tools)** &nbsp;&middot;&nbsp; **[Contributing](#contributing)**
 
 </div>
 
@@ -16,33 +20,62 @@
 
 ## Installation
 
-Each skill is an independent plugin. Install individually:
+### Claude Code (one command per skill)
 
 ```bash
-# Install a single skill
 claude plugin add github:viktorbezdek/skillstack/api-design
 claude plugin add github:viktorbezdek/skillstack/debugging
-claude plugin add github:viktorbezdek/skillstack/python-development
-
-# Install several at once
 claude plugin add github:viktorbezdek/skillstack/react-development
-claude plugin add github:viktorbezdek/skillstack/testing-framework
-claude plugin add github:viktorbezdek/skillstack/typescript-development
 ```
 
-Or install everything:
+Skills activate automatically — mention "REST API" and the `api-design` skill loads. Say "pytest fixtures" and `testing-framework` kicks in. No special syntax.
+
+### Install everything
 
 ```bash
-# Clone the full marketplace
 git clone https://github.com/viktorbezdek/skillstack.git
-
-# Install all skills at once
 claude plugin add /path/to/skillstack
 ```
 
-### How it works
+---
 
-Skills activate automatically based on your conversation. When you mention "REST API design", the `api-design` skill loads. When you say "pytest fixtures", the `testing-framework` skill kicks in. No special syntax needed.
+## Using with Other AI Tools
+
+Every skill is standard markdown with scripts and templates. The knowledge works with any AI coding assistant that reads project context.
+
+### Cursor
+
+Copy a skill's `SKILL.md` into your project or reference it in `.cursorrules`:
+
+```bash
+cp skillstack/python-development/SKILL.md .cursorrules
+```
+
+### Windsurf / Codeium
+
+Add skill directories to your project workspace. Windsurf indexes markdown files automatically.
+
+### GitHub Copilot
+
+Copy skill content into `.github/copilot-instructions.md`:
+
+```bash
+cat skillstack/api-design/SKILL.md >> .github/copilot-instructions.md
+```
+
+### Cline / Continue.dev / aider
+
+Add skill directories to your project. These tools read project files for context and will pick up the patterns, templates, and examples.
+
+### What's universal vs Claude-specific
+
+| Feature | Works everywhere | Claude Code only |
+|---------|-----------------|-----------------|
+| 785+ markdown guides and references | Yes | Yes |
+| 500+ templates and scripts | Yes | Yes |
+| Code examples and patterns | Yes | Yes |
+| Automatic trigger-based activation | — | Yes |
+| One-command plugin install | — | Yes |
 
 ---
 
@@ -50,26 +83,26 @@ Skills activate automatically based on your conversation. When you mention "REST
 
 ```
 "Design a REST API for a multi-tenant SaaS billing system"
-→ api-design skill activates with REST patterns, auth strategies, pagination
+→ api-design skill: REST patterns, auth strategies, pagination
 
 "My Next.js app hydration fails only in production"
-→ debugging skill activates with systematic root cause analysis
+→ debugging skill: systematic root cause analysis
 
 "Review this PR for security issues"
-→ code-review skill runs multi-agent analysis (security + performance + style)
+→ code-review skill: multi-agent analysis (security + performance + style)
 
 "Create a production Docker setup for my FastAPI app"
-→ docker-containerization skill generates optimized multi-stage Dockerfiles
+→ docker-containerization skill: optimized multi-stage Dockerfiles
 
 "Write pytest tests for this auth service with edge cases"
-→ test-driven-development skill generates Red-Green-Refactor test suites
+→ test-driven-development skill: Red-Green-Refactor test suites
 ```
 
 ---
 
 ## Skill Catalog
 
-> Click any skill name to view its detailed documentation, file listings, and usage examples.
+> Click any skill name for detailed documentation, file listings, and usage examples.
 
 ### Development
 
@@ -146,53 +179,32 @@ Focused frameworks for specific tasks. Install individually or as companions to 
 
 ## Skill Structure
 
-Each skill is a standalone plugin with this structure:
+Each skill is a standalone plugin:
 
 ```
 skill-name/
-├── plugin.json                 # Plugin manifest (name, version, description)
-├── SKILL.md                    # Core skill instructions for Claude
-├── README.md                   # Human-readable documentation
+├── plugin.json                 # Plugin manifest
+├── SKILL.md                    # Core instructions (AI reads this)
+├── README.md                   # Human documentation
 ├── references/                 # Deep-dive guides
 ├── templates/                  # Copy-paste boilerplates
 ├── scripts/                    # Automation utilities
-└── examples/                   # Runnable code examples
-```
-
-### Frontmatter
-
-Every SKILL.md starts with YAML frontmatter for automatic activation:
-
-```yaml
----
-name: api-design
-description: Comprehensive API design for REST, GraphQL, gRPC architectures.
-triggers:
-  - API
-  - endpoint
-  - REST
-  - GraphQL
-  - OpenAPI
----
+└── examples/                   # Runnable code
 ```
 
 ---
 
 ## Contributing
 
-### Creating a New Skill
-
-1. Create a directory with `plugin.json` and `SKILL.md`
+1. Create a directory with `plugin.json`, `SKILL.md`, and `README.md`
 2. Add references, templates, scripts, and examples
-3. Write a `README.md` documenting what's included
-4. Submit a pull request
+3. Submit a pull request
 
-### Skill Quality Checklist
+### Quality Checklist
 
 - [ ] `plugin.json` has name, version, description
-- [ ] `SKILL.md` has valid frontmatter with triggers
+- [ ] `SKILL.md` has valid YAML frontmatter with triggers
 - [ ] Examples are complete and runnable
-- [ ] Templates are copy-paste ready
 - [ ] `README.md` documents all included files
 
 ---
@@ -205,6 +217,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**34 skills. Install what you need. Extend Claude your way.**
+**34 skills. Install what you need. Works with any AI coding assistant.**
 
 </div>
