@@ -82,4 +82,4 @@ We have this domain ontology for a project management tool. Map each class to RE
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/ontology-design` -- 34 production-grade skills for Claude Code.

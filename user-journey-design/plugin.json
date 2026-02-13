@@ -1,0 +1,17 @@
+{
+  "name": "user-journey-design",
+  "version": "1.0.0",
+  "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/user-journey-design",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "user journey",
+    "customer journey",
+    "experience map",
+    "touchpoint analysis",
+    "service blueprint"
+  ]
+}

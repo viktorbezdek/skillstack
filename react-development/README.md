@@ -128,4 +128,4 @@ Help me scaffold a new component for our fpkit-based design system. It's a Card 
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/react-development` -- 34 production-grade skills for Claude Code.

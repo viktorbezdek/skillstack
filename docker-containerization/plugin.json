@@ -1,0 +1,17 @@
+{
+  "name": "docker-containerization",
+  "version": "1.0.0",
+  "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/docker-containerization",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "Docker",
+    "container",
+    "Dockerfile",
+    "Docker Compose",
+    "multi-stage build"
+  ]
+}

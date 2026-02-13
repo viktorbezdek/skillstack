@@ -140,4 +140,4 @@ Expected output: Checklist-driven assessment with pass/fail for each criterion, 
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/code-review` -- 34 production-grade skills for Claude Code.

@@ -144,4 +144,4 @@ Uses the worktree manager to create isolated Docker Compose environments with un
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/docker-containerization` -- 34 production-grade skills for Claude Code.

@@ -1,0 +1,17 @@
+{
+  "name": "consistency-standards",
+  "version": "1.0.0",
+  "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/consistency-standards",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "naming conventions",
+    "style guide",
+    "taxonomy",
+    "terminology",
+    "content reuse"
+  ]
+}

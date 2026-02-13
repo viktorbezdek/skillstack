@@ -138,4 +138,4 @@ Uses the ADR template with systems-thinking for architectural impact analysis an
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/documentation-generator` -- 34 production-grade skills for Claude Code.

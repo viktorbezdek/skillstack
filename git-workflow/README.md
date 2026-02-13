@@ -138,4 +138,4 @@ Runs group-files.py to analyze file relationships by scope, type, and dependency
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/git-workflow` -- 34 production-grade skills for Claude Code.

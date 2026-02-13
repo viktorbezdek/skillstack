@@ -89,4 +89,4 @@ Uses the progressive complexity framework to start with basic try/catch, then ad
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/example-design` -- 34 production-grade skills for Claude Code.
