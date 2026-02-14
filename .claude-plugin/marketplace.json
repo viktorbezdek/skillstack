@@ -1,0 +1,285 @@
+{
+  "name": "claude-skills",
+  "owner": {
+    "name": "Viktor Bezdek",
+    "email": "viktor@bezdek.dev"
+  },
+  "metadata": {
+    "description": "34 expert plugins for Claude Code covering development, DevOps, testing, API design, documentation, and strategic thinking.",
+    "version": "2.0.0"
+  },
+  "plugins": [
+    {
+      "name": "api-design",
+      "source": "./api-design",
+      "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["api", "rest", "graphql", "grpc", "openapi"]
+    },
+    {
+      "name": "cicd-pipelines",
+      "source": "./cicd-pipelines",
+      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": ["ci-cd", "github-actions", "gitlab-ci", "terraform", "devops"]
+    },
+    {
+      "name": "code-review",
+      "source": "./code-review",
+      "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["code-review", "security", "performance", "style"]
+    },
+    {
+      "name": "consistency-standards",
+      "source": "./consistency-standards",
+      "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["naming", "conventions", "style-guide"]
+    },
+    {
+      "name": "content-modelling",
+      "source": "./content-modelling",
+      "description": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["content", "cms", "schema", "modelling"]
+    },
+    {
+      "name": "creative-problem-solving",
+      "source": "./creative-problem-solving",
+      "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["problem-solving", "lateral-thinking", "game-theory"]
+    },
+    {
+      "name": "critical-intuition",
+      "source": "./critical-intuition",
+      "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["pattern-recognition", "bayesian-reasoning", "analysis"]
+    },
+    {
+      "name": "debugging",
+      "source": "./debugging",
+      "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["debugging", "devtools", "profiling", "root-cause-analysis"]
+    },
+    {
+      "name": "docker-containerization",
+      "source": "./docker-containerization",
+      "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": ["docker", "containers", "compose", "multi-stage"]
+    },
+    {
+      "name": "documentation-generator",
+      "source": "./documentation-generator",
+      "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
+      "version": "1.0.0",
+      "category": "documentation",
+      "tags": ["docs", "readme", "api-docs", "architecture-docs"]
+    },
+    {
+      "name": "edge-case-coverage",
+      "source": "./edge-case-coverage",
+      "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["edge-cases", "boundary-conditions", "validation"]
+    },
+    {
+      "name": "example-design",
+      "source": "./example-design",
+      "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
+      "version": "1.0.0",
+      "category": "documentation",
+      "tags": ["examples", "tutorials", "samples"]
+    },
+    {
+      "name": "frontend-design",
+      "source": "./frontend-design",
+      "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["frontend", "ui-ux", "tailwind", "accessibility", "design-tokens"]
+    },
+    {
+      "name": "git-workflow",
+      "source": "./git-workflow",
+      "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": ["git", "conventional-commits", "changelog", "worktree"]
+    },
+    {
+      "name": "mcp-server",
+      "source": "./mcp-server",
+      "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["mcp", "model-context-protocol", "fastmcp", "typescript"]
+    },
+    {
+      "name": "navigation-design",
+      "source": "./navigation-design",
+      "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["navigation", "information-architecture", "wayfinding"]
+    },
+    {
+      "name": "nextjs-development",
+      "source": "./nextjs-development",
+      "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["nextjs", "react", "server-components", "app-router"]
+    },
+    {
+      "name": "ontology-design",
+      "source": "./ontology-design",
+      "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["ontology", "knowledge-models", "taxonomies"]
+    },
+    {
+      "name": "outcome-orientation",
+      "source": "./outcome-orientation",
+      "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["okrs", "outcomes", "metrics"]
+    },
+    {
+      "name": "persona-definition",
+      "source": "./persona-definition",
+      "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["personas", "user-research", "empathy-maps"]
+    },
+    {
+      "name": "persona-mapping",
+      "source": "./persona-mapping",
+      "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["stakeholders", "raci", "influence-mapping"]
+    },
+    {
+      "name": "prioritization",
+      "source": "./prioritization",
+      "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["rice", "moscow", "ice", "prioritization"]
+    },
+    {
+      "name": "prompt-engineering",
+      "source": "./prompt-engineering",
+      "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["prompts", "llm", "optimization", "evaluation"]
+    },
+    {
+      "name": "python-development",
+      "source": "./python-development",
+      "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["python", "uv", "ruff", "mypy", "pytest", "fastapi"]
+    },
+    {
+      "name": "react-development",
+      "source": "./react-development",
+      "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["react", "hooks", "shadcn", "bulletproof-react"]
+    },
+    {
+      "name": "risk-management",
+      "source": "./risk-management",
+      "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["risk", "mitigation", "assessment"]
+    },
+    {
+      "name": "skill-creator",
+      "source": "./skill-creator",
+      "description": "Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["skill", "plugin", "creation", "framework"]
+    },
+    {
+      "name": "systems-thinking",
+      "source": "./systems-thinking",
+      "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": ["systems", "feedback-loops", "leverage-points"]
+    },
+    {
+      "name": "test-driven-development",
+      "source": "./test-driven-development",
+      "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["tdd", "red-green-refactor", "pytest", "vitest"]
+    },
+    {
+      "name": "testing-framework",
+      "source": "./testing-framework",
+      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing, E2E testing, component testing, accessibility testing, mutation testing, fuzz testing, and CI/CD integration.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": ["testing", "playwright", "unit-tests", "e2e", "mutation-testing"]
+    },
+    {
+      "name": "typescript-development",
+      "source": "./typescript-development",
+      "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration, architecture patterns, security, and testing strategies.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": ["typescript", "zod", "clean-architecture", "branded-types"]
+    },
+    {
+      "name": "user-journey-design",
+      "source": "./user-journey-design",
+      "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["user-journey", "touchpoints", "experience-mapping"]
+    },
+    {
+      "name": "ux-writing",
+      "source": "./ux-writing",
+      "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": ["ux-writing", "microcopy", "error-messages"]
+    },
+    {
+      "name": "workflow-automation",
+      "source": "./workflow-automation",
+      "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": ["automation", "ci-cd", "orchestration", "release-management"]
+    }
+  ]
+}
