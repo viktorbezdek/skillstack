@@ -319,3 +319,4 @@ python "$SKILL_DIR/scripts/doc-gen.py" drift /path/to/repo --docs-path /path/to/
 5. **Validate with outcome-orientation** - Measure doc effectiveness
 6. **Audit with risk-management** - Identify and track gaps
 
+
