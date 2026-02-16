@@ -76,4 +76,4 @@ I'm building a prompt for Claude that needs to handle structured data extraction
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/prompt-engineering` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install prompt-engineering@claude-skills` -- 34 production-grade skills for Claude Code.

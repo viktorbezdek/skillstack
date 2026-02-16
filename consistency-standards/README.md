@@ -81,4 +81,4 @@ Expected output: A voice and tone matrix mapping each message context to its rec
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/consistency-standards` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install consistency-standards@claude-skills` -- 34 production-grade skills for Claude Code.

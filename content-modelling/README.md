@@ -90,4 +90,4 @@ Expected output: Channel-agnostic content types using semantic fields (no layout
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/content-modelling` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install content-modelling@claude-skills` -- 34 production-grade skills for Claude Code.

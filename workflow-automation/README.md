@@ -226,4 +226,4 @@ Runs pipeline analysis, identifies bottlenecks (missing caching, serial jobs tha
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/workflow-automation` — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install workflow-automation@claude-skills` — 34 production-grade skills for Claude Code.

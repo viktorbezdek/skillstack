@@ -216,4 +216,4 @@ Initializes a BATS project structure, creates test files with common assertions,
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/testing-framework` — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install testing-framework@claude-skills` — 34 production-grade skills for Claude Code.

@@ -170,4 +170,4 @@ Write a standalone Python script with PEP 723 inline metadata that fetches weath
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/python-development` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install python-development@claude-skills` -- 34 production-grade skills for Claude Code.

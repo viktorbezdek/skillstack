@@ -86,4 +86,4 @@ Applies the input validation checklist and anti-pattern detection to identify mi
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/edge-case-coverage` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install edge-case-coverage@claude-skills` -- 34 production-grade skills for Claude Code.
