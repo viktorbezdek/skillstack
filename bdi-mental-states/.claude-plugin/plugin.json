@@ -1,0 +1,9 @@
+{
+  "name": "bdi-mental-states",
+  "version": "1.0.0",
+  "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/bdi-mental-states",
+  "keywords": ["bdi", "cognitive-architecture", "rdf", "ontology", "neuro-symbolic"]
+}

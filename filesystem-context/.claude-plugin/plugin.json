@@ -1,0 +1,9 @@
+{
+  "name": "filesystem-context",
+  "version": "1.0.0",
+  "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/filesystem-context",
+  "keywords": ["filesystem", "context-management", "scratch-pad", "dynamic-loading"]
+}

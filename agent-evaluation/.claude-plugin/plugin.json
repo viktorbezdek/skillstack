@@ -1,0 +1,9 @@
+{
+  "name": "agent-evaluation",
+  "version": "1.0.0",
+  "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/agent-evaluation",
+  "keywords": ["evaluation", "llm-as-judge", "bias-mitigation", "rubrics", "pairwise-comparison"]
+}
