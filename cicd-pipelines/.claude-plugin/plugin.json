@@ -4,7 +4,7 @@
   "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/cicd-pipelines",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/cicd-pipelines",
   "keywords": [
     "claude-code",
     "skill",

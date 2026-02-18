@@ -29,8 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `SKILL.md` and supporting files moved to `skills/<name>/` subdirectories
   - Plugin component directories (`commands/`) remain at plugin root
 - Replaced top-level `plugin.json` with `.claude-plugin/marketplace.json`
-- Installation method changed from `claude plugin add github:...` to marketplace-based `/plugin install <name>@claude-skills`
-- Renamed repository references from `skillstack` to `claude-skills`
+- Installation method changed from `claude plugin add github:...` to marketplace-based `/plugin install <name>@skillstack`
+- Standardized all repository references to use `skillstack`
 
 ### Added
 

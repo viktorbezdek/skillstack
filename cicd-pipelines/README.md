@@ -205,4 +205,4 @@ Expected output: Gap analysis against Silver badge criteria, specific actions ne
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install cicd-pipelines@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install cicd-pipelines@skillstack` -- 34 production-grade skills for Claude Code.

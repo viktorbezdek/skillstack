@@ -5,8 +5,8 @@ Foundational understanding of context engineering for AI agent systems. Covers c
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install context-fundamentals@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install context-fundamentals@skillstack
 ```
 
 ## What's Included

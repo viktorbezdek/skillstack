@@ -4,7 +4,7 @@
   "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/workflow-automation",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/workflow-automation",
   "keywords": [
     "claude-code",
     "skill",

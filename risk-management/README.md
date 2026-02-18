@@ -71,4 +71,4 @@ We have 12 active risks in our register. Design a monitoring plan with appropria
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install risk-management@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install risk-management@skillstack` -- 34 production-grade skills for Claude Code.

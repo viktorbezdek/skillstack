@@ -86,4 +86,4 @@ Generates three focused journey maps following the built-in documentation patter
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install user-journey-design@claude-skills` — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install user-journey-design@skillstack` — 34 production-grade skills for Claude Code.

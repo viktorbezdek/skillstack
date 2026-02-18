@@ -5,8 +5,8 @@ Methodology for LLM-powered project development. Task-model fit, pipeline archit
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install agent-project-development@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install agent-project-development@skillstack
 ```
 
 ## What's Included

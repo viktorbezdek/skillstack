@@ -78,4 +78,4 @@ Based on our stakeholder map, create a communication plan. For each stakeholder 
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install persona-mapping@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install persona-mapping@skillstack` -- 34 production-grade skills for Claude Code.

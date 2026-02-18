@@ -88,4 +88,4 @@ Expected output: Evidence evaluation framework applied to the claim, base rate a
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install critical-intuition@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install critical-intuition@skillstack` -- 34 production-grade skills for Claude Code.

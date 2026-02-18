@@ -5,8 +5,8 @@ Techniques for extending effective context capacity through compaction, observat
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install context-optimization@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install context-optimization@skillstack
 ```
 
 ## What's Included

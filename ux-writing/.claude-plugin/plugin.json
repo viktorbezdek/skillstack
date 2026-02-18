@@ -4,7 +4,7 @@
   "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/ux-writing",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/ux-writing",
   "keywords": [
     "claude-code",
     "skill",

@@ -85,4 +85,4 @@ Produces concise, action-oriented tooltips that explain what each element does a
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install ux-writing@claude-skills` — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install ux-writing@skillstack` — 34 production-grade skills for Claude Code.

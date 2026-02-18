@@ -4,6 +4,6 @@
   "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/tool-design",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/tool-design",
   "keywords": ["tool-design", "mcp", "consolidation-principle", "architectural-reduction"]
 }

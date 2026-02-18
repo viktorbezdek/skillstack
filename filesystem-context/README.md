@@ -5,8 +5,8 @@ Filesystem-based context engineering patterns. Scratch pads, plan persistence, s
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install filesystem-context@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install filesystem-context@skillstack
 ```
 
 ## What's Included

@@ -7,8 +7,8 @@
 46 individually installable expert plugins for AI coding assistants. First-class support for Claude Code with marketplace install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install python-development@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install python-development@skillstack
 ```
 
 <div align="center">
@@ -24,15 +24,15 @@
 ### Add the marketplace
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
+/plugin marketplace add viktorbezdek/skillstack
 ```
 
 ### Install plugins
 
 ```
-/plugin install api-design@claude-skills
-/plugin install debugging@claude-skills
-/plugin install react-development@claude-skills
+/plugin install api-design@skillstack
+/plugin install debugging@skillstack
+/plugin install react-development@skillstack
 ```
 
 Plugins activate automatically — mention "REST API" and the `api-design` plugin loads. Say "pytest fixtures" and `testing-framework` kicks in. No special syntax.
@@ -40,8 +40,8 @@ Plugins activate automatically — mention "REST API" and the `api-design` plugi
 ### Install from CLI
 
 ```bash
-claude plugin marketplace add viktorbezdek/claude-skills
-claude plugin install python-development@claude-skills
+claude plugin marketplace add viktorbezdek/skillstack
+claude plugin install python-development@skillstack
 ```
 
 ---
@@ -55,7 +55,7 @@ Every plugin is standard markdown with scripts and templates. The knowledge work
 Copy a plugin's skill into your project or reference it in `.cursorrules`:
 
 ```bash
-cp claude-skills/python-development/skills/python-development/SKILL.md .cursorrules
+cp skillstack/python-development/skills/python-development/SKILL.md .cursorrules
 ```
 
 ### Windsurf / Codeium
@@ -67,7 +67,7 @@ Add plugin directories to your project workspace. Windsurf indexes markdown file
 Copy skill content into `.github/copilot-instructions.md`:
 
 ```bash
-cat claude-skills/api-design/skills/api-design/SKILL.md >> .github/copilot-instructions.md
+cat skillstack/api-design/skills/api-design/SKILL.md >> .github/copilot-instructions.md
 ```
 
 ### Cline / Continue.dev / aider
@@ -115,51 +115,51 @@ Add plugin directories to your project. These tools read project files for conte
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[python-development](python-development/)** | `/plugin install python-development@claude-skills` | Modern Python with uv, ruff, mypy, pytest, FastAPI, async patterns |
-| **[typescript-development](typescript-development/)** | `/plugin install typescript-development@claude-skills` | Zod/TypeBox validation, Clean Architecture, branded types, strict tsconfig |
-| **[react-development](react-development/)** | `/plugin install react-development@claude-skills` | React 19, hooks optimization, Bulletproof React, accessibility |
-| **[nextjs-development](nextjs-development/)** | `/plugin install nextjs-development@claude-skills` | Next.js 16 App Router, Server Components, caching strategies |
-| **[frontend-design](frontend-design/)** | `/plugin install frontend-design@claude-skills` | Tailwind/shadcn/Radix, WCAG 2.1 AA, design tokens |
-| **[prompt-engineering](prompt-engineering/)** | `/plugin install prompt-engineering@claude-skills` | 4-D optimization framework, A/B testing, eval rubrics |
-| **[skill-creator](skill-creator/)** | `/plugin install skill-creator@claude-skills` | Create your own skills with progressive disclosure and validation |
+| **[python-development](python-development/)** | `/plugin install python-development@skillstack` | Modern Python with uv, ruff, mypy, pytest, FastAPI, async patterns |
+| **[typescript-development](typescript-development/)** | `/plugin install typescript-development@skillstack` | Zod/TypeBox validation, Clean Architecture, branded types, strict tsconfig |
+| **[react-development](react-development/)** | `/plugin install react-development@skillstack` | React 19, hooks optimization, Bulletproof React, accessibility |
+| **[nextjs-development](nextjs-development/)** | `/plugin install nextjs-development@skillstack` | Next.js 16 App Router, Server Components, caching strategies |
+| **[frontend-design](frontend-design/)** | `/plugin install frontend-design@skillstack` | Tailwind/shadcn/Radix, WCAG 2.1 AA, design tokens |
+| **[prompt-engineering](prompt-engineering/)** | `/plugin install prompt-engineering@skillstack` | 4-D optimization framework, A/B testing, eval rubrics |
+| **[skill-creator](skill-creator/)** | `/plugin install skill-creator@skillstack` | Create your own skills with progressive disclosure and validation |
 
 ### DevOps & Infrastructure
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[cicd-pipelines](cicd-pipelines/)** | `/plugin install cicd-pipelines@claude-skills` | GitHub Actions, GitLab CI, Terraform, DevSecOps, semantic versioning |
-| **[docker-containerization](docker-containerization/)** | `/plugin install docker-containerization@claude-skills` | Multi-stage builds, Docker Compose, worktree isolation |
-| **[git-workflow](git-workflow/)** | `/plugin install git-workflow@claude-skills` | Conventional commits, changelog generation, worktree management |
+| **[cicd-pipelines](cicd-pipelines/)** | `/plugin install cicd-pipelines@skillstack` | GitHub Actions, GitLab CI, Terraform, DevSecOps, semantic versioning |
+| **[docker-containerization](docker-containerization/)** | `/plugin install docker-containerization@skillstack` | Multi-stage builds, Docker Compose, worktree isolation |
+| **[git-workflow](git-workflow/)** | `/plugin install git-workflow@skillstack` | Conventional commits, changelog generation, worktree management |
 
 ### Quality & Testing
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[test-driven-development](test-driven-development/)** | `/plugin install test-driven-development@claude-skills` | Red-Green-Refactor for pytest, Vitest, Playwright |
-| **[testing-framework](testing-framework/)** | `/plugin install testing-framework@claude-skills` | Unit, E2E, component, accessibility, mutation, fuzz testing |
-| **[debugging](debugging/)** | `/plugin install debugging@claude-skills` | Chrome DevTools automation, systematic root cause analysis |
-| **[code-review](code-review/)** | `/plugin install code-review@claude-skills` | Multi-agent swarm review (security + performance + style) |
+| **[test-driven-development](test-driven-development/)** | `/plugin install test-driven-development@skillstack` | Red-Green-Refactor for pytest, Vitest, Playwright |
+| **[testing-framework](testing-framework/)** | `/plugin install testing-framework@skillstack` | Unit, E2E, component, accessibility, mutation, fuzz testing |
+| **[debugging](debugging/)** | `/plugin install debugging@skillstack` | Chrome DevTools automation, systematic root cause analysis |
+| **[code-review](code-review/)** | `/plugin install code-review@skillstack` | Multi-agent swarm review (security + performance + style) |
 
 ### API & Architecture
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[api-design](api-design/)** | `/plugin install api-design@claude-skills` | REST, GraphQL, gRPC, OpenAPI, auth, pagination, rate limiting |
-| **[mcp-server](mcp-server/)** | `/plugin install mcp-server@claude-skills` | Build MCP servers with FastMCP (Python) or TypeScript |
+| **[api-design](api-design/)** | `/plugin install api-design@skillstack` | REST, GraphQL, gRPC, OpenAPI, auth, pagination, rate limiting |
+| **[mcp-server](mcp-server/)** | `/plugin install mcp-server@skillstack` | Build MCP servers with FastMCP (Python) or TypeScript |
 
 ### Documentation & Automation
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[documentation-generator](documentation-generator/)** | `/plugin install documentation-generator@claude-skills` | 6-phase doc generation, 24 templates, drift detection |
-| **[workflow-automation](workflow-automation/)** | `/plugin install workflow-automation@claude-skills` | CI/CD automation, FABER state machine, release management |
+| **[documentation-generator](documentation-generator/)** | `/plugin install documentation-generator@skillstack` | 6-phase doc generation, 24 templates, drift detection |
+| **[workflow-automation](workflow-automation/)** | `/plugin install workflow-automation@skillstack` | CI/CD automation, FABER state machine, release management |
 
 ### Strategic Thinking
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[creative-problem-solving](creative-problem-solving/)** | `/plugin install creative-problem-solving@claude-skills` | Game theory, first principles, lateral thinking, SCAMPER |
-| **[critical-intuition](critical-intuition/)** | `/plugin install critical-intuition@claude-skills` | Pattern recognition, Bayesian reasoning, bias detection |
+| **[creative-problem-solving](creative-problem-solving/)** | `/plugin install creative-problem-solving@skillstack` | Game theory, first principles, lateral thinking, SCAMPER |
+| **[critical-intuition](critical-intuition/)** | `/plugin install critical-intuition@skillstack` | Pattern recognition, Bayesian reasoning, bias detection |
 
 ### Helper Plugins
 
@@ -167,20 +167,20 @@ Focused frameworks for specific tasks. Install individually or as companions to 
 
 | Plugin | Install | What it Does |
 |--------|---------|-------------|
-| **[consistency-standards](consistency-standards/)** | `/plugin install consistency-standards@claude-skills` | Naming conventions, style guides |
-| **[content-modelling](content-modelling/)** | `/plugin install content-modelling@claude-skills` | CMS schemas, content types |
-| **[edge-case-coverage](edge-case-coverage/)** | `/plugin install edge-case-coverage@claude-skills` | Boundary conditions, error scenarios |
-| **[example-design](example-design/)** | `/plugin install example-design@claude-skills` | Progressive complexity examples |
-| **[navigation-design](navigation-design/)** | `/plugin install navigation-design@claude-skills` | Information architecture, wayfinding |
-| **[ontology-design](ontology-design/)** | `/plugin install ontology-design@claude-skills` | Knowledge models, taxonomies |
-| **[outcome-orientation](outcome-orientation/)** | `/plugin install outcome-orientation@claude-skills` | OKRs, success metrics |
-| **[persona-definition](persona-definition/)** | `/plugin install persona-definition@claude-skills` | User personas, empathy maps |
-| **[persona-mapping](persona-mapping/)** | `/plugin install persona-mapping@claude-skills` | Stakeholder analysis, RACI |
-| **[prioritization](prioritization/)** | `/plugin install prioritization@claude-skills` | RICE, MoSCoW, ICE scoring |
-| **[risk-management](risk-management/)** | `/plugin install risk-management@claude-skills` | Risk registers, mitigation strategies |
-| **[systems-thinking](systems-thinking/)** | `/plugin install systems-thinking@claude-skills` | Feedback loops, leverage points |
-| **[user-journey-design](user-journey-design/)** | `/plugin install user-journey-design@claude-skills` | Journey maps, touchpoints |
-| **[ux-writing](ux-writing/)** | `/plugin install ux-writing@claude-skills` | Microcopy, error messages |
+| **[consistency-standards](consistency-standards/)** | `/plugin install consistency-standards@skillstack` | Naming conventions, style guides |
+| **[content-modelling](content-modelling/)** | `/plugin install content-modelling@skillstack` | CMS schemas, content types |
+| **[edge-case-coverage](edge-case-coverage/)** | `/plugin install edge-case-coverage@skillstack` | Boundary conditions, error scenarios |
+| **[example-design](example-design/)** | `/plugin install example-design@skillstack` | Progressive complexity examples |
+| **[navigation-design](navigation-design/)** | `/plugin install navigation-design@skillstack` | Information architecture, wayfinding |
+| **[ontology-design](ontology-design/)** | `/plugin install ontology-design@skillstack` | Knowledge models, taxonomies |
+| **[outcome-orientation](outcome-orientation/)** | `/plugin install outcome-orientation@skillstack` | OKRs, success metrics |
+| **[persona-definition](persona-definition/)** | `/plugin install persona-definition@skillstack` | User personas, empathy maps |
+| **[persona-mapping](persona-mapping/)** | `/plugin install persona-mapping@skillstack` | Stakeholder analysis, RACI |
+| **[prioritization](prioritization/)** | `/plugin install prioritization@skillstack` | RICE, MoSCoW, ICE scoring |
+| **[risk-management](risk-management/)** | `/plugin install risk-management@skillstack` | Risk registers, mitigation strategies |
+| **[systems-thinking](systems-thinking/)** | `/plugin install systems-thinking@skillstack` | Feedback loops, leverage points |
+| **[user-journey-design](user-journey-design/)** | `/plugin install user-journey-design@skillstack` | Journey maps, touchpoints |
+| **[ux-writing](ux-writing/)** | `/plugin install ux-writing@skillstack` | Microcopy, error messages |
 
 ### Context Engineering
 
@@ -188,11 +188,11 @@ Master the discipline of curating optimal context for LLM agents.
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[context-fundamentals](context-fundamentals/)** | `/plugin install context-fundamentals@claude-skills` | Context anatomy, attention mechanics, progressive disclosure |
-| **[context-degradation](context-degradation/)** | `/plugin install context-degradation@claude-skills` | Lost-in-middle, poisoning, distraction, empirical thresholds |
-| **[context-compression](context-compression/)** | `/plugin install context-compression@claude-skills` | Anchored summarization, tokens-per-task, probe evaluation |
-| **[context-optimization](context-optimization/)** | `/plugin install context-optimization@claude-skills` | Compaction, observation masking, KV-cache, partitioning |
-| **[filesystem-context](filesystem-context/)** | `/plugin install filesystem-context@claude-skills` | Scratch pads, plan persistence, dynamic skill loading |
+| **[context-fundamentals](context-fundamentals/)** | `/plugin install context-fundamentals@skillstack` | Context anatomy, attention mechanics, progressive disclosure |
+| **[context-degradation](context-degradation/)** | `/plugin install context-degradation@skillstack` | Lost-in-middle, poisoning, distraction, empirical thresholds |
+| **[context-compression](context-compression/)** | `/plugin install context-compression@skillstack` | Anchored summarization, tokens-per-task, probe evaluation |
+| **[context-optimization](context-optimization/)** | `/plugin install context-optimization@skillstack` | Compaction, observation masking, KV-cache, partitioning |
+| **[filesystem-context](filesystem-context/)** | `/plugin install filesystem-context@skillstack` | Scratch pads, plan persistence, dynamic skill loading |
 
 ### Agent Architecture
 
@@ -200,13 +200,13 @@ Design and operate production-grade multi-agent systems.
 
 | Plugin | Install | Description |
 |--------|---------|-------------|
-| **[multi-agent-patterns](multi-agent-patterns/)** | `/plugin install multi-agent-patterns@claude-skills` | Supervisor, swarm, hierarchical patterns, context isolation |
-| **[memory-systems](memory-systems/)** | `/plugin install memory-systems@claude-skills` | Mem0, Zep/Graphiti, Cognee, temporal knowledge graphs |
-| **[tool-design](tool-design/)** | `/plugin install tool-design@claude-skills` | Agent tool design, consolidation principle, architectural reduction |
-| **[hosted-agents](hosted-agents/)** | `/plugin install hosted-agents@claude-skills` | Sandbox infrastructure, self-spawning, multiplayer |
-| **[agent-evaluation](agent-evaluation/)** | `/plugin install agent-evaluation@claude-skills` | LLM-as-judge, rubrics, bias mitigation, pairwise comparison |
-| **[agent-project-development](agent-project-development/)** | `/plugin install agent-project-development@claude-skills` | Task-model fit, pipeline architecture, cost estimation |
-| **[bdi-mental-states](bdi-mental-states/)** | `/plugin install bdi-mental-states@claude-skills` | BDI ontology, T2B2T paradigm, neuro-symbolic AI |
+| **[multi-agent-patterns](multi-agent-patterns/)** | `/plugin install multi-agent-patterns@skillstack` | Supervisor, swarm, hierarchical patterns, context isolation |
+| **[memory-systems](memory-systems/)** | `/plugin install memory-systems@skillstack` | Mem0, Zep/Graphiti, Cognee, temporal knowledge graphs |
+| **[tool-design](tool-design/)** | `/plugin install tool-design@skillstack` | Agent tool design, consolidation principle, architectural reduction |
+| **[hosted-agents](hosted-agents/)** | `/plugin install hosted-agents@skillstack` | Sandbox infrastructure, self-spawning, multiplayer |
+| **[agent-evaluation](agent-evaluation/)** | `/plugin install agent-evaluation@skillstack` | LLM-as-judge, rubrics, bias mitigation, pairwise comparison |
+| **[agent-project-development](agent-project-development/)** | `/plugin install agent-project-development@skillstack` | Task-model fit, pipeline architecture, cost estimation |
+| **[bdi-mental-states](bdi-mental-states/)** | `/plugin install bdi-mental-states@skillstack` | BDI ontology, T2B2T paradigm, neuro-symbolic AI |
 
 ---
 

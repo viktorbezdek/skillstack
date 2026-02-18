@@ -5,8 +5,8 @@ Design tools optimized for LLM agents. Consolidation principle, architectural re
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install tool-design@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install tool-design@skillstack
 ```
 
 ## What's Included

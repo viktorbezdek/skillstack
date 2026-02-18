@@ -5,8 +5,8 @@ Production strategies for compressing LLM context windows. Anchored iterative su
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install context-compression@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install context-compression@skillstack
 ```
 
 ## What's Included

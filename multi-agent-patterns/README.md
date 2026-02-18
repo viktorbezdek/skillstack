@@ -5,8 +5,8 @@ Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install multi-agent-patterns@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install multi-agent-patterns@skillstack
 ```
 
 ## What's Included

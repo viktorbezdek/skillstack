@@ -70,4 +70,4 @@ We're building a microservices platform. Apply systems thinking to identify pote
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install systems-thinking@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install systems-thinking@skillstack` -- 34 production-grade skills for Claude Code.

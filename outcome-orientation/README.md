@@ -82,4 +82,4 @@ Map out the results chain for our documentation improvement initiative. Start wi
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install outcome-orientation@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install outcome-orientation@skillstack` -- 34 production-grade skills for Claude Code.

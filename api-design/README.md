@@ -135,4 +135,4 @@ Expected output: Validation results, anti-pattern detection, missing fields, and
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install api-design@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install api-design@skillstack` -- 34 production-grade skills for Claude Code.

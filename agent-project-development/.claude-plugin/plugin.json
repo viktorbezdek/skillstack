@@ -4,6 +4,6 @@
   "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/agent-project-development",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/agent-project-development",
   "keywords": ["project-development", "pipeline", "task-model-fit", "cost-estimation"]
 }

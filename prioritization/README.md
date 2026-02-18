@@ -68,4 +68,4 @@ My PM says we should build feature X next because the CEO asked for it. Help me 
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/claude-skills) — `/plugin install prioritization@claude-skills` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install prioritization@skillstack` -- 34 production-grade skills for Claude Code.

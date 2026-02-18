@@ -4,7 +4,7 @@
   "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/persona-mapping",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/persona-mapping",
   "keywords": [
     "claude-code",
     "skill",

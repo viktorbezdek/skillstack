@@ -4,7 +4,7 @@
   "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/documentation-generator",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/documentation-generator",
   "keywords": [
     "claude-code",
     "skill",

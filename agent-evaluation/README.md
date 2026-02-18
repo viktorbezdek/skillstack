@@ -5,8 +5,8 @@ Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubr
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install agent-evaluation@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install agent-evaluation@skillstack
 ```
 
 ## What's Included

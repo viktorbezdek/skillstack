@@ -4,7 +4,7 @@
   "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/testing-framework",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/testing-framework",
   "keywords": [
     "claude-code",
     "skill",

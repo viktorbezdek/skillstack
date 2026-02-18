@@ -5,8 +5,8 @@ Patterns for recognizing and mitigating context failures in LLM agents. Covers l
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install context-degradation@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install context-degradation@skillstack
 ```
 
 ## What's Included

@@ -5,8 +5,8 @@ Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontolo
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install bdi-mental-states@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install bdi-mental-states@skillstack
 ```
 
 ## What's Included

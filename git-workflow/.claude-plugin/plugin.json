@@ -4,7 +4,7 @@
   "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
   "author": "viktorbezdek",
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/claude-skills/tree/main/git-workflow",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/git-workflow",
   "keywords": [
     "claude-code",
     "skill",

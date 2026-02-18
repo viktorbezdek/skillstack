@@ -5,8 +5,8 @@ Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Let
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install memory-systems@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install memory-systems@skillstack
 ```
 
 ## What's Included

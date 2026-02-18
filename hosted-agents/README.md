@@ -5,8 +5,8 @@ Infrastructure patterns for hosted background agents. Sandbox environments, imag
 ## Install
 
 ```
-/plugin marketplace add viktorbezdek/claude-skills
-/plugin install hosted-agents@claude-skills
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install hosted-agents@skillstack
 ```
 
 ## What's Included
