@@ -4,7 +4,7 @@
 
 # Claude Skills Marketplace
 
-34 individually installable expert plugins for AI coding assistants. First-class support for Claude Code with marketplace install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
+46 individually installable expert plugins for AI coding assistants. First-class support for Claude Code with marketplace install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
 
 ```
 /plugin marketplace add viktorbezdek/claude-skills
@@ -182,6 +182,32 @@ Focused frameworks for specific tasks. Install individually or as companions to 
 | **[user-journey-design](user-journey-design/)** | `/plugin install user-journey-design@claude-skills` | Journey maps, touchpoints |
 | **[ux-writing](ux-writing/)** | `/plugin install ux-writing@claude-skills` | Microcopy, error messages |
 
+### Context Engineering
+
+Master the discipline of curating optimal context for LLM agents.
+
+| Plugin | Install | Description |
+|--------|---------|-------------|
+| **[context-fundamentals](context-fundamentals/)** | `/plugin install context-fundamentals@claude-skills` | Context anatomy, attention mechanics, progressive disclosure |
+| **[context-degradation](context-degradation/)** | `/plugin install context-degradation@claude-skills` | Lost-in-middle, poisoning, distraction, empirical thresholds |
+| **[context-compression](context-compression/)** | `/plugin install context-compression@claude-skills` | Anchored summarization, tokens-per-task, probe evaluation |
+| **[context-optimization](context-optimization/)** | `/plugin install context-optimization@claude-skills` | Compaction, observation masking, KV-cache, partitioning |
+| **[filesystem-context](filesystem-context/)** | `/plugin install filesystem-context@claude-skills` | Scratch pads, plan persistence, dynamic skill loading |
+
+### Agent Architecture
+
+Design and operate production-grade multi-agent systems.
+
+| Plugin | Install | Description |
+|--------|---------|-------------|
+| **[multi-agent-patterns](multi-agent-patterns/)** | `/plugin install multi-agent-patterns@claude-skills` | Supervisor, swarm, hierarchical patterns, context isolation |
+| **[memory-systems](memory-systems/)** | `/plugin install memory-systems@claude-skills` | Mem0, Zep/Graphiti, Cognee, temporal knowledge graphs |
+| **[tool-design](tool-design/)** | `/plugin install tool-design@claude-skills` | Agent tool design, consolidation principle, architectural reduction |
+| **[hosted-agents](hosted-agents/)** | `/plugin install hosted-agents@claude-skills` | Sandbox infrastructure, self-spawning, multiplayer |
+| **[agent-evaluation](agent-evaluation/)** | `/plugin install agent-evaluation@claude-skills` | LLM-as-judge, rubrics, bias mitigation, pairwise comparison |
+| **[agent-project-development](agent-project-development/)** | `/plugin install agent-project-development@claude-skills` | Task-model fit, pipeline architecture, cost estimation |
+| **[bdi-mental-states](bdi-mental-states/)** | `/plugin install bdi-mental-states@claude-skills` | BDI ontology, T2B2T paradigm, neuro-symbolic AI |
+
 ---
 
 ## Plugin Structure
@@ -229,6 +255,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**34 plugins. Install what you need. Works with any AI coding assistant.**
+**46 plugins. Install what you need. Works with any AI coding assistant.**
 
 </div>

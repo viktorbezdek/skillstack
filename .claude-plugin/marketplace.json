@@ -5,7 +5,7 @@
     "email": "viktor@bezdek.dev"
   },
   "metadata": {
-    "description": "34 expert plugins for Claude Code covering development, DevOps, testing, API design, documentation, and strategic thinking.",
+    "description": "46 expert plugins for Claude Code covering development, DevOps, testing, API design, documentation, strategic thinking, context engineering, and agent architecture.",
     "version": "2.0.0"
   },
   "plugins": [
@@ -280,6 +280,102 @@
       "version": "1.0.0",
       "category": "devops",
       "tags": ["automation", "ci-cd", "orchestration", "release-management"]
+    },
+    {
+      "name": "context-fundamentals",
+      "source": "./context-fundamentals",
+      "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, and context budgeting.",
+      "version": "1.0.0",
+      "category": "context-engineering",
+      "tags": ["context-engineering", "attention", "progressive-disclosure", "context-window"]
+    },
+    {
+      "name": "context-degradation",
+      "source": "./context-degradation",
+      "description": "Patterns for recognizing and mitigating context failures. Lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
+      "version": "1.0.0",
+      "category": "context-engineering",
+      "tags": ["context-degradation", "lost-in-middle", "context-poisoning", "attention-patterns"]
+    },
+    {
+      "name": "context-compression",
+      "source": "./context-compression",
+      "description": "Production strategies for compressing LLM context. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
+      "version": "1.0.0",
+      "category": "context-engineering",
+      "tags": ["context-compression", "summarization", "compaction", "token-optimization"]
+    },
+    {
+      "name": "context-optimization",
+      "source": "./context-optimization",
+      "description": "Extend effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning.",
+      "version": "1.0.0",
+      "category": "context-engineering",
+      "tags": ["context-optimization", "kv-cache", "observation-masking", "compaction"]
+    },
+    {
+      "name": "multi-agent-patterns",
+      "source": "./multi-agent-patterns",
+      "description": "Architecture patterns for multi-agent LLM systems. Supervisor, swarm, hierarchical patterns, context isolation, consensus, and the telephone game solution.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["multi-agent", "supervisor", "swarm", "context-isolation", "langgraph"]
+    },
+    {
+      "name": "memory-systems",
+      "source": "./memory-systems",
+      "description": "Production memory architectures for agents. Compares Mem0, Zep/Graphiti, Letta, Cognee with benchmarks. Temporal knowledge graphs and retrieval strategies.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["agent-memory", "mem0", "zep", "graphiti", "cognee", "temporal-knowledge-graph"]
+    },
+    {
+      "name": "tool-design",
+      "source": "./tool-design",
+      "description": "Design tools for LLM agents. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["tool-design", "mcp", "consolidation-principle", "architectural-reduction"]
+    },
+    {
+      "name": "filesystem-context",
+      "source": "./filesystem-context",
+      "description": "Filesystem-based context engineering. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, and self-modification patterns.",
+      "version": "1.0.0",
+      "category": "context-engineering",
+      "tags": ["filesystem", "context-management", "scratch-pad", "dynamic-loading"]
+    },
+    {
+      "name": "hosted-agents",
+      "source": "./hosted-agents",
+      "description": "Infrastructure for hosted background agents. Sandbox environments, image registry, self-spawning, multiplayer support, and multi-client integration.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["hosted-agents", "sandbox", "background-agents", "multiplayer", "infrastructure"]
+    },
+    {
+      "name": "agent-evaluation",
+      "source": "./agent-evaluation",
+      "description": "Comprehensive evaluation for LLM agents. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, confidence calibration, and continuous monitoring.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["evaluation", "llm-as-judge", "bias-mitigation", "rubrics", "pairwise-comparison"]
+    },
+    {
+      "name": "agent-project-development",
+      "source": "./agent-project-development",
+      "description": "Methodology for LLM-powered projects. Task-model fit, pipeline architecture, file system state machines, cost estimation, and architectural reduction.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["project-development", "pipeline", "task-model-fit", "cost-estimation"]
+    },
+    {
+      "name": "bdi-mental-states",
+      "source": "./bdi-mental-states",
+      "description": "Belief-Desire-Intention cognitive architecture for agents. Formal BDI ontology, T2B2T paradigm, RDF integration, and neuro-symbolic AI patterns.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": ["bdi", "cognitive-architecture", "rdf", "ontology", "neuro-symbolic"]
     }
   ]
 }

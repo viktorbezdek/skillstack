@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-03-14
+
+### Added
+
+- 12 new context engineering and agent architecture plugins:
+  - **Context Engineering**: context-fundamentals, context-degradation, context-compression, context-optimization, filesystem-context
+  - **Agent Architecture**: multi-agent-patterns, memory-systems, tool-design, hosted-agents, agent-evaluation, agent-project-development, bdi-mental-states
+- Research references with latest 2025-2026 advances for memory-systems, multi-agent-patterns, and context engineering
+- Marketplace now contains 46 plugins total (up from 34)
+
+### Changed
+
+- Updated marketplace.json to include all 46 plugins with new categories: context-engineering, agent-architecture
+- Updated README with Context Engineering and Agent Architecture catalog sections
+
 ## [2.0.0] - 2026-03-14
 
 ### Changed
