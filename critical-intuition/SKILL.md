@@ -567,3 +567,4 @@ Before finalizing judgment:
 ✓ Have I identified early warnings or hidden factors?
 ✓ Is my judgment actionable and well-grounded?
 
+
