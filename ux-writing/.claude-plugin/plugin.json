@@ -2,7 +2,7 @@
   "name": "ux-writing",
   "version": "1.0.0",
   "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/ux-writing",
   "keywords": [

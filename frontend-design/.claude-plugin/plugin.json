@@ -2,7 +2,7 @@
   "name": "frontend-design",
   "version": "1.0.0",
   "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/frontend-design",
   "keywords": [

@@ -2,7 +2,7 @@
   "name": "memory-systems",
   "version": "1.0.0",
   "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/memory-systems",
   "keywords": ["agent-memory", "mem0", "zep", "graphiti", "cognee", "temporal-knowledge-graph"]

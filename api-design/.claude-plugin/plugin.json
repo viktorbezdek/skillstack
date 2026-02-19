@@ -2,7 +2,7 @@
   "name": "api-design",
   "version": "1.0.0",
   "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/api-design",
   "keywords": [

@@ -2,7 +2,7 @@
   "name": "edge-case-coverage",
   "version": "1.0.0",
   "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/edge-case-coverage",
   "keywords": [

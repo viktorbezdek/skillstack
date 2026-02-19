@@ -2,7 +2,7 @@
   "name": "creative-problem-solving",
   "version": "1.0.0",
   "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/creative-problem-solving",
   "keywords": [

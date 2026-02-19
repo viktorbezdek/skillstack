@@ -2,7 +2,7 @@
   "name": "outcome-orientation",
   "version": "1.0.0",
   "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/outcome-orientation",
   "keywords": [

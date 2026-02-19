@@ -2,7 +2,7 @@
   "name": "context-degradation",
   "version": "1.0.0",
   "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-degradation",
   "keywords": ["context-degradation", "lost-in-middle", "context-poisoning", "attention-patterns"]

@@ -2,7 +2,7 @@
   "name": "documentation-generator",
   "version": "1.0.0",
   "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/documentation-generator",
   "keywords": [

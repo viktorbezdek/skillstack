@@ -2,7 +2,7 @@
   "name": "cicd-pipelines",
   "version": "1.0.0",
   "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/cicd-pipelines",
   "keywords": [

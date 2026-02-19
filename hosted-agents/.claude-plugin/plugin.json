@@ -2,7 +2,7 @@
   "name": "hosted-agents",
   "version": "1.0.0",
   "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/hosted-agents",
   "keywords": ["hosted-agents", "sandbox", "background-agents", "multiplayer", "infrastructure"]

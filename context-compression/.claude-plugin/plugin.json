@@ -2,7 +2,7 @@
   "name": "context-compression",
   "version": "1.0.0",
   "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-compression",
   "keywords": ["context-compression", "summarization", "compaction", "token-optimization"]

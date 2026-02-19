@@ -2,7 +2,7 @@
   "name": "risk-management",
   "version": "1.0.0",
   "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
-  "author": "viktorbezdek",
+  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/risk-management",
   "keywords": [
