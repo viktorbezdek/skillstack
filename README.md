@@ -1,8 +1,8 @@
 <div align="center">
-<img src="assets/hero.svg" alt="Claude Skills Marketplace" width="100%" />
+<img src="assets/hero.svg" alt="SkillStack" width="100%" />
 </div>
 
-# Claude Skills Marketplace
+# SkillStack
 
 46 individually installable expert plugins for AI coding assistants. First-class support for Claude Code with marketplace install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
 
