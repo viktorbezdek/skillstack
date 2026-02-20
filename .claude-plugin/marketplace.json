@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "46 expert plugins for Claude Code covering development, DevOps, testing, API design, documentation, strategic thinking, context engineering, and agent architecture.",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "plugins": [
     {
@@ -28,7 +28,7 @@
     {
       "name": "code-review",
       "source": "./code-review",
-      "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation.",
+      "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
       "version": "1.0.0",
       "category": "quality",
       "tags": ["code-review", "security", "performance", "style"]
@@ -124,7 +124,7 @@
     {
       "name": "mcp-server",
       "source": "./mcp-server",
-      "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript.",
+      "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
       "version": "1.0.0",
       "category": "development",
       "tags": ["mcp", "model-context-protocol", "fastmcp", "typescript"]
@@ -236,7 +236,7 @@
     {
       "name": "test-driven-development",
       "source": "./test-driven-development",
-      "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp.",
+      "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
       "version": "1.0.0",
       "category": "quality",
       "tags": ["tdd", "red-green-refactor", "pytest", "vitest"]
@@ -244,7 +244,7 @@
     {
       "name": "testing-framework",
       "source": "./testing-framework",
-      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing, E2E testing, component testing, accessibility testing, mutation testing, fuzz testing, and CI/CD integration.",
+      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
       "version": "1.0.0",
       "category": "quality",
       "tags": ["testing", "playwright", "unit-tests", "e2e", "mutation-testing"]
@@ -252,7 +252,7 @@
     {
       "name": "typescript-development",
       "source": "./typescript-development",
-      "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration, architecture patterns, security, and testing strategies.",
+      "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
       "version": "1.0.0",
       "category": "development",
       "tags": ["typescript", "zod", "clean-architecture", "branded-types"]
@@ -284,7 +284,7 @@
     {
       "name": "context-fundamentals",
       "source": "./context-fundamentals",
-      "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, and context budgeting.",
+      "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
       "version": "1.0.0",
       "category": "context-engineering",
       "tags": ["context-engineering", "attention", "progressive-disclosure", "context-window"]
@@ -292,7 +292,7 @@
     {
       "name": "context-degradation",
       "source": "./context-degradation",
-      "description": "Patterns for recognizing and mitigating context failures. Lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
+      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
       "version": "1.0.0",
       "category": "context-engineering",
       "tags": ["context-degradation", "lost-in-middle", "context-poisoning", "attention-patterns"]
@@ -300,7 +300,7 @@
     {
       "name": "context-compression",
       "source": "./context-compression",
-      "description": "Production strategies for compressing LLM context. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
+      "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
       "version": "1.0.0",
       "category": "context-engineering",
       "tags": ["context-compression", "summarization", "compaction", "token-optimization"]
@@ -308,7 +308,7 @@
     {
       "name": "context-optimization",
       "source": "./context-optimization",
-      "description": "Extend effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning.",
+      "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
       "version": "1.0.0",
       "category": "context-engineering",
       "tags": ["context-optimization", "kv-cache", "observation-masking", "compaction"]
@@ -316,7 +316,7 @@
     {
       "name": "multi-agent-patterns",
       "source": "./multi-agent-patterns",
-      "description": "Architecture patterns for multi-agent LLM systems. Supervisor, swarm, hierarchical patterns, context isolation, consensus, and the telephone game solution.",
+      "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["multi-agent", "supervisor", "swarm", "context-isolation", "langgraph"]
@@ -324,7 +324,7 @@
     {
       "name": "memory-systems",
       "source": "./memory-systems",
-      "description": "Production memory architectures for agents. Compares Mem0, Zep/Graphiti, Letta, Cognee with benchmarks. Temporal knowledge graphs and retrieval strategies.",
+      "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["agent-memory", "mem0", "zep", "graphiti", "cognee", "temporal-knowledge-graph"]
@@ -332,7 +332,7 @@
     {
       "name": "tool-design",
       "source": "./tool-design",
-      "description": "Design tools for LLM agents. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
+      "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["tool-design", "mcp", "consolidation-principle", "architectural-reduction"]
@@ -340,7 +340,7 @@
     {
       "name": "filesystem-context",
       "source": "./filesystem-context",
-      "description": "Filesystem-based context engineering. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, and self-modification patterns.",
+      "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
       "version": "1.0.0",
       "category": "context-engineering",
       "tags": ["filesystem", "context-management", "scratch-pad", "dynamic-loading"]
@@ -348,7 +348,7 @@
     {
       "name": "hosted-agents",
       "source": "./hosted-agents",
-      "description": "Infrastructure for hosted background agents. Sandbox environments, image registry, self-spawning, multiplayer support, and multi-client integration.",
+      "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["hosted-agents", "sandbox", "background-agents", "multiplayer", "infrastructure"]
@@ -356,7 +356,7 @@
     {
       "name": "agent-evaluation",
       "source": "./agent-evaluation",
-      "description": "Comprehensive evaluation for LLM agents. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, confidence calibration, and continuous monitoring.",
+      "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["evaluation", "llm-as-judge", "bias-mitigation", "rubrics", "pairwise-comparison"]
@@ -364,7 +364,7 @@
     {
       "name": "agent-project-development",
       "source": "./agent-project-development",
-      "description": "Methodology for LLM-powered projects. Task-model fit, pipeline architecture, file system state machines, cost estimation, and architectural reduction.",
+      "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["project-development", "pipeline", "task-model-fit", "cost-estimation"]
@@ -372,7 +372,7 @@
     {
       "name": "bdi-mental-states",
       "source": "./bdi-mental-states",
-      "description": "Belief-Desire-Intention cognitive architecture for agents. Formal BDI ontology, T2B2T paradigm, RDF integration, and neuro-symbolic AI patterns.",
+      "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
       "version": "1.0.0",
       "category": "agent-architecture",
       "tags": ["bdi", "cognitive-architecture", "rdf", "ontology", "neuro-symbolic"]
