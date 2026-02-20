@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/agent-project-development",
-  "keywords": ["project-development", "pipeline", "task-model-fit", "cost-estimation"]
+  "keywords": ["claude-code", "skill", "project-development", "pipeline", "task-model-fit", "cost-estimation"]
 }
