@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/agent-evaluation",
-  "keywords": ["evaluation", "llm-as-judge", "bias-mitigation", "rubrics", "pairwise-comparison"]
+  "keywords": ["claude-code", "skill", "evaluation", "llm-as-judge", "bias-mitigation", "rubrics", "pairwise-comparison"]
 }
