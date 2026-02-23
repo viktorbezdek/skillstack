@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-compression",
-  "keywords": ["context-compression", "summarization", "compaction", "token-optimization"]
+  "keywords": ["claude-code", "skill", "context-compression", "summarization", "compaction", "token-optimization"]
 }
