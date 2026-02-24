@@ -53,3 +53,4 @@ LOW -----+----- HIGH POWER
 | Power + Legitimacy + Urgency | Definitive | Highest |
 | Power + Legitimacy | Dominant | High |
 | Single attribute | Latent | Low |
+
