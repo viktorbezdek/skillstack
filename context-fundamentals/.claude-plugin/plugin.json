@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-fundamentals",
-  "keywords": ["context-engineering", "attention", "progressive-disclosure", "context-window"]
+  "keywords": ["claude-code", "skill", "context-engineering", "attention", "progressive-disclosure", "context-window"]
 }
