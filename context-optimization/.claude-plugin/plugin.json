@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-optimization",
-  "keywords": ["context-optimization", "kv-cache", "observation-masking", "compaction"]
+  "keywords": ["claude-code", "skill", "context-optimization", "kv-cache", "observation-masking", "compaction"]
 }
