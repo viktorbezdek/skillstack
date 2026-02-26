@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/memory-systems",
-  "keywords": ["agent-memory", "mem0", "zep", "graphiti", "cognee", "temporal-knowledge-graph"]
+  "keywords": ["claude-code", "skill", "agent-memory", "mem0", "zep", "graphiti", "cognee", "temporal-knowledge-graph"]
 }
