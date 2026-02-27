@@ -5,5 +5,5 @@
   "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/tool-design",
-  "keywords": ["tool-design", "mcp", "consolidation-principle", "architectural-reduction"]
+  "keywords": ["claude-code", "skill", "tool-design", "mcp", "consolidation-principle", "architectural-reduction"]
 }
