@@ -495,10 +495,9 @@ The best skills:
 
 ## Related Skills
 
-- `prompt-architect` - Prompt optimization
-- `agent-creator` - Agent creation without skill wrapper
-- `eval-harness` - Benchmark testing
-- `cognitive-lensing` - Cognitive frame design
+- `prompt-engineering` - Prompt optimization
+- `hosted-agents` - Agent creation without skill wrapper
+- `agent-evaluation` - Benchmark testing
 
 
 
