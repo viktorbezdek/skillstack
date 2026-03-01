@@ -376,12 +376,12 @@ python scripts/api_helper.py docs --spec openapi.yaml --output docs/
 
 ## Source Skills
 
-This merged skill combines content from:
-- **grey-haven-api-design-standards** - FastAPI, Pydantic, multi-tenant patterns
-- **python-library-architect** - Library structure, SOLID principles, PEP standards
-- **senior-graphql-specialist** - GraphQL, Apollo, Federation, DataLoader
-- **api-architect** - REST, gRPC, security, versioning
-- **api-designer** - Documentation, authentication, best practices
+This merged skill combines content from the following legacy skills (now part of `api-design`):
+- FastAPI, Pydantic, multi-tenant patterns
+- Library structure, SOLID principles, PEP standards
+- GraphQL, Apollo, Federation, DataLoader
+- REST, gRPC, security, versioning
+- Documentation, authentication, best practices
 
 ---
 
