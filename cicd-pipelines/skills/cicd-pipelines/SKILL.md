@@ -393,13 +393,13 @@ terraform state list                # List resources
 
 ## Source Skills
 
-This curated skill combines content from:
-- **CI/CD Pipelines** - Pipeline design, DevSecOps, optimization
-- **DevOps Automator** - IaC, Kubernetes, deployment automation
-- **DevOps Skill** - Cloud platforms, Docker, Cloudflare
-- **Infrastructure Engineering Skill** - Multi-cloud, FinOps, comprehensive DevOps
-- **Enterprise Readiness Assessment** - OpenSSF compliance, security assessment
-- **semantic-release** - Automated versioning and releases
+This curated skill combines content from the following legacy skills (now part of `cicd-pipelines`):
+- Pipeline design, DevSecOps, optimization
+- IaC, Kubernetes, deployment automation
+- Cloud platforms, Docker, Cloudflare
+- Multi-cloud, FinOps, comprehensive DevOps
+- OpenSSF compliance, security assessment
+- Automated versioning and releases (semantic-release)
 
 ## Resources
 
