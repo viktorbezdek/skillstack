@@ -89,4 +89,4 @@ Expected output: Expected value analysis for both options with probability range
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install creative-problem-solving@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install creative-problem-solving@skillstack` — 46 production-grade plugins for Claude Code.

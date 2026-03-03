@@ -190,4 +190,4 @@ Follows the 8-phase E2E workflow from discovery through export, generating page 
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install debugging@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install debugging@skillstack` — 46 production-grade plugins for Claude Code.

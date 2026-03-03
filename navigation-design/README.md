@@ -80,4 +80,4 @@ Our desktop site uses a mega menu with 6 top-level items. Design a mobile naviga
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install navigation-design@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install navigation-design@skillstack` — 46 production-grade plugins for Claude Code.

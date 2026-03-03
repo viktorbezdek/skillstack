@@ -80,4 +80,4 @@ Create personas specifically focused on documentation needs. For each persona, s
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install persona-definition@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install persona-definition@skillstack` — 46 production-grade plugins for Claude Code.

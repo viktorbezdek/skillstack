@@ -127,4 +127,4 @@ Review my MCP server against the production checklist. Add proper error handling
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install mcp-server@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install mcp-server@skillstack` — 46 production-grade plugins for Claude Code.

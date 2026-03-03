@@ -215,4 +215,4 @@ Runs evaluate-ui.ts with Playwright to capture and analyze the page, scoring lay
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install frontend-design@skillstack` -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install frontend-design@skillstack` — 46 production-grade plugins for Claude Code.

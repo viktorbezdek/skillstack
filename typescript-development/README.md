@@ -119,4 +119,4 @@ Explains the exhaustive check pattern, shows how to add the `assertNever` helper
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install typescript-development@skillstack` — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install typescript-development@skillstack` — 46 production-grade plugins for Claude Code.
