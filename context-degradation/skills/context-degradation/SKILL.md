@@ -1,6 +1,6 @@
 ---
 name: context-degradation
-description: This skill should be used when the user asks to "diagnose context problems", "fix lost-in-middle issues", "debug agent failures", "understand context poisoning", or mentions context degradation, attention patterns, context clash, context confusion, or agent performance degradation. Provides patterns for recognizing and mitigating context failures.
+description: Diagnosing context FAILURES — lost-in-middle, poisoning, distraction, clash, and confusion patterns with empirical thresholds by model. Use when the user asks to "diagnose context problems", "fix lost-in-middle issues", "debug agent failures", "understand context poisoning", or mentions context degradation, context clash, or agent performance degradation. NOT for learning context basics or theory (use context-fundamentals), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache optimization or partitioning (use context-optimization).
 ---
 
 # Context Degradation Patterns

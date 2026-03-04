@@ -1,6 +1,6 @@
 ---
 name: context-fundamentals
-description: This skill should be used when the user asks to "understand context", "explain context windows", "design agent architecture", "debug context issues", "optimize context usage", or discusses context components, attention mechanics, progressive disclosure, or context budgeting. Provides foundational understanding of context engineering for AI agent systems.
+description: Foundational theory of context engineering — what context IS, how attention works, progressive disclosure principles, and context budgeting basics. Use when the user asks to "understand context", "explain context windows", "learn context engineering", or discusses context components, attention mechanics, or context budgets. NOT for fixing broken context or diagnosing failures (use context-degradation), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache or partitioning performance optimization (use context-optimization), NOT for file-based context patterns or scratch pads (use filesystem-context).
 ---
 
 # Context Engineering Fundamentals

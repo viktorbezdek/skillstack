@@ -1,6 +1,6 @@
 ---
 name: context-optimization
-description: This skill should be used when the user asks to "optimize context", "reduce token costs", "improve context efficiency", "implement KV-cache optimization", "partition context", or mentions context limits, observation masking, context budgeting, or extending effective context capacity.
+description: EXTENDING effective context capacity — KV-cache optimization, observation masking, context partitioning, and retrieval strategies. Use when the user asks to "optimize context", "implement KV-cache", "partition context", "mask observations", or mentions extending context capacity or cache-friendly prompt design. NOT for reducing or compressing content via summarization (use context-compression), NOT for diagnosing context failures or degradation patterns (use context-degradation), NOT for file-based context patterns or scratch pads (use filesystem-context).
 ---
 
 # Context Optimization Techniques

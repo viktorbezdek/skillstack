@@ -1,6 +1,6 @@
 ---
 name: filesystem-context
-description: This skill should be used when the user asks to "offload context to files", "implement dynamic context discovery", "use filesystem for agent memory", "reduce context window bloat", or mentions file-based context management, tool output persistence, agent scratch pads, or just-in-time context loading.
+description: Using the FILE SYSTEM for context — scratch pads, plan persistence, dynamic skill loading, sub-agent file workspaces, and terminal log persistence. Use when the user asks to "offload context to files", "implement scratch pads", "persist agent plans", "use filesystem for agent memory", or mentions file-based context management, tool output persistence, or just-in-time context loading. NOT for in-context optimization like KV-cache or observation masking (use context-optimization), NOT for summarization or compression techniques (use context-compression), NOT for understanding context theory or fundamentals (use context-fundamentals).
 ---
 
 # Filesystem-Based Context Engineering
