@@ -1,14 +1,7 @@
 ---
 name: test-driven-development
-description: Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.
-triggers:
-  - TDD
-  - test-driven
-  - red-green-refactor
-  - pytest
-  - vitest
-  - test coverage
-  - testing methodology
+description: |
+  Guides the Test-Driven Development methodology: the Red-Green-Refactor cycle of writing failing tests before implementation code, then making them pass with minimal code, then refactoring. Use when the user asks to do TDD, practice test-driven development, follow red-green-refactor, write tests first, apply test-first methodology, or implement a feature using TDD workflow with pytest, Vitest, ERT, or Zod. NOT for choosing or setting up test frameworks (use testing-framework), NOT for finding and fixing bugs or analyzing stack traces (use debugging), NOT for reviewing existing code or PRs (use code-review).
 ---
 
 # Test-Driven Development (TDD) Comprehensive Skill

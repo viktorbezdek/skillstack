@@ -1,16 +1,7 @@
 ---
 name: debugging
-description: Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.
-triggers:
-  - debug
-  - debugging
-  - bug
-  - error
-  - stack trace
-  - root cause
-  - DevTools
-  - test failure
-  - performance profiling
+description: |
+  Finds and fixes bugs through systematic root cause analysis, stack trace interpretation, browser DevTools automation, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. Use when the user asks to debug something, fix a bug, investigate an error, analyze a stack trace, find the root cause of a failure, profile performance, diagnose test failures, troubleshoot CI/CD pipelines, or use Chrome DevTools to inspect issues. NOT for writing new tests or setting up test frameworks (use testing-framework), NOT for TDD methodology or writing tests before code (use test-driven-development), NOT for reviewing code quality or PRs (use code-review).
 license: Apache-2.0
 ---
 

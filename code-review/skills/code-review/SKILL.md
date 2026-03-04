@@ -1,15 +1,7 @@
 ---
 name: code-review
-description: Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.
-triggers:
-  - code review
-  - PR review
-  - pull request
-  - review code
-  - security audit
-  - code quality
-  - review changes
-  - code feedback
+description: |
+  Reviews existing code and pull requests using multi-agent swarm analysis covering security, performance, style, test coverage, and documentation quality. Extracts and prioritizes PR comments, performs security audits, and generates actionable fix plans with file:line references. Use when the user asks to review code, review a PR, audit code for security, assess code quality, analyze pull request comments, get feedback on existing code, or perform a code audit. NOT for writing new code or implementing features (use other development skills), NOT for finding and fixing runtime bugs or errors (use debugging), NOT for writing tests or setting up test infrastructure (use testing-framework), NOT for TDD methodology (use test-driven-development).
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
