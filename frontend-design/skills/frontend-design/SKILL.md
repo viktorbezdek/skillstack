@@ -1,18 +1,6 @@
 ---
 name: frontend-design
-description: Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.
-triggers:
-  - UI
-  - UX
-  - design system
-  - Tailwind
-  - CSS
-  - accessibility
-  - responsive
-  - dark mode
-  - component library
-  - shadcn/ui
-  - Radix UI
+description: Visual design systems, UI/UX styling, Tailwind CSS, CSS variables, component libraries (shadcn/ui, Radix UI), design tokens, accessibility (WCAG), responsive layout, dark mode, and Figma-to-code workflows. NOT for React component logic, hooks, or state management (use react-development). NOT for Next.js routing, SSR, or server components (use nextjs-development).
 license: MIT
 ---
 

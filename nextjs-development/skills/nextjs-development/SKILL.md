@@ -1,17 +1,6 @@
 ---
 name: nextjs-development
-description: Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.
-triggers:
-  - Next.js
-  - App Router
-  - Server Components
-  - Server Actions
-  - SSR
-  - SSG
-  - ISR
-  - middleware
-  - layouts
-  - parallel routes
+description: Next.js framework development including App Router, Server Components, Server Actions, SSR, SSG, ISR, caching, data fetching, middleware, layouts, parallel routes, and module architecture for Next.js 13+/15/16. NOT for generic React patterns, hooks, or component logic (use react-development). NOT for UI/CSS design systems or visual styling (use frontend-design).
 license: MIT
 metadata:
   merged_from:

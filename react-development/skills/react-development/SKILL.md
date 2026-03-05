@@ -1,18 +1,6 @@
 ---
 name: react-development
-description: Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.
-triggers:
-  - React
-  - React component
-  - React hook
-  - useState
-  - useEffect
-  - shadcn
-  - JSX
-  - TSX
-  - useReducer
-  - useContext
-  - React testing
+description: React-specific development patterns including hooks (useState, useEffect, useReducer, useContext), component architecture, state management, shadcn/ui integration, JSX/TSX, React testing, and Bulletproof React auditing. NOT for Next.js routing, SSR, or server components (use nextjs-development). NOT for CSS design systems, Tailwind utilities, or accessibility patterns (use frontend-design).
 ---
 
 # React Development Skill
