@@ -1,13 +1,6 @@
 ---
 name: ontology-design
-description: Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
-triggers:
-  - ontology
-  - taxonomy
-  - knowledge model
-  - semantic modeling
-  - class hierarchy
-  - entity relationships
+description: Design formal knowledge models with classes, properties, relationships, taxonomies, semantic modeling, class hierarchies, and entity relationships. NOT for CMS content types, editorial workflows, or structured content for publishing (use content-modelling).
 ---
 
 # Ontology Design

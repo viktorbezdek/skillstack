@@ -1,13 +1,6 @@
 ---
 name: content-modelling
-description: Design content models with types, fields, relationships, and governance rules for structured content systems.
-triggers:
-  - content model
-  - content type
-  - structured content
-  - CMS schema
-  - content architecture
-  - COPE
+description: Design CMS content models with content types, fields, editorial workflows, governance rules, structured content architecture, and COPE (Create Once, Publish Everywhere) patterns. NOT for formal ontologies, taxonomies, or semantic modeling (use ontology-design).
 ---
 
 # Content Modelling
