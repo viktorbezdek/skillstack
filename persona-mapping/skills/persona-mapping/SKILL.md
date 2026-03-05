@@ -1,12 +1,6 @@
 ---
 name: persona-mapping
-description: Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
-triggers:
-  - stakeholder analysis
-  - influence mapping
-  - RACI
-  - power-interest matrix
-  - audience prioritization
+description: Map stakeholders across organizations using Power-Interest matrices, RACI charts, influence analysis, salience models, and audience prioritization. NOT for creating individual user personas, empathy maps, or customer archetypes (use persona-definition).
 ---
 
 # Persona Mapping

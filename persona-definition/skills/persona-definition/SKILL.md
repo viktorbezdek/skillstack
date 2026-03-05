@@ -1,12 +1,6 @@
 ---
 name: persona-definition
-description: Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
-triggers:
-  - user persona
-  - target user
-  - audience definition
-  - user profile
-  - customer archetype
+description: Create individual user personas and customer archetypes with demographics, goals, pain points, behaviors, empathy maps, and audience definitions. NOT for mapping stakeholders across organizations, RACI charts, or influence analysis (use persona-mapping).
 ---
 
 # Persona Definition
