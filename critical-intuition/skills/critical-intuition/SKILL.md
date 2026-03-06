@@ -1,15 +1,6 @@
 ---
 name: critical-intuition
-description: Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
-triggers:
-  - read between the lines
-  - hidden pattern
-  - detect bias
-  - critical analysis
-  - red flags
-  - blind spot
-  - subtle signal
-  - early warning
+description: Analyze and critique existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind spot exposure, red flag identification, early warning signals, and reading between the lines. NOT for generating new creative solutions, brainstorming, or strategic reframing (use creative-problem-solving).
 ---
 
 # Critical Intuition & Sixth Sense
