@@ -1,6 +1,6 @@
 ---
 name: agent-evaluation
-description: This skill should be used when the user asks to "evaluate agent performance", "build test framework", "measure agent quality", "create evaluation rubrics", "implement LLM-as-judge", "compare model outputs", "mitigate evaluation bias", or mentions multi-dimensional evaluation, agent testing, quality gates, direct scoring, pairwise comparison, position bias, evaluation pipelines, or automated quality assessment for LLM agent systems.
+description: This skill should be used when the user asks to "evaluate agent performance", "build test framework", "measure agent quality", "create evaluation rubrics", "implement LLM-as-judge", "compare model outputs", "mitigate evaluation bias", or mentions multi-dimensional evaluation, agent testing, quality gates, direct scoring, pairwise comparison, position bias, evaluation pipelines, or automated quality assessment for LLM agent systems. NOT for testing code or applications (use testing-framework), NOT for agent coordination or multi-agent design (use multi-agent-patterns).
 ---
 
 # Evaluating LLM Agent Systems

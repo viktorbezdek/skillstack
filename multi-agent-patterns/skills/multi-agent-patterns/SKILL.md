@@ -1,6 +1,6 @@
 ---
 name: multi-agent-patterns
-description: This skill should be used when the user asks to "design multi-agent system", "implement supervisor pattern", "create swarm architecture", "coordinate multiple agents", or mentions multi-agent patterns, context isolation, agent handoffs, sub-agents, or parallel agent execution.
+description: This skill should be used when the user asks to "design multi-agent system", "implement supervisor pattern", "create swarm architecture", "coordinate multiple agents", or mentions multi-agent patterns, context isolation, agent handoffs, sub-agents, or parallel agent execution. NOT for agent memory or persistence (use memory-systems), NOT for tool design or tool interfaces (use tool-design), NOT for hosted agent infrastructure or sandboxed VMs (use hosted-agents), NOT for BDI cognitive models or mental state modeling (use bdi-mental-states).
 ---
 
 # Multi-Agent Architecture Patterns

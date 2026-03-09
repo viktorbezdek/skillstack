@@ -1,12 +1,6 @@
 ---
 name: memory-systems
-description: >
-  Guides implementation of agent memory systems, compares production frameworks
-  (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and designs persistence architectures
-  for cross-session knowledge retention. Use when the user asks to "implement
-  agent memory", "persist state across sessions", "build knowledge graph for agents",
-  "track entities over time", "add long-term memory", "choose a memory framework",
-  or mentions temporal knowledge graphs, vector stores, entity memory, adaptive memory, dynamic memory or memory benchmarks (LoCoMo, LongMemEval).
+description: Guides implementation of agent memory systems, compares production frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and designs persistence architectures for cross-session knowledge retention. Use when the user asks to "implement agent memory", "persist state across sessions", "build knowledge graph for agents", "track entities over time", "add long-term memory", "choose a memory framework", or mentions temporal knowledge graphs, vector stores, entity memory, adaptive memory, dynamic memory, or memory benchmarks (LoCoMo, LongMemEval). NOT for multi-agent coordination or agent handoffs (use multi-agent-patterns), NOT for tool design or tool interfaces (use tool-design), NOT for hosted agent infrastructure or sandboxed VMs (use hosted-agents).
 ---
 
 # Memory System Design
