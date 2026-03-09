@@ -1,17 +1,6 @@
 ---
 name: cicd-pipelines
-description: Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.
-triggers:
-  - CI/CD
-  - GitHub Actions
-  - GitLab CI
-  - Jenkins
-  - Terraform
-  - Kubernetes
-  - Docker deployment
-  - DevOps
-  - DevSecOps
-  - ArgoCD
+description: CI/CD pipeline design and DevOps automation — use when the user mentions GitHub Actions, GitLab CI, Jenkins, Terraform, infrastructure as code, DevSecOps, ArgoCD, Kubernetes manifests, or pipeline configuration YAML. NOT for automating release workflows or orchestration (use workflow-automation), NOT for Docker containers or Dockerfiles (use docker-containerization), NOT for git branching or commits (use git-workflow).
 license: MIT
 ---
 

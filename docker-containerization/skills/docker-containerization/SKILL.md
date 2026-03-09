@@ -1,15 +1,6 @@
 ---
 name: docker-containerization
-description: Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.
-triggers:
-  - Docker
-  - container
-  - Dockerfile
-  - Docker Compose
-  - multi-stage build
-  - DDEV
-  - containerization
-  - image optimization
+description: Docker and container development — use when the user mentions Dockerfiles, multi-stage builds, Docker Compose, container optimization, image size reduction, DDEV, containerization, or dev environment setup with containers. NOT for CI/CD pipeline YAML or pipeline configuration (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation).
 license: MIT
 ---
 
