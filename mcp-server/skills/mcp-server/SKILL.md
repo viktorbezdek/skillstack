@@ -1,14 +1,6 @@
 ---
 name: mcp-server
-description: Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.
-triggers:
-  - MCP
-  - Model Context Protocol
-  - FastMCP
-  - Claude Code plugin
-  - MCP server
-  - MCP tool
-  - agent tool
+description: MCP (Model Context Protocol) server development — use when the user mentions MCP, Model Context Protocol, FastMCP, MCP server, MCP tool, Claude Code plugin, or building agent tools with MCP. Covers server implementation in Python or TypeScript, evaluation testing, production deployment, and plugin packaging. NOT for designing tool interfaces or tool consolidation patterns for agents (use tool-design), NOT for prompt engineering or prompt optimization (use prompt-engineering).
 ---
 
 # MCP Server Development

@@ -1,15 +1,6 @@
 ---
 name: typescript-development
-description: Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.
-triggers:
-  - TypeScript
-  - type system
-  - generics
-  - Zod
-  - tsconfig
-  - type-safe
-  - NestJS
-  - branded types
+description: TypeScript development — use when the user works with TypeScript, type system patterns, generics, Zod, tsconfig, NestJS, branded types, or runtime validation. Covers type system mastery, framework integration, architecture patterns, security, and testing strategies. NOT for Python development (use python-development), NOT for React component patterns or hooks (use react-development), NOT for Next.js framework specifics (use nextjs-development).
 ---
 
 # TypeScript Development - Comprehensive Skill

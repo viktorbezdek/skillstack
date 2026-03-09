@@ -1,17 +1,6 @@
 ---
 name: python-development
-description: Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.
-triggers:
-  - Python
-  - pytest
-  - uv
-  - ruff
-  - mypy
-  - pyproject.toml
-  - async
-  - MicroPython
-  - CLI tool
-  - PyPI
+description: Python development — use when the user works with .py files, pyproject.toml, uv, ruff, mypy, pytest, async/await, MicroPython, CLI tools, or PyPI publishing. Covers modern tooling, best practices, library architecture, functional patterns, and production workflows. NOT for TypeScript or JavaScript development (use typescript-development), NOT for React component patterns (use react-development).
 ---
 
 # Python Development - Comprehensive Skill

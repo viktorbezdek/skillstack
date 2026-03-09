@@ -1,16 +1,6 @@
 ---
 name: git-workflow
-description: Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.
-triggers:
-  - git
-  - commit
-  - branch
-  - conventional commits
-  - changelog
-  - semantic versioning
-  - worktree
-  - GitFlow
-  - backlog
+description: Git workflow management — use when the user mentions git, conventional commits, commit quality, branch management, worktree operations, GitFlow, changelog generation, semantic versioning, backlog management, or issue tracking integration. NOT for CI/CD pipelines or pipeline YAML (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation).
 allowed-tools: Bash, Read, Grep, Glob, Write
 ---
 
