@@ -1,0 +1,7 @@
+{
+  "name": "claude-skills",
+  "version": "1.0.0",
+  "description": "The definitive collection of 34 curated skills for Claude Code — covering development, DevOps, testing, API design, documentation, and strategic thinking.",
+  "author": "claude-skills",
+  "license": "MIT"
+}
