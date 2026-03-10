@@ -1,20 +1,10 @@
 ---
 name: api-design
-description: Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.
-triggers:
-  - API
-  - endpoint
-  - REST
-  - GraphQL
-  - gRPC
-  - OpenAPI
-  - Swagger
-  - FastAPI
-  - Pydantic
-  - OAuth
-  - JWT
-  - pagination
-  - rate limiting
+description: >-
+  Design production-grade APIs across REST, GraphQL, gRPC, and Python library architectures.
+  Use when working with API endpoints, REST resources, GraphQL schemas, gRPC services,
+  OpenAPI/Swagger specs, FastAPI, Pydantic models, OAuth/JWT authentication, pagination,
+  or rate limiting. NOT for building MCP servers (use mcp-server).
 ---
 
 # API Design

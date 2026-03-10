@@ -1,14 +1,10 @@
 ---
 name: documentation-generator
-description: Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.
-triggers:
-  - documentation
-  - generate docs
-  - README
-  - API docs
-  - architecture docs
-  - document repo
-  - technical reference
+description: >-
+  Generate comprehensive documentation for repositories of any size, from small libraries
+  to large monorepos. Use when creating documentation, generating docs, writing READMEs,
+  producing API docs, architecture docs, or technical references for a repository.
+  NOT for UX copy or microcopy (use ux-writing).
 ---
 
 # Repository Documentation Generator

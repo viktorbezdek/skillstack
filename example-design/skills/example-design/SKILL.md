@@ -1,13 +1,10 @@
 ---
 name: example-design
-description: Design effective code examples, tutorials, and runnable samples with progressive complexity.
-triggers:
-  - code examples
-  - tutorials
-  - quickstart
-  - sample code
-  - runnable examples
-  - progressive disclosure
+description: >-
+  Design effective code examples, tutorials, and runnable samples with progressive
+  complexity. Use when creating code examples, tutorials, quickstart guides, sample code,
+  runnable examples, or progressive disclosure content. NOT for generating full
+  documentation (use documentation-generator).
 ---
 
 # Example Design

@@ -1,14 +1,9 @@
 ---
 name: navigation-design
-description: Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.
-triggers:
-  - navigation
-  - information architecture
-  - wayfinding
-  - breadcrumbs
-  - sitemap
-  - menu structure
-  - content hierarchy
+description: >-
+  Design information architecture, wayfinding systems, and navigation patterns for
+  documentation and applications. Use when working with navigation, information
+  architecture, wayfinding, breadcrumbs, sitemaps, menu structure, or content hierarchy.
 ---
 
 # Navigation Design
