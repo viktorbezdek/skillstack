@@ -1,14 +1,10 @@
 ---
 name: ux-writing
-description: Write effective microcopy, error messages, button labels, and interface text using UX writing principles.
-triggers:
-  - microcopy
-  - UX copy
-  - interface text
-  - error messages
-  - button labels
-  - empty states
-  - conversational UI
+description: >-
+  Write effective microcopy, error messages, button labels, and interface text using
+  UX writing principles. Use when crafting microcopy, UX copy, interface text, error
+  messages, button labels, empty states, or conversational UI text. NOT for generating
+  documentation (use documentation-generator).
 ---
 
 # UX Writing

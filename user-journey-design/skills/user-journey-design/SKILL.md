@@ -1,12 +1,10 @@
 ---
 name: user-journey-design
-description: Design user journey maps with touchpoints, emotional states, pain points, and opportunities.
-triggers:
-  - user journey
-  - customer journey
-  - experience map
-  - touchpoint analysis
-  - service blueprint
+description: >-
+  Design user journey maps with touchpoints, emotional states, pain points, and
+  opportunities. Use when mapping user journeys, customer journeys, experience maps,
+  touchpoint analysis, or service blueprints. NOT for creating personas
+  (use persona-definition).
 ---
 
 # User Journey Design

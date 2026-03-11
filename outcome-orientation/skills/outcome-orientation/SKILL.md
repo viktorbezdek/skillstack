@@ -1,13 +1,9 @@
 ---
 name: outcome-orientation
-description: Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
-triggers:
-  - OKRs
-  - outcomes
-  - results
-  - KPIs
-  - success metrics
-  - goal setting
+description: >-
+  Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome
+  vs output distinction. Use when defining OKRs, outcomes, results, KPIs, success
+  metrics, or goal setting. NOT for prioritizing features (use prioritization).
 ---
 
 # Outcome Orientation
