@@ -1,0 +1,17 @@
+{
+  "name": "systems-thinking",
+  "version": "1.0.0",
+  "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/systems-thinking",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "system analysis",
+    "feedback loops",
+    "causal relationships",
+    "emergent behavior",
+    "complexity analysis"
+  ]
+}

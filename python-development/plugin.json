@@ -1,0 +1,17 @@
+{
+  "name": "python-development",
+  "version": "1.0.0",
+  "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/python-development",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "Python",
+    "pytest",
+    "uv",
+    "ruff",
+    "mypy"
+  ]
+}

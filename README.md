@@ -4,188 +4,164 @@
 
 # SkillStack
 
-A curated collection of 34 production-grade skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each skill extends Claude with deep domain expertise, ready-to-use templates, and automation scripts across full-stack development, DevOps, testing, API design, and strategic thinking.
+34 individually installable skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Browse the catalog, install only what you need, and extend Claude with deep domain expertise.
 
 <div align="center">
 
-**[Install](#installation)** &nbsp;&middot;&nbsp; **[Browse Skills](#skill-catalog)** &nbsp;&middot;&nbsp; **[Examples](#usage-examples)** &nbsp;&middot;&nbsp; **[Architecture](#architecture)** &nbsp;&middot;&nbsp; **[Contributing](#contributing)**
+**[Install a Skill](#installation)** &nbsp;&middot;&nbsp; **[Browse Catalog](#skill-catalog)** &nbsp;&middot;&nbsp; **[Usage Examples](#usage-examples)** &nbsp;&middot;&nbsp; **[Create Your Own](#contributing)**
 
 </div>
 
 ---
 
-## The Problem
-
-Claude Code is powerful out of the box, but it doesn't know your team's conventions, your preferred frameworks' latest patterns, or the specific anti-patterns you've been burned by. You end up repeating the same corrections across conversations.
-
-**SkillStack fixes this.** Each skill is a focused expert system that activates automatically when relevant, giving Claude deep knowledge of specific domains — from Next.js 16 App Router patterns to pytest fixture strategies to Docker multi-stage build optimization.
-
----
-
 ## Installation
 
-### Option A: Install as a plugin (recommended)
+Each skill is an independent plugin. Install individually:
 
 ```bash
-claude plugin add /path/to/skillstack
+# Install a single skill
+claude plugin add github:viktorbezdek/skillstack/api-design
+claude plugin add github:viktorbezdek/skillstack/debugging
+claude plugin add github:viktorbezdek/skillstack/python-development
+
+# Install several at once
+claude plugin add github:viktorbezdek/skillstack/react-development
+claude plugin add github:viktorbezdek/skillstack/testing-framework
+claude plugin add github:viktorbezdek/skillstack/typescript-development
 ```
 
-### Option B: Clone and configure
+Or install everything:
 
 ```bash
+# Clone the full marketplace
 git clone https://github.com/viktorbezdek/skillstack.git
-```
 
-Then add to your project's `.claude/settings.json`:
-
-```json
-{
-  "permissions": {
-    "allow": ["skill:*"]
-  }
-}
-```
-
-### Option C: Pick individual skills
-
-```bash
-# Symlink only what you need
-ln -s /path/to/skillstack/api-design .claude/skills/api-design
-ln -s /path/to/skillstack/debugging .claude/skills/debugging
+# Install all skills at once
+claude plugin add /path/to/skillstack
 ```
 
 ### How it works
 
-Skills activate automatically based on your conversation. No special syntax needed — when you mention "REST API design", the `api-design` skill loads. When you say "pytest fixtures", the `testing-framework` skill kicks in.
+Skills activate automatically based on your conversation. When you mention "REST API design", the `api-design` skill loads. When you say "pytest fixtures", the `testing-framework` skill kicks in. No special syntax needed.
 
 ---
 
 ## Usage Examples
 
-**API Design** — Ask Claude to design an API and it uses REST/GraphQL best practices, pagination patterns, and auth strategies from the skill:
 ```
-"Design a REST API for a multi-tenant SaaS billing system with usage-based pricing"
-```
+"Design a REST API for a multi-tenant SaaS billing system"
+→ api-design skill activates with REST patterns, auth strategies, pagination
 
-**Debugging** — Describe a bug and Claude applies systematic debugging methodology with evidence-based root cause analysis:
-```
-"My Next.js app hydration fails only in production. Help me debug this systematically"
-```
+"My Next.js app hydration fails only in production"
+→ debugging skill activates with systematic root cause analysis
 
-**Code Review** — Request a review and Claude runs a multi-agent analysis covering security, performance, and architecture:
-```
-"Review this PR for security issues and performance bottlenecks"
-```
+"Review this PR for security issues"
+→ code-review skill runs multi-agent analysis (security + performance + style)
 
-**Docker** — Ask about containerization and Claude generates optimized Dockerfiles with multi-stage builds and security best practices:
-```
-"Create a production Docker setup for my Python FastAPI app with PostgreSQL"
-```
+"Create a production Docker setup for my FastAPI app"
+→ docker-containerization skill generates optimized multi-stage Dockerfiles
 
-**Testing** — Describe what to test and Claude generates comprehensive test suites following TDD patterns:
-```
-"Write pytest tests for this authentication service with edge cases for token expiry"
+"Write pytest tests for this auth service with edge cases"
+→ test-driven-development skill generates Red-Green-Refactor test suites
 ```
 
 ---
 
 ## Skill Catalog
 
-> Click any skill name to view its detailed documentation, including full file listings, usage examples, and quick start guides.
+> Click any skill name to view its detailed documentation, file listings, and usage examples.
 
-### Development (7 skills)
+### Development
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[python-development](python-development/)** | Inconsistent Python project setup, missing type safety, outdated tooling | Modern tooling (uv, ruff, mypy), async patterns, FastAPI templates, package architecture guides |
-| **[typescript-development](typescript-development/)** | Weak type safety, inconsistent validation, no architecture patterns | Zod/TypeBox runtime validation, Clean Architecture templates, branded types, strict tsconfig guides |
-| **[react-development](react-development/)** | Component bloat, poor performance, accessibility gaps | React 19 patterns, hooks optimization, Bulletproof React architecture, accessibility checklists |
-| **[nextjs-development](nextjs-development/)** | Confusion between App Router patterns, caching pitfalls, migration pain | Next.js 16 Server Components, Server Actions, `use cache` directive, rendering strategy decision trees |
-| **[frontend-design](frontend-design/)** | Inconsistent UI, missing design tokens, poor accessibility | Tailwind/shadcn/Radix component library, WCAG 2.1 AA checklists, design token system generator |
-| **[prompt-engineering](prompt-engineering/)** | Ineffective LLM prompts, no evaluation methodology | 4-D optimization framework, A/B testing templates, platform-specific tuning, eval rubrics |
-| **[skill-creator](skill-creator/)** | No structured way to capture and share domain expertise | Philosophy-first skill design, progressive disclosure templates, anti-pattern prevention, validation scripts |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[python-development](python-development/)** | `claude plugin add github:viktorbezdek/skillstack/python-development` | Modern Python with uv, ruff, mypy, pytest, FastAPI, async patterns |
+| **[typescript-development](typescript-development/)** | `claude plugin add github:viktorbezdek/skillstack/typescript-development` | Zod/TypeBox validation, Clean Architecture, branded types, strict tsconfig |
+| **[react-development](react-development/)** | `claude plugin add github:viktorbezdek/skillstack/react-development` | React 19, hooks optimization, Bulletproof React, accessibility |
+| **[nextjs-development](nextjs-development/)** | `claude plugin add github:viktorbezdek/skillstack/nextjs-development` | Next.js 16 App Router, Server Components, caching strategies |
+| **[frontend-design](frontend-design/)** | `claude plugin add github:viktorbezdek/skillstack/frontend-design` | Tailwind/shadcn/Radix, WCAG 2.1 AA, design tokens |
+| **[prompt-engineering](prompt-engineering/)** | `claude plugin add github:viktorbezdek/skillstack/prompt-engineering` | 4-D optimization framework, A/B testing, eval rubrics |
+| **[skill-creator](skill-creator/)** | `claude plugin add github:viktorbezdek/skillstack/skill-creator` | Create your own skills with progressive disclosure and validation |
 
-### DevOps & Infrastructure (3 skills)
+### DevOps & Infrastructure
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[cicd-pipelines](cicd-pipelines/)** | Manual deployments, missing security scanning, inconsistent release process | GitHub Actions/GitLab CI templates, Terraform IaC patterns, DevSecOps scanning, semantic versioning automation |
-| **[docker-containerization](docker-containerization/)** | Bloated images, insecure containers, complex multi-service setups | Multi-stage build templates, Docker Compose orchestration, worktree isolation, port allocation scripts |
-| **[git-workflow](git-workflow/)** | Messy commit history, manual changelogs, worktree management | Conventional commits, atomic commit strategies, changelog generators, worktree management scripts |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[cicd-pipelines](cicd-pipelines/)** | `claude plugin add github:viktorbezdek/skillstack/cicd-pipelines` | GitHub Actions, GitLab CI, Terraform, DevSecOps, semantic versioning |
+| **[docker-containerization](docker-containerization/)** | `claude plugin add github:viktorbezdek/skillstack/docker-containerization` | Multi-stage builds, Docker Compose, worktree isolation |
+| **[git-workflow](git-workflow/)** | `claude plugin add github:viktorbezdek/skillstack/git-workflow` | Conventional commits, changelog generation, worktree management |
 
-### Quality & Testing (4 skills)
+### Quality & Testing
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[test-driven-development](test-driven-development/)** | Writing tests after the fact, poor coverage, no TDD discipline | Red-Green-Refactor workflow for pytest/Vitest/Playwright, multi-language TDD templates |
-| **[testing-framework](testing-framework/)** | Choosing the right test tool, missing test types, no CI integration | Unit/E2E/component/accessibility/mutation/fuzz testing templates, CI integration scripts |
-| **[debugging](debugging/)** | Trial-and-error debugging, no systematic approach | Chrome DevTools automation, systematic root cause analysis, CI/CD pipeline debugging, trace analysis |
-| **[code-review](code-review/)** | Shallow reviews that miss security and performance issues | Multi-agent swarm analysis (security + performance + style + tests), PR comment extraction, actionable fix plans |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[test-driven-development](test-driven-development/)** | `claude plugin add github:viktorbezdek/skillstack/test-driven-development` | Red-Green-Refactor for pytest, Vitest, Playwright |
+| **[testing-framework](testing-framework/)** | `claude plugin add github:viktorbezdek/skillstack/testing-framework` | Unit, E2E, component, accessibility, mutation, fuzz testing |
+| **[debugging](debugging/)** | `claude plugin add github:viktorbezdek/skillstack/debugging` | Chrome DevTools automation, systematic root cause analysis |
+| **[code-review](code-review/)** | `claude plugin add github:viktorbezdek/skillstack/code-review` | Multi-agent swarm review (security + performance + style) |
 
-### API & Architecture (2 skills)
+### API & Architecture
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[api-design](api-design/)** | Inconsistent API patterns, missing pagination/auth/versioning | REST/GraphQL/gRPC design guides, OpenAPI templates, authentication patterns, rate limiting strategies |
-| **[mcp-server](mcp-server/)** | No guidance for building Claude Code plugins and MCP servers | Python FastMCP + TypeScript templates, tool creation patterns, evaluation testing, deployment guides |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[api-design](api-design/)** | `claude plugin add github:viktorbezdek/skillstack/api-design` | REST, GraphQL, gRPC, OpenAPI, auth, pagination, rate limiting |
+| **[mcp-server](mcp-server/)** | `claude plugin add github:viktorbezdek/skillstack/mcp-server` | Build MCP servers with FastMCP (Python) or TypeScript |
 
-### Documentation (2 skills)
+### Documentation & Automation
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[documentation-generator](documentation-generator/)** | Outdated or missing docs, no automated generation | 6-phase doc generation workflow, 24 templates (API docs, ADRs, changelogs), drift detection scripts |
-| **[workflow-automation](workflow-automation/)** | Manual repetitive tasks, no orchestration patterns | CI/CD automation, multi-agent workflows, release automation, git workflow management scripts |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[documentation-generator](documentation-generator/)** | `claude plugin add github:viktorbezdek/skillstack/documentation-generator` | 6-phase doc generation, 24 templates, drift detection |
+| **[workflow-automation](workflow-automation/)** | `claude plugin add github:viktorbezdek/skillstack/workflow-automation` | CI/CD automation, FABER state machine, release management |
 
-### Strategic Thinking (2 skills)
+### Strategic Thinking
 
-| Skill | Problem it Solves | What You Get |
-|-------|-------------------|-------------|
-| **[creative-problem-solving](creative-problem-solving/)** | Stuck on a problem, can't see alternatives | Game theory, first principles, lateral thinking, SCAMPER, probabilistic reasoning frameworks |
-| **[critical-intuition](critical-intuition/)** | Hidden assumptions, blind spots, overconfidence | Pattern recognition, Bayesian reasoning, bias detection, anomaly identification, confidence calibration |
+| Skill | Install | Description |
+|-------|---------|-------------|
+| **[creative-problem-solving](creative-problem-solving/)** | `claude plugin add github:viktorbezdek/skillstack/creative-problem-solving` | Game theory, first principles, lateral thinking, SCAMPER |
+| **[critical-intuition](critical-intuition/)** | `claude plugin add github:viktorbezdek/skillstack/critical-intuition` | Pattern recognition, Bayesian reasoning, bias detection |
 
-### Helper Skills (14 focused frameworks)
+### Helper Skills
 
-These lightweight skills provide focused frameworks used by `documentation-generator` and other skills. Each solves a specific documentation or analysis challenge:
+Focused frameworks for specific tasks. Install individually or as companions to the skills above.
 
-| Skill | What it Does | Example Use |
-|-------|-------------|-------------|
-| **[consistency-standards](consistency-standards/)** | Naming conventions, style guides | "Establish naming conventions for our API endpoints" |
-| **[content-modelling](content-modelling/)** | CMS schemas, content types | "Design a content model for a multi-language blog" |
-| **[edge-case-coverage](edge-case-coverage/)** | Boundary conditions, error scenarios | "What edge cases should I test for this date parser?" |
-| **[example-design](example-design/)** | Progressive complexity examples | "Create a tutorial progression for our SDK" |
-| **[navigation-design](navigation-design/)** | Information architecture, wayfinding | "Design the navigation structure for our docs site" |
-| **[ontology-design](ontology-design/)** | Knowledge models, taxonomies | "Model the entity relationships for our product catalog" |
-| **[outcome-orientation](outcome-orientation/)** | OKRs, success metrics | "Define measurable outcomes for this feature launch" |
-| **[persona-definition](persona-definition/)** | User personas, empathy maps | "Create personas for our developer platform" |
-| **[persona-mapping](persona-mapping/)** | Stakeholder analysis, RACI | "Map stakeholders for this cross-team initiative" |
-| **[prioritization](prioritization/)** | RICE scoring, effort-impact analysis | "Prioritize this backlog of 20 feature requests" |
-| **[risk-management](risk-management/)** | Risk registers, mitigation | "Identify risks for migrating our monolith to microservices" |
-| **[systems-thinking](systems-thinking/)** | Feedback loops, leverage points | "Analyze why our deploy frequency keeps dropping" |
-| **[user-journey-design](user-journey-design/)** | Journey maps, touchpoints | "Map the onboarding journey for new users" |
-| **[ux-writing](ux-writing/)** | Microcopy, error messages | "Write user-friendly error messages for our auth flow" |
+| Skill | Install | What it Does |
+|-------|---------|-------------|
+| **[consistency-standards](consistency-standards/)** | `claude plugin add github:viktorbezdek/skillstack/consistency-standards` | Naming conventions, style guides |
+| **[content-modelling](content-modelling/)** | `claude plugin add github:viktorbezdek/skillstack/content-modelling` | CMS schemas, content types |
+| **[edge-case-coverage](edge-case-coverage/)** | `claude plugin add github:viktorbezdek/skillstack/edge-case-coverage` | Boundary conditions, error scenarios |
+| **[example-design](example-design/)** | `claude plugin add github:viktorbezdek/skillstack/example-design` | Progressive complexity examples |
+| **[navigation-design](navigation-design/)** | `claude plugin add github:viktorbezdek/skillstack/navigation-design` | Information architecture, wayfinding |
+| **[ontology-design](ontology-design/)** | `claude plugin add github:viktorbezdek/skillstack/ontology-design` | Knowledge models, taxonomies |
+| **[outcome-orientation](outcome-orientation/)** | `claude plugin add github:viktorbezdek/skillstack/outcome-orientation` | OKRs, success metrics |
+| **[persona-definition](persona-definition/)** | `claude plugin add github:viktorbezdek/skillstack/persona-definition` | User personas, empathy maps |
+| **[persona-mapping](persona-mapping/)** | `claude plugin add github:viktorbezdek/skillstack/persona-mapping` | Stakeholder analysis, RACI |
+| **[prioritization](prioritization/)** | `claude plugin add github:viktorbezdek/skillstack/prioritization` | RICE, MoSCoW, ICE scoring |
+| **[risk-management](risk-management/)** | `claude plugin add github:viktorbezdek/skillstack/risk-management` | Risk registers, mitigation strategies |
+| **[systems-thinking](systems-thinking/)** | `claude plugin add github:viktorbezdek/skillstack/systems-thinking` | Feedback loops, leverage points |
+| **[user-journey-design](user-journey-design/)** | `claude plugin add github:viktorbezdek/skillstack/user-journey-design` | Journey maps, touchpoints |
+| **[ux-writing](ux-writing/)** | `claude plugin add github:viktorbezdek/skillstack/ux-writing` | Microcopy, error messages |
 
 ---
 
-## Architecture
+## Skill Structure
 
-### Skill Structure
-
-Every skill follows a consistent, composable structure:
+Each skill is a standalone plugin with this structure:
 
 ```
 skill-name/
-├── SKILL.md                    # Core documentation with quick start
-├── references/                 # Deep-dive guides (5-40 pages each)
-│   └── extended-patterns.md    # Detailed examples and pattern catalogs
+├── plugin.json                 # Plugin manifest (name, version, description)
+├── SKILL.md                    # Core skill instructions for Claude
+├── README.md                   # Human-readable documentation
+├── references/                 # Deep-dive guides
 ├── templates/                  # Copy-paste boilerplates
 ├── scripts/                    # Automation utilities
-├── examples/                   # Complete, runnable code
-└── assets/                     # Diagrams and data files
+└── examples/                   # Runnable code examples
 ```
 
-### Frontmatter Schema
+### Frontmatter
 
-Every SKILL.md starts with YAML frontmatter that powers automatic activation:
+Every SKILL.md starts with YAML frontmatter for automatic activation:
 
 ```yaml
 ---
@@ -200,48 +176,24 @@ triggers:
 ---
 ```
 
-The `triggers` array is curated to catch relevant contexts without false positives.
-
-### Composability
-
-Skills compose naturally — no conflicting advice, no overlapping territory:
-
-- **typescript-development** + **nextjs-development** = Full-stack type safety
-- **api-design** + **testing-framework** = Tested API contracts
-- **cicd-pipelines** + **docker-containerization** = Container deployment pipeline
-- **documentation-generator** + **skill-creator** = Building new skills
-
----
-
-## What's Included
-
-- **34 specialized skills** across 6 categories
-- **785+ markdown documents** — guides, references, and checklists
-- **500+ templates and scripts** — ready to use
-- **52 automated tests** for core validation
-- **CI pipeline** with shellcheck and pytest
-
 ---
 
 ## Contributing
 
-We welcome contributions. See the [quality checklist](#quality-checklist) before submitting.
+### Creating a New Skill
 
-### Adding a New Skill
+1. Create a directory with `plugin.json` and `SKILL.md`
+2. Add references, templates, scripts, and examples
+3. Write a `README.md` documenting what's included
+4. Submit a pull request
 
-1. Create the directory: `mkdir -p my-skill/{references,templates,scripts,examples}`
-2. Write `SKILL.md` with frontmatter (`name`, `description`, `triggers`)
-3. Add references, templates, and examples
-4. Submit a pull request updating this README
+### Skill Quality Checklist
 
-### Quality Checklist
-
-- [ ] SKILL.md has substantive content (not just placeholders)
-- [ ] Triggers are precise and tested in real conversations
+- [ ] `plugin.json` has name, version, description
+- [ ] `SKILL.md` has valid frontmatter with triggers
 - [ ] Examples are complete and runnable
 - [ ] Templates are copy-paste ready
-- [ ] Related skills are documented
-- [ ] No conflicts with adjacent skills
+- [ ] `README.md` documents all included files
 
 ---
 
@@ -253,6 +205,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Built for Claude Code. Made for production.**
+**34 skills. Install what you need. Extend Claude your way.**
 
 </div>

@@ -115,4 +115,4 @@ Produces failing tests for each validation rule first, then builds the Zod schem
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/test-driven-development` — 34 production-grade skills for Claude Code.

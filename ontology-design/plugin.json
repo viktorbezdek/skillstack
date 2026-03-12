@@ -1,0 +1,17 @@
+{
+  "name": "ontology-design",
+  "version": "1.0.0",
+  "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/ontology-design",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "ontology",
+    "taxonomy",
+    "knowledge model",
+    "semantic modeling",
+    "class hierarchy"
+  ]
+}

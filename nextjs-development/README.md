@@ -127,4 +127,4 @@ Review our app directory and identify components that should be Server Component
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/nextjs-development` -- 34 production-grade skills for Claude Code.

@@ -1,0 +1,17 @@
+{
+  "name": "skill-creator",
+  "version": "1.0.0",
+  "description": "Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.",
+  "author": "viktorbezdek",
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/skill-creator",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "create skill",
+    "build skill",
+    "design skill",
+    "skill quality",
+    "skill review"
+  ]
+}

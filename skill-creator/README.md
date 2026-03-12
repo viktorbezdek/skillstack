@@ -246,4 +246,4 @@ I need a set of composable skills for our data engineering team covering: dbt mo
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 34 production-grade skills for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `claude plugin add github:viktorbezdek/skillstack/skill-creator` -- 34 production-grade skills for Claude Code.
