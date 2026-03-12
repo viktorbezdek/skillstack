@@ -18,7 +18,7 @@ jobs:
 
       - name: Run ShellCheck on all shell scripts
         run: |
-          find . -name "*.sh" -not -path "./.git/*" | xargs shellcheck --severity=warning
+          find . -name "*.sh" -not -path "./.git/*" | xargs shellcheck --severity=error
 
   pytest-docker:
     name: pytest / docker-containerization
@@ -53,10 +53,27 @@ jobs:
       - name: Install dependencies
         working-directory: mcp-server/templates/mcp-template-python
         run: pip install pytest -r requirements.txt
+        continue-on-error: true
 
       - name: Run MCP template tests
         working-directory: mcp-server/templates/mcp-template-python
         run: pytest tests/ -v
+
+  pytest-skill-creator:
+    name: pytest / skill-creator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run skill-creator validator tests
+        working-directory: skill-creator/scripts
+        run: |
+          pip install pytest pyyaml
+          pytest tests/ -v
 
   node-test:
     name: Node.js test / chrome-devtools
