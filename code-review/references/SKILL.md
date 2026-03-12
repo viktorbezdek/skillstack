@@ -317,15 +317,6 @@ class QualityGateManager:
 
 ---
 
-## Module References
-
-Core Implementation Modules:
-- [`modules/ai-debugging.md`](./modules/ai-debugging.md) - AI-powered debugging with Context7 integration
-- [`modules/smart-refactoring.md`](./modules/smart-refactoring.md) - Technical debt analysis and safe refactoring
-- [`modules/performance-optimization.md`](./modules/performance-optimization.md) - Real-time profiling and bottleneck detection
-- [`modules/tdd-context7.md`](./modules/tdd-context7.md) - TDD cycles with Context7-enhanced test generation
-- [`modules/automated-code-review.md`](./modules/automated-code-review.md) - TRUST 5 validation with AI code review
-
 ---
 
 ## Usage Examples

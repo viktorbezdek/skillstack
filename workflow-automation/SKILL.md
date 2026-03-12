@@ -308,20 +308,20 @@ Manage workflow state with FABER (Frame, Architect, Build, Evaluate, Release) me
 **Key Operations:**
 ```bash
 # Load configuration
-./scripts/faber/config-loader.sh
+./scripts/config-loader.sh
 
 # Read workflow state
-./scripts/faber/state-read.sh ".faber/state.json"
+./scripts/state-read.sh ".faber/state.json"
 
 # Update phase state
-./scripts/faber/state-update-phase.sh frame completed '{"work_type": "feature"}'
+./scripts/state-update-phase.sh frame completed '{"work_type": "feature"}'
 
 # Post status card
-./scripts/faber/status-card-post.sh abc12345 123 evaluate "Build is green"
+./scripts/status-card-post.sh abc12345 123 evaluate "Build is green"
 ```
 
 **Resources:**
-- `scripts/faber/` - Complete script collection (29 scripts)
+- `scripts/` - Complete script collection (29 scripts)
 - `templates/status-card.template.md` - Status card template
 
 ## Quality Metrics
@@ -387,9 +387,13 @@ workflow-automation/
 │   └── semantic-release/
 ├── scripts/
 │   ├── git/                     # Git worktree scripts
-│   ├── faber/                   # FABER workflow scripts
 │   ├── cicd/                    # Pipeline analysis scripts
-│   └── workflow/                # Workflow utilities
+│   ├── workflow/                # Workflow utilities
+│   ├── config-*.sh              # FABER configuration scripts
+│   ├── state-*.sh               # FABER state management scripts
+│   ├── hook-*.sh                # FABER hook scripts
+│   ├── lock-*.sh                # FABER lock scripts
+│   └── workflow-*.sh            # FABER workflow scripts
 ├── subskills/
 │   ├── joblib.md
 │   ├── prefect.md
