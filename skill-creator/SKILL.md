@@ -1,14 +1,23 @@
 ---
 name: skill-creator
-description: >
-  Comprehensive skill creation framework combining philosophy-first design, evidence-based
-  prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.
-  Use when creating new skills, improving existing skills, reviewing skill quality, building
-  agent-powered workflows, or transforming documentation into production-ready skills.
-  Triggers: "create skill", "build skill", "design skill", "skill quality", "skill review",
-  "turn docs into skill", "skill from documentation", "improve skill", "skill best practices".
-  NOT for general coding advice, non-skill Claude Code features, or simple script writing.
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch]
+description: Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.
+triggers:
+  - create skill
+  - build skill
+  - design skill
+  - skill quality
+  - skill review
+  - skill from documentation
+  - skill best practices
+allowed-tools:
+- Read
+- Write
+- Edit
+- Bash
+- Glob
+- Grep
+- WebFetch
+- WebSearch
 ---
 
 # Skill Creator

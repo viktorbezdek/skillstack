@@ -1,6 +1,16 @@
 ---
 name: debugging
-description: Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. Use for diagnosing bugs, test failures, performance issues, build failures, and any unexpected behavior.
+description: Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.
+triggers:
+  - debug
+  - debugging
+  - bug
+  - error
+  - stack trace
+  - root cause
+  - DevTools
+  - test failure
+  - performance profiling
 license: Apache-2.0
 ---
 

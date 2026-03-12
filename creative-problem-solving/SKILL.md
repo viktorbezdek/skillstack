@@ -1,6 +1,15 @@
 ---
 name: creative-problem-solving
-description: "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing. Use when: brainstorming ideas, seeking a creative solution, needing to think outside the box, reframing a problem, exploring unconventional approaches, or applying strategic frameworks to decisions. Triggers: 'brainstorm', 'creative solution', 'think outside the box', 'lateral thinking', 'first principles', 'game theory', 'unconventional approach', 'reframe problem', 'new perspective', 'novel idea', 'what if', 'alternative approach', 'innovative', 'strategic analysis'."
+description: Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.
+triggers:
+  - brainstorm
+  - creative solution
+  - lateral thinking
+  - first principles
+  - game theory
+  - reframe problem
+  - innovative
+  - strategic analysis
 ---
 
 # Creative Problem-Solving

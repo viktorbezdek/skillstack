@@ -1,6 +1,16 @@
 ---
 name: testing-framework
-description: Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration. Use when setting up test infrastructure, writing tests, debugging test failures, implementing TDD/BDD, or configuring test automation.
+description: Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.
+triggers:
+  - testing
+  - unit test
+  - E2E test
+  - Playwright
+  - React Testing Library
+  - accessibility testing
+  - mutation testing
+  - fuzz testing
+  - test automation
 ---
 
 # Testing Framework

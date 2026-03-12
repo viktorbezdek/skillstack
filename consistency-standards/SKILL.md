@@ -1,6 +1,13 @@
 ---
 name: consistency-standards
-description: Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code. Use when creating style guides, enforcing naming conventions, standardizing terminology, auditing consistency, or establishing content governance. Triggers include naming conventions, style guide, taxonomy, terminology, content reuse, and consistency audit.
+description: Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.
+triggers:
+  - naming conventions
+  - style guide
+  - taxonomy
+  - terminology
+  - content reuse
+  - consistency audit
 ---
 
 # Consistency Standards

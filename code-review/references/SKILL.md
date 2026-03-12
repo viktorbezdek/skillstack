@@ -1,16 +1,23 @@
 ---
 name: moai-workflow-testing
-description: Comprehensive development workflow specialist combining TDD, debugging, performance optimization, code review, and quality assurance into unified development workflows
+description: Comprehensive development workflow specialist combining TDD, debugging, performance optimization, code review, and quality assurance into unified development workflows.
+triggers:
+  - workflow testing
+  - TDD
+  - debugging
+  - performance optimization
+  - code review automation
+  - quality assurance
 version: 1.0.0
 category: workflow
 tags:
- - workflow
- - testing
- - debugging
- - performance
- - quality
- - tdd
- - review
+- workflow
+- testing
+- debugging
+- performance
+- quality
+- tdd
+- review
 updated: 2025-11-30
 status: active
 author: MoAI-ADK Team

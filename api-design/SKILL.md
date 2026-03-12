@@ -1,6 +1,20 @@
 ---
 name: api-design
-description: "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation. Use when: creating API specifications, designing REST endpoints, GraphQL schemas, gRPC services, FastAPI routes, Pydantic schemas, authentication flows, rate limiting, versioning, or Python library APIs. Triggers: 'API', 'endpoint', 'REST', 'FastAPI', 'Pydantic', 'GraphQL', 'gRPC', 'OpenAPI', 'Swagger', 'OAuth', 'JWT', 'pagination', 'validation', 'rate limiting', 'CORS', 'authentication', 'federation', 'schema'."
+description: Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.
+triggers:
+  - API
+  - endpoint
+  - REST
+  - GraphQL
+  - gRPC
+  - OpenAPI
+  - Swagger
+  - FastAPI
+  - Pydantic
+  - OAuth
+  - JWT
+  - pagination
+  - rate limiting
 ---
 
 # API Design

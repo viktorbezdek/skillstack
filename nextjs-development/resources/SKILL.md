@@ -1,6 +1,12 @@
 ---
 name: nextjs-15-specialist
-description: Use when working with Next.js 15 features, App Router, Server Components, Server Actions, or data fetching patterns. Ensures correct usage of Server vs Client Components and modern Next.js patterns.
+description: Specialist guidance for Next.js 15 features, App Router, Server Components, Server Actions, and data fetching patterns.
+triggers:
+  - Next.js 15
+  - App Router
+  - Server Components
+  - Server Actions
+  - data fetching
 allowed-tools: Read, Grep, Glob, WebFetch
 ---
 

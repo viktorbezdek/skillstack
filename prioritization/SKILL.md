@@ -1,6 +1,13 @@
 ---
 name: prioritization
-description: Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making. Use when ranking features, allocating resources, making tradeoffs, planning sprints, or evaluating opportunities. Triggers include prioritization, RICE, MoSCoW, ICE, backlog ranking, and effort-impact analysis.
+description: Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
+triggers:
+  - prioritization
+  - RICE
+  - MoSCoW
+  - ICE
+  - backlog ranking
+  - effort-impact analysis
 ---
 
 # Prioritization

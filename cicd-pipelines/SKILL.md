@@ -1,6 +1,17 @@
 ---
 name: cicd-pipelines
-description: "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management. Use for: GitHub Actions, GitLab CI, Jenkins pipelines, Terraform/CloudFormation IaC, Kubernetes/Docker deployments, GitOps (ArgoCD/Flux), DevSecOps security scanning (SAST/DAST/SCA), semantic versioning, enterprise readiness assessment, and cloud platform deployments (AWS, Azure, GCP, Cloudflare)."
+description: Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.
+triggers:
+  - CI/CD
+  - GitHub Actions
+  - GitLab CI
+  - Jenkins
+  - Terraform
+  - Kubernetes
+  - Docker deployment
+  - DevOps
+  - DevSecOps
+  - ArgoCD
 license: MIT
 ---
 

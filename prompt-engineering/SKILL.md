@@ -1,14 +1,14 @@
 ---
 name: prompt-engineering
-description: >
-  Comprehensive prompt optimization system for LLMs. Use when users need to optimize prompts,
-  design effective AI interactions, evaluate prompt quality, or perform iterative refinement.
-  Trigger this skill whenever the user mentions prompt engineering, prompt design, prompt optimization,
-  LLM optimization, "improve this prompt", "make this prompt better", "write a system prompt",
-  "create a prompt for", or asks about best practices for prompting AI models. Also trigger when
-  the user wants to create reusable prompt templates, evaluate prompt quality, A/B test prompts,
-  or build system prompts for any LLM (Claude, ChatGPT, Gemini, Llama, etc.). Even if the user
-  doesn't use the word "prompt" — if they're crafting instructions for an AI model, use this skill.
+description: Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.
+triggers:
+  - prompt engineering
+  - prompt design
+  - prompt optimization
+  - system prompt
+  - LLM optimization
+  - improve this prompt
+  - prompt template
 ---
 
 # Prompt Engineering Skill
