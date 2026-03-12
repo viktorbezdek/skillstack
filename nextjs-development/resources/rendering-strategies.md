@@ -1,44 +1,44 @@
-# レンダリング戦略ガイド
+# Rendering Strategies Guide
 
-## 戦略一覧
+## Strategy Overview
 
-| 戦略              | 生成タイミング         | 更新方法       | 適用ケース             |
-| ----------------- | ---------------------- | -------------- | ---------------------- |
-| Static Generation | ビルド時               | 再ビルド       | 静的コンテンツ、ブログ |
-| ISR               | ビルド時 + 再検証      | revalidate間隔 | 定期更新コンテンツ     |
-| Dynamic Rendering | リクエスト時           | 毎回           | ユーザー固有データ     |
-| Streaming SSR     | リクエスト時（段階的） | 毎回           | 大量データ             |
+| Strategy          | Generation Timing              | Update Method       | Use Cases                    |
+| ----------------- | ------------------------------ | ------------------- | ---------------------------- |
+| Static Generation | At build time                  | Rebuild             | Static content, blogs        |
+| ISR               | At build time + revalidation   | revalidate interval | Periodically updated content |
+| Dynamic Rendering | At request time                | Every time          | User-specific data           |
+| Streaming SSR     | At request time (progressively)| Every time          | Large datasets               |
 
-## 判断フローチャート
+## Decision Flowchart
 
 ```
-このページは...
-├─ 完全静的コンテンツ？（全ユーザーに同じ内容）
+This page is...
+├─ Completely static content? (Same content for all users)
 │  └─ Yes → Static Generation
-├─ 定期更新が必要？（1時間毎、1日毎など）
-│  └─ Yes → ISR（revalidate設定）
-├─ リクエスト毎に変化？
+├─ Needs periodic updates? (Every hour, daily, etc.)
+│  └─ Yes → ISR (configure revalidate)
+├─ Changes on every request?
 │  └─ Yes → Dynamic Rendering
-├─ ユーザー固有データ？（認証、cookies）
+├─ User-specific data? (Authentication, cookies)
 │  └─ Yes → Dynamic Rendering
-└─ 大量データ？（段階的表示が有効）
+└─ Large dataset? (Progressive display is beneficial)
    └─ Yes → Streaming SSR + Suspense
 ```
 
 ## Static Generation
 
-### 設定方法
+### Configuration
 
 ```typescript
 // app/about/page.tsx
-// デフォルトでStatic Generation（何も設定しない場合）
+// Static Generation by default (when nothing is configured)
 
-// 明示的に設定
+// Explicitly configured
 export const dynamic = "force-static";
-export const revalidate = false; // 再検証しない
+export const revalidate = false; // No revalidation
 ```
 
-### 動的パラメータの静的生成
+### Static Generation with Dynamic Parameters
 
 ```typescript
 // app/blog/[slug]/page.tsx
@@ -60,22 +60,22 @@ export default async function BlogPost({
 }
 ```
 
-### 適用ケース
+### Use Cases
 
-- マーケティングページ
-- ブログ記事（更新頻度が低い）
-- ドキュメンテーション
-- 製品カタログ（在庫変動なし）
+- Marketing pages
+- Blog posts (low update frequency)
+- Documentation
+- Product catalogs (no inventory changes)
 
 ## ISR (Incremental Static Regeneration)
 
-### 設定方法
+### Configuration
 
 ```typescript
-// 時間ベースの再検証
-export const revalidate = 3600; // 1時間毎に再検証
+// Time-based revalidation
+export const revalidate = 3600; // Revalidate every hour
 
-// または fetch 単位で設定
+// Or configure per fetch
 const data = await fetch("https://api.example.com/data", {
   next: { revalidate: 3600 },
 });
@@ -90,17 +90,17 @@ import { revalidatePath, revalidateTag } from "next/cache";
 export async function POST(request: Request) {
   const { path, tag, secret } = await request.json();
 
-  // シークレットチェック
+  // Secret check
   if (secret !== process.env.REVALIDATION_SECRET) {
     return Response.json({ error: "Invalid secret" }, { status: 401 });
   }
 
-  // パスベースの再検証
+  // Path-based revalidation
   if (path) {
     revalidatePath(path);
   }
 
-  // タグベースの再検証
+  // Tag-based revalidation
   if (tag) {
     revalidateTag(tag);
   }
@@ -109,50 +109,50 @@ export async function POST(request: Request) {
 }
 ```
 
-### 適用ケース
+### Use Cases
 
-- ブログ（コメント付き）
-- ECサイト（在庫は1時間毎に更新）
-- ニュースサイト
-- CMS駆動コンテンツ
+- Blogs (with comments)
+- E-commerce sites (inventory updated every hour)
+- News sites
+- CMS-driven content
 
 ## Dynamic Rendering
 
-### 設定方法
+### Configuration
 
 ```typescript
-// 明示的にDynamic Rendering
+// Explicitly set Dynamic Rendering
 export const dynamic = "force-dynamic";
 
-// または動的関数の使用で自動的にDynamicになる
+// Or automatically becomes Dynamic by using dynamic functions
 import { cookies, headers } from "next/headers";
 
 export default async function Page() {
   const cookieStore = await cookies();
   const headersList = await headers();
-  // この時点でDynamic Renderingになる
+  // At this point it becomes Dynamic Rendering
 }
 ```
 
-### 動的関数
+### Dynamic Functions
 
-以下を使用すると自動的にDynamic Renderingになる:
+Using any of the following automatically enables Dynamic Rendering:
 
 - `cookies()`
 - `headers()`
 - `searchParams` prop
 - `unstable_noStore()`
 
-### 適用ケース
+### Use Cases
 
-- ダッシュボード（ユーザー固有）
-- 設定ページ
-- 検索結果（searchParams使用）
-- 認証が必要なページ
+- Dashboards (user-specific)
+- Settings pages
+- Search results (using searchParams)
+- Pages requiring authentication
 
 ## Streaming SSR
 
-### loading.tsx による自動Suspense
+### Automatic Suspense with loading.tsx
 
 ```typescript
 // app/dashboard/loading.tsx
@@ -162,12 +162,12 @@ export default function Loading() {
 
 // app/dashboard/page.tsx
 export default async function Dashboard() {
-  const data = await fetchDashboardData() // 時間がかかる
+  const data = await fetchDashboardData() // Takes time
   return <DashboardContent data={data} />
 }
 ```
 
-### 手動Suspense境界
+### Manual Suspense Boundaries
 
 ```typescript
 import { Suspense } from 'react'
@@ -175,14 +175,14 @@ import { Suspense } from 'react'
 export default function Page() {
   return (
     <div>
-      <h1>ダッシュボード</h1>
+      <h1>Dashboard</h1>
 
-      {/* 重要なコンテンツを先に表示 */}
+      {/* Display important content first */}
       <Suspense fallback={<StatsSkeleton />}>
         <Stats />
       </Suspense>
 
-      {/* 時間がかかるコンテンツは後から */}
+      {/* Time-consuming content loads later */}
       <Suspense fallback={<ChartSkeleton />}>
         <SlowChart />
       </Suspense>
@@ -195,19 +195,19 @@ export default function Page() {
 }
 ```
 
-### 適用ケース
+### Use Cases
 
-- ダッシュボード（複数のデータソース）
-- 分析ページ
-- レポートページ
-- 大量データの一覧表示
+- Dashboards (multiple data sources)
+- Analytics pages
+- Report pages
+- Large dataset listings
 
-## キャッシュ設定まとめ
+## Cache Configuration Summary
 
 ### Segment Config Options
 
 ```typescript
-// 各ページ/レイアウトで設定可能
+// Configurable per page/layout
 export const dynamic = 'auto' | 'force-dynamic' | 'error' | 'force-static'
 export const revalidate = false | 0 | number
 export const fetchCache = 'auto' | 'default-cache' | 'only-cache' | 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'
@@ -215,23 +215,23 @@ export const runtime = 'nodejs' | 'edge'
 export const preferredRegion = 'auto' | 'global' | 'home' | string | string[]
 ```
 
-### fetch オプション
+### fetch Options
 
 ```typescript
-// キャッシュ設定
-fetch(url, { cache: "force-cache" }); // デフォルト、キャッシュ使用
-fetch(url, { cache: "no-store" }); // キャッシュ無効
+// Cache configuration
+fetch(url, { cache: "force-cache" }); // Default, uses cache
+fetch(url, { cache: "no-store" }); // Cache disabled
 
-// 再検証設定
-fetch(url, { next: { revalidate: 3600 } }); // 時間ベース
-fetch(url, { next: { tags: ["posts"] } }); // タグベース
+// Revalidation configuration
+fetch(url, { next: { revalidate: 3600 } }); // Time-based
+fetch(url, { next: { tags: ["posts"] } }); // Tag-based
 ```
 
-## パフォーマンス比較
+## Performance Comparison
 
-| 戦略      | TTFB         | TTI  | SEO  | サーバー負荷 |
-| --------- | ------------ | ---- | ---- | ------------ |
-| Static    | 最速         | 最速 | 最良 | 最小         |
-| ISR       | 速い         | 速い | 良好 | 低           |
-| Dynamic   | 遅い         | 普通 | 良好 | 高           |
-| Streaming | 速い（部分） | 普通 | 良好 | 中           |
+| Strategy  | TTFB            | TTI    | SEO  | Server Load |
+| --------- | --------------- | ------ | ---- | ----------- |
+| Static    | Fastest         | Fastest| Best | Minimal     |
+| ISR       | Fast            | Fast   | Good | Low         |
+| Dynamic   | Slow            | Normal | Good | High        |
+| Streaming | Fast (partial)  | Normal | Good | Medium      |

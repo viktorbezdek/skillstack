@@ -1,8 +1,8 @@
-# ルーティングパターン詳細
+# Routing Patterns Reference
 
-## 基本ルーティング
+## Basic Routing
 
-### フォルダ構造とURL対応
+### Folder Structure and URL Mapping
 
 ```
 app/
@@ -18,21 +18,21 @@ app/
         └── page.tsx   → /shop/a/b/c
 ```
 
-### 特殊ファイル優先順位
+### Special File Priority
 
 ```
 app/dashboard/
-├── layout.tsx     # 1. 最初にラップ
-├── template.tsx   # 2. layout内でラップ
-├── loading.tsx    # 3. Suspense境界
+├── layout.tsx     # 1. Wraps first
+├── template.tsx   # 2. Wraps inside layout
+├── loading.tsx    # 3. Suspense boundary
 ├── error.tsx      # 4. ErrorBoundary
 ├── not-found.tsx  # 5. 404 UI
-└── page.tsx       # 6. 実際のページコンテンツ
+└── page.tsx       # 6. Actual page content
 ```
 
-## 動的ルート
+## Dynamic Routes
 
-### 単一動的セグメント [slug]
+### Single Dynamic Segment [slug]
 
 ```typescript
 // app/blog/[slug]/page.tsx
@@ -42,17 +42,17 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  return <article>{/* slug を使用 */}</article>
+  return <article>{/* Use slug */}</article>
 }
 
-// 静的パス生成（オプション）
+// Static path generation (optional)
 export async function generateStaticParams() {
   const posts = await getPosts()
   return posts.map((post) => ({ slug: post.slug }))
 }
 ```
 
-### Catch-all セグメント [...slug]
+### Catch-all Segment [...slug]
 
 ```typescript
 // app/docs/[...slug]/page.tsx
@@ -80,57 +80,57 @@ export default async function DocsPage({
 
 ## Route Groups
 
-### 論理グルーピング（URLに影響しない）
+### Logical Grouping (Does Not Affect URL)
 
 ```
 app/
 ├── (marketing)/
-│   ├── layout.tsx     # マーケティング用レイアウト
+│   ├── layout.tsx     # Marketing layout
 │   ├── page.tsx       → /
 │   └── about/
 │       └── page.tsx   → /about
 ├── (shop)/
-│   ├── layout.tsx     # ショップ用レイアウト
+│   ├── layout.tsx     # Shop layout
 │   └── products/
 │       └── page.tsx   → /products
 └── (dashboard)/
-    ├── layout.tsx     # ダッシュボード用レイアウト（認証必須）
+    ├── layout.tsx     # Dashboard layout (authentication required)
     └── settings/
         └── page.tsx   → /settings
 ```
 
-### 認証境界の実装例
+### Authentication Boundary Implementation Example
 
 ```
 app/
-├── (public)/           # 認証不要
+├── (public)/           # No authentication required
 │   ├── layout.tsx
 │   ├── page.tsx        → /
 │   └── login/
 │       └── page.tsx    → /login
-└── (protected)/        # 認証必須
-    ├── layout.tsx      # AuthGuard を含む
+└── (protected)/        # Authentication required
+    ├── layout.tsx      # Contains AuthGuard
     ├── dashboard/
     │   └── page.tsx    → /dashboard
     └── settings/
         └── page.tsx    → /settings
 ```
 
-## 並列ルート
+## Parallel Routes
 
-### @folder構文
+### @folder Syntax
 
 ```
 app/dashboard/
-├── layout.tsx          # 並列ルートを受け取る
+├── layout.tsx          # Receives parallel routes
 ├── page.tsx
 ├── @analytics/
-│   └── page.tsx        # 同時にレンダリング
+│   └── page.tsx        # Rendered simultaneously
 ├── @team/
-│   └── page.tsx        # 同時にレンダリング
+│   └── page.tsx        # Rendered simultaneously
 └── @notifications/
     ├── page.tsx
-    └── loading.tsx     # 独立したローディング状態
+    └── loading.tsx     # Independent loading state
 ```
 
 ```typescript
@@ -157,9 +157,9 @@ export default function DashboardLayout({
 }
 ```
 
-## インターセプティングルート
+## Intercepting Routes
 
-### (..) 構文
+### (..) Syntax
 
 ```
 app/
@@ -167,37 +167,37 @@ app/
 │   └── page.tsx            → /feed
 ├── photo/
 │   └── [id]/
-│       └── page.tsx        → /photo/123（直接アクセス）
+│       └── page.tsx        → /photo/123 (direct access)
 └── @modal/
     └── (.)photo/
         └── [id]/
-            └── page.tsx    → モーダルでインターセプト
+            └── page.tsx    → Intercepted in modal
 ```
 
-### インターセプト構文一覧
+### Interception Syntax Reference
 
-| 構文       | 説明                  |
-| ---------- | --------------------- |
-| `(.)`      | 同じレベルをマッチ    |
-| `(..)`     | 1つ上のレベルをマッチ |
-| `(..)(..)` | 2つ上のレベルをマッチ |
-| `(...)`    | ルートからマッチ      |
+| Syntax     | Description                    |
+| ---------- | ------------------------------ |
+| `(.)`      | Matches the same level         |
+| `(..)`     | Matches one level up           |
+| `(..)(..)` | Matches two levels up          |
+| `(...)`    | Matches from the root          |
 
-## Private フォルダ
+## Private Folders
 
-### \_folder（ルーティングから除外）
+### \_folder (Excluded from Routing)
 
 ```
 app/
-├── _components/        # ルーティングに含まれない
+├── _components/        # Not included in routing
 │   └── Button.tsx
-├── _lib/               # ルーティングに含まれない
+├── _lib/               # Not included in routing
 │   └── utils.ts
 └── dashboard/
     └── page.tsx
 ```
 
-## プロジェクト固有構造例
+## Project-Specific Structure Example
 
 ```
 app/
@@ -214,9 +214,9 @@ app/
 │       └── route.ts           # GET /api/health
 ├── (public)/
 │   ├── layout.tsx
-│   └── page.tsx               # ダッシュボード（/）
+│   └── page.tsx               # Dashboard (/)
 └── (dashboard)/
-    ├── layout.tsx             # 認証必須レイアウト
+    ├── layout.tsx             # Authentication required layout
     └── settings/
         └── page.tsx           # /settings
 ```

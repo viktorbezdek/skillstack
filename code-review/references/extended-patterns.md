@@ -138,13 +138,13 @@ gh pr checkout "$PR_NUMBER"
 | Tests | 75/100 | FAIL |
 | Quality | 88/100 | PASS |
 
-## SONKEIGO (CRITICAL) - Architecture-Level Issues
+## CRITICAL - Architecture-Level Issues
 [Critical findings with evidence]
 
-## TEINEIGO (MAJOR) - Module-Level Issues
+## MAJOR - Module-Level Issues
 [Major findings with evidence]
 
-## CASUAL (MINOR) - Function-Level Improvements
+## MINOR - Function-Level Improvements
 [Minor findings with evidence]
 
 ## NIT - Line-Level Suggestions
@@ -300,11 +300,11 @@ moai-workflow profile --target function_name --types cpu,memory
 
 ### v2.0.0 (Merged Skill)
 - Combined 4 complementary skills into unified code review skill
-- Integrated: Kanitsal Kod Incelemesi, PR Comment Analysis, Development Workflow Specialist, Consultant
+- Integrated: Evidence-Based Code Review, PR Comment Analysis, Development Workflow Specialist, Consultant
 - 55+ resource files covering all aspects of code review
 
 ### Source Skills
-- **Kanitsal Kod Incelemesi v1.1.0**: Evidence-based multi-agent review
+- **Evidence-Based Code Review v1.1.0**: Evidence-based multi-agent review
 - **PR Comment Analysis v1.0**: GitHub PR comment extraction and analysis
 - **Development Workflow Specialist v1.0.0**: TDD, debugging, optimization workflows
 - **Consultant v1.0**: LiteLLM-based AI consultation

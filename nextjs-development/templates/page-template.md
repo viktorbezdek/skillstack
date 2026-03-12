@@ -1,6 +1,6 @@
-# Page コンポーネントテンプレート
+# Page Component Template
 
-## 基本的な Server Component Page
+## Basic Server Component Page
 
 ```typescript
 // app/[feature]/page.tsx
@@ -12,19 +12,19 @@ export const metadata: Metadata = {
 }
 
 export default async function {{PageName}}Page() {
-  // Server Component: データフェッチ可能
+  // Server Component: can fetch data
   const data = await fetchData()
 
   return (
     <main>
       <h1>{{PageTitle}}</h1>
-      {/* コンテンツ */}
+      {/* Content */}
     </main>
   )
 }
 ```
 
-## 動的ルート Page
+## Dynamic Route Page
 
 ```typescript
 // app/{{resource}}/[{{param}}]/page.tsx
@@ -72,13 +72,13 @@ export default async function {{PageName}}Page({ params }: Props) {
   return (
     <article>
       <h1>{item.title}</h1>
-      {/* コンテンツ */}
+      {/* Content */}
     </article>
   )
 }
 ```
 
-## Client Component を含む Page
+## Page with Client Component
 
 ```typescript
 // app/{{feature}}/page.tsx
@@ -87,19 +87,19 @@ import { InteractiveSection } from './interactive-section'
 import { DataSkeleton } from './data-skeleton'
 
 export default async function {{PageName}}Page() {
-  // Server側でデータ取得
+  // Fetch data on the server side
   const initialData = await fetchInitialData()
 
   return (
     <main>
       <h1>{{PageTitle}}</h1>
 
-      {/* 静的コンテンツ (Server Component) */}
+      {/* Static content (Server Component) */}
       <section>
         <StaticContent data={initialData} />
       </section>
 
-      {/* インタラクティブ部分 (Client Component) */}
+      {/* Interactive section (Client Component) */}
       <Suspense fallback={<DataSkeleton />}>
         <InteractiveSection initialData={initialData} />
       </Suspense>
@@ -108,12 +108,12 @@ export default async function {{PageName}}Page() {
 }
 ```
 
-## ISR 設定付き Page
+## Page with ISR Configuration
 
 ```typescript
 // app/{{feature}}/page.tsx
 
-// ISR: 1時間毎に再検証
+// ISR: revalidate every hour
 export const revalidate = 3600
 
 export default async function {{PageName}}Page() {
@@ -125,7 +125,7 @@ export default async function {{PageName}}Page() {
     <main>
       <h1>{{PageTitle}}</h1>
       <p>Last updated: {new Date().toISOString()}</p>
-      {/* コンテンツ */}
+      {/* Content */}
     </main>
   )
 }
@@ -137,7 +137,7 @@ export default async function {{PageName}}Page() {
 // app/{{feature}}/page.tsx
 import { cookies, headers } from 'next/headers'
 
-// 動的レンダリングを強制
+// Force dynamic rendering
 export const dynamic = 'force-dynamic'
 
 export default async function {{PageName}}Page() {
@@ -150,13 +150,13 @@ export default async function {{PageName}}Page() {
   return (
     <main>
       <h1>{{PageTitle}}</h1>
-      {/* ユーザー固有のコンテンツ */}
+      {/* User-specific content */}
     </main>
   )
 }
 ```
 
-## searchParams を使用する Page
+## Page Using searchParams
 
 ```typescript
 // app/{{feature}}/page.tsx
@@ -181,14 +181,14 @@ export default async function {{PageName}}Page({ searchParams }: Props) {
 }
 ```
 
-## 変数説明
+## Variable Descriptions
 
-| 変数                  | 説明                                | 例                                   |
+| Variable              | Description                         | Example                              |
 | --------------------- | ----------------------------------- | ------------------------------------ |
-| `{{PageName}}`        | Page コンポーネント名（PascalCase） | `BlogPost`, `UserProfile`            |
-| `{{PageTitle}}`       | ページタイトル                      | `ブログ記事`, `ユーザープロフィール` |
-| `{{PageDescription}}` | メタディスクリプション              | `最新のブログ記事一覧`               |
-| `{{feature}}`         | 機能名（kebab-case）                | `blog`, `user-profile`               |
-| `{{resource}}`        | リソース名（複数形）                | `posts`, `users`                     |
-| `{{param}}`           | 動的パラメータ名                    | `slug`, `id`, `username`             |
-| `{{apiUrl}}`          | データフェッチURL                   | `https://api.example.com/data`       |
+| `{{PageName}}`        | Page component name (PascalCase)    | `BlogPost`, `UserProfile`            |
+| `{{PageTitle}}`       | Page title                          | `Blog Post`, `User Profile`          |
+| `{{PageDescription}}` | Meta description                    | `Latest blog post list`              |
+| `{{feature}}`         | Feature name (kebab-case)           | `blog`, `user-profile`               |
+| `{{resource}}`        | Resource name (plural)              | `posts`, `users`                     |
+| `{{param}}`           | Dynamic parameter name              | `slug`, `id`, `username`             |
+| `{{apiUrl}}`          | Data fetch URL                      | `https://api.example.com/data`       |
