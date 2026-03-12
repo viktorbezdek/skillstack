@@ -1,4 +1,8 @@
-# Claude Code Skills
+<div align="center">
+<img src="assets/hero.svg" alt="SkillStack" width="100%" />
+</div>
+
+# SkillStack
 
 The definitive, battle-tested collection of specialized skills for Claude Code. 34 production-grade skills spanning full-stack development, DevOps, testing, API design, and strategic thinking—with 785+ markdown documents, 500+ templates and scripts, and proven patterns for 40+ technology domains.
 
@@ -78,13 +82,13 @@ This isn't just documentation—it's a production toolkit:
 
 ```bash
 # From any project directory
-claude plugin add /path/to/claude-skills
+claude plugin add /path/to/skillstack
 ```
 
 **Option B: Clone and reference directly**
 
 ```bash
-git clone https://github.com/your-org/claude-skills.git
+git clone https://github.com/your-org/skillstack.git
 
 # Add to your project's .claude/settings.json
 cat > .claude/settings.json << 'EOF'
@@ -100,8 +104,8 @@ EOF
 
 ```bash
 # Pick only the skills you need
-ln -s /path/to/claude-skills/api-design .claude/skills/api-design
-ln -s /path/to/claude-skills/debugging .claude/skills/debugging
+ln -s /path/to/skillstack/api-design .claude/skills/api-design
+ln -s /path/to/skillstack/debugging .claude/skills/debugging
 ```
 
 ### Using Skills
