@@ -1,0 +1,4274 @@
+{
+  "agent-evaluation": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "55c6ea2",
+        "message": "fix(agent-evaluation): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "agent-project-development": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "ca2a55d",
+        "message": "fix(agent-project-development): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "api-design": {
+    "version": "1.2.23",
+    "commit_count": 26,
+    "history": [
+      {
+        "hash": "2d6efa7",
+        "message": "feat: add api-design skill for REST, GraphQL, gRPC",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "a434459",
+        "message": "feat(api): add references and authentication patterns",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "6f5c3d9",
+        "message": "feat(api): add templates, examples, scripts, checklists",
+        "bump": "minor",
+        "version": "1.2.0"
+      },
+      {
+        "hash": "934b61e",
+        "message": "refactor(api): improve REST best practices and add OpenAPI spec examples",
+        "bump": "patch",
+        "version": "1.2.1"
+      },
+      {
+        "hash": "4e96d40",
+        "message": "refactor(api): add gRPC service patterns and federation guide",
+        "bump": "patch",
+        "version": "1.2.2"
+      },
+      {
+        "hash": "ab56a46",
+        "message": "style(api): format code examples in REST best practices",
+        "bump": "patch",
+        "version": "1.2.3"
+      },
+      {
+        "hash": "744c5f8",
+        "message": "fix(api): add idempotency key header pattern",
+        "bump": "patch",
+        "version": "1.2.4"
+      },
+      {
+        "hash": "7255372",
+        "message": "style(api): fix JSON formatting in error response example",
+        "bump": "patch",
+        "version": "1.2.5"
+      },
+      {
+        "hash": "b260d1e",
+        "message": "docs(api): add cursor-based pagination example",
+        "bump": "patch",
+        "version": "1.2.6"
+      },
+      {
+        "hash": "e9138a2",
+        "message": "docs(api): add anti-patterns section with 10 common mistakes",
+        "bump": "patch",
+        "version": "1.2.7"
+      },
+      {
+        "hash": "8f4247b",
+        "message": "style(api): normalize HTTP status code descriptions",
+        "bump": "patch",
+        "version": "1.2.8"
+      },
+      {
+        "hash": "7906ad5",
+        "message": "docs(api): draft initial REST endpoint conventions",
+        "bump": "patch",
+        "version": "1.2.9"
+      },
+      {
+        "hash": "28e85fc",
+        "message": "fix(api): correct HTTP method descriptions",
+        "bump": "patch",
+        "version": "1.2.10"
+      },
+      {
+        "hash": "d3f281a",
+        "message": "docs(api): add quality checklist with 12 items",
+        "bump": "patch",
+        "version": "1.2.11"
+      },
+      {
+        "hash": "1334d75",
+        "message": "fix(api): add TanStack Start server function template",
+        "bump": "patch",
+        "version": "1.2.12"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.2.13"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.2.14"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.2.15"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.2.16"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.2.17"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.2.18"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.2.19"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.2.20"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.2.21"
+      },
+      {
+        "hash": "dd04729",
+        "message": "fix(api-design): repair broken cross-references to legacy skill names",
+        "bump": "patch",
+        "version": "1.2.22"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.2.23"
+      }
+    ]
+  },
+  "bdi-mental-states": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "9cb523a",
+        "message": "fix(bdi-mental-states): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "cicd-pipelines": {
+    "version": "1.1.23",
+    "commit_count": 25,
+    "history": [
+      {
+        "hash": "32f03b7",
+        "message": "feat: add cicd-pipelines skill for GitHub Actions, GitLab CI",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "02fc772",
+        "message": "feat(cicd): add pipeline templates and security references",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "d12af7c",
+        "message": "refactor(cicd): add enterprise readiness assessment and OpenSSF badge criteria",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "654d3fb",
+        "message": "fix(cicd): add GitOps patterns and Cloudflare Workers deployment",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "f0c1645",
+        "message": "docs(cicd): add OIDC authentication examples for AWS",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "b1b63b4",
+        "message": "refactor(cicd): add platform selection guide table",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "fea19c8",
+        "message": "docs(cicd): add script injection vulnerability prevention",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "90f9250",
+        "message": "docs(cicd): add pipeline flow architecture diagram",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "924588c",
+        "message": "fix(cicd): add quick reference commands for all platforms",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "66ee629",
+        "message": "fix(cicd): add :latest tag anti-pattern warning",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "c4135db",
+        "message": "refactor(cicd): reorganize reference file table",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "07cdf8b",
+        "message": "fix(cicd): add Terraform quick reference commands",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "0112870",
+        "message": "refactor(cicd): add container security checklist items",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "d87d63a",
+        "message": "refactor: deduplicate scripts between git-workflow, cicd-pipelines, and workflow-automation",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "d466398",
+        "message": "fix(cicd-pipelines): repair broken cross-reference and update plugin count",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "c60a8d7",
+        "message": "fix(devops): disambiguate cicd-pipelines vs workflow-automation vs docker-containerization",
+        "bump": "patch",
+        "version": "1.1.23"
+      }
+    ]
+  },
+  "code-review": {
+    "version": "1.1.24",
+    "commit_count": 26,
+    "history": [
+      {
+        "hash": "dd86c1c",
+        "message": "feat: add code-review skill with multi-agent swarm review",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "3dcbe6f",
+        "message": "feat(review): add modules, scripts, templates, examples",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "8dc99a2",
+        "message": "refactor(code-review): add TRUST 5 validation and AI consultation module",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "3b5c2df",
+        "message": "fix(code-review): improve description with trigger keywords",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "d179511",
+        "message": "refactor(review): add evidence type classification",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "c9f7d99",
+        "message": "refactor(review): finalize TRUST 5 scoring thresholds",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "b5a432f",
+        "message": "refactor(review): add severity level hierarchy (SONKEIGO/TEINEIGO)",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "fc557fb",
+        "message": "fix(review): add CI/CD integration workflow example",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "f462800",
+        "message": "refactor(review): add three-phase validation workflow",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "57ff1ce",
+        "message": "docs(review): finalize success criteria and changelog",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "41d434e",
+        "message": "docs(review): add finding template YAML structure",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "be87e3c",
+        "message": "refactor(review): add multi-agent execution flow",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "b59a445",
+        "message": "fix(review): add validation rules for critical findings",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "f0df785",
+        "message": "fix(i18n): translate all non-English content to English",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "4647f46",
+        "message": "fix: resolve broken links, flatten faber scripts, add validate-patterns.py",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.23"
+      },
+      {
+        "hash": "b00fc60",
+        "message": "fix(testing+debugging): optimize descriptions with NOT clauses for disambiguation",
+        "bump": "patch",
+        "version": "1.1.24"
+      }
+    ]
+  },
+  "consistency-standards": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "1f42e6f",
+        "message": "feat: add helper skills for documentation ecosystem",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "content-modelling": {
+    "version": "1.0.11",
+    "commit_count": 12,
+    "history": [
+      {
+        "hash": "daa06af",
+        "message": "feat: add content modeling and ontology design skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.10"
+      },
+      {
+        "hash": "beb7c2e",
+        "message": "fix(structured-data): disambiguate ontology-design vs content-modelling",
+        "bump": "patch",
+        "version": "1.0.11"
+      }
+    ]
+  },
+  "context-compression": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "4005434",
+        "message": "fix(context-compression): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "7881054",
+        "message": "fix(context-engineering): optimize descriptions with cross-references and NOT clauses",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "context-degradation": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "39ba542",
+        "message": "fix(context-degradation): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "7881054",
+        "message": "fix(context-engineering): optimize descriptions with cross-references and NOT clauses",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "context-fundamentals": {
+    "version": "1.0.5",
+    "commit_count": 6,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "8e815ba",
+        "message": "docs: add 2025-2026 research references for context and memory plugins",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "ec23f4a",
+        "message": "fix(context-fundamentals): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7881054",
+        "message": "fix(context-engineering): optimize descriptions with cross-references and NOT clauses",
+        "bump": "patch",
+        "version": "1.0.5"
+      }
+    ]
+  },
+  "context-optimization": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "ed35eb2",
+        "message": "fix(context-optimization): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "7881054",
+        "message": "fix(context-engineering): optimize descriptions with cross-references and NOT clauses",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "creative-problem-solving": {
+    "version": "1.0.15",
+    "commit_count": 16,
+    "history": [
+      {
+        "hash": "7acc0f6",
+        "message": "feat: add creative-problem-solving with game theory and lateral thinking",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "8419fb7",
+        "message": "fix(creative): improve description with trigger keywords",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "85e7f25",
+        "message": "docs(creative): add SCAMPER technique examples",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "1d69f1e",
+        "message": "docs(creative): add product strategy example",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "4fdce91",
+        "message": "fix(creative): add organizational issue analysis example",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "0ba988c",
+        "message": "docs(creative): add decision framework applications",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.10"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.0.11"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.12"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.13"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.14"
+      },
+      {
+        "hash": "6e73dfc",
+        "message": "fix(thinking): disambiguate creative-problem-solving vs critical-intuition",
+        "bump": "patch",
+        "version": "1.0.15"
+      }
+    ]
+  },
+  "critical-intuition": {
+    "version": "1.0.15",
+    "commit_count": 16,
+    "history": [
+      {
+        "hash": "2f091e3",
+        "message": "feat: add critical-intuition skill for pattern recognition",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f88a09d",
+        "message": "fix(intuition): improve description with trigger keywords",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "b7ba782",
+        "message": "refactor(intuition): add Bayesian updating workflow",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "bc47490",
+        "message": "fix(intuition): add red flags and green flags section",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6f6a9d4",
+        "message": "docs(intuition): add confidence calibration techniques",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "b21b751",
+        "message": "fix(intuition): add synthesis principles hierarchy",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.10"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.0.11"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.12"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.13"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.14"
+      },
+      {
+        "hash": "6e73dfc",
+        "message": "fix(thinking): disambiguate creative-problem-solving vs critical-intuition",
+        "bump": "patch",
+        "version": "1.0.15"
+      }
+    ]
+  },
+  "debugging": {
+    "version": "1.1.26",
+    "commit_count": 28,
+    "history": [
+      {
+        "hash": "a338fd6",
+        "message": "feat: add debugging skill with systematic methodology",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "0f68d17",
+        "message": "feat(debugging): add Chrome DevTools scripts and E2E workflow",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "f8d219f",
+        "message": "fix(debugging): add defense-in-depth validation and verification checklist",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "b14d8c9",
+        "message": "fix(debugging): add CI/CD pipeline debugging and test polluter finder",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "e5549f8",
+        "message": "docs(debugging): clarify Phase 1 root cause investigation steps",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "d66ab40",
+        "message": "docs(debugging): add real-world impact statistics",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "e99d412",
+        "message": "docs(debugging): add quick decision matrix for issue types",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "479a239",
+        "message": "refactor(debugging): add verification before completion checklist",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "1a976aa",
+        "message": "fix(debugging): add multi-component evidence gathering steps",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "a1d3d3d",
+        "message": "style(debugging): improve four phases formatting",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "382fe4c",
+        "message": "docs(debugging): add red flags list for process violations",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "a8cb9b8",
+        "message": "docs(debugging): add browser automation script catalog",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "bf8100b",
+        "message": "docs(debugging): add Puppeteer reference link",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "58e1be5",
+        "message": "fix(debugging): add E2E testing workflow phases overview",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "fd5adfe",
+        "message": "fix(debugging): add AI-powered error classification patterns",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "c031429",
+        "message": "fix(deps): address all 6 Dependabot security vulnerabilities",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "e72fc10",
+        "message": "fix(deps): update all dependencies to latest versions",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.23"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.24"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.25"
+      },
+      {
+        "hash": "b00fc60",
+        "message": "fix(testing+debugging): optimize descriptions with NOT clauses for disambiguation",
+        "bump": "patch",
+        "version": "1.1.26"
+      }
+    ]
+  },
+  "docker-containerization": {
+    "version": "1.1.22",
+    "commit_count": 24,
+    "history": [
+      {
+        "hash": "e497186",
+        "message": "feat: add docker-containerization skill",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "ead6db8",
+        "message": "feat(docker): add references, scripts, templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "5955f50",
+        "message": "fix(docker): add DDEV quickstart and worktree isolation strategy",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "c005574",
+        "message": "refactor(docker): add meta-configuration systems and browser isolation",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "8cf2ab3",
+        "message": "fix(docker): clarify multi-stage build size reduction example",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "afa1a04",
+        "message": "docs(docker): add container exits troubleshooting guide",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "da3427b",
+        "message": "fix(docker): add .dockerignore template",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "222273f",
+        "message": "docs(docker): add Ghostmind meta.json config pattern",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "35f704c",
+        "message": "docs(docker): add security hardening checklist",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "72141c9",
+        "message": "fix(docker): add healthcheck YAML example",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "2afe2c7",
+        "message": "docs(docker): add development to production workflow",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "ed7a53b",
+        "message": "refactor(docker): add port allocation table for worktrees",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "692940b",
+        "message": "fix(security): scrub credentials, replace eval, add XSS warnings",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "c60a8d7",
+        "message": "fix(devops): disambiguate cicd-pipelines vs workflow-automation vs docker-containerization",
+        "bump": "patch",
+        "version": "1.1.22"
+      }
+    ]
+  },
+  "documentation-generator": {
+    "version": "1.1.15",
+    "commit_count": 17,
+    "history": [
+      {
+        "hash": "4820ab1",
+        "message": "feat: add documentation-generator with 24 templates",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "a358044",
+        "message": "feat(docs): add scripts, templates, examples, references",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "1befa72",
+        "message": "refactor(doc-gen): polish 24 templates and add validation script",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "da3e86d",
+        "message": "refactor(doc-gen): add template portfolio cross-references",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "3c37662",
+        "message": "refactor(doc-gen): add skill loading sequence per phase",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "fa2a61f",
+        "message": "refactor(doc-gen): add script commands section",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "ba8af9a",
+        "message": "docs(doc-gen): add drift detection script usage",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.1.15"
+      }
+    ]
+  },
+  "edge-case-coverage": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "1f42e6f",
+        "message": "feat: add helper skills for documentation ecosystem",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "example-design": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "1f42e6f",
+        "message": "feat: add helper skills for documentation ecosystem",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "filesystem-context": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "994c529",
+        "message": "fix(filesystem-context): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "7881054",
+        "message": "fix(context-engineering): optimize descriptions with cross-references and NOT clauses",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "frontend-design": {
+    "version": "1.1.23",
+    "commit_count": 25,
+    "history": [
+      {
+        "hash": "414fadb",
+        "message": "feat: add frontend-design skill merging 11 UI/UX skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "300862a",
+        "message": "feat(frontend): add design tokens, Tailwind refs, component templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "0b10c70",
+        "message": "refactor(frontend): consolidate design token system and add Figma workflow",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "9d35281",
+        "message": "refactor(frontend): add UI evaluation scripts and A/B comparison tools",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "81feea5",
+        "message": "style(frontend): normalize Tailwind class ordering",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "56b6a52",
+        "message": "docs(frontend): add OKLCH color space reference",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "dfd1dc1",
+        "message": "fix(frontend): add mobile-first responsive design examples",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "d8c6a8e",
+        "message": "refactor(frontend): add three-tier token architecture",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "4260541",
+        "message": "fix(frontend): add WCAG 2.2 contrast requirements table",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "ee612d3",
+        "message": "style(frontend): final polish on source skills attribution",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "0b05bef",
+        "message": "refactor(frontend): organize scripts by category",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "13fd2b9",
+        "message": "refactor(frontend): add do/don't best practices list",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "823ebcc",
+        "message": "docs(frontend): add Playwright UI evaluation patterns",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "692940b",
+        "message": "fix(security): scrub credentials, replace eval, add XSS warnings",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "6c64693",
+        "message": "fix(frontend): disambiguate react-development vs nextjs-development vs frontend-design",
+        "bump": "patch",
+        "version": "1.1.23"
+      }
+    ]
+  },
+  "git-workflow": {
+    "version": "1.1.20",
+    "commit_count": 22,
+    "history": [
+      {
+        "hash": "93e4c32",
+        "message": "feat: add git-workflow skill with conventional commits",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "e480869",
+        "message": "feat(git): add references, scripts, and commit templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "4831596",
+        "message": "refactor(git): add story tree management and backlog scripts",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "fee62c3",
+        "message": "docs(git): add worktree directory structure documentation",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "0fcc899",
+        "message": "fix(git): add commit size guidelines and splitting advice",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "840b6d0",
+        "message": "refactor(git): add issue integration detection patterns",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "7d5da83",
+        "message": "refactor(git): add changelog output format example",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "f23abe8",
+        "message": "refactor(git): add error handling for common issues",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "283f5dc",
+        "message": "fix(git): correct imperative mood examples",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "b4a08ec",
+        "message": "docs(git): add semantic versioning bump rules",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "8acdb94",
+        "message": "refactor(git): add story format template",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "d87d63a",
+        "message": "refactor: deduplicate scripts between git-workflow, cicd-pipelines, and workflow-automation",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "b65bc7d",
+        "message": "fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript",
+        "bump": "patch",
+        "version": "1.1.20"
+      }
+    ]
+  },
+  "hosted-agents": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "01b6dd4",
+        "message": "fix(hosted-agents): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "mcp-server": {
+    "version": "1.2.20",
+    "commit_count": 23,
+    "history": [
+      {
+        "hash": "0721444",
+        "message": "feat: add mcp-server skill for Model Context Protocol development",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "082095b",
+        "message": "feat(mcp): add references, scripts, templates, assets",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "723e35d",
+        "message": "feat(mcp): add Claude Code documentation and plugin templates",
+        "bump": "minor",
+        "version": "1.2.0"
+      },
+      {
+        "hash": "2e90b87",
+        "message": "refactor(mcp): add evaluation harness and cost calculator",
+        "bump": "patch",
+        "version": "1.2.1"
+      },
+      {
+        "hash": "c681e43",
+        "message": "refactor(mcp): add transport type comparison table",
+        "bump": "patch",
+        "version": "1.2.2"
+      },
+      {
+        "hash": "786e8f9",
+        "message": "style(mcp): normalize code examples to use latest FastMCP API",
+        "bump": "patch",
+        "version": "1.2.3"
+      },
+      {
+        "hash": "aebde0e",
+        "message": "refactor(mcp): add evaluation question requirements",
+        "bump": "patch",
+        "version": "1.2.4"
+      },
+      {
+        "hash": "f967f42",
+        "message": "fix(mcp): add .mcpb packaging instructions",
+        "bump": "patch",
+        "version": "1.2.5"
+      },
+      {
+        "hash": "8ef8974",
+        "message": "docs(mcp): add language selection criteria",
+        "bump": "patch",
+        "version": "1.2.6"
+      },
+      {
+        "hash": "32310c3",
+        "message": "fix(mcp): add code quality checklist",
+        "bump": "patch",
+        "version": "1.2.7"
+      },
+      {
+        "hash": "90f7cea",
+        "message": "docs(mcp): add Figma integration section reference",
+        "bump": "patch",
+        "version": "1.2.8"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.2.9"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.2.10"
+      },
+      {
+        "hash": "c031429",
+        "message": "fix(deps): address all 6 Dependabot security vulnerabilities",
+        "bump": "patch",
+        "version": "1.2.11"
+      },
+      {
+        "hash": "e72fc10",
+        "message": "fix(deps): update all dependencies to latest versions",
+        "bump": "patch",
+        "version": "1.2.12"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.2.13"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.2.14"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.2.15"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.2.16"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.2.17"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.2.18"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.2.19"
+      },
+      {
+        "hash": "b65bc7d",
+        "message": "fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript",
+        "bump": "patch",
+        "version": "1.2.20"
+      }
+    ]
+  },
+  "memory-systems": {
+    "version": "1.0.5",
+    "commit_count": 6,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "8e815ba",
+        "message": "docs: add 2025-2026 research references for context and memory plugins",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "deb2452",
+        "message": "fix(memory-systems): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.5"
+      }
+    ]
+  },
+  "multi-agent-patterns": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "3e90ed8",
+        "message": "fix(multi-agent-patterns): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "navigation-design": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "5a9c7e9",
+        "message": "feat: add navigation, UX writing, and user journey skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "6e315cf",
+        "message": "fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "nextjs-development": {
+    "version": "2.0.23",
+    "commit_count": 26,
+    "history": [
+      {
+        "hash": "40c27a7",
+        "message": "feat: add nextjs-development skill covering App Router and Next.js 16",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "cb452dd",
+        "message": "feat(nextjs): add references, resources, scripts, templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "366eff6",
+        "message": "docs(nextjs): add Next.js 16 migration guide and breaking changes",
+        "bump": "major",
+        "version": "2.0.0"
+      },
+      {
+        "hash": "5e64f5c",
+        "message": "refactor(nextjs): add module architecture and CRUD service patterns",
+        "bump": "patch",
+        "version": "2.0.1"
+      },
+      {
+        "hash": "9517c3f",
+        "message": "fix(nextjs): correct revalidateTag API for Next.js 16",
+        "bump": "patch",
+        "version": "2.0.2"
+      },
+      {
+        "hash": "dd6cc55",
+        "message": "fix(nextjs): clarify proxy.ts migration from middleware",
+        "bump": "patch",
+        "version": "2.0.3"
+      },
+      {
+        "hash": "985cf7e",
+        "message": "docs(nextjs): add cache life profiles documentation",
+        "bump": "patch",
+        "version": "2.0.4"
+      },
+      {
+        "hash": "0407fcb",
+        "message": "docs(nextjs): add sitemap generation pattern",
+        "bump": "patch",
+        "version": "2.0.5"
+      },
+      {
+        "hash": "d8b2fe7",
+        "message": "docs(nextjs): add font optimization best practices",
+        "bump": "patch",
+        "version": "2.0.6"
+      },
+      {
+        "hash": "0839b97",
+        "message": "docs(nextjs): add parallel data fetching pattern",
+        "bump": "patch",
+        "version": "2.0.7"
+      },
+      {
+        "hash": "edd546b",
+        "message": "docs(nextjs): add dynamic metadata generation pattern",
+        "bump": "patch",
+        "version": "2.0.8"
+      },
+      {
+        "hash": "4c0bae3",
+        "message": "docs(nextjs): add TypeScript strict configuration",
+        "bump": "patch",
+        "version": "2.0.9"
+      },
+      {
+        "hash": "692940b",
+        "message": "fix(security): scrub credentials, replace eval, add XSS warnings",
+        "bump": "patch",
+        "version": "2.0.10"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "2.0.11"
+      },
+      {
+        "hash": "f0df785",
+        "message": "fix(i18n): translate all non-English content to English",
+        "bump": "patch",
+        "version": "2.0.12"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "2.0.13"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "2.0.14"
+      },
+      {
+        "hash": "4647f46",
+        "message": "fix: resolve broken links, flatten faber scripts, add validate-patterns.py",
+        "bump": "patch",
+        "version": "2.0.15"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "2.0.16"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "2.0.17"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "2.0.18"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "2.0.19"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "2.0.20"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "2.0.21"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "2.0.22"
+      },
+      {
+        "hash": "6c64693",
+        "message": "fix(frontend): disambiguate react-development vs nextjs-development vs frontend-design",
+        "bump": "patch",
+        "version": "2.0.23"
+      }
+    ]
+  },
+  "ontology-design": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "daa06af",
+        "message": "feat: add content modeling and ontology design skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "9c0d140",
+        "message": "docs: improve helper skill descriptions and add trigger words",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "beb7c2e",
+        "message": "fix(structured-data): disambiguate ontology-design vs content-modelling",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "outcome-orientation": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "aa7e638",
+        "message": "feat: add prioritization, outcome-orientation, risk-management",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "persona-definition": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "9cea81d",
+        "message": "feat: add persona definition and persona mapping skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "a5f9c9d",
+        "message": "fix(personas): disambiguate persona-definition vs persona-mapping",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "persona-mapping": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "9cea81d",
+        "message": "feat: add persona definition and persona mapping skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "a5f9c9d",
+        "message": "fix(personas): disambiguate persona-definition vs persona-mapping",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "prioritization": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "aa7e638",
+        "message": "feat: add prioritization, outcome-orientation, risk-management",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "prompt-engineering": {
+    "version": "1.1.15",
+    "commit_count": 17,
+    "history": [
+      {
+        "hash": "75294fc",
+        "message": "feat: add prompt-engineering skill with 4-D framework",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "220f7f2",
+        "message": "feat(prompts): add references and evaluation methodology",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "d0e082f",
+        "message": "refactor(prompt): add platform-specific optimization and evaluation rubrics",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "993deda",
+        "message": "refactor(prompt): add Claude-specific XML tag patterns",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "76e3e3d",
+        "message": "fix(prompt): add context enrichment methodology",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "12fa3d5",
+        "message": "fix(prompt): add anti-patterns to fix checklist",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "504086f",
+        "message": "fix(prompt): add LLM-as-Judge evaluation template",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "a9056e6",
+        "message": "fix(meta): optimize descriptions for prompt-engineering and skill-creator",
+        "bump": "patch",
+        "version": "1.1.15"
+      }
+    ]
+  },
+  "python-development": {
+    "version": "1.1.24",
+    "commit_count": 26,
+    "history": [
+      {
+        "hash": "1593fd8",
+        "message": "feat: add python-development skill with modern tooling guide",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "ea05db5",
+        "message": "feat(python): add references, templates, and scripts",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "cbe26df",
+        "message": "refactor(python): add async patterns, MicroPython guide, and CLI templates",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "22ef01b",
+        "message": "refactor(python): polish workflows and add cookbook examples",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "85f5bab",
+        "message": "style(python): normalize import ordering in examples",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "d08b294",
+        "message": "refactor(python): add UV lockfile management patterns",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "ad88b74",
+        "message": "fix(python): correct uv init example for new projects",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "7fc7e8f",
+        "message": "fix(python): add Ruff configuration best practices",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "2443a1d",
+        "message": "docs(python): add tier selection guide for project complexity",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "096e79c",
+        "message": "style(python): format dependency management examples",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "c7e6d19",
+        "message": "fix(python): add functional reference patterns",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "0f71c69",
+        "message": "docs(python): draft initial coding standards",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "2998201",
+        "message": "refactor(python): restructure references index",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "fd5839d",
+        "message": "refactor(python): add common libraries reference",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "0cd74d3",
+        "message": "fix(python): add exception handling reference",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.23"
+      },
+      {
+        "hash": "b65bc7d",
+        "message": "fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript",
+        "bump": "patch",
+        "version": "1.1.24"
+      }
+    ]
+  },
+  "react-development": {
+    "version": "1.1.20",
+    "commit_count": 22,
+    "history": [
+      {
+        "hash": "57ca7f2",
+        "message": "feat: add react-development skill with hooks and architecture",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "7df33b5",
+        "message": "feat(react): add references, scripts, templates, examples",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "388611c",
+        "message": "fix(react): add Bulletproof React audit patterns and hooks anti-patterns",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "51cf415",
+        "message": "fix(react): improve description with trigger keywords",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "2c3dd8d",
+        "message": "refactor(react): add useSuspenseQuery patterns",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "3f54c51",
+        "message": "docs(react): add component composition decision tree",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "60d38ca",
+        "message": "docs(react): add fpkit component composition patterns",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "3294038",
+        "message": "fix(react): add extended component pattern with LoadingButton",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "d43be79",
+        "message": "refactor(react): finalize decision tree and quick start",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "4a475e2",
+        "message": "fix(react): add ErrorBoundary pattern example",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "9110e2f",
+        "message": "refactor(react): add Bulletproof React architecture sections",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "6c64693",
+        "message": "fix(frontend): disambiguate react-development vs nextjs-development vs frontend-design",
+        "bump": "patch",
+        "version": "1.1.20"
+      }
+    ]
+  },
+  "risk-management": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "aa7e638",
+        "message": "feat: add prioritization, outcome-orientation, risk-management",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "skill-creator": {
+    "version": "1.1.19",
+    "commit_count": 21,
+    "history": [
+      {
+        "hash": "481d864",
+        "message": "feat: add skill-creator framework with philosophy-first design",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "7707a87",
+        "message": "feat(skill-creator): add references, scripts, templates, examples",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "a033c46",
+        "message": "docs(skill-creator): add document skill examples and theme factory",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "207f58c",
+        "message": "refactor(skill-creator): add canvas design and slack gif examples",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "cb23f17",
+        "message": "docs(skill-creator): add progressive disclosure architecture guide",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "de9910f",
+        "message": "docs(skill-creator): add four pillars of effective skills",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "b133c89",
+        "message": "fix(skill-creator): add unlocking vs constraining comparison",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "bd71e06",
+        "message": "refactor(skill-creator): add shibboleth detection patterns",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "452af93",
+        "message": "test: add pytest suite for skill-creator validate_skill.py",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "4647f46",
+        "message": "fix: resolve broken links, flatten faber scripts, add validate-patterns.py",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "d1b0a7e",
+        "message": "fix(skill-creator): repair broken cross-references to non-existent skills",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "a9056e6",
+        "message": "fix(meta): optimize descriptions for prompt-engineering and skill-creator",
+        "bump": "patch",
+        "version": "1.1.19"
+      }
+    ]
+  },
+  "systems-thinking": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "00a4b1e",
+        "message": "feat: add systems-thinking skill with Meadows' leverage points",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "test-driven-development": {
+    "version": "1.1.17",
+    "commit_count": 19,
+    "history": [
+      {
+        "hash": "d046fd0",
+        "message": "feat: add test-driven-development skill",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "6bd6a8c",
+        "message": "feat(tdd): add references, scripts, templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "1ef2e4b",
+        "message": "refactor(tdd): add Playwright E2E patterns and coverage strategies",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "9d419e9",
+        "message": "style(tdd): improve Red-Green-Refactor diagram",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "e9eb1fc",
+        "message": "fix(tdd): add Vitest configuration examples",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "f045a21",
+        "message": "refactor(tdd): add multi-language support matrix",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "585bd1c",
+        "message": "docs(tdd): add test isolation principles",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "713b272",
+        "message": "refactor(tdd): add ERT Emacs Lisp testing section",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "e72a01e",
+        "message": "refactor(tdd): add quality assurance coverage tiers",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "b00fc60",
+        "message": "fix(testing+debugging): optimize descriptions with NOT clauses for disambiguation",
+        "bump": "patch",
+        "version": "1.1.17"
+      }
+    ]
+  },
+  "testing-framework": {
+    "version": "1.1.23",
+    "commit_count": 25,
+    "history": [
+      {
+        "hash": "e19e98b",
+        "message": "feat: add testing-framework skill for multi-language testing",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "93fc7a2",
+        "message": "feat(testing): add references, scripts, templates, examples",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "cf9da91",
+        "message": "fix(testing): add mutation testing and fuzz testing references",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "64cdcd4",
+        "message": "fix(testing): add accessibility testing and shell script testing refs",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "ec54802",
+        "message": "docs(testing): add BATS shell testing framework reference",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "7a53657",
+        "message": "fix(testing): add React Testing Library component patterns",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "f3ffca3",
+        "message": "refactor(testing): add component testing patterns for React",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "af3cb0d",
+        "message": "fix(testing): add trigger phrases for skill activation",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "8baa5da",
+        "message": "docs(testing): add Rust test builder pattern",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "0ac39cb",
+        "message": "refactor(testing): add PHP/ShellSpec framework references",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "82dda91",
+        "message": "docs(testing): add test naming convention guide",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "66039e7",
+        "message": "docs(testing): add SonarCloud integration guide",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "7f02902",
+        "message": "fix(testing): add CI/CD integration templates reference",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "692940b",
+        "message": "fix(security): scrub credentials, replace eval, add XSS warnings",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.21"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.22"
+      },
+      {
+        "hash": "b00fc60",
+        "message": "fix(testing+debugging): optimize descriptions with NOT clauses for disambiguation",
+        "bump": "patch",
+        "version": "1.1.23"
+      }
+    ]
+  },
+  "tool-design": {
+    "version": "1.0.4",
+    "commit_count": 5,
+    "history": [
+      {
+        "hash": "697ea68",
+        "message": "feat: add 12 context engineering and agent architecture plugins",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "4502e00",
+        "message": "fix(tool-design): add standard keywords and expand README to full format",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "f25da8a",
+        "message": "fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins",
+        "bump": "patch",
+        "version": "1.0.4"
+      }
+    ]
+  },
+  "typescript-development": {
+    "version": "1.1.20",
+    "commit_count": 22,
+    "history": [
+      {
+        "hash": "ad667ad",
+        "message": "feat: add typescript-development skill",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "baecf11",
+        "message": "feat(typescript): add references, templates, examples, scripts",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "a254870",
+        "message": "refactor(typescript): add Zod/TypeBox comparison and Clean Architecture patterns",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "954c187",
+        "message": "docs(typescript): add branded types section",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "0b92eca",
+        "message": "fix(typescript): add noUncheckedIndexedAccess examples",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "43ce59e",
+        "message": "refactor(typescript): add exactOptionalPropertyTypes example",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "8428945",
+        "message": "refactor(typescript): add strict mode configuration example",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "a5d75e3",
+        "message": "style(typescript): improve runtime validation comparison",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "47bf9d7",
+        "message": "refactor(typescript): add NestJS integration patterns",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "44222fa",
+        "message": "docs(typescript): add interface vs type decision guide",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "4bbf047",
+        "message": "fix(typescript): add React Native integration notes",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "174d0b5",
+        "message": "docs(typescript): add security patterns for branded types",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "b65bc7d",
+        "message": "fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript",
+        "bump": "patch",
+        "version": "1.1.20"
+      }
+    ]
+  },
+  "user-journey-design": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "5a9c7e9",
+        "message": "feat: add navigation, UX writing, and user journey skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "ux-writing": {
+    "version": "1.0.10",
+    "commit_count": 11,
+    "history": [
+      {
+        "hash": "5a9c7e9",
+        "message": "feat: add navigation, UX writing, and user journey skills",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "f59b24a",
+        "message": "docs: improve strategic skill descriptions",
+        "bump": "patch",
+        "version": "1.0.1"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.0.2"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.0.3"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.0.4"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.0.5"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.0.6"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.0.7"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.0.8"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.0.9"
+      },
+      {
+        "hash": "9661735",
+        "message": "fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing",
+        "bump": "patch",
+        "version": "1.0.10"
+      }
+    ]
+  },
+  "workflow-automation": {
+    "version": "1.1.21",
+    "commit_count": 23,
+    "history": [
+      {
+        "hash": "68f1e4a",
+        "message": "feat: add workflow-automation skill for multi-agent orchestration",
+        "bump": "initial",
+        "version": "1.0.0"
+      },
+      {
+        "hash": "abf7b15",
+        "message": "feat(workflow): add modules, references, scripts, templates",
+        "bump": "minor",
+        "version": "1.1.0"
+      },
+      {
+        "hash": "cba1e3a",
+        "message": "fix(workflow): add scientific workflow references and TDD cycle docs",
+        "bump": "patch",
+        "version": "1.1.1"
+      },
+      {
+        "hash": "1522c64",
+        "message": "fix(workflow): improve description with trigger keywords",
+        "bump": "patch",
+        "version": "1.1.2"
+      },
+      {
+        "hash": "5730f9b",
+        "message": "docs(workflow): add scientific workflow tool comparison",
+        "bump": "patch",
+        "version": "1.1.3"
+      },
+      {
+        "hash": "5e18fc1",
+        "message": "style(workflow): improve decision guide formatting",
+        "bump": "patch",
+        "version": "1.1.4"
+      },
+      {
+        "hash": "4ec5eff",
+        "message": "fix(workflow): finalize skill description with trigger words",
+        "bump": "patch",
+        "version": "1.1.5"
+      },
+      {
+        "hash": "c6fa2e1",
+        "message": "refactor(workflow): add quick decision guide flowchart",
+        "bump": "patch",
+        "version": "1.1.6"
+      },
+      {
+        "hash": "80f8162",
+        "message": "docs(workflow): add release automation tooling",
+        "bump": "patch",
+        "version": "1.1.7"
+      },
+      {
+        "hash": "d87d63a",
+        "message": "refactor: deduplicate scripts between git-workflow, cicd-pipelines, and workflow-automation",
+        "bump": "patch",
+        "version": "1.1.8"
+      },
+      {
+        "hash": "4a21a62",
+        "message": "refactor: standardize frontmatter and split oversized SKILL.md files",
+        "bump": "patch",
+        "version": "1.1.9"
+      },
+      {
+        "hash": "7ba1274",
+        "message": "docs: add detailed README documentation for all 34 skills",
+        "bump": "patch",
+        "version": "1.1.10"
+      },
+      {
+        "hash": "61ac964",
+        "message": "fix: make all shell scripts executable and fix Python syntax errors",
+        "bump": "patch",
+        "version": "1.1.11"
+      },
+      {
+        "hash": "4647f46",
+        "message": "fix: resolve broken links, flatten faber scripts, add validate-patterns.py",
+        "bump": "patch",
+        "version": "1.1.12"
+      },
+      {
+        "hash": "65a131e",
+        "message": "revert: restore faber/ subdirectory for FABER framework scripts",
+        "bump": "patch",
+        "version": "1.1.13"
+      },
+      {
+        "hash": "6de4313",
+        "message": "refactor: make each skill an independent plugin with own plugin.json",
+        "bump": "patch",
+        "version": "1.1.14"
+      },
+      {
+        "hash": "7922579",
+        "message": "refactor: restructure all 34 skills into proper Claude Code plugin format",
+        "bump": "patch",
+        "version": "1.1.15"
+      },
+      {
+        "hash": "af9e39c",
+        "message": "docs: update README and install commands to marketplace format",
+        "bump": "patch",
+        "version": "1.1.16"
+      },
+      {
+        "hash": "a26a802",
+        "message": "refactor: remove old file locations after plugin restructure",
+        "bump": "patch",
+        "version": "1.1.17"
+      },
+      {
+        "hash": "19ec8c4",
+        "message": "fix: rename all claude-skills references to skillstack",
+        "bump": "patch",
+        "version": "1.1.18"
+      },
+      {
+        "hash": "bcfe7a9",
+        "message": "fix: change author field from string to object in all plugin.json files",
+        "bump": "patch",
+        "version": "1.1.19"
+      },
+      {
+        "hash": "3ea7c00",
+        "message": "fix: update plugin count and normalize footer in 31 original plugin READMEs",
+        "bump": "patch",
+        "version": "1.1.20"
+      },
+      {
+        "hash": "c60a8d7",
+        "message": "fix(devops): disambiguate cicd-pipelines vs workflow-automation vs docker-containerization",
+        "bump": "patch",
+        "version": "1.1.21"
+      }
+    ]
+  }
+}
