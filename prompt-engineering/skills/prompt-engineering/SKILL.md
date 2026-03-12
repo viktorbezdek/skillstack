@@ -1,14 +1,10 @@
 ---
 name: prompt-engineering
-description: Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.
-triggers:
-  - prompt engineering
-  - prompt design
-  - prompt optimization
-  - system prompt
-  - LLM optimization
-  - improve this prompt
-  - prompt template
+description: >-
+  Optimize prompts for LLMs through systematic design, evaluation, and iterative
+  refinement. Use when doing prompt engineering, prompt design, prompt optimization,
+  system prompt creation, LLM optimization, or improving prompt templates.
+  NOT for building MCP servers (use mcp-server) or creating skills (use skill-creator).
 ---
 
 # Prompt Engineering Skill

@@ -1,14 +1,11 @@
 ---
 name: skill-creator
-description: Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.
-triggers:
-  - create skill
-  - build skill
-  - design skill
-  - skill quality
-  - skill review
-  - skill from documentation
-  - skill best practices
+description: >-
+  Create high-quality Claude Code skills using philosophy-first design, evidence-based
+  prompting, progressive disclosure, and anti-pattern prevention. Use when creating
+  skills, building skills, designing skills, reviewing skill quality, building skills
+  from documentation, or applying skill best practices. NOT for prompt engineering
+  (use prompt-engineering).
 allowed-tools:
 - Read
 - Write
