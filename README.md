@@ -4,190 +4,163 @@
 
 # SkillStack
 
-The definitive, battle-tested collection of specialized skills for Claude Code. 34 production-grade skills spanning full-stack development, DevOps, testing, API design, and strategic thinking—with 785+ markdown documents, 500+ templates and scripts, and proven patterns for 40+ technology domains.
+A curated collection of 34 production-grade skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each skill extends Claude with deep domain expertise, ready-to-use templates, and automation scripts across full-stack development, DevOps, testing, API design, and strategic thinking.
 
 <div align="center">
 
-**[Quick Start](#quick-start)** • **[Browse Skills](#skill-catalog)** • **[Architecture](#architecture)** • **[Contributing](#contributing)**
+**[Install](#installation)** &nbsp;&middot;&nbsp; **[Browse Skills](#skill-catalog)** &nbsp;&middot;&nbsp; **[Examples](#usage-examples)** &nbsp;&middot;&nbsp; **[Architecture](#architecture)** &nbsp;&middot;&nbsp; **[Contributing](#contributing)**
 
 </div>
 
-## Overview
+---
 
-Claude Code skills are modular, reusable expert systems that extend Claude's capabilities in specific domains. This collection represents 5+ years of accumulated best practices, battle-tested architectures, and production patterns.
+## The Problem
 
-### Stats
+Claude Code is powerful out of the box, but it doesn't know your team's conventions, your preferred frameworks' latest patterns, or the specific anti-patterns you've been burned by. You end up repeating the same corrections across conversations.
 
-- **34 specialized skills** across development, DevOps, quality, design, and strategy
-- **785+ markdown documents** including SKILL.md, references, templates, and guides
-- **500+ template files, scripts, and examples** ready to use
-- **7 development skills** with language-specific expertise (Python, TypeScript, React, Next.js)
-- **3 DevOps skills** covering CI/CD, Docker, and git workflows
-- **4 quality assurance skills** for testing, debugging, and code review
-- **2 architecture skills** for API design and MCP server development
-- **3 documentation skills** for generating docs, writing, and creating skills
-- **3 strategic thinking skills** for creative problem-solving and workflow automation
-- **14 helper skills** providing focused frameworks for documentation generation
+**SkillStack fixes this.** Each skill is a focused expert system that activates automatically when relevant, giving Claude deep knowledge of specific domains — from Next.js 16 App Router patterns to pytest fixture strategies to Docker multi-stage build optimization.
 
 ---
 
-## Why This Collection?
+## Installation
 
-### 1. Battle-Tested Architecture
-
-Every skill is built on proven patterns, not theory. Each skill's structure follows a consistent architecture:
-
-- **SKILL.md** - Core documentation with YAML frontmatter, quick reference, best practices, and related skills
-- **references/** - In-depth guides for complex topics (10-40 pages each)
-- **templates/** - Copy-paste ready boilerplates for common tasks
-- **scripts/** - Executable utilities for automation and code generation
-- **examples/** - Real-world usage patterns with complete, runnable code
-- **rules/** - Specific rules and constraints for consistent behavior
-
-This consistency means skills compose naturally—use `code-review` with `testing-framework`, or `typescript-development` with `nextjs-development` without friction.
-
-### 2. Progressive Disclosure Architecture
-
-Skills are designed for multiple expertise levels:
-
-- **Quick Start section** - Get productive in 2 minutes with the most common use case
-- **Detailed references** - Deep dives for those who want to master the skill
-- **Examples** - Runnable code that grows from simple to advanced
-- **Rules and constraints** - Edge cases and gotchas for 80% of real-world scenarios
-
-No overwhelming walls of text. No drowning in irrelevant details.
-
-### 3. Trigger-Optimized Descriptions
-
-Every skill has a carefully curated trigger list. When you mention "GraphQL schema", the `api-design` skill activates. When you say "E2E test", the `testing-framework` skill kicks in. This means less "which skill should I use?" and more "just code, Claude will know."
-
-### 4. Comprehensive Tooling
-
-This isn't just documentation—it's a production toolkit:
-
-- Boilerplate templates for 50+ frameworks and tools
-- Pre-written scripts for automation (Docker builds, git workflows, CI/CD)
-- Code examples across 10+ programming languages
-- Checklists for quality gates and pre-commit validation
-- Mermaid diagrams for architecture and decision flows
-- OpenAPI specifications and JSON Schema templates
-
----
-
-## Quick Start
-
-### Installation
-
-**Option A: Install as a Claude Code plugin (recommended)**
+### Option A: Install as a plugin (recommended)
 
 ```bash
-# From any project directory
 claude plugin add /path/to/skillstack
 ```
 
-**Option B: Clone and reference directly**
+### Option B: Clone and configure
 
 ```bash
-git clone https://github.com/your-org/skillstack.git
+git clone https://github.com/viktorbezdek/skillstack.git
+```
 
-# Add to your project's .claude/settings.json
-cat > .claude/settings.json << 'EOF'
+Then add to your project's `.claude/settings.json`:
+
+```json
 {
   "permissions": {
     "allow": ["skill:*"]
   }
 }
-EOF
 ```
 
-**Option C: Symlink individual skills**
+### Option C: Pick individual skills
 
 ```bash
-# Pick only the skills you need
+# Symlink only what you need
 ln -s /path/to/skillstack/api-design .claude/skills/api-design
 ln -s /path/to/skillstack/debugging .claude/skills/debugging
 ```
 
-### Using Skills
+### How it works
 
-Skills activate automatically based on your conversation context. When you mention "REST API design", "pytest fixtures", or "Docker multi-stage build", the relevant skill loads and augments Claude's response with domain-specific expertise, templates, and best practices.
+Skills activate automatically based on your conversation. No special syntax needed — when you mention "REST API design", the `api-design` skill loads. When you say "pytest fixtures", the `testing-framework` skill kicks in.
 
-No special syntax needed — just talk naturally about your task.
+---
+
+## Usage Examples
+
+**API Design** — Ask Claude to design an API and it uses REST/GraphQL best practices, pagination patterns, and auth strategies from the skill:
+```
+"Design a REST API for a multi-tenant SaaS billing system with usage-based pricing"
+```
+
+**Debugging** — Describe a bug and Claude applies systematic debugging methodology with evidence-based root cause analysis:
+```
+"My Next.js app hydration fails only in production. Help me debug this systematically"
+```
+
+**Code Review** — Request a review and Claude runs a multi-agent analysis covering security, performance, and architecture:
+```
+"Review this PR for security issues and performance bottlenecks"
+```
+
+**Docker** — Ask about containerization and Claude generates optimized Dockerfiles with multi-stage builds and security best practices:
+```
+"Create a production Docker setup for my Python FastAPI app with PostgreSQL"
+```
+
+**Testing** — Describe what to test and Claude generates comprehensive test suites following TDD patterns:
+```
+"Write pytest tests for this authentication service with edge cases for token expiry"
+```
 
 ---
 
 ## Skill Catalog
 
-### Development Skills (Core)
+### Development (7 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **python-development** | Building Python services, libraries, async systems | Python 3.11+, uv, ruff, mypy, pytest, FastAPI, async patterns, package architecture |
-| **typescript-development** | Full-stack TypeScript projects, type safety | TS fundamentals, Zod/TypeBox validation, SOLID principles, Clean Architecture, advanced patterns |
-| **react-development** | React applications with modern patterns | React 19, hooks optimization, component patterns, fpkit functional libraries, Bulletproof React |
-| **nextjs-development** | Next.js 16+ applications at scale | App Router, Server Components, Server Actions, caching strategies, migration paths |
-| **frontend-design** | UI/UX implementation, design systems | Tailwind CSS, shadcn/ui, Radix UI, accessibility, design tokens, Figma integration |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[python-development](python-development/)** | Inconsistent Python project setup, missing type safety, outdated tooling | Modern tooling (uv, ruff, mypy), async patterns, FastAPI templates, package architecture guides |
+| **[typescript-development](typescript-development/)** | Weak type safety, inconsistent validation, no architecture patterns | Zod/TypeBox runtime validation, Clean Architecture templates, branded types, strict tsconfig guides |
+| **[react-development](react-development/)** | Component bloat, poor performance, accessibility gaps | React 19 patterns, hooks optimization, Bulletproof React architecture, accessibility checklists |
+| **[nextjs-development](nextjs-development/)** | Confusion between App Router patterns, caching pitfalls, migration pain | Next.js 16 Server Components, Server Actions, `use cache` directive, rendering strategy decision trees |
+| **[frontend-design](frontend-design/)** | Inconsistent UI, missing design tokens, poor accessibility | Tailwind/shadcn/Radix component library, WCAG 2.1 AA checklists, design token system generator |
+| **[prompt-engineering](prompt-engineering/)** | Ineffective LLM prompts, no evaluation methodology | 4-D optimization framework, A/B testing templates, platform-specific tuning, eval rubrics |
+| **[skill-creator](skill-creator/)** | No structured way to capture and share domain expertise | Philosophy-first skill design, progressive disclosure templates, anti-pattern prevention, validation scripts |
 
-### DevOps & Infrastructure
+### DevOps & Infrastructure (3 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **cicd-pipelines** | GitHub Actions, GitLab CI, enterprise CI/CD | GitHub Actions, GitLab CI, Jenkins, Terraform, Kubernetes, DevSecOps, deployment automation |
-| **docker-containerization** | Container strategy, Docker Compose, deployment | Docker, Docker Compose, DDEV, image optimization, worktree isolation, browser containers |
-| **git-workflow** | Git strategy, atomic commits, recovery | Conventional commits, GitHub Flow, atomic commits, reflog recovery, stacked PRs, monorepo patterns |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[cicd-pipelines](cicd-pipelines/)** | Manual deployments, missing security scanning, inconsistent release process | GitHub Actions/GitLab CI templates, Terraform IaC patterns, DevSecOps scanning, semantic versioning automation |
+| **[docker-containerization](docker-containerization/)** | Bloated images, insecure containers, complex multi-service setups | Multi-stage build templates, Docker Compose orchestration, worktree isolation, port allocation scripts |
+| **[git-workflow](git-workflow/)** | Messy commit history, manual changelogs, worktree management | Conventional commits, atomic commit strategies, changelog generators, worktree management scripts |
 
-### Quality & Testing
+### Quality & Testing (4 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **test-driven-development** | Building with tests-first approach | Red-Green-Refactor cycle, pytest, Vitest, Playwright, multi-language TDD workflows |
-| **testing-framework** | Choosing and using test tools | Unit testing, E2E testing, component testing, accessibility testing, mutation testing, fuzzing |
-| **debugging** | Systematic debugging, troubleshooting | Chrome DevTools, debuggers, E2E visual debugging, CI/CD pipeline debugging, trace analysis |
-| **code-review** | AI-assisted code review, PR analysis | Multi-agent swarm review, TRUST 5 validation framework, PR comment analysis, architectural review |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[test-driven-development](test-driven-development/)** | Writing tests after the fact, poor coverage, no TDD discipline | Red-Green-Refactor workflow for pytest/Vitest/Playwright, multi-language TDD templates |
+| **[testing-framework](testing-framework/)** | Choosing the right test tool, missing test types, no CI integration | Unit/E2E/component/accessibility/mutation/fuzz testing templates, CI integration scripts |
+| **[debugging](debugging/)** | Trial-and-error debugging, no systematic approach | Chrome DevTools automation, systematic root cause analysis, CI/CD pipeline debugging, trace analysis |
+| **[code-review](code-review/)** | Shallow reviews that miss security and performance issues | Multi-agent swarm analysis (security + performance + style + tests), PR comment extraction, actionable fix plans |
 
-### API & Architecture
+### API & Architecture (2 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **api-design** | REST, GraphQL, gRPC, Python libraries | REST patterns, GraphQL, gRPC, FastAPI, OpenAPI, authentication, pagination, rate limiting, versioning |
-| **mcp-server** | Building Claude Code plugins | MCP protocol, Python FastMCP, TypeScript MCP, plugin development, evaluations |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[api-design](api-design/)** | Inconsistent API patterns, missing pagination/auth/versioning | REST/GraphQL/gRPC design guides, OpenAPI templates, authentication patterns, rate limiting strategies |
+| **[mcp-server](mcp-server/)** | No guidance for building Claude Code plugins and MCP servers | Python FastMCP + TypeScript templates, tool creation patterns, evaluation testing, deployment guides |
 
-### Documentation & Content
+### Documentation (2 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **documentation-generator** | Automated docs, doc maintenance | API docs, READMEs, ADRs, changelogs, Javadoc, Sphinx, 24 templates, 6-phase workflow |
-| **prompt-engineering** | Optimizing Claude prompts, evaluations | 4-D Framework, A/B testing, platform-specific optimization, evaluation methodology |
-| **skill-creator** | Building new skills, expertise capture | Philosophy-first design, progressive disclosure, anti-pattern prevention, skill templates |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[documentation-generator](documentation-generator/)** | Outdated or missing docs, no automated generation | 6-phase doc generation workflow, 24 templates (API docs, ADRs, changelogs), drift detection scripts |
+| **[workflow-automation](workflow-automation/)** | Manual repetitive tasks, no orchestration patterns | CI/CD automation, multi-agent workflows, release automation, git workflow management scripts |
 
-### Strategic Thinking
+### Strategic Thinking (2 skills)
 
-| Skill | When to Use | Key Domains |
-|-------|-------------|------------|
-| **creative-problem-solving** | Breaking through constraints | Game theory, first principles thinking, lateral thinking, SCAMPER, probabilistic reasoning |
-| **critical-intuition** | Detecting patterns and red flags | Pattern recognition, Bayesian thinking, bias detection, anomaly identification, decision confidence |
-| **workflow-automation** | Multi-agent orchestration, automation design | CI/CD automation, git workflows, scientific workflows, TDD cycle automation, task scheduling |
+| Skill | Problem it Solves | What You Get |
+|-------|-------------------|-------------|
+| **[creative-problem-solving](creative-problem-solving/)** | Stuck on a problem, can't see alternatives | Game theory, first principles, lateral thinking, SCAMPER, probabilistic reasoning frameworks |
+| **[critical-intuition](critical-intuition/)** | Hidden assumptions, blind spots, overconfidence | Pattern recognition, Bayesian reasoning, bias detection, anomaly identification, confidence calibration |
 
-### Documentation Helper Skills
+### Helper Skills (14 focused frameworks)
 
-These lightweight, focused skills provide frameworks and templates used by `documentation-generator`:
+These lightweight skills provide focused frameworks used by `documentation-generator` and other skills. Each solves a specific documentation or analysis challenge:
 
-| Skill | Purpose |
-|-------|---------|
-| **consistency-standards** | Naming conventions, style guides, content patterns |
-| **content-modelling** | CMS schemas, content types, COPE principle |
-| **edge-case-coverage** | Boundary conditions, error scenarios, validation |
-| **example-design** | Progressive complexity examples, tutorial structure |
-| **navigation-design** | Information architecture, wayfinding, site maps |
-| **ontology-design** | Knowledge models, taxonomies, entity relationships |
-| **outcome-orientation** | OKRs, outcomes vs outputs, success metrics |
-| **persona-definition** | User personas, empathy maps, segmentation |
-| **persona-mapping** | Stakeholder analysis, Power-Interest matrix, RACI |
-| **prioritization** | RICE scoring, MoSCoW, ICE analysis, effort-impact |
-| **risk-management** | Risk registers, mitigation strategies, pre-mortems |
-| **systems-thinking** | Feedback loops, leverage points, system archetypes |
-| **user-journey-design** | Journey maps, touchpoints, emotional states |
-| **ux-writing** | Microcopy, error messages, UI text patterns |
+| Skill | What it Does | Example Use |
+|-------|-------------|-------------|
+| **[consistency-standards](consistency-standards/)** | Naming conventions, style guides | "Establish naming conventions for our API endpoints" |
+| **[content-modelling](content-modelling/)** | CMS schemas, content types | "Design a content model for a multi-language blog" |
+| **[edge-case-coverage](edge-case-coverage/)** | Boundary conditions, error scenarios | "What edge cases should I test for this date parser?" |
+| **[example-design](example-design/)** | Progressive complexity examples | "Create a tutorial progression for our SDK" |
+| **[navigation-design](navigation-design/)** | Information architecture, wayfinding | "Design the navigation structure for our docs site" |
+| **[ontology-design](ontology-design/)** | Knowledge models, taxonomies | "Model the entity relationships for our product catalog" |
+| **[outcome-orientation](outcome-orientation/)** | OKRs, success metrics | "Define measurable outcomes for this feature launch" |
+| **[persona-definition](persona-definition/)** | User personas, empathy maps | "Create personas for our developer platform" |
+| **[persona-mapping](persona-mapping/)** | Stakeholder analysis, RACI | "Map stakeholders for this cross-team initiative" |
+| **[prioritization](prioritization/)** | RICE scoring, effort-impact analysis | "Prioritize this backlog of 20 feature requests" |
+| **[risk-management](risk-management/)** | Risk registers, mitigation | "Identify risks for migrating our monolith to microservices" |
+| **[systems-thinking](systems-thinking/)** | Feedback loops, leverage points | "Analyze why our deploy frequency keeps dropping" |
+| **[user-journey-design](user-journey-design/)** | Journey maps, touchpoints | "Map the onboarding journey for new users" |
+| **[ux-writing](ux-writing/)** | Microcopy, error messages | "Write user-friendly error messages for our auth flow" |
 
 ---
 
@@ -195,211 +168,84 @@ These lightweight, focused skills provide frameworks and templates used by `docu
 
 ### Skill Structure
 
-Each skill follows a consistent, composable architecture:
+Every skill follows a consistent, composable structure:
 
 ```
 skill-name/
-├── SKILL.md                    # Core documentation (10-50 pages)
-│   ├── YAML frontmatter        # name, description, trigger keywords
-│   ├── Overview                # What this skill covers
-│   ├── Quick Reference         # Most common use cases
-│   ├── Detailed Sections       # Deep dives into specific domains
-│   ├── Best Practices          # Anti-patterns and gotchas
-│   ├── Related Skills          # Connections to other skills
-│   └── Key Decisions           # Why specific choices were made
-├── references/                 # In-depth guides (5-40 pages each)
-│   ├── getting-started.md
-│   ├── advanced-patterns.md
-│   ├── troubleshooting.md
-│   └── ... (8-20 per skill)
+├── SKILL.md                    # Core documentation with quick start
+├── references/                 # Deep-dive guides (5-40 pages each)
+│   └── extended-patterns.md    # Detailed examples and pattern catalogs
 ├── templates/                  # Copy-paste boilerplates
-│   ├── basic-setup.{ext}
-│   ├── enterprise-config.{ext}
-│   └── ... (5-15 per skill)
 ├── scripts/                    # Automation utilities
-│   ├── generate.sh
-│   ├── validate.py
-│   └── ... (2-8 per skill)
-├── examples/                   # Complete, runnable examples
-│   ├── hello-world.{ext}
-│   ├── advanced-usage.{ext}
-│   └── ... (3-10 per skill)
-├── checklists/                 # Pre-flight and quality gates
-│   ├── pre-commit.md
-│   └── production-checklist.md
-├── assets/                     # Diagrams, images, data files
-│   ├── architecture.mermaid
-│   └── ... (diagrams, SVG, etc.)
-└── rules/                      # Specific constraints and patterns
-    ├── naming-conventions.md
-    ├── validation-rules.md
-    └── ... (2-6 per skill)
+├── examples/                   # Complete, runnable code
+└── assets/                     # Diagrams and data files
 ```
 
-### Skill Frontmatter
+### Frontmatter Schema
 
-Every SKILL.md starts with YAML frontmatter that powers activation and discovery:
+Every SKILL.md starts with YAML frontmatter that powers automatic activation:
 
 ```yaml
 ---
 name: api-design
-description: "Comprehensive API design skill for REST, GraphQL, gRPC..."
-triggers: "API, endpoint, REST, FastAPI, GraphQL, gRPC, OpenAPI, OAuth, JWT, pagination..."
+description: Comprehensive API design for REST, GraphQL, gRPC architectures.
+triggers:
+  - API
+  - endpoint
+  - REST
+  - GraphQL
+  - OpenAPI
 ---
 ```
 
-The `triggers` field is curated to catch relevant contexts without false positives. This is why skills activate naturally when you need them.
+The `triggers` array is curated to catch relevant contexts without false positives.
 
 ### Composability
 
-Skills are designed to compose:
+Skills compose naturally — no conflicting advice, no overlapping territory:
 
 - **typescript-development** + **nextjs-development** = Full-stack type safety
 - **api-design** + **testing-framework** = Tested API contracts
-- **cicd-pipelines** + **docker-containerization** = Enterprise deployment
+- **cicd-pipelines** + **docker-containerization** = Container deployment pipeline
 - **documentation-generator** + **skill-creator** = Building new skills
 
-No conflicting advice, no overlapping territory. Each skill knows its lane and points to related skills for adjacent domains.
-
 ---
 
-## Quality Standards
+## What's Included
 
-### What Makes These Skills High-Quality
-
-1. **Proven in Production**
-   - Built from real projects, not theory
-   - Patterns tested across 50+ different projects
-   - Constraints validated against edge cases
-
-2. **Progressive Disclosure**
-   - Quick start (2 min) → Intermediate (30 min) → Advanced (2+ hours)
-   - No overwhelming walls of text
-   - Readers choose their depth level
-
-3. **Actionable Examples**
-   - Complete, runnable code (not snippets)
-   - Copy-paste templates for common scenarios
-   - Multi-language support where relevant
-
-4. **Trigger Optimization**
-   - Precise keywords that catch intent without false positives
-   - Related skills clearly documented
-   - Natural activation without explicit invocation
-
-5. **Composability**
-   - Skills work together without conflicts
-   - Clear handoff points between adjacent skills
-   - Consistent terminology across collection
-
-6. **Maintenance**
-   - Version-aligned with frameworks (Next.js 16, React 19, Python 3.11+)
-   - Regular updates as best practices evolve
-   - Deprecated patterns clearly marked
-
----
-
-## Why Better Than Alternatives?
-
-### vs. Generic Prompt Collections
-
-Generic prompt collections offer broad coverage but shallow depth. Claude Skills provides:
-
-- **Depth**: 10-50 page skill documents vs. 1-2 page prompts
-- **Composability**: Skills work together; generic prompts conflict
-- **Maintenance**: Version-aligned with frameworks; prompts grow stale
-- **Structure**: Consistent architecture across all skills
-- **Tooling**: Templates, scripts, checklists—not just advice
-
-### vs. ChatGPT GPTs
-
-ChatGPT GPTs are single-use tools for generic tasks. Claude Skills provides:
-
-- **Specialization**: 34 focused skills vs. 1 generic GPT
-- **Integration**: Works natively in Claude Code, not a separate tool
-- **Composability**: Combine multiple skills for powerful workflows
-- **Offline**: All content in your repository, fully version-controlled
-- **Control**: Modify and extend skills for your organization
-
-### vs. Framework Documentation
-
-Official documentation covers frameworks well but lacks cross-cutting concerns. Claude Skills provides:
-
-- **Cross-cutting patterns**: How to combine tools effectively
-- **Anti-patterns**: What NOT to do and why
-- **Multiple frameworks**: Not tied to a single ecosystem
-- **Strategic guidance**: Why you might choose one approach over another
-- **Workflow integration**: How to incorporate tools into development processes
+- **34 specialized skills** across 6 categories
+- **785+ markdown documents** — guides, references, and checklists
+- **500+ templates and scripts** — ready to use
+- **52 automated tests** for core validation
+- **CI pipeline** with shellcheck and pytest
 
 ---
 
 ## Contributing
 
-We welcome contributions! Skills can be added, improved, or specialized for specific domains.
+We welcome contributions. See the [quality checklist](#quality-checklist) before submitting.
 
 ### Adding a New Skill
 
-1. **Create the skill directory**
-   ```bash
-   mkdir -p my-skill/{references,templates,scripts,examples,rules,assets,checklists}
-   ```
-
-2. **Write SKILL.md**
-   ```yaml
-   ---
-   name: my-skill
-   description: "Clear, specific description of what this skill covers."
-   triggers: "Key, words, that, activate, this, skill"
-   ---
-   ```
-
-3. **Add content**
-   - Write comprehensive references
-   - Create templates and examples
-   - Define rules and constraints
-   - Link to related skills
-
-4. **Submit a pull request**
-   - Include the new skill directory
-   - Update this README with the new skill
-   - Add the skill to the appropriate category
-
-### Improving Existing Skills
-
-- Found an edge case not covered? Add it to the relevant reference or rule
-- Have a better template? Submit a PR with the improved version
-- Notice outdated information? File an issue or submit a fix
-- Want to add examples in a different language? Contributions welcome
+1. Create the directory: `mkdir -p my-skill/{references,templates,scripts,examples}`
+2. Write `SKILL.md` with frontmatter (`name`, `description`, `triggers`)
+3. Add references, templates, and examples
+4. Submit a pull request updating this README
 
 ### Quality Checklist
 
-Before submitting a skill or improvement:
-
-- [ ] SKILL.md is 10+ pages of substantive content
-- [ ] Triggers are precise and relevant (test them in real conversations)
+- [ ] SKILL.md has substantive content (not just placeholders)
+- [ ] Triggers are precise and tested in real conversations
 - [ ] Examples are complete and runnable
 - [ ] Templates are copy-paste ready
-- [ ] References are indexed and cross-linked
 - [ ] Related skills are documented
 - [ ] No conflicts with adjacent skills
-- [ ] Spelling and grammar checked
-- [ ] Links verified
 
 ---
 
 ## License
 
-MIT License - Use, modify, and distribute freely. See [LICENSE](LICENSE) for details.
-
----
-
-## Getting Help
-
-- **Browse the catalog above** - Find the skill relevant to your task
-- **Check SKILL.md first** - Each skill has a quick reference and detailed sections
-- **Look at examples** - Real-world patterns in the examples/ directory
-- **Search references/** - For deep dives on specific topics
-- **Review templates/** - Copy-paste starting points for common tasks
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
@@ -407,8 +253,4 @@ MIT License - Use, modify, and distribute freely. See [LICENSE](LICENSE) for det
 
 **Built for Claude Code. Made for production.**
 
-Start with any skill. Compose them together. Ship with confidence.
-
 </div>
-
-
