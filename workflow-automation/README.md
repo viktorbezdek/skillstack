@@ -91,35 +91,35 @@ As part of the SkillStack collection, this skill connects with test-driven-devel
 - `scripts/git/cleanup_worktrees.sh` - Clean up stale or merged worktrees
 
 **FABER Workflow (29 scripts)**
-- `scripts/config-init.sh` - Initialize FABER configuration
-- `scripts/config-loader.sh` - Load FABER configuration
-- `scripts/config-validate.sh` - Validate FABER configuration
-- `scripts/state-init.sh` - Initialize workflow state
-- `scripts/state-read.sh` - Read current workflow state
-- `scripts/state-write.sh` - Write workflow state
-- `scripts/state-update-phase.sh` - Update phase status
-- `scripts/state-validate.sh` - Validate state consistency
-- `scripts/state-backup.sh` - Backup current state
-- `scripts/state-cancel.sh` - Cancel workflow gracefully
-- `scripts/status-card-post.sh` - Post status card to PR/issue
-- `scripts/phase-validate.sh` - Validate phase transitions
-- `scripts/step-validate.sh` - Validate step completion
-- `scripts/validate-step-ids.sh` - Validate step ID uniqueness
-- `scripts/workflow-validate.sh` - Validate complete workflow
-- `scripts/workflow-audit.sh` - Audit workflow history
-- `scripts/workflow-recommend.sh` - Recommend workflow improvements
-- `scripts/hook-execute.sh` - Execute workflow hooks
-- `scripts/hook-list.sh` - List registered hooks
-- `scripts/hook-test.sh` - Test hook execution
-- `scripts/hook-validate.sh` - Validate hook definitions
-- `scripts/lock-acquire.sh` - Acquire workflow lock
-- `scripts/lock-check.sh` - Check lock status
-- `scripts/lock-release.sh` - Release workflow lock
-- `scripts/template-apply.sh` - Apply workflow templates
-- `scripts/pattern-substitute.sh` - Substitute patterns in templates
-- `scripts/error-recovery.sh` - Recover from workflow errors
-- `scripts/error-report.sh` - Generate error reports
-- `scripts/diagnostics.sh` - Run workflow diagnostics
+- `scripts/faber/config-init.sh` - Initialize FABER configuration
+- `scripts/faber/config-loader.sh` - Load FABER configuration
+- `scripts/faber/config-validate.sh` - Validate FABER configuration
+- `scripts/faber/state-init.sh` - Initialize workflow state
+- `scripts/faber/state-read.sh` - Read current workflow state
+- `scripts/faber/state-write.sh` - Write workflow state
+- `scripts/faber/state-update-phase.sh` - Update phase status
+- `scripts/faber/state-validate.sh` - Validate state consistency
+- `scripts/faber/state-backup.sh` - Backup current state
+- `scripts/faber/state-cancel.sh` - Cancel workflow gracefully
+- `scripts/faber/status-card-post.sh` - Post status card to PR/issue
+- `scripts/faber/phase-validate.sh` - Validate phase transitions
+- `scripts/faber/step-validate.sh` - Validate step completion
+- `scripts/faber/validate-step-ids.sh` - Validate step ID uniqueness
+- `scripts/faber/workflow-validate.sh` - Validate complete workflow
+- `scripts/faber/workflow-audit.sh` - Audit workflow history
+- `scripts/faber/workflow-recommend.sh` - Recommend workflow improvements
+- `scripts/faber/hook-execute.sh` - Execute workflow hooks
+- `scripts/faber/hook-list.sh` - List registered hooks
+- `scripts/faber/hook-test.sh` - Test hook execution
+- `scripts/faber/hook-validate.sh` - Validate hook definitions
+- `scripts/faber/lock-acquire.sh` - Acquire workflow lock
+- `scripts/faber/lock-check.sh` - Check lock status
+- `scripts/faber/lock-release.sh` - Release workflow lock
+- `scripts/faber/template-apply.sh` - Apply workflow templates
+- `scripts/faber/pattern-substitute.sh` - Substitute patterns in templates
+- `scripts/faber/error-recovery.sh` - Recover from workflow errors
+- `scripts/faber/error-report.sh` - Generate error reports
+- `scripts/faber/diagnostics.sh` - Run workflow diagnostics
 
 **CI/CD Analysis**
 - `scripts/cicd/pipeline_analyzer.py` - Analyze pipeline performance and bottlenecks
