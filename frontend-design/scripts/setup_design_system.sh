@@ -44,7 +44,7 @@ prompt_input() {
         input="$default"
     fi
 
-    eval "$var_name='$input'"
+    printf -v "$var_name" '%s' "$input"
 }
 
 prompt_confirm() {
