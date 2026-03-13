@@ -1,0 +1,1156 @@
+{
+  "name": "skillstack",
+  "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
+  "owner": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "metadata": {
+    "version": "3.0.0",
+    "schema_version": 2,
+    "last_full_sync": "2026-03-24T01:41:34Z"
+  },
+  "repositories": [
+    {
+      "id": "viktorbezdek-skillstack",
+      "url": "https://github.com/viktorbezdek/skillstack",
+      "added_by": "viktorbezdek",
+      "added_date": "2025-01-01",
+      "last_synced_sha": "a9056e625544d7178d88bd8a4dfdcf51117761f1",
+      "last_synced_at": "2026-03-24T01:41:34Z",
+      "integration_status": "active",
+      "context": "46 battle-tested Claude Code skills covering development, DevOps, testing, API design, documentation, strategic thinking, context engineering, and agent architecture."
+    }
+  ],
+  "plugins": [
+    {
+      "id": "agent-evaluation",
+      "name": "Agent Evaluation",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "agent-evaluation/skills/agent-evaluation",
+      "version": "1.0.4",
+      "tags": [
+        "evaluation",
+        "llm-as-judge",
+        "bias-mitigation",
+        "rubrics",
+        "pairwise-comparison"
+      ],
+      "documentation_path": "./agent-evaluation/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "agent-project-development",
+      "name": "Agent Project Development",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "agent-project-development/skills/agent-project-development",
+      "version": "1.0.4",
+      "tags": [
+        "project-development",
+        "pipeline",
+        "task-model-fit",
+        "cost-estimation"
+      ],
+      "documentation_path": "./agent-project-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "api-design",
+      "name": "Api Design",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "api-design/skills/api-design",
+      "version": "1.2.23",
+      "tags": [
+        "api",
+        "rest",
+        "graphql",
+        "grpc",
+        "openapi"
+      ],
+      "documentation_path": "./api-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "bdi-mental-states",
+      "name": "Bdi Mental States",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "bdi-mental-states/skills/bdi-mental-states",
+      "version": "1.0.4",
+      "tags": [
+        "bdi",
+        "cognitive-architecture",
+        "rdf",
+        "ontology",
+        "neuro-symbolic"
+      ],
+      "documentation_path": "./bdi-mental-states/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "cicd-pipelines",
+      "name": "Cicd Pipelines",
+      "type": "skill",
+      "category": "devops",
+      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "cicd-pipelines/skills/cicd-pipelines",
+      "version": "1.1.23",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "gitlab-ci",
+        "terraform",
+        "devops"
+      ],
+      "documentation_path": "./cicd-pipelines/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "code-review",
+      "name": "Code Review",
+      "type": "skill",
+      "category": "quality",
+      "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "code-review/skills/code-review",
+      "version": "1.1.24",
+      "tags": [
+        "code-review",
+        "security",
+        "performance",
+        "style"
+      ],
+      "documentation_path": "./code-review/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "consistency-standards",
+      "name": "Consistency Standards",
+      "type": "skill",
+      "category": "quality",
+      "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "consistency-standards/skills/consistency-standards",
+      "version": "1.0.10",
+      "tags": [
+        "naming",
+        "conventions",
+        "style-guide"
+      ],
+      "documentation_path": "./consistency-standards/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "content-modelling",
+      "name": "Content Modelling",
+      "type": "skill",
+      "category": "design",
+      "description": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "content-modelling/skills/content-modelling",
+      "version": "1.0.11",
+      "tags": [
+        "content",
+        "cms",
+        "schema",
+        "modelling"
+      ],
+      "documentation_path": "./content-modelling/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "context-compression",
+      "name": "Context Compression",
+      "type": "skill",
+      "category": "context-engineering",
+      "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "context-compression/skills/context-compression",
+      "version": "1.0.4",
+      "tags": [
+        "context-compression",
+        "summarization",
+        "compaction",
+        "token-optimization"
+      ],
+      "documentation_path": "./context-compression/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "context-degradation",
+      "name": "Context Degradation",
+      "type": "skill",
+      "category": "context-engineering",
+      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "context-degradation/skills/context-degradation",
+      "version": "1.0.4",
+      "tags": [
+        "context-degradation",
+        "lost-in-middle",
+        "context-poisoning",
+        "attention-patterns"
+      ],
+      "documentation_path": "./context-degradation/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "context-fundamentals",
+      "name": "Context Fundamentals",
+      "type": "skill",
+      "category": "context-engineering",
+      "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "context-fundamentals/skills/context-fundamentals",
+      "version": "1.0.5",
+      "tags": [
+        "context-engineering",
+        "attention",
+        "progressive-disclosure",
+        "context-window"
+      ],
+      "documentation_path": "./context-fundamentals/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "context-optimization",
+      "name": "Context Optimization",
+      "type": "skill",
+      "category": "context-engineering",
+      "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "context-optimization/skills/context-optimization",
+      "version": "1.0.4",
+      "tags": [
+        "context-optimization",
+        "kv-cache",
+        "observation-masking",
+        "compaction"
+      ],
+      "documentation_path": "./context-optimization/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "creative-problem-solving",
+      "name": "Creative Problem Solving",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "creative-problem-solving/skills/creative-problem-solving",
+      "version": "1.0.15",
+      "tags": [
+        "problem-solving",
+        "lateral-thinking",
+        "game-theory"
+      ],
+      "documentation_path": "./creative-problem-solving/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "critical-intuition",
+      "name": "Critical Intuition",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "critical-intuition/skills/critical-intuition",
+      "version": "1.0.15",
+      "tags": [
+        "pattern-recognition",
+        "bayesian-reasoning",
+        "analysis"
+      ],
+      "documentation_path": "./critical-intuition/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "debugging",
+      "name": "Debugging",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "debugging/skills/debugging",
+      "version": "1.1.26",
+      "tags": [
+        "debugging",
+        "devtools",
+        "profiling",
+        "root-cause-analysis"
+      ],
+      "documentation_path": "./debugging/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "docker-containerization",
+      "name": "Docker Containerization",
+      "type": "skill",
+      "category": "devops",
+      "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "docker-containerization/skills/docker-containerization",
+      "version": "1.1.22",
+      "tags": [
+        "docker",
+        "containers",
+        "compose",
+        "multi-stage"
+      ],
+      "documentation_path": "./docker-containerization/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "documentation-generator",
+      "name": "Documentation Generator",
+      "type": "skill",
+      "category": "documentation",
+      "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "documentation-generator/skills/documentation-generator",
+      "version": "1.1.15",
+      "tags": [
+        "docs",
+        "readme",
+        "api-docs",
+        "architecture-docs"
+      ],
+      "documentation_path": "./documentation-generator/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "edge-case-coverage",
+      "name": "Edge Case Coverage",
+      "type": "skill",
+      "category": "quality",
+      "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "edge-case-coverage/skills/edge-case-coverage",
+      "version": "1.0.10",
+      "tags": [
+        "edge-cases",
+        "boundary-conditions",
+        "validation"
+      ],
+      "documentation_path": "./edge-case-coverage/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "example-design",
+      "name": "Example Design",
+      "type": "skill",
+      "category": "documentation",
+      "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "example-design/skills/example-design",
+      "version": "1.0.10",
+      "tags": [
+        "examples",
+        "tutorials",
+        "samples"
+      ],
+      "documentation_path": "./example-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "filesystem-context",
+      "name": "Filesystem Context",
+      "type": "skill",
+      "category": "context-engineering",
+      "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "filesystem-context/skills/filesystem-context",
+      "version": "1.0.4",
+      "tags": [
+        "filesystem",
+        "context-management",
+        "scratch-pad",
+        "dynamic-loading"
+      ],
+      "documentation_path": "./filesystem-context/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "frontend-design",
+      "name": "Frontend Design",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "frontend-design/skills/frontend-design",
+      "version": "1.1.23",
+      "tags": [
+        "frontend",
+        "ui-ux",
+        "tailwind",
+        "accessibility",
+        "design-tokens"
+      ],
+      "documentation_path": "./frontend-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "git-workflow",
+      "name": "Git Workflow",
+      "type": "skill",
+      "category": "devops",
+      "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "git-workflow/skills/git-workflow",
+      "version": "1.1.20",
+      "tags": [
+        "git",
+        "conventional-commits",
+        "changelog",
+        "worktree"
+      ],
+      "documentation_path": "./git-workflow/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "hosted-agents",
+      "name": "Hosted Agents",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "hosted-agents/skills/hosted-agents",
+      "version": "1.0.4",
+      "tags": [
+        "hosted-agents",
+        "sandbox",
+        "background-agents",
+        "multiplayer",
+        "infrastructure"
+      ],
+      "documentation_path": "./hosted-agents/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "mcp-server",
+      "name": "Mcp Server",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "mcp-server/skills/mcp-server",
+      "version": "1.2.20",
+      "tags": [
+        "mcp",
+        "model-context-protocol",
+        "fastmcp",
+        "typescript"
+      ],
+      "documentation_path": "./mcp-server/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "memory-systems",
+      "name": "Memory Systems",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "memory-systems/skills/memory-systems",
+      "version": "1.0.5",
+      "tags": [
+        "agent-memory",
+        "mem0",
+        "zep",
+        "graphiti",
+        "cognee",
+        "temporal-knowledge-graph"
+      ],
+      "documentation_path": "./memory-systems/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "multi-agent-patterns",
+      "name": "Multi Agent Patterns",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "multi-agent-patterns/skills/multi-agent-patterns",
+      "version": "1.0.4",
+      "tags": [
+        "multi-agent",
+        "supervisor",
+        "swarm",
+        "context-isolation",
+        "langgraph"
+      ],
+      "documentation_path": "./multi-agent-patterns/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "navigation-design",
+      "name": "Navigation Design",
+      "type": "skill",
+      "category": "design",
+      "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "navigation-design/skills/navigation-design",
+      "version": "1.0.10",
+      "tags": [
+        "navigation",
+        "information-architecture",
+        "wayfinding"
+      ],
+      "documentation_path": "./navigation-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "nextjs-development",
+      "name": "Nextjs Development",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "nextjs-development/skills/nextjs-development",
+      "version": "2.0.23",
+      "tags": [
+        "nextjs",
+        "react",
+        "server-components",
+        "app-router"
+      ],
+      "documentation_path": "./nextjs-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "ontology-design",
+      "name": "Ontology Design",
+      "type": "skill",
+      "category": "design",
+      "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "ontology-design/skills/ontology-design",
+      "version": "1.0.10",
+      "tags": [
+        "ontology",
+        "knowledge-models",
+        "taxonomies"
+      ],
+      "documentation_path": "./ontology-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "outcome-orientation",
+      "name": "Outcome Orientation",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "outcome-orientation/skills/outcome-orientation",
+      "version": "1.0.10",
+      "tags": [
+        "okrs",
+        "outcomes",
+        "metrics"
+      ],
+      "documentation_path": "./outcome-orientation/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "persona-definition",
+      "name": "Persona Definition",
+      "type": "skill",
+      "category": "design",
+      "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "persona-definition/skills/persona-definition",
+      "version": "1.0.10",
+      "tags": [
+        "personas",
+        "user-research",
+        "empathy-maps"
+      ],
+      "documentation_path": "./persona-definition/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "persona-mapping",
+      "name": "Persona Mapping",
+      "type": "skill",
+      "category": "design",
+      "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "persona-mapping/skills/persona-mapping",
+      "version": "1.0.10",
+      "tags": [
+        "stakeholders",
+        "raci",
+        "influence-mapping"
+      ],
+      "documentation_path": "./persona-mapping/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "prioritization",
+      "name": "Prioritization",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "prioritization/skills/prioritization",
+      "version": "1.0.10",
+      "tags": [
+        "rice",
+        "moscow",
+        "ice",
+        "prioritization"
+      ],
+      "documentation_path": "./prioritization/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "prompt-engineering",
+      "name": "Prompt Engineering",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "prompt-engineering/skills/prompt-engineering",
+      "version": "1.1.15",
+      "tags": [
+        "prompts",
+        "llm",
+        "optimization",
+        "evaluation"
+      ],
+      "documentation_path": "./prompt-engineering/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "python-development",
+      "name": "Python Development",
+      "type": "command",
+      "category": "development",
+      "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "python-development/skills/python-development",
+      "version": "1.1.24",
+      "tags": [
+        "python",
+        "uv",
+        "ruff",
+        "mypy",
+        "pytest",
+        "fastapi"
+      ],
+      "documentation_path": "./python-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "react-development",
+      "name": "React Development",
+      "type": "skill",
+      "category": "development",
+      "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "react-development/skills/react-development",
+      "version": "1.1.20",
+      "tags": [
+        "react",
+        "hooks",
+        "shadcn",
+        "bulletproof-react"
+      ],
+      "documentation_path": "./react-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "risk-management",
+      "name": "Risk Management",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "risk-management/skills/risk-management",
+      "version": "1.0.10",
+      "tags": [
+        "risk",
+        "mitigation",
+        "assessment"
+      ],
+      "documentation_path": "./risk-management/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "skill-creator",
+      "name": "Skill Creator",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "skill-creator/skills/skill-creator",
+      "version": "1.1.19",
+      "tags": [
+        "skill",
+        "plugin",
+        "creation",
+        "framework"
+      ],
+      "documentation_path": "./skill-creator/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "systems-thinking",
+      "name": "Systems Thinking",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "systems-thinking/skills/systems-thinking",
+      "version": "1.0.10",
+      "tags": [
+        "systems",
+        "feedback-loops",
+        "leverage-points"
+      ],
+      "documentation_path": "./systems-thinking/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "test-driven-development",
+      "name": "Test Driven Development",
+      "type": "skill",
+      "category": "quality",
+      "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "test-driven-development/skills/test-driven-development",
+      "version": "1.1.17",
+      "tags": [
+        "tdd",
+        "red-green-refactor",
+        "pytest",
+        "vitest"
+      ],
+      "documentation_path": "./test-driven-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "testing-framework",
+      "name": "Testing Framework",
+      "type": "skill",
+      "category": "quality",
+      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "testing-framework/skills/testing-framework",
+      "version": "1.1.23",
+      "tags": [
+        "testing",
+        "playwright",
+        "unit-tests",
+        "e2e",
+        "mutation-testing"
+      ],
+      "documentation_path": "./testing-framework/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "tool-design",
+      "name": "Tool Design",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "tool-design/skills/tool-design",
+      "version": "1.0.4",
+      "tags": [
+        "tool-design",
+        "mcp",
+        "consolidation-principle",
+        "architectural-reduction"
+      ],
+      "documentation_path": "./tool-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "typescript-development",
+      "name": "Typescript Development",
+      "type": "skill",
+      "category": "development",
+      "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "typescript-development/skills/typescript-development",
+      "version": "1.1.20",
+      "tags": [
+        "typescript",
+        "zod",
+        "clean-architecture",
+        "branded-types"
+      ],
+      "documentation_path": "./typescript-development/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "user-journey-design",
+      "name": "User Journey Design",
+      "type": "skill",
+      "category": "design",
+      "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "user-journey-design/skills/user-journey-design",
+      "version": "1.0.10",
+      "tags": [
+        "user-journey",
+        "touchpoints",
+        "experience-mapping"
+      ],
+      "documentation_path": "./user-journey-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "ux-writing",
+      "name": "Ux Writing",
+      "type": "skill",
+      "category": "design",
+      "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "ux-writing/skills/ux-writing",
+      "version": "1.0.10",
+      "tags": [
+        "ux-writing",
+        "microcopy",
+        "error-messages"
+      ],
+      "documentation_path": "./ux-writing/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "workflow-automation",
+      "name": "Workflow Automation",
+      "type": "skill",
+      "category": "devops",
+      "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "workflow-automation/skills/workflow-automation",
+      "version": "1.1.21",
+      "tags": [
+        "automation",
+        "ci-cd",
+        "orchestration",
+        "release-management"
+      ],
+      "documentation_path": "./workflow-automation/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "id": "skillstack-full",
+      "name": "SkillStack",
+      "description": "The complete SkillStack library \u2014 46 expert skills for Claude Code covering the full software development lifecycle.",
+      "audience": "technical",
+      "auto_inferred_from_repo": "viktorbezdek-skillstack",
+      "plugin_ids": [
+        "agent-evaluation",
+        "agent-project-development",
+        "api-design",
+        "bdi-mental-states",
+        "cicd-pipelines",
+        "code-review",
+        "consistency-standards",
+        "content-modelling",
+        "context-compression",
+        "context-degradation",
+        "context-fundamentals",
+        "context-optimization",
+        "creative-problem-solving",
+        "critical-intuition",
+        "debugging",
+        "docker-containerization",
+        "documentation-generator",
+        "edge-case-coverage",
+        "example-design",
+        "filesystem-context",
+        "frontend-design",
+        "git-workflow",
+        "hosted-agents",
+        "mcp-server",
+        "memory-systems",
+        "multi-agent-patterns",
+        "navigation-design",
+        "nextjs-development",
+        "ontology-design",
+        "outcome-orientation",
+        "persona-definition",
+        "persona-mapping",
+        "prioritization",
+        "prompt-engineering",
+        "python-development",
+        "react-development",
+        "risk-management",
+        "skill-creator",
+        "systems-thinking",
+        "test-driven-development",
+        "testing-framework",
+        "tool-design",
+        "typescript-development",
+        "user-journey-design",
+        "ux-writing",
+        "workflow-automation"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-development",
+      "name": "Development Core",
+      "description": "Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.",
+      "audience": "technical",
+      "plugin_ids": [
+        "api-design",
+        "debugging",
+        "frontend-design",
+        "mcp-server",
+        "nextjs-development",
+        "prompt-engineering",
+        "python-development",
+        "react-development",
+        "skill-creator",
+        "typescript-development"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-devops",
+      "name": "DevOps & Infrastructure",
+      "description": "CI/CD pipelines, Docker containerization, Git workflow management, and workflow automation.",
+      "audience": "technical",
+      "plugin_ids": [
+        "cicd-pipelines",
+        "docker-containerization",
+        "git-workflow",
+        "workflow-automation"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-quality",
+      "name": "Quality & Testing",
+      "description": "Code review, test-driven development, testing frameworks, edge case coverage, and consistency standards.",
+      "audience": "technical",
+      "plugin_ids": [
+        "code-review",
+        "consistency-standards",
+        "edge-case-coverage",
+        "test-driven-development",
+        "testing-framework"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-context-engineering",
+      "name": "Context Engineering",
+      "description": "Context fundamentals, degradation patterns, compression, optimization, and filesystem-based context management.",
+      "audience": "technical",
+      "plugin_ids": [
+        "context-compression",
+        "context-degradation",
+        "context-fundamentals",
+        "context-optimization",
+        "filesystem-context"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-agent-architecture",
+      "name": "Agent Architecture",
+      "description": "Multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, and project development.",
+      "audience": "technical",
+      "plugin_ids": [
+        "agent-evaluation",
+        "agent-project-development",
+        "bdi-mental-states",
+        "hosted-agents",
+        "memory-systems",
+        "multi-agent-patterns",
+        "tool-design"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-thinking",
+      "name": "Strategic Thinking",
+      "description": "Creative problem-solving, critical intuition, systems thinking, prioritization, risk management, and outcome orientation.",
+      "audience": "technical",
+      "plugin_ids": [
+        "creative-problem-solving",
+        "critical-intuition",
+        "outcome-orientation",
+        "prioritization",
+        "risk-management",
+        "systems-thinking"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-design",
+      "name": "Design & UX",
+      "description": "Content modelling, navigation design, ontology design, persona definition/mapping, user journey design, and UX writing.",
+      "audience": "technical",
+      "plugin_ids": [
+        "content-modelling",
+        "navigation-design",
+        "ontology-design",
+        "persona-definition",
+        "persona-mapping",
+        "user-journey-design",
+        "ux-writing"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  ]
+}
