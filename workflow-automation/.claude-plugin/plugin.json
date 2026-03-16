@@ -1,8 +1,11 @@
 {
   "name": "workflow-automation",
-  "version": "1.0.0",
+  "version": "1.1.21",
   "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/workflow-automation",
   "keywords": [
