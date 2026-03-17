@@ -1,9 +1,20 @@
 {
   "name": "multi-agent-patterns",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/multi-agent-patterns",
-  "keywords": ["claude-code", "skill", "multi-agent", "supervisor", "swarm", "context-isolation", "langgraph"]
+  "keywords": [
+    "claude-code",
+    "skill",
+    "multi-agent",
+    "supervisor",
+    "swarm",
+    "context-isolation",
+    "langgraph"
+  ]
 }
