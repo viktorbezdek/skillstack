@@ -1,9 +1,19 @@
 {
   "name": "context-optimization",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/context-optimization",
-  "keywords": ["claude-code", "skill", "context-optimization", "kv-cache", "observation-masking", "compaction"]
+  "keywords": [
+    "claude-code",
+    "skill",
+    "context-optimization",
+    "kv-cache",
+    "observation-masking",
+    "compaction"
+  ]
 }
