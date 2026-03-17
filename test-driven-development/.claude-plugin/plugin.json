@@ -1,8 +1,11 @@
 {
   "name": "test-driven-development",
-  "version": "1.0.0",
+  "version": "1.1.17",
   "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/test-driven-development",
   "keywords": [
