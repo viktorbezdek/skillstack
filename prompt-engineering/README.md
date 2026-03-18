@@ -1,79 +1,75 @@
 # Prompt Engineering
 
-> Comprehensive prompt optimization system for LLMs -- design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.
+> **v1.1.15** | Development | 17 iterations
 
-## Overview
+Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.
 
-Most people interact with LLMs using vague, unstructured prompts and get mediocre results. The gap between a naive prompt and a well-engineered one can mean the difference between useless output and production-quality work. This skill encodes the full discipline of prompt engineering into a systematic framework that transforms how you communicate with AI.
+## What Problem Does This Solve
 
-This skill is for anyone who writes prompts -- developers building LLM-powered features, content creators working with AI, product teams designing AI interactions, or power users who want consistently better results. It covers the entire lifecycle from initial design through evaluation and iterative refinement.
+Transform vague AI instructions into precision-engineered prompts that reliably produce
+high-quality outputs. This skill combines proven techniques, systematic evaluation, and
+iterative refinement to create prompts for any LLM platform.
 
-Within the SkillStack collection, Prompt Engineering is a foundational meta-skill. It improves the effectiveness of every other skill by teaching you how to communicate intent clearly. It pairs especially well with the Skill Creator skill (which uses prompting principles to build skills) and any domain-specific skill where prompt quality directly affects output quality.
+## When to Use This Skill
 
-## What's Included
+Optimize prompts for LLMs through systematic design, evaluation, and iterative refinement. Use when doing prompt engineering, prompt design, prompt optimization, system prompt creation, LLM optimization, or improving prompt templates.
 
-### References
-- **EVALUATION.md** -- Comprehensive evaluation methodologies and rubrics for scoring prompt quality
-- **PLATFORMS.md** -- Platform-specific optimization guides for Claude, ChatGPT (GPT-4), Gemini, and other LLMs
-- **TECHNIQUES.md** -- Full catalog of prompting techniques with detailed examples (role assignment, chain-of-thought, few-shot, etc.)
-- **TEMPLATES.md** -- Reusable prompt patterns for research, creative, technical, business, and teaching use cases
+## How to Use
 
-### Scripts
-- **analyze_structure.py** -- Analyze the structural composition of a prompt (sections, length, technique usage)
-- **diff_prompts.py** -- Compare two prompt versions side-by-side to highlight differences and improvements
-- **format_prompt.py** -- Auto-format and clean up prompt text for consistency
+**Direct invocation:**
 
-## Key Features
-
-- **4-D Framework**: Systematic process -- Deconstruct, Diagnose, Develop, Deliver -- for every prompt optimization task
-- **Multi-mode operation**: Optimize existing prompts, create new ones from scratch, evaluate quality, or teach techniques
-- **7 core techniques**: Role assignment, context layering, chain-of-thought, few-shot examples, task decomposition, constraints, and output specification
-- **Evaluation scoring**: Quick 5-dimension scoring (Clarity, Specificity, Completeness, Efficiency, Robustness) plus LLM-as-Judge methodology
-- **A/B testing process**: Structured approach for comparing prompt versions across test inputs
-- **Platform-aware**: Tailored advice for Claude (XML tags, extended thinking), ChatGPT (system messages, function calling), and Gemini (multimodal)
-- **Anti-pattern detection**: Identifies and fixes vague instructions, buried intent, kitchen-sink prompts, missing output specs, and more
-- **Context enrichment**: Pulls real organizational context into prompts using available tools and integrations
-
-## Usage Examples
-
-Optimize an existing prompt:
 ```
-Make this prompt better: "Write me a blog post about machine learning"
+Use the prompt-engineering skill to ...
 ```
 
-Design a prompt from scratch for a complex task:
-```
-Create a prompt for analyzing quarterly sales data and generating executive summaries with actionable recommendations.
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-Evaluate prompt quality:
-```
-Evaluate this system prompt I wrote for our customer support chatbot: [paste prompt]. Score it and tell me what to improve.
-```
+- `prompts`
+- `llm`
+- `optimization`
+- `evaluation`
 
-Compare two prompt versions:
-```
-I have two versions of my code review prompt. Run them through A/B testing to tell me which performs better and why.
-```
+## What's Inside
 
-Get platform-specific advice:
-```
-I'm building a prompt for Claude that needs to handle structured data extraction. What Claude-specific techniques should I use?
-```
+- **Overview**
+- **Decision Flow**
+- **Core Process: The 4-D Framework**
+- **Optimization Patterns**
+- **Context Enrichment**
+- **Evaluation Framework**
+- **Platform-Specific Notes**
+- **Templates**
 
-## Quick Start
+## Key Capabilities
 
-1. Share the prompt you want to improve, or describe the task you need a prompt for.
-2. The skill will automatically select the right mode: Optimize, Design, Evaluate, or Educate.
-3. For optimization, the 4-D framework runs: Deconstruct (understand intent) -> Diagnose (score weaknesses) -> Develop (apply techniques) -> Deliver (present improved prompt with explanation).
-4. Review the improved prompt, then iterate if needed -- the skill supports multiple refinement rounds.
+- **Clarity**
+- **Specificity**
+- **Structure**
+- **Completeness**
+- **Efficiency**
+- **Claude**
+
+## Version History
+
+- `1.1.15` fix(meta): optimize descriptions for prompt-engineering and skill-creator (a9056e6)
+- `1.1.14` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.1.13` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.1.12` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.1.11` refactor: remove old file locations after plugin restructure (a26a802)
+- `1.1.10` docs: update README and install commands to marketplace format (af9e39c)
+- `1.1.9` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.1.8` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.1.7` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.1.6` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
 
 ## Related Skills
 
-- **Skill Creator** -- Uses prompt engineering principles to build Claude Code skills
-- **Creative Problem-Solving** -- Generates creative approaches that inform prompt design
-- **Systems Thinking** -- Helps structure complex multi-step prompt pipelines
+- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
+- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
+- **[Frontend Design](../frontend-design/)** -- Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, acce...
+- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
+- **[Nextjs Development](../nextjs-development/)** -- Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Compon...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install prompt-engineering@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
