@@ -1,8 +1,11 @@
 {
   "name": "persona-mapping",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/persona-mapping",
   "keywords": [

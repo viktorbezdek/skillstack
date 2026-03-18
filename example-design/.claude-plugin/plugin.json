@@ -1,8 +1,11 @@
 {
   "name": "example-design",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/example-design",
   "keywords": [

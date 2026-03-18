@@ -1,8 +1,11 @@
 {
   "name": "persona-definition",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
-  "author": { "name": "Viktor Bezdek", "url": "https://github.com/viktorbezdek" },
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
   "license": "MIT",
   "repository": "https://github.com/viktorbezdek/skillstack/tree/main/persona-definition",
   "keywords": [
