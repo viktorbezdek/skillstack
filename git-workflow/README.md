@@ -1,141 +1,75 @@
 # Git Workflow
 
-> Comprehensive Git workflow management covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.
+> **v1.1.20** | DevOps & Infrastructure | 22 iterations
 
-## Overview
+Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.
 
-Git is the universal version control tool, but using it effectively requires discipline around commit messages, branch strategies, release management, and project tracking. Most teams use Git inconsistently -- vague commit messages, tangled branches, manual changelogs, and disconnected issue tracking. This skill automates and enforces professional Git practices across the entire workflow.
+## What Problem Does This Solve
 
-The Git Workflow skill is for individual developers who want clean commit histories, teams that need consistent conventional commits, release managers generating changelogs and versioning, and project leads managing story backlogs. It combines four previously separate skills (story-tree, managing-commits, git-commit-assistant, git-workflow-manager) into a unified toolkit with 13 automation scripts and 13 reference documents.
+A unified skill combining commit management, branch workflows, worktree operations, and story backlog management for professional Git-based development.
 
-As part of the SkillStack collection, this skill integrates with debugging for tracking regressions through commit history, docker-containerization for worktree-based parallel development with isolated environments, and documentation-generator for automated changelog and release documentation.
+## When to Use This Skill
 
-## What's Included
+Git workflow management — use when the user mentions git, conventional commits, commit quality, branch management, worktree operations, GitFlow, changelog generation, semantic versioning, backlog management, or issue tracking integration.
 
-### References
+## When NOT to Use This Skill
 
-- `references/conventional-commits.md` - Full conventional commits specification and rules
-- `references/commit-patterns.md` - Commit message patterns and anti-patterns
-- `references/examples.md` - Real-world commit message examples across all types
-- `references/slash-commands.md` - Detailed slash command workflows (/commit, /validate, /changelog, etc.)
-- `references/gitflow-conventions.md` - GitFlow branch naming and workflow reference
-- `references/schema.sql` - Story tree database schema (closure table pattern)
-- `references/sql-queries.md` - SQL query patterns for story tree operations
-- `references/common-mistakes.md` - Common story tree and commit mistakes with prevention
-- `references/rationales.md` - Design decisions and rationale for the skill's architecture
-- `references/epic-decomposition.md` - Epic decomposition workflow and patterns
-- `references/workflow-diagrams.md` - Visual workflow diagrams for key processes
-- `references/orchestrator-workflow-complete.md` - Full orchestrator workflow specification
-- `references/orchestrator-workflow-current.md` - Current active orchestrator workflow
+- CI/CD pipelines or pipeline YAML -- use [cicd-pipelines](../cicd-pipelines/) instead
 
-### Scripts
+## How to Use
 
-- `scripts/analyze-diff.py` - Analyze staged changes and suggest conventional commit messages
-- `scripts/validate.py` - Validate commit message format against conventional commits spec
-- `scripts/changelog.py` - Generate changelog from git commit history
-- `scripts/version.py` - Calculate next semantic version based on commits
-- `scripts/commit-analyzer.py` - Full commit quality analysis with scoring
-- `scripts/conventional-commits.py` - Conventional commits helper and formatter
-- `scripts/group-files.py` - Intelligent file grouping for atomic commits
-- `scripts/issue-tracker.py` - Issue sync, detection, and reference suggestion
-- `scripts/create_worktree.sh` - Create git worktree with GitFlow branch conventions
-- `scripts/list_worktrees.sh` - List all worktrees with detailed status information
-- `scripts/cleanup_worktrees.sh` - Clean up merged or stale worktrees
-- `scripts/init-environment.py` - Initialize GitHub workflow environment
-- `scripts/tree-view.py` - ASCII visualization of the story tree with capacity indicators
+**Direct invocation:**
 
-### Assets
-
-- `assets/commit-templates.json` - Template patterns for all conventional commit types
-
-## Key Features
-
-- Conventional commits enforcement with automatic validation and format suggestions
-- Intelligent file grouping that analyzes staged changes and recommends atomic commit splits
-- Commit quality scoring with detailed analysis of message clarity, scope, and issue linking
-- GitFlow-compliant worktree management for parallel feature development
-- Automated changelog generation from commit history with breaking changes, features, and fixes
-- Semantic version calculation based on commit types (major/minor/patch)
-- Issue tracking integration with automatic detection from branch names and keyword matching
-- Hierarchical story tree with SQLite-backed closure table for backlog management
-- Slash commands (/commit, /validate, /changelog, /version, /fix) for quick access to workflows
-
-## Usage Examples
-
-**Write a commit message for staged changes:**
 ```
-/commit
+Use the git-workflow skill to ...
 ```
-Analyzes the staged diff, detects the appropriate type and scope, suggests an issue reference from the branch name, and generates a properly formatted conventional commit message.
 
-**Validate a commit message:**
-```
-/validate "feat(auth): add OAuth2 login flow"
-```
-Checks the message against conventional commits specification, validates type, scope format, subject rules (imperative mood, no period, lowercase), and reports any violations.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-**Generate a changelog for a release:**
-```
-/changelog
-```
-Scans commit history since the last tag, groups commits by type (breaking changes, features, fixes), formats them with scope prefixes and issue references, and outputs a Keep a Changelog-formatted document.
+- `git`
+- `conventional-commits`
+- `changelog`
+- `worktree`
 
-**Determine the next version:**
-```
-/version
-```
-Analyzes all commits since the last version tag, identifies the highest-impact change type (breaking = major, feat = minor, fix = patch), and outputs the recommended next version number.
+## What's Inside
 
-**Split a large set of changes into atomic commits:**
-```
-I have 15 modified files staged. Help me group them into proper atomic commits.
-```
-Runs group-files.py to analyze file relationships by scope, type, and dependency, then recommends 3-5 atomic commit groups with suggested messages for each.
+- **Overview**
+- **When to Use This Skill**
+- **Part 1: Commit Management**
+- **Part 2: Branch & Worktree Management**
+- **Part 3: Release Management**
+- **[2.0.0] - 2025-01-18**
+- **Part 4: Story Tree Management**
+- **Scripts Reference**
 
-## Quick Start
+## Key Capabilities
 
-1. **Analyze your staged changes** and get a commit suggestion:
-   ```bash
-   python scripts/analyze-diff.py --analyze
-   ```
+- **auth**
+- **auth**
+- **api**
+- **api**
+- **Major**
+- **Minor**
 
-2. **Validate a commit message** before committing:
-   ```bash
-   python scripts/validate.py "feat(auth): add JWT refresh"
-   ```
+## Version History
 
-3. **Group files** for atomic commits when you have many changes:
-   ```bash
-   python scripts/group-files.py --analyze
-   ```
-
-4. **Create a worktree** for parallel development:
-   ```bash
-   ./scripts/create_worktree.sh feature email-notifications
-   ```
-
-5. **Generate a changelog** from your commit history:
-   ```bash
-   python scripts/changelog.py --version 2.0.0
-   ```
-
-6. **Calculate the next version**:
-   ```bash
-   python scripts/version.py --verbose
-   ```
-
-7. **Visualize your story tree**:
-   ```bash
-   python scripts/tree-view.py --show-capacity
-   ```
+- `1.1.20` fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript (b65bc7d)
+- `1.1.19` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.1.18` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.1.17` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.1.16` refactor: remove old file locations after plugin restructure (a26a802)
+- `1.1.15` docs: update README and install commands to marketplace format (af9e39c)
+- `1.1.14` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.1.13` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.1.12` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.1.11` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
 
 ## Related Skills
 
-- **debugging** -- Track down regressions through commit history and git bisect
-- **docker-containerization** -- Manage isolated Docker environments per git worktree
-- **documentation-generator** -- Generate changelogs and release documentation automatically
-- **edge-case-coverage** -- Ensure commits for edge case fixes are properly categorized and linked
+- **[Cicd Pipelines](../cicd-pipelines/)** -- Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise ...
+- **[Docker Containerization](../docker-containerization/)** -- Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration...
+- **[Workflow Automation](../workflow-automation/)** -- Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution,...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install git-workflow@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
