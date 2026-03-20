@@ -1,74 +1,69 @@
-# Hosted Agent Infrastructure
+# Hosted Agents
 
-> Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).
+> **v1.0.4** | Agent Architecture | 5 iterations
 
-## Overview
+Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).
 
-Hosted agents run in remote sandboxed environments rather than on local machines. When designed well, they provide unlimited concurrency, consistent execution environments, and multiplayer collaboration. The critical insight is that session speed should be limited only by model provider time-to-first-token, with all infrastructure setup (repository cloning, dependency installation, build steps) completed before the user starts their session.
+## What Problem Does This Solve
 
-This skill covers the full infrastructure stack for hosted agent systems. The sandbox layer handles pre-built environment images, snapshot/restore for instant session creation, and warm pool strategies for high-volume repositories. The API layer manages per-session state isolation, real-time streaming via WebSockets, and cross-client synchronization. The client layer implements Slack bots, web interfaces with embedded VS Code, and Chrome extensions for non-engineering users. The skill also covers self-spawning agents that create sub-sessions for parallel work.
+Hosted agents run in remote sandboxed environments rather than on local machines. When designed well, they provide unlimited concurrency, consistent execution environments, and multiplayer collaboration. The critical insight is that session speed should be limited only by model provider time-to-first-token, with all infrastructure setup completed before the user starts their session.
 
-Within the SkillStack collection, Hosted Agents builds on Multi-Agent Patterns for self-spawning agent coordination and Tool Design for agent-tool interfaces. It connects to Context Optimization for managing context across distributed sessions and Filesystem Context for using the filesystem as session state and artifact storage.
+## When to Use This Skill
 
-## What's Included
+This skill should be used when the user asks to "build background agent", "create hosted coding agent", "set up sandboxed execution", "implement multiplayer agent", or mentions background agents, sandboxed VMs, agent infrastructure, Modal sandboxes, self-spawning agents, or remote coding environments.
 
-### Skill
+## When NOT to Use This Skill
 
-- `skills/hosted-agents/SKILL.md` -- Core infrastructure patterns covering sandbox setup, image registry, warm pools, speed optimizations, self-spawning agents, API layer design, multiplayer support, authentication, and multi-client implementations
+- agent coordination patterns or multi-agent design -- use [multi-agent-patterns](../multi-agent-patterns/) instead
 
-### References
+## How to Use
 
-- **infrastructure-patterns.md** -- Detailed implementation patterns for sandbox infrastructure, API layer, and client integration
+**Direct invocation:**
 
-## Key Features
-
-- **Image registry pattern** pre-building environment images every 30 minutes with cloned repositories, installed dependencies, and cached builds, so sessions start near-instantly
-- **Warm pool strategy** maintaining pre-warmed sandboxes for high-volume repositories with predictive warm-up that begins when users start typing
-- **Snapshot and restore** at key points (after image build, after agent changes, before exit) enabling instant restoration for follow-up prompts
-- **Self-spawning agents** with tools to start new sessions, check status, and continue work while sub-sessions run in parallel for research or large changes
-- **Multiplayer support** where multiple team members collaborate in real-time on the same agent session with proper authorship attribution
-- **Multi-client architecture** supporting Slack bots (virality through visibility), web interfaces (with embedded VS Code), and Chrome extensions (DOM extraction for non-engineers)
-- **Speed optimizations** including parallel file reading before git sync completes, maximizing build-time work, and predictive sandbox warm-up
-- **Authentication flow** using GitHub tokens so PRs are opened on behalf of users (not the app), preventing self-approval of agent-written code
-
-## Usage Examples
-
-Set up hosted agent infrastructure:
 ```
-I want to build a background coding agent that runs in sandboxed environments. Help me design the infrastructure: image registry for fast startup, sandbox management, and real-time streaming to a web frontend.
+Use the hosted-agents skill to ...
 ```
 
-Implement self-spawning agents:
-```
-My agent needs to research code across 3 repositories and then make coordinated changes. Design a self-spawning architecture where the main agent creates sub-sessions for each repository and aggregates results.
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-Add Slack integration for team adoption:
-```
-We want our coding agent accessible through Slack. Help me implement repository classification from channel context, threading for multi-turn sessions, and proper user attribution for commits.
-```
+- `hosted-agents`
+- `sandbox`
+- `background-agents`
+- `multiplayer`
+- `infrastructure`
 
-Design multiplayer agent sessions:
-```
-Our team wants to collaboratively debug using a shared agent session. Implement multiplayer support where multiple users can prompt the same agent, with each user's contributions properly attributed.
-```
+## What's Inside
 
-## Quick Start
+- **When to Activate**
+- **Core Concepts**
+- **Detailed Topics**
+- **Practical Guidance**
+- **Guidelines**
+- **Integration**
+- **References**
+- **Skill Metadata**
 
-1. **Set up image registry**: Build environment images every 30 minutes containing cloned repositories, installed dependencies, and cached builds.
-2. **Implement warm pools**: Maintain pre-warmed sandboxes for your most-used repositories; start warming when users begin typing.
-3. **Design API layer**: Isolate state per session (SQLite per session), stream updates via WebSockets, and synchronize across clients.
-4. **Add authentication**: Use GitHub app tokens for clone during build, user tokens for PR creation, and attribute commits to the prompting user.
-5. **Track merged PRs** as your primary success metric -- this measures actual value delivered, not just sessions started.
+## Key Capabilities
+
+- **Queue approach**
+- **Insert approach**
+
+## Version History
+
+- `1.0.4` fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins (f25da8a)
+- `1.0.3` fix(hosted-agents): add standard keywords and expand README to full format (01b6dd4)
+- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.0` Initial release (697ea68)
 
 ## Related Skills
 
-- **multi-agent-patterns** -- Self-spawning agents follow supervisor patterns with sub-agent coordination
-- **tool-design** -- Building tools for agent spawning, status checking, and hosted environment interaction
-- **context-optimization** -- Managing context across distributed sessions and parallel sub-agents
-- **filesystem-context** -- Using the filesystem for session state, artifacts, and sub-agent communication
-- **agent-evaluation** -- Measuring hosted agent effectiveness through merged PR rates and code quality metrics
+- **[Agent Evaluation](../agent-evaluation/)** -- Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, ...
+- **[Agent Project Development](../agent-project-development/)** -- Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process...
+- **[Bdi Mental States](../bdi-mental-states/)** -- Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPA...
+- **[Memory Systems](../memory-systems/)** -- Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Cov...
+- **[Multi Agent Patterns](../multi-agent-patterns/)** -- Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, c...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install hosted-agents@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

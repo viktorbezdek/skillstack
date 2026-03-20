@@ -1,75 +1,75 @@
-# Memory System Design
+# Memory Systems
 
-> Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.
+> **v1.0.5** | Agent Architecture | 6 iterations
 
-## Overview
+Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.
 
-Memory provides the persistence layer that allows agents to maintain continuity across sessions and reason over accumulated knowledge. Simple agents rely entirely on the context window for memory, losing all state when sessions end. Sophisticated agents implement layered memory architectures that balance immediate context needs with long-term knowledge retention. The evolution from vector stores to knowledge graphs to temporal knowledge graphs represents increasing investment in structured memory for improved retrieval and reasoning.
+## What Problem Does This Solve
 
-This skill provides a comprehensive comparison of production memory frameworks (Mem0, Zep/Graphiti, Letta, Cognee, LangMem) with benchmark data from LoCoMo, LongMemEval, DMR, and HotPotQA. A key finding: tool complexity matters less than reliable retrieval -- Letta's filesystem agents scored 74% on LoCoMo using basic file operations, beating Mem0's specialized tools at 68.5%. The skill covers memory layers from volatile working memory through cross-session temporal knowledge graphs, retrieval strategies from semantic similarity through hybrid graph-based approaches, and consolidation patterns that prevent unbounded growth.
+Memory provides the persistence layer that allows agents to maintain continuity across sessions and reason over accumulated knowledge. Simple agents rely entirely on context for memory, losing all state when sessions end. Sophisticated agents implement layered memory architectures that balance immediate context needs with long-term knowledge retention. The evolution from vector stores to knowledge graphs to temporal knowledge graphs represents increasing investment in structured memory for improved retrieval and reasoning.
 
-Within the SkillStack collection, Memory Systems builds on Context Fundamentals and connects to Multi-Agent Patterns for shared memory across agents, Context Optimization for memory-based context loading, and Agent Evaluation for measuring memory quality. The Filesystem Context skill provides the simplest memory layer pattern that this skill extends with more sophisticated architectures.
+## When to Use This Skill
 
-## What's Included
+Guides implementation of agent memory systems, compares production frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and designs persistence architectures for cross-session knowledge retention. Use when the user asks to "implement agent memory", "persist state across sessions", "build knowledge graph for agents", "track entities over time", "add long-term memory", "choose a memory framework", or mentions temporal knowledge graphs, vector stores, entity memory, adaptive memory, dynamic memory, or memory benchmarks (LoCoMo, LongMemEval).
 
-### Skill
+## When NOT to Use This Skill
 
-- `skills/memory-systems/SKILL.md` -- Core memory architecture covering framework comparison, memory layers, retrieval strategies, consolidation patterns, practical guidance for choosing architectures, and integration with context systems
+- multi-agent coordination or agent handoffs -- use [multi-agent-patterns](../multi-agent-patterns/) instead
 
-### References
+## How to Use
 
-- **implementation.md** -- Detailed implementation patterns including working consolidation code, production framework configurations, and memory integration examples
-- **latest-research-2026.md** -- Updated research findings on memory systems from 2025-2026
+**Direct invocation:**
 
-## Key Features
-
-- **Production framework comparison** of Mem0 (vector store + graph, fastest to production), Zep/Graphiti (temporal knowledge graph with bi-temporal model), Letta (self-editing tiered storage), Cognee (multi-layer semantic graph with customizable ECL pipeline), and LangMem (LangGraph workflow tools)
-- **Benchmark data** across DMR (Zep 94.8%), LoCoMo (Letta 74%, Mem0 68.5%), and HotPotQA (Cognee highest on EM, F1, correctness), with the insight that no single benchmark is definitive
-- **Five memory layers** with clear decision criteria: working (context window), short-term (session-scoped), long-term (cross-session), entity (identity tracking), and temporal KG (time-travel queries)
-- **Four retrieval strategies**: semantic (embedding similarity), entity-based (graph traversal), temporal (validity filter), and hybrid (90% latency reduction via relevant subgraph retrieval)
-- **Memory consolidation** patterns that invalidate but do not discard, preserving history for temporal queries while preventing unbounded growth
-- **Progressive architecture guidance**: start with filesystem, scale to Mem0/vector store, add Graphiti/Cognee for complex reasoning, use Letta for full agent self-management
-- **Error recovery patterns** for empty retrieval, stale results, conflicting facts, and storage failures
-- **Cognee's 14 search modes** combining graph, vector, and relational stores for query-type-specific retrieval
-
-## Usage Examples
-
-Choose a memory framework for your agent:
 ```
-I'm building a customer support agent that needs to remember user preferences, past interactions, and product knowledge across sessions. Compare Mem0, Zep, and Cognee for my use case and recommend the best fit.
+Use the memory-systems skill to ...
 ```
 
-Implement temporal knowledge tracking:
-```
-Our agent needs to track facts that change over time -- user addresses, subscription plans, team memberships. Implement temporal validity so we can query what was true at any point in time and prevent stale information from poisoning context.
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-Design a memory consolidation strategy:
-```
-Our agent's memory store has grown to 50K entries and retrieval quality is degrading. Help me implement consolidation that merges redundant entries, invalidates outdated facts, and maintains history for audit.
-```
+- `agent-memory`
+- `mem0`
+- `zep`
+- `graphiti`
+- `cognee`
+- `temporal-knowledge-graph`
 
-Add memory to an existing agent:
-```
-I have a working coding agent but it forgets everything between sessions. Start with the simplest memory pattern (filesystem-based) and show me how to evolve to a more sophisticated architecture if needed.
-```
+## What's Inside
 
-## Quick Start
+- **When to Activate**
+- **Core Concepts**
+- **Detailed Topics**
+- **Practical Guidance**
+- **Examples**
+- **Guidelines**
+- **Integration**
+- **References**
 
-1. **Start simple**: Use filesystem memory -- store facts as structured JSON with timestamps. This is good enough to validate agent behavior.
-2. **Scale to Mem0**: When you need semantic search and multi-tenant isolation, move to Mem0 or a vector store with metadata.
-3. **Add graph structure**: When you need relationship traversal or temporal validity, add Zep/Graphiti (bi-temporal model) or Cognee (multi-layer semantic graph).
-4. **Implement consolidation**: Set up periodic consolidation that invalidates outdated facts without discarding them, triggered by memory count thresholds or degraded retrieval quality.
-5. **Monitor in production**: Track memory growth, retrieval latency, and retrieval quality. Benchmark against LoCoMo or LongMemEval before and after changes.
+## Key Capabilities
+
+- **Empty retrieval**
+- **Stale results**
+- **Conflicting facts**
+- **Storage failure**
+- **Stuffing everything into context**
+- **Ignoring temporal validity**
+
+## Version History
+
+- `1.0.5` fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins (f25da8a)
+- `1.0.4` fix(memory-systems): add standard keywords and expand README to full format (deb2452)
+- `1.0.3` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.2` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.1` docs: add 2025-2026 research references for context and memory plugins (8e815ba)
+- `1.0.0` Initial release (697ea68)
 
 ## Related Skills
 
-- **context-fundamentals** -- Foundational context concepts that inform memory integration
-- **multi-agent-patterns** -- Shared memory architectures across multiple agents
-- **context-optimization** -- Memory-based context loading as an optimization strategy
-- **filesystem-context** -- Filesystem-as-memory as the simplest persistent memory layer
-- **agent-evaluation** -- Evaluating memory quality, recall accuracy, and retrieval effectiveness
+- **[Agent Evaluation](../agent-evaluation/)** -- Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, ...
+- **[Agent Project Development](../agent-project-development/)** -- Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process...
+- **[Bdi Mental States](../bdi-mental-states/)** -- Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPA...
+- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents...
+- **[Multi Agent Patterns](../multi-agent-patterns/)** -- Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, c...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install memory-systems@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
