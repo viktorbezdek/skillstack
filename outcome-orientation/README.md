@@ -1,85 +1,61 @@
 # Outcome Orientation
 
-> Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome vs. output distinction.
+> **v1.0.10** | Strategic Thinking | 11 iterations
 
-## Overview
+Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
 
-Teams ship features, write documents, and hold meetings -- but activity is not the same as progress. Outcome Orientation provides the mental models and frameworks needed to shift focus from what you produce (outputs) to what you achieve (outcomes). The core question it teaches you to ask is "So what?" -- repeated until you reach real value.
+## What Problem Does This Solve
 
-The skill centers on the OKR (Objectives and Key Results) framework as its primary tool, but goes further by distinguishing lagging indicators (results) from leading indicators (predictors), providing a results chain model (Activities to Outputs to Outcomes to Impact), and offering a concrete checklist for validating whether a stated outcome is genuinely outcome-shaped rather than a disguised output.
+Focus on results that matter, not just activities completed.
 
-Within the SkillStack collection, Outcome Orientation is the strategic alignment skill. It ensures that the work guided by other skills -- whether building MCP servers, designing navigation, or defining personas -- is anchored to measurable results that matter to users and the business.
+## When to Use This Skill
 
-## What's Included
+Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome vs output distinction. Use when defining OKRs, outcomes, results, KPIs, success.
 
-This skill is a single-file skill contained entirely in `SKILL.md`. It provides:
+## How to Use
 
-- Outcomes vs. Outputs comparison table
-- OKR framework structure and template
-- Good vs. Bad OKR examples
-- Outcome metrics table (lagging vs. leading indicators across four categories)
-- Results chain model (Activities to Outputs to Outcomes to Impact)
-- Outcome definition checklist
+**Direct invocation:**
 
-## Key Features
-
-- Clear distinction between outputs (features shipped, docs written) and outcomes (problems solved, users successful)
-- OKR template with Objective, Key Results, baseline/target/current tracking, and initiatives
-- Side-by-side good vs. bad OKR examples for calibration
-- Four-category metrics framework: Revenue, Adoption, Quality, Satisfaction
-- Leading vs. lagging indicator pairing for each category
-- Results chain visualization for tracing activities to impact
-- Five-point checklist for validating outcome definitions
-
-## Usage Examples
-
-**Define OKRs for a product team:**
 ```
-We're launching a new onboarding flow next quarter. Define OKRs that focus on outcomes, not outputs. Include 1 objective with 3 key results, baseline and target values, and 2-3 initiatives to drive the results.
+Use the outcome-orientation skill to ...
 ```
 
-**Convert outputs to outcomes:**
-```
-Our roadmap lists these items: "Build SSO integration", "Write 15 help articles", "Ship mobile app v2". Reframe each as an outcome-oriented goal with measurable key results.
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-**Create a metrics framework:**
-```
-Design a metrics framework for our developer platform. For each category (adoption, quality, satisfaction, revenue), identify one lagging indicator and one leading indicator. Explain how the leading indicator predicts the lagging one.
-```
+- `okrs`
+- `outcomes`
+- `metrics`
 
-**Validate existing goals:**
-```
-Review these team goals against the outcome definition checklist. Flag any that describe activities rather than end states, lack measurability, or are not time-bound. Suggest rewrites for each flagged goal.
-```
+## What's Inside
 
-**Build a results chain:**
-```
-Map out the results chain for our documentation improvement initiative. Start with the activities we'll perform, trace through the outputs they produce, the outcomes we expect, and the ultimate business impact.
-```
+- **Outcomes vs Outputs**
+- **OKR Framework**
+- **Objective: [Inspiring goal]**
+- **Outcome Metrics**
+- **Results Chain**
+- **Outcome Definition Checklist**
 
-## Quick Start
+## Version History
 
-1. **List your current goals** -- Write down what your team plans to accomplish this quarter.
-
-2. **Apply the "So what?" test** -- For each goal, ask "So what?" until you reach a statement about user or business value. That is your outcome.
-
-3. **Write an Objective** -- Craft an inspiring, qualitative goal statement that describes the desired end state.
-
-4. **Define 3 Key Results** -- For each objective, write 3 quantitative measures with baselines and targets. Use the template in SKILL.md.
-
-5. **Pair leading and lagging indicators** -- For each Key Result (lagging), identify one leading indicator you can track weekly.
-
-6. **Run the checklist** -- Verify each outcome describes an end state (not activity), is measurable and time-bound, is within your influence, is valuable, and is achievable but stretching.
+- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
 
 ## Related Skills
 
-- **persona-definition** -- Define who benefits from your outcomes
-- **persona-mapping** -- Identify stakeholders accountable for results
-- **navigation-design** -- Design navigation that drives measurable engagement outcomes
-- **mcp-server** -- Build tools whose value is measured by outcome metrics
-- **ontology-design** -- Structure your metrics taxonomy rigorously
+- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframi...
+- **[Critical Intuition](../critical-intuition/)** -- Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
+- **[Prioritization](../prioritization/)** -- Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
+- **[Risk Management](../risk-management/)** -- Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
+- **[Systems Thinking](../systems-thinking/)** -- Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex prob...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install outcome-orientation@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

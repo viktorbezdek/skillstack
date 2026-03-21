@@ -1,91 +1,64 @@
 # Critical Intuition
 
-> Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
+> **v1.0.15** | Strategic Thinking | 16 iterations
 
-## Overview
+Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
 
-The most consequential information is often what is not said, not shown, or not obvious. Decisions go wrong not because of what people analyze, but because of what they fail to notice -- the hidden assumptions, the conspicuous absences, the subtle pattern breaks that signal trouble. This skill provides a systematic methodology for reading between the lines, detecting anomalies, and forming sound judgments under uncertainty.
+## What Problem Does This Solve
 
-The Critical Intuition skill combines rigorous analytical methods with pattern-recognition techniques that mirror expert intuition. It operates across multiple reading levels -- surface (explicit facts), subtext (implied meaning and embedded assumptions), and meta (incentives, power dynamics, communication choices). The analysis process moves through signal detection, critical reasoning, probabilistic assessment, intuitive synthesis, early warning detection, and judgment formation. Every conclusion is calibrated for confidence and checked against cognitive biases.
+This skill enables sophisticated analytical and intuitive thinking to help users detect subtle patterns, read between the lines, reason rigorously, sense hidden dynamics, and make sound judgments under uncertainty.
 
-Within the SkillStack collection, this skill is the analytical counterpart to Creative Problem-Solving (which generates solutions to the problems this skill uncovers). It also supports Code Review (detecting subtle architectural issues) and API Design (identifying hidden design assumptions).
+## When to Use This Skill
 
-## What's Included
+Analyze and critique existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind spot exposure, red flag identification, early warning signals, and reading between the lines.
 
-### References
-- `pattern-recognition.md` -- Advanced techniques for multi-level reading, pattern detection, anomaly identification, and gap analysis
-- `critical-thinking.md` -- Argument structure analysis, formal and informal fallacy detection, evidence evaluation, and source credibility assessment
-- `sixth-sense.md` -- Micro-signal detection, energy shift sensing, timing analysis, emphasis patterns, topic avoidance recognition, and early warning indicators
-- `synthesis-frameworks.md` -- Gestalt perception, cross-domain connection, tacit knowledge integration, information triangulation, and confidence calibration
-- `extended-patterns.md` -- Advanced techniques for reading between lines, sixth sense development, critical questioning, bias mitigation, red/green flag catalogs, and output format templates
+## When NOT to Use This Skill
 
-## Key Features
+- generating new creative solutions, brainstorming, or strategic reframing -- use [creative-problem-solving](../creative-problem-solving/) instead
 
-- **Multi-level reading**: Analyze at surface, subtext, and meta levels to capture explicit, implied, and structural meaning
-- **Pattern and anomaly detection**: Identify significant patterns, recognize what does not fit, and detect conspicuous absences
-- **Critical reasoning**: Evaluate argument structure, detect logical fallacies, assess evidence quality, and identify hidden assumptions
-- **Probabilistic assessment**: Bayesian thinking, multiple hypothesis generation, confidence calibration, and discriminating evidence identification
-- **Intuitive synthesis**: Gestalt perception that combines disparate cues into coherent understanding, plus cross-domain analogical reasoning
-- **Early warning detection**: Leading indicators, trajectory sensing, inflection point detection, and red flag cluster recognition
-- **Bias mitigation**: Systematic checks for cognitive biases including confirmation bias, anchoring, availability heuristic, and motivated reasoning
-- **Calibrated judgment**: Every conclusion includes confidence level, uncertainty acknowledgment, and what evidence would change the assessment
+## How to Use
 
-## Usage Examples
+**Direct invocation:**
 
-**Analyze a business proposal for hidden risks:**
 ```
-Read between the lines of this partnership proposal. What am I
-missing? What are the real motivations and risks?
+Use the critical-intuition skill to ...
 ```
-Expected output: Multi-level analysis covering what is explicitly stated, what is implied by word choices and structure, what is conspicuously absent, an assessment of likely motivations based on incentive analysis, identified red flags with confidence levels, and specific questions to ask that would reveal hidden information.
 
-**Detect patterns in system failures:**
-```
-We've had three production incidents this month in different
-services. Analyze the incident reports for hidden patterns
-and early warning signs we might be missing.
-```
-Expected output: Pattern analysis across incidents looking for common root causes, identification of leading indicators that preceded each failure, assessment of whether the incidents are truly independent or share systemic causes, early warning signals to monitor going forward, and a probabilistic assessment of future incident likelihood.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-**Evaluate a technical decision critically:**
-```
-Our team decided to rewrite the monolith as microservices.
-Critically analyze this decision -- what assumptions are we
-making and what could go wrong?
-```
-Expected output: Identification of implicit assumptions (team capability, organizational structure, deployment maturity), fallacy detection in the decision rationale, analysis of what is driving the decision (technical necessity vs. resume-driven development), second-order consequences, scenarios where this decision fails, and specific conditions that should trigger a course correction.
+- `pattern-recognition`
+- `bayesian-reasoning`
+- `analysis`
 
-**Read between the lines of team dynamics:**
-```
-Several senior engineers have gone quiet in architecture
-discussions. What might this signal and what should I watch for?
-```
-Expected output: Multi-hypothesis analysis of what silence could indicate (disagreement, disengagement, organizational signaling), assessment of which hypothesis is most likely given the context, micro-signals to watch for, recommended actions to surface the real dynamic, and early warning signs that the situation is deteriorating.
+## What's Inside
 
-**Assess the credibility of a claim:**
-```
-A vendor claims their tool will reduce our deployment time by
-80%. Critically evaluate this claim.
-```
-Expected output: Evidence evaluation framework applied to the claim, base rate analysis (how common are 80% improvements?), identification of what evidence would be needed to support the claim, assessment of the vendor's incentives, specific questions to ask, and a calibrated probability estimate for the claim being accurate.
+- **When to Use This Skill**
+- **Core Approach**
+- **Analysis Process**
+- **Workflow**
+- **Validation Checks**
 
-## Quick Start
+## Version History
 
-1. **Identify what needs analysis** -- A document, decision, situation, or pattern
-2. **Read at multiple levels** -- Surface facts, implied meaning, and meta-level dynamics
-3. **Detect signals and anomalies** -- Note patterns, absences, and things that do not fit
-4. **Apply critical reasoning** -- Evaluate logic, check for fallacies, assess evidence
-5. **Generate multiple hypotheses** -- Avoid anchoring on the first explanation
-6. **Synthesize intuitively** -- Combine all signals into a coherent assessment
-7. **Calibrate and deliver** -- State confidence levels, acknowledge uncertainty, and provide actionable implications
+- `1.0.15` fix(thinking): disambiguate creative-problem-solving vs critical-intuition (6e73dfc)
+- `1.0.14` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.13` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.12` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.11` refactor: remove old file locations after plugin restructure (a26a802)
+- `1.0.10` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.9` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.8` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.7` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.6` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
 
 ## Related Skills
 
-- **[Creative Problem-Solving](../creative-problem-solving/)** -- Generate solutions to the problems and opportunities that critical analysis uncovers
-- **[Code Review](../code-review/)** -- Apply critical intuition to detect subtle code and architecture issues
-- **[API Design](../api-design/)** -- Identify hidden assumptions in API designs before they become breaking changes
-- **[Consistency Standards](../consistency-standards/)** -- Detect subtle consistency violations through pattern recognition
+- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframi...
+- **[Outcome Orientation](../outcome-orientation/)** -- Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
+- **[Prioritization](../prioritization/)** -- Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
+- **[Risk Management](../risk-management/)** -- Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
+- **[Systems Thinking](../systems-thinking/)** -- Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex prob...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install critical-intuition@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

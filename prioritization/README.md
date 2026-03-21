@@ -1,71 +1,63 @@
 # Prioritization
 
-> Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices to make better decisions about what to do first.
+> **v1.0.10** | Strategic Thinking | 11 iterations
 
-## Overview
+Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
 
-Prioritization is one of the hardest recurring challenges in product development, project management, and strategic planning. Teams routinely struggle with competing demands, limited resources, and stakeholder pressure that lead to ad-hoc decision-making. This skill provides battle-tested frameworks that replace gut feelings with structured, defensible prioritization.
+## What Problem Does This Solve
 
-This skill is designed for product managers, engineering leads, project managers, and anyone who needs to rank work items, features, or initiatives against each other. Whether you are grooming a backlog, planning a roadmap, or deciding what to tackle next in a sprint, this skill gives you the right mental model for the situation.
+Make better decisions about what to do first.
 
-As part of the SkillStack collection, Prioritization pairs naturally with Risk Management (for risk-weighted prioritization), Systems Thinking (for understanding downstream effects of priority decisions), and other strategic planning skills.
+## When to Use This Skill
 
-## What's Included
+Apply prioritization frameworks for decision-making including RICE, MoSCoW, ICE scoring, and effort-impact matrices. Use when doing prioritization, RICE scoring, MoSCoW categorization, ICE analysis, backlog ranking, or effort-impact analysis.
 
-This skill is self-contained in a single file:
+## How to Use
 
-### Core
-- **SKILL.md** -- Complete skill definition covering RICE scoring, MoSCoW method, ICE scoring, effort-impact matrix, prioritization templates, and anti-patterns to avoid.
+**Direct invocation:**
 
-## Key Features
-
-- **RICE Scoring**: Quantitative framework using Reach, Impact, Confidence, and Effort to calculate priority scores
-- **MoSCoW Method**: Categorical prioritization into Must, Should, Could, and Won't buckets with the 60% effort rule
-- **ICE Scoring**: Lightweight scoring model based on Impact, Confidence, and Ease (scale 1-10)
-- **Effort-Impact Matrix**: Visual 2x2 quadrant for quick classification into Quick Wins, Big Bets, Fill Ins, and Money Pits
-- **Ready-to-use templates**: Markdown templates for documenting prioritization decisions with rationale
-- **Anti-pattern detection**: Warns against HiPPO, recency bias, squeaky wheel, and sunk cost fallacies
-
-## Usage Examples
-
-Rank a product backlog using RICE scoring:
 ```
-Prioritize these 5 features using RICE scoring: user onboarding flow, dark mode, API rate limiting, CSV export, and SSO integration. Our product has 10,000 MAU and we're focused on activation rate.
+Use the prioritization skill to ...
 ```
 
-Apply MoSCoW to a release scope:
-```
-We have 12 items for the Q2 release and can only fit about 60% of the effort. Use MoSCoW to categorize them: [list of items with descriptions]
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-Quick-sort tasks using the effort-impact matrix:
-```
-I have these 8 tasks on my plate this week. Help me plot them on an effort-impact matrix and figure out what to tackle first.
-```
+- `rice`
+- `moscow`
+- `ice`
+- `prioritization`
 
-Compare two competing initiatives:
-```
-We're debating between building a mobile app vs. revamping our dashboard. Run both through RICE and ICE frameworks to help us decide.
-```
+## What's Inside
 
-Challenge a prioritization decision:
-```
-My PM says we should build feature X next because the CEO asked for it. Help me evaluate whether that's the right call or if we're falling into prioritization anti-patterns.
-```
+- **RICE Scoring**
+- **MoSCoW Method**
+- **ICE Scoring**
+- **Effort-Impact Matrix**
+- **Prioritization Template**
+- **Item: [Name]**
+- **Anti-Patterns**
 
-## Quick Start
+## Version History
 
-1. Describe the items you need to prioritize and the goal you are optimizing for.
-2. The skill will recommend the most appropriate framework based on your context (RICE for quantitative comparison, MoSCoW for scope negotiation, effort-impact for quick triage).
-3. Walk through the scoring for each item with clear rationale.
-4. Get a ranked list with documented reasoning you can share with stakeholders.
+- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
 
 ## Related Skills
 
-- **Risk Management** -- Factor risk into your prioritization decisions
-- **Systems Thinking** -- Understand second-order effects of priority choices
-- **Creative Problem-Solving** -- Generate alternatives when all options seem equally important
+- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframi...
+- **[Critical Intuition](../critical-intuition/)** -- Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
+- **[Outcome Orientation](../outcome-orientation/)** -- Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
+- **[Risk Management](../risk-management/)** -- Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
+- **[Systems Thinking](../systems-thinking/)** -- Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex prob...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install prioritization@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

@@ -1,74 +1,70 @@
 # Risk Management
 
-> Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices to identify, assess, and mitigate risks systematically.
+> **v1.0.10** | Strategic Thinking | 11 iterations
 
-## Overview
+Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
 
-Every project, product, and business decision carries risk. The difference between teams that succeed and those that get blindsided is not luck -- it is systematic risk identification and mitigation. This skill provides structured frameworks for assessing risks before they become problems, creating actionable mitigation plans, and maintaining ongoing visibility through risk registers and monitoring practices.
+## What Problem Does This Solve
 
-This skill is designed for project managers, engineering leads, product owners, and anyone responsible for delivering outcomes under uncertainty. Whether you are kicking off a new initiative, evaluating a technical architecture decision, or preparing for a launch, this skill gives you the tools to think rigorously about what could go wrong and what to do about it.
+Identify, assess, and mitigate risks systematically.
 
-As part of the SkillStack collection, Risk Management is a core strategic skill that enhances decision-making across domains. It pairs naturally with Prioritization (for risk-weighted priority ranking), Systems Thinking (for understanding cascading risks in complex systems), and any development skill where deployment risk needs assessment.
+## When to Use This Skill
 
-## What's Included
+Apply risk assessment frameworks, mitigation strategies, and monitoring practices systematically. Use when performing risk assessment, mitigation planning, building.
 
-This skill is self-contained in a single file:
+## How to Use
 
-### Core
-- **SKILL.md** -- Complete skill definition covering the risk assessment matrix, risk categories, risk register templates, scoring methodology, mitigation strategies, response templates, monitoring cadences, and the pre-mortem technique.
+**Direct invocation:**
 
-## Key Features
-
-- **Risk Assessment Matrix**: 3x3 likelihood-impact matrix for quick classification into Low, Medium, High, and Critical risk levels
-- **Five risk categories**: Technical, Schedule, Resource, External, and Organizational -- ensuring comprehensive coverage
-- **Risk Register template**: Ready-to-use markdown table with ID, description, category, likelihood, impact, score, mitigation, owner, and status columns
-- **Quantitative scoring**: Likelihood (1-3) x Impact (1-3) scoring system for objective risk ranking
-- **Four mitigation strategies**: Avoid, Transfer, Mitigate, and Accept -- with clear guidance on when to use each
-- **Risk Response template**: Structured format for documenting triggers, probability, impact, response plans, owners, and review dates
-- **Monitoring cadence**: Daily, weekly, monthly, and quarterly review schedule for ongoing risk management
-- **Pre-mortem technique**: Prospective hindsight method for proactive risk identification before a project begins
-
-## Usage Examples
-
-Create a risk register for a new project:
 ```
-We're starting a 6-month platform migration from monolith to microservices with a team of 8 engineers. Create a comprehensive risk register covering all five risk categories.
+Use the risk-management skill to ...
 ```
 
-Assess risk for a technical decision:
-```
-We're deciding between building a custom auth system vs. using Auth0. Help me do a risk assessment for both options covering technical, schedule, and resource risks.
-```
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-Run a pre-mortem on a launch:
-```
-We're launching our new product to 50,000 users next month. Run a pre-mortem exercise: imagine the launch failed badly. What went wrong? Create mitigation plans for each identified risk.
-```
+- `risk`
+- `mitigation`
+- `assessment`
 
-Evaluate and update existing risks:
-```
-Here's our current risk register [paste]. Reassess the scores based on these developments: we lost a senior engineer, the API vendor announced deprecation, and our beta testing showed 3x expected error rates.
-```
+## What's Inside
 
-Design a monitoring plan:
-```
-We have 12 active risks in our register. Design a monitoring plan with appropriate cadence, trigger conditions, and escalation criteria for each risk level.
-```
+- **Risk Assessment Matrix**
+- **Risk Categories**
+- **Risk Register Template**
+- **Risk Register**
+- **Mitigation Strategies**
+- **Risk Response Template**
+- **Risk: [Name]**
+- **Monitoring Practices**
 
-## Quick Start
+## Key Capabilities
 
-1. Describe the project, decision, or initiative you want to assess for risk.
-2. The skill will identify risks across all five categories (Technical, Schedule, Resource, External, Organizational).
-3. Each risk gets scored on the likelihood-impact matrix with clear rationale.
-4. Mitigation strategies are assigned (Avoid, Transfer, Mitigate, Accept) with specific action plans.
-5. The output is a structured risk register you can maintain and review on a regular cadence.
+- **Strategy**
+- **Actions**
+- **Owner**
+- **Review date**
+
+## Version History
+
+- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
 
 ## Related Skills
 
-- **Prioritization** -- Use risk scores to inform priority decisions (risk-adjusted RICE scoring)
-- **Systems Thinking** -- Understand how risks cascade through interconnected systems
-- **Creative Problem-Solving** -- Generate innovative mitigation strategies for novel risks
+- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframi...
+- **[Critical Intuition](../critical-intuition/)** -- Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
+- **[Outcome Orientation](../outcome-orientation/)** -- Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
+- **[Prioritization](../prioritization/)** -- Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
+- **[Systems Thinking](../systems-thinking/)** -- Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex prob...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install risk-management@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
