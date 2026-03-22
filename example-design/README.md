@@ -1,92 +1,62 @@
 # Example Design
 
-> Design effective code examples, tutorials, and runnable samples with progressive complexity that teach concepts clearly.
+> **v1.0.10** | Documentation | 11 iterations
 
-## Overview
+Design effective code examples, tutorials, and runnable samples with progressive complexity.
 
-Code examples are the most-read part of any technical documentation, yet they are often an afterthought -- incomplete snippets with foo/bar variables that cannot be copy-pasted and do not actually run. This skill provides a systematic framework for creating examples that genuinely teach, progressing from minimal happy-path snippets to production-ready reference implementations.
+## What Problem Does This Solve
 
-The Example Design skill is aimed at developers writing documentation, API references, tutorials, and README files. It defines four example types (snippet, complete example, tutorial, reference app) with clear guidelines for length, structure, and quality. The progressive complexity framework ensures readers can start simple and build up to advanced usage without being overwhelmed.
+Create code examples that teach effectively through progressive complexity.
 
-As part of the SkillStack collection, this skill is a core dependency for the documentation-generator (API docs and tutorials), and it complements edge-case-coverage (adding error handling examples) and frontend-design (component usage examples). It provides the content quality standards that make other skills' output genuinely useful.
+## When to Use This Skill
 
-## What's Included
+Design effective code examples, tutorials, and runnable samples with progressive complexity. Use when creating code examples, tutorials, quickstart guides, sample code, runnable examples, or progressive disclosure content.
 
-This skill is a focused methodology skill contained in a single `SKILL.md` file. It does not include separate references, scripts, templates, or examples directories -- all content is self-contained in the skill definition, providing concise, immediately actionable frameworks for designing examples.
+## When NOT to Use This Skill
 
-## Key Features
+- generating full
 
-- Four example types with clear purpose and length guidelines (Snippet: 5-15 lines, Complete: 20-50 lines, Tutorial: multi-file, Reference app: full project)
-- Five-level progressive complexity framework (Minimal, Configuration, Error handling, Edge cases, Production-ready)
-- Structured example anatomy (Context, Setup, Core concept, Result) ensuring every example is self-contained
-- Quality checklist enforcing runnable, complete, minimal, commented, realistic, and tested examples
-- Tutorial structure template with time estimates, prerequisites, step-by-step instructions, and next steps
-- Anti-pattern identification (foo/bar variables, missing imports, outdated syntax, no expected output, untested code, unexplained walls of code)
-- Copy-paste readiness as a first-class requirement for all example types
+## How to Use
 
-## Usage Examples
+**Direct invocation:**
 
-**Create API documentation examples:**
 ```
-Write code examples for our REST API authentication endpoints.
+Use the example-design skill to ...
 ```
-Produces a progressive series: Level 1 shows basic token request, Level 2 adds configuration options, Level 3 adds error handling for expired/invalid tokens, Level 4 covers edge cases like rate limiting, Level 5 shows a production-ready auth wrapper with retry logic.
 
-**Design a getting-started tutorial:**
-```
-Create a step-by-step tutorial for setting up our SDK.
-```
-Generates a structured tutorial with estimated time, prerequisites list, numbered steps with explanation-code-result blocks, and next steps linking to advanced topics.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-**Improve existing code examples:**
-```
-Review our README examples and suggest improvements.
-```
-Applies the quality checklist to identify missing imports, foo/bar variables, lack of expected output, and examples that cannot be copy-pasted directly. Suggests specific improvements for each.
+- `examples`
+- `tutorials`
+- `samples`
 
-**Create component usage examples:**
-```
-Write usage examples for our Button component showing all variants.
-```
-Creates snippet-level examples for each variant (primary, secondary, destructive, outline), then a complete example showing composition, and finally a tutorial for building a custom variant.
+## What's Inside
 
-**Write error handling examples:**
-```
-Show how to handle errors from our payment processing library.
-```
-Uses the progressive complexity framework to start with basic try/catch, then add specific error type handling, retry logic, timeout handling, and finally a production-ready error handling pattern with logging.
+- **Example Types**
+- **Progressive Complexity**
+- **Example Anatomy**
+- **Quality Checklist**
+- **Tutorial Structure**
+- **Tutorial: [Goal]**
+- **Anti-Patterns**
 
-## Quick Start
+## Version History
 
-1. **Determine your example type** based on what you are documenting:
-   - Single concept? Use a **snippet** (5-15 lines)
-   - Complete working code? Use a **complete example** (20-50 lines)
-   - Teaching a workflow? Use a **tutorial** (multi-file, step-by-step)
-   - Showing production patterns? Use a **reference app** (full project)
-
-2. **Structure every example** with four parts:
-   - Context: what this does (a comment or docstring)
-   - Setup: prerequisites and imports
-   - Core: the main concept, clearly highlighted
-   - Result: expected output
-
-3. **Apply progressive complexity** -- start with the simplest possible version that works, then layer on configuration, error handling, edge cases, and production concerns in separate examples.
-
-4. **Run the quality checklist** before publishing:
-   - Can it be copy-pasted and run immediately?
-   - Are all imports included?
-   - Is there any unrelated code that could be removed?
-   - Are the key lines commented?
-   - Does it use realistic variable names and data?
-   - Has it been tested?
+- `1.0.10` fix(docs+quality): optimize descriptions for api-design, docs, edge-cases, examples, navigation, standards (6e315cf)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve helper skill descriptions and add trigger words (9c0d140)
 
 ## Related Skills
 
-- **documentation-generator** -- Uses example-design for API docs, tutorials, and getting-started guides
-- **edge-case-coverage** -- Provides the error scenarios that Level 3-4 examples should demonstrate
-- **frontend-design** -- Apply example design to component library documentation and storybook stories
-- **debugging** -- Create minimal reproduction examples for bug reports
+- **[Documentation Generator](../documentation-generator/)** -- Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates bot...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install example-design@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

@@ -1,89 +1,64 @@
 # User Journey Design
 
-> Design user journey maps with touchpoints, emotional states, pain points, and opportunities from awareness through mastery.
+> **v1.0.10** | Design & UX | 11 iterations
 
-## Overview
+Design user journey maps with touchpoints, emotional states, pain points, and opportunities.
 
-Understanding how users move through a product experience is critical for identifying friction, discovering opportunities, and aligning teams around the customer perspective. This skill provides a structured methodology for mapping complete user journeys across every stage, from initial awareness through evaluation, onboarding, active usage, and eventual mastery.
+## What Problem Does This Solve
 
-The skill supports three journey types: current-state maps that document the as-is experience, future-state maps that design the to-be experience, and service blueprints that combine the user perspective with the organizational view. Each journey captures actions, touchpoints, thoughts, emotions, pain points, and improvement opportunities at every stage.
+Map complete user experiences from awareness through mastery.
 
-Within the SkillStack collection, this skill works closely with persona-definition (defining who the user is), ux-writing (crafting the interface text at each touchpoint), and navigation-design (structuring the paths users take through a product).
+## When to Use This Skill
 
-## What's Included
+Design user journey maps with touchpoints, emotional states, pain points, and opportunities. Use when mapping user journeys, customer journeys, experience maps, touchpoint analysis, or service blueprints.
 
-This is a focused skill with all guidance contained in a single SKILL.md file. It does not include separate reference, template, script, or example directories. The journey template, documentation journey patterns, and core element definitions are all embedded directly in the skill definition.
+## When NOT to Use This Skill
 
-## Key Features
+- creating personas
 
-- **Three journey types** covering current-state analysis, future-state design, and service blueprint mapping
-- **Seven core elements** tracked at each stage: goals, actions, touchpoints, thoughts, emotions, pain points, and opportunities
-- **Five-stage journey model** from Awareness through Evaluation, Onboarding, Usage, and Mastery
-- **Emotional mapping** with a 1-5 confidence/frustration scale to quantify user sentiment
-- **Documentation-specific journeys** for Getting Started, Troubleshooting, and API Integration flows
-- **Structured markdown template** for consistent, shareable journey documentation
+## How to Use
 
-## Usage Examples
-
-### Map the onboarding journey for a SaaS product
+**Direct invocation:**
 
 ```
-Create a user journey map for a new developer signing up for our API platform. Cover from landing page through first successful API call.
+Use the user-journey-design skill to ...
 ```
 
-Produces a multi-stage journey map with touchpoints (docs site, dashboard, API console), emotional tracking (excitement at sign-up, potential frustration at API key setup), pain points, and specific improvement opportunities.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-### Analyze the current-state troubleshooting experience
+- `user-journey`
+- `touchpoints`
+- `experience-mapping`
 
-```
-Map the current-state journey for a user encountering a 500 error in our web app. Include their emotional state and pain points at each step.
-```
+## What's Inside
 
-Documents the as-is experience from error encounter through search, documentation lookup, support contact, and resolution, highlighting where users get stuck and where emotions dip.
+- **Journey Types**
+- **Core Elements**
+- **Journey Template**
+- **Stage 1: [Name]**
+- **Documentation Journeys**
 
-### Design a future-state onboarding flow
+## Version History
 
-```
-Design a future-state journey for our mobile app onboarding. The current flow has a 40% drop-off at step 3 (profile setup). Propose improvements.
-```
-
-Creates a to-be journey that restructures the onboarding stages, moves profile setup to a later touchpoint, and includes progressive disclosure to reduce initial friction.
-
-### Create a service blueprint for a support workflow
-
-```
-Create a service blueprint for our customer support ticket flow, showing both the user-facing journey and the internal team actions at each stage.
-```
-
-Produces a dual-layer map combining the user journey (submit ticket, receive acknowledgment, get updates, resolution) with backstage actions (triage, assignment, investigation, response).
-
-### Map documentation journeys for an API product
-
-```
-Map the three key documentation journeys for our REST API: getting started, troubleshooting an integration error, and going to production.
-```
-
-Generates three focused journey maps following the built-in documentation patterns (Getting Started, Troubleshooting, API Integration), each with stage-specific touchpoints and emotions.
-
-## Quick Start
-
-1. **Define the persona** - Identify who is taking the journey. Use the persona-definition skill if you need a detailed persona.
-2. **Set the goal** - What is the user trying to accomplish? Be specific (e.g., "complete first purchase" not "use the product").
-3. **Choose the journey type** - Current state (document what exists), future state (design what should be), or service blueprint (include organizational view).
-4. **Map the stages** - Walk through the five stages (Awareness, Evaluation, Onboarding, Usage, Mastery) and fill in the seven elements for each relevant stage.
-5. **Rate emotions** - Assign a 1-5 score at each stage to create an emotional curve that visually highlights problem areas.
-6. **Identify the top pain points** - Look for stages where emotions dip below 3 and where multiple pain points cluster.
-7. **Prioritize opportunities** - Convert each pain point into a specific, actionable improvement opportunity.
+- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
 
 ## Related Skills
 
-- [persona-definition](../persona-definition/) - Define the users whose journeys you are mapping
-- [persona-mapping](../persona-mapping/) - Map personas to product features and touchpoints
-- [ux-writing](../ux-writing/) - Write the microcopy and interface text at each journey touchpoint
-- [navigation-design](../navigation-design/) - Design the navigation structure users follow through the product
-- [outcome-orientation](../outcome-orientation/) - Align journey improvements with measurable business outcomes
-- [content-modelling](../content-modelling/) - Model the content structure that supports each journey stage
+- **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
+- **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
+- **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
+- **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
+- **[Persona Mapping](../persona-mapping/)** -- Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install user-journey-design@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

@@ -1,88 +1,62 @@
 # UX Writing
 
-> Write clear, helpful, human interface text including microcopy, error messages, button labels, empty states, and conversational UI.
+> **v1.0.10** | Design & UX | 11 iterations
 
-## Overview
+Write effective microcopy, error messages, button labels, and interface text using UX writing principles.
 
-Every word in a user interface is a design decision. Poorly written error messages confuse users, vague button labels slow them down, and empty states without guidance lead to abandonment. This skill provides a systematic approach to writing interface text that is clear, concise, useful, and human, covering every UI pattern from buttons and form labels to error messages, confirmation dialogs, and empty states.
+## What Problem Does This Solve
 
-The skill defines tone-by-context rules so that success states feel celebratory, error states feel helpful rather than blaming, warnings are direct and unambiguous, and empty states are encouraging rather than barren. Every pattern follows a consistent formula that can be applied across any product.
+Write clear, helpful, human interface text.
 
-Within the SkillStack collection, this skill works naturally alongside user-journey-design (providing the right copy at each touchpoint), persona-definition (tailoring voice to the audience), and navigation-design (labeling navigation elements effectively).
+## When to Use This Skill
 
-## What's Included
+Write effective microcopy, error messages, button labels, and interface text using UX writing principles. Use when crafting microcopy, UX copy, interface text, error messages, button labels, empty states, or conversational UI text.
 
-This is a focused skill with all guidance contained in a single SKILL.md file. It does not include separate reference, template, script, or example directories. The core principles, tone-by-context rules, and UI pattern formulas are all embedded directly in the skill definition.
+## When NOT to Use This Skill
 
-## Key Features
+- generating
 
-- **Four core principles** for interface text: Clear (simple words, active voice), Concise (front-loaded key info), Useful (provides next steps), and Human (empathetic, conversational)
-- **Tone-by-context framework** with specific tonal guidance for success, error, warning, and empty states
-- **Button copy formula** using the [Verb] + [Object] pattern to replace generic labels like "Submit" or "Click here"
-- **Error message pattern** that replaces cryptic codes with human-readable descriptions and actionable next steps
-- **Confirmation dialog structure** with clear consequence statements and action-labeled buttons
-- **Form label guidance** including placeholder text and helper text conventions
-- **Empty state patterns** that encourage action rather than presenting a dead end
+## How to Use
 
-## Usage Examples
-
-### Write error messages for a form validation flow
+**Direct invocation:**
 
 ```
-Write UX-friendly error messages for a registration form with fields: email, password (min 8 chars, 1 uppercase, 1 number), and username (3-20 chars, alphanumeric only).
+Use the ux-writing skill to ...
 ```
 
-Produces specific, helpful error messages for each validation rule, such as "Password needs at least one uppercase letter" instead of "Invalid password format", with inline placement guidance.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-### Rewrite generic button labels across an app
+- `ux-writing`
+- `microcopy`
+- `error-messages`
 
-```
-Rewrite these button labels to be more specific: "Submit", "OK", "Click here", "Go", "Yes", "Proceed".
-```
+## What's Inside
 
-Transforms each label using the [Verb] + [Object] formula, producing context-appropriate alternatives like "Save changes", "Create account", "Download report" based on the action being performed.
+- **Core Principles**
+- **Tone by Context**
+- **UI Patterns**
 
-### Design empty states for a project management tool
+## Version History
 
-```
-Write empty state copy for these screens in a project management app: projects list, task board, team members, and activity feed.
-```
-
-Creates encouraging empty state messages with clear calls to action, such as "No projects yet. Create your first project to get started." with a prominent action button label.
-
-### Write a confirmation dialog for a destructive action
-
-```
-Write the confirmation dialog copy for permanently deleting a user account, including all associated data (projects, files, comments).
-```
-
-Produces a dialog with a clear title ("Delete your account?"), specific consequence statement ("This permanently removes all your projects, files, and comments. This cannot be undone."), and action-labeled buttons (["Delete my account", "Keep my account"]).
-
-### Create onboarding tooltip copy
-
-```
-Write tooltip microcopy for a 4-step onboarding tour of a dashboard: navigation sidebar, search bar, notifications bell, and user settings.
-```
-
-Produces concise, action-oriented tooltips that explain what each element does and invite exploration, following the clear-concise-useful-human principles.
-
-## Quick Start
-
-1. **Identify the context** - Determine what state the user is in (success, error, warning, empty, neutral) to set the right tone.
-2. **Apply the principles** - Write text that is clear (no jargon), concise (front-load the key info), useful (include a next step), and human (use "you" and conversational language).
-3. **Use the formulas** - For buttons, use [Verb] + [Object]. For errors, use [What happened] + [How to fix it]. For empty states, use [What goes here] + [How to start].
-4. **Read it aloud** - If the text sounds robotic or confusing when spoken, rewrite it.
-5. **Cut by half** - After your first draft, try to cut the word count in half while preserving meaning.
+- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
+- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
 
 ## Related Skills
 
-- [user-journey-design](../user-journey-design/) - Map the journey touchpoints where interface text appears
-- [persona-definition](../persona-definition/) - Define the audience to calibrate voice and vocabulary
-- [navigation-design](../navigation-design/) - Apply UX writing to navigation labels and wayfinding
-- [content-modelling](../content-modelling/) - Structure content models that support consistent copy
-- [frontend-design](../frontend-design/) - Frontend design patterns that incorporate UX writing best practices
-- [example-design](../example-design/) - Design clear examples and tutorials with effective instructional text
+- **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
+- **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
+- **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
+- **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
+- **[Persona Mapping](../persona-mapping/)** -- Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install ux-writing@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.

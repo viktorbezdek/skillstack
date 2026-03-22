@@ -1,93 +1,75 @@
 # Content Modelling
 
-> Design content models with types, fields, relationships, and governance rules for structured content systems.
+> **v1.0.11** | Design & UX | 12 iterations
 
-## Overview
+Design content models with types, fields, relationships, and governance rules for structured content systems.
 
-Content trapped in page-based layouts cannot be reused, repurposed, or delivered across channels. When content is modelled as structured types with defined fields and relationships, it becomes a strategic asset -- publishable to websites, apps, APIs, and emerging platforms from a single source. This skill provides the frameworks and patterns to design content models that scale.
+## What Problem Does This Solve
 
-The Content Modelling skill covers the full lifecycle of structured content architecture: defining content types with appropriate field types (short text, rich text, references, enums), establishing relationships between types (reference, embedded, hierarchical), applying the COPE principle (Create Once, Publish Everywhere), and following atomic content design to eliminate duplication. It includes templates for documenting content types with their fields, constraints, validation rules, and lifecycle states.
+Design structured content models for reusable, multi-channel content.
 
-Within the SkillStack collection, this skill connects directly to API Design (content models drive API schemas), Consistency Standards (uniform naming for types and fields), and Creative Problem-Solving (innovative approaches to content architecture challenges).
+## When to Use This Skill
 
-## What's Included
+Design CMS content models with content types, fields, editorial workflows, governance rules, structured content architecture, and COPE (Create Once, Publish Everywhere) patterns.
 
-### References
-- `api_reference.md` -- Reference documentation template for content modelling APIs and workflows
+## When NOT to Use This Skill
 
-### Scripts
-- `example.py` -- Example helper script placeholder for content modelling automation
+- formal ontologies, taxonomies, or semantic modeling -- use [ontology-design](../ontology-design/) instead
 
-### Assets
-- `example_asset.txt` -- Asset file placeholder for templates, images, and data files
+## How to Use
 
-Note: This skill's primary value is in the comprehensive content modelling framework defined in `SKILL.md`, which includes type definitions, field type catalogs, relationship patterns, naming conventions, and design principles.
+**Direct invocation:**
 
-## Key Features
-
-- **Content type design**: Templates for defining types with purpose, cardinality, lifecycle, fields, and relationships
-- **Field type catalog**: Nine core field types (short text, long text, rich text, number, boolean, date, media, reference, enum) with use cases
-- **Relationship patterns**: Reference (linked), embedded (nested), and hierarchical (parent-child) relationship types
-- **COPE principle**: Create Once, Publish Everywhere -- separate content from presentation for multi-channel delivery
-- **Atomic content design**: Break content into smallest reusable units, compose complex structures from atoms
-- **Naming conventions**: PascalCase for types, camelCase for fields, kebab-case for slugs
-- **Validation rules**: Field constraints, uniqueness requirements, and conditional validation based on lifecycle state
-- **Anti-pattern detection**: Identifies page-based models, HTML in fields, monolithic types, and redundant fields
-
-## Usage Examples
-
-**Design a content model for a blog:**
 ```
-Design a structured content model for a blog with articles,
-authors, categories, and tags. Include all field definitions,
-relationships, and validation rules.
+Use the content-modelling skill to ...
 ```
-Expected output: Content type definitions for Article, Author, Category, and Tag with field specifications (type, required, constraints), relationship mappings (Article references Author, Category; tags as many-to-many), and validation rules (slug uniqueness, required publishedAt when status is published).
 
-**Model an e-commerce product catalog:**
-```
-Create a content model for a product catalog with products,
-variants, categories, and reviews. Support multi-channel publishing.
-```
-Expected output: Structured type definitions following COPE principles, with Product as the core type containing embedded Variant types, reference relationships to Category and Brand, and a separate Review type with back-references. Fields are semantic (not layout-based) to support web, mobile, and API delivery.
+**Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-**Migrate from page-based to structured content:**
-```
-Our CMS currently has monolithic page types with HTML in fields.
-Help us redesign this as a structured content model.
-```
-Expected output: Analysis of the existing page-based model, identification of embedded content patterns that should be extracted into separate types, a proposed type hierarchy following atomic content principles, and a migration strategy.
+- `content`
+- `cms`
+- `schema`
+- `modelling`
 
-**Define content governance rules:**
-```
-Define governance rules for our content model including lifecycle
-states, ownership, validation, and archival policies.
-```
-Expected output: Lifecycle state definitions (draft, review, published, archived), ownership and permission rules per content type, field-level validation constraints, and automated archival policies with criteria.
+## What's Inside
 
-**Create a multi-channel content architecture:**
-```
-Design a content architecture that can serve our website, mobile
-app, and third-party API consumers from a single content source.
-```
-Expected output: Channel-agnostic content types using semantic fields (no layout fields like "sidebar_content"), delivery-layer transformation rules for each channel, and a reference architecture showing how content flows from CMS to each consumer.
+- **Core Concepts**
+- **Field Types**
+- **Relationship Types**
+- **Content Model Template**
+- **Content Type: [Name]**
+- **Naming Conventions**
+- **Design Principles**
+- **Anti-Patterns**
 
-## Quick Start
+## Key Capabilities
 
-1. **Identify your content** -- List all distinct types of content your system manages
-2. **Define content types** -- Use the content model template in SKILL.md to document each type
-3. **Choose field types** -- Map each piece of data to the appropriate field type from the catalog
-4. **Establish relationships** -- Determine whether connections should be reference, embedded, or hierarchical
-5. **Apply COPE** -- Ensure all fields are semantic (what it is) not presentational (where it goes)
-6. **Add validation rules** -- Define constraints, required fields, and conditional rules
-7. **Review for anti-patterns** -- Check for page-based models, HTML in fields, and duplication
+- **Page-based models**
+- **HTML in fields**
+- **Monolithic types**
+- **Redundant fields**
+
+## Version History
+
+- `1.0.11` fix(structured-data): disambiguate ontology-design vs content-modelling (beb7c2e)
+- `1.0.10` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
+- `1.0.9` fix: change author field from string to object in all plugin.json files (bcfe7a9)
+- `1.0.8` fix: rename all claude-skills references to skillstack (19ec8c4)
+- `1.0.7` refactor: remove old file locations after plugin restructure (a26a802)
+- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
+- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
+- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
+- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
+- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
 
 ## Related Skills
 
-- **[API Design](../api-design/)** -- Content models define the schemas your APIs will expose
-- **[Consistency Standards](../consistency-standards/)** -- Apply uniform naming to content types and fields
-- **[Creative Problem-Solving](../creative-problem-solving/)** -- Find innovative solutions to content architecture challenges
+- **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
+- **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
+- **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
+- **[Persona Mapping](../persona-mapping/)** -- Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
+- **[User Journey Design](../user-journey-design/)** -- Design user journey maps with touchpoints, emotional states, pain points, and opportunities.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — `/plugin install content-modelling@skillstack` — 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
