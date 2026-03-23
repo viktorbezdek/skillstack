@@ -1,260 +1,206 @@
-<div align="center">
-<img src="assets/hero.svg" alt="SkillStack" width="100%" />
-</div>
-
 # SkillStack
 
-46 individually installable expert plugins for AI coding assistants. First-class support for Claude Code with marketplace install. Works with Cursor, Windsurf, Copilot, Cline, aider, and any AI tool that reads project files.
+**Battle-tested skills for Claude Code.**
 
-```
-/plugin marketplace add viktorbezdek/skillstack
-/plugin install python-development@skillstack
-```
+**46** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
-<div align="center">
+**[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-**[Install](#installation)** &middot; **[Browse Plugins](#plugin-catalog)** &middot; **[Examples](#usage-examples)** &middot; **[Other AI Tools](#using-with-other-ai-tools)** &middot; **[Contributing](#contributing)**
-
-</div>
+> **46** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
-## Installation
-
-### Add the marketplace
-
-```
-/plugin marketplace add viktorbezdek/skillstack
-```
-
-### Install plugins
-
-```
-/plugin install api-design@skillstack
-/plugin install debugging@skillstack
-/plugin install react-development@skillstack
-```
-
-Plugins activate automatically — mention "REST API" and the `api-design` plugin loads. Say "pytest fixtures" and `testing-framework` kicks in. No special syntax.
-
-### Install from CLI
+## Quick Start
 
 ```bash
-claude plugin marketplace add viktorbezdek/skillstack
-claude plugin install python-development@skillstack
+# Install the full SkillStack collection
+claude plugin add viktorbezdek/skillstack
+
+# Or install individual plugins
+claude plugin add viktorbezdek/skillstack --plugin api-design
 ```
 
 ---
 
-## Using with Other AI Tools
+## Collections
 
-Every plugin is standard markdown with scripts and templates. The knowledge works with any AI coding assistant that reads project context.
+<details>
+<summary><strong>SkillStack</strong> — 46 plugins</summary>
 
-### Cursor
+> The complete SkillStack library — 46 expert skills for Claude Code covering the full software development lifecycle.
 
-Copy a plugin's skill into your project or reference it in `.cursorrules`:
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+</details>
 
-```bash
-cp skillstack/python-development/skills/python-development/SKILL.md .cursorrules
-```
+<details>
+<summary><strong>Development Core</strong> — 10 plugins</summary>
 
-### Windsurf / Codeium
+> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.
 
-Add plugin directories to your project workspace. Windsurf indexes markdown files automatically.
+Plugins: `api-design`, `debugging`, `frontend-design`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+</details>
 
-### GitHub Copilot
+<details>
+<summary><strong>DevOps & Infrastructure</strong> — 4 plugins</summary>
 
-Copy skill content into `.github/copilot-instructions.md`:
+> CI/CD pipelines, Docker containerization, Git workflow management, and workflow automation.
 
-```bash
-cat skillstack/api-design/skills/api-design/SKILL.md >> .github/copilot-instructions.md
-```
+Plugins: `cicd-pipelines`, `docker-containerization`, `git-workflow`, `workflow-automation`
+</details>
 
-### Cline / Continue.dev / aider
+<details>
+<summary><strong>Quality & Testing</strong> — 5 plugins</summary>
 
-Add plugin directories to your project. These tools read project files for context and will pick up the patterns, templates, and examples.
+> Code review, test-driven development, testing frameworks, edge case coverage, and consistency standards.
 
-### What's universal vs Claude-specific
+Plugins: `code-review`, `consistency-standards`, `edge-case-coverage`, `test-driven-development`, `testing-framework`
+</details>
 
-| Feature | Works everywhere | Claude Code only |
-|---------|-----------------|-----------------|
-| 785+ markdown guides and references | Yes | Yes |
-| 500+ templates and scripts | Yes | Yes |
-| Code examples and patterns | Yes | Yes |
-| Automatic trigger-based activation | — | Yes |
-| One-command plugin install | — | Yes |
+<details>
+<summary><strong>Context Engineering</strong> — 5 plugins</summary>
 
----
+> Context fundamentals, degradation patterns, compression, optimization, and filesystem-based context management.
 
-## Usage Examples
+Plugins: `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `filesystem-context`
+</details>
 
-```
-"Design a REST API for a multi-tenant SaaS billing system"
-→ api-design plugin: REST patterns, auth strategies, pagination
+<details>
+<summary><strong>Agent Architecture</strong> — 7 plugins</summary>
 
-"My Next.js app hydration fails only in production"
-→ debugging plugin: systematic root cause analysis
+> Multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, and project development.
 
-"Review this PR for security issues"
-→ code-review plugin: multi-agent analysis (security + performance + style)
+Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `hosted-agents`, `memory-systems`, `multi-agent-patterns`, `tool-design`
+</details>
 
-"Create a production Docker setup for my FastAPI app"
-→ docker-containerization plugin: optimized multi-stage Dockerfiles
+<details>
+<summary><strong>Strategic Thinking</strong> — 6 plugins</summary>
 
-"Write pytest tests for this auth service with edge cases"
-→ test-driven-development plugin: Red-Green-Refactor test suites
-```
+> Creative problem-solving, critical intuition, systems thinking, prioritization, risk management, and outcome orientation.
+
+Plugins: `creative-problem-solving`, `critical-intuition`, `outcome-orientation`, `prioritization`, `risk-management`, `systems-thinking`
+</details>
+
+<details>
+<summary><strong>Design & UX</strong> — 7 plugins</summary>
+
+> Content modelling, navigation design, ontology design, persona definition/mapping, user journey design, and UX writing.
+
+Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-definition`, `persona-mapping`, `user-journey-design`, `ux-writing`
+</details>
 
 ---
 
 ## Plugin Catalog
 
-> Click any plugin name for detailed documentation, file listings, and usage examples.
+### 💻 Development (10)
 
-### Development
-
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[python-development](python-development/)** | `/plugin install python-development@skillstack` | Modern Python with uv, ruff, mypy, pytest, FastAPI, async patterns |
-| **[typescript-development](typescript-development/)** | `/plugin install typescript-development@skillstack` | Zod/TypeBox validation, Clean Architecture, branded types, strict tsconfig |
-| **[react-development](react-development/)** | `/plugin install react-development@skillstack` | React 19, hooks optimization, Bulletproof React, accessibility |
-| **[nextjs-development](nextjs-development/)** | `/plugin install nextjs-development@skillstack` | Next.js 16 App Router, Server Components, caching strategies |
-| **[frontend-design](frontend-design/)** | `/plugin install frontend-design@skillstack` | Tailwind/shadcn/Radix, WCAG 2.1 AA, design tokens |
-| **[prompt-engineering](prompt-engineering/)** | `/plugin install prompt-engineering@skillstack` | 4-D optimization framework, A/B testing, eval rubrics |
-| **[skill-creator](skill-creator/)** | `/plugin install skill-creator@skillstack` | Create your own skills with progressive disclosure and validation |
+| [API Design](api-design/README.md) | `1.2.23` | Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation. |
+| [Debugging](debugging/README.md) | `1.1.26` | Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. |
+| [Frontend Design](frontend-design/README.md) | `1.1.23` | Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design. |
+| [MCP Server](mcp-server/README.md) | `1.2.20` | Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development. |
+| [Next.js Development](nextjs-development/README.md) | `2.0.23` | Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture. |
+| [Prompt Engineering](prompt-engineering/README.md) | `1.1.15` | Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform. |
+| [Python Development](python-development/README.md) | `1.1.24` | Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows. |
+| [React Development](react-development/README.md) | `1.1.20` | Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture. |
+| [Skill Creator](skill-creator/README.md) | `1.1.19` | Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows. |
+| [Typescript Development](typescript-development/README.md) | `1.1.20` | Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies. |
 
-### DevOps & Infrastructure
+### ⚙️ Devops (4)
 
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[cicd-pipelines](cicd-pipelines/)** | `/plugin install cicd-pipelines@skillstack` | GitHub Actions, GitLab CI, Terraform, DevSecOps, semantic versioning |
-| **[docker-containerization](docker-containerization/)** | `/plugin install docker-containerization@skillstack` | Multi-stage builds, Docker Compose, worktree isolation |
-| **[git-workflow](git-workflow/)** | `/plugin install git-workflow@skillstack` | Conventional commits, changelog generation, worktree management |
+| [CI/CD Pipelines](cicd-pipelines/README.md) | `1.1.23` | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management. |
+| [Docker Containerization](docker-containerization/README.md) | `1.1.22` | Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns. |
+| [Git Workflow](git-workflow/README.md) | `1.1.20` | Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management. |
+| [Workflow Automation](workflow-automation/README.md) | `1.1.21` | Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management. |
 
-### Quality & Testing
+### ✅ Quality (5)
 
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[test-driven-development](test-driven-development/)** | `/plugin install test-driven-development@skillstack` | Red-Green-Refactor for pytest, Vitest, Playwright |
-| **[testing-framework](testing-framework/)** | `/plugin install testing-framework@skillstack` | Unit, E2E, component, accessibility, mutation, fuzz testing |
-| **[debugging](debugging/)** | `/plugin install debugging@skillstack` | Chrome DevTools automation, systematic root cause analysis |
-| **[code-review](code-review/)** | `/plugin install code-review@skillstack` | Multi-agent swarm review (security + performance + style) |
+| [Code Review](code-review/README.md) | `1.1.24` | Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans. |
+| [Consistency Standards](consistency-standards/README.md) | `1.0.10` | Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code. |
+| [Edge Case Coverage](edge-case-coverage/README.md) | `1.0.10` | Identify and document boundary conditions, error scenarios, corner cases, and validation requirements. |
+| [Test Driven Development](test-driven-development/README.md) | `1.1.17` | Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod. |
+| [Testing Framework](testing-framework/README.md) | `1.1.23` | Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration. |
 
-### API & Architecture
+### 🧠 Context Engineering (5)
 
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[api-design](api-design/)** | `/plugin install api-design@skillstack` | REST, GraphQL, gRPC, OpenAPI, auth, pagination, rate limiting |
-| **[mcp-server](mcp-server/)** | `/plugin install mcp-server@skillstack` | Build MCP servers with FastMCP (Python) or TypeScript |
+| [Context Compression](context-compression/README.md) | `1.0.4` | Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation. |
+| [Context Degradation](context-degradation/README.md) | `1.0.4` | Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model. |
+| [Context Fundamentals](context-fundamentals/README.md) | `1.0.5` | Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle. |
+| [Context Optimization](context-optimization/README.md) | `1.0.4` | Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models. |
+| [Filesystem Context](filesystem-context/README.md) | `1.0.4` | Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns. |
 
-### Documentation & Automation
+### 🤖 Agent Architecture (7)
 
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[documentation-generator](documentation-generator/)** | `/plugin install documentation-generator@skillstack` | 6-phase doc generation, 24 templates, drift detection |
-| **[workflow-automation](workflow-automation/)** | `/plugin install workflow-automation@skillstack` | CI/CD automation, FABER state machine, release management |
+| [Agent Evaluation](agent-evaluation/README.md) | `1.0.4` | Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring. |
+| [Agent Project Development](agent-project-development/README.md) | `1.0.4` | Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction. |
+| [BDI Mental States](bdi-mental-states/README.md) | `1.0.4` | Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns. |
+| [Hosted Agents](hosted-agents/README.md) | `1.0.4` | Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome). |
+| [Memory Systems](memory-systems/README.md) | `1.0.5` | Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies. |
+| [Multi Agent Patterns](multi-agent-patterns/README.md) | `1.0.4` | Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution. |
+| [Tool Design](tool-design/README.md) | `1.0.4` | Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern. |
 
-### Strategic Thinking
+### 💡 Thinking (6)
 
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[creative-problem-solving](creative-problem-solving/)** | `/plugin install creative-problem-solving@skillstack` | Game theory, first principles, lateral thinking, SCAMPER |
-| **[critical-intuition](critical-intuition/)** | `/plugin install critical-intuition@skillstack` | Pattern recognition, Bayesian reasoning, bias detection |
+| [Creative Problem Solving](creative-problem-solving/README.md) | `1.0.15` | Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing. |
+| [Critical Intuition](critical-intuition/README.md) | `1.0.15` | Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth. |
+| [Outcome Orientation](outcome-orientation/README.md) | `1.0.10` | Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction. |
+| [Prioritization](prioritization/README.md) | `1.0.10` | Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making. |
+| [Risk Management](risk-management/README.md) | `1.0.10` | Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices. |
+| [Systems Thinking](systems-thinking/README.md) | `1.0.10` | Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems. |
 
-### Helper Plugins
+### 🎨 Design (7)
 
-Focused frameworks for specific tasks. Install individually or as companions to the plugins above.
-
-| Plugin | Install | What it Does |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[consistency-standards](consistency-standards/)** | `/plugin install consistency-standards@skillstack` | Naming conventions, style guides |
-| **[content-modelling](content-modelling/)** | `/plugin install content-modelling@skillstack` | CMS schemas, content types |
-| **[edge-case-coverage](edge-case-coverage/)** | `/plugin install edge-case-coverage@skillstack` | Boundary conditions, error scenarios |
-| **[example-design](example-design/)** | `/plugin install example-design@skillstack` | Progressive complexity examples |
-| **[navigation-design](navigation-design/)** | `/plugin install navigation-design@skillstack` | Information architecture, wayfinding |
-| **[ontology-design](ontology-design/)** | `/plugin install ontology-design@skillstack` | Knowledge models, taxonomies |
-| **[outcome-orientation](outcome-orientation/)** | `/plugin install outcome-orientation@skillstack` | OKRs, success metrics |
-| **[persona-definition](persona-definition/)** | `/plugin install persona-definition@skillstack` | User personas, empathy maps |
-| **[persona-mapping](persona-mapping/)** | `/plugin install persona-mapping@skillstack` | Stakeholder analysis, RACI |
-| **[prioritization](prioritization/)** | `/plugin install prioritization@skillstack` | RICE, MoSCoW, ICE scoring |
-| **[risk-management](risk-management/)** | `/plugin install risk-management@skillstack` | Risk registers, mitigation strategies |
-| **[systems-thinking](systems-thinking/)** | `/plugin install systems-thinking@skillstack` | Feedback loops, leverage points |
-| **[user-journey-design](user-journey-design/)** | `/plugin install user-journey-design@skillstack` | Journey maps, touchpoints |
-| **[ux-writing](ux-writing/)** | `/plugin install ux-writing@skillstack` | Microcopy, error messages |
+| [Content Modelling](content-modelling/README.md) | `1.0.11` | Design content models with types, fields, relationships, and governance rules for structured content systems. |
+| [Navigation Design](navigation-design/README.md) | `1.0.10` | Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications. |
+| [Ontology Design](ontology-design/README.md) | `1.0.10` | Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation. |
+| [Persona Definition](persona-definition/README.md) | `1.0.10` | Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps. |
+| [Persona Mapping](persona-mapping/README.md) | `1.0.10` | Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis. |
+| [User Journey Design](user-journey-design/README.md) | `1.0.10` | Design user journey maps with touchpoints, emotional states, pain points, and opportunities. |
+| [UX Writing](ux-writing/README.md) | `1.0.10` | Write effective microcopy, error messages, button labels, and interface text using UX writing principles. |
 
-### Context Engineering
+### 📚 Documentation (2)
 
-Master the discipline of curating optimal context for LLM agents.
-
-| Plugin | Install | Description |
+| Plugin | Version | Description |
 |--------|---------|-------------|
-| **[context-fundamentals](context-fundamentals/)** | `/plugin install context-fundamentals@skillstack` | Context anatomy, attention mechanics, progressive disclosure |
-| **[context-degradation](context-degradation/)** | `/plugin install context-degradation@skillstack` | Lost-in-middle, poisoning, distraction, empirical thresholds |
-| **[context-compression](context-compression/)** | `/plugin install context-compression@skillstack` | Anchored summarization, tokens-per-task, probe evaluation |
-| **[context-optimization](context-optimization/)** | `/plugin install context-optimization@skillstack` | Compaction, observation masking, KV-cache, partitioning |
-| **[filesystem-context](filesystem-context/)** | `/plugin install filesystem-context@skillstack` | Scratch pads, plan persistence, dynamic skill loading |
-
-### Agent Architecture
-
-Design and operate production-grade multi-agent systems.
-
-| Plugin | Install | Description |
-|--------|---------|-------------|
-| **[multi-agent-patterns](multi-agent-patterns/)** | `/plugin install multi-agent-patterns@skillstack` | Supervisor, swarm, hierarchical patterns, context isolation |
-| **[memory-systems](memory-systems/)** | `/plugin install memory-systems@skillstack` | Mem0, Zep/Graphiti, Cognee, temporal knowledge graphs |
-| **[tool-design](tool-design/)** | `/plugin install tool-design@skillstack` | Agent tool design, consolidation principle, architectural reduction |
-| **[hosted-agents](hosted-agents/)** | `/plugin install hosted-agents@skillstack` | Sandbox infrastructure, self-spawning, multiplayer |
-| **[agent-evaluation](agent-evaluation/)** | `/plugin install agent-evaluation@skillstack` | LLM-as-judge, rubrics, bias mitigation, pairwise comparison |
-| **[agent-project-development](agent-project-development/)** | `/plugin install agent-project-development@skillstack` | Task-model fit, pipeline architecture, cost estimation |
-| **[bdi-mental-states](bdi-mental-states/)** | `/plugin install bdi-mental-states@skillstack` | BDI ontology, T2B2T paradigm, neuro-symbolic AI |
+| [Documentation Generator](documentation-generator/README.md) | `1.1.15` | Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references. |
+| [Example Design](example-design/README.md) | `1.0.10` | Design effective code examples, tutorials, and runnable samples with progressive complexity. |
 
 ---
 
-## Plugin Structure
+## How It Works
 
-Each plugin follows the Claude Code plugin convention:
+Each plugin is a self-contained skill that teaches Claude Code domain expertise:
 
 ```
-plugin-name/
-├── .claude-plugin/
-│   └── plugin.json            # Plugin manifest
-├── skills/
-│   └── plugin-name/
-│       ├── SKILL.md           # Core instructions (AI reads this)
-│       ├── references/        # Deep-dive guides
-│       ├── templates/         # Copy-paste boilerplates
-│       ├── scripts/           # Automation utilities
-│       └── examples/          # Runnable code
-├── commands/                  # Slash commands (if any)
-└── README.md                  # Human documentation
+You describe a task        Claude loads the right skill     Expert-level output
+  (natural language)   →   (automatic activation)       →   (guided by SKILL.md)
+```
+
+Skills activate automatically based on your request, or you can invoke them directly:
+
+```
+Use the api-design skill to design a REST API for user management
 ```
 
 ---
 
 ## Contributing
 
-1. Create a directory with `.claude-plugin/plugin.json` and `skills/<name>/SKILL.md`
-2. Add references, templates, scripts, and examples inside the skill directory
-3. Add a `README.md` at the plugin root
-4. Submit a pull request
-
-### Quality Checklist
-
-- [ ] `.claude-plugin/plugin.json` has name, version, description
-- [ ] `skills/<name>/SKILL.md` has valid YAML frontmatter with triggers
-- [ ] Examples are complete and runnable
-- [ ] `README.md` documents all included files
+See [CONTRIBUTING.md](CONTRIBUTING.md) or [open an issue](https://github.com/viktorbezdek/skillstack/issues).
 
 ---
 
-## License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
----
-
-<div align="center">
-
-**46 plugins. Install what you need. Works with any AI coding assistant.**
-
-</div>
+*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-03-23*
