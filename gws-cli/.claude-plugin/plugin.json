@@ -1,0 +1,23 @@
+{
+  "name": "gws-cli",
+  "version": "1.0.0",
+  "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/gws-cli",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "google-workspace",
+    "gws",
+    "drive",
+    "gmail",
+    "sheets",
+    "calendar",
+    "docs",
+    "cli"
+  ]
+}

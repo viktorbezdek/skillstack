@@ -296,6 +296,22 @@
       ]
     },
     {
+      "name": "gws-cli",
+      "source": "./gws-cli",
+      "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
+      "version": "1.0.0",
+      "category": "development",
+      "tags": [
+        "google-workspace",
+        "gws",
+        "drive",
+        "gmail",
+        "sheets",
+        "calendar",
+        "cli"
+      ]
+    },
+    {
       "name": "hosted-agents",
       "source": "./hosted-agents",
       "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
