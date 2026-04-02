@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-04-02
+
+### Added
+
+- **gws-cli** plugin: Google Workspace CLI (gws) skill covering all 18 Workspace APIs (Drive, Gmail, Sheets, Calendar, Docs, Slides, Tasks, People, Chat, Classroom, Forms, Keep, Meet, Events, Script, Admin Reports, Model Armor, Workflow). Includes complete command reference, helper shortcuts, schema introspection, auth guide, query syntax references, and daily workflow examples.
+- Marketplace now contains 47 plugins total (up from 46)
+
 ## [2.1.0] - 2026-03-14
 
 ### Added

@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**46** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**47** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **46** plugins · **8** categories · **8** collections · MIT License
+> **47** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
@@ -25,19 +25,19 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 46 plugins</summary>
+<summary><strong>SkillStack</strong> — 47 plugins</summary>
 
-> The complete SkillStack library — 46 expert skills for Claude Code covering the full software development lifecycle.
+> The complete SkillStack library — 47 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
-<summary><strong>Development Core</strong> — 10 plugins</summary>
+<summary><strong>Development Core</strong> — 11 plugins</summary>
 
-> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.
+> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, frontend design, and Google Workspace CLI.
 
-Plugins: `api-design`, `debugging`, `frontend-design`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
 </details>
 
 <details>
@@ -92,13 +92,14 @@ Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-d
 
 ## Plugin Catalog
 
-### 💻 Development (10)
+### 💻 Development (11)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [API Design](api-design/README.md) | `1.2.23` | Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation. |
 | [Debugging](debugging/README.md) | `1.1.26` | Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. |
 | [Frontend Design](frontend-design/README.md) | `1.1.23` | Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design. |
+| [GWS CLI](gws-cli/README.md) | `1.0.0` | Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows. |
 | [MCP Server](mcp-server/README.md) | `1.2.20` | Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development. |
 | [Next.js Development](nextjs-development/README.md) | `2.0.23` | Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture. |
 | [Prompt Engineering](prompt-engineering/README.md) | `1.1.15` | Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform. |
@@ -203,4 +204,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) or [open an issue](https://github.com/vik
 
 ---
 
-*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-03-23*
+*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-04-02*
