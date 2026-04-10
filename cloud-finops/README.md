@@ -1,6 +1,6 @@
 # Cloud FinOps
 
-> **v2.0.0** | DevOps & Infrastructure | 2 iterations
+> **v2.1.0** | DevOps & Infrastructure | 3 iterations
 
 Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS specification), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.
 
@@ -12,7 +12,31 @@ Organizations struggle to manage technology spend across cloud providers, AI wor
 
 ## When to Use This Skill
 
-Expert FinOps guidance covering cloud, AI, SaaS, and adjacent technology spend. Includes AI cost management, GenAI capacity planning, AI-powered FinOps automation, Anthropic billing, AWS (EC2, Bedrock, Savings Plans, CUR, commitment strategy), Azure (reservations, Savings Plans, AHB, OpenAI PTUs, portfolio liquidity), GCP (Vertex AI, Compute Engine, BigQuery), Kubernetes and container cost attribution (OpenCost, Kubecost), serverless optimization (Lambda, Functions, Cloud Run), data platforms (Kafka/MSK, Elasticsearch/OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS specification), tagging governance, SaaS management (SAM, licence optimisation, SMPs, shadow IT), AI coding tools (Cursor, Claude Code, Copilot, Windsurf, Codex), ITAM, Databricks, Snowflake, OCI, and GreenOps. Use for any query about technology cost, commitment portfolio management, rightsizing, cost allocation, container cost attribution, serverless optimization, multi-cloud strategy, or connecting spend to business value.
+Use this skill when you face any of these situations:
+
+**AI costs are growing or unpredictable**
+- "Our LLM feature costs doubled but usage is flat" → detects context-length pricing cliffs, agentic retry loops
+- "We need to justify AI investment to the board" → AI Investment Council model, stage-gate funding, ROI framework
+- "Dev team AI tool spend (Cursor, Copilot, Claude Code) is uncontrolled" → billing model comparison, BYOK attribution
+
+**Cloud bill needs attention**
+- "We're spending $500K/month on AWS and don't know where it goes" → 128 optimization patterns, CUR setup, cost allocation
+- "Should we buy Reserved Instances or Savings Plans?" → commitment decision trees, layering strategy, portfolio liquidity
+- "Azure Hybrid Benefit isn't enabled anywhere" → immediate free savings, no commitment required
+
+**Infrastructure costs are unclear**
+- "We can't attribute costs to teams on shared Kubernetes" → namespace/label attribution, OpenCost/Kubecost setup
+- "Lambda costs seem disproportionate" → hidden cost iceberg (API Gateway, NAT, logs often exceed compute)
+- "Kafka cross-AZ costs are 80% of our MSK bill" → replication optimization, tiered storage, compression
+
+**Governance and multi-cloud**
+- "We use AWS + Azure + GCP but can't compare" → FOCUS specification for unified billing, terminology normalization
+- "Tagging compliance is below 60%" → 5-tag minimum taxonomy, IaC enforcement, maturity progression
+- "We're starting FinOps from scratch" → 2026 framework, maturity assessment, phased approach
+
+**SaaS and licensing**
+- "We suspect significant SaaS overlap and shadow IT" → six sprawl patterns, multi-method discovery
+- "BYOL savings aren't being captured on cloud" → Azure Hybrid Benefit, AWS Licence Manager mechanics
 
 ## How to Use
 
@@ -50,6 +74,7 @@ Use the cloud-finops skill to ...
 
 ## Version History
 
+- `2.1.0` Added comprehensive use-case guide with 35+ real-world scenarios mapped to specific references, practical "when to use" examples for all 6 domain areas, multi-reference scenario combinations
 - `2.0.0` Major expansion: 6 new reference files (Kubernetes, serverless, data platforms, multi-cloud, FOCUS, AI automation), framework updated to 2026 (Scopes, Technology Categories, Executive Strategy Alignment capability), improved domain routing, coauthorship added
 - `1.0.0` Initial release by OptimNow
 
