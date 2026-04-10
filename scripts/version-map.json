@@ -587,6 +587,18 @@
       }
     ]
   },
+  "cloud-finops": {
+    "version": "1.0.0",
+    "commit_count": 1,
+    "history": [
+      {
+        "hash": "new",
+        "message": "feat(cloud-finops): integrate OptimNow cloud-finops-skills plugin",
+        "bump": "initial",
+        "version": "1.0.0"
+      }
+    ]
+  },
   "consistency-standards": {
     "version": "1.0.10",
     "commit_count": 11,

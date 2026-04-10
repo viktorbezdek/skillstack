@@ -31,9 +31,9 @@ CATEGORY_INFO = {
 
 # Known acronyms/words that should not be title-cased normally
 TITLE_OVERRIDES = {
-    "api": "API", "bdi": "BDI", "cicd": "CI/CD", "mcp": "MCP",
-    "nextjs": "Next.js", "tdd": "TDD", "ux": "UX", "ui": "UI",
-    "devops": "DevOps", "grpc": "gRPC", "graphql": "GraphQL",
+    "api": "API", "bdi": "BDI", "cicd": "CI/CD", "finops": "FinOps",
+    "mcp": "MCP", "nextjs": "Next.js", "tdd": "TDD", "ux": "UX",
+    "ui": "UI", "devops": "DevOps", "grpc": "gRPC", "graphql": "GraphQL",
     "okrs": "OKRs", "raci": "RACI",
 }
 

@@ -296,6 +296,24 @@
       ]
     },
     {
+      "name": "cloud-finops",
+      "source": "./cloud-finops",
+      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, and GreenOps. 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow.",
+      "version": "1.0.0",
+      "category": "devops",
+      "tags": [
+        "finops",
+        "cloud-cost",
+        "cost-optimization",
+        "aws",
+        "azure",
+        "gcp",
+        "ai-cost",
+        "tagging",
+        "greenops"
+      ]
+    },
+    {
       "name": "gws-cli",
       "source": "./gws-cli",
       "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",

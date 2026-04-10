@@ -20,6 +20,14 @@
       "last_synced_at": "2026-03-24T01:41:34Z",
       "integration_status": "active",
       "context": "46 battle-tested Claude Code skills covering development, DevOps, testing, API design, documentation, strategic thinking, context engineering, and agent architecture."
+    },
+    {
+      "id": "optimnow-cloud-finops-skills",
+      "url": "https://github.com/OptimNow/cloud-finops-skills",
+      "added_by": "viktorbezdek",
+      "added_date": "2026-04-10",
+      "integration_status": "active",
+      "context": "Expert Cloud FinOps skill by OptimNow covering AI cost management, cloud billing, commitment strategy, and governance across AWS, Azure, GCP. Licensed CC BY-SA 4.0."
     }
   ],
   "plugins": [
@@ -480,6 +488,32 @@
         "worktree"
       ],
       "documentation_path": "./git-workflow/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "cloud-finops",
+      "name": "Cloud FinOps",
+      "type": "skill",
+      "category": "devops",
+      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, and GreenOps. 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow.",
+      "repo_id": "optimnow-cloud-finops-skills",
+      "path_in_repo": "cloud-finops/skills/cloud-finops",
+      "version": "1.0.0",
+      "tags": [
+        "finops",
+        "cloud-cost",
+        "cost-optimization",
+        "aws",
+        "azure",
+        "gcp",
+        "ai-cost",
+        "tagging",
+        "greenops"
+      ],
+      "documentation_path": "./cloud-finops/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -1016,7 +1050,7 @@
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library \u2014 46 expert skills for Claude Code covering the full software development lifecycle.",
+      "description": "The complete SkillStack library \u2014 48 expert skills for Claude Code covering the full software development lifecycle.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [
@@ -1025,6 +1059,7 @@
         "api-design",
         "bdi-mental-states",
         "cicd-pipelines",
+        "cloud-finops",
         "code-review",
         "consistency-standards",
         "content-modelling",
@@ -1091,10 +1126,11 @@
     {
       "id": "skillstack-devops",
       "name": "DevOps & Infrastructure",
-      "description": "CI/CD pipelines, Docker containerization, Git workflow management, and workflow automation.",
+      "description": "CI/CD pipelines, Cloud FinOps, Docker containerization, Git workflow management, and workflow automation.",
       "audience": "technical",
       "plugin_ids": [
         "cicd-pipelines",
+        "cloud-finops",
         "docker-containerization",
         "git-workflow",
         "workflow-automation"

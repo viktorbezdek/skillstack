@@ -65,4 +65,4 @@ Use the context-degradation skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 46 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.

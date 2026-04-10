@@ -1,0 +1,33 @@
+{
+  "name": "cloud-finops",
+  "version": "1.0.0",
+  "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow, licensed CC BY-SA 4.0.",
+  "author": {
+    "name": "OptimNow (James Barney)",
+    "url": "https://github.com/OptimNow"
+  },
+  "license": "CC-BY-SA-4.0",
+  "repository": "https://github.com/OptimNow/cloud-finops-skills",
+  "upstream": "https://github.com/OptimNow/cloud-finops-skills",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "finops",
+    "cloud-cost",
+    "cost-optimization",
+    "aws",
+    "azure",
+    "gcp",
+    "ai-cost",
+    "bedrock",
+    "azure-openai",
+    "vertex-ai",
+    "anthropic",
+    "tagging",
+    "saas-management",
+    "itam",
+    "greenops",
+    "databricks",
+    "snowflake"
+  ]
+}

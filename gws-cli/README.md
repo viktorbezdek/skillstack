@@ -1,23 +1,20 @@
-# GWS CLI
+# Gws Cli
 
-> **v1.0.0** | Development | 1 iteration
+> **v1.0.0** | Development | 0 iterations
 
 Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.
 
 ## What Problem Does This Solve
 
-The `gws` CLI provides a single command-line interface for all Google Workspace APIs, dynamically generated from Google's Discovery Service. This skill teaches Claude Code how to use `gws` effectively -- constructing correct commands, choosing between raw API methods and ergonomic helpers, handling authentication, formatting output, and chaining commands for cross-service workflows. Without this skill, Claude must guess at parameter names, miss helper shortcuts, and cannot leverage pagination, schema introspection, or output formatting.
+Complete reference for the `gws` CLI -- a single dynamically-generated command-line interface for all Google Workspace APIs. Commands are built at runtime from Google's Discovery Service, so they stay current without CLI updates.
 
 ## When to Use This Skill
 
-Use when working with Google Workspace from the command line: listing Drive files, sending Gmail, reading Sheets data, creating Calendar events, managing Tasks, querying Chat spaces, pushing Apps Script code, or building cross-service automations. Use whenever the user mentions `gws`, Google Workspace CLI, or asks to interact with Google APIs via terminal.
+Google Workspace CLI (gws) for managing all 18 Workspace APIs from the terminal. Use when running gws commands, listing Drive files, sending Gmail, reading Sheets, creating Calendar events, managing Tasks, querying Chat, pushing Apps Script, building cross-service automations, or when user mentions gws or Google Workspace CLI.
 
 ## When NOT to Use This Skill
 
-- Building MCP servers for Google APIs (use mcp-server instead)
-- Designing REST APIs in general (use api-design instead)
-- Google Cloud Platform infrastructure (use cicd-pipelines instead)
-- Browser-based Google Workspace interactions (use the Workspace MCP tools directly)
+- building MCP servers -- use [mcp-server](../mcp-server/) instead
 
 ## How to Use
 
@@ -29,42 +26,41 @@ Use the gws-cli skill to ...
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
 
+- `google-workspace`
 - `gws`
-- `google workspace cli`
-- `gws drive`
-- `gws gmail`
-- `gws sheets`
-- `gws calendar`
+- `drive`
+- `gmail`
+- `sheets`
+- `calendar`
 
 ## What's Inside
 
-- **Complete Service Reference** -- All 18 services with resources and methods
-- **Helper Commands** -- Ergonomic `+` prefixed shortcuts for common tasks
-- **Schema Introspection** -- How to discover API parameters dynamically
-- **Authentication** -- Setup, login, scopes, and credential management
-- **Output Formatting** -- JSON, table, YAML, CSV with pagination
-- **Cross-Service Workflows** -- Standup reports, meeting prep, email-to-task
-- **Real-World Examples** -- Tested command patterns for every service
+- **Overview**
+- **Quick Reference**
+- **Authentication**
+- **Schema Introspection**
+- **Drive**
+- **Gmail**
+- **Sheets**
+- **Calendar**
 
 ## Key Capabilities
 
-- **18 Google Workspace APIs** from a single CLI
-- **Dynamic Discovery** -- commands auto-update when Google adds endpoints
-- **Helper Shortcuts** -- `+send`, `+triage`, `+agenda`, `+upload`, `+append`, `+read`
-- **Schema Introspection** -- `gws schema` for parameter discovery
-- **Output Formats** -- JSON, table, YAML, CSV with auto-pagination
-- **Cross-Service Workflows** -- standup, meeting prep, weekly digest
-
-## Version History
-
-- `1.0.0` feat: initial gws-cli skill with full service reference, helpers, auth, workflows
+- **18 services**
+- **Dynamic commands**
+- **Helper shortcuts**
+- **Schema introspection**
+- **Output formats**
+- **Cross-service workflows**
 
 ## Related Skills
 
-- **[API Design](../api-design/)** -- REST, GraphQL, gRPC API design patterns and best practices
-- **[Workflow Automation](../workflow-automation/)** -- General workflow orchestration and automation patterns
-- **[Documentation Generator](../documentation-generator/)** -- Generate docs for CLI tools and APIs
+- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
+- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
+- **[Frontend Design](../frontend-design/)** -- Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, acce...
+- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
+- **[Nextjs Development](../nextjs-development/)** -- Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Compon...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.

@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**47** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**48** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **47** plugins · **8** categories · **8** collections · MIT License
+> **48** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
@@ -27,25 +27,25 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 <details>
 <summary><strong>SkillStack</strong> — 47 plugins</summary>
 
-> The complete SkillStack library — 47 expert skills for Claude Code covering the full software development lifecycle.
+> The complete SkillStack library — 48 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
-<summary><strong>Development Core</strong> — 11 plugins</summary>
+<summary><strong>Development Core</strong> — 10 plugins</summary>
 
-> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, frontend design, and Google Workspace CLI.
+> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.
 
-Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+Plugins: `api-design`, `debugging`, `frontend-design`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
 </details>
 
 <details>
-<summary><strong>DevOps & Infrastructure</strong> — 4 plugins</summary>
+<summary><strong>DevOps & Infrastructure</strong> — 5 plugins</summary>
 
-> CI/CD pipelines, Docker containerization, Git workflow management, and workflow automation.
+> CI/CD pipelines, Cloud FinOps, Docker containerization, Git workflow management, and workflow automation.
 
-Plugins: `cicd-pipelines`, `docker-containerization`, `git-workflow`, `workflow-automation`
+Plugins: `cicd-pipelines`, `cloud-finops`, `docker-containerization`, `git-workflow`, `workflow-automation`
 </details>
 
 <details>
@@ -99,7 +99,7 @@ Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-d
 | [API Design](api-design/README.md) | `1.2.23` | Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation. |
 | [Debugging](debugging/README.md) | `1.1.26` | Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. |
 | [Frontend Design](frontend-design/README.md) | `1.1.23` | Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design. |
-| [GWS CLI](gws-cli/README.md) | `1.0.0` | Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows. |
+| [Gws Cli](gws-cli/README.md) | `1.0.0` | Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows. |
 | [MCP Server](mcp-server/README.md) | `1.2.20` | Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development. |
 | [Next.js Development](nextjs-development/README.md) | `2.0.23` | Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture. |
 | [Prompt Engineering](prompt-engineering/README.md) | `1.1.15` | Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform. |
@@ -108,11 +108,12 @@ Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-d
 | [Skill Creator](skill-creator/README.md) | `1.1.19` | Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows. |
 | [Typescript Development](typescript-development/README.md) | `1.1.20` | Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies. |
 
-### ⚙️ Devops (4)
+### ⚙️ Devops (5)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [CI/CD Pipelines](cicd-pipelines/README.md) | `1.1.23` | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management. |
+| [Cloud FinOps](cloud-finops/README.md) | `1.0.0` | Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, and GreenOps. 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow. |
 | [Docker Containerization](docker-containerization/README.md) | `1.1.22` | Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns. |
 | [Git Workflow](git-workflow/README.md) | `1.1.20` | Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management. |
 | [Workflow Automation](workflow-automation/README.md) | `1.1.21` | Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management. |
@@ -204,4 +205,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) or [open an issue](https://github.com/vik
 
 ---
 
-*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-04-02*
+*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-04-10*

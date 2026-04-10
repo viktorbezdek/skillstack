@@ -10,9 +10,9 @@ REPO = "viktorbezdek/skillstack"
 PAGES_URL = "https://viktorbezdek.github.io/skillstack/"
 
 TITLE_OVERRIDES = {
-    "api": "API", "bdi": "BDI", "cicd": "CI/CD", "mcp": "MCP",
-    "nextjs": "Next.js", "tdd": "TDD", "ux": "UX", "ui": "UI",
-    "devops": "DevOps", "grpc": "gRPC", "graphql": "GraphQL",
+    "api": "API", "bdi": "BDI", "cicd": "CI/CD", "finops": "FinOps",
+    "mcp": "MCP", "nextjs": "Next.js", "tdd": "TDD", "ux": "UX",
+    "ui": "UI", "devops": "DevOps", "grpc": "gRPC", "graphql": "GraphQL",
 }
 
 

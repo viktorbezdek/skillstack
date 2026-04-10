@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-04-10
+
+### Added
+
+- **cloud-finops** plugin: Expert Cloud FinOps guidance by OptimNow covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), Anthropic/Bedrock/Azure OpenAI/Vertex AI billing, commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, AI coding tool costs, and GreenOps. 20 domain-specific reference files with 200+ optimisation patterns grounded in enterprise delivery experience. Licensed CC BY-SA 4.0. Upstream: github.com/OptimNow/cloud-finops-skills.
+- Marketplace now contains 48 plugins total (up from 47)
+
 ## [2.2.0] - 2026-04-02
 
 ### Added
