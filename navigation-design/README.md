@@ -12,6 +12,12 @@ Create intuitive wayfinding systems for content and applications.
 
 Design information architecture, wayfinding systems, and navigation patterns for documentation and applications. Use when working with navigation, information.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/navigation-design
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -52,11 +58,11 @@ Use the navigation-design skill to ...
 ## Related Skills
 
 - **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
+- **[Elicitation](../elicitation/)** -- Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivat...
 - **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
 - **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
 - **[Persona Mapping](../persona-mapping/)** -- Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
-- **[User Journey Design](../user-journey-design/)** -- Design user journey maps with touchpoints, emotional states, pain points, and opportunities.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

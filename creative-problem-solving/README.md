@@ -16,6 +16,12 @@ Generate new ideas and breakthrough solutions through brainstorming, lateral thi
 
 - analyzing or critiquing existing ideas, bias detection, or pattern recognition in evidence -- use [critical-intuition](../critical-intuition/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/creative-problem-solving
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -72,4 +78,4 @@ Use the creative-problem-solving skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

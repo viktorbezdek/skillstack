@@ -12,6 +12,12 @@ Identify, assess, and mitigate risks systematically.
 
 Apply risk assessment frameworks, mitigation strategies, and monitoring practices systematically. Use when performing risk assessment, mitigation planning, building.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/risk-management
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -67,4 +73,4 @@ Use the risk-management skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

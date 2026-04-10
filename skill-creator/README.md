@@ -16,6 +16,12 @@ Create high-quality Claude Code skills using philosophy-first design, evidence-b
 
 - prompt engineering -- use [prompt-engineering](../prompt-engineering/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/skill-creator
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -74,4 +80,4 @@ Use the skill-creator skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

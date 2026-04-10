@@ -16,6 +16,12 @@ This skill should be used when the user asks to "build background agent", "creat
 
 - agent coordination patterns or multi-agent design -- use [multi-agent-patterns](../multi-agent-patterns/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/hosted-agents
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -66,4 +72,4 @@ Use the hosted-agents skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

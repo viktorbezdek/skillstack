@@ -16,6 +16,12 @@ Google Workspace CLI (gws) for managing all 18 Workspace APIs from the terminal.
 
 - building MCP servers -- use [mcp-server](../mcp-server/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/gws-cli
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -63,4 +69,4 @@ Use the gws-cli skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

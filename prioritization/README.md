@@ -12,6 +12,12 @@ Make better decisions about what to do first.
 
 Apply prioritization frameworks for decision-making including RICE, MoSCoW, ICE scoring, and effort-impact matrices. Use when doing prioritization, RICE scoring, MoSCoW categorization, ICE analysis, backlog ranking, or effort-impact analysis.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/prioritization
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -60,4 +66,4 @@ Use the prioritization skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

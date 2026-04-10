@@ -12,6 +12,12 @@ Comprehensive API design skill combining REST, GraphQL, gRPC, and Python library
 
 Design production-grade APIs across REST, GraphQL, gRPC, and Python library architectures. Use when working with API endpoints, REST resources, GraphQL schemas, gRPC services, OpenAPI/Swagger specs, FastAPI, Pydantic models, OAuth/JWT authentication, pagination.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/api-design
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -70,4 +76,4 @@ Use the api-design skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

@@ -16,6 +16,12 @@ Workflow orchestration and release automation — use when the user asks to auto
 
 - CI/CD pipeline configuration or YAML -- use [cicd-pipelines](../cicd-pipelines/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/workflow-automation
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -66,10 +72,10 @@ Use the workflow-automation skill to ...
 ## Related Skills
 
 - **[Cicd Pipelines](../cicd-pipelines/)** -- Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise ...
+- **[Cloud Finops](../cloud-finops/)** -- Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), comm...
 - **[Docker Containerization](../docker-containerization/)** -- Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration...
 - **[Git Workflow](../git-workflow/)** -- Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file gro...
-- **[Cloud Finops](../cloud-finops/)** -- Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), comm...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

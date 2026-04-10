@@ -16,6 +16,12 @@ This skill should be used when the user asks to "evaluate agent performance", "b
 
 - testing code or applications -- use [testing-framework](../testing-framework/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/agent-evaluation
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -70,4 +76,4 @@ Use the agent-evaluation skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

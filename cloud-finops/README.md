@@ -73,6 +73,12 @@ This skill gives Claude deep FinOps expertise across all of these cost surfaces,
 | "GPU workloads for ML on Kubernetes are expensive" | Kubernetes + AI costs + provider-specific |
 | "Optimize everything — where do we start?" | Framework (assess maturity first) → provider-specific + tagging |
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/cloud-finops
+```
+
 ## How to Use
 
 **Direct invocation:**

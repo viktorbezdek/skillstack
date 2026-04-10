@@ -14,6 +14,12 @@ iterative refinement to create prompts for any LLM platform.
 
 Optimize prompts for LLMs through systematic design, evaluation, and iterative refinement. Use when doing prompt engineering, prompt design, prompt optimization, system prompt creation, LLM optimization, or improving prompt templates.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/prompt-engineering
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -72,4 +78,4 @@ Use the prompt-engineering skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

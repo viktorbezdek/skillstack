@@ -16,6 +16,12 @@ This skill should be used when the user asks to "model agent mental states", "im
 
 - multi-agent coordination or agent handoffs -- use [multi-agent-patterns](../multi-agent-patterns/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/bdi-mental-states
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -70,4 +76,4 @@ Use the bdi-mental-states skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

@@ -16,6 +16,12 @@ EXTENDING effective context capacity — KV-cache optimization, observation mask
 
 - reducing or compressing content via summarization -- use [context-compression](../context-compression/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/context-optimization
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -59,4 +65,4 @@ Use the context-optimization skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

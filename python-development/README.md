@@ -16,6 +16,12 @@ Python development — use when the user works with .py files, pyproject.toml, u
 
 - TypeScript or JavaScript development -- use [typescript-development](../typescript-development/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/python-development
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -67,4 +73,4 @@ Use the python-development skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

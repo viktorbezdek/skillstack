@@ -12,6 +12,12 @@ A unified, comprehensive skill for implementing Test-Driven Development across m
 
 |.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/test-driven-development
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -65,4 +71,4 @@ Use the test-driven-development skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

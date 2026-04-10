@@ -17,6 +17,12 @@ React-specific development patterns including hooks (useState, useEffect, useRed
 - Next
 - CSS design systems, Tailwind utilities, or accessibility patterns -- use [frontend-design](../frontend-design/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/react-development
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -65,4 +71,4 @@ Use the react-development skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

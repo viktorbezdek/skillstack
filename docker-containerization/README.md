@@ -16,6 +16,12 @@ Docker and container development — use when the user mentions Dockerfiles, mul
 
 - CI/CD pipeline YAML or pipeline configuration -- use [cicd-pipelines](../cicd-pipelines/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/docker-containerization
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -67,10 +73,10 @@ Use the docker-containerization skill to ...
 ## Related Skills
 
 - **[Cicd Pipelines](../cicd-pipelines/)** -- Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise ...
-- **[Git Workflow](../git-workflow/)** -- Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file gro...
 - **[Cloud Finops](../cloud-finops/)** -- Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), comm...
+- **[Git Workflow](../git-workflow/)** -- Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file gro...
 - **[Workflow Automation](../workflow-automation/)** -- Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution,...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

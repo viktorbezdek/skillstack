@@ -12,6 +12,12 @@ Generate comprehensive documentation for repositories of any size - from small l
 
 Generate comprehensive documentation for repositories of any size, from small libraries to large monorepos. Use when creating documentation, generating docs, writing READMEs, producing API docs, architecture docs, or technical references for a repository.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/documentation-generator
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -57,4 +63,4 @@ Use the documentation-generator skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

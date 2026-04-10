@@ -12,6 +12,12 @@ This skill is a curated merge of four complementary code review skills:
 
 |.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/code-review
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -67,4 +73,4 @@ Use the code-review skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

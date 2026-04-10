@@ -17,6 +17,12 @@ Next.js framework development including App Router, Server Components, Server Ac
 - generic React patterns, hooks, or component logic -- use [react-development](../react-development/) instead
 - UI/CSS design systems or visual styling -- use [frontend-design](../frontend-design/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/nextjs-development
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -74,4 +80,4 @@ Use the nextjs-development skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

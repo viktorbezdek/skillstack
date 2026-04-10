@@ -16,6 +16,12 @@ Create individual user personas and customer archetypes with demographics, goals
 
 - mapping stakeholders across organizations, RACI charts, or influence analysis -- use [persona-mapping](../persona-mapping/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/persona-definition
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -57,11 +63,11 @@ Use the persona-definition skill to ...
 ## Related Skills
 
 - **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
+- **[Elicitation](../elicitation/)** -- Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivat...
 - **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
 - **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
 - **[Persona Mapping](../persona-mapping/)** -- Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.
-- **[User Journey Design](../user-journey-design/)** -- Design user journey maps with touchpoints, emotional states, pain points, and opportunities.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

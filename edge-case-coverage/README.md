@@ -16,6 +16,12 @@ Identify and document boundary conditions, error scenarios, corner cases, and va
 
 - writing tests
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/edge-case-coverage
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -62,4 +68,4 @@ Use the edge-case-coverage skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

@@ -17,6 +17,12 @@ Visual design systems, UI/UX styling, Tailwind CSS, CSS variables, component lib
 - React component logic, hooks, or state management -- use [react-development](../react-development/) instead
 - Next
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/frontend-design
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -76,4 +82,4 @@ Use the frontend-design skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

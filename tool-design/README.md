@@ -16,6 +16,12 @@ This skill should be used when the user asks to "design agent tools", "create to
 
 - building MCP servers or MCP protocol implementation -- use [mcp-server](../mcp-server/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/tool-design
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -60,4 +66,4 @@ Use the tool-design skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

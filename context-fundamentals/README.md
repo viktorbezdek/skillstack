@@ -16,6 +16,12 @@ Foundational theory of context engineering — what context IS, how attention wo
 
 - fixing broken context or diagnosing failures -- use [context-degradation](../context-degradation/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/context-fundamentals
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -60,4 +66,4 @@ Use the context-fundamentals skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

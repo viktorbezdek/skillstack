@@ -16,6 +16,12 @@ Analyze and critique existing ideas through pattern recognition, bias detection,
 
 - generating new creative solutions, brainstorming, or strategic reframing -- use [creative-problem-solving](../creative-problem-solving/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/critical-intuition
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -61,4 +67,4 @@ Use the critical-intuition skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

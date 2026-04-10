@@ -16,6 +16,12 @@ Diagnosing context FAILURES — lost-in-middle, poisoning, distraction, clash, a
 
 - learning context basics or theory -- use [context-fundamentals](../context-fundamentals/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/context-degradation
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -65,4 +71,4 @@ Use the context-degradation skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

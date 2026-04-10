@@ -16,6 +16,12 @@ This skill should be used when the user asks to "design multi-agent system", "im
 
 - agent memory or persistence -- use [memory-systems](../memory-systems/) instead
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/multi-agent-patterns
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -61,4 +67,4 @@ Use the multi-agent-patterns skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

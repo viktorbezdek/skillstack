@@ -12,6 +12,12 @@ Analyze complex systems through feedback loops, leverage points, and system dyna
 
 Apply systems thinking principles to analyze problems through feedback loops, leverage points, and system dynamics. Use when doing system analysis, mapping feedback loops, tracing causal relationships, analyzing emergent behavior, complexity analysis, or.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/systems-thinking
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -56,4 +62,4 @@ Use the systems-thinking skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

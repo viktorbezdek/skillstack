@@ -16,6 +16,12 @@ Design effective code examples, tutorials, and runnable samples with progressive
 
 - generating full
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/example-design
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -59,4 +65,4 @@ Use the example-design skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.

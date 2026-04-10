@@ -12,6 +12,12 @@ Focus on results that matter, not just activities completed.
 
 Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome vs output distinction. Use when defining OKRs, outcomes, results, KPIs, success.
 
+## Installation
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/outcome-orientation
+```
+
 ## How to Use
 
 **Direct invocation:**
@@ -58,4 +64,4 @@ Use the outcome-orientation skill to ...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.
