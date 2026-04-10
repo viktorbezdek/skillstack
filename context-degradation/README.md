@@ -6,11 +6,18 @@ Patterns for recognizing and mitigating context failures in LLM agents. Covers l
 
 ## What Problem Does This Solve
 
-Language models exhibit predictable degradation patterns as context length increases. Understanding these patterns is essential for diagnosing failures and designing resilient systems. Context degradation is not a binary state but a continuum of performance degradation that manifests in several distinct ways.
+Agent and LLM failures are frequently misdiagnosed as model capability problems when the actual cause is context degradation — a predictable set of failure modes that emerge as context grows. Information buried in the middle of a long conversation gets ignored (lost-in-middle), an early hallucination compounds through repeated reference (context poisoning), or irrelevant retrieved documents drown out the relevant ones (context distraction). This skill names these patterns precisely, provides empirical thresholds by model, and maps each pattern to mitigation strategies.
 
 ## When to Use This Skill
 
-Diagnosing context FAILURES — lost-in-middle, poisoning, distraction, clash, and confusion patterns with empirical thresholds by model. Use when the user asks to "diagnose context problems", "fix lost-in-middle issues", "debug agent failures", "understand context poisoning", or mentions context degradation, context clash, or agent performance degradation.
+| You say... | The skill provides... |
+|---|---|
+| "My agent gives wrong answers after long conversations" | Model-specific degradation onset and severe degradation thresholds (e.g. Claude Sonnet 4.5 degrades at ~80K tokens) |
+| "The agent ignores information I put in the middle of the prompt" | Lost-in-middle pattern: U-shaped attention curve, 10-40% recall loss, and placement strategies to counter it |
+| "An early error is polluting all my agent's subsequent reasoning" | Context poisoning detection: compounding feedback loop symptoms, entry pathways, and recovery techniques |
+| "My agent uses the wrong tool or addresses the wrong task" | Context confusion and context clash patterns with architectural isolation solutions |
+| "Adding more context seems to make responses worse" | Non-linear degradation curves, cost implications, and the cognitive load limits that make larger contexts counterproductive |
+| "Which model handles long contexts best for my use case?" | Comparative model behavior table: GPT-5.2, Claude Opus/Sonnet 4.5, Gemini 3 Pro/Flash with failure mode characteristics |
 
 ## When NOT to Use This Skill
 
@@ -39,20 +46,14 @@ Use the context-degradation skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
-
-## Key Capabilities
-
-- **Claude 4.5 series**
-- **GPT-5.2**
-- **Gemini 3 Pro/Flash**
+- **When to Activate** -- Conditions signaling context degradation: unexpected agent performance drops, incorrect outputs in long conversations, and design considerations for large-context systems.
+- **Core Concepts** -- Five named degradation patterns (lost-in-middle, poisoning, distraction, confusion, clash) with brief definitions and the four mitigation buckets (write, select, compress, isolate).
+- **Detailed Topics** -- Deep coverage of each pattern's mechanics, empirical evidence, detection symptoms, and recovery/mitigation strategies, plus RULER benchmark data and model-specific thresholds.
+- **Practical Guidance** -- The four-bucket approach (Write, Select, Compress, Isolate) with specific architectural patterns for each strategy.
+- **Examples** -- Concrete context growth progression showing when degradation begins, and a structured placement example for lost-in-middle mitigation.
+- **Guidelines** -- Eight prioritized rules for designing systems that degrade gracefully rather than catastrophically.
+- **Integration** -- How this skill connects to context-optimization (mitigation techniques), multi-agent-patterns (isolation), and evaluation (detection and measurement).
+- **References** -- Internal references to degradation pattern details and external research on attention mechanisms and the lost-in-middle phenomenon.
 
 ## Version History
 

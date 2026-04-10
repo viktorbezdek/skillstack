@@ -6,11 +6,18 @@ Comprehensive Docker and containerization skill covering Docker basics, multi-st
 
 ## What Problem Does This Solve
 
-Comprehensive guide for Docker containerization covering core concepts, multi-stage builds, Docker Compose orchestration, development environment setup, and advanced patterns for isolated development workflows.
+Containerization solves "works on my machine" problems, but poorly written Dockerfiles create their own problems: bloated images that slow CI/CD pipelines, security vulnerabilities from running as root, cache misses that rebuild everything on every change, and port conflicts when running multiple services locally. This skill covers Dockerfile best practices, multi-stage builds for production-sized images, Docker Compose orchestration for local development environments, and specialized patterns for isolated worktree development and DDEV-based PHP/TYPO3 setups.
 
 ## When to Use This Skill
 
-Docker and container development — use when the user mentions Dockerfiles, multi-stage builds, Docker Compose, container optimization, image size reduction, DDEV, containerization, or dev environment setup with containers.
+| You say... | The skill provides... |
+|---|---|
+| "My Docker image is 2GB and I need to reduce it" | Multi-stage build patterns separating build-time and runtime dependencies, with dockerignore configuration and a target of images under 500MB |
+| "Write me a Dockerfile for this Node.js app" | Dockerfile best practices: pinned base image versions, dependency-first layer ordering for cache efficiency, non-root user creation, and health check patterns |
+| "I need to run my app with a database and Redis locally" | Docker Compose multi-container setup with named volumes for data persistence, health checks, restart policies, and environment-specific compose file patterns |
+| "I'm running multiple git worktrees and the services conflict" | Worktree isolation strategy: consistent port allocation across worktrees, isolated browser state for parallel testing, CORS configuration, and worktree manager scripts |
+| "Set up a DDEV environment for my TYPO3/PHP project" | DDEV quickstart, prerequisites validation, advanced options, and troubleshooting references for PHP-based development environments |
+| "My Dockerfile is inefficient — how do I analyze it?" | `docker_optimize.py` script for automated Dockerfile analysis plus a quick reference command table for build, run, logs, shell, and cleanup operations |
 
 ## When NOT to Use This Skill
 
@@ -39,23 +46,14 @@ Use the docker-containerization skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Quick Start**
-- **Core Docker Concepts**
-- **Best Practices**
-- **Quick Reference**
-- **Reference Navigation**
-- **Scripts Reference**
-- **Resources**
-
-## Key Capabilities
-
-- **Containerization**
-- **Docker Compose**
-- **Development Environments**
-- **Container Optimization**
-- **Port Management**
-- **Browser Automation**
+- **When to Use This Skill** -- Eight use cases: containerization, Compose orchestration, development environments, optimization, port management, browser automation, CI/CD image building, and meta-configuration systems.
+- **Quick Start** -- Ready-to-run basic Dockerfile and Docker Compose examples for immediate use.
+- **Core Docker Concepts** -- Dockerfile best practices with security (non-root user), caching (dependency-first ordering), and multi-stage builds with benefits explained; dockerignore patterns.
+- **Best Practices** -- Organized checklist for Dockerfiles (versioning, security, size), Docker Compose (volumes, health checks, resource limits), and development environments (port isolation, worktree setup).
+- **Quick Reference** -- Command table for the nine most common Docker and Compose operations.
+- **Reference Navigation** -- Thirteen reference files covering Docker basics, Compose, extended patterns, Ghostmind meta.json config, worktree strategy, port allocation, browser isolation, CORS, troubleshooting, and DDEV guides.
+- **Scripts Reference** -- Seven scripts: Dockerfile optimizer, prerequisites validator, worktree manager, MCP isolation setup, connectivity validator, isolation tester, and migration tool.
+- **Resources** -- Official documentation links for Docker, Docker Compose, Dockerfile reference, DDEV, and Docker security.
 
 ## Version History
 

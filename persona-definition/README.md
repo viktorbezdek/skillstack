@@ -6,11 +6,18 @@ Create detailed user personas with demographics, goals, pain points, behaviors, 
 
 ## What Problem Does This Solve
 
-Create research-backed user personas that drive product and documentation decisions.
+Product and documentation decisions made without a concrete mental model of the user default to the builder's own assumptions — which rarely match actual users. Without defined personas, teams argue about hypothetical users, over-build for edge cases, and write documentation at the wrong level of technical depth. This skill provides the templates and component breakdown for creating research-backed personas that give teams a shared, specific picture of who they are designing for.
 
 ## When to Use This Skill
 
-Create individual user personas and customer archetypes with demographics, goals, pain points, behaviors, empathy maps, and audience definitions.
+| You say... | The skill provides... |
+|---|---|
+| "We need to define who our target user is before we start designing" | Persona type selection (proto, lean, full) based on fidelity needs, plus a structured persona template |
+| "Help me create a persona for a developer audience" | Core components breakdown: demographics, goals (primary/secondary/experience), pain points, behaviors, and context |
+| "I need to understand what my users think and feel, not just what they do" | Empathy map template (Says/Thinks/Does/Feels quadrant) |
+| "How detailed should our personas be for an MVP?" | Three persona type trade-offs: proto-persona for quick alignment, lean for agile/MVP, full for strategic decisions |
+| "We built personas before but they just sit in a doc and nobody uses them" | Anti-patterns section covering aspirational personas, persona overload (>5), demographic-only personas, and stale personas |
+| "What information should a good persona capture?" | Five core component checklist: demographics, goals, pain points, behaviors, and environment/device/constraint context |
 
 ## When NOT to Use This Skill
 
@@ -38,14 +45,11 @@ Use the persona-definition skill to ...
 
 ## What's Inside
 
-- **Persona Types**
-- **Core Components**
-- **Empathy Map**
-- **Persona Template**
-- **Goals**
-- **Pain Points**
-- **Needs from Documentation**
-- **Anti-Patterns**
+- **Persona Types** -- Three fidelity levels (proto, lean, full) with purpose and detail requirements for each
+- **Core Components** -- Five building blocks every persona needs: demographics, goals, pain points, behaviors, and context
+- **Empathy Map** -- Four-quadrant template (Says/Thinks/Does/Feels) for capturing the inner experience behind observable behavior
+- **Persona Template** -- Ready-to-fill markdown template with attribute table, goals section, pain points list, and documentation needs
+- **Anti-Patterns** -- Four persona failure modes that produce documents nobody acts on: aspirational personas, too many personas, demographic-only, and static/never-updated
 
 ## Version History
 

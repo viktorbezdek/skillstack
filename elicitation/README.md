@@ -6,11 +6,18 @@ Psychological profiling through natural conversation using narrative identity, s
 
 ## What Problem Does This Solve
 
-Psychological profiling through natural conversation.
+User interviews and research conversations routinely produce surface-level responses — stated preferences rather than underlying motivations, polished narratives rather than the formative experiences that actually shape behavior. Direct questioning triggers defensiveness; questionnaires capture what people think they should say. This skill applies three evidence-based psychological frameworks (McAdams narrative identity, Singer self-defining memory elicitation, Miller & Rollnick Motivational Interviewing) to design conversations that create the conditions for authentic self-disclosure, revealing values, schemas, and motivations that standard interviews miss.
 
 ## When to Use This Skill
 
-Psychological profiling through natural conversation using narrative identity research (McAdams), self-defining memory elicitation (Singer), and Motivational Interviewing (OARS framework). Use when you need to understand core values and motivations, discover formative memories, detect emotional schemas and belief patterns, build psychological profiles through gradual disclosure, conduct user interviews that reveal deep insights, design conversational flows for personal discovery, or elicit authentic self-disclosure without interrogation.
+| You say... | The skill provides... |
+|---|---|
+| "I want to understand what really drives my users, not just what they tell me they want" | Values elicitation techniques (role model, opposite day, decision archaeology, anger-as-signal) grounded in Schwartz's 10 Universal Values framework |
+| "Design a user interview script that goes beyond surface answers" | OARS framework (Open questions, Affirmations, Reflections, Summaries) with the 2:1 reflection-to-question ratio and conversational adaptation patterns |
+| "Help me discover the formative experiences that shape a user's mental model" | Self-defining memory elicitation frames (the "keeps coming back" frame, "explains who I am" frame, "turning point" frame) targeting the reminiscence bump |
+| "I'm building a conversational AI that needs to understand user personality over time" | Linguistic markers for personality (LIWC patterns), schema detection via Downward Arrow technique, and narrative theme analysis (agency vs. communion) |
+| "Write a life review interview guide for a personal history product" | Barbara Haight's structured question sequences by life stage (childhood, adolescence, early adulthood, middle, later life) |
+| "How do I build rapport in a conversation before asking personal questions?" | Anti-patterns to avoid (interrogation trap, premature depth, therapy cosplay) and graduated disclosure strategies using McAdams' 8-scene life story structure |
 
 ## Installation
 
@@ -36,14 +43,14 @@ Use the elicitation skill to ...
 
 ## What's Inside
 
-- **Goal**
-- **Core Principle**
-- **Three Research Traditions**
-- **Self-Defining Memories**
-- **Life Story Interview: 8 Key Scenes**
-- **OARS Framework**
-- **Values Elicitation**
-- **Schema Detection**
+- **Goal** -- The scoring framework: evaluate all elicitation work on a 0-10 scale with specific feedback, iterating until the work embodies the core principle of depth through patience.
+- **Core Principle** -- The foundational insight that depth comes from creating safety for self-disclosure, not from probing — with the key finding that people want to tell their stories.
+- **Three Research Traditions** -- Synthesis of the three complementary frameworks: Autobiographical Memory Research (Singer), Narrative Identity Theory (McAdams), and Motivational Interviewing (Miller & Rollnick).
+- **Self-Defining Memories** -- Singer's five criteria for memory salience, three conversational frames for eliciting them, and a table mapping memory features to personality insights.
+- **Life Story Interview: 8 Key Scenes** -- McAdams' eight scene types (high point, low point, turning point, earliest memory, etc.) with conversational adaptations and narrative theme patterns to listen for.
+- **OARS Framework** -- The four MI skills (Open questions, Affirmations, Reflections, Summaries) with examples of all four reflection types and the 2:1 reflection-to-question ratio guideline.
+- **Values Elicitation** -- Schwartz's 10 Universal Values taxonomy plus four indirect elicitation techniques that surface values through behavior rather than self-report.
+- **Schema Detection** -- Young's 18 Early Maladaptive Schemas organized by domain, the Downward Arrow technique for surfacing beliefs beneath surface concerns, and linguistic markers for each schema.
 
 ## Related Skills
 

@@ -6,11 +6,18 @@ Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, 
 
 ## What Problem Does This Solve
 
-Expert guidance for modern Python development (Python 3.11-3.14+), covering everything from simple scripts to production-grade systems, library architecture, and embedded development.
+Python's ecosystem has modernized significantly — pip, Black, flake8, and isort have been superseded by faster, simpler alternatives — but most developers are still working with outdated toolchains and patterns. Inconsistent dependency management, missing type annotations, and poor project structure cause builds that don't reproduce, type errors that slip to production, and codebases that resist refactoring. This skill encodes current best practices for Python 3.11+ with the modern toolchain (uv, ruff, mypy) from simple scripts to PyPI-published libraries.
 
 ## When to Use This Skill
 
-Python development — use when the user works with .py files, pyproject.toml, uv, ruff, mypy, pytest, async/await, MicroPython, CLI tools, or PyPI publishing. Covers modern tooling, best practices, library architecture, functional patterns, and production workflows.
+| You say... | The skill provides... |
+|---|---|
+| "Set up a new Python project with proper tooling" | Standard project setup using uv, ruff, mypy, and pytest with a complete pyproject.toml configuration |
+| "Which Python package manager should I use?" | Tier selection guide (Minimal/Standard/Full) and uv commands replacing pip, virtualenv, and pip-tools |
+| "My async code is blocking the event loop" | Async patterns with httpx.AsyncClient, asyncio.to_thread(), and the anti-patterns that cause blocking |
+| "How do I structure a Python library for PyPI publishing" | Full project layout (src/ layout), pyproject.toml with Hatchling build system, and CI/CD publishing workflow |
+| "Help me add type checking to my Python codebase" | mypy configuration for strict mode, modern type annotation syntax (list[str] not List[str]), and Protocol-based interfaces |
+| "My Python code passes tests but has quality issues" | Quality gates checklist: ruff format, ruff check, mypy strict, pytest with >80% coverage, bandit for security |
 
 ## When NOT to Use This Skill
 
@@ -41,14 +48,13 @@ Use the python-development skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Quick Start**
-- **Core Principles**
-- **Modern Python Toolchain (2024-2025)**
-- **Project Structure**
-- **Anti-Patterns to Avoid**
-- **Quality Gates**
-- **Official Documentation**
+- **Quick Start** -- Tier selection table (Minimal/Standard/Full) and a complete Standard project setup sequence from uv init to running quality checks.
+- **Core Principles** -- Six non-negotiable practices: uv for everything, type hints everywhere, ruff for quality, pytest for testing, locked dependencies, and PEP 723 for scripts.
+- **Modern Python Toolchain (2024-2025)** -- Command reference for uv (dependency management), ruff (linting and formatting), and mypy (type checking) replacing the legacy pip/Black/flake8 stack.
+- **Project Structure** -- Canonical src/ layout with pyproject.toml configuration for ruff, mypy, and pytest settings.
+- **Anti-Patterns to Avoid** -- Table of nine common Python mistakes (mutable defaults, blocking async, inheritance overuse, bare except) with their correct replacements.
+- **Quality Gates** -- Five mandatory checks every Python task must pass before completion, plus stricter thresholds (>95% coverage, bandit security scan) for critical code.
+- **Official Documentation** -- Direct links to Python, uv, ruff, mypy, pytest, and PEP index documentation.
 
 ## Version History
 

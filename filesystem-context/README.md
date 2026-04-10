@@ -6,11 +6,18 @@ Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan
 
 ## What Problem Does This Solve
 
-The filesystem provides a single interface through which agents can flexibly store, retrieve, and update an effectively unlimited amount of context. This pattern addresses the fundamental constraint that context windows are limited while tasks often require more information than fits in a single window.
+LLM agents operating on long-horizon tasks accumulate tool outputs, plans, and intermediate results in their context window until it fills up and performance degrades. The usual workarounds — summarisation and truncation — lose information. This skill addresses that constraint by treating the filesystem as an unlimited external memory layer: large outputs are written to files and referenced by pointer, plans are persisted and re-read on each turn, and sub-agents share state through a shared workspace rather than message chains.
 
 ## When to Use This Skill
 
-Using the FILE SYSTEM for context — scratch pads, plan persistence, dynamic skill loading, sub-agent file workspaces, and terminal log persistence. Use when the user asks to "offload context to files", "implement scratch pads", "persist agent plans", "use filesystem for agent memory", or mentions file-based context management, tool output persistence, or just-in-time context loading.
+| You say... | The skill provides... |
+|---|---|
+| "Our agent's context window fills up with tool outputs" | Scratch pad pattern — write large tool outputs to files above a token threshold, return a summary + file reference |
+| "The agent loses track of its plan halfway through a long task" | Plan persistence pattern with YAML schema for objective, steps, and statuses that the agent re-reads each turn |
+| "Sub-agents are duplicating work because they can't share state" | Sub-agent workspace pattern with per-agent file directories that the coordinator reads directly |
+| "We have dozens of skills but can't load them all into the system prompt" | Dynamic skill loading pattern — store skills as files, include only names and descriptions statically, load on demand |
+| "Terminal output from long-running builds is swamping the context" | Terminal persistence pattern — sync stdout to dated files, agents grep for error patterns rather than loading full logs |
+| "How do I keep agent token usage under control across sessions?" | Token accounting guidance and file organisation conventions for scratch, memory, skills, and agent workspaces |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,14 @@ Use the filesystem-context skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
+- **When to Activate** -- Decision criteria for when filesystem patterns are appropriate versus when to stay in-context.
+- **Core Concepts** -- Explanation of the four ways context engineering fails and how filesystem-based dynamic discovery addresses each one.
+- **Detailed Topics** -- Six implementation patterns: scratch pad, plan persistence, sub-agent communication, dynamic skill loading, terminal/log persistence, and self-modification through learned preferences.
+- **Practical Guidance** -- Threshold guidance (2000-token rule), recommended directory structure for scratch/memory/skills/agents, and token accounting approach.
+- **Examples** -- Three worked examples showing before/after token counts for tool output offloading, dynamic skill loading, and chat history as file reference.
+- **Guidelines** -- Ten numbered rules for effective filesystem context engineering, from output threshold to cleanup for scratch files.
+- **Integration** -- How this skill connects to context-optimization, memory-systems, multi-agent-patterns, context-compression, and tool-design.
+- **References** -- Links to internal implementation patterns and related external resources (LangChain, Cursor, Anthropic).
 
 ## Version History
 

@@ -6,11 +6,18 @@ Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer
 
 ## What Problem Does This Solve
 
-Multi-agent architectures distribute work across multiple language model instances, each with its own context window. When designed well, this distribution enables capabilities beyond single-agent limits. When designed poorly, it introduces coordination overhead that negates benefits. The critical insight is that sub-agents exist primarily to isolate context, not to anthropomorphize role division.
+Single LLM agents hit a hard ceiling: as tasks grow complex, context windows fill with accumulated history, tool outputs, and retrieved documents, and performance degrades through attention scattering and context poisoning. Multi-agent architectures solve this by partitioning work across multiple context windows — but naive decomposition into role-based "teams" introduces coordination overhead that can cost more than it saves. This skill provides the architectural patterns and failure-mode mitigations that make multi-agent systems genuinely faster and more capable than single-agent approaches.
 
 ## When to Use This Skill
 
-This skill should be used when the user asks to "design multi-agent system", "implement supervisor pattern", "create swarm architecture", "coordinate multiple agents", or mentions multi-agent patterns, context isolation, agent handoffs, sub-agents, or parallel agent execution.
+| You say... | The skill provides... |
+|---|---|
+| "My agent is running out of context on complex research tasks" | Context isolation architecture showing how sub-agents partition work so no single window bears the full burden |
+| "How do I structure a supervisor agent that delegates to specialists?" | Supervisor/orchestrator pattern with the `forward_message` fix that eliminates the telephone game accuracy loss |
+| "I want agents to hand off to each other without a central controller" | Peer-to-peer/swarm pattern with explicit handoff protocols and state passing between agents |
+| "My multi-agent system gives inconsistent answers — agents seem to just agree with each other" | Weighted voting and debate protocol designs that prevent sycophantic consensus on false premises |
+| "What's the actual token cost of running multi-agent vs single-agent?" | Token economics table showing 1x/4x/15x multipliers and the research finding that model upgrades often beat raw token increases |
+| "A worker agent returned bad output and it broke the whole pipeline" | Error propagation mitigations: output schema constraints, validation before handoff, retry logic with circuit breakers |
 
 ## When NOT to Use This Skill
 
@@ -40,14 +47,14 @@ Use the multi-agent-patterns skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
+- **When to Activate** -- Decision checklist for when multi-agent architecture genuinely helps vs adds overhead
+- **Core Concepts** -- The three dominant patterns and the primary design principle: context isolation over role metaphors
+- **Detailed Topics** -- Why multi-agent architectures work (context bottleneck, token economics, parallelization, specialization), detailed pattern implementations (supervisor, peer-to-peer/swarm, hierarchical), isolation mechanisms, and consensus protocols
+- **Practical Guidance** -- Four failure modes with concrete mitigations: supervisor bottleneck, coordination overhead, divergence, and error propagation
+- **Examples** -- Research team architecture diagram and a handoff protocol implementation showing agent routing by request type
+- **Guidelines** -- Eight production rules from context isolation design through time-to-live limits and output validation
+- **Integration** -- Connections to memory-systems for shared state and tool-design for per-agent tool specialization
+- **References** -- LangGraph, AutoGen, and CrewAI documentation plus the multi-agent coordination survey
 
 ## Version History
 

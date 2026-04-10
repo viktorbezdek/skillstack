@@ -6,11 +6,18 @@ Design effective code examples, tutorials, and runnable samples with progressive
 
 ## What Problem Does This Solve
 
-Create code examples that teach effectively through progressive complexity.
+Code examples in documentation often dump an intimidating wall of production code at the reader, use meaningless `foo`/`bar` variable names, omit imports, and never show expected output — so developers cannot tell whether the code actually works or what it should produce. This skill provides a structured approach to building examples that start minimal and layer in complexity progressively, with a quality checklist that catches the most common pitfalls before they frustrate users.
 
 ## When to Use This Skill
 
-Design effective code examples, tutorials, and runnable samples with progressive complexity. Use when creating code examples, tutorials, quickstart guides, sample code, runnable examples, or progressive disclosure content.
+| You say... | The skill provides... |
+|---|---|
+| "Write a code example for this API method" | Example anatomy template: context comment, setup imports, highlighted core line, and expected output |
+| "Create a quickstart tutorial for this library" | Tutorial structure with time estimate, prerequisites, numbered steps with expected results, and next-steps links |
+| "The examples in our docs are too complex for beginners" | Progressive complexity ladder from Level 1 (happy path only) to Level 5 (production-ready with error handling) |
+| "What type of example should I use here — snippet or full app?" | Example types table mapping purpose and appropriate length to snippet, complete example, tutorial, and reference app |
+| "Review these code samples for quality" | Quality checklist: runnable, complete imports, minimal scope, realistic names, commented key lines, verified output |
+| "Our examples use foo and bar everywhere — how do we fix that?" | Anti-patterns list covering unrealistic names, missing imports, outdated syntax, no expected output, and untested code |
 
 ## When NOT to Use This Skill
 
@@ -38,13 +45,12 @@ Use the example-design skill to ...
 
 ## What's Inside
 
-- **Example Types**
-- **Progressive Complexity**
-- **Example Anatomy**
-- **Quality Checklist**
-- **Tutorial Structure**
-- **Tutorial: [Goal]**
-- **Anti-Patterns**
+- **Example Types** -- Four-row reference table mapping snippet, complete example, tutorial, and reference app to their purpose and appropriate line-count range.
+- **Progressive Complexity** -- Five-level ladder from minimal happy path through configuration, error handling, edge cases, and production-ready code.
+- **Example Anatomy** -- Four-part structure for any code example: context comment, setup imports, highlighted core concept, and expected output.
+- **Quality Checklist** -- Six-item checklist verifying that an example is runnable, complete, minimal, commented, realistic, and tested.
+- **Tutorial Structure** -- Markdown template with time estimate, prerequisites, numbered steps (explanation + code + expected result), and next-steps navigation.
+- **Anti-Patterns** -- Six common mistakes to avoid: foo/bar names, missing imports, outdated syntax, no expected output, untested code, and unexplained walls of code.
 
 ## Version History
 

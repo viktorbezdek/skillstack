@@ -6,11 +6,18 @@ Detect hidden patterns, expose blind spots, and deliver rigorous critical analys
 
 ## What Problem Does This Solve
 
-This skill enables sophisticated analytical and intuitive thinking to help users detect subtle patterns, read between the lines, reason rigorously, sense hidden dynamics, and make sound judgments under uncertainty.
+Information is rarely presented at face value: a proposal leaves out its failure modes, a status update is technically accurate but strategically misleading, a decision looks reasonable until you notice what's conspicuously absent. Standard analysis takes content at face value and misses the subtext, meta-signals, and anomalies that experienced practitioners catch instinctively. This skill provides a structured seven-step process for multi-level reading, signal detection, fallacy identification, Bayesian reasoning, and intuitive synthesis — making the tacit analytical moves of domain experts explicit and repeatable.
 
 ## When to Use This Skill
 
-Analyze and critique existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind spot exposure, red flag identification, early warning signals, and reading between the lines.
+| You say... | The skill provides... |
+|---|---|
+| "What am I missing in this proposal / plan / argument?" | Gap analysis and anomaly detection: what information would normally be present but isn't, and why that absence is meaningful |
+| "Read between the lines — what's really going on here?" | Three-level reading framework: surface (explicit facts), subtext (implied assumptions and omissions), and meta (incentives, power dynamics, why it's framed this way) |
+| "Are there red flags in this?" | Red flag cluster detection: multiple small concerns, coincidence accumulation, pattern breaks, and trajectory sensing for early warning |
+| "Analyze this argument critically" | Structured argument analysis: premise/conclusion mapping, formal and informal fallacy detection, evidence quality evaluation, motivated reasoning identification |
+| "What's my confidence level on this? Am I being overconfident?" | Bayesian reasoning framework: prior probability, evidence strength assessment, updated probability, and confidence calibration with explicit "what would change my mind" checks |
+| "I have a gut feeling something is wrong but can't articulate it" | Intuitive synthesis methodology: gestalt perception, cross-domain analogical reasoning, tacit pattern matching, and metacognitive bias checks |
 
 ## When NOT to Use This Skill
 
@@ -38,11 +45,11 @@ Use the critical-intuition skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Core Approach**
-- **Analysis Process**
-- **Workflow**
-- **Validation Checks**
+- **When to Use This Skill** -- Trigger phrases and analytical contexts: reading between lines, critical analysis requests, red flag detection, hidden pattern identification, and judgment under uncertainty.
+- **Core Approach** -- Six-phase pattern: surface analysis, deep reading, pattern detection, critical evaluation, intuitive synthesis, and judgment formation.
+- **Analysis Process** -- Seven detailed steps covering multi-level reading, signal and anomaly detection, critical reasoning with fallacy identification, probabilistic assessment, intuitive synthesis, early warning detection, and judgment formation.
+- **Workflow** -- Six operational steps for executing critical intuition: initial understanding, reference loading, multi-level analysis, critical evaluation, intuitive synthesis, and judgment with actionable recommendations.
+- **Validation Checks** -- Eight pre-completion checks ensuring full analytical coverage before finalizing judgment, including bias checks and confidence calibration.
 
 ## Version History
 

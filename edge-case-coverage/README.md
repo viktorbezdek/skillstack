@@ -6,11 +6,18 @@ Identify and document boundary conditions, error scenarios, corner cases, and va
 
 ## What Problem Does This Solve
 
-Systematically identify and handle boundary conditions.
+Code that works on the happy path often silently breaks on empty inputs, maximum values, null fields, expired tokens, or network timeouts — the cases no one thought to specify. This skill provides a systematic catalogue of edge case categories, boundary analysis templates, and validation checklists that make it practical to enumerate and document the full input space before shipping, rather than discovering failures in production.
 
 ## When to Use This Skill
 
-Identify and document boundary conditions, error scenarios, corner cases, and validation requirements. Use when analyzing edge cases, boundary testing, corner cases, error scenarios, validation rules, or defensive programming.
+| You say... | The skill provides... |
+|---|---|
+| "What edge cases should I handle for this input field?" | Boundary analysis template with below-min, at-min, normal, at-max, above-max, and special-character cases |
+| "Document the error scenarios for this API endpoint" | Error scenario template covering trigger, symptoms, root cause, prevention, and recovery |
+| "Review this validation logic for gaps" | Input validation checklist: required, type, format, range, length, allowed characters |
+| "Check if we're handling null and undefined correctly" | Edge case categories for null/undefined, wrong type, uninitialized state |
+| "We keep getting timeouts — what should we document?" | Resource edge cases: timeout, memory exhaustion, disk full, partial failure |
+| "Build a coverage matrix for the user registration form" | Coverage matrix template mapping each input against valid, empty, null, overflow, and malformed scenarios |
 
 ## When NOT to Use This Skill
 
@@ -38,13 +45,12 @@ Use the edge-case-coverage skill to ...
 
 ## What's Inside
 
-- **Edge Case Categories**
-- **Boundary Analysis**
-- **Error Scenario Template**
-- **Scenario: [Name]**
-- **Validation Checklist**
-- **Coverage Matrix**
-- **Anti-Patterns**
+- **Edge Case Categories** -- Taxonomy of six category types: boundary, input, state, resource, network, and permission, each with concrete examples.
+- **Boundary Analysis** -- Structured templates for numeric and string boundaries showing the seven values to test around any limit (below min, at min, just above, normal, just below max, at max, above max).
+- **Error Scenario Template** -- Five-field markdown template (trigger, symptoms, root cause, prevention, recovery) for documenting each failure mode.
+- **Validation Checklist** -- Two-section checklist covering input validation (type, format, range, length, characters) and state validation (initialization, resources, permissions, dependencies).
+- **Coverage Matrix** -- Tabular format mapping every input field against the five key test conditions: valid, empty, null, overflow, and malformed.
+- **Anti-Patterns** -- Common defensive-programming mistakes: happy-path-only testing, ignoring nulls, assuming valid input, missing timeout handling, and silent failures.
 
 ## Version History
 

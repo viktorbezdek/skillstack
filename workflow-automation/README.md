@@ -6,11 +6,18 @@ Automate development workflows end-to-end including CI/CD pipelines, multi-agent
 
 ## What Problem Does This Solve
 
-Comprehensive guide for workflow automation, task management, and productivity optimization in software development. This skill combines CI/CD pipelines, git workflow management, scientific workflow tools, multi-agent orchestration, TDD workflows, and release automation.
+Modern software delivery involves a web of interdependent processes — parallel feature branches, multi-agent task pipelines, versioned releases, scientific computation jobs — that are easy to start manually but painful to scale and reproduce. Ad-hoc automation accumulates as one-off scripts that break when contributors change, releases require human memory to execute correctly, and complex workflows get blocked on a single bottleneck. This skill provides structured patterns and tooling for orchestrating all of these: from git worktree management and multi-agent coordination to semantic release automation and FABER state machine workflows.
 
 ## When to Use This Skill
 
-Workflow orchestration and release automation — use when the user asks to automate workflows, orchestrate multi-agent tasks, run parallel task execution, manage release automation, build state machines, or coordinate complex task dependencies.
+| You say... | The skill provides... |
+|---|---|
+| "Automate my versioning and changelog so releases don't require manual steps" | Semantic Release setup with conventional commits, local-first release workflow, and version bump rules (feat/fix/BREAKING CHANGE) |
+| "I need to run multiple agents in parallel with dependencies between stages" | WorkflowEngine patterns for multi-agent coordination with stage dependencies, error recovery, and performance monitoring |
+| "We're doing parallel feature development and branches keep colliding" | Git worktree creation scripts following GitFlow conventions (feature/, fix/, hotfix/) with list and cleanup utilities |
+| "My Python computation jobs need caching and parallel execution" | Scientific workflow tool selection guide: joblib for simple caching, Parsl for HPC clusters, Prefect for complex DAGs |
+| "Set up automated code review that enforces our quality standards" | TRUST 5 framework (Test-first, Readable, Unified, Secured, Trackable) implemented via AutomatedCodeReviewer with configurable thresholds |
+| "Coordinate a TDD cycle, debugging, and review as a single automated workflow" | TDDManager, AIDebugger, and AutomatedCodeReviewer modules that chain together as a development workflow pipeline |
 
 ## When NOT to Use This Skill
 
@@ -39,13 +46,12 @@ Use the workflow-automation skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Quick Decision Guide**
-- **Core Capabilities**
-- **Quality Metrics**
-- **Best Practices**
-- **Resources Directory Structure**
-- **See Also**
+- **When to Use This Skill** -- Eight use case categories with specific examples for when to activate this skill vs. related ones.
+- **Quick Decision Guide** -- Decision tree for routing to the right capability: CI/CD pipelines, git worktrees, scientific computation, multi-agent coordination, TDD/debug/review cycles, or release automation.
+- **Core Capabilities** -- Detailed module breakdowns for all seven capabilities: CI/CD pipelines, git worktree management, scientific workflow tool selection, multi-agent orchestration, TDD/debug/review automation, semantic release, and FABER state management.
+- **Quality Metrics** -- Threshold table for test coverage (>=85%), TRUST Score (>=0.85), critical issue count, performance regression limit, and API response time targets.
+- **Best Practices** -- Concise rules for CI/CD pipeline design, git workflow hygiene, development workflow discipline, and release automation conventions.
+- **Resources Directory Structure** -- Annotated directory tree of all modules, references, scripts, subskills, templates, and examples included in the skill.
 
 ## Key Capabilities
 

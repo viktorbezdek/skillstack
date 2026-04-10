@@ -6,11 +6,18 @@ Infrastructure patterns for hosted background agents. Sandbox environments, imag
 
 ## What Problem Does This Solve
 
-Hosted agents run in remote sandboxed environments rather than on local machines. When designed well, they provide unlimited concurrency, consistent execution environments, and multiplayer collaboration. The critical insight is that session speed should be limited only by model provider time-to-first-token, with all infrastructure setup completed before the user starts their session.
+Running AI coding agents locally means resource contention with the developer's machine, inconsistent environments between team members, and sessions that only one person can use at a time. Moving agents to hosted sandboxed infrastructure solves all three, but introduces new challenges: slow session start-up, per-session state isolation at scale, multi-client synchronisation, and secure commit attribution. This skill documents the architectural patterns — image registry, warm pools, per-session SQLite, WebSocket hibernation, and self-spawning — that production teams have used to ship reliable hosted agents.
 
 ## When to Use This Skill
 
-This skill should be used when the user asks to "build background agent", "create hosted coding agent", "set up sandboxed execution", "implement multiplayer agent", or mentions background agents, sandboxed VMs, agent infrastructure, Modal sandboxes, self-spawning agents, or remote coding environments.
+| You say... | The skill provides... |
+|---|---|
+| "We want coding agents that run in the cloud, not on developer laptops" | Core sandbox architecture: image registry pattern with 30-minute pre-build cadence and warm pool strategy |
+| "Agent sessions take too long to start — users are waiting" | Speed optimisation patterns: predictive warm-up when user starts typing, parallel file reads before git sync completes |
+| "Multiple teammates want to collaborate in the same agent session" | Multiplayer implementation requirements: data model changes, per-prompt authorship, shared session links |
+| "Our agent needs to spawn sub-agents to tackle parts of a large task in parallel" | Self-spawning agent design: tools for starting sessions, checking status, and prompt engineering guidance for when to spawn |
+| "How do we handle hundreds of concurrent agent sessions without cross-contamination?" | Per-session state isolation: dedicated SQLite per session, WebSocket hibernation API for idle connections |
+| "We want to reach non-engineering users through Slack" | Slack integration architecture: repository classifier using fast model, virality loop design, natural-language interface |
 
 ## When NOT to Use This Skill
 
@@ -40,14 +47,13 @@ Use the hosted-agents skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Guidelines**
-- **Integration**
-- **References**
-- **Skill Metadata**
+- **When to Activate** -- Six trigger scenarios for loading this skill: background agents, sandbox design, multiplayer sessions, multi-client interfaces, scaling beyond local machines, and self-spawning systems.
+- **Core Concepts** -- Three-layer architecture overview (sandbox infrastructure, API layer, client interfaces) and the primary design insight that setup must complete before the user session begins.
+- **Detailed Topics** -- Six in-depth implementation topics: sandbox infrastructure (image registry, snapshots, warm pools), agent framework selection (server-first, plugin system), speed optimisations, self-spawning agents, API layer (per-session isolation, real-time streaming, cross-client sync), and multiplayer support.
+- **Practical Guidance** -- Follow-up message handling strategies (queue vs insert), metrics that matter (merged PR rate as primary KPI), and internal adoption patterns.
+- **Guidelines** -- Eight numbered implementation rules from image pre-build cadence to multiplayer-from-the-start.
+- **Integration** -- How hosted agents connect to multi-agent-patterns, tool-design, context-optimization, and filesystem-context.
+- **References** -- Links to internal infrastructure patterns and external resources (Ramp background agent post, Modal Sandboxes, Cloudflare Durable Objects, OpenCode).
 
 ## Key Capabilities
 

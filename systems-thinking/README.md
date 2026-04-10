@@ -6,11 +6,18 @@ Apply systems thinking principles including feedback loops, leverage points, and
 
 ## What Problem Does This Solve
 
-Analyze complex systems through feedback loops, leverage points, and system dynamics.
+Complex problems — declining user engagement, runaway costs, team burnout cycles — resist simple fixes because their causes are circular, not linear. Organizations apply solutions to visible symptoms without understanding the feedback loops sustaining the problem, causing fixes that fail or shift the burden elsewhere. This skill provides the causal loop notation, system archetypes, and leverage point analysis needed to identify where intervention actually changes system behavior rather than just treating symptoms.
 
 ## When to Use This Skill
 
-Apply systems thinking principles to analyze problems through feedback loops, leverage points, and system dynamics. Use when doing system analysis, mapping feedback loops, tracing causal relationships, analyzing emergent behavior, complexity analysis, or.
+| You say... | The skill provides... |
+|---|---|
+| "We keep solving this problem but it keeps coming back" | System archetype identification: Fixes that Fail (side effects undermine fix) or Shifting the Burden (symptomatic solution crowds out fundamental solution) |
+| "Map the feedback loops driving this growth/decline pattern" | Causal loop notation (A--[+]-->B, A--[-]-->B) with Reinforcing and Balancing loop identification |
+| "Where should we intervene to change this system?" | Meadows' 12 Leverage Points ranked by effectiveness, from Parameters (least powerful) up to Paradigms (most powerful) |
+| "Why is our quick fix making things worse?" | Analysis workflow: Boundary Definition, Element Mapping, Relationship Identification, Loop Detection, and Leverage Point Analysis |
+| "We're growing fast but hitting walls we didn't expect" | Limits to Growth archetype analysis identifying the constraining feedback loop that caps the reinforcing growth loop |
+| "How do I avoid making the wrong diagnosis of a system?" | Common pitfalls: linear thinking, event focus (symptoms vs. structures), boundary errors (too narrow/wide), and delay blindness |
 
 ## Installation
 
@@ -34,10 +41,10 @@ Use the systems-thinking skill to ...
 
 ## What's Inside
 
-- **Core Concepts**
-- **Analysis Workflow**
-- **Causal Loop Notation**
-- **Common Pitfalls**
+- **Core Concepts** -- Reinforcing (positive) and Balancing (negative) feedback loop definitions with examples, plus Meadows' 12 Leverage Points ranked from Parameters (least powerful) to Paradigms (most powerful).
+- **Analysis Workflow** -- Five-step process: Boundary Definition, Element Mapping, Relationship Identification, Loop Detection, and Leverage Point Analysis.
+- **Causal Loop Notation** -- Standard notation for representing same-direction (+) and opposite-direction (-) causal links, with R (Reinforcing) and B (Balancing) loop labels.
+- **Common Pitfalls** -- Four diagnostic errors to avoid: linear thinking (ignoring feedback), event focus (symptoms vs. structures), boundary errors (scope too narrow or wide), and delay blindness.
 
 ## Version History
 

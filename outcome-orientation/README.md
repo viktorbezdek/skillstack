@@ -6,11 +6,18 @@ Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs
 
 ## What Problem Does This Solve
 
-Focus on results that matter, not just activities completed.
+Teams routinely confuse delivering outputs — features shipped, meetings held, documents written — with achieving outcomes that actually matter to users and the business. This disconnect means roadmaps fill with activity that looks productive but moves no meaningful metrics. This skill provides the frameworks (OKRs, results chains, leading/lagging metrics) and the "so what?" discipline needed to define goals in terms of measurable change rather than completed tasks.
 
 ## When to Use This Skill
 
-Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome vs output distinction. Use when defining OKRs, outcomes, results, KPIs, success.
+| You say... | The skill provides... |
+|---|---|
+| "Help me write OKRs for my team" | OKR structure template with Objective and Key Results table (baseline/target/current), plus good vs bad OKR examples |
+| "How do I know if my goal is an output or an outcome?" | Outputs vs outcomes comparison table and the "so what?" chain to trace activities to real value |
+| "What metrics should I track to measure product success?" | Outcome metrics table with lagging results (revenue, NPS, defect rate) paired with leading predictors (pipeline, activation rate, test coverage) |
+| "My roadmap is full of features but leadership wants to see business impact" | Results chain model mapping Activities → Outputs → Outcomes → Impact |
+| "How do I write a Key Result that's actually measurable?" | Outcome definition checklist: end-state description, measurability, time-bound scope, user/business value, and achievability |
+| "We completed everything we planned but the metric didn't move — what went wrong?" | Outputs vs outcomes framing to diagnose whether the work was tied to the right leading indicators |
 
 ## Installation
 
@@ -34,12 +41,11 @@ Use the outcome-orientation skill to ...
 
 ## What's Inside
 
-- **Outcomes vs Outputs**
-- **OKR Framework**
-- **Objective: [Inspiring goal]**
-- **Outcome Metrics**
-- **Results Chain**
-- **Outcome Definition Checklist**
+- **Outcomes vs Outputs** -- Side-by-side table contrasting output activities with the outcomes they should drive, plus the "so what?" question chain
+- **OKR Framework** -- OKR structural definition and a fill-in template with Objective, Key Results table, and Initiatives section; includes good vs bad OKR comparison
+- **Outcome Metrics** -- Four metric categories (revenue, adoption, quality, satisfaction) each with a lagging result metric paired with its leading predictor
+- **Results Chain** -- Four-stage model (Activities → Outputs → Outcomes → Impact) for tracing work to business change
+- **Outcome Definition Checklist** -- Five criteria for validating that a goal qualifies as a genuine outcome rather than an activity
 
 ## Version History
 

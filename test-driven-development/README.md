@@ -6,11 +6,18 @@ Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycl
 
 ## What Problem Does This Solve
 
-A unified, comprehensive skill for implementing Test-Driven Development across multiple languages, frameworks, and testing levels.
+Developers who write tests after the fact end up retrofitting tests around code that was never designed to be testable, leading to brittle test suites that break on refactors and fail to catch regressions. TDD inverts the workflow: writing a failing test first forces you to define the expected behavior before you write a single line of implementation, producing code that is inherently modular and verifiable. This skill provides the structured Red-Green-Refactor cycle, language-specific tooling (pytest, Vitest, ERT, Playwright), and coverage analysis to sustain that discipline across a full project.
 
 ## When to Use This Skill
 
-|.
+| You say... | The skill provides... |
+|---|---|
+| "I need to implement user authentication using TDD" | Step-by-step Red-Green-Refactor cycle with test-first examples in Python or TypeScript |
+| "How do I write pytest tests before writing the function?" | Arrange-Act-Assert structure, fixture setup, and test naming conventions for pytest |
+| "Walk me through TDD for a Vitest component test" | Vitest-specific patterns including watch mode, mocking, and test isolation |
+| "My unit tests are slow and interdependent" | Test independence principles, fixture strategies, and guidance on eliminating shared mutable state |
+| "I need E2E tests for a user signup flow with Playwright" | Playwright workflow patterns and the testing tier model (unit/integration/E2E) |
+| "What coverage should I aim for and how do I measure it" | Coverage targets by tier (80-90% unit, critical paths integration), checklist of cases to cover, and scripts to analyze and enforce thresholds |
 
 ## Installation
 
@@ -35,13 +42,13 @@ Use the test-driven-development skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Core TDD Principles**
-- **Test Structure Pattern: Arrange-Act-Assert**
-- **Testing Tiers**
-- **Test Coverage Guidelines**
-- **Best Practices**
-- **Available Resources**
+- **Overview** -- High-level map of what the skill covers: workflow, languages, tiers, frameworks, and quality assurance.
+- **Core TDD Principles** -- The Red-Green-Refactor cycle explained with the five key practices (test first, small steps, minimal implementation, frequent refactoring, fast feedback).
+- **Test Structure Pattern: Arrange-Act-Assert** -- The canonical three-section test template with annotated Python example.
+- **Testing Tiers** -- Unit, integration, and E2E definitions including execution speed targets, isolation requirements, and when each tier runs.
+- **Test Coverage Guidelines** -- Coverage targets by tier, checklist of case categories (happy path, edge cases, error conditions, state transitions), and threshold enforcement.
+- **Best Practices** -- Test naming conventions, test independence requirements, fast feedback loops, and meaningful assertion patterns.
+- **Available Resources** -- Language-specific reference documents (Python, TypeScript, Emacs Lisp, Playwright, Zod), scripts for running and analyzing tests, and boilerplate templates.
 
 ## Key Capabilities
 

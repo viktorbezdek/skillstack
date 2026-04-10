@@ -6,11 +6,18 @@ Comprehensive MCP (Model Context Protocol) server development skill. Build, conf
 
 ## What Problem Does This Solve
 
-Comprehensive skill for developing Model Context Protocol (MCP) servers. MCP is a standardized protocol that enables AI agents (like Claude) to access external tools, data sources, and services through a unified interface.
+Integrating external APIs or services with AI agents requires bridging two worlds: structured APIs designed for human developers and tool interfaces optimized for AI consumption. Without a standard protocol, every integration is a custom build. MCP (Model Context Protocol) provides that standard, and this skill covers everything needed to build production-grade MCP servers — from the first tool definition to evaluation harnesses, security patterns, and Claude Code plugin packaging.
 
 ## When to Use This Skill
 
-MCP (Model Context Protocol) server development — use when the user mentions MCP, Model Context Protocol, FastMCP, MCP server, MCP tool, Claude Code plugin, or building agent tools with MCP. Covers server implementation in Python or TypeScript, evaluation testing, production deployment, and plugin packaging.
+| You say... | The skill provides... |
+|---|---|
+| "I need to expose my API to Claude as tools" | Agent-centric tool design patterns, naming conventions, and input/output formatting for AI consumption |
+| "How do I build an MCP server in Python?" | FastMCP quick start with Pydantic validation, resource definitions, and STDIO/HTTP transport setup |
+| "How do I build an MCP server in TypeScript?" | McpServer SDK setup with Zod schemas, tool registration, and transport configuration |
+| "I want Claude Code to use my internal tooling" | Claude Code plugin packaging, `.claude/settings.json` configuration, and skill bundling |
+| "How do I test my MCP server?" | Evaluation-driven development workflow and quality testing patterns |
+| "My MCP tool handles file paths — what are the security risks?" | Path validation, allowed-directory enforcement, destructive operation confirmation flags, and secret management |
 
 ## When NOT to Use This Skill
 
@@ -39,12 +46,12 @@ Use the mcp-server skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **When to Use This Skill**
-- **Quick Start**
-- **Core Concepts**
-- **Best Practices Summary**
-- **Additional Resources**
+- **Overview** -- High-level description of MCP and what this skill covers across Python, TypeScript, and production deployment
+- **When to Use This Skill** -- Decision guide for when MCP server development applies vs adjacent skills
+- **Quick Start** -- Minimal working server examples for both FastMCP (Python) and the TypeScript MCP SDK
+- **Core Concepts** -- Reference table covering Tools, Resources, and Prompts components plus transport type selection (STDIO, HTTP, SSE)
+- **Best Practices Summary** -- Condensed rules for tool design, input/output formatting, validation, and security patterns
+- **Additional Resources** -- Links to the MCP specification, FastMCP repo, and Claude Code docs
 
 ## Version History
 

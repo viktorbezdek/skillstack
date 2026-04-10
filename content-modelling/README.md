@@ -6,11 +6,18 @@ Design content models with types, fields, relationships, and governance rules fo
 
 ## What Problem Does This Solve
 
-Design structured content models for reusable, multi-channel content.
+CMS implementations built around page-based models lock content to specific layouts, making multi-channel delivery (web, mobile, email, API) expensive to retrofit. Monolithic content types accumulate redundant fields, embed HTML directly in structured data, and resist reuse — requiring editors to duplicate content across entries that drift out of sync. This skill provides the field types, relationship patterns, naming conventions, and COPE (Create Once, Publish Everywhere) principles needed to design structured content models that are channel-agnostic and reusable from the start.
 
 ## When to Use This Skill
 
-Design CMS content models with content types, fields, editorial workflows, governance rules, structured content architecture, and COPE (Create Once, Publish Everywhere) patterns.
+| You say... | The skill provides... |
+|---|---|
+| "I need to model a blog with posts, authors, and categories in a headless CMS" | Content type template with field definitions, relationship types (reference vs embedded vs hierarchical), cardinality, and validation rules |
+| "What field type should I use for an article body vs a page title vs a publish date?" | Field type reference table covering short text, long text, rich text, number, boolean, date, media, reference, and enum with use cases |
+| "How do I connect my Article content type to an Author type without duplicating data?" | Reference relationship pattern with independent existence and ID-based linking explained with structural diagrams |
+| "We're building for web now but need to reuse content on mobile and in emails later" | COPE principle applied to field design: semantic fields over layout fields, atomic content units, presentation-agnostic structure |
+| "What naming conventions should we use for content types and fields in our CMS?" | Naming convention table: PascalCase for types, camelCase for fields, kebab-case for slugs |
+| "Our content model has grown into a mess — what went wrong?" | Anti-pattern catalog covering page-based models, HTML in fields, monolithic types, and redundant fields with structural consequences |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,13 @@ Use the content-modelling skill to ...
 
 ## What's Inside
 
-- **Core Concepts**
-- **Field Types**
-- **Relationship Types**
-- **Content Model Template**
-- **Content Type: [Name]**
-- **Naming Conventions**
-- **Design Principles**
-- **Anti-Patterns**
+- **Core Concepts** -- Definitions of Content Type, Field, Relationship, and Instance as the four foundational building blocks of any structured content model
+- **Field Types** -- Reference table of nine field types (short text through enum) with use cases and concrete examples for each
+- **Relationship Types** -- Three relationship patterns — linked reference (independent existence), embedded (nested ownership), and hierarchical (parent-child) — with structural diagrams
+- **Content Model Template** -- Ready-to-use markdown template covering overview attributes, fields table, relationships table, and validation rules for any content type
+- **Naming Conventions** -- Three-rule table: PascalCase for types, camelCase for fields, kebab-case for slugs
+- **Design Principles** -- COPE (Create Once, Publish Everywhere) and atomic content principles with rationale for separating content from presentation
+- **Anti-Patterns** -- Four structural mistakes (page-based models, HTML in fields, monolithic types, redundant fields) with descriptions of why each fails at scale
 
 ## Key Capabilities
 

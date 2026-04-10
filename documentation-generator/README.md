@@ -6,11 +6,18 @@ Generate comprehensive documentation for repositories of any size - from small l
 
 ## What Problem Does This Solve
 
-Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.
+Writing documentation from scratch is slow and inconsistent: different team members structure READMEs differently, API docs miss edge cases, and architecture docs go stale because there is no systematic process. This skill provides a structured six-phase workflow — analysis, planning, structure, writing, coverage, and validation — that turns a repository into a complete, audience-aware documentation set. It orchestrates 24 templates and a suite of supporting skills so nothing falls through the cracks.
 
 ## When to Use This Skill
 
-Generate comprehensive documentation for repositories of any size, from small libraries to large monorepos. Use when creating documentation, generating docs, writing READMEs, producing API docs, architecture docs, or technical references for a repository.
+| You say... | The skill provides... |
+|---|---|
+| "Write documentation for this repo" | Six-phase workflow: repo analysis script, audience planning, template selection, and coverage validation |
+| "Generate an API reference for our REST endpoints" | REST endpoint template with example-design and edge-case-coverage baked in |
+| "Create an architecture doc for the system" | System design, data flow, and ADR templates backed by systems-thinking and ontology-design skills |
+| "Write a getting-started guide for new developers" | Quickstart and installation templates structured around user-journey-design |
+| "Our docs are outdated — find what's missing" | `drift` and `validate` script commands that score coverage and flag gaps |
+| "Create a runbook for the on-call team" | Operations runbook template with risk-management and edge-case-coverage applied |
 
 ## Installation
 
@@ -35,14 +42,14 @@ Use the documentation-generator skill to ...
 
 ## What's Inside
 
-- **Workflow Overview**
-- **Phase 1: Analysis**
-- **Phase 2: Planning - Load Supporting Skills**
-- **Phase 3: Structure - Load Supporting Skills**
-- **Phase 4: Writing - Load Supporting Skills**
-- **Phase 5: Coverage - Load Supporting Skills**
-- **Phase 6: Validation - Load Supporting Skills**
-- **Template Portfolio**
+- **Workflow Overview** -- Six-phase sequence (analysis → planning → structure → writing → coverage → validation) with the supporting skills to load at each phase.
+- **Phase 1: Analysis** -- Python script that inspects repository structure and outputs a structured `analysis.json` to drive subsequent phases.
+- **Phase 2: Planning - Load Supporting Skills** -- Persona definition, Power-Interest stakeholder mapping, and RICE/ICE prioritization to decide which docs to write first.
+- **Phase 3: Structure - Load Supporting Skills** -- Systems-thinking for architecture mapping, ontology-design for domain concepts, and navigation-design for information architecture.
+- **Phase 4: Writing - Load Supporting Skills** -- UX-writing for interface copy, example-design for code samples, and consistency-standards for terminology and style.
+- **Phase 5: Coverage - Load Supporting Skills** -- Edge-case-coverage for boundary conditions and user-journey-design to validate that readers can flow from awareness to mastery.
+- **Phase 6: Validation - Load Supporting Skills** -- Outcome-orientation to define success metrics and risk-management to identify and track documentation gaps.
+- **Template Portfolio** -- 24 ready-to-fill templates across core docs, API reference, architecture, domain model, specs, integrations, and operations.
 
 ## Version History
 

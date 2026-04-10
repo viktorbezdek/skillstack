@@ -6,11 +6,18 @@ Comprehensive Next.js development skill covering App Router (13+/15/16), Server 
 
 ## What Problem Does This Solve
 
-A unified skill merging best practices for Next.js development, covering App Router patterns, Server Components, data fetching, caching strategies, and module architecture.
+Next.js 13+ introduced the App Router with Server Components, Server Actions, and a completely different caching model — but the rules are non-obvious and violations cause silent runtime failures, stale data, or broken builds. Developers frequently misplace `'use client'` directives, misconfigure cache strategies, or get caught by Next.js 16's breaking changes (async params, deprecated middleware). This skill provides authoritative guidance on every layer of the framework so decisions are correct on the first pass.
 
 ## When to Use This Skill
 
-Next.js framework development including App Router, Server Components, Server Actions, SSR, SSG, ISR, caching, data fetching, middleware, layouts, parallel routes, and module architecture for Next.js 13+/15/16.
+| You say... | The skill provides... |
+|---|---|
+| "Should this component be a Server Component or Client Component?" | Decision tree based on interactivity, hooks, browser APIs, and data fetching requirements |
+| "How do I fetch data in the App Router?" | Quick reference for Server Component async/await, parallel fetching with Promise.all, TanStack Query for client-side, and all four cache strategies |
+| "How do I build a form with server-side mutation in Next.js?" | Server Actions quick reference: `'use server'` directive, Zod validation, revalidateTag/revalidatePath, useFormStatus, useOptimistic |
+| "My app broke after upgrading to Next.js 16" | Breaking changes guide: async route parameters, proxy.ts replacing middleware.ts, parallel route default.js requirement, updated revalidateTag API |
+| "How should I structure a new feature module?" | 5-layer module architecture pattern across app routes, service layer, hooks, types, and feature components |
+| "What are the non-negotiable rules I must follow in Next.js?" | Five critical rules covering next/image, Server Component defaults, async Client Components, cache strategy specification, and Next.js 16 async APIs |
 
 ## When NOT to Use This Skill
 
@@ -40,22 +47,14 @@ Use the nextjs-development skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Critical Rules**
-- **Next.js 16 Breaking Changes**
-- **Server vs Client Components - Decision Tree**
-- **App Router File Conventions**
-- **Data Fetching Quick Reference**
-- **Server Actions Quick Reference**
-- **Module Architecture (5-Layer Pattern)**
-
-## Key Capabilities
-
-- **Server Components**
-- **Parallel fetching**
-- **Streaming**
-- **Client-side**
-- **Caching**
+- **When to Use This Skill** -- Scenarios where this skill applies, covering routing, data fetching, caching, Server Actions, and module architecture
+- **Critical Rules** -- Five non-negotiable rules whose violation breaks builds or causes runtime errors: next/image, Server Component defaults, async Client Components, cache strategy, and Next.js 16 async APIs
+- **Next.js 16 Breaking Changes** -- Five breaking changes with before/after code: async route parameters, proxy.ts replacing middleware, parallel route default.js, `'use cache'` directive, and updated revalidateTag API
+- **Server vs Client Components - Decision Tree** -- Branching decision guide based on interactivity, hooks, browser APIs, and data fetching needs
+- **App Router File Conventions** -- Complete directory structure reference for layout.tsx, page.tsx, loading.tsx, error.tsx, route groups, parallel routes, and API routes
+- **Data Fetching Quick Reference** -- One-line summaries of Server Component fetching, parallel fetching, Suspense streaming, TanStack Query, and all four cache configurations
+- **Server Actions Quick Reference** -- Concise rules for form mutation: directive placement, Zod validation, cache invalidation, and optimistic update hooks
+- **Module Architecture (5-Layer Pattern)** -- Directory structure for organizing features across routes, service layer, hooks, types, and components
 
 ## Version History
 

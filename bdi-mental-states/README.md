@@ -6,11 +6,18 @@ Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontolo
 
 ## What Problem Does This Solve
 
-Transform external RDF context into agent mental states (beliefs, desires, intentions) using formal BDI ontology patterns. This skill enables agents to reason about context through cognitive architecture, supporting deliberative reasoning, explainability, and semantic interoperability within multi-agent systems.
+LLM agents that rely purely on prompt context lack structured internal representations of what they believe, want, and intend — making deliberation opaque, reasoning unjustifiable, and coordination across agents fragile. The BDI (Belief-Desire-Intention) architecture provides a formal cognitive model that separates perception from deliberation from action, enabling agents to explain their reasoning chains, maintain temporally-bounded mental states, and interoperate with other agents via established ontologies.
 
 ## When to Use This Skill
 
-This skill should be used when the user asks to "model agent mental states", "implement BDI architecture", "create belief-desire-intention models", "transform RDF to beliefs", "build cognitive agent", or mentions BDI ontology, mental state modeling, rational agency, or neuro-symbolic AI integration.
+| You say... | The skill provides... |
+|---|---|
+| "How do I give my agent a structured representation of what it believes about the world?" | BDI ontology patterns in RDF/Turtle with Belief, WorldState, and temporal validity constructs |
+| "I need my agent's reasoning to be explainable and traceable" | Justification linking pattern connecting every mental state to explicit evidence instances |
+| "How do I integrate external RDF knowledge graphs into agent reasoning?" | T2B2T (Triples-to-Beliefs-to-Triples) paradigm for bidirectional flow between RDF context and internal mental states |
+| "I want to implement a cognitive agent that forms intentions from beliefs" | Complete Belief → Desire → Intention → Plan → Task chain with RDF examples and SPARQL competency queries |
+| "How do I connect BDI mental states to production rules in SEMAS or JADE?" | Framework integration patterns translating BDI ontology to SEMAS rule notation and JADE agent execution |
+| "My LLM agent needs ontological constraints to prevent hallucinating structured outputs" | Logic Augmented Generation (LAG) integration pattern augmenting LLM prompts with BDI ontology context |
 
 ## When NOT to Use This Skill
 
@@ -40,14 +47,14 @@ Use the bdi-mental-states skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **T2B2T Paradigm**
-- **Notation Selection by Level**
-- **Justification and Explainability**
-- **Temporal Dimensions**
-- **Compositional Mental Entities**
-- **Integration Patterns**
+- **When to Activate** -- Conditions distinguishing BDI use cases from multi-agent-patterns and memory-systems
+- **Core Concepts** -- Mental Reality Architecture distinguishing endurants (Belief, Desire, Intention) from perdurants (BeliefProcess, DesireProcess, IntentionProcess), with world state grounding and goal-directed planning examples
+- **T2B2T Paradigm** -- Bidirectional RDF-to-beliefs-to-RDF transformation with complete Turtle notation examples for both phases
+- **Notation Selection by Level** -- C4 architecture level mapping (Context/Container/Component/Code) to ArchiMate and UML notations for BDI system documentation
+- **Justification and Explainability** -- Pattern for linking every mental entity to explicit Justification instances enabling traceable reasoning chains
+- **Temporal Dimensions** -- Validity interval modeling for bounded mental states with SPARQL query for time-point mental state retrieval
+- **Compositional Mental Entities** -- Meronymic `hasPart` structures enabling selective belief updates without replacing entire complex beliefs
+- **Integration Patterns** -- Logic Augmented Generation for LLM constraint, SEMAS rule translation, and FIPA ACL cross-platform communication
 
 ## Key Capabilities
 

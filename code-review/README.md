@@ -6,11 +6,18 @@ Perform thorough code reviews with multi-agent swarm analysis covering security,
 
 ## What Problem Does This Solve
 
-This skill is a curated merge of four complementary code review skills:
+Code reviews performed without systematic structure miss security vulnerabilities, let performance bottlenecks pass, and produce inconsistent feedback that's hard for authors to act on. Pull requests with many reviewers generate overlapping comments without clear priority — leaving authors unsure what must be fixed versus what's a suggestion. This skill applies multi-agent parallel analysis across five quality dimensions (security, performance, style, tests, documentation) with every finding grounded to a specific file and line number, severity level, and actionable fix.
 
 ## When to Use This Skill
 
-|.
+| You say... | The skill provides... |
+|---|---|
+| "Review this PR before I merge it" | Multi-agent swarm review with five parallel specialists (security, performance, style, tests, docs) producing prioritized findings with file:line references |
+| "There are 30 comments on my PR from 4 reviewers — what should I fix first?" | PR comment extraction and consolidation workflow identifying high-consensus issues where multiple reviewers flagged the same concern |
+| "I need to audit this codebase for security vulnerabilities" | Security reviewer agent scanning for unsafe patterns, secret exposure, injection risks, and auth issues with CRITICAL/MAJOR severity classification |
+| "Does this code have performance problems I'm missing?" | Performance analyst agent identifying bottlenecks, unnecessary database calls, and optimization opportunities with evidence-backed findings |
+| "How do I know if my review findings are real issues or false positives?" | TRUST 5 validation framework requiring 2+ confirming signals before flagging violations, with <5% false positive rate target |
+| "I need a structured action plan from this code review" | Prioritized fix plan organized by severity (CRITICAL → MAJOR → MINOR → NIT) with specific code change suggestions for each finding |
 
 ## Installation
 
@@ -35,12 +42,12 @@ Use the code-review skill to ...
 
 ## What's Inside
 
-- **When to Use**
-- **Core Capabilities**
-- **Severity Levels**
-- **Validation Rules**
-- **Success Criteria**
-- **Resources Reference**
+- **When to Use** -- Conditions for applying this skill with explicit exclusions (simple formatting, trivial changes, generated code)
+- **Core Capabilities** -- Evidence-based review requirements (file:line, evidence type, severity, confidence), PR comment extraction and grouping, five-agent parallel swarm, AI-powered consultation, and TRUST 5 validation framework
+- **Severity Levels** -- Four-level classification (CRITICAL → MAJOR → MINOR → NIT) with scope definitions from architecture to line level
+- **Validation Rules** -- Constraints ensuring findings are evidence-backed, include line numbers, distinguish symptoms from root causes, and maintain <5% false positive rate
+- **Success Criteria** -- Measurable targets: zero false negatives, <5% false positive rate, 100% actionable findings with file paths and fix guidance
+- **Resources Reference** -- Scripts (PR comment grabber, multi-agent orchestrator, security scanner), reference docs (analysis prompts, impact methodology, validation workflow), and review templates
 
 ## Key Capabilities
 

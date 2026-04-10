@@ -6,11 +6,18 @@ Design knowledge models with classes, properties, relationships, and taxonomies 
 
 ## What Problem Does This Solve
 
-Model domain knowledge through classes, properties, and relationships.
+Complex domains contain entities that relate to each other in structured ways — inheritance hierarchies, composition relationships, type systems — but without a formal model these structures are implicit, inconsistently applied, and hard to query or reason over. Ad-hoc data models grow into "god class" messes with circular dependencies and orphaned entities. This skill provides the vocabulary, design templates, and principles needed to build rigorous, reusable knowledge models before implementation begins.
 
 ## When to Use This Skill
 
-Design formal knowledge models with classes, properties, relationships, taxonomies, semantic modeling, class hierarchies, and entity relationships.
+| You say... | The skill provides... |
+|---|---|
+| "I need to model the domain entities and their relationships for my system" | Class/property/relationship/instance component definitions with a structured design template |
+| "How do I represent inheritance between domain concepts?" | Is-a (subClassOf), has-a (hasPart), uses (association), and instance-of relationship type reference |
+| "I'm designing a taxonomy — what levels and structure should I use?" | Taxonomy level hierarchy from Kingdom through Species as a structural model to adapt |
+| "My domain model has gotten messy with overlapping responsibilities" | MECE principle, single-inheritance guidance, and the four anti-patterns to identify and fix |
+| "How should I document a class with its properties and relationships?" | Markdown class template with property table (name/type/required/description) and relationship table (relation/target/cardinality) |
+| "What makes a good ontology vs a bad one?" | Design principles (MECE, normalize, domain-driven) and anti-patterns (god class, orphan classes, circular dependencies, over-abstraction) |
 
 ## When NOT to Use This Skill
 
@@ -38,20 +45,12 @@ Use the ontology-design skill to ...
 
 ## What's Inside
 
-- **Core Components**
-- **Relationship Types**
-- **Taxonomy Levels**
-- **Design Template**
-- **Class: [Name]**
-- **Design Principles**
-- **Anti-Patterns**
-
-## Key Capabilities
-
-- **MECE**
-- **Single inheritance preferred**
-- **Normalize**
-- **Domain-driven**
+- **Core Components** -- Reference table of Class, Property, Relationship, and Instance with purpose and concrete examples
+- **Relationship Types** -- Four relationship types (is-a, has-a, uses, instance-of) with notation and examples
+- **Taxonomy Levels** -- Hierarchical taxonomy structure from Kingdom to Species as a template for any classification system
+- **Design Template** -- Markdown class definition template with property table and relationship table ready to fill in
+- **Design Principles** -- Four guiding principles: MECE, single inheritance, normalization, and domain-driven modeling
+- **Anti-Patterns** -- Four structural problems that degrade ontology quality: god class, orphan classes, circular dependencies, and over-abstraction
 
 ## Version History
 

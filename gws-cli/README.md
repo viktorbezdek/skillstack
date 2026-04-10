@@ -6,11 +6,18 @@ Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Do
 
 ## What Problem Does This Solve
 
-Complete reference for the `gws` CLI -- a single dynamically-generated command-line interface for all Google Workspace APIs. Commands are built at runtime from Google's Discovery Service, so they stay current without CLI updates.
+Automating Google Workspace tasks normally requires context-switching between the Drive web UI, Gmail, Sheets, Calendar, and Admin Console — or writing bespoke API integration code for each service. The `gws` CLI solves this by generating commands at runtime from Google's Discovery Service, giving you a single composable interface for all 18 Workspace APIs that stays current without manual updates and pipes naturally with `jq` and shell scripts.
 
 ## When to Use This Skill
 
-Google Workspace CLI (gws) for managing all 18 Workspace APIs from the terminal. Use when running gws commands, listing Drive files, sending Gmail, reading Sheets, creating Calendar events, managing Tasks, querying Chat, pushing Apps Script, building cross-service automations, or when user mentions gws or Google Workspace CLI.
+| You say... | The skill provides... |
+|---|---|
+| "List all files in a Drive folder matching a name pattern" | `gws drive files list` with `q` query syntax reference and Drive query operator table |
+| "Send an email with an attachment from the command line" | `gws gmail +send` helper with `--to`, `--subject`, `--body`, `--attachment` flags |
+| "Read a range from a Google Sheet and output as CSV" | `gws sheets +read` with `--format csv` and single-quote escaping rule for `!` in range names |
+| "Create a Calendar event with attendees and a Google Meet link" | `gws calendar +insert` with `--attendee` and `--meet` flags |
+| "Build a standup report combining today's meetings and open tasks" | `gws workflow +standup-report` cross-service helper |
+| "I'm not sure what parameters a method accepts" | `gws schema drive.files.list --resolve-refs` introspection command showing parameters, body schema, and required OAuth scopes |
 
 ## When NOT to Use This Skill
 
@@ -41,14 +48,14 @@ Use the gws-cli skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Quick Reference**
-- **Authentication**
-- **Schema Introspection**
-- **Drive**
-- **Gmail**
-- **Sheets**
-- **Calendar**
+- **Overview** -- Service listing (18 APIs), command generation model, helper shortcuts, output formats, and the time-savings rationale for a unified CLI.
+- **Quick Reference** -- Command syntax patterns, global flags table (--params, --json, --format, --page-all, --dry-run, etc.), services table with aliases, and exit code reference.
+- **Authentication** -- OAuth setup flow, scope presets (default/readonly/full/custom), AES-256-GCM credential storage, auth precedence order, and environment variable reference.
+- **Schema Introspection** -- `gws schema` usage for discovering method parameters, request body structure, response shape, and required scopes before constructing commands.
+- **Drive** -- Raw API methods for list, search, get, download, export, create, move, delete; `+upload` helper; Drive query syntax operator table; common MIME type reference.
+- **Gmail** -- Raw API methods for list, search, get, label, trash, thread; `+send`, `+reply`, `+reply-all`, `+forward`, `+triage`, `+watch` helpers; Gmail search operator table.
+- **Sheets** -- Raw API methods for get, read, batch-read, write, append, create, clear; `+read` and `+append` helpers; single-quote escaping rule for range names containing `!`.
+- **Calendar** -- Raw API methods for list, get, insert, patch, delete, quickAdd; `+agenda` (today/tomorrow/week/days) and `+insert` helpers with meet and attendee support.
 
 ## Key Capabilities
 

@@ -6,11 +6,18 @@ Design information architecture, wayfinding systems, breadcrumbs, and navigation
 
 ## What Problem Does This Solve
 
-Create intuitive wayfinding systems for content and applications.
+Users abandon products and documentation when they cannot find what they need — not because content is missing, but because the structure is unclear, menus are overloaded, or there is no indication of where the user currently is. Poor information architecture forces users to memorize paths instead of recognizing options. This skill provides the structural patterns, rules-of-thumb, and concrete templates for building navigation systems that guide users to their destination without friction.
 
 ## When to Use This Skill
 
-Design information architecture, wayfinding systems, and navigation patterns for documentation and applications. Use when working with navigation, information.
+| You say... | The skill provides... |
+|---|---|
+| "How should I structure the navigation for my documentation site?" | Hierarchy (tree), hub-and-spoke, flat, and faceted IA patterns with decision guidance on when each fits |
+| "My top nav has too many items and users are getting lost" | The 7±2 rule, global/local/contextual/utility navigation type distinctions, and menu structure patterns |
+| "How do I add breadcrumbs to my app?" | Breadcrumb template with clickable-except-current-page convention |
+| "I need to create a sitemap for a new product" | Sitemap template covering primary and utility navigation structure |
+| "Users can't tell where they are in my app" | Current location indicator patterns and the Recognition over Recall navigation principle |
+| "What navigation mistakes should I avoid?" | Anti-patterns catalogue: mystery meat labels, deep nesting, inconsistent placement, missing location indicators |
 
 ## Installation
 
@@ -34,13 +41,12 @@ Use the navigation-design skill to ...
 
 ## What's Inside
 
-- **Navigation Types**
-- **Information Architecture Patterns**
-- **Navigation Rules**
-- **Breadcrumb Template**
-- **Sitemap Template**
-- **Sitemap: [Product]**
-- **Anti-Patterns**
+- **Navigation Types** -- Reference table of global, local, contextual, utility, and breadcrumb navigation with use cases and examples
+- **Information Architecture Patterns** -- Four structural models (hierarchy/tree, hub-and-spoke, flat, faceted) with diagrams showing when each applies
+- **Navigation Rules** -- Four core rules (7±2, 3-click, Recognition over Recall, Consistency) with descriptions
+- **Breadcrumb Template** -- Ready-to-use breadcrumb trail pattern with the clickable-except-current-page convention
+- **Sitemap Template** -- Markdown sitemap scaffold covering primary and utility navigation sections
+- **Anti-Patterns** -- Four common navigation failures that break user orientation and how to recognize them
 
 ## Version History
 

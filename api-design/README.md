@@ -6,11 +6,18 @@ Comprehensive API design skill for REST, GraphQL, gRPC, and Python library archi
 
 ## What Problem Does This Solve
 
-Comprehensive API design skill combining REST, GraphQL, gRPC, and Python library architecture expertise. This merged skill provides patterns, templates, and tools for building production-grade APIs.
+API design decisions made early — URL structure, error formats, versioning strategy, pagination approach — are expensive to change once consumers depend on them. Without concrete patterns to follow, teams produce inconsistent endpoints, leaky error messages, missing rate limiting, and GraphQL schemas that trigger N+1 queries. This skill consolidates production-grade patterns across REST, GraphQL, gRPC, and Python library design into a single reference with ready-to-use templates, scripts, and checklists.
 
 ## When to Use This Skill
 
-Design production-grade APIs across REST, GraphQL, gRPC, and Python library architectures. Use when working with API endpoints, REST resources, GraphQL schemas, gRPC services, OpenAPI/Swagger specs, FastAPI, Pydantic models, OAuth/JWT authentication, pagination.
+| You say... | The skill provides... |
+|---|---|
+| "How should I structure my REST API URLs and HTTP methods?" | URL naming conventions, HTTP method semantics, status code reference, and consistent error response envelope format |
+| "My GraphQL API has terrible N+1 performance problems" | DataLoader batching patterns, complexity limits, caching strategies, and Apollo Federation for distributed schemas |
+| "I need to add authentication to my FastAPI endpoints" | JWT, API key, and OAuth 2.0 flow patterns with FastAPI dependency injection examples and Pydantic schema templates |
+| "How do I paginate a list endpoint — cursor vs offset?" | Cursor-based and offset-based pagination patterns with request/response examples and tradeoff guidance |
+| "I need to version my API without breaking existing clients" | Versioning strategies reference covering URL versioning, header versioning, and deprecation workflows |
+| "Can you scaffold a complete FastAPI CRUD endpoint?" | FastAPI router template, Pydantic schema template, repository pattern with tenant isolation, and rate limiter implementation |
 
 ## Installation
 
@@ -36,14 +43,12 @@ Use the api-design skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Quick Reference**
-- **Available Resources**
-- **Core Workflows**
-- **Anti-Patterns to Avoid**
-- **Quality Checklist**
-- **When to Use This Skill**
-- **Source Skills**
+- **Overview** -- Summary of the four combined domains: REST, GraphQL, gRPC, and Python library architecture
+- **Quick Reference** -- URL patterns, HTTP methods, status codes, error envelope format, GraphQL schema example, FastAPI route and Pydantic schema patterns, pagination formats, and auth headers
+- **Available Resources** -- Index of all references, templates, examples, scripts, assets, and checklists with one-line descriptions
+- **Core Workflows** -- Step-by-step guides for designing a REST API, building a GraphQL API, setting up Apollo Federation, and validating API specifications with included scripts
+- **Anti-Patterns to Avoid** -- Ten common mistakes (verb URLs, missing pagination, no idempotency keys, N+1 queries) with specific fixes
+- **Quality Checklist** -- Pre-release checklist covering endpoints, error responses, pagination, auth, rate limiting, versioning, CORS, and OpenAPI validation
 
 ## Key Capabilities
 

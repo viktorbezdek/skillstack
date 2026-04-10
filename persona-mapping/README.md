@@ -6,11 +6,18 @@ Map stakeholders and personas using Power-Interest matrices, RACI charts, and in
 
 ## What Problem Does This Solve
 
-Map stakeholders by influence, interest, and responsibility.
+Organizations fail at change management when they don't know who holds power, who cares about outcomes, and who needs to be kept in the loop. Without a structured approach to stakeholder analysis, critical decision-makers get blindsided, resistant influencers derail projects, and communications go to the wrong people in the wrong way. This skill provides frameworks for mapping organizational relationships before they bite you.
 
 ## When to Use This Skill
 
-Map stakeholders across organizations using Power-Interest matrices, RACI charts, influence analysis, salience models, and audience prioritization.
+| You say... | The skill provides... |
+|---|---|
+| "Help me figure out who to involve in this initiative" | Power-Interest matrix to categorize stakeholders into Manage Closely, Keep Satisfied, Keep Informed, and Monitor quadrants |
+| "Who is responsible for approving vs. doing this work?" | RACI chart template to assign Responsible, Accountable, Consulted, and Informed roles per task |
+| "I need to plan communication for each stakeholder group" | Stakeholder template with influence/interest/attitude ratings and engagement strategy fields |
+| "How do I prioritize which stakeholders need the most attention?" | Salience model ranking stakeholders by Power, Legitimacy, and Urgency combinations |
+| "I need to map all the people impacted by this product launch" | Structured stakeholder inventory with engagement frequency, channel, and key messaging per person |
+| "Some stakeholders are resistant — how do I handle them?" | Attitude classification (Supportive/Neutral/Resistant) with tailored engagement strategies |
 
 ## When NOT to Use This Skill
 
@@ -38,11 +45,10 @@ Use the persona-mapping skill to ...
 
 ## What's Inside
 
-- **Power-Interest Matrix**
-- **RACI Matrix**
-- **Stakeholder Template**
-- **Stakeholder: [Name]**
-- **Salience Model**
+- **Power-Interest Matrix** -- A 2x2 grid (High/Low Power vs. High/Low Interest) that determines the right engagement strategy for each stakeholder quadrant.
+- **RACI Matrix** -- Defines Responsible, Accountable, Consulted, and Informed roles per task, ensuring exactly one accountable person per decision.
+- **Stakeholder Template** -- A structured profile capturing influence, interest, attitude, communication frequency, channel, and key messages for each stakeholder.
+- **Salience Model** -- Prioritizes stakeholders by their combination of Power, Legitimacy, and Urgency attributes, from Definitive (all three) down to Latent (one attribute).
 
 ## Key Capabilities
 

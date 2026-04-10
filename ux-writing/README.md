@@ -6,11 +6,18 @@ Write effective microcopy, error messages, button labels, and interface text usi
 
 ## What Problem Does This Solve
 
-Write clear, helpful, human interface text.
+Interface text is often written by engineers as an afterthought — "Submit", "Error 404", "Click here" — leaving users confused about what just happened or what to do next. UX writing treats every label, error message, button, and empty state as a design decision that either guides the user toward success or creates friction. This skill provides the Clear-Concise-Useful-Human framework, tone guidelines by context (success, error, warning, empty), and concrete before/after rewrites for the most common UI patterns.
 
 ## When to Use This Skill
 
-Write effective microcopy, error messages, button labels, and interface text using UX writing principles. Use when crafting microcopy, UX copy, interface text, error messages, button labels, empty states, or conversational UI text.
+| You say... | The skill provides... |
+|---|---|
+| "Write better error messages for my form validation" | Error message pattern: human-readable description of what went wrong plus a specific next step to resolve it |
+| "The submit button just says 'Submit' — how do I improve it?" | Verb + Object formula for button labels (e.g., "Save changes", "Download report") with examples of common weak labels and rewrites |
+| "Users don't know what to do on the empty state screen" | Encouraging empty state copy pattern that describes what the feature does and provides a clear first action |
+| "Write a confirmation dialog for a destructive action" | Confirmation dialog template with action-specific title, irreversibility warning, and labeled confirm/cancel buttons |
+| "My error messages are too technical for end users" | Tone-by-context guidance for turning technical error codes into helpful, empathetic copy |
+| "How do I write form field labels that reduce support tickets?" | Form label pattern with placeholder text, helper text positioning, and follow-up confirmation messaging |
 
 ## When NOT to Use This Skill
 
@@ -38,9 +45,9 @@ Use the ux-writing skill to ...
 
 ## What's Inside
 
-- **Core Principles**
-- **Tone by Context**
-- **UI Patterns**
+- **Core Principles** -- Four writing principles (Clear, Concise, Useful, Human) with description of what each means in practice for interface copy.
+- **Tone by Context** -- Tone guidance for four UI states — success (celebratory), error (helpful), warning (direct), and empty (encouraging) — with example copy for each.
+- **UI Patterns** -- Before/after rewrites for the four highest-impact copy locations: button labels (Verb + Object formula), error messages (human description + next step), confirmation dialogs (action title + consequence + labeled buttons), and form labels (label + placeholder + helper text).
 
 ## Version History
 

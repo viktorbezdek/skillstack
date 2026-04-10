@@ -6,13 +6,18 @@ Comprehensive prompt optimization system for LLMs. Design effective AI interacti
 
 ## What Problem Does This Solve
 
-Transform vague AI instructions into precision-engineered prompts that reliably produce
-high-quality outputs. This skill combines proven techniques, systematic evaluation, and
-iterative refinement to create prompts for any LLM platform.
+Most prompts fail not because the LLM is incapable, but because the instruction is ambiguous, missing context, or specifying the wrong output format. Engineers and product teams waste hours iterating on prompts with no systematic method, copying examples that worked elsewhere without understanding why. This skill provides a structured 4-D methodology (Deconstruct, Diagnose, Develop, Deliver) for designing prompts that produce reliable, high-quality outputs across any LLM platform.
 
 ## When to Use This Skill
 
-Optimize prompts for LLMs through systematic design, evaluation, and iterative refinement. Use when doing prompt engineering, prompt design, prompt optimization, system prompt creation, LLM optimization, or improving prompt templates.
+| You say... | The skill provides... |
+|---|---|
+| "This prompt gives inconsistent results — help me fix it" | OPTIMIZE mode: diagnosis across Clarity, Specificity, Structure, Completeness, and Efficiency dimensions, then targeted improvements |
+| "Write me a system prompt for a customer support agent" | INTERACTIVE DESIGN mode: 2-3 strategic questions to gather context, then a complete Role+Context+Task+Format structured prompt |
+| "Is this prompt good? Score it for me" | EVALUATE mode: 1-5 scoring on 5 dimensions with an LLM-as-Judge template and specific improvement suggestions |
+| "My prompt works on Claude but not on GPT-4" | Platform-specific guidance for Claude (XML tags, intent-first), GPT-4 (system/user separation, "You MUST" directives), and Gemini |
+| "I need a prompt that reasons through complex decisions step by step" | Chain-of-Thought + Few-Shot pattern with reasoning examples and multi-stage pipeline decomposition |
+| "Help me A/B test two versions of this prompt" | A/B testing process: define test inputs, run blind evaluation, score on dimensions, declare winner with reasoning |
 
 ## Installation
 
@@ -37,14 +42,13 @@ Use the prompt-engineering skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Decision Flow**
-- **Core Process: The 4-D Framework**
-- **Optimization Patterns**
-- **Context Enrichment**
-- **Evaluation Framework**
-- **Platform-Specific Notes**
-- **Templates**
+- **Decision Flow** -- Routes incoming requests to the correct mode: Optimize, Auto Design, Interactive Design, Evaluate, or Educate based on what the user brings.
+- **Core Process: The 4-D Framework** -- Four-phase methodology (Deconstruct, Diagnose, Develop, Deliver) applied to every prompt optimization task.
+- **Optimization Patterns** -- Three reusable prompt structures: Role+Context+Task+Format (80% of cases), Few-Shot+Chain-of-Thought (format + reasoning), and Multi-Stage Pipeline (complex decomposed tasks).
+- **Context Enrichment** -- Guidance for grounding prompts in real organizational context using connected tools (Google Drive, Asana, Slack, etc.) when users reference internal information.
+- **Evaluation Framework** -- Quick 1-5 scoring rubric across five dimensions, LLM-as-Judge evaluation template, and a structured A/B testing process.
+- **Platform-Specific Notes** -- Key behavioral differences between Claude, GPT-4, and Gemini with concrete prompting adjustments for each.
+- **Templates** -- Reusable prompt patterns for Research & Analysis, Creative & Content, Technical & Code, Business & Strategy, and Teaching & Explanation use cases.
 
 ## Key Capabilities
 

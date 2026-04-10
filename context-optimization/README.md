@@ -6,11 +6,18 @@ Techniques for extending effective context capacity through compaction, observat
 
 ## What Problem Does This Solve
 
-Context optimization extends the effective capacity of limited context windows through strategic compression, masking, caching, and partitioning. The goal is not to magically increase context windows but to make better use of available capacity. Effective optimization can double or triple effective context capacity without requiring larger models or longer contexts.
+Tool outputs alone can consume 80%+ of a context window in typical agent trajectories, yet much of that content is verbose output that has already served its purpose. Paying full token cost to re-process stale tool results on every turn wastes budget and adds latency. This skill covers four concrete techniques — compaction, observation masking, KV-cache optimization, and context partitioning — that together can double or triple effective context capacity without switching to larger models.
 
 ## When to Use This Skill
 
-EXTENDING effective context capacity — KV-cache optimization, observation masking, context partitioning, and retrieval strategies. Use when the user asks to "optimize context", "implement KV-cache", "partition context", "mask observations", or mentions extending context capacity or cache-friendly prompt design.
+| You say... | The skill provides... |
+|---|---|
+| "My agent's responses degrade and latency increases as conversations extend" | Compaction strategy: when to trigger (70-80% utilization), what to compress first (tool outputs then old turns), and how to preserve system prompts |
+| "Tool outputs are dominating my context window" | Observation masking: strategy for replacing verbose outputs with compact references, with rules for what to always/never mask |
+| "I'm paying high inference costs on every call even though most context is identical" | KV-cache optimization: prefix-stable prompt ordering (system prompt first, unique content last) to maximize cache hit rates |
+| "I need to handle a task that's too large for a single context window" | Context partitioning: sub-agent isolation pattern that keeps each subtask's context clean, plus result aggregation strategies |
+| "How do I know when to apply which optimization technique?" | Decision framework: what to apply based on which component dominates — tool outputs, retrieved docs, or message history |
+| "What compression ratios and quality tradeoffs should I expect?" | Performance benchmarks: 50-70% reduction for compaction, 60-80% for masking, 70%+ cache hit rate targets for stable workloads |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,14 @@ Use the context-optimization skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
+- **When to Activate** -- Six conditions signaling optimization is needed: context limits, cost reduction goals, latency problems, long-running agents, large documents, and production scale.
+- **Core Concepts** -- Four primary strategies (compaction, observation masking, KV-cache optimization, context partitioning) and the principle that context quality matters more than quantity.
+- **Detailed Topics** -- Deep coverage of compaction implementation and summary generation by message type, observation masking selection rules, KV-cache prefix ordering patterns, sub-agent partitioning, and budget management with trigger-based optimization.
+- **Practical Guidance** -- Decision framework mapping context composition to the right optimization technique, plus performance benchmarks for each strategy.
+- **Examples** -- Code patterns for compaction triggers, observation masking with reference IDs, and cache-friendly context ordering.
+- **Guidelines** -- Eight prioritized rules from measuring before optimizing through graceful degradation for edge cases.
+- **Integration** -- How this skill connects to multi-agent-patterns (partitioning as isolation), evaluation (measuring optimization effectiveness), and memory-systems (offloading context).
+- **References** -- Internal reference to the optimization techniques technical reference and external resources on KV-cache and context window research.
 
 ## Version History
 

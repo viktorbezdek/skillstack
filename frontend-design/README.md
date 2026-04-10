@@ -6,11 +6,18 @@ Comprehensive Frontend Design (UI/UX) skill combining UI design systems, compone
 
 ## What Problem Does This Solve
 
-Comprehensive skill for creating beautiful, accessible, and performant user interfaces. This curated skill merges expertise from 11 specialized frontend/UI skills covering design systems, component libraries, CSS frameworks, accessibility patterns, and visual design principles.
+Frontend teams routinely reinvent design decisions — colours, spacing, dark mode tokens, accessible keyboard patterns — because the knowledge is scattered across eleven different specialist areas and rarely consolidated in one place. This skill merges that expertise into a single reference covering the Tailwind + Radix UI + shadcn/ui stack, Figma-to-token extraction, WCAG 2.2 compliance, and responsive layout, so developers can build consistent, accessible UIs without context-switching across multiple docs.
 
 ## When to Use This Skill
 
-Visual design systems, UI/UX styling, Tailwind CSS, CSS variables, component libraries (shadcn/ui, Radix UI), design tokens, accessibility (WCAG), responsive layout, dark mode, and Figma-to-code workflows.js routing, SSR, or server components (use nextjs-development).
+| You say... | The skill provides... |
+|---|---|
+| "Build a dashboard card component with Tailwind and shadcn/ui" | Quick-start component setup, shadcn/ui CLI commands, and a working TypeScript example with responsive grid |
+| "Set up a dark mode token system" | Three-tier CSS variable architecture (primitives, semantics, components) with `.dark` override pattern |
+| "Extract design tokens from our Figma file" | `extract_tokens.py` + `transform_tokens.py` + `validate_tokens.py` script workflow |
+| "Is our UI accessible? We need WCAG AA compliance" | WCAG 2.2 contrast table, accessibility checklist, and `audit_accessibility.sh` script |
+| "Which component library should we use and how does it layer together?" | Core stack architecture explaining Tailwind (styling) → Radix UI (behaviour) → shadcn/ui (complete components) |
+| "Evaluate the visual quality of this UI and suggest improvements" | UI evaluation with `evaluate-ui.ts` and A/B variation comparison with `compare-variations.ts` |
 
 ## When NOT to Use This Skill
 
@@ -41,14 +48,14 @@ Use the frontend-design skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Quick Start Decision Tree**
-- **Core Stack Architecture**
-- **Quick Start: Component Setup**
-- **Design Token System**
-- **Accessibility Standards**
-- **Best Practices Summary**
-- **External Resources**
+- **When to Use This Skill** -- Decision criteria covering components, design systems, styling, accessibility, UI evaluation, and performance optimisation use cases.
+- **Quick Start Decision Tree** -- Branching guide routing requests to the right sub-section or script based on whether you are creating components, styling, working on a design system, addressing accessibility, or evaluating quality.
+- **Core Stack Architecture** -- Three-pillar explanation of how Tailwind CSS (styling), Radix UI (accessible behaviour), and shadcn/ui (complete components) layer on top of each other.
+- **Quick Start: Component Setup** -- `npx shadcn@latest` setup commands and a working TypeScript/React dashboard component example.
+- **Design Token System** -- Three-tier CSS variable architecture (primitives → semantics → components) with Figma extraction script workflow.
+- **Accessibility Standards** -- WCAG 2.2 contrast ratio table, eight-item accessibility checklist, and a summary of Radix UI's built-in accessibility guarantees.
+- **Best Practices Summary** -- Do/don't checklist covering semantic HTML, mobile-first layout, WCAG compliance, design tokens, TypeScript, and Core Web Vitals.
+- **External Resources** -- Links to TailwindCSS, Radix UI, shadcn/ui, WCAG 2.2, OKLCH color space, and WebAIM contrast checker.
 
 ## Key Capabilities
 

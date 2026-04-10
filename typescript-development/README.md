@@ -6,11 +6,18 @@ Comprehensive TypeScript development skill covering type system mastery, runtime
 
 ## What Problem Does This Solve
 
-A complete TypeScript development skill combining best practices, patterns, and tooling for modern TypeScript development across all application types.
+TypeScript's type system is powerful enough to prevent whole classes of runtime bugs — but only when used correctly. Teams that rely on `any`, ignore strict mode, or bolt on Zod schemas as an afterthought end up with a false sense of safety: types pass at compile time but data still blows up at runtime. This skill provides opinionated, production-tested patterns for strict type configuration, branded types that prevent ID mixups, discriminated unions for exhaustive state modeling, runtime validation library selection (Zod vs TypeBox vs Valibot), and Clean Architecture integration for NestJS and React 19.
 
 ## When to Use This Skill
 
-TypeScript development — use when the user works with TypeScript, type system patterns, generics, Zod, tsconfig, NestJS, branded types, or runtime validation. Covers type system mastery, framework integration, architecture patterns, security, and testing strategies.js framework specifics (use nextjs-development).
+| You say... | The skill provides... |
+|---|---|
+| "How do I model loading/success/error states without bugs?" | Discriminated union pattern for `AsyncState<T>` with exhaustive switch handling |
+| "I keep mixing up user IDs and order IDs at runtime" | Branded types pattern using `Brand<T, B>` to make structurally identical types type-incompatible |
+| "Which validation library should I use — Zod, TypeBox, or Valibot?" | Decision tree comparing all three on bundle size, OpenAPI compatibility, performance, and React form integration |
+| "My tsconfig is not strict enough and I'm getting runtime nulls" | Recommended tsconfig with `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and explanations for each flag |
+| "How do I structure a NestJS API with Clean Architecture?" | Repository pattern, Use Case pattern, dependency injection setup, and a complete NestJS + TypeORM example |
+| "I need to handle unknown API response shapes safely" | `unknown` + Zod validation pattern, type guard authoring, and when to use assertion functions vs. type predicates |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,14 @@ Use the typescript-development skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Core TypeScript Principles**
-- **Type System Patterns**
-- **Validation Library Decision Tree**
-- **Decision Trees**
-- **Common Patterns Quick Reference**
-- **Resources**
-- **Version Compatibility**
+- **Overview** -- What the merged skill covers: type system, runtime validation, framework integration, architecture, security, configuration, and testing.
+- **Core TypeScript Principles** -- Strict mode tsconfig flags, no-`any` policy, type-only imports, and the reasoning behind each constraint.
+- **Type System Patterns** -- Code patterns for discriminated unions, conditional types, mapped types with modifiers, template literal types, and branded types with `unique symbol`.
+- **Validation Library Decision Tree** -- When to choose Zod vs TypeBox vs Valibot based on API validation needs, JSON Schema requirements, bundle size, performance, and form integration.
+- **Decision Trees** -- Type vs. interface, `unknown` vs. `any`, and generics vs. union types — each as a flowchart with decision criteria.
+- **Common Patterns Quick Reference** -- Table mapping 10 patterns (discriminated union, branded types, result type, repository pattern, etc.) to their primary use cases.
+- **Resources** -- Index of all reference documents, the TypeScript config validator script, tsconfig template, and the complete NestJS + TypeORM example project.
+- **Version Compatibility** -- Confirmed compatibility matrix: TypeScript 5.x, React 18/19, Next.js 14-16, Node.js 20+, NestJS 10+, ESM and CommonJS.
 
 ## Key Capabilities
 

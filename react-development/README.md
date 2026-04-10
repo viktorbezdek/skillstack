@@ -6,15 +6,22 @@ Build production-grade React applications with Next.js App Router, shadcn/ui com
 
 ## What Problem Does This Solve
 
-A comprehensive skill for building modern React applications, covering component architecture, hooks optimization, Next.js patterns, and code quality auditing.
+React applications accumulate hooks anti-patterns — syncing props to state with useEffect, over-memoizing cheap calculations, creating re-render cascades — that degrade performance and make components hard to reason about. Component architecture also drifts without clear boundaries between server-side services, client-side data hooks, and presentational components. This skill provides the patterns, decision trees, and auditing criteria to build React applications correctly and refactor existing ones to match.
 
 ## When to Use This Skill
 
-React-specific development patterns including hooks (useState, useEffect, useReducer, useContext), component architecture, state management, shadcn/ui integration, JSX/TSX, React testing, and Bulletproof React auditing.js routing, SSR, or server components (use nextjs-development).
+| You say... | The skill provides... |
+|---|---|
+| "Structure my Next.js application with Supabase" | 5-layer architecture (Types, Services, Hooks, Components, Pages) with server-side service patterns and client-side TanStack Query hooks |
+| "Build a component library with shadcn/ui" | CVA variants pattern for type-safe component variants with Tailwind CSS, plus scaffold scripts for generating shadcn-style components |
+| "My useEffect is causing infinite re-renders" | Dependency array rules, functional update patterns, and the anti-pattern catalog (derived state, event response, props-to-state) |
+| "Should I use useMemo here?" | Decision criteria: only memoize expensive computations (O(n log n)+), callbacks passed to memoized children, or values in other hooks' dependency arrays |
+| "Audit my React codebase for quality issues" | Bulletproof React auditing criteria covering architecture, hooks usage, component size limits (< 300 lines, < 10 props), and accessibility patterns |
+| "Help me set up React testing for components and hooks" | Testing patterns for React components including accessible queries and hook testing conventions |
 
 ## When NOT to Use This Skill
 
-- Next
+- Next.js routing, SSR, or server components -- use [nextjs-development](../nextjs-development/) instead
 - CSS design systems, Tailwind utilities, or accessibility patterns -- use [frontend-design](../frontend-design/) instead
 
 ## Installation
@@ -40,13 +47,12 @@ Use the react-development skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **Quick Start**
-- **Section 1: Next.js Architecture**
-- **Section 2: shadcn/ui Component Architecture**
-- **Section 3: React Hooks Best Practices**
-- **Best Practices Summary**
-- **Resources**
+- **Quick Start** -- Decision tree routing to the right section based on whether you're building a full-stack app, component library, or optimizing existing code.
+- **Section 1: Next.js Architecture** -- 5-layer architecture pattern (Types, Services, Hooks, Components, Pages) with concrete service and hook code examples using Supabase and TanStack Query.
+- **Section 2: shadcn/ui Component Architecture** -- CVA variants pattern for type-safe Tailwind components, plus Python scaffold scripts for generating Tailwind config and new shadcn-style components.
+- **Section 3: React Hooks Best Practices** -- Four core anti-patterns (derived state, event response, props-to-state, premature memoization) with correct alternatives and dependency array rules.
+- **Best Practices Summary** -- Consolidated Do/Don't list covering architecture, hooks, state management, component sizing, theming, and accessibility conventions.
+- **Resources** -- Links to Next.js docs, shadcn/ui, fpkit, Bulletproof React, React Hooks rules, TanStack Query, and WCAG 2.1 guidelines.
 
 ## Version History
 

@@ -6,11 +6,18 @@ Apply risk assessment frameworks, mitigation strategies, risk registers, and mon
 
 ## What Problem Does This Solve
 
-Identify, assess, and mitigate risks systematically.
+Projects fail predictably — third-party dependencies slip, key people leave, integrations break at the worst moment — yet most teams only react after the damage is done. Ad-hoc risk discussions produce vague worries without scores, owners, or response plans. This skill provides a structured register-based approach that turns gut-level concerns into tracked, scored risks with assigned owners and concrete mitigation strategies.
 
 ## When to Use This Skill
 
-Apply risk assessment frameworks, mitigation strategies, and monitoring practices systematically. Use when performing risk assessment, mitigation planning, building.
+| You say... | The skill provides... |
+|---|---|
+| "What could go wrong with this project?" | Pre-mortem technique: imagine the project already failed, reverse-engineer what went wrong, convert answers to tracked risks |
+| "Help me build a risk register for this initiative" | Risk register template with ID, category, likelihood/impact scoring, mitigation actions, owner, and status columns |
+| "How serious is this risk — should we worry about it?" | Risk assessment matrix scoring Likelihood (1-3) x Impact (1-3) to classify risks as Low, Medium, High, or Critical |
+| "What type of risk is this and how should we handle it?" | Five risk categories (Technical, Schedule, Resource, External, Organizational) and four response strategies (Avoid, Transfer, Mitigate, Accept) |
+| "Write a response plan for this specific risk" | Risk response template capturing description, trigger warning signs, probability, impact, actions, owner, and review date |
+| "How often should we review our risks?" | Monitoring cadence table with Daily (trigger checks), Weekly (active review), Monthly (score reassessment), and Quarterly (full register review) |
 
 ## Installation
 
@@ -34,21 +41,13 @@ Use the risk-management skill to ...
 
 ## What's Inside
 
-- **Risk Assessment Matrix**
-- **Risk Categories**
-- **Risk Register Template**
-- **Risk Register**
-- **Mitigation Strategies**
-- **Risk Response Template**
-- **Risk: [Name]**
-- **Monitoring Practices**
-
-## Key Capabilities
-
-- **Strategy**
-- **Actions**
-- **Owner**
-- **Review date**
+- **Risk Assessment Matrix** -- 3x3 Likelihood x Impact grid that maps combinations to Low, Medium, High, or Critical severity levels.
+- **Risk Categories** -- Five risk types with examples: Technical (architecture, integration, performance), Schedule (dependencies, estimation), Resource (skills, turnover), External (vendors, regulations), and Organizational (priorities, funding, politics).
+- **Risk Register Template** -- Markdown table template with columns for ID, description, category, likelihood, impact, calculated score, mitigation action, owner, and status.
+- **Mitigation Strategies** -- Four response strategies (Avoid, Transfer, Mitigate, Accept) with guidance on when to apply each.
+- **Risk Response Template** -- Structured plan for a single risk covering description, trigger warning signs, probability, impact consequence, response actions, owner, and review date.
+- **Monitoring Practices** -- Recommended monitoring cadence from daily trigger checks through quarterly full-register reviews.
+- **Pre-Mortem Technique** -- Three-question future-failure exercise that surfaces risks before a project starts by imagining it has already failed.
 
 ## Version History
 

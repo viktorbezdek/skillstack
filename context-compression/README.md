@@ -6,11 +6,18 @@ Production strategies for compressing LLM context windows. Anchored iterative su
 
 ## What Problem Does This Solve
 
-When agent sessions generate millions of tokens of conversation history, compression becomes mandatory. The naive approach is aggressive compression to minimize tokens per request. The correct optimization target is tokens per task: total tokens consumed to complete a task, including re-fetching costs when compression loses critical information.
+When coding agents run long sessions, naive compression destroys the information they need most — file paths, error messages, and decisions made earlier — forcing expensive re-exploration that costs more tokens than the compression saved. The real optimization target is not tokens-per-request but tokens-per-task: the total cost from start to completion, including re-fetching. This skill provides structured compression strategies that preserve artifact trails and task context across compression cycles.
 
 ## When to Use This Skill
 
-REDUCING context size — summarization strategies, anchored iterative summarization, tokens-per-task optimization, compaction triggers, and probe-based evaluation. Use when the user asks to "compress context", "summarize conversation history", "implement compaction", "reduce token usage", or mentions structured summarization or long-running sessions exceeding context limits.
+| You say... | The skill provides... |
+|---|---|
+| "My agent keeps forgetting which files it modified" | Anchored iterative summarization with explicit file-tracking sections that survive repeated compression |
+| "How do I compress context without losing critical details?" | Three production-ready compression methods with quality tradeoffs: anchored iterative, opaque, and regenerative |
+| "When should I trigger context compaction?" | Compression trigger strategies — fixed threshold, sliding window, importance-based, and task-boundary — with tradeoffs |
+| "How do I know if my compression is working well?" | Probe-based evaluation framework with four probe types (recall, artifact, continuation, decision) that measures functional quality |
+| "My agent session is approaching the context limit at 70%+" | Three-phase compression workflow for large codebases: research, planning, and implementation phases |
+| "I'm seeing 99%+ compression ratios but quality seems wrong" | Six-dimension evaluation scoring (accuracy, context awareness, artifact trail, completeness, continuity, instruction following) with benchmarks |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,14 @@ Use the context-compression skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Session Intent**
-- **Files Modified**
-- **Decisions Made**
-- **Current State**
-- **Next Steps**
+- **When to Activate** -- Conditions that signal compression is needed: session length, codebase size, agents forgetting file modifications.
+- **Core Concepts** -- Three compression approaches (anchored iterative, opaque, regenerative) with compression ratios and quality score tradeoffs.
+- **Detailed Topics** -- Deep coverage of tokens-per-task optimization, the artifact trail problem, structured summary sections, trigger strategies, probe-based evaluation, and six evaluation dimensions.
+- **Session Intent** -- Template section for capturing the user's goal at the start of each compression summary.
+- **Files Modified** -- Template section for tracking which files were created, changed, or read-only during the session.
+- **Decisions Made** -- Template section for preserving architectural and implementation decisions across compression cycles.
+- **Current State** -- Template section for capturing test status, progress markers, and in-flight work at compression time.
+- **Next Steps** -- Template section for preserving the planned continuation so agents can resume without re-exploration.
 
 ## Version History
 

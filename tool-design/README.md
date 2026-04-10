@@ -6,11 +6,18 @@ Design tools optimized for LLM agents rather than human developers. Consolidatio
 
 ## What Problem Does This Solve
 
-Tools are the primary mechanism through which agents interact with the world. They define the contract between deterministic systems and non-deterministic agents. Unlike traditional software APIs designed for developers, tool APIs must be designed for language models that reason about intent, infer parameter values, and generate calls from natural language requests. Poor tool design creates failure modes that no amount of prompt engineering can fix. Effective tool design follows specific principles that account for how agents perceive and use tools.
+When agent systems underperform, the culprit is often the tool interface, not the model. Overlapping tool descriptions cause agents to pick the wrong tool; vague parameter names force agents to guess; missing error context leaves agents unable to recover; and growing tool collections consume context budget with redundant descriptions. This skill applies the Consolidation Principle and Architectural Reduction to shrink tool sets, sharpen descriptions, and design error messages that give agents enough information to self-correct — producing measurable gains in task completion without changing the underlying model.
 
 ## When to Use This Skill
 
-This skill should be used when the user asks to "design agent tools", "create tool descriptions", "reduce tool complexity", "implement MCP tools", or mentions tool consolidation, architectural reduction, tool naming conventions, or agent-tool interfaces.
+| You say... | The skill provides... |
+|---|---|
+| "My agent keeps calling the wrong tool when there are multiple options" | The Consolidation Principle — merging overlapping tools into single comprehensive tools with unambiguous scopes |
+| "How should I write tool descriptions so the model uses them correctly?" | Description structure covering what the tool does, when to use it, parameter constraints, return format, and error conditions |
+| "I have 30 tools and the agent seems confused about which to pick" | Namespacing strategy, the 10-20 tool guideline, and hierarchy patterns with umbrella routing tools |
+| "My tool errors give the agent no way to fix its mistake" | Error message design patterns that include retry guidance, corrected format examples, and actionable recovery steps |
+| "Should I use MCP tools and how do I reference them correctly?" | MCP fully-qualified naming requirements (`ServerName:tool_name`) and why unqualified names fail in multi-server setups |
+| "Is it better to give the agent file system access or build custom tools?" | The File System Agent Pattern and Architectural Reduction case study showing when primitive tools outperform specialized wrappers |
 
 ## When NOT to Use This Skill
 
@@ -39,14 +46,14 @@ Use the tool-design skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
+- **When to Activate** -- Specific conditions for using this skill: new tool creation, debugging tool failures, optimizing existing tool sets, or standardizing tool conventions.
+- **Core Concepts** -- The foundational ideas: tools as contracts between deterministic systems and non-deterministic agents, the Consolidation Principle, and tool descriptions as prompt engineering.
+- **Detailed Topics** -- Deep dives into the tool-agent interface, namespacing strategies, Architectural Reduction (including the File System Agent Pattern), description engineering, response format optimization, and error message design.
+- **Practical Guidance** -- Anti-patterns to avoid (vague descriptions, cryptic parameters, missing error handling) and a 5-step tool selection framework.
+- **Examples** -- Annotated well-designed vs. poorly-designed tool side-by-side, with failure mode analysis for the bad example.
+- **Guidelines** -- 12 actionable rules covering descriptions, consolidation, token efficiency, naming conventions, tool count limits, and iterating on failure data.
+- **Integration** -- How this skill connects to context-fundamentals, multi-agent-patterns, and evaluation.
+- **References** -- Links to the Best Practices reference and the Architectural Reduction case study with production evidence.
 
 ## Version History
 

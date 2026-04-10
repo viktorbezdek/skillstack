@@ -6,11 +6,18 @@ Design user journey maps with touchpoints, emotional states, pain points, and op
 
 ## What Problem Does This Solve
 
-Map complete user experiences from awareness through mastery.
+Product teams often optimize individual screens while missing the friction that accumulates across the full experience — the confusion between discovering a product and successfully using it for the first time, or the drop-off between onboarding and sustained engagement. User journey mapping makes that cross-stage friction visible by mapping what users do, think, feel, and struggle with at every touchpoint, so improvements can be prioritized where they reduce the most pain rather than where they are easiest to implement.
 
 ## When to Use This Skill
 
-Design user journey maps with touchpoints, emotional states, pain points, and opportunities. Use when mapping user journeys, customer journeys, experience maps, touchpoint analysis, or service blueprints.
+| You say... | The skill provides... |
+|---|---|
+| "Map out what a new user experiences from first hearing about the product to being a power user" | A stage-by-stage journey (Awareness -> Evaluation -> Onboarding -> Usage -> Mastery) with the structured template for goals, actions, touchpoints, emotion scores, and opportunities |
+| "Where are users getting frustrated during API integration?" | An API integration journey (Discover -> Credentials -> Read ref -> Test -> Production) with pain point and opportunity analysis per stage |
+| "I need to compare the current experience with the redesigned one" | Current-state vs. future-state journey types with side-by-side structure |
+| "We need to see both the user's path and the internal org steps that support it" | Service blueprint format that layers front-stage user actions over back-stage organizational touchpoints |
+| "What questions should I ask in user research to fill in a journey map?" | Touchpoint, action, thought, and emotion elements that guide interview and observation questions |
+| "Help me find where to invest in documentation improvements" | Getting-started and troubleshooting journey templates revealing where doc gaps create user drop-off |
 
 ## When NOT to Use This Skill
 
@@ -38,11 +45,10 @@ Use the user-journey-design skill to ...
 
 ## What's Inside
 
-- **Journey Types**
-- **Core Elements**
-- **Journey Template**
-- **Stage 1: [Name]**
-- **Documentation Journeys**
+- **Journey Types** -- Three formats: current-state (as-is experience), future-state (to-be design), and service blueprint (combined user and organizational view).
+- **Core Elements** -- The seven building blocks of every stage: stages, touchpoints, actions, thoughts, emotions (on a confidence-to-frustration scale), pain points, and opportunities.
+- **Journey Template** -- Filled markdown template with a table structure for documenting all seven elements at each stage, ready to copy and populate.
+- **Documentation Journeys** -- Three pre-built journey outlines for common technical documentation flows: Getting Started, Troubleshooting, and API Integration.
 
 ## Version History
 

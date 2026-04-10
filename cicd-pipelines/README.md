@@ -6,11 +6,18 @@ Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, 
 
 ## What Problem Does This Solve
 
-A unified skill for CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, security scanning, and enterprise release management across all major platforms.
+Engineering teams building CI/CD pipelines from scratch repeatedly make the same mistakes: hardcoding secrets instead of using OIDC, building monolithic 45-minute pipelines instead of parallelized stages, and having no rollback strategy when production deployments fail. Keeping pipelines consistent across GitHub Actions, GitLab CI, and Kubernetes while meeting security requirements (OpenSSF, SLSA, supply chain integrity) requires patterns most teams learn only after incidents. This skill consolidates production-grade pipeline design, DevSecOps practices, and infrastructure automation into templates and analysis scripts ready for immediate use.
 
 ## When to Use This Skill
 
-CI/CD pipeline design and DevOps automation — use when the user mentions GitHub Actions, GitLab CI, Jenkins, Terraform, infrastructure as code, DevSecOps, ArgoCD, Kubernetes manifests, or pipeline configuration YAML.
+| You say... | The skill provides... |
+|---|---|
+| "Set up a GitHub Actions CI pipeline for my Node.js project" | Complete node-ci.yml template with caching, test parallelization, security scanning, and deployment stages |
+| "My builds take 45 minutes — how do I speed them up?" | Pipeline optimizer script, caching strategy guide, parallel job patterns, and path-based trigger configuration |
+| "How do I stop using static AWS credentials in CI and use OIDC instead?" | OIDC authentication setup for GitHub Actions to AWS with minimal IAM permissions example |
+| "I need Kubernetes deployments managed via GitOps with ArgoCD" | ArgoCD GitOps architecture pattern, Kubernetes manifest with HPA, and Terraform EKS module |
+| "My pipeline needs vulnerability scanning and secret detection" | DevSecOps pipeline template with CodeQL, Trivy, Semgrep, and TruffleHog integration |
+| "How do I set up automated semantic versioning and releases?" | semantic-release configuration, init scripts, changelog generation, and artifact signing with Cosign |
 
 ## When NOT to Use This Skill
 
@@ -40,14 +47,14 @@ Use the cicd-pipelines skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill**
-- **Quick Start**
-- **Core Capabilities**
-- **Architecture Patterns**
-- **Reference Documentation**
-- **Templates**
-- **Scripts**
-- **Anti-Patterns to Avoid**
+- **When to Use This Skill** -- Categorized scenarios across CI/CD development, DevSecOps, infrastructure as code, container orchestration, and release management
+- **Quick Start** -- Platform decision tree for selecting templates, pipeline performance quick-wins checklist, and essential security checklist with OIDC example
+- **Core Capabilities** -- Table mapping domains to tools: CI/CD platforms, IaC, containers, GitOps, security scanning, cloud platforms, and release management
+- **Architecture Patterns** -- CI/CD pipeline flow diagram and GitOps architecture showing App Repo → Config Repo → ArgoCD → Kubernetes sync loop
+- **Reference Documentation** -- Index of all reference files across pipeline design, DevSecOps, infrastructure, enterprise readiness, and release management
+- **Templates** -- GitHub Actions templates (Node.js, Python, Go, Docker, security, DCO), GitLab CI equivalents, release configuration, and enterprise governance templates
+- **Scripts** -- Pipeline analyzer, CI health checker, OpenSSF badge verifier, coverage validators, TLS checker, SPDX header tools, and release initialization scripts
+- **Anti-Patterns to Avoid** -- Seven common failures (YAML proliferation, hardcoded secrets, no rollback, monolithic pipelines, running as root, latest tags, script injection) with specific fixes
 
 ## Key Capabilities
 

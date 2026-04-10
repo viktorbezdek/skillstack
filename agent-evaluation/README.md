@@ -6,11 +6,18 @@ Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubr
 
 ## What Problem Does This Solve
 
-Evaluation of agent systems requires fundamentally different approaches than traditional software testing or standard language model benchmarking. Agents make dynamic decisions, are non-deterministic between runs, and often lack single correct answers. Effective evaluation must account for these characteristics while providing actionable feedback.
+Agent systems are non-deterministic, can take multiple valid paths to the same goal, and produce outputs where no single "correct" answer exists — making traditional unit tests useless for measuring quality. Teams iterating on prompts, context strategies, or model versions have no reliable way to know whether a change improved or degraded performance. This skill provides the frameworks, rubric designs, and pipeline patterns to build systematic evaluation that catches regressions, validates improvements, and produces results that correlate with human judgment.
 
 ## When to Use This Skill
 
-This skill should be used when the user asks to "evaluate agent performance", "build test framework", "measure agent quality", "create evaluation rubrics", "implement LLM-as-judge", "compare model outputs", "mitigate evaluation bias", or mentions multi-dimensional evaluation, agent testing, quality gates, direct scoring, pairwise comparison, position bias, evaluation pipelines, or automated quality assessment for LLM agent systems.
+| You say... | The skill provides... |
+|---|---|
+| "How do I know if my prompt change made the agent better or worse?" | Test set design, baseline metric establishment, and evaluation pipeline patterns for comparing agent versions |
+| "My LLM judge seems biased toward longer answers" | Position bias and length bias mitigation protocols including position-swap pairwise comparison |
+| "I need to score agent responses on multiple dimensions like accuracy, completeness, and efficiency" | Multi-dimensional rubric design with weighted scoring, scale calibration, and strictness levels |
+| "How do I build an automated evaluation pipeline for production?" | Production pipeline architecture with continuous monitoring, quality gates, and confidence scoring |
+| "Should I use direct scoring or pairwise comparison for evaluating tone?" | Decision framework distinguishing objective criteria (direct scoring) from preference-based evaluation (pairwise) |
+| "My automated evaluation disagrees with human reviewers — how do I fix this?" | Human evaluation protocols, correlation analysis, and feedback loops to calibrate automated judges |
 
 ## When NOT to Use This Skill
 
@@ -40,14 +47,12 @@ Use the agent-evaluation skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Fundamentals**
-- **Rubric Design**
-- **The Bias Landscape**
-- **Evaluation Approaches in Detail**
-- **Task**
-- **Original Prompt**
-- **Response to Evaluate**
+- **When to Activate** -- Conditions that indicate this skill should be used over testing-framework or multi-agent-patterns
+- **Fundamentals** -- Why agent evaluation differs from software testing, the 95% performance variance finding, direct vs pairwise taxonomy, and metric selection by task type
+- **Rubric Design** -- Multi-dimensional rubric structure, scale calibration (1-3, 1-5, 1-10), strictness levels, and domain adaptation guidance
+- **The Bias Landscape** -- Documented LLM judge biases (position, length, self-enhancement, verbosity, authority) with specific mitigation strategies for each
+- **Evaluation Approaches in Detail** -- Prompt structures for direct scoring and pairwise comparison, chain-of-thought requirements, and position-swap protocols
+- **Test Set Design** -- Sample selection from real usage patterns, complexity stratification across four levels, and context degradation testing
 
 ## Key Capabilities
 

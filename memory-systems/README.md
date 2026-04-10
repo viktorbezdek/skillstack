@@ -6,11 +6,18 @@ Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Let
 
 ## What Problem Does This Solve
 
-Memory provides the persistence layer that allows agents to maintain continuity across sessions and reason over accumulated knowledge. Simple agents rely entirely on context for memory, losing all state when sessions end. Sophisticated agents implement layered memory architectures that balance immediate context needs with long-term knowledge retention. The evolution from vector stores to knowledge graphs to temporal knowledge graphs represents increasing investment in structured memory for improved retrieval and reasoning.
+LLM agents forget everything when a session ends — user preferences, prior decisions, accumulated domain knowledge, and entity relationships all vanish. Rebuilding that context from scratch each session is expensive and degrades the quality of responses. This skill addresses how to architect persistent memory layers, choose between production frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and design retrieval strategies that remain accurate as memory grows and facts change over time.
 
 ## When to Use This Skill
 
-Guides implementation of agent memory systems, compares production frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and designs persistence architectures for cross-session knowledge retention. Use when the user asks to "implement agent memory", "persist state across sessions", "build knowledge graph for agents", "track entities over time", "add long-term memory", "choose a memory framework", or mentions temporal knowledge graphs, vector stores, entity memory, adaptive memory, dynamic memory, or memory benchmarks (LoCoMo, LongMemEval).
+| You say... | The skill provides... |
+|---|---|
+| "My agent loses context between sessions — how do I fix that?" | Memory layer architecture decision tree from file-system through vector stores to knowledge graphs |
+| "Which memory framework should I use: Mem0, Zep, or Letta?" | Side-by-side framework comparison with benchmark data (LoCoMo, LongMemEval, DMR) and trade-off analysis |
+| "How do I track entities consistently across conversations?" | Entity registry patterns and property tracking so "John Doe" stays the same person across sessions |
+| "A fact changed — how do I update memory without poisoning old context?" | Temporal knowledge graph patterns with validity intervals and the invalidate-but-don't-discard principle |
+| "My agent's memory retrieval is getting slow and inaccurate as it grows" | Hybrid retrieval strategies (semantic + keyword + graph), consolidation triggers, and Cognee's 14 search modes |
+| "How do I build a knowledge graph that supports multi-hop reasoning?" | Cognee and Zep/Graphiti integration examples with graph ingestion, entity extraction, and relationship-aware search |
 
 ## When NOT to Use This Skill
 
@@ -41,23 +48,14 @@ Use the memory-systems skill to ...
 
 ## What's Inside
 
-- **When to Activate**
-- **Core Concepts**
-- **Detailed Topics**
-- **Practical Guidance**
-- **Examples**
-- **Guidelines**
-- **Integration**
-- **References**
-
-## Key Capabilities
-
-- **Empty retrieval**
-- **Stale results**
-- **Conflicting facts**
-- **Storage failure**
-- **Stuffing everything into context**
-- **Ignoring temporal validity**
+- **When to Activate** -- Checklist of scenarios where memory architecture decisions are needed
+- **Core Concepts** -- The key benchmark insight: tool complexity matters less than reliable retrieval, with Letta's filesystem agents outperforming Mem0's specialized tools
+- **Detailed Topics** -- Framework landscape table, memory layer decision matrix (working/short-term/long-term/entity/temporal KG), and retrieval strategy comparison
+- **Practical Guidance** -- Step-by-step architecture progression from prototype to production, plus error recovery patterns for empty retrieval, stale results, and conflicting facts
+- **Examples** -- Working code for Mem0 integration, temporal relationship queries, and Cognee knowledge graph ingestion and search
+- **Guidelines** -- Eight production rules covering consolidation, temporal validity, hybrid retrieval, and privacy considerations
+- **Integration** -- How this skill connects to context-optimization and multi-agent-patterns for shared memory
+- **References** -- Research papers (arXiv), benchmark frameworks, and open-source repos for Graphiti and Cognee
 
 ## Version History
 

@@ -6,11 +6,18 @@ Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-
 
 ## What Problem Does This Solve
 
-Make better decisions about what to do first.
+Teams routinely work on the wrong things — building features that affect few users, pursuing initiatives driven by the loudest voice rather than evidence, or treating all backlog items as equally important. Without structured scoring, prioritization defaults to gut feel, seniority, or whoever pushed hardest last sprint. This skill provides quantitative frameworks that replace opinion-based debates with calculated scores grounded in reach, impact, confidence, and effort.
 
 ## When to Use This Skill
 
-Apply prioritization frameworks for decision-making including RICE, MoSCoW, ICE scoring, and effort-impact matrices. Use when doing prioritization, RICE scoring, MoSCoW categorization, ICE analysis, backlog ranking, or effort-impact analysis.
+| You say... | The skill provides... |
+|---|---|
+| "Help me score and rank these feature ideas" | RICE scoring (Reach x Impact x Confidence / Effort) with a structured template to calculate and compare numeric scores |
+| "What must we ship vs. what can we cut from this release?" | MoSCoW categorization (Must/Should/Could/Won't) with the 60% rule to prevent Must items from consuming the entire effort budget |
+| "I need a quick way to rank initiatives without much data" | ICE scoring averaging Impact, Confidence, and Ease on a 1-10 scale for fast relative ranking |
+| "Which items give us the best return for the least work?" | Effort-Impact matrix plotting Quick Wins, Big Bets, Fill Ins, and Money Pits for visual prioritization |
+| "Someone keeps pushing for this pet project — how do I push back?" | Anti-patterns catalog covering HiPPO, recency bias, squeaky wheel, and sunk cost to name and defuse common traps |
+| "Help me document the rationale for why we chose this priority" | Prioritization template with RICE factors, calculated score, priority level, and written rationale |
 
 ## Installation
 
@@ -35,13 +42,12 @@ Use the prioritization skill to ...
 
 ## What's Inside
 
-- **RICE Scoring**
-- **MoSCoW Method**
-- **ICE Scoring**
-- **Effort-Impact Matrix**
-- **Prioritization Template**
-- **Item: [Name]**
-- **Anti-Patterns**
+- **RICE Scoring** -- Formula-based scoring using Reach, Impact (0.25-3 scale), Confidence percentage, and Effort in person-months to produce a comparable numeric priority score.
+- **MoSCoW Method** -- Four-tier classification (Must/Should/Could/Won't) with the guideline that Must items cannot exceed 60% of total effort.
+- **ICE Scoring** -- Lightweight three-factor scoring (Impact + Confidence + Ease / 3) for rapid ranking when full RICE data isn't available.
+- **Effort-Impact Matrix** -- Visual 2x2 matrix sorting items into Quick Wins, Big Bets, Fill Ins, and Money Pits with a recommended priority order.
+- **Prioritization Template** -- Structured Markdown template capturing RICE factors, calculated score, decision, and written rationale for each item.
+- **Anti-Patterns** -- Named traps to recognize and counter: HiPPO (highest-paid person's opinion), recency bias, squeaky wheel, and sunk cost reasoning.
 
 ## Version History
 

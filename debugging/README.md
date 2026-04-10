@@ -6,11 +6,18 @@ Comprehensive debugging skill combining systematic debugging methodology, browse
 
 ## What Problem Does This Solve
 
-This skill provides a complete debugging toolkit combining methodology, automation, and analysis tools for diagnosing and resolving software issues across the entire development lifecycle.
+Debugging failures almost always stem from the same root cause: jumping to fixes before establishing root cause. Engineers under time pressure guess, try multiple changes at once, and introduce new bugs while chasing symptoms. This skill enforces a four-phase iron-law framework (root cause investigation before any fix), and combines it with concrete automation tools for browser DevTools scripting, Playwright E2E visual debugging, CI/CD pipeline analysis, and AI-powered error classification.
 
 ## When to Use This Skill
 
-|.
+| You say... | The skill provides... |
+|---|---|
+| "There's a bug — I've tried a few things and nothing is working" | Four-phase systematic debugging framework: root cause investigation, pattern analysis, hypothesis testing, and implementation — each phase must complete before the next |
+| "I have a failing test but I can't reproduce it consistently" | Find-polluter script and test isolation methodology for identifying which test contaminates the environment |
+| "The app looks broken in the browser — something visual is wrong" | Chrome DevTools automation scripts: navigate, screenshot, click, fill, evaluate, snapshot, console monitoring, network tracking, and Core Web Vitals performance measurement |
+| "My E2E tests are failing but I don't know which component is at fault" | Eight-phase Playwright E2E workflow with LLM-powered visual analysis, screenshot capture, regression baseline comparison, and file:line fix recommendations |
+| "My CI/CD pipeline is failing intermittently" | CI health check and pipeline analyzer scripts for GitHub Actions and GitLab CI, with a common error pattern table and debug logging configuration |
+| "I fixed the bug but how do I prevent it from coming back?" | Defense-in-depth validation pattern: four-layer validation (entry point, business logic, environment guards, debug instrumentation) added after root cause resolution |
 
 ## Installation
 
@@ -35,14 +42,14 @@ Use the debugging skill to ...
 
 ## What's Inside
 
-- **Overview**
-- **The Iron Law of Debugging**
-- **Quick Reference**
-- **Systematic Debugging Framework**
-- **Browser Debugging Tools**
-- **E2E Testing with Visual Debugging**
-- **CI/CD Pipeline Debugging**
-- **Finding Test Polluters**
+- **Overview** -- Core principle and the iron law: no fixes are permitted before completing root cause investigation.
+- **The Iron Law of Debugging** -- Explicit enforcement gate ensuring Phase 1 completion before any fix is proposed.
+- **Quick Reference** -- Issue-type decision matrix mapping test failures, browser bugs, CI failures, performance issues, build errors, and flaky tests to their primary tools and reference files.
+- **Systematic Debugging Framework** -- Four-phase methodology: root cause investigation (read errors, reproduce, check recent changes, trace data flow), pattern analysis, hypothesis and minimal testing, and single-change implementation.
+- **Browser Debugging Tools** -- Nine executable Puppeteer scripts for browser automation with installation instructions and JSON output format.
+- **E2E Testing with Visual Debugging** -- Eight-phase Playwright workflow from app discovery through test export, with Playwright config templates and React Vite examples.
+- **CI/CD Pipeline Debugging** -- Pipeline health check and analyzer scripts, common error pattern table, debug logging configuration for GitHub Actions and GitLab CI.
+- **Finding Test Polluters** -- Shell script that runs tests one-by-one and stops at the first test that contaminates shared state.
 
 ## Version History
 
