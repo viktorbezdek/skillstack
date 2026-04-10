@@ -1,8 +1,11 @@
 # FinOps Framework Reference
 
-> Source: FinOps Foundation (finops.org/framework), 2024 version.
+> Source: FinOps Foundation (finops.org/framework), 2026 version.
 > This file covers the complete FinOps Framework: principles, phases, maturity model,
-> domains, capabilities, and personas.
+> domains, capabilities, personas, scopes, and technology categories.
+>
+> Updated definition (2026): "FinOps is an operational framework and cultural practice
+> which maximizes the business value of technology."
 
 ---
 
@@ -15,7 +18,7 @@
 2. **Business value drives technology decisions** - the goal is not cost minimization but
    value maximization. Decisions should connect spend to outcomes.
 
-3. **Everyone takes ownership for their cloud usage** - distributed accountability is more
+3. **Everyone takes ownership for their technology usage** - distributed accountability is more
    effective than centralized policing. Engineers who see their costs act on them.
 
 4. **FinOps data should be accessible, timely, and accurate** - delayed, incomplete, or
@@ -24,8 +27,9 @@
 5. **FinOps should be enabled centrally** - a central FinOps function sets standards,
    builds tooling, and enables teams. It does not own all decisions.
 
-6. **Take advantage of the variable cost model of the cloud** - the cloud's elasticity
-   is an asset. Commit to baseline, keep growth variable, avoid over-provisioning.
+6. **Take advantage of the variable cost model of the cloud and other technologies with
+   similar consumption models** - elasticity is an asset across cloud, SaaS, and data
+   platforms. Commit to baseline, keep growth variable, avoid over-provisioning.
 
 **Common principle violations to identify:**
 - Teams optimizing in isolation without cross-functional alignment (violates #1)
@@ -90,7 +94,55 @@ organization has left "Inform" for another.
 
 ---
 
-## The 4 Domains and 22 Capabilities
+## Scopes (new in 2025)
+
+A Scope is a defined segment of spending across technology categories, aligned to
+business constructs. Scopes enable organizations to apply FinOps capabilities to
+different cost surfaces systematically.
+
+**Initial Scopes defined by the FinOps Foundation:**
+- **Public Cloud** - AWS, Azure, GCP, OCI, and other IaaS/PaaS providers
+- **SaaS** - software-as-a-service subscriptions and usage
+- **Data Center** - on-premises and colocation infrastructure
+
+**Custom Scopes** organizations may define:
+- AI (LLM inference, training, agent infrastructure)
+- Licensing (software entitlements, BYOL, marketplace)
+- Private Cloud (VMware, OpenStack, internal platforms)
+- Containers (Kubernetes across providers)
+
+Scopes allow a FinOps team to track maturity independently per scope. An organization
+may be at Run maturity for Public Cloud but Crawl for SaaS or AI.
+
+---
+
+## Technology Categories (new in 2026)
+
+The 2026 framework introduced five structured Technology Category pages, each providing
+dedicated guidance for applying FinOps capabilities to that category:
+
+| Technology Category | Primary cost surface |
+|---|---|
+| **Public Cloud** | IaaS/PaaS compute, storage, networking, managed services |
+| **SaaS** | Subscription fees, usage-based charges, seat licenses |
+| **Data Center** | Power, cooling, hardware lifecycle, colocation fees |
+| **Data Cloud Platforms** | Databricks, Snowflake, and similar consumption-based data services |
+| **AI** | LLM inference, training compute, agent infrastructure, GPU cost |
+
+Technology Categories and Scopes are related but distinct: Categories define the cost
+surface; Scopes define the organizational boundary for managing it.
+
+---
+
+## The 4 Domains and Capabilities
+
+> **Note on capability count:** The FinOps Foundation lists capabilities across four domains.
+> The 2026 framework added Executive Strategy Alignment, renamed six capabilities, and
+> restructured Domain 4. The previous version of this reference listed 22 capabilities in a
+> simplified view. The tables below reflect the 2026 canonical framework. Some capabilities
+> (e.g., Sustainability) appear in multiple domains with different scope emphases. Cloud
+> Vendor Management (previously listed in Domain 4) was merged into Invoicing and Chargeback
+> and Governance, Policy & Risk in the 2026 restructuring.
 
 ### Domain 1: Understand Usage and Cost
 
@@ -117,9 +169,9 @@ organization has left "Inform" for another.
 |---|---|
 | Rightsizing | Matching resource size to actual workload requirements |
 | Commitment Discounts | Managing RIs, Savings Plans, and CUDs for sustained workloads |
-| Workload Optimization | Architectural changes that reduce cost at the workload level |
+| Usage Optimization | Architectural changes that reduce cost at the workload level *(renamed from Workload Optimization in 2026)* |
 | License Optimization | Managing software licenses (BYOL, AHUB, marketplace) |
-| Cloud Sustainability | Reducing energy and carbon footprint of cloud workloads |
+| Sustainability | Reducing energy and carbon footprint of technology usage *(renamed from Cloud Sustainability in 2026)* |
 
 ### Domain 4: Manage the FinOps Practice
 
@@ -129,10 +181,12 @@ organization has left "Inform" for another.
 | FinOps Assessment | Measuring maturity across all capabilities |
 | FinOps Education and Enablement | Training teams to incorporate FinOps into daily work |
 | Onboarding Workflows | Managing cost implications of cloud migrations |
-| Cloud Policy and Governance | Establishing controls that align cloud use with business objectives |
-| FinOps Tools and Services | Evaluating and integrating tools to support FinOps capabilities |
-| Invoicing and Chargeback | Reconciling cloud invoices and implementing financial accountability |
-| Cloud Vendor Management | Managing relationships, contracts, and commitments with cloud providers |
+| Governance, Policy & Risk | Establishing controls that align technology use with business objectives *(renamed from Cloud Policy and Governance in 2026)* |
+| Automation, Tools & Services | Evaluating and integrating tools to support FinOps capabilities *(renamed from FinOps Tools and Services in 2026)* |
+| Invoicing and Chargeback | Reconciling invoices and implementing financial accountability |
+| KPI & Benchmarking | Measuring FinOps performance against industry baselines *(renamed from Benchmarking in 2026)* |
+| Architecting & Workload Placement | Designing cost-efficient architectures and selecting optimal deployment targets *(renamed from Architecting for Cloud in 2026)* |
+| **Executive Strategy Alignment** | Connecting FinOps to executive priorities, multi-year investment strategy, product prioritization, and strategic decision support *(new in 2026)* |
 
 ---
 
@@ -273,6 +327,42 @@ The FinOps function should enable distributed decision-making, not replace it.
 
 ---
 
-> Sources: FinOps Foundation (finops.org/framework, 2024 version; State of FinOps 2026).
+## Converging Disciplines (2026)
 
-> *Cloud FinOps Skill by [OptimNow](https://optimnow.io)  - licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
+The 2026 framework formally recognizes that FinOps intersects with several adjacent
+disciplines. Effective FinOps practices build explicit collaboration models with each:
+
+| Discipline | Intersection with FinOps |
+|---|---|
+| **ITAM** (IT Asset Management) | License optimization, BYOL, marketplace governance, vendor co-management (see `finops-itam.md`) |
+| **ITFM** (IT Financial Management) | Budget processes, allocation models, chargeback, financial reporting |
+| **Sustainability** | Carbon metrics alongside cost metrics, GreenOps (see `greenops-cloud-carbon.md`) |
+| **Security** | Tag governance, policy enforcement, access controls for cost tools |
+| **Enterprise Architecture** | Workload placement, architecture cost reviews, tech debt assessment |
+
+These are not FinOps capabilities but related disciplines whose practices overlap.
+Organizations that treat them as separate silos miss optimization opportunities.
+
+---
+
+## 2026 Framework Changes Summary
+
+For practitioners updating from the 2024 framework:
+
+| Change | Detail |
+|---|---|
+| Updated definition | "...maximizes the business value of technology" (was "cloud") |
+| Updated mission | "...manage the Value of Technology" (was "Cloud") |
+| Scopes added (2025) | Public Cloud, SaaS, Data Center, plus custom scopes |
+| Technology Categories added (2026) | Public Cloud, SaaS, Data Center, Data Cloud Platforms, AI |
+| New capability | Executive Strategy Alignment (Domain 4) |
+| 6 capabilities renamed | Usage Optimization, Sustainability, Governance Policy & Risk, Automation Tools & Services, KPI & Benchmarking, Architecting & Workload Placement |
+| Merged capability | Cloud Vendor Management scope absorbed into Governance, Policy & Risk and Invoicing and Chargeback |
+| Previously unlisted | KPI & Benchmarking and Architecting & Workload Placement existed in the Foundation's canonical framework but were omitted from v1.0 of this reference |
+| Converging disciplines | ITAM, ITFM, Sustainability, Security, Enterprise Architecture |
+
+---
+
+> Sources: FinOps Foundation (finops.org/framework, 2026 version; State of FinOps 2026, 6th edition).
+
+> *Cloud FinOps Skill by [OptimNow](https://optimnow.io) and [Viktor Bezdek](https://github.com/viktorbezdek) - licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*

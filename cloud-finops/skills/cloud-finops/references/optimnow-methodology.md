@@ -136,7 +136,7 @@ them in every response.
 | **MCP for Tagging** | MCP server that enables AI agents to read, validate, and apply resource tags via natural language | When discussing automated tagging governance or agentic FinOps workflows |
 | **AI ROI Calculator** | Three-layer ROI model (infrastructure + harness + business value) for AI initiatives | When a customer needs to evaluate or justify AI investment |
 | **FinOps Pilot (Agent Smith)** | Agentic FinOps assistant combining real-time cost intelligence, MCP tools, and FinOps domain expertise | When discussing agentic FinOps implementation or real-time AI cost visibility |
-| **FinOps Maturity Assessment** | Structured assessment of FinOps practice maturity across all 22 capabilities | When an organization needs a baseline before starting or expanding a FinOps practice |
+| **FinOps Maturity Assessment** | Structured assessment of FinOps practice maturity across all framework capabilities | When an organization needs a baseline before starting or expanding a FinOps practice |
 
 ---
 

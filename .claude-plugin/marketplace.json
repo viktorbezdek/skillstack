@@ -79,6 +79,29 @@
       ]
     },
     {
+      "name": "cloud-finops",
+      "source": "./cloud-finops",
+      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
+      "version": "2.0.0",
+      "category": "devops",
+      "tags": [
+        "finops",
+        "cloud-cost",
+        "cost-optimization",
+        "aws",
+        "azure",
+        "gcp",
+        "oci",
+        "ai-cost",
+        "kubernetes",
+        "serverless",
+        "focus",
+        "multi-cloud",
+        "tagging",
+        "greenops"
+      ]
+    },
+    {
       "name": "code-review",
       "source": "./code-review",
       "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
@@ -244,6 +267,20 @@
       ]
     },
     {
+      "name": "elicitation",
+      "source": "./elicitation",
+      "description": "Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivational Interviewing (OARS), values elicitation, and schema detection.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "elicitation",
+        "user-research",
+        "motivational-interviewing",
+        "narrative-identity",
+        "psychological-profiling"
+      ]
+    },
+    {
       "name": "example-design",
       "source": "./example-design",
       "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
@@ -293,24 +330,6 @@
         "conventional-commits",
         "changelog",
         "worktree"
-      ]
-    },
-    {
-      "name": "cloud-finops",
-      "source": "./cloud-finops",
-      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, and GreenOps. 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow.",
-      "version": "1.0.0",
-      "category": "devops",
-      "tags": [
-        "finops",
-        "cloud-cost",
-        "cost-optimization",
-        "aws",
-        "azure",
-        "gcp",
-        "ai-cost",
-        "tagging",
-        "greenops"
       ]
     },
     {

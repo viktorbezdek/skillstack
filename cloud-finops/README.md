@@ -1,22 +1,18 @@
 # Cloud FinOps
 
-> **v1.0.0** | DevOps & Infrastructure | 1 iteration
+> **v2.0.0** | DevOps & Infrastructure | 2 iterations
 
-Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 20 domain-specific reference files grounded in enterprise delivery experience. Built by [OptimNow](https://optimnow.io), licensed CC BY-SA 4.0.
+Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS specification), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.
 
 ## What Problem Does This Solve
 
-General-purpose LLMs make confident but incorrect statements on FinOps topics. They miscalculate PTU break-even rates, confuse Azure and AWS reservation mechanics, and give generic advice that ignores how billing actually works on Bedrock or Azure OpenAI. This skill injects verified, curated FinOps knowledge directly into the model's context -- covering billing models, cost allocation patterns, optimisation frameworks, and governance practices across major cloud providers and AI platforms.
+> Built by [OptimNow](https://optimnow.io) (James Barney) and [Viktor Bezdek](https://github.com/viktorbezdek). Grounded in hands-on enterprise delivery, not abstract frameworks.
+
+Organizations struggle to manage technology spend across cloud providers, AI workloads, SaaS subscriptions, containers, serverless functions, and data platforms. This skill provides structured, practitioner-tested guidance for the full FinOps lifecycle: visibility, allocation, optimization, and governance across all technology cost surfaces.
 
 ## When to Use This Skill
 
-Use for any query about cloud cost management, AI inference economics, commitment portfolio strategy, rightsizing, cost allocation, tagging governance, SaaS sprawl, AI dev tool spend, or connecting technology spend to business value. Covers AWS, Azure, GCP, Anthropic, Bedrock, Azure OpenAI, Vertex AI, Databricks, Snowflake, OCI, and GreenOps.
-
-## When NOT to Use This Skill
-
-- General cloud infrastructure design (use cicd-pipelines or docker-containerization)
-- Application performance optimization unrelated to cost
-- Non-cloud software licensing questions
+Expert FinOps guidance covering cloud, AI, SaaS, and adjacent technology spend. Includes AI cost management, GenAI capacity planning, AI-powered FinOps automation, Anthropic billing, AWS (EC2, Bedrock, Savings Plans, CUR, commitment strategy), Azure (reservations, Savings Plans, AHB, OpenAI PTUs, portfolio liquidity), GCP (Vertex AI, Compute Engine, BigQuery), Kubernetes and container cost attribution (OpenCost, Kubecost), serverless optimization (Lambda, Functions, Cloud Run), data platforms (Kafka/MSK, Elasticsearch/OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS specification), tagging governance, SaaS management (SAM, licence optimisation, SMPs, shadow IT), AI coding tools (Cursor, Claude Code, Copilot, Windsurf, Codex), ITAM, Databricks, Snowflake, OCI, and GreenOps. Use for any query about technology cost, commitment portfolio management, rightsizing, cost allocation, container cost attribution, serverless optimization, multi-cloud strategy, or connecting spend to business value.
 
 ## How to Use
 
@@ -29,70 +25,41 @@ Use the cloud-finops skill to ...
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
 
 - `finops`
-- `cloud cost`
-- `cost optimization`
-- `cloud billing`
-- `ai cost`
-- `reserved instances`
-- `savings plans`
-- `tagging governance`
-- `bedrock pricing`
-- `azure openai ptu`
+- `cloud-cost`
+- `cost-optimization`
+- `aws`
+- `azure`
+- `gcp`
+- `kubernetes cost`
+- `serverless cost`
+- `multi-cloud`
 
 ## What's Inside
 
-- **Domain Router** -- Routes queries to the correct reference file across 20 domains
-- **OptimNow Methodology** -- Reasoning philosophy: diagnose before prescribing, connect cost to value
-- **AI Cost Management** -- LLM inference economics, agentic cost patterns, ROI frameworks
-- **AI Value Management** -- AI Investment Council, stage gate model, incremental funding
-- **GenAI Capacity Planning** -- Provisioned vs shared capacity, traffic shape, spillover mechanics
-- **Cloud Provider FinOps** -- AWS (128 patterns), Azure (48 patterns), GCP (26 patterns), OCI
-- **AI Platform Billing** -- Anthropic, Bedrock, Azure OpenAI PTUs, Vertex AI
-- **Data Platform Costs** -- Databricks cluster optimisation, Snowflake credit management
-- **AI Coding Tools** -- Cursor, Claude Code, Copilot, Windsurf, Codex billing and attribution
-- **Governance** -- Tagging strategy, SaaS asset management, ITAM collaboration
-- **GreenOps** -- Cloud carbon measurement, carbon-aware workload shifting
-- **FinOps Framework** -- Full FinOps Foundation framework, 22 capabilities, maturity model
-
-## Reference Files
-
-| File | Domain | Lines |
-|---|---|---|
-| `optimnow-methodology.md` | OptimNow reasoning philosophy | ~155 |
-| `finops-for-ai.md` | AI cost management, LLM economics | ~490 |
-| `finops-ai-value-management.md` | AI investment governance | ~275 |
-| `finops-genai-capacity.md` | GenAI capacity models | ~225 |
-| `finops-anthropic.md` | Anthropic billing and governance | ~180 |
-| `finops-aws.md` | AWS FinOps (128 optimisation patterns) | ~2240 |
-| `finops-bedrock.md` | AWS Bedrock billing | ~225 |
-| `finops-azure.md` | Azure FinOps (48 patterns) | ~1560 |
-| `finops-azure-openai.md` | Azure OpenAI Service (PTUs) | ~390 |
-| `finops-gcp.md` | GCP optimisation (26 patterns) | ~265 |
-| `finops-vertexai.md` | GCP Vertex AI billing | ~235 |
-| `finops-tagging.md` | Tagging and naming governance | ~250 |
-| `finops-framework.md` | FinOps Foundation framework | ~280 |
-| `finops-databricks.md` | Databricks optimisation | ~185 |
-| `finops-snowflake.md` | Snowflake FinOps | ~200 |
-| `finops-ai-dev-tools.md` | AI coding tools billing | ~400 |
-| `finops-oci.md` | OCI optimisation | ~75 |
-| `finops-sam.md` | SaaS asset management | ~290 |
-| `finops-itam.md` | ITAM collaboration | ~325 |
-| `greenops-cloud-carbon.md` | GreenOps and cloud carbon | ~330 |
-
-## Attribution
-
-Built by [OptimNow](https://optimnow.io) (James Barney). Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Upstream: [github.com/OptimNow/cloud-finops-skills](https://github.com/OptimNow/cloud-finops-skills).
+- **How to use this skill** -- domain routing table for 26 reference files
+- **Core FinOps principles** (2026 framework, always apply)
+- **The three phases** (Inform → Optimize → Operate)
+- **Maturity model quick reference**
+- **26 reference files** covering:
+  - AI & GenAI (5 files): AI costs, investment governance, capacity planning, dev tools, AI automation
+  - Cloud Providers (7 files): AWS, Azure, GCP, OCI, Bedrock, Azure OpenAI, Anthropic, Vertex AI
+  - Infrastructure & Platforms (5 files): Kubernetes, serverless, Kafka/OpenSearch/Redis, Databricks, Snowflake
+  - Cross-Cutting (4 files): multi-cloud, FOCUS specification, tagging, GreenOps
+  - SaaS & Licensing (2 files): SaaS management, ITAM
+  - Methodology (2 files): OptimNow methodology, FinOps framework
 
 ## Version History
 
-- `1.0.0` Initial integration from OptimNow/cloud-finops-skills
+- `2.0.0` Major expansion: 6 new reference files (Kubernetes, serverless, data platforms, multi-cloud, FOCUS, AI automation), framework updated to 2026 (Scopes, Technology Categories, Executive Strategy Alignment capability), improved domain routing, coauthorship added
+- `1.0.0` Initial release by OptimNow
 
 ## Related Skills
 
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- CI/CD pipeline design, DevOps automation, infrastructure as code
-- **[Docker Containerization](../docker-containerization/)** -- Docker basics, multi-stage builds, Docker Compose orchestration
-- **[Workflow Automation](../workflow-automation/)** -- Development workflow automation, CI/CD pipelines, multi-agent orchestration
+- **[Cicd Pipelines](../cicd-pipelines/)** -- Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise ...
+- **[Docker Containerization](../docker-containerization/)** -- Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration...
+- **[Git Workflow](../git-workflow/)** -- Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file gro...
+- **[Workflow Automation](../workflow-automation/)** -- Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution,...
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 48 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 49 production-grade plugins for Claude Code.
