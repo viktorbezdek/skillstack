@@ -182,27 +182,27 @@ validate_hooks() {
 
                     for ((j=0; j<hook_count; j++)); do
                         local hook_type
-                        hook_type=$(jq -r ".workflows[$i].hooks.$hook_phase[$j].type" "$config_file" 2>/dev/null || echo "missing")
+                        hook_type=$(jq -r ".workflows[$i].hooks.${hook_phase}[$j].type" "$config_file" 2>/dev/null || echo "missing")
 
                         case "$hook_type" in
                             document|script)
-                                if ! jq -e ".workflows[$i].hooks.$hook_phase[$j].path" "$config_file" > /dev/null 2>&1; then
-                                    error "Workflow '$workflow_id', hook '$hook_phase[$j]': Missing 'path' for $hook_type hook"
+                                if ! jq -e ".workflows[$i].hooks.${hook_phase}[$j].path" "$config_file" > /dev/null 2>&1; then
+                                    error "Workflow '$workflow_id', hook '${hook_phase}[$j]': Missing 'path' for $hook_type hook"
                                     errors=$((errors + 1))
                                 fi
                                 ;;
                             skill)
-                                if ! jq -e ".workflows[$i].hooks.$hook_phase[$j].skill" "$config_file" > /dev/null 2>&1; then
-                                    error "Workflow '$workflow_id', hook '$hook_phase[$j]': Missing 'skill' for skill hook"
+                                if ! jq -e ".workflows[$i].hooks.${hook_phase}[$j].skill" "$config_file" > /dev/null 2>&1; then
+                                    error "Workflow '$workflow_id', hook '${hook_phase}[$j]': Missing 'skill' for skill hook"
                                     errors=$((errors + 1))
                                 fi
                                 ;;
                             missing)
-                                error "Workflow '$workflow_id', hook '$hook_phase[$j]': Missing 'type'"
+                                error "Workflow '$workflow_id', hook '${hook_phase}[$j]': Missing 'type'"
                                 errors=$((errors + 1))
                                 ;;
                             *)
-                                error "Workflow '$workflow_id', hook '$hook_phase[$j]': Invalid hook type '$hook_type' (must be: document, script, or skill)"
+                                error "Workflow '$workflow_id', hook '${hook_phase}[$j]': Invalid hook type '$hook_type' (must be: document, script, or skill)"
                                 errors=$((errors + 1))
                                 ;;
                         esac

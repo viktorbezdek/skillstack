@@ -54,56 +54,58 @@ prompt_confirm() {
     [[ "$response" =~ ^[Yy]$ ]]
 }
 
-# Banner
-echo ""
-echo "╔════════════════════════════════════════════════════════════╗"
-echo "║                                                            ║"
-echo "║        Frontend Designer - Design System Setup            ║"
-echo "║                                                            ║"
-echo "╚════════════════════════════════════════════════════════════╝"
-echo ""
+main() {
+    # Banner
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                                                            ║"
+    echo "║        Frontend Designer - Design System Setup            ║"
+    echo "║                                                            ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
 
-# Configuration
-print_info "Step 1/5: Project Configuration"
-prompt_input "Design system name:" DS_NAME "design-system"
-prompt_input "Primary brand color (hex):" PRIMARY_COLOR "#0066FF"
-prompt_input "Base font size (px):" BASE_FONT_SIZE "16"
-prompt_input "Output directory:" OUTPUT_DIR "./design-system"
+    # Configuration
+    print_info "Step 1/5: Project Configuration"
+    prompt_input "Design system name:" DS_NAME "design-system"
+    prompt_input "Primary brand color (hex):" PRIMARY_COLOR "#0066FF"
+    prompt_input "Base font size (px):" BASE_FONT_SIZE "16"
+    prompt_input "Output directory:" OUTPUT_DIR "./design-system"
 
-# Create directory structure
-print_info "Step 2/5: Creating Directory Structure"
-mkdir -p "$OUTPUT_DIR"/{tokens,components,utilities,docs,examples}
-print_success "Created directory structure"
+    # Create directory structure
+    print_info "Step 2/5: Creating Directory Structure"
+    mkdir -p "$OUTPUT_DIR"/{tokens,components,utilities,docs,examples}
+    print_success "Created directory structure"
 
-# Generate design tokens
-print_info "Step 3/5: Generating Design Tokens"
-generate_design_tokens
+    # Generate design tokens
+    print_info "Step 3/5: Generating Design Tokens"
+    generate_design_tokens
 
-# Generate base components
-print_info "Step 4/5: Generating Base Components"
-if prompt_confirm "Generate base component library?"; then
-    generate_base_components
-fi
+    # Generate base components
+    print_info "Step 4/5: Generating Base Components"
+    if prompt_confirm "Generate base component library?"; then
+        generate_base_components
+    fi
 
-# Generate documentation
-print_info "Step 5/5: Generating Documentation"
-generate_documentation
+    # Generate documentation
+    print_info "Step 5/5: Generating Documentation"
+    generate_documentation
 
-# Summary
-echo ""
-echo "╔════════════════════════════════════════════════════════════╗"
-echo "║                      Setup Complete!                       ║"
-echo "╚════════════════════════════════════════════════════════════╝"
-echo ""
-print_success "Design system created: $OUTPUT_DIR"
-echo ""
-print_info "Next steps:"
-echo "  1. Review tokens in $OUTPUT_DIR/tokens/"
-echo "  2. Customize brand colors and typography"
-echo "  3. Import tokens in your app"
-echo "  4. Use components from $OUTPUT_DIR/components/"
-echo "  5. Read documentation in $OUTPUT_DIR/docs/"
-echo ""
+    # Summary
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                      Setup Complete!                       ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
+    print_success "Design system created: $OUTPUT_DIR"
+    echo ""
+    print_info "Next steps:"
+    echo "  1. Review tokens in $OUTPUT_DIR/tokens/"
+    echo "  2. Customize brand colors and typography"
+    echo "  3. Import tokens in your app"
+    echo "  4. Use components from $OUTPUT_DIR/components/"
+    echo "  5. Read documentation in $OUTPUT_DIR/docs/"
+    echo ""
+}
 
 generate_design_tokens() {
     # Color tokens
@@ -568,3 +570,6 @@ EOF
 
     print_success "Created documentation"
 }
+
+# Run main after all functions are defined
+main "$@"

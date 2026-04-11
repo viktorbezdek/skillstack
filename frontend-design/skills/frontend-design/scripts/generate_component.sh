@@ -66,81 +66,83 @@ prompt_select() {
     done
 }
 
-# Banner
-echo ""
-echo "╔════════════════════════════════════════════════════════════╗"
-echo "║                                                            ║"
-echo "║          Frontend Designer - Component Generator          ║"
-echo "║                                                            ║"
-echo "╚════════════════════════════════════════════════════════════╝"
-echo ""
+main() {
+    # Banner
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                                                            ║"
+    echo "║          Frontend Designer - Component Generator          ║"
+    echo "║                                                            ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
 
-# Step 1: Component Type
-print_info "Step 1/6: Component Type"
-prompt_select "What type of component?" COMPONENT_TYPE \
-    "Button" \
-    "Input" \
-    "Card" \
-    "Modal" \
-    "Dropdown" \
-    "Navigation" \
-    "Form" \
-    "List" \
-    "Custom"
+    # Step 1: Component Type
+    print_info "Step 1/6: Component Type"
+    prompt_select "What type of component?" COMPONENT_TYPE \
+        "Button" \
+        "Input" \
+        "Card" \
+        "Modal" \
+        "Dropdown" \
+        "Navigation" \
+        "Form" \
+        "List" \
+        "Custom"
 
-# Step 2: Component Name
-print_info "Step 2/6: Component Name"
-prompt_input "Component name (PascalCase, e.g., UserProfile):" COMPONENT_NAME true
+    # Step 2: Component Name
+    print_info "Step 2/6: Component Name"
+    prompt_input "Component name (PascalCase, e.g., UserProfile):" COMPONENT_NAME true
 
-# Step 3: Framework
-print_info "Step 3/6: Framework"
-prompt_select "Which framework?" FRAMEWORK \
-    "React" \
-    "Vue" \
-    "Vanilla JS" \
-    "Web Components"
+    # Step 3: Framework
+    print_info "Step 3/6: Framework"
+    prompt_select "Which framework?" FRAMEWORK \
+        "React" \
+        "Vue" \
+        "Vanilla JS" \
+        "Web Components"
 
-# Step 4: Features
-print_info "Step 4/6: Features (comma-separated)"
-echo -e "${BLUE}Select features to include (e.g., variants,loading,disabled):${NC}"
-echo "  - variants (different visual styles)"
-echo "  - sizes (sm, md, lg)"
-echo "  - loading (loading state)"
-echo "  - disabled (disabled state)"
-echo "  - icons (icon support)"
-echo "  - responsive (responsive behavior)"
-read -r FEATURES
+    # Step 4: Features
+    print_info "Step 4/6: Features (comma-separated)"
+    echo -e "${BLUE}Select features to include (e.g., variants,loading,disabled):${NC}"
+    echo "  - variants (different visual styles)"
+    echo "  - sizes (sm, md, lg)"
+    echo "  - loading (loading state)"
+    echo "  - disabled (disabled state)"
+    echo "  - icons (icon support)"
+    echo "  - responsive (responsive behavior)"
+    read -r FEATURES
 
-# Step 5: Accessibility
-print_info "Step 5/6: Accessibility Requirements"
-prompt_select "WCAG compliance level?" A11Y_LEVEL \
-    "AA (recommended)" \
-    "AAA (strict)" \
-    "Basic"
+    # Step 5: Accessibility
+    print_info "Step 5/6: Accessibility Requirements"
+    prompt_select "WCAG compliance level?" A11Y_LEVEL \
+        "AA (recommended)" \
+        "AAA (strict)" \
+        "Basic"
 
-# Step 6: Output Directory
-print_info "Step 6/6: Output Location"
-prompt_input "Output directory (default: ./components):" OUTPUT_DIR
-OUTPUT_DIR=${OUTPUT_DIR:-"./components"}
+    # Step 6: Output Directory
+    print_info "Step 6/6: Output Location"
+    prompt_input "Output directory (default: ./components):" OUTPUT_DIR
+    OUTPUT_DIR=${OUTPUT_DIR:-"./components"}
 
-# Create output directory
-mkdir -p "$OUTPUT_DIR"
+    # Create output directory
+    mkdir -p "$OUTPUT_DIR"
 
-# Generate based on framework
-case $FRAMEWORK in
-    "React")
-        generate_react_component
-        ;;
-    "Vue")
-        generate_vue_component
-        ;;
-    "Vanilla JS")
-        generate_vanilla_component
-        ;;
-    "Web Components")
-        generate_web_component
-        ;;
-esac
+    # Generate based on framework
+    case $FRAMEWORK in
+        "React")
+            generate_react_component
+            ;;
+        "Vue")
+            generate_vue_component
+            ;;
+        "Vanilla JS")
+            generate_vanilla_component
+            ;;
+        "Web Components")
+            generate_web_component
+            ;;
+    esac
+}
 
 # Generate component based on selected framework
 generate_react_component() {
@@ -438,7 +440,7 @@ generate_css() {
   cursor: not-allowed;
 }
 
-.$class_name[aria-busy="true"] {
+.${class_name}[aria-busy="true"] {
   cursor: wait;
 }
 
@@ -582,38 +584,44 @@ EOF
     print_success "Created test file: $test_file"
 }
 
-# Summary
-echo ""
-echo "╔════════════════════════════════════════════════════════════╗"
-echo "║                    Generation Complete                     ║"
-echo "╚════════════════════════════════════════════════════════════╝"
-echo ""
-print_success "Component: $COMPONENT_NAME"
-print_success "Type: $COMPONENT_TYPE"
-print_success "Framework: $FRAMEWORK"
-print_success "Location: $OUTPUT_DIR"
-echo ""
-print_info "Files created:"
-case $FRAMEWORK in
-    "React")
-        echo "  - $COMPONENT_NAME.tsx (component)"
-        echo "  - $COMPONENT_NAME.css (styles)"
-        echo "  - $COMPONENT_NAME.test.tsx (tests)"
-        ;;
-    "Vue")
-        echo "  - $COMPONENT_NAME.vue (component)"
-        echo "  - $COMPONENT_NAME.css (styles)"
-        ;;
-    *)
-        echo "  - $COMPONENT_NAME.js (component)"
-        echo "  - $COMPONENT_NAME.css (styles)"
-        ;;
-esac
-echo ""
-print_info "Next steps:"
-echo "  1. Review generated files"
-echo "  2. Customize component logic"
-echo "  3. Add to your component library"
-echo "  4. Run tests (npm test)"
-echo "  5. Test accessibility (npm run a11y)"
-echo ""
+print_summary() {
+    # Summary
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║                    Generation Complete                     ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
+    print_success "Component: $COMPONENT_NAME"
+    print_success "Type: $COMPONENT_TYPE"
+    print_success "Framework: $FRAMEWORK"
+    print_success "Location: $OUTPUT_DIR"
+    echo ""
+    print_info "Files created:"
+    case $FRAMEWORK in
+        "React")
+            echo "  - $COMPONENT_NAME.tsx (component)"
+            echo "  - $COMPONENT_NAME.css (styles)"
+            echo "  - $COMPONENT_NAME.test.tsx (tests)"
+            ;;
+        "Vue")
+            echo "  - $COMPONENT_NAME.vue (component)"
+            echo "  - $COMPONENT_NAME.css (styles)"
+            ;;
+        *)
+            echo "  - $COMPONENT_NAME.js (component)"
+            echo "  - $COMPONENT_NAME.css (styles)"
+            ;;
+    esac
+    echo ""
+    print_info "Next steps:"
+    echo "  1. Review generated files"
+    echo "  2. Customize component logic"
+    echo "  3. Add to your component library"
+    echo "  4. Run tests (npm test)"
+    echo "  5. Test accessibility (npm run a11y)"
+    echo ""
+}
+
+# Run main after all functions are defined
+main "$@"
+print_summary

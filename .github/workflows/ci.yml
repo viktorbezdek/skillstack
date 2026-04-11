@@ -32,7 +32,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run skill-creator validator tests
-        working-directory: skill-creator/scripts
+        working-directory: skill-creator/skills/skill-creator/scripts
         run: |
           pip install pytest pyyaml
           pytest tests/ -v
@@ -49,7 +49,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run docker-containerization tests
-        working-directory: docker-containerization/scripts
+        working-directory: docker-containerization/skills/docker-containerization/scripts
         run: |
           pip install pytest
           pytest tests/ -v
@@ -66,7 +66,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies and run tests
-        working-directory: mcp-server/templates/mcp-template-python
+        working-directory: mcp-server/skills/mcp-server/templates/mcp-template-python
         run: |
           pip install pytest -r requirements.txt
           PYTHONPATH=. pytest tests/ -v
@@ -82,12 +82,12 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: debugging/scripts/chrome-devtools/package-lock.json
+          cache-dependency-path: debugging/skills/debugging/scripts/chrome-devtools/package-lock.json
 
       - name: Install dependencies
-        working-directory: debugging/scripts/chrome-devtools
+        working-directory: debugging/skills/debugging/scripts/chrome-devtools
         run: npm ci --ignore-scripts
 
       - name: Run selector tests
-        working-directory: debugging/scripts/chrome-devtools
+        working-directory: debugging/skills/debugging/scripts/chrome-devtools
         run: node --test __tests__/selector.test.js

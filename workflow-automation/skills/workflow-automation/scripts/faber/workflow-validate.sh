@@ -223,7 +223,7 @@ if [ -n "$HOOKS" ] && [ "$HOOKS" != "null" ]; then
                 # Validate hook using hook-validate.sh
                 set +e
                 if ! "$SCRIPT_DIR/hook-validate.sh" "$HOOK" > /dev/null 2>&1; then
-                    echo -e "${RED}✗${NC} Invalid hook in $HOOK_NAME[$i]" >&2
+                    echo -e "${RED}✗${NC} Invalid hook in ${HOOK_NAME}[$i]" >&2
                     ERRORS=$((ERRORS + 1))
                 fi
                 set -e

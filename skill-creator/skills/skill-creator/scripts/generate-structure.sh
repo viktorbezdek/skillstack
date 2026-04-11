@@ -256,7 +256,7 @@ fi
 echo
 
 # Create sample script template
-if [[ ! -f "$SKILL_DIR/scripts/.gitkeep" && ! -f "$SKILL_DIR/scripts"/*.sh ]]; then
+if [[ ! -f "$SKILL_DIR/scripts/.gitkeep" ]] && ! find "$SKILL_DIR/scripts" -maxdepth 1 -name '*.sh' -type f 2>/dev/null | grep -q .; then
     touch "$SKILL_DIR/scripts/.gitkeep"
     echo -e "${GREEN}✓ Created scripts/.gitkeep${NC}"
 else
@@ -265,7 +265,7 @@ fi
 echo
 
 # Create sample template
-if [[ ! -f "$SKILL_DIR/templates/.gitkeep" && ! -f "$SKILL_DIR/templates"/* ]]; then
+if [[ ! -f "$SKILL_DIR/templates/.gitkeep" ]] && ! find "$SKILL_DIR/templates" -mindepth 1 -maxdepth 1 2>/dev/null | grep -q .; then
     touch "$SKILL_DIR/templates/.gitkeep"
     echo -e "${GREEN}✓ Created templates/.gitkeep${NC}"
 else
