@@ -269,14 +269,18 @@
     {
       "name": "elicitation",
       "source": "./elicitation",
-      "description": "Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivational Interviewing (OARS), values elicitation, and schema detection.",
-      "version": "1.0.0",
+      "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and LIWC. Progressive-disclosure structure with 8 domain references.",
+      "version": "2.0.0",
       "category": "design",
       "tags": [
         "elicitation",
+        "deep-interview",
         "user-research",
         "motivational-interviewing",
         "narrative-identity",
+        "values-elicitation",
+        "schema-detection",
+        "life-review",
         "psychological-profiling"
       ]
     },

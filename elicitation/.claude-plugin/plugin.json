@@ -1,0 +1,33 @@
+{
+  "name": "elicitation",
+  "version": "2.0.0",
+  "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
+  "authors": [
+    {
+      "name": "Viktor Bezdek",
+      "url": "https://github.com/viktorbezdek"
+    },
+    {
+      "name": "tasteray (original content)",
+      "url": "https://github.com/tasteray/skills"
+    }
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/elicitation",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "elicitation",
+    "deep-interview",
+    "user-research",
+    "psychological-profiling",
+    "narrative-identity",
+    "motivational-interviewing",
+    "OARS",
+    "self-defining-memories",
+    "values-elicitation",
+    "schema-detection",
+    "life-review",
+    "conversational-ai"
+  ]
+}
