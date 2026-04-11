@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**48** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**49** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **48** plugins · **8** categories · **8** collections · MIT License
+> **49** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
@@ -25,25 +25,25 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 47 plugins</summary>
+<summary><strong>SkillStack</strong> — 50 plugins</summary>
 
-> The complete SkillStack library — 48 expert skills for Claude Code covering the full software development lifecycle.
+> The complete SkillStack library — 50 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
-<summary><strong>Development Core</strong> — 10 plugins</summary>
+<summary><strong>Development Core</strong> — 11 plugins</summary>
 
 > Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.
 
-Plugins: `api-design`, `debugging`, `frontend-design`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
 </details>
 
 <details>
 <summary><strong>DevOps & Infrastructure</strong> — 5 plugins</summary>
 
-> CI/CD pipelines, Cloud FinOps, Docker containerization, Git workflow management, and workflow automation.
+> CI/CD pipelines, Docker containerization, Git workflow management, and workflow automation.
 
 Plugins: `cicd-pipelines`, `cloud-finops`, `docker-containerization`, `git-workflow`, `workflow-automation`
 </details>
@@ -81,11 +81,11 @@ Plugins: `creative-problem-solving`, `critical-intuition`, `outcome-orientation`
 </details>
 
 <details>
-<summary><strong>Design & UX</strong> — 7 plugins</summary>
+<summary><strong>Design & UX</strong> — 8 plugins</summary>
 
-> Content modelling, navigation design, ontology design, persona definition/mapping, user journey design, and UX writing.
+> Content modelling, navigation design, ontology design, persona definition/mapping, storytelling, user journey design, and UX writing.
 
-Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-definition`, `persona-mapping`, `user-journey-design`, `ux-writing`
+Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-design`, `persona-definition`, `persona-mapping`, `storytelling`, `user-journey-design`, `ux-writing`
 </details>
 
 ---
@@ -113,7 +113,7 @@ Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-d
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [CI/CD Pipelines](cicd-pipelines/README.md) | `1.1.23` | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management. |
-| [Cloud FinOps](cloud-finops/README.md) | `1.0.0` | Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, Databricks, Snowflake, OCI, and GreenOps. 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow. |
+| [Cloud FinOps](cloud-finops/README.md) | `1.0.0` | Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 20 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow, licensed CC BY-SA 4.0. |
 | [Docker Containerization](docker-containerization/README.md) | `1.1.22` | Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns. |
 | [Git Workflow](git-workflow/README.md) | `1.1.20` | Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management. |
 | [Workflow Automation](workflow-automation/README.md) | `1.1.21` | Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management. |
@@ -161,15 +161,17 @@ Plugins: `content-modelling`, `navigation-design`, `ontology-design`, `persona-d
 | [Risk Management](risk-management/README.md) | `1.0.10` | Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices. |
 | [Systems Thinking](systems-thinking/README.md) | `1.0.10` | Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems. |
 
-### 🎨 Design (7)
+### 🎨 Design (10)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [Content Modelling](content-modelling/README.md) | `1.0.11` | Design content models with types, fields, relationships, and governance rules for structured content systems. |
+| [Elicitation](elicitation/README.md) | `2.0.0` | Psychological elicitation and deep-interview design using narrative identity, self-defining memories, Motivational Interviewing (OARS), values elicitation, schema detection, life review, and LIWC. |
 | [Navigation Design](navigation-design/README.md) | `1.0.10` | Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications. |
 | [Ontology Design](ontology-design/README.md) | `1.0.10` | Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation. |
 | [Persona Definition](persona-definition/README.md) | `1.0.10` | Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps. |
 | [Persona Mapping](persona-mapping/README.md) | `1.0.10` | Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis. |
+| [Storytelling](storytelling/README.md) | `1.0.0` | Storytelling craft across fiction, business, data, speech, UX, and interactive narrative. 9 canonical story structures, character design, scene/pacing, dialogue, POV, StoryBrand, Pixar Spine, data storytelling, speech writing, interactive narrative, and narrative theory. 12 progressive-disclosure references. |
 | [User Journey Design](user-journey-design/README.md) | `1.0.10` | Design user journey maps with touchpoints, emotional states, pain points, and opportunities. |
 | [UX Writing](ux-writing/README.md) | `1.0.10` | Write effective microcopy, error messages, button labels, and interface text using UX writing principles. |
 

@@ -1,0 +1,33 @@
+{
+  "name": "storytelling",
+  "version": "1.0.0",
+  "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/storytelling",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "storytelling",
+    "narrative",
+    "story-structure",
+    "heros-journey",
+    "story-circle",
+    "save-the-cat",
+    "storybrand",
+    "pixar-spine",
+    "kishotenketsu",
+    "character-design",
+    "dialogue",
+    "scene-construction",
+    "business-storytelling",
+    "data-storytelling",
+    "speech-writing",
+    "pitch-narrative",
+    "interactive-narrative",
+    "narrative-theory"
+  ]
+}

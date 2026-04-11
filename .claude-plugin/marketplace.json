@@ -561,6 +561,27 @@
       ]
     },
     {
+      "name": "storytelling",
+      "source": "./storytelling",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. 9 canonical structures, character design, scene/pacing, dialogue, POV, StoryBrand/Pixar Spine, data storytelling, speech writing, interactive narrative, and narrative theory. 12 progressive-disclosure references.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "storytelling",
+        "narrative",
+        "story-structure",
+        "heros-journey",
+        "storybrand",
+        "pixar-spine",
+        "character-design",
+        "dialogue",
+        "business-storytelling",
+        "data-storytelling",
+        "speech-writing",
+        "interactive-narrative"
+      ]
+    },
+    {
       "name": "systems-thinking",
       "source": "./systems-thinking",
       "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
