@@ -7,6 +7,24 @@ on:
     branches: [main]
 
 jobs:
+  plugin-validation:
+    name: Plugin Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run plugin structural validator
+        run: python3 .github/scripts/validate_plugins.py
+
+      - name: Run validator's own tests
+        run: |
+          pip install pytest
+          pytest .github/scripts/tests/ -q
+
   shellcheck:
     name: ShellCheck
     runs-on: ubuntu-latest

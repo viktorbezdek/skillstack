@@ -1,24 +1,138 @@
 # SkillStack
 
-**Battle-tested skills for Claude Code.**
+**Battle-tested skills for Claude Code.** 50 expert plugins that give Claude deep domain knowledge across software engineering, DevOps, testing, design, strategic thinking, context engineering, agent architecture, and storytelling.
 
-**49** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**[Quick start](#quick-start)** · **[Find a skill by goal](#find-a-skill-by-goal)** · **[Full catalog](#plugin-catalog)** · **[Contribute](#contributing)**
 
-**[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
+> **50** plugins · **8** categories · **8** collections · MIT License
 
-> **49** plugins · **8** categories · **8** collections · MIT License
+---
+
+## What is a Claude Code skill?
+
+A **skill** is a structured knowledge package that Claude Code loads on demand. Unlike a one-shot prompt, a skill includes:
+
+- A short activation description that tells Claude when to use it
+- Core instructions for how to approach the domain
+- **Progressive-disclosure references** — focused files Claude only loads when relevant, so your context window doesn't fill up with content you don't need
+
+Think of it as giving Claude a carefully organized textbook for a specific subject. When you ask about that subject, Claude reads the table of contents first and pulls in only the chapter that matters.
+
+**Every skill in SkillStack follows the same contract**: lean activation file (≤200 lines), domain references loaded on demand, explicit "when to use / when NOT to use" boundaries, and cross-references to related skills. This keeps Claude fast and accurate even when you install dozens of plugins.
 
 ---
 
 ## Quick Start
 
+**Install the full collection (all 50 plugins):**
 ```bash
-# Install the full SkillStack collection
 claude plugin add viktorbezdek/skillstack
-
-# Or install individual plugins
-claude plugin add viktorbezdek/skillstack --plugin api-design
 ```
+
+**Or install individual plugins:**
+```bash
+claude plugin add viktorbezdek/skillstack --plugin api-design
+claude plugin add viktorbezdek/skillstack --plugin storytelling
+claude plugin add viktorbezdek/skillstack --plugin debugging
+```
+
+**Or install a specific plugin directly from GitHub:**
+```bash
+claude install-plugin github:viktorbezdek/skillstack/api-design
+```
+
+After installation, the skill activates automatically when Claude detects a relevant query, or you can invoke it explicitly:
+```
+Use the api-design skill to design a REST API for user management.
+```
+
+---
+
+## Find a skill by goal
+
+Use this table to find the right plugin for what you actually want to do. Each row points to a specific skill; click through to its README for full use cases and examples.
+
+### I want to write or ship code
+
+| Goal | Skill |
+|---|---|
+| Design a REST, GraphQL, or gRPC API with pagination, auth, and versioning | [api-design](api-design/) |
+| Debug a flaky test, race condition, production bug, or CI failure systematically | [debugging](debugging/) |
+| Write Python/TypeScript/React/Next.js code that follows current best practices | [python-development](python-development/), [typescript-development](typescript-development/), [react-development](react-development/), [nextjs-development](nextjs-development/) |
+| Style and build accessible UI with Tailwind, design tokens, WCAG compliance | [frontend-design](frontend-design/) |
+| Review code with structured, severity-rated feedback | [code-review](code-review/) |
+| Follow TDD with proper red-green-refactor discipline | [test-driven-development](test-driven-development/) |
+| Set up a testing framework across unit, integration, and E2E | [testing-framework](testing-framework/) |
+| Identify boundary conditions and edge cases I might miss | [edge-case-coverage](edge-case-coverage/) |
+| Build an MCP server in Python or TypeScript | [mcp-server](mcp-server/) |
+| Drive Google Workspace (Drive, Gmail, Sheets, Calendar) from the terminal | [gws-cli](gws-cli/) |
+| Follow consistent naming conventions and style across my codebase | [consistency-standards](consistency-standards/) |
+
+### I want to ship and operate
+
+| Goal | Skill |
+|---|---|
+| Design a CI/CD pipeline with secrets, rollbacks, and environment promotion | [cicd-pipelines](cicd-pipelines/) |
+| Optimize Dockerfiles, multi-stage builds, image size, and security | [docker-containerization](docker-containerization/) |
+| Manage git worktrees, commits, branches, and changelogs at professional quality | [git-workflow](git-workflow/) |
+| Reduce AWS / Azure / GCP / Kubernetes / serverless cloud costs | [cloud-finops](cloud-finops/) |
+| Orchestrate complex multi-agent workflows with state machines | [workflow-automation](workflow-automation/) |
+
+### I want to design a product or experience
+
+| Goal | Skill |
+|---|---|
+| Write a pitch, founder story, case study, or data-driven presentation that actually moves people | [storytelling](storytelling/) |
+| Build user personas with empathy maps, goals, and pain points from research | [persona-definition](persona-definition/) |
+| Map stakeholders with Power-Interest matrices and RACI charts | [persona-mapping](persona-mapping/) |
+| Design an effective user-research interview that reveals real motivations | [elicitation](elicitation/) |
+| Map user journeys with touchpoints, emotional states, and friction moments | [user-journey-design](user-journey-design/) |
+| Write UX microcopy, error messages, button labels, and empty states | [ux-writing](ux-writing/) |
+| Design information architecture, navigation, breadcrumbs, sitemaps | [navigation-design](navigation-design/) |
+| Build content models for a CMS with types, fields, and relationships | [content-modelling](content-modelling/) |
+| Model a domain ontology with classes, properties, and taxonomies | [ontology-design](ontology-design/) |
+
+### I want to think better about a problem
+
+| Goal | Skill |
+|---|---|
+| Apply systems thinking — feedback loops, leverage points, stocks and flows | [systems-thinking](systems-thinking/) |
+| Generate genuinely new ideas via lateral thinking, SCAMPER, first principles | [creative-problem-solving](creative-problem-solving/) |
+| Critique an existing idea with pattern recognition, bias detection, red flags | [critical-intuition](critical-intuition/) |
+| Prioritize a backlog with RICE, MoSCoW, ICE, or effort-impact matrices | [prioritization](prioritization/) |
+| Assess and mitigate project risks systematically | [risk-management](risk-management/) |
+| Define outcomes and OKRs rather than just ticking off outputs | [outcome-orientation](outcome-orientation/) |
+
+### I want to build or evaluate AI agents
+
+| Goal | Skill |
+|---|---|
+| Design a multi-agent system (supervisor, swarm, handoff patterns) | [multi-agent-patterns](multi-agent-patterns/) |
+| Give an agent persistent memory across sessions | [memory-systems](memory-systems/) |
+| Reduce an agent's tool surface and design better tool descriptions | [tool-design](tool-design/) |
+| Build evaluation rubrics and LLM-as-judge pipelines for agent output | [agent-evaluation](agent-evaluation/) |
+| Set up an LLM project with pipelines, task-model fit, and cost estimation | [agent-project-development](agent-project-development/) |
+| Run background / hosted agents in sandboxed environments | [hosted-agents](hosted-agents/) |
+| Model an agent's beliefs, desires, and intentions formally (BDI) | [bdi-mental-states](bdi-mental-states/) |
+| Write better prompts through systematic design and evaluation | [prompt-engineering](prompt-engineering/) |
+
+### I want to understand and engineer context
+
+| Goal | Skill |
+|---|---|
+| Learn how context windows, attention, and progressive disclosure work | [context-fundamentals](context-fundamentals/) |
+| Diagnose context degradation (lost-in-middle, poisoning, clash, confusion) | [context-degradation/](context-degradation/) |
+| Compress context with summarization and anchored iterative techniques | [context-compression](context-compression/) |
+| Extend effective context with KV-cache, partitioning, observation masking | [context-optimization](context-optimization/) |
+| Use the file system as long-term context (scratch pads, dynamic loading) | [filesystem-context](filesystem-context/) |
+
+### I want to document and create skills
+
+| Goal | Skill |
+|---|---|
+| Generate repository documentation at scale (monorepo or library) | [documentation-generator](documentation-generator/) |
+| Design good code examples and progressive-complexity tutorials | [example-design](example-design/) |
+| Create a high-quality Claude Code skill myself | [skill-creator](skill-creator/) |
 
 ---
 
@@ -186,25 +300,101 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 
 ## How It Works
 
-Each plugin is a self-contained skill that teaches Claude Code domain expertise:
+Each plugin is a self-contained skill that teaches Claude Code domain expertise using the same progressive-disclosure architecture:
 
 ```
-You describe a task        Claude loads the right skill     Expert-level output
-  (natural language)   →   (automatic activation)       →   (guided by SKILL.md)
+You describe a task        Claude matches against        Lean SKILL.md loads
+  (natural language)   →   skill activation descriptions  →   (<200 lines, always)
+                                                              ↓
+                                        Claude routes to the right reference files
+                                        and loads ONLY those (no context bloat)
+                                                              ↓
+                                              Expert-level output
 ```
 
-Skills activate automatically based on your request, or you can invoke them directly:
+**Why progressive disclosure matters.** A naive skill that dumps 5,000 lines of domain content into Claude's context on every query burns tokens, slows response, and degrades quality. SkillStack skills put only routing and principles in SKILL.md, then load domain references on demand. A query about StoryBrand loads `business-storytelling.md`, not `narrative-theory.md`. A query about AWS commitment strategy loads `finops-aws.md`, not the other 25 cloud-finops references.
 
+**Every skill in this repo is CI-validated.** The `plugin-validation` job runs on every commit and checks that:
+- Every plugin has a valid `plugin.json`, `SKILL.md`, and `README.md`
+- SKILL.md frontmatter matches its directory name
+- Every reference file cited from SKILL.md actually exists on disk
+- Versions in `plugin.json`, `registry.json`, and `marketplace.json` match
+- No orphan catalog entries (plugins that don't exist) or unregistered plugins
+
+This means when you `claude plugin add` from this repo, you never get a half-shipped skill that references missing files.
+
+---
+
+## Installation details
+
+### Full collection
+
+```bash
+claude plugin add viktorbezdek/skillstack
 ```
-Use the api-design skill to design a REST API for user management
+
+Installs all 50 plugins. They coexist cleanly because each has distinct activation patterns — no two skills fight over the same query.
+
+### Individual plugin (marketplace)
+
+```bash
+claude plugin add viktorbezdek/skillstack --plugin <plugin-name>
 ```
+
+### Individual plugin (direct from GitHub)
+
+```bash
+claude install-plugin github:viktorbezdek/skillstack/<plugin-name>
+```
+
+Both forms install the same thing. Use whichever matches your existing Claude Code setup.
+
+### Verify your installation
+
+After install, ask Claude Code:
+```
+List the skills currently available.
+```
+
+Claude should include the SkillStack plugins you installed.
 
 ---
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) or [open an issue](https://github.com/viktorbezdek/skillstack/issues).
+Contributions are welcome — bug reports, reference improvements, new skills, and fixes to existing plugins.
+
+**Report a problem.** [Open an issue](https://github.com/viktorbezdek/skillstack/issues) with enough detail to reproduce. If you spotted a skill that misfires (activates when it shouldn't, or stays silent when it should), include the prompt you used and what you expected.
+
+**Improve an existing skill.** Every skill has a `skills/{name}/SKILL.md` and (usually) a `skills/{name}/references/` directory. Fork, make your changes, run `python3 .github/scripts/validate_plugins.py` locally to check structure, and open a PR.
+
+**Add a new skill.** Use the [skill-creator](skill-creator/) plugin as a starting point — it knows the repo conventions. Your new plugin needs:
+- `your-skill/.claude-plugin/plugin.json` with `name`, `version`, `description`, `author`
+- `your-skill/skills/your-skill/SKILL.md` with YAML frontmatter (`name` must match directory)
+- `your-skill/README.md` with `## What Problem Does This Solve`, `## When to Use This Skill` (scenario table), `## Installation`, `## How to Use`
+- An entry in `.claude-plugin/registry.json` and `.claude-plugin/marketplace.json`
+- CI will tell you what's wrong if you miss any of these
+
+**Local validation before opening a PR:**
+```bash
+# Check that your plugin structure is correct
+python3 .github/scripts/validate_plugins.py
+
+# Run the validator's own tests if you changed validation logic
+pytest .github/scripts/tests/ -q
+
+# Run shellcheck if you added bash scripts
+find . -name "*.sh" -not -path "./.git/*" | xargs shellcheck --severity=error
+```
 
 ---
 
-*Auto-generated from [registry.json](.claude-plugin/registry.json) · Last updated: 2026-04-10*
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+Individual plugins may carry their own license terms when they incorporate external work — see each plugin's README. For example, `cloud-finops` is CC BY-SA 4.0 (derived from OptimNow content), and `elicitation` incorporates work from `tasteray/skills`.
+
+---
+
+*Catalog auto-generated from [registry.json](.claude-plugin/registry.json) · Plugin structure validated by [.github/scripts/validate_plugins.py](.github/scripts/validate_plugins.py)*

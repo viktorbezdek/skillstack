@@ -208,7 +208,7 @@ result = engine.execute(workflow, input_data={"feature": "user auth"})
 - Code Review: analysis → feedback → approval
 
 **Resources:**
-- `references/alfred-workflow-patterns.md` - Orchestration patterns
+- `references/alfred-workflow-reference.md` - Orchestration patterns
 - `examples/enterprise-testing-workflow.py` - Complete workflow example
 
 ### 5. Development Workflow (TDD/Debug/Review)
@@ -375,7 +375,7 @@ workflow-automation/
 │   │   ├── security.md
 │   │   └── troubleshooting.md
 │   ├── gitflow-conventions.md
-│   ├── alfred-workflow-patterns.md
+│   ├── alfred-workflow-reference.md
 │   └── semantic-release/
 ├── scripts/
 │   ├── git/                     # Git worktree scripts
