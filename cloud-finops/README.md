@@ -75,9 +75,14 @@ This skill gives Claude deep FinOps expertise across all of these cost surfaces,
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/cloud-finops
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install cloud-finops@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

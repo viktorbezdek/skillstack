@@ -26,9 +26,14 @@ Frontend teams routinely reinvent design decisions — colours, spacing, dark mo
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/frontend-design
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install frontend-design@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

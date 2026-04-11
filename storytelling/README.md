@@ -33,9 +33,14 @@ Most practitioners who need to tell stories — writers, founders, presenters, d
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/storytelling
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install storytelling@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

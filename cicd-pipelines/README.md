@@ -25,9 +25,14 @@ Engineering teams building CI/CD pipelines from scratch repeatedly make the same
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/cicd-pipelines
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install cicd-pipelines@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

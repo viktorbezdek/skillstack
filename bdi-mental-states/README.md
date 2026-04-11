@@ -25,9 +25,14 @@ LLM agents that rely purely on prompt context lack structured internal represent
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/bdi-mental-states
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install bdi-mental-states@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

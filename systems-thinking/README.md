@@ -21,9 +21,14 @@ Complex problems — declining user engagement, runaway costs, team burnout cycl
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/systems-thinking
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install systems-thinking@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

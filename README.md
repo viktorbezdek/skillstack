@@ -24,22 +24,25 @@ Think of it as giving Claude a carefully organized textbook for a specific subje
 
 ## Quick Start
 
-**Install the full collection (all 50 plugins):**
-```bash
-claude plugin add viktorbezdek/skillstack
+Plugin installation in Claude Code is a two-step process: add the marketplace once, then install individual plugins by name.
+
+**Step 1 — Add the SkillStack marketplace** (run this once, inside a Claude Code session):
+```
+/plugin marketplace add viktorbezdek/skillstack
 ```
 
-**Or install individual plugins:**
-```bash
-claude plugin add viktorbezdek/skillstack --plugin api-design
-claude plugin add viktorbezdek/skillstack --plugin storytelling
-claude plugin add viktorbezdek/skillstack --plugin debugging
+**Step 2 — Install the plugins you want:**
+```
+/plugin install api-design@skillstack
+/plugin install storytelling@skillstack
+/plugin install debugging@skillstack
 ```
 
-**Or install a specific plugin directly from GitHub:**
-```bash
-claude install-plugin github:viktorbezdek/skillstack/api-design
+**Or browse and install interactively:**
 ```
+/plugin
+```
+This opens the plugin browser where you can search, preview, and install any of the 50 SkillStack plugins.
 
 After installation, the skill activates automatically when Claude detects a relevant query, or you can invoke it explicitly:
 ```
@@ -321,33 +324,39 @@ You describe a task        Claude matches against        Lean SKILL.md loads
 - Versions in `plugin.json`, `registry.json`, and `marketplace.json` match
 - No orphan catalog entries (plugins that don't exist) or unregistered plugins
 
-This means when you `claude plugin add` from this repo, you never get a half-shipped skill that references missing files.
+This means when you install a plugin from this repo, you never get a half-shipped skill that references missing files.
 
 ---
 
 ## Installation details
 
-### Full collection
+All commands below are **slash commands** — run them from inside a Claude Code session, not from your regular shell.
 
-```bash
-claude plugin add viktorbezdek/skillstack
+### Step 1: Add the marketplace (once)
+
+```
+/plugin marketplace add viktorbezdek/skillstack
 ```
 
-Installs all 50 plugins. They coexist cleanly because each has distinct activation patterns — no two skills fight over the same query.
+This registers the SkillStack marketplace with your Claude Code instance. You only need to do this once; after that, all 50 plugins become available to install by name.
 
-### Individual plugin (marketplace)
+### Step 2: Install individual plugins
 
-```bash
-claude plugin add viktorbezdek/skillstack --plugin <plugin-name>
+```
+/plugin install api-design@skillstack
+/plugin install storytelling@skillstack
+/plugin install debugging@skillstack
 ```
 
-### Individual plugin (direct from GitHub)
+The `@skillstack` suffix is the marketplace identifier (pulled from `.claude-plugin/marketplace.json`'s `name` field). You can install as many or as few plugins as you want — each one is self-contained.
 
-```bash
-claude install-plugin github:viktorbezdek/skillstack/<plugin-name>
+### Interactive browser
+
+```
+/plugin
 ```
 
-Both forms install the same thing. Use whichever matches your existing Claude Code setup.
+Opens the interactive plugin browser where you can search, preview descriptions, and install any plugin with a single click. Most users find this the easiest entry point.
 
 ### Verify your installation
 
@@ -356,7 +365,14 @@ After install, ask Claude Code:
 List the skills currently available.
 ```
 
-Claude should include the SkillStack plugins you installed.
+Claude should include the SkillStack plugins you installed. If a plugin doesn't appear, try:
+```
+/plugin marketplace refresh
+```
+
+### Scope options
+
+The `/plugin` command supports installing at user, project, or local scope. Select the scope in the interactive UI, or see Claude Code's plugin documentation for the non-interactive flags.
 
 ---
 

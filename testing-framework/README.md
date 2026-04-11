@@ -21,9 +21,14 @@ Starting a new project or language and not knowing which test framework to pick,
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/testing-framework
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install testing-framework@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

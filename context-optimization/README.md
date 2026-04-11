@@ -25,9 +25,14 @@ Tool outputs alone can consume 80%+ of a context window in typical agent traject
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/context-optimization
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install context-optimization@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

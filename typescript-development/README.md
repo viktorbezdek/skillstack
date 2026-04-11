@@ -25,9 +25,14 @@ TypeScript's type system is powerful enough to prevent whole classes of runtime 
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/typescript-development
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install typescript-development@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

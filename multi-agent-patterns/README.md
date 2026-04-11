@@ -25,9 +25,14 @@ Single LLM agents hit a hard ceiling: as tasks grow complex, context windows fil
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/multi-agent-patterns
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install multi-agent-patterns@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

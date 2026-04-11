@@ -21,9 +21,14 @@ API design decisions made early — URL structure, error formats, versioning str
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/api-design
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install api-design@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

@@ -21,9 +21,14 @@ Projects fail predictably — third-party dependencies slip, key people leave, i
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/risk-management
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install risk-management@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 

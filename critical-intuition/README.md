@@ -25,9 +25,14 @@ Information is rarely presented at face value: a proposal leaves out its failure
 
 ## Installation
 
+Add the SkillStack marketplace, then install this plugin:
+
 ```bash
-claude install-plugin github:viktorbezdek/skillstack/critical-intuition
+/plugin marketplace add viktorbezdek/skillstack
+/plugin install critical-intuition@skillstack
 ```
+
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
 ## How to Use
 
