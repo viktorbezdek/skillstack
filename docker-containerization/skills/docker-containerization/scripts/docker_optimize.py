@@ -59,8 +59,11 @@ class DockerfileAnalyzer:
         for i, line in enumerate(self.lines, 1):
             line = line.strip()
             if line.startswith('FROM'):
-                # Check for 'latest' tag
-                if ':latest' in line or (': ' not in line and 'AS' not in line and '@' not in line):
+                # Extract the image spec (part after FROM, before any AS alias)
+                image_spec = line[4:].strip().split(' AS ')[0].split(' as ')[0].strip()
+                # Check for 'latest' tag or no tag at all (:tag or @digest)
+                has_explicit_tag = ':' in image_spec or '@' in image_spec
+                if ':latest' in image_spec or not has_explicit_tag:
                     self.issues.append({
                         'line': i,
                         'severity': 'warning',
@@ -94,7 +97,7 @@ class DockerfileAnalyzer:
                     'line': 0,
                     'severity': 'warning',
                     'category': 'optimization',
-                    'message': 'Single-stage build with build tools',
+                    'message': 'Single-stage build with build tools — consider multi-stage build',
                     'suggestion': 'Use multi-stage build to exclude build dependencies from final image'
                 })
 
@@ -169,20 +172,30 @@ class DockerfileAnalyzer:
         consecutive_runs = 0
         first_run_line = 0
 
+        def flush() -> None:
+            if consecutive_runs > 1:
+                self.suggestions.append({
+                    'line': first_run_line,
+                    'category': 'layers',
+                    'message': f'{consecutive_runs} consecutive RUN commands',
+                    'suggestion': 'Combine related RUN commands with && to reduce layers'
+                })
+
         for i, line in enumerate(self.lines, 1):
-            if line.strip().startswith('RUN'):
+            stripped = line.strip()
+            # Blank lines do not break the run of consecutive RUN commands
+            if not stripped:
+                continue
+            if stripped.startswith('RUN'):
                 if consecutive_runs == 0:
                     first_run_line = i
                 consecutive_runs += 1
             else:
-                if consecutive_runs > 1:
-                    self.suggestions.append({
-                        'line': first_run_line,
-                        'category': 'layers',
-                        'message': f'{consecutive_runs} consecutive RUN commands',
-                        'suggestion': 'Combine related RUN commands with && to reduce layers'
-                    })
+                flush()
                 consecutive_runs = 0
+
+        # Flush at end of file in case the Dockerfile ends with RUN commands
+        flush()
 
     def analyze_workdir(self) -> None:
         """Check for WORKDIR usage."""
