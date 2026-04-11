@@ -152,6 +152,21 @@ class TestPluginStructure:
         register_in_catalog(fake_repo, "alpha")
         (fake_repo / "README.md").write_text("**1** plugins · categories\n")
         report = run()
+        # Plugins without a skills/ directory at all should report the
+        # missing-skills-directory error.
+        assert any(
+            "missing skills/" in e.message or "skills/ directory is empty" in e.message
+            for e in report.errors
+        )
+
+    def test_missing_skill_md_in_populated_skills_dir(self, fake_repo, tmp_path):
+        """A plugin with skills/{name}/ but no SKILL.md inside reports the right error."""
+        create_plugin(fake_repo, "alpha", include_skill=False)
+        # Manually create an empty skill directory (without SKILL.md)
+        (fake_repo / "alpha" / "skills" / "alpha").mkdir(parents=True)
+        register_in_catalog(fake_repo, "alpha")
+        (fake_repo / "README.md").write_text("**1** plugins · categories\n")
+        report = run()
         assert any("missing SKILL.md" in e.message for e in report.errors)
 
     def test_missing_readme_reports_error(self, fake_repo):
@@ -214,6 +229,72 @@ class TestCatalogConsistency:
             "orphan entry 'ghost'" in e.message
             for e in report.errors
         )
+
+
+def create_multi_skill_plugin(root: Path, name: str, skill_specs: list[tuple[str, str]]) -> Path:
+    """Create a plugin with multiple skills. skill_specs: [(skill_name, frontmatter_name), ...]"""
+    plugin_dir = root / name
+    plugin_dir.mkdir()
+    (plugin_dir / ".claude-plugin").mkdir()
+    manifest = {
+        "name": name,
+        "version": "1.0.0",
+        "description": f"{name} bundle",
+        "author": {"name": "test", "url": "https://example.com"},
+    }
+    (plugin_dir / ".claude-plugin" / "plugin.json").write_text(json.dumps(manifest))
+    (plugin_dir / "README.md").write_text(f"# {name}\n")
+    for skill_name, fm_name in skill_specs:
+        skill_dir = plugin_dir / "skills" / skill_name
+        skill_dir.mkdir(parents=True)
+        (skill_dir / "SKILL.md").write_text(
+            f"---\nname: {fm_name}\ndescription: test\n---\n# body\n"
+        )
+    return plugin_dir
+
+
+class TestMultiSkillPlugin:
+    def test_multi_skill_plugin_all_valid_passes(self, fake_repo):
+        """A plugin with skills/a/SKILL.md and skills/b/SKILL.md should pass."""
+        create_multi_skill_plugin(
+            fake_repo, "bundle", [("alpha", "alpha"), ("beta", "beta")]
+        )
+        # Multi-skill plugins use the plugin root as path_in_repo.
+        register_in_catalog(fake_repo, "bundle", path_in_repo="bundle", source="./bundle")
+        (fake_repo / "README.md").write_text("**1** plugins · categories\n")
+        report = run()
+        assert report.errors == [], f"expected no errors, got: {[e.message for e in report.errors]}"
+
+    def test_multi_skill_plugin_with_bad_skill_reports_scoped_error(self, fake_repo):
+        """Errors in a sub-skill should be scoped as 'plugin/skill'."""
+        create_multi_skill_plugin(
+            fake_repo, "bundle", [("alpha", "alpha"), ("beta", "wrong")]  # beta is broken
+        )
+        register_in_catalog(fake_repo, "bundle", path_in_repo="bundle", source="./bundle")
+        (fake_repo / "README.md").write_text("**1** plugins · categories\n")
+        report = run()
+        beta_errors = [e for e in report.errors if "bundle/beta" in e.plugin]
+        assert beta_errors, f"expected a 'bundle/beta' scoped error, got: {[(e.plugin, e.message) for e in report.errors]}"
+        assert any("frontmatter name 'wrong'" in e.message for e in beta_errors)
+
+    def test_empty_skills_dir_reports_error(self, fake_repo):
+        plugin_dir = fake_repo / "bundle"
+        plugin_dir.mkdir()
+        (plugin_dir / ".claude-plugin").mkdir()
+        manifest = {
+            "name": "bundle",
+            "version": "1.0.0",
+            "description": "empty bundle",
+            "author": {"name": "test", "url": "https://example.com"},
+        }
+        (plugin_dir / ".claude-plugin" / "plugin.json").write_text(json.dumps(manifest))
+        (plugin_dir / "README.md").write_text("# bundle\n")
+        (plugin_dir / "skills").mkdir()  # empty directory
+
+        register_in_catalog(fake_repo, "bundle", path_in_repo="bundle", source="./bundle")
+        (fake_repo / "README.md").write_text("**1** plugins · categories\n")
+        report = run()
+        assert any("skills/ directory is empty" in e.message for e in report.errors)
 
 
 class TestRootReadmeCount:

@@ -160,8 +160,60 @@ def discover_plugin_directories() -> list[Path]:
     return result
 
 
+def validate_skill(skill_dir: Path, plugin_name: str, report: Report) -> None:
+    """Validate one skill inside a plugin.
+
+    Single-skill plugins have ``skills/{plugin-name}/SKILL.md`` with
+    frontmatter ``name: {plugin-name}``. Multi-skill plugins have
+    multiple ``skills/*/SKILL.md`` files; in that case each skill's
+    frontmatter ``name`` must match its own directory, not the plugin
+    directory.
+    """
+    skill_name = skill_dir.name
+    scope = f"{plugin_name}/{skill_name}" if skill_name != plugin_name else plugin_name
+
+    skill_md = skill_dir / "SKILL.md"
+    if not skill_md.is_file():
+        report.err(scope, f"missing SKILL.md at {skill_md.relative_to(REPO_ROOT)}")
+        return
+
+    fm, body = parse_frontmatter(skill_md)
+    if fm is None:
+        report.err(scope, "SKILL.md has no YAML frontmatter (missing `---` fence)")
+        return
+
+    if "name" not in fm or not fm["name"]:
+        report.err(scope, "SKILL.md frontmatter missing required field: name")
+    elif fm["name"] != skill_name:
+        report.err(
+            scope,
+            f"SKILL.md frontmatter name '{fm['name']}' does not match skill directory '{skill_name}'",
+        )
+
+    if "description" not in fm or not fm["description"]:
+        report.err(scope, "SKILL.md frontmatter missing required field: description")
+
+    # Cross-reference check: every `references/foo.md` mentioned in
+    # SKILL.md should exist on disk.
+    ref_dir = skill_dir / "references"
+    if ref_dir.exists():
+        cited = set(re.findall(r"references/([A-Za-z0-9_\-]+\.md)", body))
+        for ref in sorted(cited):
+            target = ref_dir / ref
+            if not target.is_file():
+                report.err(
+                    scope,
+                    f"SKILL.md cites references/{ref} which does not exist",
+                )
+
+
 def validate_plugin(plugin_dir: Path, report: Report) -> dict | None:
-    """Validate a single plugin. Returns the parsed plugin.json, or None."""
+    """Validate a single plugin. Returns the parsed plugin.json, or None.
+
+    Supports both single-skill plugins (``skills/{plugin-name}/SKILL.md``)
+    and multi-skill plugins (multiple ``skills/*/SKILL.md`` files under
+    one plugin root).
+    """
     plugin_name = plugin_dir.name
     manifest_path = plugin_dir / ".claude-plugin" / "plugin.json"
 
@@ -188,46 +240,26 @@ def validate_plugin(plugin_dir: Path, report: Report) -> dict | None:
             f"plugin.json name '{manifest['name']}' does not match directory name '{plugin_name}'",
         )
 
-    # SKILL.md must exist at the expected location.
-    skill_md = plugin_dir / "skills" / plugin_name / "SKILL.md"
-    if not skill_md.is_file():
-        report.err(plugin_name, f"missing SKILL.md at {skill_md.relative_to(REPO_ROOT)}")
-        return manifest
-
-    # SKILL.md frontmatter must have name and description.
-    fm, body = parse_frontmatter(skill_md)
-    if fm is None:
-        report.err(plugin_name, "SKILL.md has no YAML frontmatter (missing `---` fence)")
-        return manifest
-
-    if "name" not in fm or not fm["name"]:
-        report.err(plugin_name, "SKILL.md frontmatter missing required field: name")
-    elif fm["name"] != plugin_name:
-        report.err(
-            plugin_name,
-            f"SKILL.md frontmatter name '{fm['name']}' does not match directory '{plugin_name}'",
-        )
-
-    if "description" not in fm or not fm["description"]:
-        report.err(plugin_name, "SKILL.md frontmatter missing required field: description")
-
     # README.md should exist for human documentation.
     readme = plugin_dir / "README.md"
     if not readme.is_file():
         report.err(plugin_name, "plugin README.md does not exist")
 
-    # Cross-reference check: every `references/foo.md` mentioned in
-    # SKILL.md should exist on disk.
-    ref_dir = plugin_dir / "skills" / plugin_name / "references"
-    if ref_dir.exists():
-        cited = set(re.findall(r"references/([A-Za-z0-9_\-]+\.md)", body))
-        for ref in sorted(cited):
-            target = ref_dir / ref
-            if not target.is_file():
-                report.err(
-                    plugin_name,
-                    f"SKILL.md cites references/{ref} which does not exist",
-                )
+    # Discover all skills inside this plugin.
+    skills_root = plugin_dir / "skills"
+    if not skills_root.is_dir():
+        report.err(plugin_name, f"missing skills/ directory at {skills_root.relative_to(REPO_ROOT)}")
+        return manifest
+
+    skill_dirs = sorted(
+        d for d in skills_root.iterdir() if d.is_dir() and not d.name.startswith(".")
+    )
+    if not skill_dirs:
+        report.err(plugin_name, f"skills/ directory is empty at {skills_root.relative_to(REPO_ROOT)}")
+        return manifest
+
+    for skill_dir in skill_dirs:
+        validate_skill(skill_dir, plugin_name, report)
 
     return manifest
 

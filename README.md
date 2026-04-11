@@ -1,10 +1,10 @@
 # SkillStack
 
-**Battle-tested skills for Claude Code.** 50 expert plugins that give Claude deep domain knowledge across software engineering, DevOps, testing, design, strategic thinking, context engineering, agent architecture, and storytelling.
+**Battle-tested skills for Claude Code.** 51 expert plugins that give Claude deep domain knowledge across software engineering, DevOps, testing, design, strategic thinking, context engineering, agent architecture, storytelling, and composable multi-stage workflows.
 
 **[Quick start](#quick-start)** · **[Find a skill by goal](#find-a-skill-by-goal)** · **[Full catalog](#plugin-catalog)** · **[Contribute](#contributing)**
 
-> **50** plugins · **8** categories · **8** collections · MIT License
+> **51** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
@@ -42,7 +42,7 @@ Plugin installation in Claude Code is a two-step process: add the marketplace on
 ```
 /plugin
 ```
-This opens the plugin browser where you can search, preview, and install any of the 50 SkillStack plugins.
+This opens the plugin browser where you can search, preview, and install any of the 51 SkillStack plugins.
 
 After installation, the skill activates automatically when Claude detects a relevant query, or you can invoke it explicitly:
 ```
@@ -137,16 +137,30 @@ Use this table to find the right plugin for what you actually want to do. Each r
 | Design good code examples and progressive-complexity tutorials | [example-design](example-design/) |
 | Create a high-quality Claude Code skill myself | [skill-creator](skill-creator/) |
 
+### I want a playbook for a multi-stage problem
+
+| Goal | Workflow (from [skillstack-workflows](skillstack-workflows/)) |
+|---|---|
+| Produce an investor / board / funding pitch in one week | `pitch-sprint` |
+| Debug a complex issue that's defeated my first fix attempt | `debug-complex-issue` |
+| Go from "I want an AI agent for X" to a deployed, evaluated agent | `build-ai-agent` |
+| Make a high-stakes strategic decision without criteria drift | `strategic-decision` |
+| Build a docs site / CMS / knowledge base from scratch | `content-platform-build` |
+| Turn user research interviews into product direction that actually sticks | `user-research-to-insight` |
+| Make real progress on a legacy codebase without breaking production | `legacy-rescue` |
+| Cut LLM costs without degrading product quality | `llm-cost-optimization` |
+| Create my own Claude Code skill that actually activates reliably | `write-your-own-skill` |
+
 ---
 
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 50 plugins</summary>
+<summary><strong>SkillStack</strong> — 51 plugins</summary>
 
-> The complete SkillStack library — 50 expert skills for Claude Code covering the full software development lifecycle.
+> The complete SkillStack library — 51 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
@@ -190,11 +204,11 @@ Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `
 </details>
 
 <details>
-<summary><strong>Strategic Thinking</strong> — 6 plugins</summary>
+<summary><strong>Strategic Thinking</strong> — 7 plugins</summary>
 
-> Creative problem-solving, critical intuition, systems thinking, prioritization, risk management, and outcome orientation.
+> Creative problem-solving, critical intuition, systems thinking, prioritization, risk management, outcome orientation, and composable multi-stage workflow playbooks.
 
-Plugins: `creative-problem-solving`, `critical-intuition`, `outcome-orientation`, `prioritization`, `risk-management`, `systems-thinking`
+Plugins: `creative-problem-solving`, `critical-intuition`, `outcome-orientation`, `prioritization`, `risk-management`, `skillstack-workflows`, `systems-thinking`
 </details>
 
 <details>
@@ -267,7 +281,7 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 | [Multi Agent Patterns](multi-agent-patterns/README.md) | `1.0.4` | Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution. |
 | [Tool Design](tool-design/README.md) | `1.0.4` | Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern. |
 
-### 💡 Thinking (6)
+### 💡 Thinking (7)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
@@ -276,6 +290,7 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 | [Outcome Orientation](outcome-orientation/README.md) | `1.0.10` | Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction. |
 | [Prioritization](prioritization/README.md) | `1.0.10` | Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making. |
 | [Risk Management](risk-management/README.md) | `1.0.10` | Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices. |
+| [SkillStack Workflows](skillstack-workflows/README.md) | `1.0.0` | Nine composable workflow playbooks orchestrating existing SkillStack plugins for real multi-stage problems — pitch sprints, complex debugging, AI agent builds, strategic decisions, content platform builds, user research synthesis, legacy rescue, LLM cost optimization, skill authoring. Multi-skill plugin. |
 | [Systems Thinking](systems-thinking/README.md) | `1.0.10` | Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems. |
 
 ### 🎨 Design (10)
@@ -338,7 +353,7 @@ All commands below are **slash commands** — run them from inside a Claude Code
 /plugin marketplace add viktorbezdek/skillstack
 ```
 
-This registers the SkillStack marketplace with your Claude Code instance. You only need to do this once; after that, all 50 plugins become available to install by name.
+This registers the SkillStack marketplace with your Claude Code instance. You only need to do this once; after that, all 51 plugins become available to install by name.
 
 ### Step 2: Install individual plugins
 

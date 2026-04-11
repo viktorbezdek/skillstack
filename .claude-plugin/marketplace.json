@@ -561,6 +561,27 @@
       ]
     },
     {
+      "name": "skillstack-workflows",
+      "source": "./skillstack-workflows",
+      "description": "Nine composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: pitch-sprint, debug-complex-issue, build-ai-agent, strategic-decision, content-platform-build, user-research-to-insight, legacy-rescue, llm-cost-optimization, and write-your-own-skill. Multi-skill plugin.",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": [
+        "workflow",
+        "composition",
+        "playbook",
+        "pitch-sprint",
+        "debugging-workflow",
+        "ai-agent-development",
+        "strategic-decision",
+        "content-platform",
+        "user-research",
+        "legacy-rescue",
+        "llm-cost-optimization",
+        "skill-authoring"
+      ]
+    },
+    {
       "name": "storytelling",
       "source": "./storytelling",
       "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. 9 canonical structures, character design, scene/pacing, dialogue, POV, StoryBrand/Pixar Spine, data storytelling, speech writing, interactive narrative, and narrative theory. 12 progressive-disclosure references.",

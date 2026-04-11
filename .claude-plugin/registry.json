@@ -903,6 +903,35 @@
       ]
     },
     {
+      "id": "skillstack-workflows",
+      "name": "SkillStack Workflows",
+      "type": "skill",
+      "category": "thinking",
+      "description": "Nine composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: pitch-sprint, debug-complex-issue, build-ai-agent, strategic-decision, content-platform-build, user-research-to-insight, legacy-rescue, llm-cost-optimization, and write-your-own-skill. Multi-skill plugin.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "skillstack-workflows",
+      "version": "1.0.0",
+      "tags": [
+        "workflow",
+        "composition",
+        "playbook",
+        "pitch-sprint",
+        "debugging-workflow",
+        "ai-agent-development",
+        "strategic-decision",
+        "content-platform",
+        "user-research",
+        "legacy-rescue",
+        "llm-cost-optimization",
+        "skill-authoring"
+      ],
+      "documentation_path": "./skillstack-workflows/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
       "id": "storytelling",
       "name": "Storytelling",
       "type": "skill",
