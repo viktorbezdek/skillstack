@@ -110,6 +110,52 @@ Your skill is live but sometimes "forgets" to activate:
 - **[mcp-server](../mcp-server/)** — MCP server authoring with FastMCP, TypeScript SDK, evaluation patterns
 - **[skillstack-workflows](../skillstack-workflows/)** — 9 composed workflows including `write-your-own-skill`, `debug-a-failing-skill`, `review-a-plugin`
 
+## Running evals
+
+Every skill in the SkillStack has eval files (`evals/trigger-evals.json` + `evals/evals.json`). Use `run_eval.py` to test them.
+
+### Offline smoke test (no API key needed)
+
+Validates eval file structure only — does NOT measure real activation:
+
+```bash
+python3 plugin-dev/scripts/run_eval.py \
+  --plugin-dir debugging \
+  --skill debugging \
+  --offline
+```
+
+### Live trigger evals (requires `ANTHROPIC_API_KEY` + `pip install anthropic`)
+
+Measures whether the model actually picks the skill for each query:
+
+```bash
+python3 plugin-dev/scripts/run_eval.py \
+  --plugin-dir debugging \
+  --skill debugging \
+  --mode trigger
+```
+
+### Live output evals
+
+Measures whether the skill produces correct results (graded by LLM):
+
+```bash
+python3 plugin-dev/scripts/run_eval.py \
+  --plugin-dir debugging \
+  --skill debugging \
+  --mode output
+```
+
+### Exit codes
+
+| Code | Meaning |
+|------|---------|
+| 0 | Clean — all checks pass |
+| 1 | Eval issues found |
+| 2 | Skill not found |
+| 3 | Mode requires API but `--offline` was passed |
+
 ## CI and tests
 
 Plugin-dev ships with 48 pytest cases covering the four scripts plus a validator-drift contract test. The CI job `pytest / plugin-dev` runs on every push to main.

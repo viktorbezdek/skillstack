@@ -404,9 +404,20 @@ Contributions are welcome — bug reports, reference improvements, new skills, a
 **Add a new skill.** Use the [skill-creator](skill-creator/) plugin as a starting point — it knows the repo conventions. Your new plugin needs:
 - `your-skill/.claude-plugin/plugin.json` with `name`, `version`, `description`, `author`
 - `your-skill/skills/your-skill/SKILL.md` with YAML frontmatter (`name` must match directory)
+- `your-skill/skills/your-skill/evals/trigger-evals.json` — ≥8 positive + ≥5 negative trigger cases
+- `your-skill/skills/your-skill/evals/evals.json` — ≥3 output test cases
 - `your-skill/README.md` with `## What Problem Does This Solve`, `## When to Use This Skill` (scenario table), `## Installation`, `## How to Use`
 - An entry in `.claude-plugin/registry.json` and `.claude-plugin/marketplace.json`
 - CI will tell you what's wrong if you miss any of these
+
+**Run evals.** Every skill has eval files. Validate structure offline or measure real activation with an API key:
+```bash
+# Offline smoke test (structure only, no API key needed)
+python3 plugin-dev/scripts/run_eval.py --plugin-dir debugging --skill debugging --offline
+
+# Live trigger evals (requires ANTHROPIC_API_KEY + pip install anthropic)
+python3 plugin-dev/scripts/run_eval.py --plugin-dir debugging --skill debugging --mode trigger
+```
 
 **Local validation before opening a PR:**
 ```bash
