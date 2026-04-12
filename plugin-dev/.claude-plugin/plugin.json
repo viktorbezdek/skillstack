@@ -1,0 +1,27 @@
+{
+  "name": "plugin-dev",
+  "version": "1.0.0",
+  "description": "End-to-end Claude Code plugin authoring toolkit. Covers the full plugin lifecycle: ideating a plugin idea, researching the marketplace, designing component architecture (skill vs hook vs MCP vs agent vs command), authoring hooks with all 28 event types, composing multi-component plugins, validating structural correctness, and evaluating activation and output quality. Includes 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/plugin-dev",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "plugin-development",
+    "plugin-authoring",
+    "hooks",
+    "mcp",
+    "evaluation",
+    "validation",
+    "plugin-architecture",
+    "plugin-composition",
+    "plugin-ideation",
+    "plugin-research",
+    "hook-events",
+    "eval-harness"
+  ]
+}

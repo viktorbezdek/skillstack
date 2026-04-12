@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I have a plugin at ./my-plugin/ — can you run its trigger evals and tell me the pass rate?",
+    "files": [],
+    "expected_behavior": "Agent invokes scripts/run_eval.py with --plugin-dir ./my-plugin/ and the correct --skill flag, --mode trigger. If no ANTHROPIC_API_KEY is present, the agent falls back to --offline mode AND explicitly notes that offline results are structural only, not real activation measurements. The agent reports the pass rate broken down by positive/negative cases if live, or the case count and eval file validity if offline."
+  },
+  {
+    "query": "My skill has 6/8 positive cases failing. What should I look at first?",
+    "files": [],
+    "expected_behavior": "Agent identifies that the failure pattern matters more than the count. It asks for the failing queries OR explains the categorization loop (description too narrow, too generic, trigger verbs not front-loaded, unrealistic query, collision with another skill). It references iteration-methodology.md and instructs the user to change ONE thing at a time, re-run, and measure."
+  },
+  {
+    "query": "Write me a trigger-evals.json file for a skill called 'recipe-parser' that parses structured recipe data from plain text.",
+    "files": [],
+    "expected_behavior": "Agent produces a valid JSON file with ≥8 positive cases and ≥5 negative cases. Positive cases are realistic (no 'invoke recipe-parser'), varied in length and tone, and map to likely trigger phrases (parse, extract, structure, ingredients, steps). At least 3 of the 5 negative cases are near-miss (adjacent to food/recipes but not requiring parsing). Each case has query + should_trigger, and the JSON is valid."
+  }
+]

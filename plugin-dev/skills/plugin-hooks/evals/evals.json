@@ -1,0 +1,17 @@
+[
+  {
+    "query": "My PreToolUse hook exits 1 when it detects a dangerous command but Claude runs it anyway. Fix it.",
+    "files": [],
+    "expected_behavior": "Agent must identify the exit-code-1 trap: exit 1 is a NON-BLOCKING error, only exit 2 blocks. It must reference the exit code contract from SKILL.md or hook-anti-patterns.md and produce a corrected hook that exits 2 with stderr as the block reason."
+  },
+  {
+    "query": "Write a hooks.json entry for a plugin that auto-formats TypeScript files with prettier after every Edit or Write.",
+    "files": [],
+    "expected_behavior": "Agent must produce a PostToolUse entry with matcher 'Edit|Write', handler type 'command', async: true (since formatting doesn't need to block), and a prettier invocation using ${CLAUDE_PLUGIN_ROOT} or an absolute path. It should NOT use PreToolUse (the wrong event)."
+  },
+  {
+    "query": "My Stop hook always signals 'keep going' and now my session is in an infinite loop. How do I make it stop when the loop has already started?",
+    "files": [],
+    "expected_behavior": "Agent must identify that Stop hooks must check stop_hook_active in the input and bail out (exit 0) when it's true. It must reference either the Stop event schema or the anti-patterns doc and provide a code snippet that parses stop_hook_active from stdin JSON before deciding to block."
+  }
+]

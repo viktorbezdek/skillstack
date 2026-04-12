@@ -1,0 +1,77 @@
+[
+  {
+    "query": "My PreToolUse hook exits with code 1 when it detects a dangerous command, but Claude still runs the command anyway. Why?",
+    "should_trigger": true,
+    "note": "Classic exit-code-1 trap — this is the #1 hook bug"
+  },
+  {
+    "query": "I need to write a hook that blocks rm -rf against absolute paths. How do I wire it into hooks.json?",
+    "should_trigger": true,
+    "note": "Hook authoring for a guardrail — the core use case"
+  },
+  {
+    "query": "My matcher 'mcp__memory' isn't firing for any mcp__memory__* tool. What am I missing?",
+    "should_trigger": true,
+    "note": "Matcher exact-vs-regex gotcha — #3 anti-pattern"
+  },
+  {
+    "query": "How do I write a SessionStart hook that injects the current git branch and failing tests as context?",
+    "should_trigger": true,
+    "note": "SessionStart event authoring with context injection"
+  },
+  {
+    "query": "I want a Stop hook that keeps Claude working until the test suite passes, but it loops forever. How do I break out?",
+    "should_trigger": true,
+    "note": "Stop infinite loop — stop_hook_active pattern"
+  },
+  {
+    "query": "Should I use a 'prompt' hook or an 'agent' hook to verify that a migration is safe?",
+    "should_trigger": true,
+    "note": "Handler type selection — command vs http vs prompt vs agent"
+  },
+  {
+    "query": "My PostToolUse hook returns updatedInput with just one field and now my other tool_input fields are lost. What's happening?",
+    "should_trigger": true,
+    "note": "updatedInput replaces entire input — #4 anti-pattern"
+  },
+  {
+    "query": "How do I test a hook script without starting a full Claude Code session?",
+    "should_trigger": true,
+    "note": "Hook testing via test_hook.sh"
+  },
+  {
+    "query": "What's the difference between PreToolUse and PermissionRequest? When do I use which?",
+    "should_trigger": true,
+    "note": "Event selection — PreToolUse vs PermissionRequest"
+  },
+  {
+    "query": "Can I use FileChanged to watch my .envrc and reload direnv when it changes?",
+    "should_trigger": true,
+    "note": "FileChanged event + reactive file watching"
+  },
+  {
+    "query": "My WorktreeCreate hook exits 0 but the worktree isn't being created in the right place. What does the hook need to print?",
+    "should_trigger": true,
+    "note": "WorktreeCreate has unique semantics — hook must print absolute path to stdout"
+  },
+  {
+    "query": "I want to design a progressive web app for tracking running distances.",
+    "should_trigger": false,
+    "note": "Unrelated — no hooks involved"
+  },
+  {
+    "query": "How do I write a bash script that parses JSON?",
+    "should_trigger": false,
+    "note": "Generic bash question, not plugin-hook-specific"
+  },
+  {
+    "query": "What's the best way to structure a SKILL.md description for activation?",
+    "should_trigger": false,
+    "note": "Skill authoring question — belongs to plugin-validation, not plugin-hooks"
+  },
+  {
+    "query": "Help me write a PRD for a new CRM feature.",
+    "should_trigger": false,
+    "note": "Unrelated to hooks entirely"
+  }
+]

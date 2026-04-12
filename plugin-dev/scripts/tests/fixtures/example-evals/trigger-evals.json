@@ -1,0 +1,54 @@
+[
+  {
+    "query": "I want to validate my plugin before publishing it to make sure it's well-formed",
+    "should_trigger": true
+  },
+  {
+    "query": "My plugin.json seems invalid, how do I check what's wrong?",
+    "should_trigger": true
+  },
+  {
+    "query": "The SKILL.md name field doesn't match my directory name, how do I fix it?",
+    "should_trigger": true
+  },
+  {
+    "query": "Is there a CI check I can run against my plugin structure on every commit?",
+    "should_trigger": true
+  },
+  {
+    "query": "Help me set up plugin-level CI validation in GitHub Actions",
+    "should_trigger": true
+  },
+  {
+    "query": "I got an error saying my plugin is missing a SKILL.md frontmatter name field",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I check if all my reference files exist that I cited in SKILL.md",
+    "should_trigger": true
+  },
+  {
+    "query": "What does it mean when validate_plugin says frontmatter name mismatch",
+    "should_trigger": true
+  },
+  {
+    "query": "Write a React component for a button with a spinner state",
+    "should_trigger": false
+  },
+  {
+    "query": "How do I set up a PostToolUse hook that auto-formats TypeScript files?",
+    "should_trigger": false
+  },
+  {
+    "query": "What's the difference between skills and MCP servers in Claude Code?",
+    "should_trigger": false
+  },
+  {
+    "query": "Help me write a user research interview script",
+    "should_trigger": false
+  },
+  {
+    "query": "I want to evaluate whether my skill's output quality is good",
+    "should_trigger": false
+  }
+]

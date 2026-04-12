@@ -1,10 +1,10 @@
 # SkillStack
 
-**Battle-tested skills for Claude Code.** 51 expert plugins that give Claude deep domain knowledge across software engineering, DevOps, testing, design, strategic thinking, context engineering, agent architecture, storytelling, and composable multi-stage workflows.
+**Battle-tested skills for Claude Code.** 52 expert plugins that give Claude deep domain knowledge across software engineering, DevOps, testing, design, strategic thinking, context engineering, agent architecture, storytelling, and composable multi-stage workflows.
 
 **[Quick start](#quick-start)** · **[Find a skill by goal](#find-a-skill-by-goal)** · **[Full catalog](#plugin-catalog)** · **[Contribute](#contributing)**
 
-> **51** plugins · **8** categories · **8** collections · MIT License
+> **52** plugins · **8** categories · **8** collections · MIT License
 
 ---
 
@@ -42,7 +42,7 @@ Plugin installation in Claude Code is a two-step process: add the marketplace on
 ```
 /plugin
 ```
-This opens the plugin browser where you can search, preview, and install any of the 51 SkillStack plugins.
+This opens the plugin browser where you can search, preview, and install any of the 52 SkillStack plugins.
 
 After installation, the skill activates automatically when Claude detects a relevant query, or you can invoke it explicitly:
 ```
@@ -136,6 +136,7 @@ Use this table to find the right plugin for what you actually want to do. Each r
 | Generate repository documentation at scale (monorepo or library) | [documentation-generator](documentation-generator/) |
 | Design good code examples and progressive-complexity tutorials | [example-design](example-design/) |
 | Create a high-quality Claude Code skill myself | [skill-creator](skill-creator/) |
+| Build a full Claude Code plugin — hooks, MCPs, multi-skill composition, validation, evals | [plugin-dev](plugin-dev/) |
 
 ### I want a playbook for a multi-stage problem
 
@@ -156,19 +157,19 @@ Use this table to find the right plugin for what you actually want to do. Each r
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 51 plugins</summary>
+<summary><strong>SkillStack</strong> — 52 plugins</summary>
 
-> The complete SkillStack library — 51 expert skills for Claude Code covering the full software development lifecycle.
+> The complete SkillStack library — 52 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
-<summary><strong>Development Core</strong> — 11 plugins</summary>
+<summary><strong>Development Core</strong> — 12 plugins</summary>
 
-> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, and frontend design.
+> Core development skills: Python, TypeScript, React, Next.js, API design, debugging, frontend design, and plugin authoring.
 
-Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `plugin-dev`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
 </details>
 
 <details>
@@ -223,7 +224,7 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 
 ## Plugin Catalog
 
-### 💻 Development (11)
+### 💻 Development (12)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
@@ -233,6 +234,7 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 | [Gws Cli](gws-cli/README.md) | `1.0.0` | Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows. |
 | [MCP Server](mcp-server/README.md) | `1.2.20` | Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development. |
 | [Next.js Development](nextjs-development/README.md) | `2.0.23` | Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture. |
+| [Plugin Dev](plugin-dev/README.md) | `1.0.0` | End-to-end Claude Code plugin authoring toolkit. 7 skills covering the full lifecycle (ideate → research → architect → hooks → composition → validate → evaluate) plus 4 runnable scripts (scaffold, validate, eval harness, hook tester). Fills the gap Anthropic's Complete Guide doesn't cover: hooks, multi-component composition, and plugin-level evaluation. |
 | [Prompt Engineering](prompt-engineering/README.md) | `1.1.15` | Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform. |
 | [Python Development](python-development/README.md) | `1.1.24` | Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows. |
 | [React Development](react-development/README.md) | `1.1.20` | Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture. |
@@ -353,7 +355,7 @@ All commands below are **slash commands** — run them from inside a Claude Code
 /plugin marketplace add viktorbezdek/skillstack
 ```
 
-This registers the SkillStack marketplace with your Claude Code instance. You only need to do this once; after that, all 51 plugins become available to install by name.
+This registers the SkillStack marketplace with your Claude Code instance. You only need to do this once; after that, all 52 plugins become available to install by name.
 
 ### Step 2: Install individual plugins
 

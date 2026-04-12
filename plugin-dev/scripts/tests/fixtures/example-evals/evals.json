@@ -1,0 +1,29 @@
+[
+  {
+    "query": "I have a plugin directory. How do I validate it before publishing?",
+    "files": [],
+    "expected_behavior": [
+      "Mentions running validate_plugin.py with --plugin-dir flag",
+      "Explains what the validator checks (frontmatter, cross-references, name matching)",
+      "Does not fabricate non-existent validator commands"
+    ]
+  },
+  {
+    "query": "My plugin fails to load after installation. What should I check?",
+    "files": [],
+    "expected_behavior": [
+      "Suggests checking plugin.json syntax and required fields",
+      "Mentions SKILL.md frontmatter as a common source of errors",
+      "Recommends running claude plugin validate or validate_plugin.py"
+    ]
+  },
+  {
+    "query": "What are the required fields in plugin.json?",
+    "files": [],
+    "expected_behavior": [
+      "States that 'name' is the only truly required field",
+      "Lists optional fields like version, description, author",
+      "Does not claim fields are required that are actually optional"
+    ]
+  }
+]

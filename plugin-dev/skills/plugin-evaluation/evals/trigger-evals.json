@@ -1,0 +1,72 @@
+[
+  {
+    "query": "how do I measure whether my plugin's skill actually activates when users ask relevant questions?",
+    "should_trigger": true,
+    "note": "Direct hit — measuring activation is the core purpose"
+  },
+  {
+    "query": "my skill sometimes doesn't trigger — how do I figure out why and fix it?",
+    "should_trigger": true,
+    "note": "Debugging trigger rate — iteration methodology territory"
+  },
+  {
+    "query": "I need to set up eval files for my claude code plugin — what format do they need to be in?",
+    "should_trigger": true,
+    "note": "Eval file format question"
+  },
+  {
+    "query": "what does a good eval query look like for testing a skill?",
+    "should_trigger": true,
+    "note": "Quality criteria question"
+  },
+  {
+    "query": "help me iterate on my skill description to improve its trigger rate",
+    "should_trigger": true,
+    "note": "Iteration methodology — the run_loop pattern"
+  },
+  {
+    "query": "is there a harness I can use to benchmark my plugin before shipping it?",
+    "should_trigger": true,
+    "note": "Harness / benchmark — run_eval.py"
+  },
+  {
+    "query": "what's the difference between trigger evals and output evals?",
+    "should_trigger": true,
+    "note": "Core concept question — two eval types"
+  },
+  {
+    "query": "I want to compare two versions of my skill to see which produces better output",
+    "should_trigger": true,
+    "note": "Comparator pattern — output evaluation"
+  },
+  {
+    "query": "how do I write an expected_behavior for an output eval that the grader can actually score?",
+    "should_trigger": true,
+    "note": "Output eval authoring — grader-gradable descriptions"
+  },
+  {
+    "query": "my claude code plugin fails validation — what's wrong with its frontmatter?",
+    "should_trigger": false,
+    "note": "Near-miss — belongs to plugin-validation, not plugin-evaluation"
+  },
+  {
+    "query": "write me a hook that blocks rm -rf commands",
+    "should_trigger": false,
+    "note": "Clearly plugin-hooks territory"
+  },
+  {
+    "query": "I want to scaffold a new plugin from scratch",
+    "should_trigger": false,
+    "note": "Plugin-ideation / plugin-architecture territory"
+  },
+  {
+    "query": "how do I test a bash hook script before shipping it?",
+    "should_trigger": false,
+    "note": "Near-miss — sounds like evaluation but belongs to plugin-hooks (test_hook.sh)"
+  },
+  {
+    "query": "explain the difference between yaml and json",
+    "should_trigger": false,
+    "note": "Off-topic completely"
+  }
+]

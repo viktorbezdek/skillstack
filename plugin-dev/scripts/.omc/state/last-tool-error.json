@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"python3 plugin-dev/scripts/validate_plugin.py --plugin-dir plugin-dev/ 2>&1 | tail -5 && echo \\\"---\\\" && cd plugin-dev/scripts && python3 -m pytest tests/ -q 2>&1 | tail -5\",\"description\":...",
+  "error": "Exit code 1\n/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/vbezdek/Work/skillstack/plugin-dev/scripts/plugin-dev/scripts/validate_plugin.py': [Errno 2] No such file or directory\n---\n(eval):cd:1: no such file or directory: plugin-dev/scripts\n[rerun: b274]",
+  "timestamp": "2026-04-11T22:24:26.195Z",
+  "retry_count": 1
+}
