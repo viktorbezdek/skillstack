@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I need to build a REST API for order management — design it, test it, and get it into production with Docker and CI/CD",
+    "files": [],
+    "expected_behavior": "Agent activates the api-to-production workflow and proceeds through all six phases in order. Starts with API contract design (resource modeling, endpoint definitions, error contracts), then TDD with failing tests before implementation, then code review, then CI/CD pipeline setup, then Docker containerization, and finally end-to-end verification. Does not jump to implementation without first defining the API contract."
+  },
+  {
+    "query": "I already have an OpenAPI spec for my payments API — now I need to implement it with proper tests and deploy it",
+    "files": [],
+    "expected_behavior": "Agent recognizes this as a mid-workflow entry (Phase 1 already done) and starts from Phase 2 (TDD). Asks to see the existing spec to understand the contract, then guides test writing for each endpoint, implementation, review, pipeline wiring, and containerization. Does not re-do the design phase."
+  },
+  {
+    "query": "my API works locally but I need to containerize it and set up CI/CD — what's the right approach?",
+    "files": [],
+    "expected_behavior": "Agent identifies this as Phases 4-5 of the workflow. Asks about existing test coverage (Phase 2 prerequisite) and whether a code review has been done (Phase 3). If tests are missing, recommends adding them before containerizing. Then guides through CI/CD pipeline setup and Docker multi-stage build, with end-to-end verification at the end."
+  }
+]

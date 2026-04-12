@@ -1,0 +1,17 @@
+[
+  {
+    "query": "run a full security audit on our Express.js API before we launch next month",
+    "files": [],
+    "expected_behavior": "Agent activates the security-hardening-audit workflow and proceeds through all five phases. Starts with threat surface mapping (entry points, trust boundaries, attack vectors), then security-focused code review against the threat model, then edge case and validation analysis, then builds security tests (regression, fuzzing, property-based), and finally remediates findings with re-audit. Does not skip the threat model and jump directly to code review."
+  },
+  {
+    "query": "we found an SQL injection in our user endpoint — audit the rest of the codebase for similar issues",
+    "files": [],
+    "expected_behavior": "Agent recognizes this as a post-incident entry point. Maps the threat surface with special attention to injection vectors across all entry points (not just the one already found). Runs a security code review focused on parameterization and input handling. Checks edge cases around the same trust boundaries. Builds regression tests for the known vulnerability and systematic tests for the vulnerability class. Does not treat this as a single-fix task."
+  },
+  {
+    "query": "we need to prepare for a SOC2 audit — what security gaps exist in our application code?",
+    "files": [],
+    "expected_behavior": "Agent activates the workflow with compliance context. Phase 1 threat modeling includes data sensitivity classification relevant to SOC2 (PII handling, access controls, audit logging). Code review targets SOC2-relevant controls (authentication, authorization, data encryption, logging). Edge case analysis focuses on access control boundaries. Test hardening includes authorization invariant tests. Produces artifacts suitable for compliance evidence."
+  }
+]

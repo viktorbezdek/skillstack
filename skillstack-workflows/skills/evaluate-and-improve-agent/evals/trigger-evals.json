@@ -1,0 +1,67 @@
+[
+  {
+    "query": "my AI agent is underperforming — help me diagnose and fix it",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'My AI agent is underperforming — diagnose, redesign, improve'"
+  },
+  {
+    "query": "how do I evaluate and improve my agent's quality?",
+    "should_trigger": true,
+    "note": "Direct skill name reference"
+  },
+  {
+    "query": "our chatbot used to work well but accuracy has degraded over time",
+    "should_trigger": true,
+    "note": "Agent degradation scenario from 'when to use'"
+  },
+  {
+    "query": "I inherited an agent codebase and need to understand what's working",
+    "should_trigger": true,
+    "note": "Direct match to 'when to use' scenario"
+  },
+  {
+    "query": "stakeholders are asking if our agent is getting better and I can't answer with data",
+    "should_trigger": true,
+    "note": "Direct match to 'when to use' scenario"
+  },
+  {
+    "query": "the agent fails on edge cases that matter to our users — help me improve it",
+    "should_trigger": true,
+    "note": "Edge case failure scenario"
+  },
+  {
+    "query": "our agent costs are climbing but quality isn't improving",
+    "should_trigger": true,
+    "note": "Cost vs quality scenario from 'when to use'"
+  },
+  {
+    "query": "help me set up an evaluation pipeline for my existing agent and then improve it",
+    "should_trigger": true,
+    "note": "Eval pipeline + improvement cycle request"
+  },
+  {
+    "query": "I want to build a new agent from scratch",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: use build-ai-agent workflow instead"
+  },
+  {
+    "query": "my prompt needs tuning but the architecture is fine",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: use prompt-engineering directly"
+  },
+  {
+    "query": "classify these support tickets into categories",
+    "should_trigger": false,
+    "note": "Near-miss — classification task, not agent improvement"
+  },
+  {
+    "query": "reduce my LLM API costs",
+    "should_trigger": false,
+    "note": "Near-miss — cost optimization, use llm-cost-optimization workflow"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — content creation, not agent improvement"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I want to build a Claude Code plugin for linting markdown files",
+    "should_trigger": true,
+    "note": "Direct plugin creation request with specific use case"
+  },
+  {
+    "query": "how do I create a plugin with hooks and skills together?",
+    "should_trigger": true,
+    "note": "Multi-component plugin composition question"
+  },
+  {
+    "query": "walk me through building a full plugin from scratch",
+    "should_trigger": true,
+    "note": "End-to-end plugin authoring request"
+  },
+  {
+    "query": "I have a plugin idea — how do I validate whether it's worth building?",
+    "should_trigger": true,
+    "note": "Ideation and kill gate question"
+  },
+  {
+    "query": "my plugin has three skills and a hook — how should I structure plugin.json?",
+    "should_trigger": true,
+    "note": "Multi-component plugin architecture question"
+  },
+  {
+    "query": "I need to add an MCP server and two skills to my plugin",
+    "should_trigger": true,
+    "note": "Plugin composition with MCP + skills"
+  },
+  {
+    "query": "help me write trigger evals for my new plugin",
+    "should_trigger": true,
+    "note": "Plugin evaluation phase question"
+  },
+  {
+    "query": "convert my prototype skills into a proper plugin package for the marketplace",
+    "should_trigger": true,
+    "note": "Plugin packaging and publication workflow"
+  },
+  {
+    "query": "I want to write a single SKILL.md file for TypeScript best practices",
+    "should_trigger": false,
+    "note": "Near-miss — single skill, not a full plugin; use write-your-own-skill"
+  },
+  {
+    "query": "help me write a better system prompt for my chatbot",
+    "should_trigger": false,
+    "note": "Near-miss — prompt engineering, not plugin development"
+  },
+  {
+    "query": "build an MCP server that queries our database",
+    "should_trigger": false,
+    "note": "Near-miss — MCP server only, not a full plugin; use mcp-server skill directly"
+  },
+  {
+    "query": "review my pull request for code quality issues",
+    "should_trigger": false,
+    "note": "Near-miss — code review, not plugin authoring"
+  },
+  {
+    "query": "write me a haiku about programming",
+    "should_trigger": false,
+    "note": "Off-topic — completely unrelated"
+  }
+]

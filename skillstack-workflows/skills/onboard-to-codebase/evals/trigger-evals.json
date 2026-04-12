@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I just cloned this repo — help me understand it fast",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'I just cloned this repo — help me understand it fast'"
+  },
+  {
+    "query": "can you help me onboard to this codebase?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "I'm new to this project and need to ramp up quickly",
+    "should_trigger": true,
+    "note": "Ramp-up scenario for new team member"
+  },
+  {
+    "query": "help me understand this repo — where do I even start?",
+    "should_trigger": true,
+    "note": "Getting-started orientation query"
+  },
+  {
+    "query": "I need to grok this codebase before I can make changes",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'grok a project'"
+  },
+  {
+    "query": "I'm joining a new team and inherited a large codebase — walk me through understanding it",
+    "should_trigger": true,
+    "note": "Team onboarding scenario"
+  },
+  {
+    "query": "how should I approach learning a new codebase systematically?",
+    "should_trigger": true,
+    "note": "Advisory query about codebase understanding methodology"
+  },
+  {
+    "query": "I need to onboard an AI agent to this project so it can work on it effectively",
+    "should_trigger": true,
+    "note": "AI agent onboarding scenario"
+  },
+  {
+    "query": "fix the bug in the auth module",
+    "should_trigger": false,
+    "note": "Near-miss — specific bug fix, not onboarding. Use debug-complex-issue."
+  },
+  {
+    "query": "review this pull request for me",
+    "should_trigger": false,
+    "note": "Near-miss — code review, not codebase onboarding"
+  },
+  {
+    "query": "generate API documentation for the project",
+    "should_trigger": false,
+    "note": "Near-miss — documentation generation, not onboarding workflow"
+  },
+  {
+    "query": "I know this codebase well but need to refactor the payment module",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: already knows the codebase"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — content creation, not this skill's domain"
+  }
+]

@@ -932,10 +932,10 @@
       "name": "SkillStack Workflows",
       "type": "skill",
       "category": "thinking",
-      "description": "Nine composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: pitch-sprint, debug-complex-issue, build-ai-agent, strategic-decision, content-platform-build, user-research-to-insight, legacy-rescue, llm-cost-optimization, and write-your-own-skill. Multi-skill plugin.",
+      "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, plus pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Multi-skill plugin.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "skillstack-workflows",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "tags": [
         "workflow",
         "composition",
@@ -948,7 +948,14 @@
         "user-research",
         "legacy-rescue",
         "llm-cost-optimization",
-        "skill-authoring"
+        "skill-authoring",
+        "plugin-authoring",
+        "api-production",
+        "security-audit",
+        "codebase-onboarding",
+        "context-engineering",
+        "design-review",
+        "agent-improvement"
       ],
       "documentation_path": "./skillstack-workflows/README.md",
       "status": "active",

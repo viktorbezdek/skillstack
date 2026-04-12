@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I need to present our engineering team's quarterly results to the VP of Product — help me turn the data into a story",
+    "files": [],
+    "expected_behavior": "Agent activates the storytelling-for-stakeholders skill and starts with Phase 1 (structure selection). Recommends Situation-Complication-Resolution for a quarterly review. Asks about the key results and outcomes to build the beat sheet. Applies the 'so what?' chain from Phase 2 to move from outputs ('we shipped 14 features') to outcomes ('customer onboarding dropped from 3 days to 4 hours'). Produces a beat sheet before writing any draft."
+  },
+  {
+    "query": "we reduced our infrastructure costs by 40% through a technical migration — help me tell this story to the CFO",
+    "files": [],
+    "expected_behavior": "Agent activates the storytelling-for-stakeholders skill. Identifies the audience (CFO) and applies Phase 2's reframing — focuses on business impact, not technical details. Uses the 'so what?' chain: 40% cost reduction → $X saved annually → funds redeployed to growth initiatives. Anchors to outcomes in Phase 3 using actual dollar amounts. Suggests Before-After-Bridge or SCR structure. Warns against the team-hero trap (leading with how clever the migration was)."
+  },
+  {
+    "query": "our post-incident review is a dry timeline of what broke and what we fixed — help me turn it into something leadership will actually learn from",
+    "files": [],
+    "expected_behavior": "Agent activates the storytelling-for-stakeholders skill. Applies Phase 1 structure selection (3-act or SCR for a longer narrative with learning arc). Uses Phase 2 reframing to find the angle: not 'things broke' but 'we discovered a systemic risk and eliminated it.' Anchors to outcomes in Phase 3: reduced incident frequency, faster MTTR, risk mitigation value. Emphasizes honest quantification — acknowledges what went wrong while framing the improvement. Does not sugarcoat the incident."
+  }
+]

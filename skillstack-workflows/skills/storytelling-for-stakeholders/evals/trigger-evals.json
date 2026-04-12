@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to turn our project results into a compelling story for leadership",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: turn data or results into a compelling narrative for leadership"
+  },
+  {
+    "query": "help me present our technical work to non-technical stakeholders",
+    "should_trigger": true,
+    "note": "Direct match to 'when to use' scenario"
+  },
+  {
+    "query": "I'm presenting quarterly results to the board — help me tell the story",
+    "should_trigger": true,
+    "note": "Quarterly business review scenario"
+  },
+  {
+    "query": "how do I write a case study from our project outcomes?",
+    "should_trigger": true,
+    "note": "Case study writing scenario from 'when to use'"
+  },
+  {
+    "query": "I need to defend our budget request with a good narrative",
+    "should_trigger": true,
+    "note": "Budget defense scenario from 'when to use'"
+  },
+  {
+    "query": "our team did great work but the all-hands presentation was boring — help me fix it",
+    "should_trigger": true,
+    "note": "Internal presentation improvement scenario"
+  },
+  {
+    "query": "help me with storytelling for stakeholders — we shipped a big feature and need to communicate the impact",
+    "should_trigger": true,
+    "note": "Direct skill name + impact communication"
+  },
+  {
+    "query": "turn this post-incident review into something leadership will act on, not just file",
+    "should_trigger": true,
+    "note": "Post-incident narrative scenario from 'when to use'"
+  },
+  {
+    "query": "write a fantasy short story for me",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: fiction writing, use storytelling directly"
+  },
+  {
+    "query": "I need a full investor pitch with market research and interviews",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: use pitch-sprint workflow"
+  },
+  {
+    "query": "write our API documentation",
+    "should_trigger": false,
+    "note": "Near-miss — technical documentation, not stakeholder narrative"
+  },
+  {
+    "query": "analyze this CSV data and find trends",
+    "should_trigger": false,
+    "note": "Near-miss — data analysis, not narrative building"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — generic content creation without narrative focus"
+  }
+]

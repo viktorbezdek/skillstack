@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I want to build a Claude Code plugin for automated code style enforcement — walk me through the full process",
+    "files": [],
+    "expected_behavior": "Agent activates the build-a-plugin workflow and walks through all six phases sequentially. Starts with the ideation kill gate (7-criteria checklist), then marketplace research, then architecture decomposition deciding which parts are skills vs hooks vs MCP, then implementation guidance, then validation, then evaluation with trigger and output evals. Does not skip directly to implementation."
+  },
+  {
+    "query": "I have a working prototype with two skills and a hook — how do I turn it into a proper plugin?",
+    "files": [],
+    "expected_behavior": "Agent recognizes this as a mid-workflow entry (components already exist) and focuses on Phase 3 (architecture review of existing components), Phase 5 (structural validation of the existing pieces), and Phase 6 (writing evals). Acknowledges that Phases 1-2 may be partially complete since the prototype exists, but validates that the decomposition makes sense."
+  },
+  {
+    "query": "my plugin passes validation but the skills never activate when I test them — what's wrong?",
+    "files": [],
+    "expected_behavior": "Agent identifies this as a Phase 6 (evaluation) problem — specifically trigger eval failure. Guides the user to examine frontmatter descriptions for vague or overbroad language, write explicit trigger evals, and iterate on descriptions until activation is reliable. References the distinction between structural validation (passing) and behavioral evaluation (failing)."
+  }
+]

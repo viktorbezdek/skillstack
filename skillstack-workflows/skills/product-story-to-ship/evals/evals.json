@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I have user interview transcripts and need to turn them into prioritized engineering stories — walk me through the process",
+    "files": [],
+    "expected_behavior": "Agent activates the product-story-to-ship skill and walks through the five-phase funnel: elicit real needs from research (elicitation), map user journeys with touchpoints and pain points (user-journey-design), define concrete personas (persona-definition), translate insights into measurable outcomes (outcome-orientation), and apply RICE/MoSCoW/ICE scoring to produce a prioritized backlog (prioritization). Response emphasizes provenance: every story traces back to observed user needs."
+  },
+  {
+    "query": "our backlog is full of feature requests but we have no way to say no — how do I introduce a research-driven prioritization process?",
+    "files": [],
+    "expected_behavior": "Agent identifies the problem as missing provenance and prioritization framework. Recommends the full funnel starting with user research (elicitation) to establish evidence, then journey mapping, personas, and outcomes to create the framework for saying no. Emphasizes the provenance gate: stories without traced user needs are flagged as hypotheses, not commitments."
+  },
+  {
+    "query": "we're launching a new product — how do I go from zero user research to a sprint-ready backlog?",
+    "files": [],
+    "expected_behavior": "Agent provides a step-by-step plan covering all five phases in order. Starts with interview design (elicitation), warns against skipping research, and ends with a scoped backlog for the first sprint. Mentions anti-personas, measurable outcomes with baselines and targets, and the discipline of explicitly deprioritizing items (won't-haves)."
+  }
+]

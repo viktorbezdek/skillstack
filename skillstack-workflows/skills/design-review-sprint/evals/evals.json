@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I need to run a full UX review of our app before we launch next month — walk me through the approach",
+    "files": [],
+    "expected_behavior": "Agent activates the design-review-sprint skill and walks through all five phases in order: visual audit (frontend-design), navigation review (navigation-design), copy audit (ux-writing), journey validation (user-journey-design), and consistency check (consistency-standards). Response includes concrete checklists for each phase, not just phase names. Emphasizes completing all phases before fixing anything."
+  },
+  {
+    "query": "our users keep saying the app feels 'off' but nobody can point to one thing — help me figure out what's wrong",
+    "files": [],
+    "expected_behavior": "Agent recognizes this as a design consistency problem and activates the design-review-sprint skill. Starts with Phase 1 (visual audit) to identify token violations and component inconsistencies, then proceeds through remaining phases. Emphasizes the systemic patterns summary from Phase 5 as the likely answer to 'what feels off'. Does not jump to solutions before completing the audit."
+  },
+  {
+    "query": "we adopted a design system last quarter — can you check if the team actually used it correctly across the product?",
+    "files": [],
+    "expected_behavior": "Agent activates the design-review-sprint skill with focus on Phase 1 (design token adherence, component usage) and Phase 5 (cross-product consistency). Asks about the design system documentation to use as the audit reference. Structures the audit as findings against specific design system standards, not subjective opinions. Mentions the 'reference gate' — every finding must cite a specific standard."
+  }
+]

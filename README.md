@@ -151,6 +151,15 @@ Use this table to find the right plugin for what you actually want to do. Each r
 | Make real progress on a legacy codebase without breaking production | `legacy-rescue` |
 | Cut LLM costs without degrading product quality | `llm-cost-optimization` |
 | Create my own Claude Code skill that actually activates reliably | `write-your-own-skill` |
+| Build a full Claude Code plugin (hooks, MCPs, multi-skill) | `build-a-plugin` |
+| Build and ship an API from design to containerized deployment | `api-to-production` |
+| Systematically harden a codebase's security posture | `security-hardening-audit` |
+| Quickly understand a large unfamiliar codebase | `onboard-to-codebase` |
+| Turn user research into a prioritized engineering backlog | `product-story-to-ship` |
+| Fix an agent's degrading context window systematically | `context-engineering-pipeline` |
+| Run a full UX design quality audit across an app | `design-review-sprint` |
+| Diagnose and improve an underperforming AI agent | `evaluate-and-improve-agent` |
+| Present data or results as a compelling stakeholder narrative | `storytelling-for-stakeholders` |
 
 ---
 

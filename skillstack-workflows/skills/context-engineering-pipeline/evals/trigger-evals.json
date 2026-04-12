@@ -1,0 +1,67 @@
+[
+  {
+    "query": "my agent's context is a mess — fix it systematically",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'My agent's context is a mess — fix it systematically'"
+  },
+  {
+    "query": "help me with context engineering for my LLM agent",
+    "should_trigger": true,
+    "note": "Direct domain reference: context engineering"
+  },
+  {
+    "query": "the agent forgets its instructions after long conversations — how do I fix this?",
+    "should_trigger": true,
+    "note": "Instruction decay symptom, context degradation scenario"
+  },
+  {
+    "query": "our token costs are high because the context window is bloated",
+    "should_trigger": true,
+    "note": "Context bloat cost scenario"
+  },
+  {
+    "query": "I need to optimize how my agent uses its context window",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'context optimization pipeline'"
+  },
+  {
+    "query": "output quality drops after long conversations with our agent — diagnose this",
+    "should_trigger": true,
+    "note": "Maps to 'when to use': output quality degrades over long conversations"
+  },
+  {
+    "query": "I'm building a new agent and want to design the context architecture from scratch",
+    "should_trigger": true,
+    "note": "New agent context architecture design scenario"
+  },
+  {
+    "query": "how do I diagnose context problems like lost-in-middle and context poisoning?",
+    "should_trigger": true,
+    "note": "Specific context pathology diagnosis query"
+  },
+  {
+    "query": "rewrite this prompt to be clearer and more concise",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: prompt engineering. Use prompt-engineering directly."
+  },
+  {
+    "query": "design the tool set and architecture for my new agent",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: agent architecture. Use build-ai-agent."
+  },
+  {
+    "query": "our LLM bill doubled this month — help me reduce costs",
+    "should_trigger": false,
+    "note": "Near-miss — cost-only optimization without context diagnosis. Use llm-cost-optimization."
+  },
+  {
+    "query": "add a database migration for the users table",
+    "should_trigger": false,
+    "note": "Near-miss — database work, not context engineering"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — content creation, not this skill's domain"
+  }
+]

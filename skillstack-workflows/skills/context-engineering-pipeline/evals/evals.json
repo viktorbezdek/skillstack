@@ -1,0 +1,17 @@
+[
+  {
+    "query": "my agent's context is a mess and quality degrades after long conversations — walk me through fixing it systematically",
+    "files": [],
+    "expected_behavior": "Agent activates the context-engineering-pipeline skill and walks through all five phases: establish context fundamentals and create a context budget (context-fundamentals), apply optimization techniques like KV-cache and partitioning (context-optimization), compress remaining context with summarization and anchors (context-compression), diagnose active pathologies like lost-in-middle and poisoning (context-degradation), and persist optimized context to the filesystem (filesystem-context). Emphasizes diagnostic order: understand before optimizing, optimize before compressing, compress before diagnosing pathologies."
+  },
+  {
+    "query": "I'm building a new agent and want to get context architecture right from the start — what should I design?",
+    "files": [],
+    "expected_behavior": "Agent provides a proactive context architecture plan starting with context budgeting (how many tokens for system prompt, history, tool results, retrieved docs), then optimization techniques (KV-cache structure, partitioning strategy), compression policies (when to summarize, what anchors to preserve), and filesystem persistence (scratch pads, plan files, session handoff). References specific skills for each phase."
+  },
+  {
+    "query": "our agent works on short tasks but fails on multi-step workflows — it seems to forget earlier steps. How do I diagnose and fix this?",
+    "files": [],
+    "expected_behavior": "Agent identifies this as likely instruction decay or context confusion from accumulated history. Recommends the diagnostic pipeline: check context budget (is history crowding out instructions?), apply observation masking (are old tool results diluting attention?), test for lost-in-middle (move instructions to end), and add filesystem persistence (write plans to files instead of relying on conversation memory). Provides concrete diagnostic tests, not just theory."
+  }
+]

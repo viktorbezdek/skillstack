@@ -1,0 +1,67 @@
+[
+  {
+    "query": "run a security audit on this codebase before we launch",
+    "should_trigger": true,
+    "note": "Direct security audit request with launch context"
+  },
+  {
+    "query": "I need to harden our application code against common vulnerabilities",
+    "should_trigger": true,
+    "note": "Security hardening request — core trigger phrase"
+  },
+  {
+    "query": "help me do a systematic security review of our API",
+    "should_trigger": true,
+    "note": "Systematic security review — structured audit request"
+  },
+  {
+    "query": "we had a security incident and need to audit the codebase for similar vulnerabilities",
+    "should_trigger": true,
+    "note": "Post-incident audit — proactive hardening after an event"
+  },
+  {
+    "query": "prepare our codebase for SOC2 compliance — what security gaps do we have?",
+    "should_trigger": true,
+    "note": "Compliance preparation with security focus"
+  },
+  {
+    "query": "map the threat surface of our application and find the vulnerabilities",
+    "should_trigger": true,
+    "note": "Threat modeling request — Phase 1 of the workflow"
+  },
+  {
+    "query": "add fuzzing and property-based security tests to our test suite",
+    "should_trigger": true,
+    "note": "Security test hardening — Phase 4 of the workflow"
+  },
+  {
+    "query": "make this codebase more secure — I want a structured multi-pass approach",
+    "should_trigger": true,
+    "note": "Explicit structured security improvement request"
+  },
+  {
+    "query": "our server is under active attack — help me stop it",
+    "should_trigger": false,
+    "note": "Near-miss — incident response, not proactive audit; use your SIEM and IR runbook"
+  },
+  {
+    "query": "review our Kubernetes RBAC policies and network policies",
+    "should_trigger": false,
+    "note": "Near-miss — infrastructure security, not application code"
+  },
+  {
+    "query": "run npm audit to check for vulnerable dependencies",
+    "should_trigger": false,
+    "note": "Near-miss — dependency scanning only, not a full code audit"
+  },
+  {
+    "query": "review my pull request for code quality",
+    "should_trigger": false,
+    "note": "Near-miss — general code review, not security-focused audit"
+  },
+  {
+    "query": "help me set up a new React project",
+    "should_trigger": false,
+    "note": "Off-topic — frontend setup, unrelated to security auditing"
+  }
+]

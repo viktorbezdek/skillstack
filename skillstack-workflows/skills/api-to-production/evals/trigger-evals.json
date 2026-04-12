@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to build and ship a REST API for user management",
+    "should_trigger": true,
+    "note": "Direct API-to-production request with specific domain"
+  },
+  {
+    "query": "take my API from prototype to production with tests, CI/CD, and Docker",
+    "should_trigger": true,
+    "note": "Explicit end-to-end pipeline request"
+  },
+  {
+    "query": "help me design, test, and deploy a new GraphQL API",
+    "should_trigger": true,
+    "note": "Multi-phase API workflow covering design through deployment"
+  },
+  {
+    "query": "I need to containerize my API and wire up a CI/CD pipeline",
+    "should_trigger": true,
+    "note": "Later phases of the workflow — containerization plus CI/CD"
+  },
+  {
+    "query": "walk me through building a production-grade API endpoint",
+    "should_trigger": true,
+    "note": "Production-grade API request implies the full workflow"
+  },
+  {
+    "query": "how should I set up TDD for my new API service?",
+    "should_trigger": true,
+    "note": "TDD in API context maps to Phase 2 of the workflow"
+  },
+  {
+    "query": "I have an API spec — now I need tests, review, and deployment",
+    "should_trigger": true,
+    "note": "Mid-workflow entry — design done, remaining phases needed"
+  },
+  {
+    "query": "build a microservice with proper testing and Docker support",
+    "should_trigger": true,
+    "note": "Microservice implies API + containerization workflow"
+  },
+  {
+    "query": "build me a React dashboard for our analytics data",
+    "should_trigger": false,
+    "note": "Near-miss — frontend work, not API; use frontend-design or react-development"
+  },
+  {
+    "query": "fix the 500 error on our /users endpoint",
+    "should_trigger": false,
+    "note": "Near-miss — debugging existing API, not building new; use debugging skill"
+  },
+  {
+    "query": "review my existing API code for security issues",
+    "should_trigger": false,
+    "note": "Near-miss — security review only; use code-review or security-hardening-audit"
+  },
+  {
+    "query": "help me write a CLI tool for data migration",
+    "should_trigger": false,
+    "note": "Near-miss — CLI tool, not an API"
+  },
+  {
+    "query": "what's the weather like today?",
+    "should_trigger": false,
+    "note": "Off-topic — completely unrelated"
+  }
+]

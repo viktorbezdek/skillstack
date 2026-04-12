@@ -580,8 +580,8 @@
     {
       "name": "skillstack-workflows",
       "source": "./skillstack-workflows",
-      "description": "Nine composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: pitch-sprint, debug-complex-issue, build-ai-agent, strategic-decision, content-platform-build, user-research-to-insight, legacy-rescue, llm-cost-optimization, and write-your-own-skill. Multi-skill plugin.",
-      "version": "1.0.0",
+      "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, plus the original 9 workflows. Multi-skill plugin.",
+      "version": "2.0.0",
       "category": "thinking",
       "tags": [
         "workflow",

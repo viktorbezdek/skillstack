@@ -2,7 +2,7 @@
 
 > **v1.0.0** | Strategic Thinking | 1 iteration
 
-Nine composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems. Each workflow is a self-contained playbook with phase-by-phase guidance, explicit gates and loops, and references to the underlying skills you should install alongside it.
+Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems. Each workflow is a self-contained playbook with phase-by-phase guidance, explicit gates and loops, and references to the underlying skills you should install alongside it.
 
 ## What Problem Does This Solve
 
@@ -25,6 +25,15 @@ Install this plugin alongside the underlying SkillStack plugins when you repeate
 | "I inherited a legacy codebase and I'm terrified to touch it" | `legacy-rescue` — codemap + test safety net + atomic commits + rollback plans |
 | "Our Claude API bill tripled last month, help" | `llm-cost-optimization` — anti-pattern diagnosis with mandatory quality gate |
 | "I want to create my own Claude Code skill that actually works" | `write-your-own-skill` — meta-workflow for skill authoring with validation |
+| "I want to build a Claude Code plugin with hooks and skills" | `build-a-plugin` — full lifecycle from ideation to evaluated, validated plugin |
+| "I need to build and ship a new API endpoint" | `api-to-production` — design → TDD → review → CI/CD → containerized deployment |
+| "Make this codebase more secure" | `security-hardening-audit` — threat mapping → code audit → edge cases → test hardening |
+| "I just cloned this repo — help me understand it" | `onboard-to-codebase` — codemap → system model → trace flows → context strategy |
+| "Turn our user interviews into a prioritized backlog" | `product-story-to-ship` — elicitation → journey → personas → outcomes → prioritized stories |
+| "My agent's context is a mess, it forgets things" | `context-engineering-pipeline` — diagnose → optimize → compress → fix degradation → persist |
+| "Review the design quality of our whole app" | `design-review-sprint` — visual → navigation → copy → journey → consistency audit |
+| "My AI agent is underperforming — help me fix it" | `evaluate-and-improve-agent` — evaluate → diagnose → redesign → add memory → re-evaluate |
+| "I need to present our quarterly results to the board" | `storytelling-for-stakeholders` — structure → angle → outcomes → craft and polish |
 
 ## When NOT to Use This Plugin
 
@@ -104,9 +113,9 @@ Use the legacy-rescue workflow to help me safely add a feature to this old codeb
 
 ## What's Inside
 
-This is a **multi-skill plugin** — one plugin containing 9 independently-activating workflow skills. Each is a self-contained playbook with frontmatter triggers specific to that problem type.
+This is a **multi-skill plugin** — one plugin containing 18 independently-activating workflow skills. Each is a self-contained playbook with frontmatter triggers specific to that problem type.
 
-### The 9 workflows
+### The 18 workflows
 
 - **`pitch-sprint`** — Parallel-merge workflow for producing a pitch in 1 week. Three parallel streams (interviews, system mapping, persona sharpening) merge into a StoryBrand / Pixar Spine / founder-story spine, audited via critical-intuition, polished via ux-writing. 5-day, 3-day, and 1-day variants.
 
@@ -126,6 +135,24 @@ This is a **multi-skill plugin** — one plugin containing 9 independently-activ
 
 - **`write-your-own-skill`** — Meta-workflow for creating Claude Code skills that actually activate and deliver value. Spec first, elicit domain depth, design examples before prose, validate against anti-patterns, ship with structural tests.
 
+- **`build-a-plugin`** — End-to-end Claude Code plugin authoring workflow. Ideation (7-criteria check) → research (marketplace survey) → architecture (component decomposition) → build (hooks + composition + skills) → validation → evaluation. Three gates prevent wasted work.
+
+- **`api-to-production`** — Takes an API from design to containerized deployment. API design → TDD → code review → CI/CD pipeline → Docker containerization → ship. Three gates: contract frozen, tests green, pipeline green.
+
+- **`security-hardening-audit`** — Systematic security audit. Threat surface mapping → security-focused code review → edge case analysis → test hardening → remediation. Audit all before fixing any so systemic patterns emerge.
+
+- **`onboard-to-codebase`** — "I just cloned this — help me understand it." Auto-generate codemap → build system model (dependencies, feedback loops) → trace key flows end-to-end → build context strategy for ongoing work.
+
+- **`product-story-to-ship`** — PM funnel from user research to sprint-ready stories. Deep interviews → journey mapping → persona definition → measurable outcomes → RICE/MoSCoW prioritized backlog with provenance chains.
+
+- **`context-engineering-pipeline`** — Fix agent context systematically. Understand mechanics → optimize capacity → compress remaining → diagnose degradation (lost-in-middle, poisoning) → persist to filesystem.
+
+- **`design-review-sprint`** — Full UX quality audit. Visual audit → navigation review → copy audit → journey validation → consistency check. Audit top-down, fix bottom-up.
+
+- **`evaluate-and-improve-agent`** — Agent improvement cycle. Baseline evaluation → architecture diagnosis → pattern redesign → memory integration → re-evaluation against baseline.
+
+- **`storytelling-for-stakeholders`** — Turn data into compelling narratives. Structure (3-act, SparkLines, SCR) → find the angle → anchor to outcomes → craft and polish. Every beat passes the "so what?" test.
+
 ### How the workflows work
 
 Each workflow skill has its own frontmatter with specific activation triggers. When you describe a problem, Claude matches it against all active skills' descriptions — including these workflows — and activates the best match. Once activated, the workflow's SKILL.md tells Claude to:
@@ -139,7 +166,8 @@ The workflows do NOT programmatically chain other skills. They're playbooks Clau
 
 ## Version History
 
-- `1.0.0` Initial release — 9 composition workflows covering the most common multi-stage problems
+- `2.0.0` Added 9 new workflows: build-a-plugin, api-to-production, security-hardening-audit, onboard-to-codebase, product-story-to-ship, context-engineering-pipeline, design-review-sprint, evaluate-and-improve-agent, storytelling-for-stakeholders
+- `1.0.0` Initial release — 9 composition workflows
 
 ## Related Skills
 
@@ -149,4 +177,4 @@ The workflows do NOT programmatically chain other skills. They're playbooks Clau
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — 51 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — 52 production-grade plugins for Claude Code.

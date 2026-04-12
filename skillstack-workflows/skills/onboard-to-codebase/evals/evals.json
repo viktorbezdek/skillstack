@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I just cloned this repo and need to understand it — walk me through the approach",
+    "files": [],
+    "expected_behavior": "Agent activates the onboard-to-codebase skill and walks through the four-phase pipeline: generate a codemap (documentation-generator), build a system model of dependencies and critical paths (systems-thinking), trace key flows end-to-end (debugging), and build a context strategy for what to keep in working memory (context-fundamentals). Response is structured by phase with concrete actions, not generic advice."
+  },
+  {
+    "query": "I'm joining a new team next week and need to ramp up on their codebase fast — what's the best approach?",
+    "files": [],
+    "expected_behavior": "Agent provides a step-by-step onboarding plan starting with structural orientation (codemap) before any deep reading. Emphasizes understanding architecture and dependencies before implementation details. Mentions tracing critical flows and building a mental model. References the specific skills (documentation-generator, systems-thinking, debugging, context-fundamentals) as phases."
+  },
+  {
+    "query": "I need to onboard an AI agent to this project so it understands the codebase well enough to make changes — how should I structure its context?",
+    "files": [],
+    "expected_behavior": "Agent addresses the AI-specific onboarding case: generating a codemap for the system prompt, building a system model for orientation, identifying key flows to include in context, and designing a context strategy distinguishing always-loaded vs. on-demand vs. disposable information. References context-fundamentals for the context architecture decisions."
+  }
+]

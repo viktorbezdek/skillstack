@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I have user research and need to turn it into engineering stories",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'user research to backlog'"
+  },
+  {
+    "query": "help me go from user interviews to a prioritized backlog",
+    "should_trigger": true,
+    "note": "Direct domain reference: user needs to prioritized stories"
+  },
+  {
+    "query": "our backlog is a mess of feature requests with no prioritization — help me fix it",
+    "should_trigger": true,
+    "note": "Backlog prioritization scenario with research context"
+  },
+  {
+    "query": "I need a PM workflow to turn user needs into sprint-ready stories",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: 'PM workflow'"
+  },
+  {
+    "query": "we're launching a new product and need to go from interviews to a roadmap",
+    "should_trigger": true,
+    "note": "New product launch scenario"
+  },
+  {
+    "query": "how do I define personas and prioritize features from user research?",
+    "should_trigger": true,
+    "note": "Advisory query covering persona and prioritization phases"
+  },
+  {
+    "query": "the team is building features nobody asked for — help me introduce a research-driven process",
+    "should_trigger": true,
+    "note": "Maps to 'when to use': building features nobody asked for"
+  },
+  {
+    "query": "I need to create user journey maps and turn pain points into product stories",
+    "should_trigger": true,
+    "note": "Journey mapping to stories pipeline"
+  },
+  {
+    "query": "should we use microservices or a monolith for our new backend?",
+    "should_trigger": false,
+    "note": "Near-miss — technical architecture decision, not PM workflow. Use strategic-decision."
+  },
+  {
+    "query": "groom our existing Jira backlog and re-score the tickets",
+    "should_trigger": false,
+    "note": "Near-miss — NOT-for clause: backlog grooming without new research. Use prioritization directly."
+  },
+  {
+    "query": "write marketing copy for our landing page",
+    "should_trigger": false,
+    "note": "Near-miss — marketing content, not research-to-stories pipeline"
+  },
+  {
+    "query": "debug why the checkout flow is broken",
+    "should_trigger": false,
+    "note": "Near-miss — debugging, not product workflow"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — content creation, not this skill's domain"
+  }
+]

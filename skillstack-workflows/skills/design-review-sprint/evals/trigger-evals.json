@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to run a full UX review of our app before launch",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: full UX review pass across an application"
+  },
+  {
+    "query": "can you help me audit the design consistency across our product?",
+    "should_trigger": true,
+    "note": "Direct domain reference: design consistency audit"
+  },
+  {
+    "query": "our users say the app feels inconsistent — help me find what's wrong",
+    "should_trigger": true,
+    "note": "User feedback triage scenario from 'when to use'"
+  },
+  {
+    "query": "I want to do a design review sprint on our dashboard",
+    "should_trigger": true,
+    "note": "Direct skill name reference"
+  },
+  {
+    "query": "we need a systematic design quality audit before the release",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: systematic design quality audit"
+  },
+  {
+    "query": "help me check if our team actually followed the design system",
+    "should_trigger": true,
+    "note": "Design system adoption audit scenario"
+  },
+  {
+    "query": "run a navigation and copy review across all our screens",
+    "should_trigger": true,
+    "note": "References two specific phases of the workflow"
+  },
+  {
+    "query": "we just redesigned the app — can you do a full consistency check?",
+    "should_trigger": true,
+    "note": "Post-redesign sanity check scenario"
+  },
+  {
+    "query": "fix this one button's hover state",
+    "should_trigger": false,
+    "note": "Near-miss — single-component fix, NOT-for clause"
+  },
+  {
+    "query": "design a new landing page from scratch",
+    "should_trigger": false,
+    "note": "Near-miss — greenfield design, not audit"
+  },
+  {
+    "query": "make my site load faster",
+    "should_trigger": false,
+    "note": "Near-miss — performance audit, not UX quality audit"
+  },
+  {
+    "query": "write the API documentation for our endpoints",
+    "should_trigger": false,
+    "note": "Near-miss — technical documentation, not design review"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss — content creation, not design audit"
+  }
+]

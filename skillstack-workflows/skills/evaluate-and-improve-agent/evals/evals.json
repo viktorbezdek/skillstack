@@ -1,0 +1,17 @@
+[
+  {
+    "query": "my AI agent is underperforming on customer support tasks — walk me through how to diagnose and improve it",
+    "files": [],
+    "expected_behavior": "Agent activates the evaluate-and-improve-agent skill and starts with Phase 1 (baseline measurement). Explains how to build a rubric with specific dimensions, create an eval set from production logs, and run the baseline before making any changes. Emphasizes 'measure before you change' as the core principle. Proceeds through diagnosis, potential redesign, and re-evaluation. Does not jump to architecture changes without diagnosis."
+  },
+  {
+    "query": "our agent's accuracy dropped from 85% to 60% over the last two months and we don't know why — help",
+    "files": [],
+    "expected_behavior": "Agent activates the evaluate-and-improve-agent skill. Focuses on Phase 1 (re-establish baseline with current 60% performance) and Phase 2 (diagnose root cause of degradation). Explores common degradation causes: model drift, data distribution shift, context overflow from accumulated history, prompt rot. Does not propose solutions before completing the diagnosis. Structures the investigation as hypothesis testing against the eval set."
+  },
+  {
+    "query": "I have an existing agent that mostly works but fails on edge cases — how do I systematically improve it?",
+    "files": [],
+    "expected_behavior": "Agent activates the evaluate-and-improve-agent skill. Emphasizes building an eval set that includes the known edge cases as a priority. Walks through the full cycle: baseline (including edge case scores), diagnosis (why those specific cases fail), targeted fixes, and re-evaluation. Warns against the 'it mostly works' trap from the skill's opening insight. Does not propose adding memory or multi-agent patterns unless diagnosis points there."
+  }
+]
