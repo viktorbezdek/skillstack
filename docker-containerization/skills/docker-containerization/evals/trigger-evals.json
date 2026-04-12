@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with docker containerization?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to docker containerization?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with docker containerization on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up docker containerization for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to docker containerization",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on docker containerization \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our docker containerization is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with docker containerization?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with ci/cd pipeline yaml or pipeline configuration",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: CI/CD pipeline YAML or pipeline configuration"
+  },
+  {
+    "query": "help me with workflow orchestration or release automation",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: workflow orchestration or release automation"
+  },
+  {
+    "query": "my kubernetes pod keeps crashing",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 k8s, not Docker"
+  },
+  {
+    "query": "I want to learn about docker containerization in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

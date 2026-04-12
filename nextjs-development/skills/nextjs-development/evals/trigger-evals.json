@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with nextjs development?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to nextjs development?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with nextjs development on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for nextjs development?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for nextjs development",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up nextjs development for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to nextjs development",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on nextjs development \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "help me with generic react patterns, hooks, or component logic",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: generic React patterns, hooks, or component logic"
+  },
+  {
+    "query": "help me with ui/css design systems or visual styling",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: UI/CSS design systems or visual styling"
+  },
+  {
+    "query": "I want to learn about nextjs development in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  }
+]

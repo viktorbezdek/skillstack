@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with git workflow?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to git workflow?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with git workflow on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up git workflow for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to git workflow",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on git workflow \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our git workflow is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with git workflow?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with ci/cd pipelines or pipeline yaml",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: CI/CD pipelines or pipeline YAML"
+  },
+  {
+    "query": "help me with workflow orchestration or release automation",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: workflow orchestration or release automation"
+  },
+  {
+    "query": "merge my PR",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 git operation, not workflow design"
+  },
+  {
+    "query": "deploy my app to production",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 deployment, not git workflow"
+  },
+  {
+    "query": "I want to learn about git workflow in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  }
+]

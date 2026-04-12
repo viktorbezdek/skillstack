@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I need to understand context \u2014 walk me through the approach",
+    "files": [],
+    "expected_behavior": "Agent activates the context-fundamentals skill and provides a structured, actionable response covering the methodology or framework from the skill's references. Response includes concrete steps, not just abstract advice. If the skill has references, it should cite or draw from them."
+  },
+  {
+    "query": "review my current approach to context fundamentals and suggest improvements",
+    "files": [],
+    "expected_behavior": "Agent asks for context about the current approach (or works with what's available), then provides specific, actionable feedback grounded in the context-fundamentals skill's methodology. Feedback should be structured (numbered or categorized) and reference concrete patterns or anti-patterns from the domain."
+  },
+  {
+    "query": "we're starting a new project and need to set up context fundamentals from scratch \u2014 what's the best approach?",
+    "files": [],
+    "expected_behavior": "Agent provides a step-by-step getting-started guide for context fundamentals, appropriate to the project context. Steps are concrete and ordered (not a generic list of principles). If the skill covers multiple sub-topics, agent focuses on the foundational ones first."
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to i want to build a claude plugin",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"I want to build a Claude plugin\""
+  },
+  {
+    "query": "I need to should i build this as a plugin or is there already one",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"should I build this as a plugin or is there already one\""
+  },
+  {
+    "query": "I need to build for a problem, not for yourself",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"build for a problem, not for yourself\""
+  },
+  {
+    "query": "can you help me with plugin ideation?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to plugin ideation?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with plugin ideation on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "show me the patterns for plugin ideation",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up plugin ideation for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "help me with yourself\" discipline, and ideation anti-patterns",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: yourself\" discipline, and ideation anti-patterns"
+  },
+  {
+    "query": "help me with validating an idea against existing plugins \u2014 use plugin-research for marketplace surveys",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: validating an idea against existing plugins \u2014 use plugin-research for marketplace surveys"
+  },
+  {
+    "query": "I want to learn about plugin ideation in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  }
+]

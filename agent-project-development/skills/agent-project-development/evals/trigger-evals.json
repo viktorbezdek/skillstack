@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to start an llm project",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"start an LLM project\""
+  },
+  {
+    "query": "I need to design batch pipeline",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"design batch pipeline\""
+  },
+  {
+    "query": "I need to evaluate task-model fit",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"evaluate task-model fit\""
+  },
+  {
+    "query": "I need to structure agent project",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"structure agent project\""
+  },
+  {
+    "query": "can you help me with agent project development?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to agent project development?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with agent project development on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "show me the patterns for agent project development",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me with evaluating agent quality or building evaluation rubrics",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: evaluating agent quality or building evaluation rubrics"
+  },
+  {
+    "query": "help me with multi-agent coordination or agent handoffs",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: multi-agent coordination or agent handoffs"
+  },
+  {
+    "query": "make my button blue",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 CSS styling, not design methodology"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "I want to learn about agent project development in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  }
+]

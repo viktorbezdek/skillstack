@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to as you know bob",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"as you know Bob\""
+  },
+  {
+    "query": "can you help me with storytelling?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to storytelling?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with storytelling on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for storytelling?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for storytelling",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up storytelling for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to storytelling",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I want to learn about storytelling in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  },
+  {
+    "query": "what's the weather like today",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 no relation to this skill"
+  },
+  {
+    "query": "help me plan a birthday party",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 no software/design context"
+  }
+]

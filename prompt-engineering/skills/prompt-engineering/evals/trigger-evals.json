@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with prompt engineering?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to prompt engineering?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with prompt engineering on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up prompt engineering for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to prompt engineering",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on prompt engineering \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our prompt engineering is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with prompt engineering?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with building mcp servers",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: building MCP servers"
+  },
+  {
+    "query": "make my button blue",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 CSS styling, not design methodology"
+  },
+  {
+    "query": "write a marketing email",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content writing, not prompt engineering"
+  },
+  {
+    "query": "I want to learn about prompt engineering in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with plugin composition?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to plugin composition?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with plugin composition on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "show me the patterns for plugin composition",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up plugin composition for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to plugin composition",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on plugin composition \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our plugin composition is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "help me with choosing which component type to use",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: choosing WHICH component type to use"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "I want to learn about plugin composition in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  }
+]

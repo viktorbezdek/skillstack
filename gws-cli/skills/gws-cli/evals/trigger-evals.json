@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with gws cli?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to gws cli?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with gws cli on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up gws cli for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to gws cli",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on gws cli \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our gws cli is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with gws cli?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with building mcp servers",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: building MCP servers"
+  },
+  {
+    "query": "help me with general api design",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: general API design"
+  },
+  {
+    "query": "help me with gcp infrastructure",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: GCP infrastructure"
+  },
+  {
+    "query": "fix the 500 error on my endpoint",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 debugging, not API design"
+  },
+  {
+    "query": "I want to learn about gws cli in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  }
+]

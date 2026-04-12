@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to compress context",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"compress context\""
+  },
+  {
+    "query": "I need to summarize conversation history",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"summarize conversation history\""
+  },
+  {
+    "query": "I need to implement compaction",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"implement compaction\""
+  },
+  {
+    "query": "I need to reduce token usage",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"reduce token usage\""
+  },
+  {
+    "query": "can you help me with context compression?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to context compression?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with context compression on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "show me the patterns for context compression",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me with diagnosing context failures or degradation patterns",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: diagnosing context failures or degradation patterns"
+  },
+  {
+    "query": "help me with kv-cache optimization or context partitioning",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: KV-cache optimization or context partitioning"
+  },
+  {
+    "query": "help me with learning context theory or basics",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: learning context theory or basics"
+  },
+  {
+    "query": "my React context provider isn't working",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 React Context API, not LLM context engineering"
+  },
+  {
+    "query": "I want to learn about context compression in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  }
+]

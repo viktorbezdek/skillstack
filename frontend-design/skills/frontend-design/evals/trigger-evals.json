@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with frontend design?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to frontend design?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with frontend design on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up frontend design for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to frontend design",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on frontend design \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our frontend design is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with frontend design?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with react component logic, hooks, or state management",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: React component logic, hooks, or state management"
+  },
+  {
+    "query": "help me with next",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: Next"
+  },
+  {
+    "query": "make my button blue",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 CSS styling, not design methodology"
+  },
+  {
+    "query": "I want to learn about frontend design in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with code review?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to code review?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with code review on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for code review?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "help me set up code review for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to code review",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on code review \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our code review is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "help me with writing new code or implementing features",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: writing new code or implementing features"
+  },
+  {
+    "query": "help me with finding and fixing runtime bugs or errors",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: finding and fixing runtime bugs or errors"
+  },
+  {
+    "query": "help me with writing tests or setting up test infrastructure",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: writing tests or setting up test infrastructure"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "encrypt this data",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 crypto, not security review"
+  }
+]

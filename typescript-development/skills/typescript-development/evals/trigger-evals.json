@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with typescript development?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to typescript development?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with typescript development on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for typescript development?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for typescript development",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up typescript development for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to typescript development",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on typescript development \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "help me with python development",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: Python development"
+  },
+  {
+    "query": "help me with react component patterns or hooks",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: React component patterns or hooks"
+  },
+  {
+    "query": "help me with next",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: Next"
+  },
+  {
+    "query": "convert my Python script to JavaScript",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 language conversion, not TS development"
+  },
+  {
+    "query": "I want to learn about typescript development in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  }
+]

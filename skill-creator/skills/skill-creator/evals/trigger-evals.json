@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with skill creator?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to skill creator?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with skill creator on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "show me the patterns for skill creator",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "what are the best practices for skill creator?",
+    "should_trigger": true,
+    "note": "Best practices query"
+  },
+  {
+    "query": "help me set up skill creator for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to skill creator",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on skill creator \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "help me with prompt engineering",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: prompt engineering"
+  },
+  {
+    "query": "make my button blue",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 CSS styling, not design methodology"
+  },
+  {
+    "query": "write a marketing email",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content writing, not prompt engineering"
+  },
+  {
+    "query": "I want to learn about skill creator in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

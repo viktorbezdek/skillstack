@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with persona definition?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to persona definition?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with persona definition on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up persona definition for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to persona definition",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on persona definition \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our persona definition is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with persona definition?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with mapping stakeholders across organizations, raci charts, or influence analysis",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: mapping stakeholders across organizations, RACI charts, or influence analysis"
+  },
+  {
+    "query": "I want to learn about persona definition in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  },
+  {
+    "query": "what's the weather like today",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 no relation to this skill"
+  }
+]

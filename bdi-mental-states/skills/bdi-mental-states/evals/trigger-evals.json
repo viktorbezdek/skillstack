@@ -1,0 +1,77 @@
+[
+  {
+    "query": "I need to model agent mental states",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"model agent mental states\""
+  },
+  {
+    "query": "I need to implement bdi architecture",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"implement BDI architecture\""
+  },
+  {
+    "query": "I need to create belief-desire-intention models",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"create belief-desire-intention models\""
+  },
+  {
+    "query": "I need to transform rdf to beliefs",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"transform RDF to beliefs\""
+  },
+  {
+    "query": "I need to build cognitive agent",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"build cognitive agent\""
+  },
+  {
+    "query": "can you help me with bdi mental states?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to bdi mental states?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with bdi mental states on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for bdi mental states?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for bdi mental states",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me with multi-agent coordination or agent handoffs",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: multi-agent coordination or agent handoffs"
+  },
+  {
+    "query": "help me with agent memory frameworks or persistence",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: agent memory frameworks or persistence"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "I want to learn about bdi mental states in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

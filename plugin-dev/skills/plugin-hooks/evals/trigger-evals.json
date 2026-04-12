@@ -73,5 +73,10 @@
     "query": "Help me write a PRD for a new CRM feature.",
     "should_trigger": false,
     "note": "Unrelated to hooks entirely"
+  },
+  {
+    "query": "How do I validate my plugin.json manifest fields?",
+    "should_trigger": false,
+    "note": "Near-miss — plugin validation, not hooks"
   }
 ]

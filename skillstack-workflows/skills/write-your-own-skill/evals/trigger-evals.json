@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with write your own skill?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to write your own skill?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with write your own skill on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for write your own skill?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for write your own skill",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me set up write your own skill for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to write your own skill",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on write your own skill \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "help me with quick-and-dirty prompts \u2014 use prompt-engineering directly",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: quick-and-dirty prompts \u2014 use prompt-engineering directly"
+  },
+  {
+    "query": "merge my PR",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 git operation, not workflow design"
+  },
+  {
+    "query": "I want to learn about write your own skill in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  },
+  {
+    "query": "write me a haiku about cats",
+    "should_trigger": false,
+    "note": "Off-topic \u2014 completely unrelated"
+  }
+]

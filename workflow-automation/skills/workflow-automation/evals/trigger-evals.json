@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with workflow automation?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to workflow automation?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with workflow automation on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up workflow automation for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to workflow automation",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on workflow automation \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our workflow automation is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "what are common mistakes people make with workflow automation?",
+    "should_trigger": true,
+    "note": "Anti-pattern query"
+  },
+  {
+    "query": "help me with ci/cd pipeline configuration or yaml",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: CI/CD pipeline configuration or YAML"
+  },
+  {
+    "query": "help me with docker containers or dockerfiles",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: Docker containers or Dockerfiles"
+  },
+  {
+    "query": "help me with git branching or commits",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: git branching or commits"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "merge my PR",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 git operation, not workflow design"
+  }
+]

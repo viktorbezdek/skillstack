@@ -1,0 +1,77 @@
+[
+  {
+    "query": "I need to evaluate agent performance",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"evaluate agent performance\""
+  },
+  {
+    "query": "I need to build test framework",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"build test framework\""
+  },
+  {
+    "query": "I need to measure agent quality",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"measure agent quality\""
+  },
+  {
+    "query": "I need to create evaluation rubrics",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"create evaluation rubrics\""
+  },
+  {
+    "query": "I need to implement llm-as-judge",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"implement LLM-as-judge\""
+  },
+  {
+    "query": "can you help me with agent evaluation?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to agent evaluation?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with agent evaluation on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for agent evaluation?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "show me the patterns for agent evaluation",
+    "should_trigger": true,
+    "note": "Pattern/architecture query"
+  },
+  {
+    "query": "help me with testing code or applications",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: testing code or applications"
+  },
+  {
+    "query": "help me with agent coordination or multi-agent design",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: agent coordination or multi-agent design"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  },
+  {
+    "query": "I want to learn about agent evaluation in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

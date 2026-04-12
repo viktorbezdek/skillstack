@@ -1,0 +1,67 @@
+[
+  {
+    "query": "can you help me with test driven development?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to test driven development?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with test driven development on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "what framework should I use for test driven development?",
+    "should_trigger": true,
+    "note": "Framework/methodology selection query"
+  },
+  {
+    "query": "help me set up test driven development for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "review my approach to test driven development",
+    "should_trigger": true,
+    "note": "Review/critique query"
+  },
+  {
+    "query": "I need guidance on test driven development \u2014 where should I start?",
+    "should_trigger": true,
+    "note": "Getting-started query"
+  },
+  {
+    "query": "our test driven development is a mess \u2014 help me improve it",
+    "should_trigger": true,
+    "note": "Improvement/refactoring query"
+  },
+  {
+    "query": "help me with choosing or setting up test frameworks",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: choosing or setting up test frameworks"
+  },
+  {
+    "query": "help me with finding and fixing bugs or analyzing stack traces",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: finding and fixing bugs or analyzing stack traces"
+  },
+  {
+    "query": "help me with reviewing existing code or prs",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: reviewing existing code or PRs"
+  },
+  {
+    "query": "I want to learn about test driven development in general \u2014 any good books?",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+  },
+  {
+    "query": "create a presentation about our quarterly results",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 content creation, not this skill's domain"
+  }
+]

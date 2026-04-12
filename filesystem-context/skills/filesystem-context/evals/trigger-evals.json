@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to offload context to files",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"offload context to files\""
+  },
+  {
+    "query": "I need to implement scratch pads",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"implement scratch pads\""
+  },
+  {
+    "query": "I need to persist agent plans",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"persist agent plans\""
+  },
+  {
+    "query": "I need to use filesystem for agent memory",
+    "should_trigger": true,
+    "note": "Maps to trigger phrase: \"use filesystem for agent memory\""
+  },
+  {
+    "query": "can you help me with filesystem context?",
+    "should_trigger": true,
+    "note": "Direct domain reference using skill topic"
+  },
+  {
+    "query": "what's the best approach to filesystem context?",
+    "should_trigger": true,
+    "note": "Advisory query in the skill's domain"
+  },
+  {
+    "query": "I'm struggling with filesystem context on my project",
+    "should_trigger": true,
+    "note": "Problem statement in the skill's domain"
+  },
+  {
+    "query": "help me set up filesystem context for my team's project",
+    "should_trigger": true,
+    "note": "Setup/onboarding query"
+  },
+  {
+    "query": "help me with in-context optimization like kv-cache or observation masking",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: in-context optimization like KV-cache or observation masking"
+  },
+  {
+    "query": "help me with summarization or compression techniques",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: summarization or compression techniques"
+  },
+  {
+    "query": "help me with understanding context theory or fundamentals",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 NOT-for clause from description: understanding context theory or fundamentals"
+  },
+  {
+    "query": "my React context provider isn't working",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 React Context API, not LLM context engineering"
+  },
+  {
+    "query": "install the Chrome extension",
+    "should_trigger": false,
+    "note": "Near-miss \u2014 browser agent, not LLM agent"
+  }
+]
