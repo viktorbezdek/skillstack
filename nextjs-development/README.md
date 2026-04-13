@@ -6,7 +6,7 @@ Comprehensive Next.js development skill covering App Router (13+/15/16), Server 
 
 ## What Problem Does This Solve
 
-Next.js 13+ introduced the App Router with Server Components, Server Actions, and a completely different caching model — but the rules are non-obvious and violations cause silent runtime failures, stale data, or broken builds. Developers frequently misplace `'use client'` directives, misconfigure cache strategies, or get caught by Next.js 16's breaking changes (async params, deprecated middleware). This skill provides authoritative guidance on every layer of the framework so decisions are correct on the first pass.
+Next.js 13+ introduced the App Router with Server Components, Server Actions, and a completely different caching model -- but the rules are non-obvious and violations cause silent runtime failures, stale data, or broken builds. Developers frequently misplace `'use client'` directives, misconfigure cache strategies, pass synchronous params where Next.js 16 requires async, or get caught by breaking changes like middleware deprecation. The framework has deep file-convention magic (layout.tsx, loading.tsx, error.tsx, default.tsx for parallel routes) where missing a single file breaks an entire feature silently. This skill provides authoritative guidance on every layer of the framework so decisions are correct on the first pass.
 
 ## When to Use This Skill
 
@@ -15,13 +15,12 @@ Next.js 13+ introduced the App Router with Server Components, Server Actions, an
 | "Should this component be a Server Component or Client Component?" | Decision tree based on interactivity, hooks, browser APIs, and data fetching requirements |
 | "How do I fetch data in the App Router?" | Quick reference for Server Component async/await, parallel fetching with Promise.all, TanStack Query for client-side, and all four cache strategies |
 | "How do I build a form with server-side mutation in Next.js?" | Server Actions quick reference: `'use server'` directive, Zod validation, revalidateTag/revalidatePath, useFormStatus, useOptimistic |
-| "My app broke after upgrading to Next.js 16" | Breaking changes guide: async route parameters, proxy.ts replacing middleware.ts, parallel route default.js requirement, updated revalidateTag API |
+| "My app broke after upgrading to Next.js 16" | Breaking changes guide: async route parameters, proxy.ts replacing middleware.ts, parallel route default.js requirement, `'use cache'` directive, updated revalidateTag API |
 | "How should I structure a new feature module?" | 5-layer module architecture pattern across app routes, service layer, hooks, types, and feature components |
-| "What are the non-negotiable rules I must follow in Next.js?" | Five critical rules covering next/image, Server Component defaults, async Client Components, cache strategy specification, and Next.js 16 async APIs |
 
 ## When NOT to Use This Skill
 
-- generic React patterns, hooks, or component logic -- use [react-development](../react-development/) instead
+- Generic React patterns, hooks, or component logic -- use [react-development](../react-development/) instead
 - UI/CSS design systems or visual styling -- use [frontend-design](../frontend-design/) instead
 
 ## Installation
@@ -40,26 +39,57 @@ Run the commands above from inside a Claude Code session. After installation, th
 **Direct invocation:**
 
 ```
-Use the nextjs-development skill to ...
+Use the nextjs-development skill to set up a new feature module with CRUD operations
+```
+
+```
+Use the nextjs-development skill to migrate my middleware to Next.js 16 proxy.ts
+```
+
+```
+Use the nextjs-development skill to implement caching for my data fetching layer
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-- `nextjs`
-- `react`
-- `server-components`
-- `app-router`
+`nextjs` · `react` · `server-components` · `app-router`
 
 ## What's Inside
 
-- **When to Use This Skill** -- Scenarios where this skill applies, covering routing, data fetching, caching, Server Actions, and module architecture
-- **Critical Rules** -- Five non-negotiable rules whose violation breaks builds or causes runtime errors: next/image, Server Component defaults, async Client Components, cache strategy, and Next.js 16 async APIs
-- **Next.js 16 Breaking Changes** -- Five breaking changes with before/after code: async route parameters, proxy.ts replacing middleware, parallel route default.js, `'use cache'` directive, and updated revalidateTag API
-- **Server vs Client Components - Decision Tree** -- Branching decision guide based on interactivity, hooks, browser APIs, and data fetching needs
-- **App Router File Conventions** -- Complete directory structure reference for layout.tsx, page.tsx, loading.tsx, error.tsx, route groups, parallel routes, and API routes
-- **Data Fetching Quick Reference** -- One-line summaries of Server Component fetching, parallel fetching, Suspense streaming, TanStack Query, and all four cache configurations
-- **Server Actions Quick Reference** -- Concise rules for form mutation: directive placement, Zod validation, cache invalidation, and optimistic update hooks
-- **Module Architecture (5-Layer Pattern)** -- Directory structure for organizing features across routes, service layer, hooks, types, and components
+### Skill: nextjs-development
+
+Single-skill plugin with an extensive library of references, resources, templates, and scripts.
+
+| Component | Count | Description |
+|---|---|---|
+| **SKILL.md** | 1 | Core skill with critical rules, Next.js 16 breaking changes, Server/Client decision tree, App Router file conventions, data fetching reference, Server Actions reference, and 5-layer module architecture |
+| **references/** | 11 | Architecture patterns, component patterns, database/RLS patterns, hooks patterns, page patterns, permission patterns, service layer patterns, TypeScript patterns, extended patterns, Next.js 16 migration guide, and top errors with solutions |
+| **resources/** | 20 | Deep-dive guides on App Router, caching strategies, data fetching, metadata API, Server Actions, rendering strategies (SSG/ISR/SSR/streaming), routing patterns, server-client decision, component patterns, styling, performance, file organization, and more |
+| **templates/** | 9 | Ready-to-use code templates: async params, cache components with `'use cache'`, parallel routes with default.tsx, proxy migration, route handler API, Server Actions forms, layout template, page template |
+| **scripts/** | 3 | Routing structure analyzer (mjs), version checker (sh), pattern validator (py) |
+| **evals/** | 2 | Trigger evaluation and output quality evaluation test suites |
+
+### Key content areas
+
+- **Five Critical Rules** -- Non-negotiable rules whose violation breaks builds or causes runtime errors: always use `next/image`, Server Components are default, never make async Client Components, always specify cache strategy for fetch(), await async APIs in Next.js 16
+- **Next.js 16 Breaking Changes** -- Five breaking changes with before/after code: async route parameters, proxy.ts replacing middleware.ts, parallel route default.js requirement, `'use cache'` directive, and updated revalidateTag API with cache life profiles
+- **Server vs Client Decision Tree** -- Step-by-step branching guide: needs interactivity? needs hooks? needs browser APIs? needs to fetch data? Each branch leads to a clear Server or Client recommendation
+- **App Router File Conventions** -- Complete directory structure reference for layout.tsx, page.tsx, loading.tsx, error.tsx, not-found.tsx, template.tsx, route groups, parallel routes, and API routes
+- **Data Fetching** -- Server Component async/await, parallel fetching with Promise.all, Suspense streaming, TanStack Query for client-side, and all four cache configurations (no-store, force-cache, revalidate, tags)
+- **Server Actions** -- Directive placement, form data extraction, Zod validation, cache invalidation with revalidateTag/revalidatePath, useFormStatus for loading states, useOptimistic for optimistic updates
+- **Module Architecture** -- 5-layer pattern organizing features across app routes, lib/services, hooks, types, and feature components
+
+## Usage Scenarios
+
+1. **Starting a new Next.js 16 project.** The skill provides the five critical rules as guardrails, the App Router file conventions for structuring your `app/` directory, and the 5-layer module architecture for organizing feature code. The async params template saves you from the most common Next.js 16 migration pitfall.
+
+2. **Migrating from Next.js 15 to 16.** The breaking changes section documents all five changes with before/after code. The proxy migration template provides the exact replacement for deprecated middleware.ts. The migration guide reference covers the full upgrade path.
+
+3. **Implementing a data-heavy dashboard with caching.** Use the data fetching reference to choose between the four cache strategies, the caching strategies resource for deep-dive guidance, and the Server/Client decision tree to determine which components should be Server Components (data fetching) versus Client Components (interactive charts).
+
+4. **Building a form with Server Actions.** The Server Actions reference covers the complete flow: `'use server'` directive placement, Zod validation, revalidateTag for cache invalidation, useFormStatus for loading indicators, and useOptimistic for instant UI feedback. The Server Actions form template provides working starter code.
+
+5. **Debugging a broken build after adding parallel routes.** The top errors reference documents common failures. The parallel routes template shows the required default.tsx file that Next.js 16 demands -- missing it causes silent rendering failures.
 
 ## Version History
 
@@ -76,11 +106,11 @@ Use the nextjs-development skill to ...
 
 ## Related Skills
 
-- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
-- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
-- **[Frontend Design](../frontend-design/)** -- Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, acce...
-- **[Gws Cli](../gws-cli/)** -- Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace A...
-- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
+- **[React Development](../react-development/)** -- React-specific patterns (hooks, state management, component architecture) that Next.js builds on
+- **[Frontend Design](../frontend-design/)** -- UI/UX design systems, Tailwind CSS, component libraries, and accessibility
+- **[TypeScript Development](../typescript-development/)** -- TypeScript patterns and type system features used throughout Next.js code
+- **[Api Design](../api-design/)** -- API design patterns for Next.js route handlers and Server Actions
+- **[Test Driven Development](../test-driven-development/)** -- TDD methodology for testing Next.js components, Server Actions, and API routes
 
 ---
 
