@@ -1,271 +1,316 @@
 # Cloud FinOps
 
-> **v2.1.0** | DevOps & Infrastructure | 3 iterations
-
-> Expert FinOps guidance across cloud, AI, SaaS, containers, serverless, data platforms, and sustainability -- 26 domain-specific reference files grounded in enterprise delivery. Built by [OptimNow](https://optimnow.io) and [Viktor Bezdek](https://github.com/viktorbezdek). Licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+> **v2.1.0** | Expert FinOps guidance covering cloud, AI, SaaS, and adjacent technology spend -- AWS, Azure, GCP, OCI, Kubernetes, serverless, data platforms, AI cost management, multi-cloud normalization, tagging, SaaS management, ITAM, and GreenOps.
+> 1 skill | 26 references | 13 trigger evals, 3 output evals | Built by [OptimNow](https://optimnow.io) and [Viktor Bezdek](https://github.com/viktorbezdek) | CC BY-SA 4.0
 
 ## The Problem
 
-Cloud bills grow faster than anyone expects. An AWS account starts at $5K/month and hits $50K/month within a year, with nobody able to explain where the money went. Development instances run 24/7 with nobody using them on weekends. Reserved instances expire without renewal because no one tracked the commitment lifecycle. Kubernetes clusters are over-provisioned by 60% because right-sizing feels risky. AI inference costs explode when the team ships a GPT-4o integration without understanding token economics. SaaS subscriptions accumulate across the organization with 30% of licenses unused and nobody tracking renewals until a surprise auto-renewal bill arrives.
+Cloud bills grow faster than the businesses they serve. A typical enterprise discovers that 30% of cloud spend is waste -- idle instances, oversized resources, unattached storage volumes, and commitments that no longer match workloads. But the waste is invisible because cost data is fragmented across providers, allocation is incomplete (less than 50% of spend tagged to owners), and the people who make architecture decisions never see the bill.
 
-FinOps knowledge is fragmented across provider-specific documentation, framework whitepapers, and consultant tribal knowledge. AWS commitment strategy differs fundamentally from Azure which differs from GCP -- but most teams manage multi-cloud environments and need consistent decision frameworks. AI cost management barely existed two years ago, and now organizations are spending six figures on LLM inference without the same maturity they have for compute costs. Data platforms (Kafka, Elasticsearch, Snowflake, Databricks) have their own cost models that traditional compute optimization does not address.
+AI makes this worse, not better. GenAI workloads introduce entirely new cost dimensions: token-based billing, provisioned throughput units, GPU instance hours, and model inference costs that scale with usage in unpredictable ways. A team that spins up Bedrock provisioned throughput for a demo and forgets to shut it down burns thousands per week. AI coding tools like Cursor, Claude Code, and Copilot add seat-based and usage-based costs that nobody tracks. The FinOps Foundation estimates that AI costs will exceed traditional compute costs for many organizations by 2027, yet most FinOps practices have no playbook for managing them.
 
-The gap is not "we need to save money" -- it is that building a mature FinOps practice requires expertise across cloud providers, AI services, containers, serverless, data platforms, SaaS licensing, tagging governance, and sustainability. No single engineer or consultant has all of this, and the landscape changes quarterly with new pricing models and commitment options.
+The organizational gap is equally damaging. Engineering sees cost as someone else's problem. Finance sees infrastructure as a black box. Neither speaks the other's language. Without a framework that connects technical decisions to business outcomes, cost optimization devolves into periodic fire drills -- quarterly reviews that produce spreadsheets, not action.
 
 ## The Solution
 
-This plugin provides expert FinOps guidance across every technology domain through 26 reference files grounded in hands-on enterprise delivery. It covers all major cloud providers (AWS with 128 optimization patterns, Azure with 48 patterns, GCP with 26 patterns, plus OCI), AI cost management (Anthropic, Bedrock, Azure OpenAI, Vertex AI, AI coding tools like Cursor and Claude Code), infrastructure platforms (Kubernetes with OpenCost/Kubecost, serverless Lambda/Functions/Cloud Run), data platforms (Kafka/MSK, Elasticsearch/OpenSearch, Redis/Valkey, Databricks, Snowflake), cross-cutting concerns (multi-cloud normalization via FOCUS spec, tagging governance, GreenOps), and SaaS/licensing (SAM, ITAM, shadow IT, renewal governance).
+This plugin provides expert FinOps guidance grounded in hands-on enterprise delivery, not abstract frameworks. It covers cloud providers (AWS, Azure, GCP, OCI), AI cost management (Bedrock, Azure OpenAI, Vertex AI, Anthropic, AI coding tools), Kubernetes and container FinOps, serverless optimization, data platforms (Kafka, OpenSearch, Redis/Valkey, Databricks, Snowflake), multi-cloud normalization (FOCUS specification), commitment strategy (RIs, Savings Plans, CUDs), tagging governance, SaaS management, ITAM, and GreenOps.
 
-The skill applies a consistent reasoning framework to every query: diagnose before prescribing, assess maturity before recommending solutions (a "Crawl" organization needs visibility before optimization), connect cost to business value, and recommend progressively (quick wins first, structural changes second). It draws from the OptimNow methodology built on real engagement experience, not abstract frameworks.
+The skill ships with 26 domain-specific reference files totaling over 7,500 lines of actionable guidance. Every reference is built from real enterprise engagements -- AWS commitment portfolios, Azure reservation strategies, Kubernetes cost attribution models, and AI capacity planning frameworks. The reasoning methodology (from OptimNow) diagnoses before prescribing, connects every recommendation to business value, and progresses from quick wins to structural changes.
 
-You ask about any technology cost concern -- from "our AWS bill jumped 40% last month" to "how do I plan GenAI capacity across Azure OpenAI and Bedrock?" -- and get specific, actionable guidance grounded in the relevant domain reference, with maturity-appropriate recommendations and provider-specific implementation steps.
+The result is not a cost-cutting exercise but a FinOps practice: continuous optimization that treats technology spend as a driver of business value rather than an expense to minimize.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| AWS commitment strategy based on generic blog posts | 128 AWS optimization patterns with decision trees for compute and database commitments, portfolio liquidity strategies, phased purchasing |
-| No idea what AI inference is costing or how to optimize it | Token economics, prompt caching, batch API patterns, provisioned vs shared capacity planning across Anthropic, Bedrock, Azure OpenAI, Vertex AI |
-| Kubernetes clusters over-provisioned by 60% with no cost attribution | OpenCost/Kubecost patterns for pod cost attribution, namespace allocation, GPU optimization, node pool right-sizing |
-| SaaS sprawl with 30% unused licenses and surprise renewal bills | SaaS asset management with discovery, license optimization, renewal governance, shadow IT detection |
-| Multi-cloud cost data in incompatible formats | FOCUS specification for billing data normalization across providers, unified cost allocation |
-| Optimization recommendations disconnected from business outcomes | Every recommendation linked to business value through the FinOps framework's phases and maturity model |
+| 30% of cloud spend is unidentified waste | Systematic rightsizing, commitment strategy, and waste elimination across all providers |
+| AI costs are invisible -- no one tracks token spend or provisioned throughput waste | AI cost management playbook: LLM economics, capacity planning, coding tool optimization |
+| Tagging compliance below 60% -- most spend unallocated | Tagging governance framework with IaC enforcement reaching 90%+ compliance |
+| Commitment strategy is ad hoc -- buying RIs without analysis | Portfolio liquidity approach: phased purchasing, coverage targets, cross-provider normalization |
+| SaaS sprawl -- shadow IT subscriptions nobody tracks | SaaS asset management: discovery, license optimization, renewal governance |
+| Cost reviews are quarterly fire drills | Continuous FinOps: automated anomaly detection, distributed accountability, real-time dashboards |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install cloud-finops@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Our AWS bill jumped 30% last month -- help me figure out what changed and how to optimize
+Our AWS bill jumped 40% this quarter -- help me investigate and find the biggest optimization opportunities
 ```
-
-The skill activates automatically when you mention cloud costs, FinOps, cost optimization, or specific provider billing topics.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Ask about any technology cost concern:
-   ```
-   We're spending $15K/month on AWS and I don't know where to start optimizing -- assess our situation
-   ```
-3. The skill assesses your FinOps maturity (Crawl/Walk/Run), identifies your phase (Inform/Optimize/Operate), and recommends actions appropriate to your current state.
-4. Dive into specifics:
-   ```
-   We have 50 EC2 instances -- should we buy Reserved Instances or Savings Plans?
-   ```
-5. You get a provider-specific commitment decision tree with portfolio liquidity considerations and phased purchasing strategy.
+1. Install the plugin using the commands above
+2. Ask: `Assess our cloud FinOps maturity -- we're on AWS with about 60% tagging compliance and no commitment strategy`
+3. The skill assesses your maturity level (likely Crawl) and recommends a phased approach: visibility first, then optimization
+4. Follow up: `What are the quick wins we can implement this week to cut AWS spend?`
+5. Go deeper: `Design a commitment strategy for our EC2 fleet -- we have a mix of steady-state and variable workloads`
+
+---
+
+## System Overview
+
+```
++------------------------------------------------------------------------+
+|                         cloud-finops skill                              |
++------------------------------------------------------------------------+
+|                                                                         |
+|  Cloud Providers            AI & GenAI              Infrastructure      |
+|  +------------------+       +------------------+    +----------------+  |
+|  | AWS (2240 lines) |       | AI Costs         |    | Kubernetes     |  |
+|  | Azure (1560 lines)|      | GenAI Capacity   |    | Serverless     |  |
+|  | GCP              |       | AI Dev Tools     |    | Data Platforms |  |
+|  | OCI              |       | AI Automation    |    | Databricks     |  |
+|  | Bedrock          |       | AI Value Mgmt    |    | Snowflake      |  |
+|  | Azure OpenAI     |       | Anthropic        |    +----------------+  |
+|  | Vertex AI        |       +------------------+                        |
+|  +------------------+                                                   |
+|                                                                         |
+|  Cross-Cutting              SaaS & Licensing        Methodology         |
+|  +------------------+       +------------------+    +----------------+  |
+|  | Multi-Cloud      |       | SaaS Management  |    | OptimNow       |  |
+|  | FOCUS Spec       |       | ITAM             |    | FinOps Framework|  |
+|  | Tagging          |       +------------------+    | GreenOps       |  |
+|  +------------------+                               +----------------+  |
+|                                                                         |
+|  26 domain-specific reference files | ~7,500 lines of guidance          |
++------------------------------------------------------------------------+
+```
 
 ## What's Inside
 
-This is a single-skill plugin with 26 deep reference documents organized by domain, totaling over 8,000 lines of production FinOps guidance.
+| Component | Type | Description |
+|---|---|---|
+| `cloud-finops` | Skill | Core FinOps methodology with domain routing table and reasoning sequence |
 
-| Component | Purpose |
-|---|---|
-| **cloud-finops** skill | Core framework: FinOps principles, three phases (Inform/Optimize/Operate), maturity model, domain routing table, reasoning sequence |
-| **26 reference documents** | Domain-specific deep dives (see table below) |
+### References (26 files)
 
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
+| Reference | Domain | Topic |
+|---|---|---|
+| `optimnow-methodology.md` | Methodology | OptimNow reasoning philosophy, 4 pillars, engagement principles |
+| `finops-framework.md` | Methodology | FinOps Foundation framework (2026): capabilities, personas, domains, scopes |
+| `finops-for-ai.md` | AI & GenAI | AI cost management, LLM economics, agentic patterns, ROI framework |
+| `finops-ai-value-management.md` | AI & GenAI | AI Investment Council, stage gates, incremental funding |
+| `finops-genai-capacity.md` | AI & GenAI | Provisioned vs shared capacity, traffic shape, spillover, waste types |
+| `finops-ai-dev-tools.md` | AI & GenAI | Cursor, Claude Code, Copilot, Windsurf, Codex billing models and optimization |
+| `finops-ai-automation.md` | AI & GenAI | AI-powered FinOps, anomaly detection, NL cost querying |
+| `finops-aws.md` | Cloud Providers | AWS: 128 optimization patterns, commitment decision trees, CUR, EDP negotiation |
+| `finops-bedrock.md` | Cloud Providers | AWS Bedrock billing, provisioned throughput, batch inference |
+| `finops-azure.md` | Cloud Providers | Azure: 48 optimization patterns, reservations, Savings Plans, AHB |
+| `finops-azure-openai.md` | Cloud Providers | Azure OpenAI PTU reservations, GPT pricing, spillover patterns |
+| `finops-anthropic.md` | Cloud Providers | Claude API pricing, prompt caching, Batch API, long-context pricing |
+| `finops-gcp.md` | Cloud Providers | GCP: 26 optimization patterns for Compute Engine, Cloud SQL, GCS |
+| `finops-vertexai.md` | Cloud Providers | Vertex AI billing, Gemini pricing, provisioned throughput |
+| `finops-oci.md` | Cloud Providers | OCI: 6 optimization patterns for compute, storage, networking |
+| `finops-kubernetes.md` | Infrastructure | Kubernetes cost model, OpenCost, Kubecost, pod rightsizing, GPU |
+| `finops-serverless.md` | Infrastructure | Lambda/Functions/Cloud Run billing, memory rightsizing, cold starts |
+| `finops-data-platforms.md` | Infrastructure | Kafka/MSK, OpenSearch, Redis-to-Valkey migration |
+| `finops-databricks.md` | Infrastructure | 18 optimization patterns for clusters, jobs, Spark |
+| `finops-snowflake.md` | Infrastructure | Credit model, 13 optimization patterns for warehouses and queries |
+| `finops-multi-cloud.md` | Cross-Cutting | Cross-cloud commitment strategy, unified cost allocation |
+| `finops-focus.md` | Cross-Cutting | FOCUS spec v1.3: billing normalization, core columns, adoption |
+| `finops-tagging.md` | Cross-Cutting | Tagging strategy, IaC enforcement, virtual tagging |
+| `finops-sam.md` | SaaS & Licensing | SaaS discovery, license optimization, renewal governance |
+| `finops-itam.md` | SaaS & Licensing | BYOL, marketplace governance, FinOps-ITAM collaboration |
+| `greenops-cloud-carbon.md` | Sustainability | Carbon measurement, carbon-aware workloads, GHG Protocol |
 
-### How to Use: cloud-finops
+### Component Spotlights
 
-**What it does:** Provides expert FinOps guidance for any technology cost question. Activates when you mention cloud bills, cost optimization, commitment strategy, AI inference costs, Kubernetes cost attribution, serverless optimization, SaaS management, tagging governance, or sustainability. Applies a consistent reasoning framework: diagnose maturity first, then recommend progressively from quick wins to structural changes, always connecting cost to business value.
+#### cloud-finops (skill)
+
+**What it does:** Activates on any query about technology cost, cloud billing, commitment management, rightsizing, cost allocation, AI costs, SaaS spend, container cost attribution, or connecting spend to business value. Routes to the appropriate domain reference(s) and applies the OptimNow reasoning methodology.
+
+**Input -> Output:** A cost question, bill analysis request, or optimization challenge -> Diagnosis of current state, prioritized recommendations (quick wins first, structural changes second), specific actions with business value connection.
+
+**When to use:**
+- Investigating a cloud bill increase
+- Designing commitment strategy (RIs, Savings Plans, CUDs)
+- Managing AI and GenAI costs (LLM inference, provisioned throughput, coding tools)
+- Optimizing Kubernetes, serverless, or data platform spend
+- Building tagging governance and cost allocation
+- Managing SaaS subscriptions and license compliance
+- Multi-cloud cost normalization with FOCUS specification
+- Carbon footprint reduction (GreenOps)
+
+**When NOT to use:**
+- Building CI/CD pipelines or infrastructure -> use `cicd-pipelines`
+- Writing Terraform or Kubernetes manifests -> use `cicd-pipelines`
+- Designing cloud architecture from scratch -> this skill optimizes existing spend
 
 **Try these prompts:**
 
 ```
-Our AWS EC2 spend is $40K/month with 200 instances -- design a commitment strategy using Savings Plans and Reserved Instances
+Our AWS bill is $180K/month and growing 15% quarterly. Help me find the biggest savings opportunities without disrupting production.
 ```
 
 ```
-We just shipped a Claude-powered feature and API costs are 3x what we budgeted -- how do we optimize Anthropic spend?
+We're spending $12K/month on AI inference across Bedrock and Azure OpenAI. Design a cost optimization strategy that doesn't sacrifice quality.
 ```
 
 ```
-Help me set up Kubernetes cost attribution -- we have 8 teams sharing 3 EKS clusters and nobody knows who's spending what
+Build a commitment strategy for our multi-cloud environment -- 60% AWS, 30% Azure, 10% GCP. We want to maximize savings without over-committing.
 ```
 
 ```
-We have 150 SaaS subscriptions across the company and at least 30% are unused -- how do we get this under control?
+Our Kubernetes clusters are 40% utilized but we can't right-size because teams over-request resources. Design a governance framework.
 ```
 
 ```
-Design a tagging strategy for our multi-cloud environment -- AWS, Azure, and some GCP
+We have 200+ SaaS subscriptions and suspect 30% are unused. How do we discover, audit, and rationalize our SaaS portfolio?
 ```
-
-**Key references by domain:**
-
-| Domain | References |
-|---|---|
-| **Methodology & Framework** | `optimnow-methodology.md` (reasoning philosophy), `finops-framework.md` (FinOps Foundation 2026 framework) |
-| **AI & GenAI** | `finops-for-ai.md` (AI cost management, 490 lines), `finops-ai-value-management.md` (AI investment governance), `finops-genai-capacity.md` (capacity planning), `finops-ai-dev-tools.md` (Cursor/Claude Code/Copilot costs), `finops-ai-automation.md` (AI-powered FinOps) |
-| **Cloud Providers** | `finops-aws.md` (128 patterns, 2240 lines), `finops-bedrock.md`, `finops-azure.md` (48 patterns, 1560 lines), `finops-azure-openai.md`, `finops-anthropic.md`, `finops-gcp.md` (26 patterns), `finops-vertexai.md`, `finops-oci.md` |
-| **Infrastructure** | `finops-kubernetes.md` (OpenCost, Kubecost, pod attribution), `finops-serverless.md` (Lambda/Functions/Cloud Run), `finops-data-platforms.md` (Kafka, OpenSearch, Redis/Valkey) |
-| **Data Platforms** | `finops-databricks.md` (18 cluster/Spark patterns), `finops-snowflake.md` (13 warehouse/query patterns) |
-| **Cross-Cutting** | `finops-multi-cloud.md`, `finops-focus.md` (FOCUS spec v1.3), `finops-tagging.md`, `greenops-cloud-carbon.md` |
-| **SaaS & Licensing** | `finops-sam.md` (SaaS asset management), `finops-itam.md` (ITAM, BYOL, vendor negotiation) |
-
-## Real-World Walkthrough
-
-Your company spends $120K/month across AWS ($80K), Azure ($30K), and a growing portfolio of AI services ($10K and climbing fast). The CFO wants a 20% cost reduction plan. The engineering team just launched a customer-facing chatbot running on Claude via AWS Bedrock, and its costs doubled last month. Nobody can explain where the Kubernetes spend is going across six teams sharing four clusters. And the procurement team just discovered 47 SaaS subscriptions nobody tracks.
-
-You start with the big picture:
-
-```
-We spend $120K/month across AWS, Azure, and AI services. The CFO wants 20% reduction. Where do I start?
-```
-
-The skill assesses your maturity. You have basic cost visibility (Cost Explorer dashboards) but no tagging strategy, no commitment management, no cost attribution for Kubernetes, and no AI cost governance. That puts you at Crawl maturity. The skill recommends starting with the Inform phase: visibility and allocation must come before optimization. Committing to Reserved Instances when 40% of your spend is unallocated means you might be committing to waste.
-
-First, tagging. The skill references `finops-tagging.md`:
-
-```
-Design a tagging strategy for our AWS and Azure accounts -- we have 6 engineering teams and no consistent tagging
-```
-
-You get a tagging taxonomy (team, environment, service, cost-center), IaC enforcement patterns (Terraform module defaults, Azure Policy, AWS Service Control Policies), and a compliance tracking approach. The skill recommends starting with the three most impactful tags (team, environment, service) and adding more only after reaching 80% compliance on those. Virtual tagging handles resources that cannot be tagged directly.
-
-Next, the Kubernetes attribution problem:
-
-```
-Help me set up cost attribution for our EKS clusters -- 6 teams, 4 clusters, nobody knows who's spending what
-```
-
-The skill references `finops-kubernetes.md` and designs an OpenCost deployment with namespace-based allocation (each team gets a namespace), pod-level cost attribution using resource requests, shared cost allocation for cluster overhead (control plane, monitoring, logging), and GPU cost tracking for the ML team's training workloads. The idle compute (pods requesting more CPU/memory than they use) shows up as a 55% over-provisioning rate -- the skill recommends implementing Vertical Pod Autoscaler for right-sizing before buying more capacity.
-
-Now the AI cost spike:
-
-```
-Our Bedrock chatbot costs doubled last month -- from $5K to $10K. How do we diagnose and optimize?
-```
-
-The skill references both `finops-bedrock.md` and `finops-for-ai.md`. Diagnosis first: check CloudWatch metrics for invocation count and token throughput. The spike correlates with the chatbot launch going viral on social media -- 4x more conversations than projected. Optimization options: enable prompt caching for the system prompt (saves 90% on repeated context), implement conversation summarization to reduce context length in long chats, batch non-real-time analysis requests using Bedrock's batch inference (50% cheaper), and evaluate whether Haiku handles the simple FAQ queries (80% of traffic) while Sonnet handles only complex cases. Projected savings: 40-55% reduction, bringing the $10K back to $5-6K even with higher traffic.
-
-For the AWS commitment strategy:
-
-```
-Design a commitment strategy for our $80K/month AWS spend -- we have EC2, RDS, and Lambda
-```
-
-The skill references `finops-aws.md` and applies the commitment decision tree. EC2 ($45K): Compute Savings Plans for the stable baseline (70% of current usage), with on-demand for the variable portion. RDS ($20K): Reserved Instances for production databases (3 instances running 24/7), on-demand for dev/staging. Lambda ($15K): no commitment discounts available, but memory right-sizing and ARM migration (Graviton2) can cut costs 20-34%. Phased purchasing: buy 6-month commitments first to establish baseline, then convert to 1-year terms once patterns stabilize. Portfolio liquidity: maintain 15-20% on-demand headroom for flexibility.
-
-The SaaS problem:
-
-```
-We found 47 SaaS subscriptions nobody tracks -- how do we get this under control?
-```
-
-The skill references `finops-sam.md` and designs a SaaS rationalization program: discovery (aggregate credit card, expense report, and SSO data to find all subscriptions), utilization analysis (login frequency, feature usage, API activity), optimization (eliminate unused licenses, right-size plans, consolidate overlapping tools), and governance (renewal calendar, approval workflow, automatic alerts 90 days before renewal).
-
-After six weeks of implementing these recommendations, you report to the CFO: tagging at 82% compliance, Kubernetes right-sizing reclaiming 35% of cluster capacity, AI costs reduced 45% through prompt caching and model tiering, commitment purchases on track to save $12K/month once fully committed, and 12 SaaS subscriptions eliminated saving $3,200/month. Total reduction trajectory: 22%, exceeding the 20% target.
-
-## Usage Scenarios
-
-### Scenario 1: AWS commitment strategy design
-
-**Context:** You are the FinOps lead responsible for $500K/month in AWS spend across 15 accounts. You have been buying Reserved Instances ad hoc and suspect you are overpaying.
-
-**You say:** "Design an AWS commitment strategy for $500K/month across 15 accounts -- we have a mix of RIs and Savings Plans but no coherent strategy"
-
-**The skill provides:**
-- Commitment decision tree for compute vs. database workloads
-- Portfolio liquidity analysis (what percentage should stay on-demand)
-- Phased purchasing strategy (short-term first, extend as patterns stabilize)
-- RI-to-Savings Plan migration path for flexibility
-- EDP negotiation considerations for enterprise-scale spend
-
-**You end up with:** A documented commitment strategy with specific recommendations per workload type, a purchasing schedule, and portfolio liquidity targets.
-
-### Scenario 2: AI cost management for a new LLM deployment
-
-**Context:** Your team is launching a Claude-powered feature and needs to budget and optimize AI inference costs. You have no experience with LLM cost management.
-
-**You say:** "We're launching a Claude-powered customer support feature -- help me estimate costs, set up monitoring, and plan optimization"
-
-**The skill provides:**
-- Token economics for Anthropic models (Opus/Sonnet/Haiku pricing, input vs output)
-- Cost estimation based on expected conversation volume and average tokens per interaction
-- Prompt caching strategy for system prompts (90% savings on cached context)
-- Model tiering: route simple queries to Haiku, complex to Sonnet
-- Monitoring setup for tracking cost per conversation and cost per resolution
-
-**You end up with:** A cost model with projections, optimization strategies that can reduce costs 40-60%, and monitoring dashboards tracking cost per business outcome.
-
-### Scenario 3: Multi-cloud cost normalization
-
-**Context:** Your company uses AWS, Azure, and GCP. Each team has their own dashboards and terminology. Finance wants a single cost view with consistent allocation.
-
-**You say:** "We need unified cost reporting across AWS, Azure, and GCP -- finance can't compare costs across providers"
-
-**The skill provides:**
-- FOCUS specification (v1.3) for billing data normalization
-- Core column mapping across providers (service name, resource ID, cost type)
-- Unified tagging strategy that works across all three clouds
-- Cross-cloud commitment strategy normalization
-- Tool recommendations for multi-cloud cost platforms
-
-**You end up with:** A FOCUS-based data normalization pipeline, consistent tagging taxonomy, and unified cost dashboards that finance can use for cross-provider comparison.
-
-### Scenario 4: Kubernetes cost attribution and optimization
-
-**Context:** Your platform team runs shared Kubernetes clusters for 10 product teams. Monthly cluster costs are $60K but nobody can explain per-team spend.
-
-**You say:** "We spend $60K/month on Kubernetes with 10 teams sharing clusters -- I need per-team cost attribution and right-sizing"
-
-**The skill provides:**
-- OpenCost/Kubecost deployment and configuration for namespace-based attribution
-- Shared cost allocation models for control plane, monitoring, and platform services
-- Pod right-sizing analysis using resource request vs actual utilization
-- Node pool optimization strategy (consolidation, spot instances, ARM nodes)
-- GPU cost attribution for ML workloads
-
-**You end up with:** Per-team cost dashboards, identified over-provisioning (typically 40-60% waste), and a right-sizing plan with projected savings.
-
-## Ideal For
-
-- **FinOps practitioners managing multi-cloud environments** -- 26 domain references cover AWS, Azure, GCP, OCI, Kubernetes, serverless, data platforms, AI, and SaaS with consistent methodology
-- **Engineering teams launching AI features** -- AI cost management across Anthropic, Bedrock, Azure OpenAI, and Vertex AI with token economics, caching strategies, and model tiering
-- **Platform teams running shared Kubernetes infrastructure** -- cost attribution patterns, pod right-sizing, GPU optimization, and namespace allocation
-- **Finance teams needing cross-cloud cost visibility** -- FOCUS specification guidance, multi-cloud normalization, tagging governance, and unified reporting
-- **Procurement teams managing SaaS sprawl** -- SaaS asset management with discovery, license optimization, renewal governance, and shadow IT detection
-
-## Not For
-
-- **Building CI/CD pipelines for cost-optimized infrastructure** -- use [cicd-pipelines](../cicd-pipelines/) for pipeline design and deployment automation
-- **Docker container optimization (image size, build performance)** -- use [docker-containerization](../docker-containerization/) for Dockerfile best practices
-- **Cloud architecture design (not cost-focused)** -- use cloud provider documentation for service selection and architecture patterns
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through 26 domain-specific reference files totaling over 8,000 lines.
-
-The **SKILL.md** body provides the framework: the six FinOps principles, the three phases (Inform/Optimize/Operate), the maturity model (Crawl/Walk/Run), and the domain routing table that maps any cost query to the right reference file(s). It also defines the reasoning sequence applied to every response: load methodology, diagnose maturity, connect cost to value, recommend progressively.
-
-The **26 reference files** are organized into six domains:
-
-- **Methodology and Framework** (2 files): the OptimNow reasoning philosophy and the complete FinOps Foundation 2026 framework
-- **AI and GenAI** (5 files): AI cost management, investment governance, capacity planning, coding tool costs, AI-powered automation
-- **Cloud Providers** (8 files): AWS (2,240 lines), Azure (1,560 lines), GCP, Vertex AI, Bedrock, Azure OpenAI, Anthropic, OCI
-- **Infrastructure and Platforms** (3 files): Kubernetes, serverless, data platforms (Kafka, OpenSearch, Redis)
-- **Data Platforms** (2 files): Databricks and Snowflake with optimization patterns
-- **Cross-Cutting and SaaS** (6 files): multi-cloud, FOCUS spec, tagging, GreenOps, SaaS management, ITAM
-
-When you ask about AWS costs, the skill loads `finops-aws.md` (128 optimization patterns). When you ask about AI costs, it loads the relevant AI reference. Multi-domain queries load multiple references and synthesize across them.
-
-## Related Plugins
-
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline design and DevOps automation for the infrastructure FinOps optimizes
-- **[Docker Containerization](../docker-containerization/)** -- Container best practices that complement Kubernetes cost optimization
-- **[Agent Project Development](../agent-project-development/)** -- Cost estimation framework for LLM project development
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Save money on cloud" | "Our AWS EC2 spend is $45K/month with 35% average utilization. Recommend rightsizing and commitment strategy." |
+| "AI costs are high" | "We're spending $8K/month on Claude API calls. 60% is Opus, 30% Sonnet, 10% Haiku. Where should we optimize?" |
+| "Fix our tagging" | "Tagging compliance is 55% across 3 AWS accounts. We need a governance framework to reach 90% within 6 months." |
+| "Use FinOps" | "Assess our FinOps maturity. We have no commitment strategy, ~70% cost allocation, monthly manual reviews, and no anomaly detection." |
+
+### Structured Prompt Templates
+
+**For bill investigation:**
+```
+Our [provider] bill increased [percentage] this [period]. Current spend: $[amount]/month. Key services: [list top 5 by spend]. Help me find the root cause and the biggest optimization opportunities.
+```
+
+**For commitment strategy:**
+```
+Design a commitment strategy for [provider]. Our workload: [steady-state %] is predictable, [variable %] fluctuates. Current commitment coverage: [%]. Budget: $[amount]/month. Risk tolerance: [low/medium/high].
+```
+
+**For AI cost management:**
+```
+Our AI costs: $[amount]/month across [services]. Models used: [list]. Usage pattern: [batch/real-time/mixed]. Help me optimize without reducing quality. I'm willing to accept [constraints].
+```
+
+### Prompt Anti-Patterns
+
+- **Optimizing without visibility**: "Cut our cloud bill by 30%" -- you cannot optimize what you cannot measure. The skill first assesses whether you have adequate cost allocation and tagging before recommending optimizations.
+- **Committing to waste**: "Buy Reserved Instances for everything" -- if 30% of your fleet is waste (idle or oversized), buying commitments locks in waste. The skill recommends rightsizing before committing.
+- **Treating AI like compute**: "Right-size our LLM instances" -- AI costs are primarily token-based, not instance-based. The skill uses AI-specific optimization levers: prompt caching, model routing, batch inference, and provisioned throughput management.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are a platform engineering lead at a mid-size SaaS company. Monthly cloud spend is $320K across AWS (primary) and Azure (secondary). The CFO has asked for a 20% cost reduction without impacting performance. You have no FinOps practice -- cost reviews happen quarterly as spreadsheet exercises.
+
+**Step 1: Maturity assessment.** You ask: "Assess our FinOps maturity. We spend $320K/month on AWS and Azure. Tagging compliance is about 60%. No commitment strategy. Quarterly manual reviews. No anomaly detection." The skill assesses: Crawl maturity. At this level, you need visibility before optimization. Recommending commitment discounts with 60% allocation is premature -- you risk committing to waste.
+
+**Step 2: Quick wins (Week 1).** You ask: "What can we do this week to start saving?" The skill identifies immediate actions: (1) identify and terminate idle resources -- unattached EBS volumes, stopped EC2 instances with EBS still attached, idle RDS instances, unused Elastic IPs. Typical savings: 5-8% of total spend. (2) Enable AWS Cost Explorer and Azure Cost Management with daily exports. (3) Tag the top 20 resources by spend manually while building the governance framework.
+
+**Step 3: Tagging governance (Month 1).** You ask: "Get our tagging from 60% to 90%." The skill designs a tagging framework: mandatory tags (cost-center, team, environment, service), enforced through IaC (Terraform tag validation), with a virtual tagging fallback for legacy resources. SCP policies prevent launching untagged resources. Monthly compliance reporting to team leads. Target: 80% in 30 days, 90% in 90 days.
+
+**Step 4: Rightsizing (Month 2).** With visibility established, you ask: "Right-size our EC2 fleet." The skill analyzes utilization patterns and categorizes: steady-state workloads (consistent 60%+ utilization) are candidates for commitments after rightsizing, variable workloads belong on smaller instances with auto-scaling, and truly idle resources should be terminated. Right-sizing recommendations typically save 20-30% on compute.
+
+**Step 5: Commitment strategy (Month 3).** After rightsizing, you ask: "Design our commitment portfolio." The skill recommends a phased approach: start with 1-year no-upfront Savings Plans covering 60% of steady-state compute (conservative to maintain liquidity), add specific RI coverage for predictable RDS instances, and leave variable workloads on demand. Expected savings: 25-35% on committed workloads. The skill emphasizes portfolio liquidity -- avoid 3-year all-upfront commitments that lock you in.
+
+**Step 6: AI cost management.** You mention AI costs are growing. The skill asks about your AI workloads and discovers: $15K/month on Bedrock, $8K/month on Azure OpenAI. It recommends: prompt caching for repeated prefixes (30-40% savings on Bedrock), model routing (Haiku for classification tasks instead of Sonnet), and batch inference for non-real-time workloads (50% discount).
+
+**Final result:** Total savings identified: ~$85K/month (26.5%). Breakdown: idle resource elimination ($18K), rightsizing ($45K), AI optimization ($8K), commitment discounts to come ($14K+ when purchased in Month 3). The CFO's 20% target is exceeded, and the savings are sustainable because they come from structural changes, not one-time cuts.
+
+**Gotchas discovered:** The initial rightsizing recommendation for an RDS instance was too aggressive -- it was a database with nightly batch jobs that spiked to 90% utilization for 2 hours. The skill's methodology caught this during utilization pattern analysis, recommending a moderate right-size that handled the batch peak.
+
+## Usage Scenarios
+
+### Scenario 1: Managing AI coding tool costs
+
+**Context:** Your engineering team of 50 uses Cursor (30 seats), Claude Code (15 seats), and Copilot (5 seats). Monthly cost: $4,200. Management wants to know if this is justified.
+
+**You say:** "We spend $4,200/month on AI coding tools across Cursor, Claude Code, and Copilot. Help me optimize without reducing developer productivity."
+
+**The skill provides:**
+- Per-tool cost breakdown and usage analysis framework
+- Seat utilization metrics: active users vs. licensed seats
+- Model routing recommendations (use Haiku/Flash for autocomplete, Sonnet/Opus for complex tasks)
+- Consolidation analysis: can you standardize on fewer tools?
+- ROI framework: developer time saved vs. tool cost
+
+**You end up with:** A recommendation to reclaim 8 unused Cursor seats ($160/month), route simple completions to cheaper models ($300/month savings), and a dashboard tracking developer adoption and productivity impact.
+
+### Scenario 2: Multi-cloud commitment strategy
+
+**Context:** You run 60% AWS, 30% Azure, 10% GCP. Each cloud has different commitment mechanisms and your finance team wants a unified view.
+
+**You say:** "Design a unified commitment strategy across AWS, Azure, and GCP. We want maximum savings with the flexibility to shift workloads between clouds."
+
+**The skill provides:**
+- Cross-cloud commitment comparison: AWS Savings Plans vs Azure Reservations vs GCP CUDs
+- Portfolio approach: conservative coverage (60% of steady-state per cloud) with room for migration
+- FOCUS specification adoption for unified billing normalization
+- Quarterly review cadence with rebalancing triggers
+
+**You end up with:** A commitment portfolio that saves 25-30% across all three clouds while maintaining the flexibility to shift 15-20% of workload between providers without penalty.
+
+### Scenario 3: Kubernetes cost attribution
+
+**Context:** Your Kubernetes clusters run 40 services across 5 teams. Nobody knows which team is responsible for what portion of the $60K/month cluster cost.
+
+**You say:** "We can't attribute our $60K/month Kubernetes cost to teams. Design a cost allocation model with namespace-level attribution."
+
+**The skill provides:**
+- OpenCost or Kubecost deployment for pod-level cost attribution
+- Namespace-to-team mapping with label-based allocation
+- Resource request vs. actual usage analysis (over-requesting is the main waste driver)
+- Chargeback vs. showback recommendation based on organizational maturity
+- Pod rightsizing recommendations based on actual usage
+
+**You end up with:** Per-team cost dashboards, identification of $18K/month in over-provisioned resources, and a governance framework where teams own their resource requests.
+
+---
+
+## Decision Logic
+
+**When to use Savings Plans vs Reserved Instances?**
+
+The skill follows a clear hierarchy: Savings Plans first (they are more flexible, covering any instance type within a compute family), RIs second (for specific, unchanging workloads where the deeper discount justifies the inflexibility), and CUDs for GCP equivalents. Savings Plans at 60-70% coverage of steady-state is the starting recommendation; RIs are added for predictable database workloads.
+
+**How does the skill route across 26 reference files?**
+
+The skill body contains a routing table that maps query topics to specific references. AI cost queries route to `finops-for-ai.md`, AWS billing routes to `finops-aws.md`, Kubernetes routes to `finops-kubernetes.md`. Multi-domain queries load multiple references. The OptimNow methodology (`optimnow-methodology.md`) is applied to every response as a reasoning lens.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Committing before rightsizing | Locked into paying for oversized instances for 1-3 years | Right-size first; start with short-term (1-year) no-upfront commitments; maintain portfolio liquidity |
+| Tagging without enforcement | Compliance rises temporarily then decays as new resources are created untagged | Enforce via SCP policies and IaC validation; automate compliance reporting |
+| Optimizing AI by reducing quality | Cheaper model produces worse results; users bypass the system | Model routing based on task complexity, not blanket downgrades; measure quality alongside cost |
+| Ignoring shared costs | 40% of spend (networking, support, shared services) is unallocated | Define allocation methodology: proportional by usage, equal split, or custom rules per category |
+
+## Ideal For
+
+- **Platform engineering teams managing cloud spend** who need systematic optimization across providers with actionable recommendations
+- **FinOps practitioners building or maturing a FinOps practice** who need the framework, maturity model, and domain-specific guidance in one skill
+- **Engineering managers with AI cost concerns** who need to understand and optimize LLM inference, AI coding tools, and provisioned throughput costs
+- **Finance teams working with engineering** who need a shared vocabulary and framework for connecting technology spend to business outcomes
+
+## Not For
+
+- **Building cloud infrastructure** -- this skill optimizes costs on existing infrastructure. For building pipelines and deploying resources, use `cicd-pipelines`.
+- **Application architecture decisions** -- choosing between serverless and containers for functionality reasons, not cost. Use language-specific development skills.
+- **One-time cost audits** -- this skill builds a continuous practice, not a point-in-time report. If you just need a quick number, start here but expect to build ongoing processes.
+
+## Related Plugins
+
+- **cicd-pipelines** -- Infrastructure provisioning and deployment that this skill helps optimize
+- **docker-containerization** -- Container optimization patterns that affect Kubernetes costs
+- **workflow-automation** -- Automate FinOps processes like anomaly alerting and commitment reviews
+- **systems-thinking** -- Understand feedback loops between engineering decisions and cost outcomes
+
+---
+
+*FinOps Skill by [OptimNow](https://optimnow.io) (James Barney) and [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
