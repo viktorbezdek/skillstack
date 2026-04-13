@@ -213,25 +213,42 @@ If the plugin is part of a marketplace (like skillstack), use the marketplace in
 
 ### Step 6 — Generate the documentation package
 
-Follow this structure. Every section is mandatory unless marked optional.
+The document follows a **4-layer competence model**. Most docs fail because they skip layers 2 and 4. Every layer is mandatory.
+
+```
+Layer 1: Awareness     → Title Card + Problem + Solution
+Layer 2: Mental Model  → System Map + Component Spotlights
+Layer 3: Execution     → Walkthrough + Prompt Patterns
+Layer 4: Mastery       → Decision Logic + Edge Cases + Integration Patterns
+```
+
+Follow this structure. Sections marked (lean) can be shortened for simple single-skill plugins. Sections marked (power) can be omitted for plugins with fewer than 3 components.
+
+---
+
+#### LAYER 1 — AWARENESS (filter audience, create tension, show the fix)
 
 ```markdown
 # [Plugin Name]
 
 > [One-sentence value proposition — what problem, for whom]
+> [Visual hint: N skills, N hooks, N scripts — or just "single skill + N references"]
 
 ## The Problem
 
-[2-3 paragraphs describing the pain BEFORE this plugin exists. Be specific
-about what goes wrong, how much time is wasted, what mistakes are made.
-This is not "X is hard" — it's "without this, teams spend 3 hours doing Y
-manually and still get Z wrong 40% of the time."]
+[2-3 paragraphs. Describe the pain BEFORE this plugin exists. Be specific:
+what goes wrong, how much time is wasted, what mistakes are made. This is
+not "X is hard" — it's "without this, teams spend 3 hours doing Y manually
+and still get Z wrong 40% of the time." Make this slightly longer than
+typical — this is where you earn the reader's attention.]
 
 ## The Solution
 
-[2-3 paragraphs describing what changes WITH this plugin. Concrete outcomes,
-not aspirational claims. "The skill walks you through A, catches B before
-you ship, and produces C as output" — not "comprehensive framework for X."]
+[2-3 paragraphs. What changes WITH this plugin. Concrete outcomes, not
+aspirational claims. Include a system-level overview: "The plugin provides
+N skills that handle [phases], N hooks that automate [events], and N scripts
+that [do what]." This is the first time the reader sees the shape of the
+system.]
 
 ## Before vs After
 
@@ -241,10 +258,11 @@ you ship, and produces C as output" — not "comprehensive framework for X."]
 | [Specific pain point 2] | [How the plugin solves it] |
 | [Specific pain point 3] | [How the plugin solves it] |
 | [Specific pain point 4] | [How the plugin solves it] |
+| [Specific pain point 5] | [How the plugin solves it] |
 
 ## Installation
 
-[From Step 5 — copy-pasteable commands]
+[Copy-pasteable commands from Step 5]
 
 ## Quick Start
 
@@ -254,84 +272,194 @@ you ship, and produces C as output" — not "comprehensive framework for X."]
 3. The skill does X
 4. You see Y
 5. Next, try Z]
+```
+
+---
+
+#### LAYER 2 — MENTAL MODEL (system map + component spotlights)
+
+```markdown
+## System Overview
+
+[Diagram-style breakdown showing how components relate. Use a text diagram
+or table showing: skills, hooks, commands, MCP servers, scripts — and the
+data flow between them. This builds the mental model BEFORE details.]
 
 ## What's Inside
 
-[Architecture overview — component table for multi-skill, or feature list
-for single-skill]
+[Component inventory table]
 
-### [Skill 1 Name]
+### Component Spotlights
+
+[Repeat this block for EACH component type present in the plugin:]
+
+#### [Skill Name] (skill)
 
 **What it does:** [plain language — when it activates, what methodology]
+
+**Input → Output:** [What the user provides → what the skill produces]
+
+**When to use:** [specific triggers]
+**When NOT to use:** [specific anti-triggers + what to use instead]
 
 **Try these prompts:**
 
 \```
-[Prompt 1 — starting fresh with a new project]
+[Prompt 1 — starting fresh]
 \```
 
 \```
-[Prompt 2 — reviewing or improving existing work]
+[Prompt 2 — reviewing existing work]
 \```
 
 \```
-[Prompt 3 — specific sub-topic or troubleshooting]
+[Prompt 3 — specific sub-topic]
 \```
 
 \```
-[Prompt 4 — advanced or edge-case usage]
+[Prompt 4 — advanced or edge-case]
 \```
 
-**Key references:** [summary table of reference files, if any]
+**Key references:** [summary table of reference files]
 
-### [Skill 2 Name]
-[Same structure...]
+#### [Hook Name] (hook) — if plugin has hooks
+
+**Trigger:** [event + matcher]
+**Lifecycle timing:** [pre/post, sync/async]
+**What it does:** [concrete behavior]
+**Side effects:** [what changes in the environment]
+
+#### [Script Name] (script) — if plugin has scripts
+
+**CLI:** `command --flags`
+**What it produces:** [output format, where it writes]
+**Typical workflow:** [when you'd run this in a real project]
+
+#### [MCP Server] (mcp) — if plugin has MCP
+
+**Tools exposed:** [list of MCP tools with one-line descriptions]
+**External system:** [what it connects to]
+**Constraints:** [latency, rate limits, failure modes]
+```
+
+---
+
+#### LAYER 3 — EXECUTION (prompt patterns + end-to-end walkthrough)
+
+```markdown
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "[vague query]" | "[specific query with context]" |
+| "[too broad]" | "[scoped to a real scenario]" |
+| "[names the skill]" | "[describes the need naturally]" |
+
+### Structured Prompt Templates
+
+**For [use case 1]:**
+\```
+[Template with placeholders users fill in]
+\```
+
+**For [use case 2]:**
+\```
+[Template]
+\```
+
+### Prompt Anti-Patterns
+
+- [Anti-pattern 1: what people type that doesn't work, and why]
+- [Anti-pattern 2]
+- [Anti-pattern 3]
 
 ## Real-World Walkthrough
 
-[ONE detailed end-to-end example showing the plugin in action on a realistic
-project. This is the "Notion Clone example" — a full story from start to
-finish, not just a prompt+response snippet. Include:
-- The starting situation (what the user has)
-- Each step they take (with exact prompts)
-- What the skill produces at each step
-- The final outcome (with concrete metrics if applicable)
-- Any gotchas or tips discovered along the way
+[ONE detailed end-to-end example. 500-1000 words. This is the centerpiece.
+Show the full system in action — not just one skill, but how components
+chain together on a real project.
 
-Target: 500-1000 words for this section. This is the centerpiece of the doc.]
+Structure it as a story with intermediate steps:
+1. **Starting situation** — what the user has, what they need
+2. **Step 1** — user intent → exact prompt → Claude reasoning → skill invocation → output
+3. **Step 2** — next phase, building on Step 1's output
+4. **Step 3** — (continue for 4-6 steps total)
+5. **Final outcome** — concrete deliverable with metrics if applicable
+6. **Gotchas discovered** — tips the walkthrough revealed]
 
 ## Usage Scenarios
 
 ### Scenario 1: [Descriptive title]
 
 **Context:** [The user's situation — role, project, problem]
-
 **You say:** "[Exact prompt]"
-
 **The skill provides:** [Bullet list of specific outputs]
-
 **You end up with:** [Concrete deliverable]
 
-### Scenario 2: [Title]
-[Same structure — aim for 3-5 scenarios total]
+### Scenario 2-5: [Same structure, aim for 3-5 total]
+```
+
+---
+
+#### LAYER 4 — MASTERY (decision logic, edge cases, integration, advanced)
+
+```markdown
+## Decision Logic
+
+[Reveal how the system decides what to use. This prevents blind usage
+and builds operator-level understanding.]
+
+**When does [Skill A] activate vs [Skill B]?**
+[Branching logic, heuristics, rules]
+
+**What happens when [component] fails?**
+[Error handling, fallback behavior, recovery]
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| [Common error 1] | [What the user sees] | [How to fix] |
+| [Common error 2] | [What the user sees] | [How to fix] |
+| [Misuse scenario] | [What goes wrong] | [Correct approach] |
+
+## Performance & Constraints (lean)
+
+[Token cost implications, latency for MCP calls, rate limits, scaling.
+Set realistic expectations to avoid disillusionment post-adoption.]
+
+## Integration Patterns (power)
+
+[How this plugin combines with others. Show specific compositions:]
+- [Plugin A + this plugin → what you get]
+- [This plugin in a CI pipeline → how]
+- [This plugin + hooks from another plugin → workflow]
+
+## Advanced Use Cases (power)
+
+[Non-obvious applications, composability tricks, emergent behavior.
+Differentiate beginners from power users.]
+
+## Anti-Patterns
+
+- [Overusing the skill when a simpler approach works]
+- [Misplacing logic (prompt vs code vs MCP)]
+- [Poor orchestration between components]
 
 ## Ideal For
 
-- [User type 1 + why] (e.g., "Teams shipping their first API — the design
-  patterns prevent the mistakes you'd learn from in year 2")
-- [User type 2 + why]
-- [User type 3 + why]
-- [User type 4 + why]
+- [User type 1 + specific rationale]
+- [User type 2 + specific rationale]
+- [User type 3 + specific rationale]
+- [User type 4 + specific rationale]
 
 ## Not For
 
 - [Anti-use-case 1 + what to use instead]
 - [Anti-use-case 2 + what to use instead]
 - [Anti-use-case 3 + what to use instead]
-
-## How It Works Under the Hood
-
-[Architecture — how components relate, progressive disclosure, data flow]
 
 ## FAQ (optional, for complex plugins)
 
@@ -340,25 +468,51 @@ A: [Direct answer with rationale]
 
 ## Related Plugins
 
-[Cross-references to other SkillStack plugins that complement this one]
+[Cross-references to SkillStack plugins that complement this one]
 
 ## Version History
 
 [From CHANGELOG.md if present]
 ```
 
+---
+
+#### Minimal Viable Set (for lean plugins)
+
+If the plugin is a single skill with few references, use this reduced set:
+- Title Card + Problem + Solution (Layer 1)
+- 1 Component Spotlight with prompt templates (Layer 2)
+- Real-World Walkthrough + Prompt Patterns (Layer 3)
+- Ideal For / Not For (Layer 4 minimal)
+
+Everything else is expansion for complex multi-component plugins.
+
 ### Step 7 — Quality check
 
 Before delivering, verify:
 
-- [ ] "The Problem" section describes real pain, not abstract difficulty
-- [ ] "Before vs After" table has >=4 rows with specific contrasts
+**Layer 1 (Awareness):**
+- [ ] "The Problem" describes real pain with specific consequences
+- [ ] "Before vs After" table has >=5 rows with specific contrasts
 - [ ] "Quick Start" gets the user to value in <=5 steps
 - [ ] Installation instructions are copy-pasteable and correct
-- [ ] Every skill has >=3 prompt templates using natural language
+
+**Layer 2 (Mental Model):**
+- [ ] System overview shows component relationships (not just a list)
+- [ ] Every component has a spotlight with input → output
+- [ ] Every skill has >=4 prompt templates using natural language
 - [ ] Prompt templates vary in intent (start fresh, review, troubleshoot, advanced)
-- [ ] Real-World Walkthrough is 500+ words with a complete story arc
+- [ ] Hook/script/MCP spotlights present for each component type in the plugin
+
+**Layer 3 (Execution):**
+- [ ] Good vs Bad prompt comparison table present
+- [ ] Prompt anti-patterns documented (>=3)
+- [ ] Real-World Walkthrough is 500+ words with intermediate steps shown
 - [ ] >=3 usage scenarios with Context/You say/Provides/End up with
+
+**Layer 4 (Mastery):**
+- [ ] Decision logic explains when component A vs B activates
+- [ ] Failure modes table has >=3 entries with recovery steps
 - [ ] "Ideal For" has >=4 entries with specific user types and rationale
 - [ ] "Not For" has >=3 entries with alternatives
 - [ ] Scenarios are grounded in real situations (not "user asks about X")
