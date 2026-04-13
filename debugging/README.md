@@ -2,244 +2,339 @@
 
 # Debugging
 
-> Find and fix bugs through systematic root cause analysis -- from stack traces and test failures to browser debugging, CI/CD pipelines, and performance profiling.
+> Find and fix bugs through systematic root cause analysis -- stack trace interpretation, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.
+> Single skill + 38 reference documents + 9 scripts + 15 templates + 8 examples | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-When something breaks, developers guess. They change something that looks related, run the tests, and if it does not work, they change something else. After three failed attempts in 90 minutes, they are further from the solution than when they started because each speculative fix introduced new variables. The original bug is now buried under layers of failed patches. The codebase has uncommitted changes across six files. And the developer has lost track of what they actually changed versus what was already broken.
+Developers spend 35-50% of their time debugging. The average debugging session takes 2-3 hours -- not because bugs are inherently complex, but because the approach is wrong. The typical pattern: see an error, guess a fix, try it, it does not work, try another guess, get deeper into the weeds, finally find the root cause 2 hours later. Under time pressure, this degenerates further: "quick fix for now, investigate later" creates more bugs than it resolves.
 
-This happens because debugging is treated as an art rather than a process. There is no standard methodology that says "do this before that" and "stop if you have tried three fixes without understanding the root cause." Teams lack tooling for the full debugging spectrum: they know how to read a stack trace but not how to automate browser inspection, trace data flow across multi-component systems, diagnose flaky tests by finding the polluting test, or debug CI/CD pipelines that fail in ways local environments cannot reproduce.
+The problem compounds across the development lifecycle. Test failures are diagnosed by reading the assertion message and guessing, when the failing test often contains the exact root cause in the stack trace. Browser bugs are investigated by manually clicking through the UI, when DevTools automation can capture screenshots, console errors, and network traffic in seconds. CI/CD failures are debugged by re-running the pipeline and hoping it passes, when systematic analysis of the failure log reveals the pattern. Performance issues are addressed by adding caching everywhere, when profiling shows one specific query is responsible.
 
-The cost is enormous. Studies consistently show that debugging consumes 50% or more of development time. The difference between systematic debugging (15-30 minutes, 95% first-time fix rate) and random-fix debugging (2-3 hours, 40% fix rate, frequent introduction of new bugs) is not talent -- it is process.
+Each debugging domain (unit tests, browser, CI/CD, performance) has its own tools and patterns. Teams that lack a systematic framework for any of these domains default to guessing -- and guessing is expensive. Studies show systematic debugging achieves a 95% first-time fix rate versus 40% for random fixes, in 15-30 minutes versus 2-3 hours.
 
 ## The Solution
 
-This plugin enforces a systematic four-phase debugging methodology (root cause investigation, pattern analysis, hypothesis testing, implementation) backed by concrete tooling for every debugging domain: Chrome DevTools automation scripts for browser debugging, an eight-phase E2E testing workflow with visual analysis, CI/CD pipeline analyzers for GitHub Actions and GitLab CI, performance profiling with Core Web Vitals, a test pollution finder for flaky tests, and an AI-powered error classification module.
+This plugin provides a comprehensive debugging toolkit combining methodology, automation scripts, and analysis tools across the entire development lifecycle. The core is the Iron Law of Debugging: no fixes without root cause investigation first. The skill enforces a four-phase process (Root Cause Investigation, Pattern Analysis, Hypothesis Testing, Implementation) and provides domain-specific tools for each debugging context.
 
-The iron law -- "no fixes without root cause investigation" -- is enforced through the phase structure. Phase 1 requires reading errors completely, reproducing consistently, checking recent changes, gathering evidence at component boundaries, and tracing data flow to the source. Only after completing Phase 1 can you form a hypothesis (Phase 3), and only after testing it minimally can you implement a fix (Phase 4). If three fixes fail, the process forces you to stop and question the architecture rather than trying a fourth speculative fix.
-
-The plugin ships with executable scripts, Playwright templates, CI/CD workflow templates, and examples that make the methodology immediately actionable -- not just theory but tools you can run against real bugs today.
+For browser debugging, the plugin ships 9 Chrome DevTools automation scripts (navigation, screenshots, element interaction, console monitoring, network tracking, performance measurement). For E2E testing, it provides an 8-phase visual debugging workflow with Playwright, including LLM-powered screenshot analysis and regression detection. For CI/CD, it includes pipeline analysis scripts and a troubleshooting guide covering GitHub Actions, GitLab CI, and common failure patterns. For performance, it provides Core Web Vitals measurement and profiling guides. For test pollution, it ships a find-polluter script that isolates which test is contaminating others.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Guess at fixes, change random things, spend 2-3 hours thrashing | Systematic four-phase process: investigate, analyze, hypothesize, implement -- 15-30 minutes average |
-| Try to fix symptoms without understanding the root cause | Iron law enforcement: no fixes until root cause is identified through evidence |
-| No process for browser-side debugging beyond manual DevTools clicks | Chrome DevTools automation scripts: screenshots, console monitoring, network tracking, performance traces |
-| CI/CD failures are opaque -- "works on my machine" | Pipeline analyzers and CI-specific debugging references for GitHub Actions and GitLab CI |
-| Flaky tests get retried or ignored with no diagnosis | Test pollution finder (`find-polluter.sh`) isolates the exact test causing intermittent failures |
-| After fixing a bug, similar bugs appear in other code paths | Defense-in-depth validation adds checks at every layer data passes through |
+| See error, guess fix, try it, repeat for 2-3 hours | Four-phase systematic process: investigate root cause, analyze patterns, test hypothesis, implement fix in 15-30 min |
+| Under time pressure, skip investigation and apply "quick fix" | Iron Law enforced: no fixes without Phase 1 completion; red flags trigger process reset |
+| Browser bugs investigated by manual clicking | 9 DevTools automation scripts capture screenshots, console errors, network traffic, performance metrics |
+| CI/CD failures debugged by re-running and hoping | Pipeline analyzer and troubleshooting reference systematically diagnose failure patterns |
+| "Works on my machine" with no way to reproduce browser issues | E2E testing workflow with visual debugging, screenshot comparison, and regression detection |
+| 40% first-time fix rate with frequent regression introduction | 95% first-time fix rate with defense-in-depth validation at every layer |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install debugging@skillstack
 ```
 
+### Prerequisites
+
+For browser debugging: Node.js and npm (for Puppeteer scripts). For CI/CD analysis: Python 3. For E2E testing: Playwright (`npm install @playwright/test`). All are optional -- the systematic debugging methodology works without any scripts.
+
 ### Verify installation
 
 After installing, test with:
 
 ```
-I have a failing test that passes when I run it alone but fails in the full suite -- help me debug this
+I have a test failing with "TypeError: Cannot read properties of undefined" but only in CI, not locally. How do I debug this?
 ```
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Describe your bug: `My API returns 500 on the /users endpoint but only in production -- staging works fine`
-3. The skill enforces Phase 1: read the error logs completely, reproduce the failure, check what changed between staging and production, and trace the data flow
-4. After root cause identification, the skill guides you through a minimal hypothesis test and single-fix implementation with verification
-5. Post-fix, it walks you through defense-in-depth: adding validation at the entry point, business logic, and environment layers so the bug category cannot recur
+2. Encounter a bug. Ask: `"My integration tests pass locally but fail in CI with timeout errors. Help me debug this systematically."`
+3. The skill enforces Phase 1: read the error carefully, reproduce consistently, check recent changes, trace data flow
+4. Follow up with: `"I found the error is in the database connection. What's the root cause tracing approach?"`
+5. The skill walks you through backward tracing from symptom to source, then defense-in-depth validation
+
+---
+
+## System Overview
+
+```
+debugging (plugin)
+└── debugging (skill)
+    ├── Core methodology (Iron Law + 4 phases)
+    ├── Browser debugging
+    │   ├── scripts/chrome-devtools/ (9 automation scripts)
+    │   ├── references/cdp-domains.md (47 CDP protocol domains)
+    │   └── references/puppeteer-reference.md (complete API)
+    ├── E2E testing workflow
+    │   ├── references/e2e-workflow/ (8 phases: discovery → export)
+    │   ├── templates/e2e-testing/ (Playwright templates)
+    │   └── examples/e2e-testing/ (React Vite examples, reports)
+    ├── CI/CD debugging
+    │   ├── scripts/cicd/ (pipeline analyzer, health check)
+    │   ├── references/cicd-*.md (5 CI/CD references)
+    │   └── templates/cicd/ (GitHub Actions + GitLab CI)
+    ├── Performance profiling
+    │   └── references/performance-guide.md (Core Web Vitals)
+    ├── Defense-in-depth validation
+    ├── AI-powered error analysis
+    │   └── references/workflow-modules/ (6 advanced modules)
+    └── scripts/find-polluter.sh (test pollution finder)
+```
 
 ## What's Inside
 
-| Component | Description |
-|---|---|
-| `debugging` skill | Core skill with the four-phase systematic methodology, iron law enforcement, decision matrix, browser debugging, E2E workflow, CI/CD debugging, and verification requirements |
-| 18 reference items | Systematic debugging methodology, root cause tracing, defense-in-depth, verification checklist, CDP domains, Puppeteer API, Playwright patterns, performance guide, CI/CD troubleshooting/optimization/security/DevSecOps, E2E workflow phases, and AI debugging modules |
-| Scripts | Chrome DevTools automation (9 scripts), CI/CD analysis tools, test pollution finder, workflow automation |
-| Templates | Playwright test templates (config, test spec, page object, screenshot helper), GitHub Actions and GitLab CI workflow templates |
-| Examples | React Vite E2E testing examples, report examples, workflow examples |
-| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
-| 3 output eval cases | Tests debugging guidance, root cause analysis, and fix quality |
+| Component | Type | Description |
+|---|---|---|
+| `debugging` | Skill | Core four-phase methodology, domain-specific debugging guides |
+| `systematic-debugging/` | Reference set | Core debugging methodology with pressure tests |
+| `root-cause-tracing.md` | Reference | Backward tracing technique from symptom to source |
+| `defense-in-depth.md` | Reference | Multi-layer validation after fixing bugs |
+| `verification-before-completion.md` | Reference | Verification checklist before claiming completion |
+| `cdp-domains.md` | Reference | 47 Chrome DevTools Protocol domains |
+| `puppeteer-reference.md` | Reference | Complete Puppeteer API patterns |
+| `performance-guide.md` | Reference | Core Web Vitals optimization and profiling |
+| `playwright-best-practices.md` | Reference | Playwright patterns for E2E testing |
+| `e2e-workflow/` | Reference set | 8-phase E2E testing workflow (discovery through export) |
+| `e2e-data/` | Reference set | Accessibility checks, common UI bugs, Playwright practices |
+| `cicd-*.md` | Reference set | CI/CD troubleshooting, best practices, optimization, security, DevSecOps |
+| `workflow-modules/` | Reference set | AI debugging, automated code review, performance optimization, TDD, refactoring |
+| `troubleshooting.md` | Reference | Common issues and framework-specific fixes |
+| Chrome DevTools scripts | Scripts | 9 scripts: navigate, screenshot, click, fill, evaluate, snapshot, console, network, performance |
+| CI/CD scripts | Scripts | Pipeline analyzer, CI health check |
+| `find-polluter.sh` | Script | Isolates which test is polluting shared state |
+| E2E templates | Templates | Playwright config, test spec, page object, screenshot helper, global setup/teardown |
+| CI/CD templates | Templates | GitHub Actions and GitLab CI templates for Node, Python, Go, Docker, security |
+| E2E examples | Examples | React Vite test examples, visual analysis report examples |
 
-### debugging
+### Component Spotlights
 
-**What it does:** Activates when you need to debug any technical issue -- test failures, production bugs, browser issues, CI/CD pipeline failures, performance problems, build errors, or flaky tests. Enforces the iron law of root cause investigation before any fix attempt and provides domain-specific tooling for each debugging context.
+#### debugging (skill)
+
+**What it does:** Activates on any technical debugging scenario -- test failures, browser bugs, CI/CD issues, performance problems. Enforces the Iron Law (no fixes without root cause investigation) and guides through four phases: Root Cause Investigation (read errors, reproduce, check changes, trace data flow), Pattern Analysis (find working examples, compare against references), Hypothesis Testing (form single hypothesis, test minimally), and Implementation (failing test, single fix, verify).
+
+**Input -> Output:** Error description, stack trace, or failing behavior -> Systematic diagnosis identifying the root cause, a targeted fix addressing the source (not the symptom), defense-in-depth validation, and verification evidence.
+
+**When to use:**
+- Any test failure (unit, integration, E2E)
+- Bugs in production or development
+- Performance problems
+- CI/CD pipeline failures
+- Browser or UI issues
+- Especially when under time pressure or after multiple failed fix attempts
+
+**When NOT to use:**
+- Writing new tests or setting up frameworks (use `testing-framework`)
+- TDD methodology or writing tests before code (use `test-driven-development`)
+- Code review or PR review (use `code-review`)
 
 **Try these prompts:**
 
 ```
-My test passes in isolation but fails when run with the full suite -- help me find which test is polluting the state
+This test fails with "connection refused" but only in CI. It passes on every developer's machine. Walk me through the systematic debugging process.
 ```
 
 ```
-I'm getting a 401 error on my API endpoint but the JWT token looks valid -- walk me through systematic root cause investigation
+I've tried 3 different fixes for this race condition and none worked. I think I need to step back and find the real root cause.
 ```
 
 ```
-Our CI pipeline has been failing intermittently for a week -- sometimes the E2E tests time out, sometimes they pass. Debug this.
+My React app renders correctly in Chrome but the layout is broken in Safari. How do I use DevTools to diagnose the CSS issue?
 ```
 
 ```
-My React app renders correctly on initial load but breaks after navigation -- I need to debug this with browser DevTools
+Our CI pipeline started failing intermittently last week. Sometimes tests pass, sometimes they don't. How do I find the flaky test?
 ```
 
-```
-We shipped a performance regression -- page load went from 1.2s to 4.8s after last week's deploy. Help me profile and identify the cause.
-```
-
-**Key references:**
+**Key references (selected):**
 
 | Reference | Topic |
 |---|---|
-| `systematic-debugging/` | Complete four-phase debugging methodology with detailed procedures for each phase |
-| `root-cause-tracing.md` | Backward tracing technique for finding the true source of a bug across component boundaries |
-| `defense-in-depth.md` | Multi-layer validation pattern: entry point, business logic, environment guards, and debug instrumentation |
-| `verification-before-completion.md` | Verification checklist requiring fresh evidence before any completion claim |
-| `cdp-domains.md` | 47 Chrome DevTools Protocol domains for programmatic browser debugging |
-| `puppeteer-reference.md` | Complete Puppeteer API patterns for browser automation |
-| `performance-guide.md` | Core Web Vitals optimization and performance profiling techniques |
-| `playwright-best-practices.md` | Playwright testing patterns for reliable E2E tests |
-| `cicd-troubleshooting.md` | CI/CD pipeline debugging for GitHub Actions and GitLab CI |
-| `cicd-optimization.md` | Pipeline performance tuning and caching strategies |
-| `e2e-workflow/` | Eight-phase E2E testing workflow from discovery through export |
+| `systematic-debugging/` | Core four-phase debugging methodology with pressure test scenarios |
+| `root-cause-tracing.md` | Backward tracing from symptom to source |
+| `defense-in-depth.md` | Multi-layer validation at entry point, business logic, environment, instrumentation |
+| `cdp-domains.md` | 47 Chrome DevTools Protocol domains for browser automation |
+| `e2e-workflow/` | 8-phase visual debugging workflow: discovery through export |
+| `cicd-troubleshooting.md` | Comprehensive CI/CD debugging for GitHub Actions, GitLab CI |
+| `performance-guide.md` | Core Web Vitals measurement and optimization |
+| `workflow-modules/ai-debugging.md` | AI-powered error classification, pattern matching, solution generation |
 
-## Real-World Walkthrough
+#### Chrome DevTools Scripts (scripts)
 
-You are maintaining a Node.js API for an e-commerce platform. A customer reports that their checkout fails intermittently -- about 30% of the time, they get a 500 error on the payment endpoint. Your team has been unable to reproduce it locally.
+**What they do:** 9 Puppeteer-based automation scripts for browser debugging. Navigate to URLs, capture screenshots, click elements, fill forms, execute JavaScript in page context, extract interactive element metadata, monitor console messages, track network requests, and measure Core Web Vitals with trace recording.
 
-You open Claude Code:
+**CLI:** `node scripts/chrome-devtools/<script>.js --url <url> [--options]`
 
-```
-Our checkout endpoint returns 500 about 30% of the time in production. We can't reproduce it locally. The error logs show "Connection refused" from our payment processor, but their status page shows no issues.
-```
+**Typical workflow:** Screenshot a broken page, monitor console errors while reproducing the issue, capture network requests to identify failed API calls, measure performance to find bottlenecks.
 
-The debugging skill activates and immediately enforces Phase 1: Root Cause Investigation.
+#### find-polluter.sh (script)
 
-**Step 1: Read errors carefully.** The skill asks you to share the full error logs, not just the summary. You pull the production logs and share the complete stack trace. The skill notices something you glossed over: the error is not "Connection refused" generically -- it is "Connection refused" from a specific IP address that is your payment processor's API gateway in the us-east-2 region, while your other calls succeed against us-west-2. This is not a payment processor outage. It is a regional routing issue.
+**What it does:** Runs tests one-by-one to isolate which test is contaminating shared state and causing intermittent failures in other tests.
 
-**Step 2: Reproduce consistently.** You cannot reproduce locally because your development environment always hits us-west-2. The skill guides you to add a DNS override or force the us-east-2 endpoint: `PAYMENT_API_HOST=api-east.processor.com npm test`. You run the checkout endpoint 10 times against the east endpoint. It fails 4 times. Now you have a reproducible failure.
+**CLI:** `./scripts/find-polluter.sh '.git' 'src/**/*.test.ts'`
 
-**Step 3: Check recent changes.** You pull the git log from the past week. The skill spots a commit from 4 days ago that changed the payment client's connection pooling configuration: `maxSockets` was changed from 10 to 2 as part of a "resource optimization" effort. The timing matches when customer complaints started.
+**Typical workflow:** You have intermittent test failures that depend on test execution order. Run find-polluter to identify the contaminating test, then fix the shared state leakage.
 
-**Step 4: Trace data flow.** The skill walks you through instrumenting the payment client. You add logging at the connection pool layer and discover: when `maxSockets` is 2 and your checkout handler makes 3 concurrent requests to the payment processor (charge, fraud check, and receipt generation), the third request waits for a socket. The us-east-2 endpoint has higher latency than us-west-2 (180ms vs 40ms), so under load, the socket wait queue builds up and eventually times out, producing "Connection refused" when the pool cannot allocate a connection within the timeout.
+#### CI/CD Analysis (scripts)
 
-**Root cause identified:** The combination of reduced connection pool size and higher latency on the east region endpoint causes socket exhaustion under normal checkout load. Neither the pool size reduction nor the east region latency would cause the issue alone -- it is the interaction.
+**What they do:** `ci_health.py` runs a quick health check on CI pipelines. `pipeline_analyzer.py` analyzes workflow YAML files for optimization opportunities.
 
-**Phase 3: Hypothesis testing.** The skill guides you to test minimally: revert `maxSockets` to 10 and run the east endpoint test again. 10 attempts, 0 failures. Hypothesis confirmed.
-
-**Phase 4: Implementation.** You revert the `maxSockets` change and add two layers of defense-in-depth:
-
-1. **Entry point validation:** The payment client constructor now validates that `maxSockets` is at least 5 (the minimum needed for a checkout flow), logging a warning if configured lower.
-2. **Business logic validation:** The checkout handler checks socket pool availability before starting the three parallel requests, queuing them sequentially if the pool is near capacity.
-
-You write a test that simulates the exact failure condition: 2 max sockets, 3 concurrent requests, 200ms latency. The test fails before the fix (confirming it catches the bug) and passes after. You run the full test suite -- all green.
-
-The skill reminds you to verify in production, not just locally. You deploy to a canary, monitor for 1 hour, and confirm zero payment failures. The fix goes to full production. Customer complaints stop immediately.
-
-Total debugging time: 45 minutes. If you had followed the initial instinct of "payment processor must be flaky, add retry logic," you would have masked the real issue, introduced retry-related billing problems, and spent days chasing the wrong problem.
-
-## Usage Scenarios
-
-### Scenario 1: Flaky test investigation
-
-**Context:** Your test suite has 3 tests that fail intermittently in CI but always pass when run individually. The team has been adding `@retry(3)` annotations to suppress them.
-
-**You say:** `Three tests fail randomly in CI but pass alone -- help me find the polluter instead of just retrying them`
-
-**The skill provides:**
-- Test pollution finder script (`find-polluter.sh`) that runs tests one-by-one to isolate the exact polluting test
-- Systematic approach: identify shared state (global variables, database records, file system, environment variables)
-- Root cause patterns for common polluters: test order dependencies, uncleared database state, singleton mutations
-- Fix verification: run the full suite 5 times consecutively to confirm the flakiness is resolved
-
-**You end up with:** The specific test causing pollution identified, the shared state mechanism understood, and a fix that eliminates the flakiness permanently.
-
-### Scenario 2: Production-only bug
-
-**Context:** Your API works perfectly in development and staging but returns errors in production. The code is identical -- something in the environment is different.
-
-**You say:** `This endpoint works in staging but returns 500 in production -- same code, same database migration. What's different?`
-
-**The skill provides:**
-- Systematic environment diff checklist: environment variables, service versions, network configuration, DNS resolution, certificate chains, connection pool sizes
-- Multi-component evidence gathering at each boundary
-- Data flow tracing through the production stack
-- Hypothesis testing with minimal production changes
-
-**You end up with:** The specific environmental difference causing the failure, identified through systematic elimination rather than guessing.
-
-### Scenario 3: CI/CD pipeline debugging
-
-**Context:** Your GitHub Actions pipeline started failing after a Node.js version update. The error message is unhelpful and the build succeeds locally.
-
-**You say:** `Our CI pipeline broke after upgrading to Node 22 -- the build fails with a cryptic error but it works locally. Help me debug the pipeline.`
-
-**The skill provides:**
-- CI/CD specific debugging: enable debug logging, compare local vs CI environment
-- Pipeline analysis with the CI health checker script
-- Common patterns: dependency cache invalidation after version changes, native module recompilation, changed default settings
-- Pipeline optimization to prevent similar issues
-
-**You end up with:** The root cause identified (often a cached `node_modules` from the old version or a native dependency that needs recompilation) and a CI configuration that handles version upgrades gracefully.
-
-### Scenario 4: Performance regression investigation
-
-**Context:** Your web application's Largest Contentful Paint went from 1.2s to 4.8s after last week's deployment. Users are complaining.
-
-**You say:** `Our LCP went from 1.2s to 4.8s after last week's deploy -- help me profile and find what caused the regression`
-
-**The skill provides:**
-- Chrome DevTools performance scripts for automated profiling
-- Core Web Vitals measurement and baseline comparison
-- Systematic bisection: which commit in last week's deploy introduced the regression?
-- Performance trace analysis: long tasks, render blocking resources, layout thrashing
-
-**You end up with:** The specific change causing the regression identified, a performance test to prevent recurrence, and the LCP restored to acceptable levels.
-
-## Ideal For
-
-- **Developers who spend too long on bugs** -- the four-phase methodology cuts average debugging time from hours to minutes
-- **Teams with flaky test suites** -- the pollution finder and systematic approach eliminate intermittent failures permanently
-- **Frontend developers debugging browser issues** -- Chrome DevTools automation scripts provide programmatic access to console, network, and performance data
-- **DevOps engineers troubleshooting CI/CD** -- pipeline analyzers and CI-specific references diagnose build failures that do not reproduce locally
-- **Anyone who has tried 3+ fixes without success** -- the process forces you to stop guessing and find root cause
-
-## Not For
-
-- **Writing new tests or setting up test frameworks** -- use [testing-framework](../testing-framework/) instead
-- **TDD methodology** (writing tests before code) -- use [test-driven-development](../test-driven-development/) instead
-- **Code review or PR quality assessment** -- use [code-review](../code-review/) instead
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with extensive reference materials, executable scripts, templates, and examples.
-
-The **core skill** (`SKILL.md`) defines the four-phase systematic debugging methodology with iron law enforcement, a quick decision matrix routing issues to the right tool, browser debugging with Chrome DevTools automation, an eight-phase E2E testing workflow, CI/CD pipeline debugging for major platforms, test pollution detection, defense-in-depth validation, and verification requirements.
-
-The **reference library** provides depth across six domains:
-- **Systematic debugging** -- complete methodology with detailed phase procedures and red flag detection
-- **Browser debugging** -- 47 Chrome DevTools Protocol domains, Puppeteer API patterns, Playwright best practices, and performance profiling with Core Web Vitals
-- **E2E testing** -- eight workflow phases from discovery through export, with visual debugging and LLM-powered analysis
-- **CI/CD debugging** -- troubleshooting, optimization, security, and DevSecOps references for GitHub Actions and GitLab CI
-- **Root cause tracing** -- backward tracing technique for multi-component systems, defense-in-depth validation pattern
-- **AI debugging** -- error classification, pattern matching against known issues, and fix time estimation
-
-The **scripts directory** ships executable tools: 9 Chrome DevTools automation scripts (navigate, screenshot, click, fill, evaluate, snapshot, console, network, performance), CI/CD analysis tools (health checker, pipeline analyzer), and a test pollution finder. The **templates directory** provides Playwright test templates and CI/CD workflow templates for immediate use.
-
-## Related Plugins
-
-- **[Testing Framework](../testing-framework/)** -- Test infrastructure setup, framework selection, and test suite authoring across languages
-- **[Test-Driven Development](../test-driven-development/)** -- TDD methodology: red-green-refactor cycle, writing tests before implementation
-- **[Code Review](../code-review/)** -- Multi-agent code review covering security, performance, style, and test coverage
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline design and DevOps automation for GitHub Actions, GitLab CI, and Terraform
+**CLI:** `python3 scripts/cicd/ci_health.py --platform github --repo owner/repo`
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "My code is broken" | "I'm getting 'TypeError: Cannot read properties of undefined' at line 42 of auth.service.ts. Here's the stack trace: ..." |
+| "Fix this test" | "This test passes alone but fails when run with the full suite. I think another test is polluting global state." |
+| "CI is failing" | "Our GitHub Actions workflow fails with 'Module not found: express' after adding a caching step. The log shows npm install succeeded." |
+| "It's slow" | "This API endpoint takes 3 seconds to respond. It was 200ms last week. What changed and how do I profile it?" |
+
+### Structured Prompt Templates
+
+**For test failures:**
+```
+Test [name] fails with [error message] at [file:line]. Stack trace: [trace]. It [always/sometimes] fails [locally/in CI/both]. Recent changes: [what changed]. Help me find the root cause.
+```
+
+**For browser bugs:**
+```
+[Component] renders [incorrectly/not at all] in [browser]. Expected behavior: [what should happen]. Actual behavior: [what happens]. Console errors: [if any]. How do I debug this?
+```
+
+**For CI/CD failures:**
+```
+Our [GitHub Actions/GitLab CI] pipeline fails at the [step name] step with [error]. This started [when]. The relevant workflow config is [config]. What's causing this?
+```
+
+### Prompt Anti-Patterns
+
+- **Proposing fixes before investigation:** "I think the fix is X, should I try it?" The skill enforces root cause investigation first. Proposed fixes before Phase 1 is complete are red flags.
+- **Providing error messages without context:** "I get a 500 error" is not enough. Share the stack trace, the endpoint, recent changes, and whether it is reproducible.
+- **Asking to skip debugging:** "Just tell me the fix" undermines the entire methodology. The Iron Law exists because guessing costs 4-6x more time than systematic investigation.
+
+## Real-World Walkthrough
+
+**Starting situation:** Your team deployed a release on Friday afternoon. Monday morning, customer support reports that 10% of users cannot log in. The login page loads but submitting credentials returns a blank page. No error message is displayed. Your monitoring shows the /api/auth/login endpoint returning 200 OK. The backend team says "our API works fine."
+
+**Step 1: Root Cause Investigation -- Read the error.** You ask: "Users can't log in -- blank page after credential submission. API returns 200 OK. No visible error. Help me debug this systematically."
+
+The skill starts with Phase 1. First question: if the API returns 200, the backend is probably not the issue. The blank page after submission suggests a frontend error that is swallowed. Check the browser console.
+
+**Step 2: Browser automation.** You use the Chrome DevTools console script to monitor errors: `node scripts/chrome-devtools/console.js --url https://app.example.com/login --types error,warn --duration 10000`. The output captures: `TypeError: Cannot read properties of undefined (reading 'accessToken')` at `auth.js:142`. The 200 response body changed shape -- it now returns `{data: {accessToken: ...}}` instead of `{accessToken: ...}` -- but the frontend still reads `response.accessToken`.
+
+**Step 3: Check recent changes.** Git log shows a backend PR merged Friday at 4pm that "standardized API response format." The PR wrapped all responses in a `{data: ...}` envelope. The backend returns 200 OK (technically correct) but the frontend reads the old response shape and gets `undefined`.
+
+**Step 4: Root cause tracing.** The root cause is not the backend change -- it is the lack of a contract between frontend and backend. The backend changed the contract unilaterally. Fixing just the frontend access pattern would work today but leave the same vulnerability for next time.
+
+**Step 5: Defense-in-depth.** The skill recommends fixes at four layers: (1) Entry point: add response shape validation in the API client -- if the expected field is missing, throw a descriptive error instead of silently returning undefined. (2) Business logic: update the auth flow to handle both old and new response formats during the migration period. (3) Environment guard: add a contract test that verifies the response shape matches the frontend's expectations. (4) Debug instrumentation: log response shapes for auth calls to detect future contract breaks immediately.
+
+**Step 6: Implementation.** Write a failing test that reproduces the issue (test expects `response.data.accessToken`). Fix the frontend API client. Verify the test passes. Run the full suite. Deploy the contract test to CI. Total time: 45 minutes from report to fix deployed.
+
+**Gotchas discovered:** The "API returns 200" was the misleading signal. A 200 status code does not mean the response is correct for the consumer. The skill's insistence on checking the browser console (rather than trusting the backend team's assertion) cut through the finger-pointing in 2 minutes.
+
+## Usage Scenarios
+
+### Scenario 1: Flaky tests in CI
+
+**Context:** Your test suite passes 80% of the time. Some tests fail intermittently, but nobody can reproduce the failures locally.
+
+**You say:** "We have flaky tests. They pass locally but fail randomly in CI. How do I find which test is causing the pollution?"
+
+**The skill provides:**
+- `find-polluter.sh` script to isolate the contaminating test
+- Pattern analysis for common flakiness sources (shared state, timing dependencies, resource contention)
+- Condition-based waiting patterns to replace arbitrary `sleep` calls
+- CI-specific debugging configuration (ACTIONS_RUNNER_DEBUG for GitHub Actions)
+
+**You end up with:** The specific polluting test identified, shared state leakage fixed, and CI reliability restored.
+
+### Scenario 2: Performance regression after deployment
+
+**Context:** Your main page load time jumped from 1.2s to 4.5s after the latest deployment.
+
+**You say:** "Page load time tripled after our last deploy. How do I profile this and find the bottleneck?"
+
+**The skill provides:**
+- Performance measurement script for Core Web Vitals
+- Trace recording for detailed analysis
+- Systematic comparison: git diff between last good and current deploy
+- Reference to performance guide for LCP, FID, CLS optimization
+
+**You end up with:** The specific change causing the regression identified, a targeted fix, and performance monitoring to prevent recurrence.
+
+### Scenario 3: E2E visual regression
+
+**Context:** After a CSS refactor, your E2E tests pass but the UI looks wrong. Tests check functionality, not appearance.
+
+**You say:** "Our E2E tests pass but the UI is visually broken after a CSS change. How do I add visual regression testing?"
+
+**The skill provides:**
+- 8-phase E2E workflow from discovery through export
+- Screenshot capture and baseline comparison
+- LLM-powered visual analysis for detecting layout, color, and spacing issues
+- Playwright templates and page object patterns
+
+**You end up with:** A visual regression test suite that catches appearance issues alongside functional tests.
+
+---
+
+## Decision Logic
+
+**Which debugging tool should I use?**
+
+| Issue Type | Primary Tool | When to Escalate |
+|---|---|---|
+| Test failures (unit/integration) | Systematic Debugging (4 phases) | If 3+ fixes fail, question architecture |
+| Browser/UI bugs | Chrome DevTools scripts + E2E workflow | If not reproducible, use visual regression |
+| CI/CD failures | Pipeline analyzer + troubleshooting reference | If intermittent, use find-polluter |
+| Performance issues | Performance profiler + Core Web Vitals | If systemic, use profiling traces |
+| Build errors | Root cause tracing | If dependency-related, check lock files |
+| Flaky tests | find-polluter.sh | If not state pollution, check timing |
+
+**What happens when Phase 1 is incomplete?**
+
+The skill enforces sequencing. If you try to propose a fix before completing root cause investigation, the skill redirects: "You haven't identified the root cause yet. What was the exact error message? Can you reproduce it consistently? What changed recently?" This prevents the most expensive debugging anti-pattern: guessing at fixes without understanding the problem.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Heisenbug: bug disappears when you try to observe it | Adding logging or breakpoints changes timing enough to mask the issue | Use non-invasive observation (network monitoring, console capture); check for race conditions that are timing-sensitive |
+| Root cause is in a dependency, not your code | Stack trace leads into node_modules or a library you do not control | Verify dependency version, check issue trackers, consider workaround at the integration boundary |
+| Multiple bugs masquerading as one symptom | Fixing the first bug reveals a second bug with similar symptoms; appears like the fix did not work | After each fix, re-verify the exact original symptom; if the symptom changes, it is a second bug, not a failed fix |
+| "Works on my machine" -- environment-specific failure | Bug occurs only in CI, only in production, or only on specific hardware | Audit environment differences: OS, runtime version, environment variables, available services, network configuration |
+
+## Ideal For
+
+- **Developers of any experience level** who want to cut debugging time from hours to minutes through systematic investigation instead of guessing
+- **Frontend engineers** who need browser debugging automation for visual issues, console monitoring, and network analysis
+- **DevOps engineers** debugging CI/CD pipeline failures across GitHub Actions, GitLab CI, and containerized environments
+- **Tech leads** who want to establish debugging discipline on their teams and reduce the "random fix" culture that introduces regressions
+
+## Not For
+
+- **Writing new tests or setting up test frameworks** -- use `testing-framework` for test infrastructure and configuration
+- **TDD methodology (red-green-refactor)** -- use `test-driven-development` for the test-first workflow
+- **Code review or PR quality assessment** -- use `code-review` for reviewing code quality
+
+## Related Plugins
+
+- **testing-framework** -- Set up the test infrastructure that debugging depends on
+- **test-driven-development** -- Write tests first to prevent bugs; debugging handles the bugs that get through
+- **code-review** -- Catch bugs before they reach debugging through systematic code review
+- **cicd-pipelines** -- Design CI/CD pipelines; debugging handles when they break
+- **docker-containerization** -- Container environments where many CI/CD bugs originate
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
