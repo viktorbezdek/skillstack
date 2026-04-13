@@ -1,8 +1,7 @@
 # Workflow Automation
 
-> **v1.1.21** | DevOps & Infrastructure | 23 iterations
-
-> Automate the processes your team runs manually -- releases, parallel development, multi-agent orchestration, and computation pipelines -- with structured patterns and ready-to-use scripts.
+> **v1.1.21** | Automate the processes your team runs manually -- releases, parallel development, multi-agent orchestration, and computation pipelines -- with structured patterns and ready-to-use scripts.
+> Single skill + 6 modules + 21 references + 30+ FABER scripts + 10 CI/CD templates + 6 subskills + 6 git/release scripts | 13 trigger evals + 3 output evals
 
 ## The Problem
 
@@ -71,9 +70,38 @@ Set up automated semantic versioning and changelog generation for my Node.js pro
 4. Verify the generated changelog and version tag are correct
 5. Next, try: `I need to coordinate three agents working on different parts of the codebase -- how do I set up the workflow?`
 
-## What's Inside
+---
 
-This is a **single-skill plugin** with the largest supporting structure in SkillStack.
+## System Overview
+
+```
+User prompt (workflow automation request)
+        |
+        v
++-------------------------------+
+|    workflow-automation         |  <-- Core skill with decision tree router
+|         (SKILL.md)            |
++-------------------------------+
+   |        |        |        |        |        |
+   v        v        v        v        v        v
++------+ +------+ +------+ +------+ +------+ +------+
+|Seman-| | Git  | |Multi-| |CI/CD | |Scien-| |FABER |
+|tic   | |Work- | |Agent | |Pipe- | |tific | |State |
+|Releas| |tree  | |Orch. | |lines | |Work- | |Mach. |
++------+ +------+ +------+ +------+ +------+ +------+
+|11 refs| |3 sh  | |Alfred| |5 refs| |6 sub-| |30+   |
+|3 setup| |scripts| |ref + | |10    | |skills| |shell |
+|scripts| |GitFlow| |modules| |tmpl | |      | |scripts|
++------+ +------+ +------+ +------+ +------+ +------+
+
+Development Workflow Modules:
+  TDD (tdd-context7) | AI Debugging | Automated Code Review
+  Smart Refactoring  | Performance Optimization
+```
+
+The core skill acts as a router -- its decision tree identifies what type of workflow you need and loads the relevant capability. Semantic release handles versioning and publishing. Git worktree scripts manage parallel development. Multi-agent orchestration coordinates agents. CI/CD references and templates handle pipelines. Scientific workflow subskills cover computation scaling. FABER scripts provide stateful automation building blocks.
+
+## What's Inside
 
 ### Core Capabilities
 
@@ -102,9 +130,25 @@ This is a **single-skill plugin** with the largest supporting structure in Skill
 | Subskills | 6 | joblib, Prefect, Parsl, Covalent, FireWorks, quacc |
 | Evals | 16 | 13 trigger scenarios + 3 output quality scenarios |
 
-### workflow-automation
+### Component Spotlights
 
-**What it does:** Activates when you need to automate workflows, orchestrate multi-agent tasks, run parallel task execution, manage release automation, build state machines, or coordinate complex task dependencies. Provides patterns and scripts covering the full spectrum from simple release automation to complex multi-agent state machine workflows.
+#### workflow-automation (skill)
+
+**What it does:** Routes your workflow automation request to the right capability. The decision tree in SKILL.md identifies whether you need release automation, git worktree management, multi-agent orchestration, CI/CD pipeline templates, scientific computation scaling, FABER state machines, or development workflow modules. Then loads the relevant references, scripts, and patterns.
+
+**Input -> Output:** You describe a manual or fragile process you want to automate -> You get specific patterns, scripts, configuration files, and step-by-step setup for the appropriate automation approach.
+
+**When to use:**
+- Automating releases with conventional commits and semantic versioning
+- Managing parallel feature branches with git worktrees
+- Coordinating multiple agents with dependencies and error recovery
+- Scaling scientific computation from laptop to HPC cluster
+- Building crash-resilient deployment pipelines with state persistence
+
+**When NOT to use:**
+- Writing CI/CD pipeline YAML from scratch -> use [cicd-pipelines](../cicd-pipelines/)
+- Managing Docker containers or writing Dockerfiles -> use [docker-containerization](../docker-containerization/)
+- Git branching strategy or commit conventions -> use [git-workflow](../git-workflow/)
 
 **Try these prompts:**
 
@@ -132,6 +176,24 @@ Set up automated code review that checks test coverage, security, and code quali
 I need a state machine for my deployment workflow -- it has stages (build, test, deploy, verify) and needs to survive crashes
 ```
 
+#### FABER State Machine (scripts)
+
+**CLI:** `scripts/faber/state-init.sh`, `state-read.sh`, `state-write.sh`, `lock-acquire.sh`, `phase-validate.sh`, etc.
+**What it produces:** Persistent state files on disk, lock files for concurrency control, audit logs for post-incident review.
+**Typical workflow:** Initialize state -> acquire lock -> validate phase -> write state at each transition -> release lock. On crash: read state to find where it stopped, run error-recovery for resume options.
+
+#### Git Worktree Scripts (scripts)
+
+**CLI:** `scripts/git/create_worktree.sh <type> <name>`, `list_worktrees.sh`, `cleanup_worktrees.sh [--merged]`
+**What it produces:** Isolated working directories following GitFlow conventions (feature/, bugfix/, release/).
+**Typical workflow:** Create worktrees for each active feature, list periodically for visibility, clean up after branches merge.
+
+#### Release Scripts (scripts)
+
+**CLI:** `scripts/release/init_project.sh`, `init_user_config.sh`, `create_org_config.sh`
+**What it produces:** `.releaserc.json` configuration, user-level auth config, org-level shared config.
+**Typical workflow:** Run once per project to set up semantic release, once per developer for auth, once per organization for shared conventions.
+
 **Key references:**
 
 | Reference | Topic |
@@ -145,55 +207,93 @@ I need a state machine for my deployment workflow -- it has stages (build, test,
 | `gitflow-conventions.md` | Branch naming and worktree conventions |
 | `playwright-best-practices.md` | Browser automation testing patterns |
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, may not activate) | Good (specific, activates reliably) |
+|---|---|
+| "Help me automate things" | "Automate my release process -- I want conventional commits to drive version bumps and changelog generation" |
+| "Fix my deployment" | "Build a deployment state machine with crash recovery using FABER -- I have four stages that need to survive failures" |
+| "Make branches work better" | "Set up worktree isolation for five parallel feature branches -- merge conflicts are killing us" |
+| "Scale my Python script" | "My joblib pipeline needs to scale from laptop to a SLURM HPC cluster with 200 nodes -- which tool should I use?" |
+| "Set up CI" | "I need to coordinate three agents where agent C depends on agents A and B finishing -- how do I wire the workflow?" |
+
+### Structured Prompt Templates
+
+**For release automation:**
+```
+Set up semantic release for my [language] [monorepo/single-package] project. I need [conventional commits / independent versioning per package / publishing to NPM+PyPI]. Currently I release manually and it takes [time].
+```
+
+**For multi-agent orchestration:**
+```
+I need to coordinate [N] agents: [list agents and what each does]. [Agent C] depends on [A and B] finishing. I need [error recovery / retry logic / performance monitoring]. How do I set up the workflow?
+```
+
+**For git worktree management:**
+```
+Set up worktree isolation for our team -- we have [N] feature branches active simultaneously and merge conflicts are [frequency]. We follow [GitFlow / trunk-based / custom] branching.
+```
+
+**For scientific workflow scaling:**
+```
+My [type of computation] pipeline currently runs on [laptop / single server] using [current tool, e.g., joblib]. I need to scale to [target, e.g., HPC cluster with N nodes]. Which workflow tool should I use and how do I migrate?
+```
+
+**For state machine workflows:**
+```
+Build a state machine for my [process, e.g., deployment workflow] with stages [list stages]. It needs to [survive crashes / prevent concurrent execution / maintain audit trail / validate stage order].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for CI/CD YAML without mentioning automation context:** "Write me a GitHub Actions workflow" is a cicd-pipelines request. This skill handles the automation patterns and decision logic, not the YAML syntax. Ask about what you want to automate, not how to write pipeline config.
+- **Conflating git workflow with workflow automation:** "Help me with git branching" is a git-workflow request. This skill provides worktree scripts and GitFlow conventions, but branch strategy and commit conventions belong to git-workflow.
+- **Asking for a generic "best tool" without describing your workload:** "What's the best workflow tool?" is unanswerable. Describe your computation shape (tasks, parallelism, target infrastructure) so the decision tree can route to the right tool.
+- **Requesting Dockerfile or container optimization:** Container concerns belong to docker-containerization. This skill handles the workflow that builds and deploys containers, not the containers themselves.
+
 ## Real-World Walkthrough
 
-You are the lead engineer on a team of six building a B2B SaaS product. Your release process is a 12-step checklist in a Notion doc that only you know how to execute correctly. Last month, a junior developer tried to release while you were on vacation and published version 2.3.0 with breaking changes under a minor version bump because the changelog had "feat:" commits mixed with unlabeled breaking changes. Customers hit the breaking change with no migration guide because nobody wrote one.
+You are the lead engineer on a team of six building a B2B SaaS product. Your release process is a 12-step checklist in a Notion doc that only you know how to execute correctly. Last month, a junior developer tried to release while you were on vacation and published version 2.3.0 with breaking changes under a minor version bump because the changelog had "feat:" commits mixed with unlabeled breaking changes. Customers hit the breaking change with no migration guide.
 
-You decide to automate the entire release pipeline.
-
-**Step 1: Semantic release setup**
+**Step 1 -- Semantic release setup.** You ask:
 
 ```
 Set up semantic release for my Node.js monorepo -- we have three packages (api, sdk, dashboard) and need independent versioning
 ```
 
-The skill walks you through the setup. You run `scripts/release/init_project.sh` which creates `.releaserc.json` with conventional commit rules: `feat:` triggers a minor bump, `fix:` triggers a patch, `BREAKING CHANGE:` in the commit body triggers a major bump. The monorepo support reference shows how to configure independent versioning per package using `semantic-release-monorepo` so the API can be on v3.1.0 while the SDK is on v2.5.0.
+The skill walks you through `scripts/release/init_project.sh` which creates `.releaserc.json` with conventional commit rules: `feat:` triggers minor, `fix:` triggers patch, `BREAKING CHANGE:` triggers major. The monorepo support reference configures independent versioning per package using `semantic-release-monorepo`. You set up `init_user_config.sh` for multi-account authentication.
 
-You set up `init_user_config.sh` for multi-account authentication so the release process can publish the API to your private registry and the SDK to npm public. The local-first workflow means releases run from your machine (not just CI), giving you control over timing while eliminating manual steps.
-
-**Step 2: Git worktree isolation**
-
-Your team is building four features in parallel and merge conflicts are a daily occurrence. You ask:
+**Step 2 -- Git worktree isolation.** Your team is building four features in parallel and merge conflicts are daily. You ask:
 
 ```
-Set up worktree isolation for our parallel feature branches -- we have email-notifications, billing-v2, admin-dashboard, and api-v3 in progress
+Set up worktree isolation for our parallel feature branches -- email-notifications, billing-v2, admin-dashboard, and api-v3
 ```
 
-The skill provides the git worktree scripts. `create_worktree.sh feature email-notifications` creates a dedicated branch and working directory at `.worktrees/feature/email-notifications`. Each developer works in an isolated directory with its own `node_modules`, build output, and running dev server. No more "hold on, let me stash my changes" before switching contexts.
+`create_worktree.sh feature email-notifications` creates a dedicated branch and working directory. Each developer works in isolation. `list_worktrees.sh` gives visibility. `cleanup_worktrees.sh --merged` runs weekly.
 
-`list_worktrees.sh` gives the team visibility into all active worktrees with their branch status and last commit. `cleanup_worktrees.sh --merged` runs weekly to remove worktrees whose branches have been merged to main.
-
-**Step 3: Multi-agent code review**
-
-You want automated quality gates before code reaches main. You ask:
+**Step 3 -- Multi-agent code review.** You ask:
 
 ```
-Set up automated code review with the TRUST 5 framework -- I want test coverage, security, and code quality checks on every PR
+Set up automated code review with the TRUST 5 framework -- test coverage, security, and code quality on every PR
 ```
 
-The skill configures the AutomatedCodeReviewer module with the TRUST 5 framework: Test-first (>=85% coverage), Readable (linting and formatting), Unified (consistent patterns), Secured (no secrets, no SQL injection), Trackable (conventional commits, linked issues). Each dimension gets a score from 0 to 1, and the overall TRUST score must be >=0.85 for the PR to pass.
+The AutomatedCodeReviewer module configures TRUST 5: Test-first (>=85% coverage), Readable, Unified, Secured, Trackable. Each dimension gets a 0-1 score, overall must be >=0.85.
 
-**Step 4: FABER state machine for deployment**
-
-Your deployment involves four stages (build, test, deploy to staging, promote to production) and the team has been burned by partial deployments -- the build succeeded, the deploy started, and then the process crashed, leaving staging in a half-deployed state with no record of what happened.
+**Step 4 -- FABER state machine for deployment.** Your deployment has crashed mid-deploy twice. You ask:
 
 ```
 Build a deployment state machine using FABER -- I need crash recovery and an audit trail
 ```
 
-The FABER scripts provide the building blocks. `state-init.sh` creates a state file for the deployment. `state-write.sh` records each stage transition. `lock-acquire.sh` prevents concurrent deployments. `phase-validate.sh` ensures stages execute in order. `state-backup.sh` creates snapshots before risky operations. If the process crashes, `state-read.sh` shows exactly where it stopped, and `error-recovery.sh` provides recovery options.
+FABER scripts provide: `state-init.sh` creates state, `state-write.sh` records transitions, `lock-acquire.sh` prevents concurrent deploys, `phase-validate.sh` enforces order, `state-backup.sh` snapshots before risky operations, `error-recovery.sh` provides resume options on crash.
 
-The result: your 12-step Notion checklist is replaced by an automated pipeline. Releases are triggered by conventional commits and execute without human intervention. Feature branches are isolated in worktrees. Code quality is enforced by automated review. Deployments are stateful with crash recovery. The junior developer who caused the breaking-change incident can now release safely because the automation enforces the rules that used to live in your head.
+**Step 5 -- Result.** Your 12-step Notion checklist is replaced by automation. Releases are triggered by conventional commits. Features are isolated in worktrees. Code quality is enforced by TRUST 5. Deployments are stateful with crash recovery. The junior developer can now release safely.
+
+**Gotchas discovered:** The biggest win was the local-first release workflow -- running releases from dev machines instead of only through CI gave the team immediate feedback and faster iteration on the release configuration itself.
 
 ## Usage Scenarios
 
@@ -206,54 +306,91 @@ The result: your 12-step Notion checklist is replaced by an automated pipeline. 
 **The skill provides:**
 - `init_project.sh` execution and `.releaserc.json` configuration
 - Monorepo support with `semantic-release-monorepo` for independent package versions
-- Conventional commit rules (feat/fix/BREAKING CHANGE) mapped to semver bumps
-- Multi-account authentication for publishing to different registries
+- Conventional commit rules mapped to semver bumps
+- Multi-account authentication for different registries
 
-**You end up with:** Automated releases triggered by conventional commits, with each package versioned independently and published to its target registry.
+**You end up with:** Automated releases triggered by conventional commits, with each package versioned independently.
 
 ### Scenario 2: Coordinating parallel agent workflows
 
-**Context:** You are building an AI-powered code generation system where three agents (spec writer, implementer, reviewer) need to work in sequence with the reviewer's output potentially looping back to the implementer.
+**Context:** You are building an AI-powered code generation system where three agents (spec writer, implementer, reviewer) need to work in sequence with the reviewer able to loop back to the implementer.
 
-**You say:** `Set up a multi-agent workflow where spec-writer feeds implementer feeds reviewer, with the reviewer able to send work back to the implementer`
+**You say:** `Set up a multi-agent workflow where spec-writer feeds implementer feeds reviewer, with the reviewer able to send work back`
 
 **The skill provides:**
-- WorkflowEngine configuration with three agents and their dependencies
+- WorkflowEngine configuration with three agents and dependencies
 - Stage definitions with `depends_on` declarations
-- Error recovery patterns for when an agent fails mid-stage
-- Loop detection and termination criteria for the reviewer-implementer cycle
-- Performance monitoring to identify bottleneck stages
+- Error recovery patterns for agent failures
+- Loop detection and termination criteria
 
-**You end up with:** A coordinated agent pipeline with dependency management, error recovery, and monitoring -- not an ad-hoc script that breaks when any agent fails.
+**You end up with:** A coordinated agent pipeline with dependency management, error recovery, and monitoring.
 
 ### Scenario 3: Choosing a scientific workflow tool
 
-**Context:** You are a data scientist whose Python computation pipeline runs on your laptop with joblib caching. You need to scale to an HPC cluster with 200 nodes, but do not know which workflow framework to adopt.
+**Context:** You are a data scientist whose Python pipeline runs on your laptop with joblib. You need HPC cluster execution with 200 nodes.
 
-**You say:** `I need to scale my Python pipeline from laptop (joblib) to HPC cluster -- which tool should I use and how do I migrate?`
+**You say:** `I need to scale my Python pipeline from laptop (joblib) to HPC cluster -- which tool should I use?`
 
 **The skill provides:**
-- Decision tree: joblib (10-100 tasks, single machine) vs Parsl (100+ tasks, HPC clusters) vs Prefect (complex DAGs with retries and UI) vs Covalent (cloud-agnostic deployment)
-- Migration path from joblib to Parsl for HPC workloads
-- Configuration examples for SLURM-based cluster execution
-- Scaling considerations: task granularity, data transfer overhead, checkpoint frequency
+- Decision tree: joblib (single machine) vs Parsl (HPC) vs Prefect (complex DAGs) vs Covalent (cloud-agnostic)
+- Migration path from joblib to Parsl
+- SLURM configuration examples
+- Scaling considerations: task granularity, data transfer, checkpointing
 
-**You end up with:** A clear tool choice with migration guidance and working configuration for your specific cluster setup.
+**You end up with:** A clear tool choice with migration guidance and working cluster configuration.
 
 ### Scenario 4: Building a crash-resilient deployment pipeline
 
-**Context:** Your deployment process has crashed twice mid-deploy, leaving staging in an inconsistent state. You need a deployment pipeline with state persistence and crash recovery.
+**Context:** Your deployment has crashed twice mid-deploy, leaving staging inconsistent. You need state persistence and crash recovery.
 
 **You say:** `Build a deployment state machine that survives crashes and tells me exactly where to resume`
 
 **The skill provides:**
-- FABER state machine setup with `state-init.sh` and stage definitions
-- State persistence to disk with `state-write.sh` at each transition
-- Lock management with `lock-acquire.sh` to prevent concurrent deploys
-- Crash recovery with `state-read.sh` for diagnostics and `error-recovery.sh` for resume options
-- Audit trail via `workflow-audit.sh` for post-incident review
+- FABER state machine setup with stage definitions
+- State persistence at each transition
+- Lock management to prevent concurrent deploys
+- Crash recovery with diagnostics and resume options
+- Audit trail for post-incident review
 
-**You end up with:** A deployment pipeline that persists its state, prevents concurrent execution, recovers from crashes, and maintains an audit trail.
+**You end up with:** A deployment pipeline that persists state, prevents concurrency, recovers from crashes, and maintains an audit trail.
+
+---
+
+## Decision Logic
+
+**How does the skill route requests to capabilities?**
+
+The decision tree in SKILL.md branches on what you are automating:
+- Build/test/deploy pipeline -> CI/CD references + templates
+- Parallel feature development -> Git worktree scripts + GitFlow conventions
+- Scientific computation -> Subskill selection (joblib -> Parsl -> Prefect -> Covalent)
+- Multi-agent coordination -> Alfred WorkflowEngine patterns + development modules
+- Version/release management -> Semantic release references + setup scripts
+- Stateful process automation -> FABER state machine scripts
+
+**When does this skill activate vs cicd-pipelines, git-workflow, or docker-containerization?**
+
+This skill handles workflow orchestration and automation patterns. cicd-pipelines handles YAML configuration syntax for specific CI platforms. git-workflow handles branch strategy and commit conventions. docker-containerization handles container builds and optimization. The boundary: if you are asking about how to automate a process or coordinate multiple stages, use this skill. If you are asking about specific platform configuration (GitHub Actions YAML, Dockerfile syntax, branch naming), use the specialized skill.
+
+**Scientific workflow tool selection logic:**
+
+| Your situation | Tool | Why |
+|---|---|---|
+| 10-100 tasks, single machine, need caching | joblib | Minimal setup, `@memory.cache` decorator |
+| 100+ tasks, HPC cluster, SLURM/PBS | Parsl | Native HPC executors, scales to thousands of nodes |
+| Complex DAG, need retries and UI monitoring | Prefect | Visual flow builder, built-in retry/scheduling |
+| Cloud-agnostic, multiple providers | Covalent | Dispatch to AWS/GCP/Azure without rewriting |
+| Materials science domain | quacc/FireWorks | Domain-specific calculators and job management |
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Semantic release commits do not follow conventional format | No version bump occurs, release pipeline runs but publishes nothing | Enforce conventional commits with a commit-msg hook (git-workflow provides this). Audit recent commits with `git log --oneline` and rewrite non-conforming ones before release. |
+| FABER state file corrupted during a crash | `state-read.sh` returns invalid data, deployment cannot resume | `state-backup.sh` creates snapshots before risky operations. Restore from the latest backup. If no backup exists, `state-init.sh` resets state and you restart from the beginning of the current phase. |
+| Git worktrees accumulate without cleanup | Disk fills up, developers forget which worktrees are active, stale branches linger | Run `cleanup_worktrees.sh --merged` weekly (automate with a cron job or CI schedule). `list_worktrees.sh` provides visibility for manual review. |
+| Multi-agent workflow enters infinite reviewer-implementer loop | Reviewer keeps rejecting, implementer keeps revising, tokens and time are wasted | Set a maximum iteration count in the WorkflowEngine configuration (typically 3). After max iterations, escalate to human review instead of looping. |
+| Wrong scientific workflow tool chosen | joblib pipeline works on laptop but does not scale, or Parsl is too heavy for a simple pipeline | Use the decision tree before committing. If you already committed to the wrong tool, the subskills provide migration paths (joblib -> Parsl is documented; Parsl -> Prefect requires rewriting task definitions). |
 
 ## Ideal For
 
@@ -269,23 +406,14 @@ The result: your 12-step Notion checklist is replaced by an automated pipeline. 
 - **Managing Docker containers or writing Dockerfiles** -- use [docker-containerization](../docker-containerization/) for multi-stage builds, Compose, and container optimization
 - **Git branching strategy, commit quality, or conventional commit format** -- use [git-workflow](../git-workflow/) for branch management and commit conventions
 
-## How It Works Under the Hood
-
-The plugin is a single skill with an unusually large supporting structure. The core `SKILL.md` provides a decision tree that routes your request to the right capability based on what you are trying to automate.
-
-Six modules provide development workflow patterns (TDD, debugging, code review, refactoring, performance optimization). Five CI/CD references cover best practices, DevSecOps, security, optimization, and troubleshooting. Eleven semantic release references cover the full release automation lifecycle from setup through monorepo support to PyPI publishing. Five references cover Playwright patterns, GitFlow conventions, and multi-agent orchestration.
-
-Thirty-plus FABER shell scripts implement a complete state machine toolkit. Three git scripts manage worktrees. Three release scripts handle project and user configuration. Ten CI/CD templates provide ready-to-use workflows for both GitHub Actions and GitLab CI across four languages plus security scanning. Six subskills cover scientific workflow tools from joblib to quacc.
-
-The progressive disclosure approach means you never see the full component inventory -- the skill loads the relevant capability based on your request and pulls in the specific references, scripts, or templates that apply.
-
 ## Related Plugins
 
 - **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline YAML configuration that this skill's templates generate
 - **[Git Workflow](../git-workflow/)** -- Conventional commits and branch management that feed into this skill's release automation
 - **[Docker Containerization](../docker-containerization/)** -- Container builds that are the deployment target for workflows designed here
 - **[Cloud FinOps](../cloud-finops/)** -- Cost monitoring for the infrastructure these workflows run on
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Higher-level agent coordination patterns that complement this skill's WorkflowEngine
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
