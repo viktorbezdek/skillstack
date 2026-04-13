@@ -6,22 +6,22 @@ Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, 
 
 ## What Problem Does This Solve
 
-Python's ecosystem has modernized significantly — pip, Black, flake8, and isort have been superseded by faster, simpler alternatives — but most developers are still working with outdated toolchains and patterns. Inconsistent dependency management, missing type annotations, and poor project structure cause builds that don't reproduce, type errors that slip to production, and codebases that resist refactoring. This skill encodes current best practices for Python 3.11+ with the modern toolchain (uv, ruff, mypy) from simple scripts to PyPI-published libraries.
+Python's ecosystem has modernized significantly -- pip, Black, flake8, and isort have been superseded by faster, simpler alternatives -- but most developers and LLMs are still generating code with outdated toolchains and legacy patterns. Inconsistent dependency management, missing type annotations, mutable default arguments, bare excepts, and poor project structure cause builds that do not reproduce, type errors that slip to production, and codebases that resist refactoring. This skill encodes the current best practices for Python 3.11+ with the modern toolchain (uv, ruff, mypy, pytest), from single-file scripts to PyPI-published libraries and MicroPython embedded systems.
 
 ## When to Use This Skill
 
 | You say... | The skill provides... |
 |---|---|
-| "Set up a new Python project with proper tooling" | Standard project setup using uv, ruff, mypy, and pytest with a complete pyproject.toml configuration |
-| "Which Python package manager should I use?" | Tier selection guide (Minimal/Standard/Full) and uv commands replacing pip, virtualenv, and pip-tools |
+| "Set up a new Python project with proper tooling" | Standard project setup using uv init, ruff, mypy, and pytest with a complete pyproject.toml and src/ layout |
 | "My async code is blocking the event loop" | Async patterns with httpx.AsyncClient, asyncio.to_thread(), and the anti-patterns that cause blocking |
-| "How do I structure a Python library for PyPI publishing" | Full project layout (src/ layout), pyproject.toml with Hatchling build system, and CI/CD publishing workflow |
-| "Help me add type checking to my Python codebase" | mypy configuration for strict mode, modern type annotation syntax (list[str] not List[str]), and Protocol-based interfaces |
-| "My Python code passes tests but has quality issues" | Quality gates checklist: ruff format, ruff check, mypy strict, pytest with >80% coverage, bandit for security |
+| "How do I structure a Python library for PyPI publishing?" | Full project layout (src/ layout), pyproject.toml with Hatchling build system, and CI/CD publishing workflow |
+| "Help me add type checking to my Python codebase" | mypy configuration for strict mode, modern annotation syntax (list[str] not List[str]), and Protocol-based interfaces |
+| "My Python code passes tests but has quality issues" | Five-gate quality checklist: ruff format, ruff check, mypy strict, pytest with >80% coverage, bandit for security-critical code |
 
 ## When NOT to Use This Skill
 
 - TypeScript or JavaScript development -- use [typescript-development](../typescript-development/) instead
+- React component patterns -- use [react-development](../react-development/) instead
 
 ## Installation
 
@@ -39,7 +39,7 @@ Run the commands above from inside a Claude Code session. After installation, th
 **Direct invocation:**
 
 ```
-Use the python-development skill to ...
+Use the python-development skill to set up a new CLI tool with Typer
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -53,35 +53,68 @@ Use the python-development skill to ...
 
 ## What's Inside
 
-- **Quick Start** -- Tier selection table (Minimal/Standard/Full) and a complete Standard project setup sequence from uv init to running quality checks.
-- **Core Principles** -- Six non-negotiable practices: uv for everything, type hints everywhere, ruff for quality, pytest for testing, locked dependencies, and PEP 723 for scripts.
-- **Modern Python Toolchain (2024-2025)** -- Command reference for uv (dependency management), ruff (linting and formatting), and mypy (type checking) replacing the legacy pip/Black/flake8 stack.
-- **Project Structure** -- Canonical src/ layout with pyproject.toml configuration for ruff, mypy, and pytest settings.
-- **Anti-Patterns to Avoid** -- Table of nine common Python mistakes (mutable defaults, blocking async, inheritance overuse, bare except) with their correct replacements.
-- **Quality Gates** -- Five mandatory checks every Python task must pass before completion, plus stricter thresholds (>95% coverage, bandit security scan) for critical code.
-- **Official Documentation** -- Direct links to Python, uv, ruff, mypy, pytest, and PEP index documentation.
+This plugin includes a skill, slash commands, reference documentation, cookbooks, workflow guides, scripts, and templates.
 
-## Version History
+### Skill
 
-- `1.1.24` fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript (b65bc7d)
-- `1.1.23` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.1.22` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.1.21` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.1.20` refactor: remove old file locations after plugin restructure (a26a802)
-- `1.1.19` docs: update README and install commands to marketplace format (af9e39c)
-- `1.1.18` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.1.17` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.1.16` fix: make all shell scripts executable and fix Python syntax errors (61ac964)
-- `1.1.15` docs: add detailed README documentation for all 34 skills (7ba1274)
+| Component | Purpose |
+|---|---|
+| `SKILL.md` | Core principles, modern toolchain reference (uv, ruff, mypy), project structure, anti-pattern table, quality gates |
+| `references/extended-patterns.md` | Detailed code examples for type hints, testing, async, itertools/functools, library architecture |
+| `references/async-patterns.md` | asyncio patterns, event loop management, httpx async client usage |
+| `references/conventions-and-style.md` | PEP 8 conventions, naming rules, import ordering |
+| `references/dependency-management.md` | uv workflows, lockfile management, virtual environment handling |
+| `references/exception-handling.md` | Exception hierarchies, custom exceptions, context-appropriate catching |
+| `references/type-hints.md` | Modern type annotation patterns, generics, Protocols, TypeVar |
+| `references/testing-methodology.md` | pytest patterns, fixtures, parametrization, coverage enforcement |
+| `references/packaging-distribution.md` | PyPI publishing, build systems, versioning |
+| `references/security-best-practices.md` | bandit scanning, secret management, input validation |
+| `references/performance-optimization.md` | Profiling, caching, lazy evaluation, memory optimization |
+| `references/project-structure.md` | src/ layout conventions, monorepo patterns |
+| `references/functional-reference.md` | Functional programming patterns in Python |
+| `references/uv.md` | Comprehensive uv command reference |
+| `cookbook/` | Recipes for async, design patterns, modern Python, testing, and common patterns |
+
+### Slash Commands
+
+| Command | Purpose |
+|---|---|
+| `create-feature-task` | Set up a structured feature development task with phases, tracking, and documentation |
+| `use-command-template` | Generate new slash commands following established patterns |
+| `analyze-test-failures` | Investigate failing tests with a balanced approach -- distinguishes test bugs from real bugs |
+| `comprehensive-test-review` | Full test review following a standardized checklist |
+| `test-failure-mindset` | Set balanced investigative approach for test failure analysis |
+
+### Scripts and Tools
+
+| Component | Purpose |
+|---|---|
+| `scripts/setup-project.sh` | Project scaffolding automation |
+| `scripts/check-code-quality.sh` | Quality gate runner (ruff + mypy + pytest) |
+| `tools/python-check` | Quick Python code validation |
+| `tools/python-lint` | Linting wrapper |
+| `workflows/` | Guided workflows for dependencies, linting, packaging, project setup, scripting, testing, type checking, and workspace management |
+
+## Usage Scenarios
+
+**Scenario 1 -- Greenfield project setup.** You are starting a new Python CLI tool. The skill provides the uv init sequence, generates a pyproject.toml with ruff/mypy/pytest configuration, scaffolds the src/ layout, and sets up quality gates so every commit passes format, lint, type-check, and test checks.
+
+**Scenario 2 -- Modernizing a legacy codebase.** Your project still uses pip, Black, flake8, and isort with `Optional[List[str]]` type annotations. The skill guides migration to uv for package management, ruff as a single replacement for Black+flake8+isort, and modern annotation syntax (`list[str] | None`), preserving all existing functionality.
+
+**Scenario 3 -- Debugging async issues.** Your FastAPI endpoint is hanging under load because a synchronous library call is blocking the event loop. The skill identifies the anti-pattern (using `requests.get` in async context) and provides the fix (`httpx.AsyncClient` or `asyncio.to_thread()` for legacy sync calls).
+
+**Scenario 4 -- Publishing a library to PyPI.** You have a utility library ready for distribution. The skill provides the Hatchling build system setup, version management, README configuration for PyPI, and the `uv build && uv publish` workflow with CI/CD integration.
+
+**Scenario 5 -- Embedded MicroPython development.** You are writing firmware for an RP2350 board. The skill includes MicroPython-specific patterns, async references for constrained environments, and example scripts for BLE GATT servers, MQTT clients, and touch handlers.
 
 ## Related Skills
 
-- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
-- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
-- **[Frontend Design](../frontend-design/)** -- Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, acce...
-- **[Gws Cli](../gws-cli/)** -- Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace A...
-- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
+- **[Test Driven Development](../test-driven-development/)** -- Red-Green-Refactor methodology with pytest-specific TDD patterns.
+- **[Testing Framework](../testing-framework/)** -- Framework selection and test infrastructure setup across multiple languages.
+- **[Api Design](../api-design/)** -- Design REST and GraphQL APIs that your Python services expose.
+- **[Docker Containerization](../docker-containerization/)** -- Containerize Python applications with multi-stage builds.
+- **[CI/CD Pipelines](../cicd-pipelines/)** -- Automate quality gates and deployment for Python projects.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 52 production-grade plugins for Claude Code.
