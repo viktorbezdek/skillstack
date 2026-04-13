@@ -1,6 +1,6 @@
 ---
 name: critical-intuition
-description: Analyze and critique existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind spot exposure, red flag identification, early warning signals, and reading between the lines. NOT for generating new creative solutions, brainstorming, or strategic reframing (use creative-problem-solving).
+description: Stress-test, critique, and challenge existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind-spot exposure, and red-flag identification. Use when the user asks to stress-test a plan, challenge assumptions, find flaws, identify risks in an idea, expose hidden biases, audit a proposal for blind spots, or "poke holes in this". NOT for generating new ideas or solutions (use creative-problem-solving). NOT for structured risk registers or mitigation plans (use risk-management).
 ---
 
 # Critical Intuition & Sixth Sense
