@@ -1,8 +1,7 @@
 # UX Writing
 
-> **v1.0.10** | Design & UX | 11 iterations
-
-> Turn "Submit", "Error 404", and "Click here" into interface text that actually helps users succeed.
+> **v1.0.10** | Turn "Submit", "Error 404", and "Click here" into interface text that actually helps users succeed.
+> Single skill, no references | 13 trigger evals + 3 output evals
 
 ## The Problem
 
@@ -57,19 +56,68 @@ Rewrite these error messages to be more helpful -- "Error 404", "Invalid input",
 4. Review the before/after comparison to see how each new label tells the user exactly what happens next
 5. Next, try: `Write empty state copy for a dashboard that has no projects yet`
 
+---
+
+## System Overview
+
+```
+User prompt (microcopy request, error message rewrite, button label, empty state)
+        |
+        v
++------------------------+
+|     ux-writing         |
+|      (SKILL.md)        |
++------------------------+
+        |
+        |-- 4 Principles
+        |     Clear: simple words, active voice
+        |     Concise: front-load key info, cut filler
+        |     Useful: always provide a next step
+        |     Human: empathetic, conversational
+        |
+        |-- 4 Tone Contexts
+        |     Success -> celebratory ("You're all set!")
+        |     Error -> helpful ("Let's fix this")
+        |     Warning -> direct ("This can't be undone")
+        |     Empty -> encouraging ("Create your first...")
+        |
+        |-- 4 UI Pattern Templates
+              Buttons: Verb + Object formula
+              Errors: what happened + what to do
+              Confirmations: action title + consequence + labeled buttons
+              Form labels: plain label + example + helper text
+```
+
+This is a compact single-skill plugin with no reference documents. All methodology -- principles, tone guidance, and pattern templates -- fits directly in the core `SKILL.md`. The skill identifies which UI pattern applies to your request, selects the appropriate tone context, and produces specific rewrites with explanations.
+
 ## What's Inside
 
-This is a **single-skill plugin** with focused methodology and eval coverage.
+| Component | Type | Purpose |
+|---|---|---|
+| `skills/ux-writing/SKILL.md` | Skill | Core principles (Clear, Concise, Useful, Human), tone-by-context guidance, four UI pattern rewrites (buttons, errors, confirmation dialogs, form labels) |
+| `evals/trigger-evals.json` | Eval | 13 trigger scenarios for activation boundary testing |
+| `evals/evals.json` | Eval | 3 output quality scenarios for copy improvement |
 
-| Component | Purpose |
-|---|---|
-| `skills/ux-writing/SKILL.md` | Core principles (Clear, Concise, Useful, Human), tone-by-context guidance, and four UI pattern rewrites (buttons, errors, confirmation dialogs, form labels) |
-| `evals/trigger-evals.json` | 13 trigger scenarios for activation boundary testing |
-| `evals/evals.json` | 3 output quality scenarios for copy improvement |
+### Component Spotlight
 
-### ux-writing
+#### ux-writing (skill)
 
 **What it does:** Activates when you need to write or improve microcopy, error messages, button labels, empty states, confirmation dialogs, form labels, or any interface text. Applies the Clear-Concise-Useful-Human framework, calibrates tone by context (success, error, warning, empty state), and provides before/after rewrites using proven UI text patterns.
+
+**Input -> Output:** You describe your current interface text, the context it appears in, and optionally what is going wrong -> You get rewritten copy following the four principles, with before/after comparison and explanation of why each change improves the experience.
+
+**When to use:**
+- Replacing placeholder "Submit", "OK", "Cancel" buttons with meaningful labels
+- Rewriting generic error messages so users know what went wrong and what to do
+- Writing empty state copy that explains the feature and encourages the first action
+- Creating confirmation dialogs for destructive actions with clear consequences
+- Building a tone guide for consistent voice across an application
+- Writing microcopy for onboarding flows, tooltips, or password reset flows
+
+**When NOT to use:**
+- Generating long-form documentation or help articles -> use [documentation-generator](../documentation-generator/)
+- Designing visual layout or navigation patterns -> use [frontend-design](../frontend-design/) or [navigation-design](../navigation-design/)
+- Creating content models for a CMS -> use [content-modelling](../content-modelling/)
 
 **Try these prompts:**
 
@@ -97,59 +145,105 @@ Our app uses inconsistent tone -- errors sound angry, success messages sound rob
 Write the microcopy for a password reset flow: the email prompt, the "check your email" confirmation, and the "password changed" success message
 ```
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, may not activate) | Good (specific, activates reliably) |
+|---|---|
+| "Help with copy" | "Rewrite our form error messages -- right now they all say 'Invalid input'" |
+| "Fix my text" | "My checkout has five buttons that all say 'Submit' -- write specific labels for each step" |
+| "Write something for the empty page" | "Write empty state copy for a dashboard with no projects -- explain the feature and encourage the first action" |
+| "Make the dialog better" | "Rewrite this confirmation dialog for file deletion: title 'Warning', body 'Are you sure?', buttons 'OK'/'Cancel'" |
+| "Our copy is bad" | "Our errors sound angry and success messages sound robotic -- help me create a consistent tone guide" |
+
+### Structured Prompt Templates
+
+**For error message rewrites:**
+```
+Rewrite these error messages so users know what's wrong and what to do: [list current error messages]. Context: they appear in [form type / feature area].
+```
+
+**For button label improvements:**
+```
+My [feature area] has these buttons that all say [current generic label]. Write specific labels for each: [list the actions each button performs].
+```
+
+**For empty state copy:**
+```
+Write empty state copy for [screen name] when [what's missing, e.g., "the user has no projects yet"]. It should explain [what the feature does] and encourage [the first action].
+```
+
+**For confirmation dialogs:**
+```
+Rewrite the confirmation dialog for [destructive action, e.g., "deleting a project"]. Current dialog: title "[current title]", body "[current body]", buttons [current buttons]. The user needs to understand [what happens / consequence].
+```
+
+**For tone guides:**
+```
+Create a tone guide for our [type of app]. We want to sound [desired voice, e.g., "motivating but not annoying"]. Cover success, error, warning, and empty state contexts with examples.
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for "good copy" without providing context:** "Write better copy" does not tell the skill what UI pattern to apply or what tone context to use. Provide the current copy, where it appears, and what the user is trying to do.
+- **Requesting marketing copy instead of interface text:** "Write copy for our landing page headline" is marketing, not UX writing. This skill is for in-product microcopy -- buttons, errors, empty states, dialogs, form labels.
+- **Asking to fix just one word:** "Should my button say 'Save' or 'Submit'?" is too narrow. Provide the full context -- what form it is on, what happens when clicked, what other buttons are nearby -- so the skill can apply the Verb + Object formula properly.
+- **Dumping all app copy for review without indicating problems:** "Here's all our copy, make it better" is too broad. Start with the worst offenders -- the screens that generate support tickets or have the highest drop-off rates.
+
 ## Real-World Walkthrough
 
 You are a frontend engineer working on a project management app. The app shipped three months ago with placeholder copy that was never replaced. Your support team reports that 30% of tickets are "I don't understand what this button does" or "I got an error and don't know what to do." Your PM asks you to do a "copy pass" across the app, but you have no framework for what good copy looks like.
 
-You start with the worst offender -- the error messages:
+**Step 1 -- Fix the error messages.** You start with the worst offender:
 
 ```
 Our app shows these errors and users always contact support. Rewrite them: "Error: Invalid input", "Operation failed", "Error 500", "Timeout", "Not authorized"
 ```
 
-The skill applies the error message pattern: describe what went wrong in human language, then provide a specific next step. Your five errors become:
+The skill applies the error message pattern (what happened + what to do):
 
-- "Error: Invalid input" becomes "This email address needs an @ symbol" (or whatever the specific validation failure is -- the skill teaches you to make errors field-specific, not form-level)
+- "Error: Invalid input" becomes "This email address needs an @ symbol" (field-specific, not form-level)
 - "Operation failed" becomes "Could not save your changes. Check your connection and try again."
 - "Error 500" becomes "Something went wrong on our end. We're looking into it -- try again in a few minutes."
 - "Timeout" becomes "This is taking longer than usual. Check your connection or try again."
 - "Not authorized" becomes "You don't have access to this page. Contact your team admin to request access."
 
-Each rewrite follows the same structure: human-readable description + actionable next step. The skill points out that "Not authorized" is particularly bad because it does not tell the user who can fix it -- the rewrite adds "Contact your team admin" so the user has a concrete path forward.
+The skill points out that "Not authorized" is particularly bad because it does not tell the user who can fix it.
 
-Next, you tackle the buttons:
+**Step 2 -- Fix the buttons.** You tackle every "Submit" button:
 
 ```
 Here are all the buttons in our app that say "Submit": signup form, settings page, project creation, task assignment, and invoice generation. Rewrite each one.
 ```
 
-The skill applies the Verb + Object formula. "Submit" on the signup form becomes "Create account." "Submit" on settings becomes "Save settings." "Submit" on project creation becomes "Create project." "Submit" on task assignment becomes "Assign task." "Submit" on invoice generation becomes "Generate invoice." Each button now tells the user exactly what clicking it will do.
+The skill applies Verb + Object: "Create account", "Save settings", "Create project", "Assign task", "Generate invoice." Each button now tells the user exactly what clicking it will do.
 
-Then the confirmation dialogs. Your app has a single reusable dialog component with the title "Warning", body "Are you sure you want to proceed?", and buttons "OK" and "Cancel." Every destructive action uses it -- deleting a project, removing a team member, canceling a subscription.
-
-```
-Rewrite our confirmation dialog for three different destructive actions: deleting a project, removing a team member, and canceling a subscription
-```
-
-The skill produces three context-specific dialogs:
-
-**Delete project:** Title: "Delete 'Q4 Report'?" Body: "This will permanently delete the project and all its tasks. This can't be undone." Buttons: [Delete project] [Keep project]
-
-**Remove team member:** Title: "Remove Sarah from this project?" Body: "Sarah will lose access to all project files and conversations." Buttons: [Remove member] [Cancel]
-
-**Cancel subscription:** Title: "Cancel your Pro plan?" Body: "You'll keep access until March 15, then your account will switch to the free plan." Buttons: [Cancel subscription] [Keep Pro plan]
-
-Each dialog uses the specific action as the title (not "Warning"), includes the consequence (not "Are you sure?"), and labels the buttons with the actual action (not "OK/Cancel"). The user knows exactly what will happen before they click.
-
-Finally, you address empty states. Your app shows "No items" on every empty screen -- no explanation of the feature, no guidance on what to do first.
+**Step 3 -- Fix the confirmation dialogs.** Your single reusable dialog ("Warning" / "Are you sure?" / OK / Cancel) gets three context-specific versions:
 
 ```
-Write empty state copy for these screens: projects list (new user), team members (solo user), and reports (no data yet)
+Rewrite our confirmation dialog for deleting a project, removing a team member, and canceling a subscription
 ```
 
-The skill applies the empty state pattern: describe what the feature does + encourage the first action. "No items" on the projects list becomes "Organize your work into projects. Create your first project to get started." with a [Create project] button. "No items" on team members becomes "Collaborate with your team. Invite colleagues to work together on projects." with an [Invite team member] button.
+**Delete project:** "Delete 'Q4 Report'? This will permanently delete the project and all its tasks. This can't be undone." [Delete project] [Keep project]
 
-The result: your support tickets about confusing interface copy drop by half within the first month. The copy pass took a single day using the framework, compared to the weeks of ad-hoc rewrites you had been doing before. The Clear-Concise-Useful-Human framework becomes your team's standard for all new copy.
+**Remove member:** "Remove Sarah from this project? Sarah will lose access to all project files and conversations." [Remove member] [Cancel]
+
+**Cancel subscription:** "Cancel your Pro plan? You'll keep access until March 15, then your account switches to the free plan." [Cancel subscription] [Keep Pro plan]
+
+**Step 4 -- Fix the empty states.** "No items" on every empty screen becomes feature-specific copy:
+
+```
+Write empty state copy for: projects list (new user), team members (solo user), and reports (no data yet)
+```
+
+"No items" on projects becomes "Organize your work into projects. Create your first project to get started." with a [Create project] button.
+
+**Step 5 -- Result.** Support tickets about confusing interface copy drop by half within the first month. The copy pass took a single day using the framework. The Clear-Concise-Useful-Human framework becomes your team's standard.
+
+**Gotchas discovered:** The biggest impact came from making buttons action-specific (Verb + Object), not from rewriting errors. Users who understand what a button does make fewer errors in the first place.
 
 ## Usage Scenarios
 
@@ -204,7 +298,33 @@ The result: your support tickets about confusing interface copy drop by half wit
 - Labeled buttons: [Remove item] [Keep in cart] instead of [OK] [Cancel]
 - Optional: undo toast as an alternative to the confirmation dialog for low-stakes actions
 
-**You end up with:** A confirmation dialog where users understand exactly what will happen and accidental removals drop significantly.
+**You end up with:** A confirmation dialog where users understand exactly what will happen, and accidental removals drop significantly.
+
+---
+
+## Decision Logic
+
+**Which UI pattern template applies?**
+
+The skill selects from four templates based on what you describe: buttons (any call-to-action or form submission), error messages (any failure or validation state), confirmation dialogs (any action with consequences the user should understand before proceeding), and form labels (any input field needing a label, placeholder, and helper text). If your request spans multiple patterns -- "rewrite all the copy on our checkout page" -- the skill applies each pattern to the relevant elements.
+
+**How does tone context get selected?**
+
+Tone comes from the situation, not the preference. Success messages (user completed an action) get celebratory tone. Error messages (something failed) get helpful tone. Warnings (action has irreversible consequences) get direct tone. Empty states (nothing to show yet) get encouraging tone. You do not pick the tone -- the context determines it. The only customization is brand voice (formal vs casual, playful vs serious), which adjusts the intensity within each context.
+
+**When to use this skill vs the frontend-design or navigation-design skill?**
+
+This skill handles the words inside the interface. If you are deciding what a button should say, what an error message should communicate, or what copy goes in an empty state -- use this skill. If you are deciding where the button goes, how it looks, or how the page is laid out -- use frontend-design. If you are deciding what navigation labels to use or how to structure the information architecture -- use navigation-design.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Applying the same tone to every context | Success messages sound as serious as errors; error messages sound as casual as success messages -- the app feels emotionally flat | Map each piece of copy to one of the four tone contexts (success, error, warning, empty state). Each context has a different register. Celebratory success + helpful error + direct warning creates emotional range. |
+| Error messages that are too vague even after rewriting | "Something went wrong" is still not actionable when the user could have fixed it with specific information like "Your file exceeds the 10 MB limit" | Push for specificity: every error should include what the user can do next. If the error comes from a validation rule, include the rule. If it requires support, include how to contact them. |
+| Button labels that are action-specific but too long | "Save your updated notification preferences and return to the settings page" does not fit in a button | Keep buttons to 2-4 words maximum. The Verb + Object formula produces "Save preferences" -- the rest of the context comes from the page heading and surrounding UI, not the button label. |
+| Empty state copy that only explains but does not provide a call-to-action | "Reports show your project's progress over time." describes the feature but the user still does not know what to do next | Every empty state needs a visible action element -- a button or link that starts the process. Explanation + call-to-action ("Track your project's progress. Create your first report.") is the pattern. |
+| Over-optimizing microcopy for personality at the expense of clarity | "Oopsie-daisy, something borked!" might sound on-brand but tells the user nothing about what happened or what to do | The Clear principle always outranks the Human principle. Be human and empathetic, but never at the expense of clear communication. Users in error states need help, not personality. |
 
 ## Ideal For
 
@@ -218,12 +338,7 @@ The result: your support tickets about confusing interface copy drop by half wit
 - **Generating long-form documentation or help articles** -- use [documentation-generator](../documentation-generator/) for technical docs, tutorials, and API references
 - **Designing visual layout or navigation patterns** -- use [frontend-design](../frontend-design/) for component design or [navigation-design](../navigation-design/) for information architecture
 - **Creating content models for a CMS** -- use [content-modelling](../content-modelling/) for structured content types and editorial workflows
-
-## How It Works Under the Hood
-
-The plugin is a single compact skill with all methodology in the core `SKILL.md`. It defines four principles (Clear, Concise, Useful, Human), four tone contexts (success, error, warning, empty state), and four UI pattern templates (buttons, error messages, confirmation dialogs, form labels) with before/after examples.
-
-The skill activates from natural language mentions of microcopy, UX copy, interface text, error messages, button labels, empty states, or conversational UI text. When activated, it identifies which UI pattern applies to your request, applies the appropriate principle and tone, and produces specific rewrites with explanations of why each change improves the user experience.
+- **Writing marketing copy for landing pages** -- this skill is for in-product microcopy, not acquisition-stage content
 
 ## Related Plugins
 
@@ -235,4 +350,4 @@ The skill activates from natural language mentions of microcopy, UX copy, interf
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
