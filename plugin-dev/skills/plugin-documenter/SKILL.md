@@ -119,7 +119,40 @@ Read ALL skill descriptions (frontmatter) and the plugin.json description. From 
 
 Do NOT copy the frontmatter description verbatim. The frontmatter is written for Claude's activation engine. The problem statement is written for humans deciding whether to install.
 
-### Step 4 — Map real use-case scenarios
+### Step 4 — Write "How to Use" with prompt templates
+
+For EACH skill in the plugin, produce a practical usage section with:
+
+1. **What it does** — one paragraph explaining the capability in plain language
+2. **Prompt templates** — 3-5 copy-pasteable prompts that trigger the skill. These are NOT the eval queries — they are realistic prompts a user would type in a Claude Code session. Each prompt should show a different angle of the skill:
+
+```markdown
+### How to Use: [skill-name]
+
+**What it does:** [plain language explanation]
+
+**Try these prompts:**
+
+```
+Help me design a REST API for a bookstore inventory with CRUD operations
+```
+
+```
+Review my API — I'm not sure about the pagination approach
+```
+
+```
+What's the best error response format for a public API?
+```
+```
+
+**Rules for good prompt templates:**
+- Show the user's actual words, not the skill name ("Help me design a REST API", not "Use api-design to design an API")
+- Vary the intent: one for starting fresh, one for reviewing existing work, one for a specific sub-topic, one for troubleshooting
+- Include context where it helps ("I'm using Express.js" or "This is a public-facing API")
+- Never include the skill invocation syntax (`/plugin-dev:plugin-hooks`) — the skill activates automatically from natural language
+
+### Step 5 — Map realistic use-case scenarios
 
 For each skill in the plugin, read:
 - The frontmatter trigger phrases (the "use when" clauses)
@@ -127,17 +160,28 @@ For each skill in the plugin, read:
 - The references (deep domain content)
 - The evals (if present — eval queries are excellent proxies for real user scenarios)
 
-From these, construct **3-5 realistic scenarios per skill**:
+From these, construct **3-5 realistic scenarios per skill**. Each scenario describes WHERE the user is (their situation), WHAT they ask, WHAT the skill provides, and WHAT they end up with:
 
-```
-Scenario: "You just inherited a legacy codebase and need to add a feature safely"
-1. User says: "I inherited this codebase and I'm afraid to touch it"
-2. The skill activates and provides: [specific methodology from the skill body]
-3. User follows the phases: [step-by-step from the skill]
-4. Output: [what the user has at the end]
+```markdown
+#### Scenario: Migrating a monolith to microservices
+
+**Context:** You're breaking a Rails monolith into services and need to design
+the inter-service API contracts before coding anything.
+
+**You say:** "Help me design the API contracts between our user service and
+order service — we need to handle auth tokens and eventual consistency"
+
+**The skill provides:**
+- Resource decomposition following REST conventions
+- Auth token propagation patterns (header forwarding vs service-to-service JWT)
+- Eventual consistency strategies (saga pattern, outbox pattern)
+- Error contract for cross-service failures (4xx vs 5xx semantics)
+
+**You end up with:** A documented API contract both teams can implement
+against, with schemas, error codes, and sequence diagrams.
 ```
 
-Scenarios must be **specific and realistic** — not "user asks about X and gets an answer." Show the journey, not just the trigger.
+Scenarios must be **specific and grounded** — tied to a real situation a developer/PM/designer would recognize. Not "user asks about X and gets an answer."
 
 ### Step 5 — Write installation instructions
 
@@ -188,23 +232,43 @@ Assemble everything into a structured document:
 
 [Architecture overview from Step 2 — component table, relationships]
 
-### [Component 1 Name]
-[What it does, when it activates, what methodology it provides]
+### [Skill 1 Name]
 
-### [Component 2 Name]
-[...]
+**What it does:** [plain language — when it activates, what methodology it provides]
+
+**Try these prompts:**
+
+\```
+[Prompt template 1 — starting fresh]
+\```
+
+\```
+[Prompt template 2 — reviewing existing work]
+\```
+
+\```
+[Prompt template 3 — specific sub-topic or troubleshooting]
+\```
+
+**Key references:** [summary table of reference files, if any]
+
+### [Skill 2 Name]
+[Same structure...]
 
 ## Usage Scenarios
 
-### Scenario 1: [Title]
-[Full scenario from Step 4]
+### Scenario 1: [Descriptive title grounded in a real situation]
+
+**Context:** [Where the user is — their project, their problem, their role]
+
+**You say:** "[Exact prompt they would type]"
+
+**The skill provides:** [Bullet list of specific outputs from the skill's methodology]
+
+**You end up with:** [Concrete deliverable]
 
 ### Scenario 2: [Title]
-[...]
-
-## Reference Guide
-
-[For each skill: trigger phrases, key concepts, reference file summaries]
+[Same structure...]
 
 ## How It Works Under the Hood
 
@@ -221,8 +285,11 @@ Before delivering, verify:
 
 - [ ] Problem statement doesn't use jargon the target audience wouldn't know
 - [ ] Installation instructions are copy-pasteable and correct
-- [ ] Every skill in the plugin has at least one scenario
-- [ ] Scenarios are specific (not "user asks about X")
+- [ ] Every skill has a "How to Use" section with ≥3 prompt templates
+- [ ] Prompt templates use natural language (not skill invocation syntax)
+- [ ] Prompt templates vary in intent (start fresh, review, troubleshoot, specific sub-topic)
+- [ ] Every skill has at least one realistic scenario with Context/You say/Provides/End up with
+- [ ] Scenarios are grounded in real situations (not "user asks about X")
 - [ ] No frontmatter description was copy-pasted as documentation prose
 - [ ] Component relationships are documented (not just listed)
 - [ ] The document answers "what, why, how to install, how to use" in that order
