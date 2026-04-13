@@ -1,27 +1,12 @@
-# Creative Problem Solving
-
 > **v1.0.15** | Strategic Thinking | 16 iterations
 
-Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.
+# Creative Problem Solving
+
+Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, SCAMPER, and strategic reframing -- for problems where conventional analysis reinforces the constraints instead of questioning them.
 
 ## What Problem Does This Solve
 
-Most problem-solving stalls because people attack the stated problem directly, constrained by invisible assumptions about what's fixed, what's possible, and what the goal actually is. Conventional analysis reinforces those constraints rather than questioning them. This skill applies a structured sequence — deep understanding, strategic reframing, broad generation, rigorous analysis, and optimal recommendation — to break through mental blocks and find high-leverage solutions that conventional approaches miss.
-
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "How can we compete against a larger, better-resourced competitor?" | Game theory analysis mapping competitor commitments and constraints, first-principles decomposition of what customers actually value, and asymmetric strategy options |
-| "Think outside the box on this one" | Lateral thinking techniques: random entry, provocation statements, assumption negation, and concept fan expansion across the full SCAMPER framework |
-| "What's the optimal strategy given these constraints?" | Probabilistic assessment with expected value calculation, Nash equilibrium analysis, and backwards induction from desired end state |
-| "Our team isn't collaborating — what should we do?" | Systems thinking analysis of feedback loops, incentive misalignment detection via game theory, and leverage point identification for structural changes |
-| "We need to rethink our approach from scratch" | First principles decomposition separating fundamental truths from inherited conventions, with cross-domain transfer from analogous problems in other fields |
-| "I'm stuck and every obvious approach has problems" | Five-step problem analysis process: deep understanding, strategic reframing (chunk up/down/sideways), solution generation, rigorous evaluation, and decision recommendation with explicit trade-offs |
-
-## When NOT to Use This Skill
-
-- analyzing or critiquing existing ideas, bias detection, or pattern recognition in evidence -- use [critical-intuition](../critical-intuition/) instead
+Most problem-solving stalls because people attack the stated problem directly, constrained by invisible assumptions about what is fixed, what is possible, and what the goal actually is. A team asked "how do we make the system faster?" never considers whether speed is actually the problem (maybe perceived speed is, and async processing solves it). Conventional analysis reinforces those constraints rather than questioning them. This skill applies a structured five-phase process -- deep understanding, strategic reframing, broad generation, rigorous analysis, and optimal recommendation -- to break through mental blocks and find high-leverage solutions that direct approaches miss.
 
 ## Installation
 
@@ -34,12 +19,47 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
+## What's Inside
+
+This is a single-skill plugin with five reference documents:
+
+| Component | Description |
+|---|---|
+| `skills/creative-problem-solving/SKILL.md` | Core skill covering the five-phase process (deep understanding, strategic reframing, solution generation, rigorous analysis, optimal recommendation), problem type identification, assumption challenging, and three worked examples (competitive strategy, technical performance, organizational collaboration) |
+| `references/lateral-thinking.md` | Random entry, provocation statements, assumption escape, concept fan, and movement techniques for breaking mental blocks |
+| `references/strategic-frameworks.md` | Game theory (Nash equilibrium, incentive alignment, backwards induction), first principles thinking, systems thinking (feedback loops, leverage points), and constraints analysis |
+| `references/reframing-techniques.md` | Meta-level shifts (chunk up/down/sideways), perspective rotation, context changes, and constraint manipulation (what if fixed constraints were variable?) |
+| `references/ideation-techniques.md` | SCAMPER (Substitute, Combine, Adapt, Modify, Put to other use, Eliminate, Reverse), morphological analysis, analogical thinking, and TRIZ principles |
+| `references/decision-frameworks.md` | Multi-criteria analysis, Pareto optimization, expected value calculation, real options for flexibility value, reversibility test (one-way vs. two-way doors), and bias mitigation |
+
+## Usage Scenarios
+
+**1. Competing against a larger, better-resourced competitor**
+
+Instead of asking "how do we match their resources," reframe to "how do we win differently." Apply game theory to map where competitors are committed and what they cannot do because of their size. Use first principles to decompose what customers actually value. Generate asymmetric strategy options: niche domination, speed/agility advantage, relationship depth, or constraint-based innovation.
+
+**2. System performance problem with no obvious bottleneck**
+
+The stated problem is "make it faster." Challenge the assumption: must you make it faster, or can you change the perception of speed? Chunk up: what is the real goal -- user satisfaction, throughput, or cost reduction? First principles: what are the theoretical limits and where is the actual bottleneck? Alternative reframes: make slow parts async, reduce the need for the operation entirely, cache, or precompute. Apply a decision framework with cost-benefit, reversibility, and time-to-value for each approach.
+
+**3. Teams not collaborating across organizational boundaries**
+
+Apply systems thinking: is poor collaboration a symptom or the root cause? What incentive structures exist? Use game theory: are individual and collective incentives misaligned (prisoner's dilemma)? Reframe from each team's perspective: what does each team's optimal strategy look like, and why would they not collaborate? Identify leverage points: change information flows, adjust metrics that reward local optimization, restructure shared accountability. Analyze second-order effects of proposed changes.
+
+**4. Brainstorming creative solutions for a product pivot**
+
+Use the SCAMPER framework systematically: what can you Substitute (different technology, market, delivery model)? Combine (merge two offerings)? Adapt (what works in an adjacent industry)? Modify (scale up or down)? Put to other use (same technology, different market)? Eliminate (what would the product look like with 80% fewer features)? Reverse (invert the value chain)? Cross-reference with analogical thinking from other domains that solved similar structural problems.
+
+**5. Making a high-stakes decision under uncertainty**
+
+Apply probabilistic assessment: estimate expected value (probability times outcome) for each option. Use Bayesian updating with available evidence. Analyze tail risks (low probability, high impact). Apply the reversibility test: one-way doors deserve more analysis, two-way doors favor speed. Use Nash equilibrium analysis if the decision involves strategic interactions with other parties. Provide explicit decision criteria for when to choose each alternative.
+
 ## How to Use
 
 **Direct invocation:**
 
 ```
-Use the creative-problem-solving skill to ...
+Use the creative-problem-solving skill to find unconventional approaches for our market entry strategy
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -48,37 +68,26 @@ Use the creative-problem-solving skill to ...
 - `lateral-thinking`
 - `game-theory`
 
-## What's Inside
+## When to Use / When NOT to Use
 
-- **When to Use This Skill** -- Trigger phrases and problem types: creative requests, unconventional approach searches, game theory applications, reframing, and strategic decision-making.
-- **Core Approach** -- Five-phase process: deep understanding, strategic reframing, broad solution generation, rigorous analysis, and optimal recommendation with explicit trade-offs.
-- **Problem Analysis Process** -- Step-by-step methodology for extracting real problems, challenging assumptions, identifying problem type, generating solutions with technique selection, and structuring recommendations.
-- **Thinking Guidelines** -- Five operating principles: embrace unconventional ideas, read unstated needs, ground in probability, apply game theory to strategic interactions, and maximize user outcomes.
-- **Reference Materials** -- Five reference files: lateral-thinking.md, strategic-frameworks.md, reframing-techniques.md, ideation-techniques.md, and decision-frameworks.md with their respective technique coverage.
-- **Output Approach** -- Three output qualities to maintain: direct and actionable, demonstrably creative, and rigorously grounded in frameworks and evidence.
-- **Examples** -- Three worked examples: competitive product strategy, system performance challenge, and organizational collaboration failure.
+**Use when:**
+- You need creative, unconventional solutions
+- Conventional approaches have stalled or all obvious options have problems
+- Strategic decisions under uncertainty
+- Reframing the problem itself may be more valuable than solving it as stated
+- Game theory analysis of competitive or organizational dynamics
 
-## Version History
+**Do NOT use when:**
+- Analyzing or critiquing existing ideas, detecting bias, or recognizing patterns in evidence -- use [critical-intuition](../critical-intuition/) instead
 
-- `1.0.15` fix(thinking): disambiguate creative-problem-solving vs critical-intuition (6e73dfc)
-- `1.0.14` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.0.13` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.12` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.11` refactor: remove old file locations after plugin restructure (a26a802)
-- `1.0.10` docs: update README and install commands to marketplace format (af9e39c)
-- `1.0.9` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.0.8` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.0.7` docs: add detailed README documentation for all 34 skills (7ba1274)
-- `1.0.6` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+## Related Plugins
 
-## Related Skills
-
-- **[Critical Intuition](../critical-intuition/)** -- Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.
-- **[Outcome Orientation](../outcome-orientation/)** -- Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.
-- **[Prioritization](../prioritization/)** -- Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.
-- **[Risk Management](../risk-management/)** -- Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.
-- **[Systems Thinking](../systems-thinking/)** -- Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex prob...
+- **[Critical Intuition](../critical-intuition/)** -- Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with Bayesian reasoning and red flag detection
+- **[Outcome Orientation](../outcome-orientation/)** -- Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome vs. output distinction
+- **[Prioritization](../prioritization/)** -- Apply RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making
+- **[Risk Management](../risk-management/)** -- Risk assessment frameworks, mitigation strategies, risk registers, and monitoring
+- **[Systems Thinking](../systems-thinking/)** -- Feedback loops, leverage points, and system dynamics for analyzing complex problems
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
