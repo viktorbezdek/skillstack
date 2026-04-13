@@ -1,269 +1,278 @@
 # Content Modelling
 
-> **v1.0.11** | Design & UX | 12 iterations
-
-> Design structured content models with content types, fields, relationships, editorial workflows, and COPE (Create Once, Publish Everywhere) patterns for CMS and content platform architecture.
+> **v1.0.11** | Design content models with types, fields, relationships, and governance rules for structured content systems -- COPE patterns, editorial workflows, and CMS schema architecture.
+> 1 skill | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-Content teams build their CMS models by imitating their website structure. The "Homepage" content type has a "hero banner" field, a "featured section" field, and a "sidebar" field -- all tightly coupled to a specific page layout. When the business wants the same content on a mobile app, in an email newsletter, or on a partner site, the model cannot deliver it because the content is inseparable from its presentation.
+Content systems fail when they are designed around pages instead of content. A marketing team builds their CMS with page-based models -- "Homepage," "About Page," "Blog Post Page" -- with HTML embedded directly in rich text fields. It works for the website. Then the mobile app needs the same content in a different layout. Then the email system needs a subset. Then the partner API needs structured data. Every new channel requires duplicating and reformatting content because the model was designed for one output format, not for the content itself.
 
-The problems cascade. Blog posts duplicate author bios instead of referencing a shared Author type, so updating an author's title requires editing 200 posts. Product descriptions embed HTML formatting, so the content renders correctly on the website but breaks in the mobile app and email. The documentation section has no hierarchy model, so moving a page means updating hardcoded parent links across dozens of documents. And the editorial workflow is ad hoc -- some content types have draft/published states, others do not, and nobody can find content that was approved but never published.
+The consequences cascade. A product description exists in 5 places with 5 slightly different versions. When the price changes, someone updates 3 of the 5 and misses 2. A content type called "General Content" becomes a dumping ground with 40 optional fields because nobody designed specific types for specific content. Editorial workflows break because there is no lifecycle model -- content goes from "draft" to "published" with no review step, no scheduling, and no archival process.
 
-Content modeling is the foundation that determines whether structured content is reusable, multi-channel, maintainable, and governable. Getting it wrong at the start means rebuilding the entire content architecture later -- a migration that typically takes months and disrupts every team that touches content.
+The root cause is that most teams skip content modeling entirely and jump straight to building CMS templates. They define content by what it looks like on a specific page rather than what it is. This conflation of content with presentation makes every future adaptation expensive and error-prone.
 
 ## The Solution
 
-This plugin provides the content modeling methodology: content types (templates defining structure), fields (nine typed data elements from short text to references), three relationship types (referenced, embedded, hierarchical) with cardinality rules, naming conventions (PascalCase for types, camelCase for fields, kebab-case for slugs), editorial workflow lifecycle (draft to review to published), validation rules, and COPE architecture for multi-channel delivery.
+This plugin provides a structured approach to content modeling that separates content from presentation. It covers the fundamental concepts -- content types, fields, relationships, and instances -- and provides patterns for designing content that works across channels, teams, and time.
 
-The skill enforces design principles that prevent the most common modeling mistakes: separate content from presentation (no layout fields), use semantic fields (not HTML), break content into atomic reusable units, and compose complex content from atoms rather than duplicating. It catches anti-patterns: page-based models, HTML in fields, monolithic types, and redundant data.
+The core principle is COPE: Create Once, Publish Everywhere. Content types use semantic fields (what the content IS) rather than layout fields (how it LOOKS). A "Product" type has `name`, `description`, `price`, and `category` fields -- not "hero image position" or "sidebar widget." This makes the same content available to websites, mobile apps, emails, APIs, and channels that do not exist yet.
 
-You describe your content domain -- "a documentation site with guides, API references, and changelogs" or "an e-commerce platform with products, categories, and reviews" -- and get a complete content model with typed fields, relationship diagrams, validation rules, naming conventions, and editorial workflows. The model is designed for multi-channel delivery from day one.
+The skill covers field type selection (when to use rich text vs. short text, references vs. embeds), relationship modeling (reference, embedded, hierarchical), naming conventions, editorial workflow design, and governance rules. It provides a content model template that teams can fill in for each content type, producing a documented schema that serves as the contract between content creators and developers.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Page-based content types that mirror the website layout | Semantic content types designed for reuse across channels |
-| Author bios duplicated in 200 blog posts | Shared Author type referenced by all content that needs it |
-| HTML formatting embedded in content fields | Structured rich text with semantic markup, no presentation coupling |
-| No content hierarchy -- parent-child relationships are hardcoded | Hierarchical relationship type with proper parent-child modeling |
-| Ad hoc editorial status (some content has draft/published, some does not) | Consistent lifecycle (draft/review/published) across all content types |
-| Content works on the website but breaks in mobile app and email | COPE architecture enabling multi-channel delivery from the same content |
+| Page-based models tied to specific layouts | Semantic content types that work across any channel |
+| HTML embedded in content fields, mixing content with presentation | Clean field types: short text, rich text, media, references -- no markup |
+| One "General Content" type with 40 optional fields | Specific types for specific content, each with only relevant fields |
+| Same content duplicated across 5 systems with drift | COPE: single source of truth, published to all channels from one model |
+| No lifecycle -- content jumps from draft to published | Editorial workflow: draft -> review -> scheduled -> published -> archived |
+| Unpredictable naming: `BlogPost`, `blog_entry`, `BLOG-ITEM` | Convention: PascalCase types, camelCase fields, kebab-case slugs |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install content-modelling@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Design a content model for a technical documentation site with guides, tutorials, and API references
+Design a content model for a knowledge base with articles, categories, authors, and related content recommendations
 ```
-
-The skill activates automatically when you mention content types, CMS schemas, content modeling, or structured content.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your content domain:
-   ```
-   I need a content model for a product marketing site -- landing pages, blog posts, case studies, and a team directory
-   ```
-3. The skill produces content types with typed fields, relationships (Author referenced by posts and case studies, Category linked to posts), validation rules, and editorial workflow.
-4. Refine the model:
-   ```
-   Add multi-language support and make the case studies reusable across landing pages
-   ```
-5. You get a complete model ready to implement in your CMS, with COPE patterns ensuring content works across web, mobile, and email channels.
+1. Install the plugin using the commands above
+2. Ask: `Design a content model for a SaaS product documentation site with guides, API references, changelogs, and tutorials`
+3. The skill produces content types with fields, relationships, validation rules, and editorial workflow
+4. Refine: `Add a content reuse strategy -- installation steps should be maintainable in one place but appear in multiple guides`
+5. Validate: `Review the model for anti-patterns -- are we accidentally tying content to specific page layouts?`
+
+---
+
+## System Overview
+
+```
++-----------------------------------------------------------+
+|                 content-modelling skill                     |
++-----------------------------------------------------------+
+|                                                             |
+|  Content Types        Relationships        Governance       |
+|  +---------------+    +---------------+    +-------------+  |
+|  | Type design   |    | Reference     |    | Workflow    |  |
+|  | Field types   |    | Embedded      |    | Validation  |  |
+|  | Constraints   |    | Hierarchical  |    | Naming      |  |
+|  | Lifecycle     |    | Cardinality   |    | COPE rules  |  |
+|  +---------------+    +---------------+    +-------------+  |
+|                                                             |
+|  Patterns: COPE | Atomic Content | Semantic Fields          |
++-----------------------------------------------------------+
+```
 
 ## What's Inside
 
-This is a focused single-skill plugin with the complete content modeling methodology in the SKILL.md body.
+| Component | Type | Description |
+|---|---|---|
+| `content-modelling` | Skill | Content type design, field types, relationships, naming conventions, COPE patterns, editorial workflows |
 
-| Component | Purpose |
-|---|---|
-| **content-modelling** skill | Core methodology: content types, 9 field types, 3 relationship types (reference/embedded/hierarchical), content model template, naming conventions, COPE architecture, atomic content principles, editorial lifecycle, validation rules, 4 anti-patterns |
+### Component Spotlights
 
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
+#### content-modelling (skill)
 
-### How to Use: content-modelling
+**What it does:** Activates when you need to design CMS content models, define content types with fields and relationships, plan editorial workflows, or establish governance rules for structured content systems. Provides templates and patterns for building content that is reusable, multi-channel, and maintainable.
 
-**What it does:** Guides you through designing structured content models for CMS platforms, documentation sites, e-commerce systems, and any application that manages structured content. Activates when you mention content types, CMS schemas, content architecture, editorial workflows, structured content, or multi-channel content delivery. Produces complete content models with typed fields, relationships, validation rules, and naming conventions.
+**Input -> Output:** Content requirements (what content exists, who creates it, where it appears) -> Content type definitions with fields, relationships, validation rules, naming conventions, and editorial workflow.
+
+**When to use:**
+- Designing a CMS schema for a new project
+- Defining content types with fields, constraints, and relationships
+- Planning editorial workflows (draft, review, publish, archive)
+- Building multi-channel content systems (web, mobile, email, API)
+- Migrating from page-based to structured content models
+- Establishing naming conventions for content types and fields
+
+**When NOT to use:**
+- Building formal ontologies with classes, properties, and inference rules -> use `ontology-design`
+- Standardizing naming conventions across code and documentation -> use `consistency-standards`
+- Designing API schemas and endpoints -> use `api-design`
 
 **Try these prompts:**
 
 ```
-Design a content model for a SaaS company website -- we need a blog, documentation, changelog, and team profiles
+Design a content model for an e-commerce product catalog with products, categories, brands, reviews, and variant options like size and color
 ```
 
 ```
-I'm building a headless CMS for our e-commerce platform -- model the product catalog with variants, categories, and reviews
+I'm migrating our blog from WordPress to a headless CMS. Design the content types to support the website, a mobile app, and an email newsletter from the same content.
 ```
 
 ```
-Our content model is a mess -- we have one monolithic "Page" type for everything. Help me refactor into proper content types
+Our CMS has a "Page" content type with 35 optional fields that everyone uses for everything. Help me break it into specific, well-defined types.
 ```
 
 ```
-How do I model hierarchical documentation with sections, pages, and sub-pages that can be reordered?
+Design an editorial workflow for a multi-author documentation site with draft, technical review, editorial review, and scheduled publication stages
 ```
-
-```
-We need our content to work on web, mobile app, and email -- design the model following COPE principles
-```
-
-## Real-World Walkthrough
-
-You are building a developer documentation platform for a SaaS product. The content includes getting-started guides, API reference pages, tutorials with code examples, a changelog, and a glossary. The platform needs to serve the same content on the website, in-product help tooltips, and a mobile companion app.
-
-You start with the content domain analysis:
-
-```
-Design a content model for a developer documentation platform -- guides, API reference, tutorials, changelog, and glossary
-```
-
-The skill begins by identifying the content types and their relationships. It resists the temptation to create a single "Page" type -- that is the monolithic anti-pattern. Instead, it produces five distinct content types, each with semantic fields.
-
-**Guide** is the primary content type for getting-started and conceptual documentation:
-
-| Field | Type | Required | Constraints |
-|-------|------|----------|-------------|
-| title | Short text | Yes | Max 100 chars |
-| slug | Short text | Yes | URL-safe, unique within parent |
-| body | Rich text | Yes | No HTML, semantic markup only |
-| difficulty | Enum | Yes | beginner/intermediate/advanced |
-| prerequisites | Reference | No | -> Guide (many) |
-| relatedApis | Reference | No | -> ApiEndpoint (many) |
-| status | Enum | Yes | draft/review/published |
-
-The `prerequisites` field is a self-reference -- a guide can link to other guides the reader should complete first. The `relatedApis` field links to API reference content, creating cross-references that work in both directions.
-
-**ApiEndpoint** models each API endpoint with structured fields:
-
-| Field | Type | Required | Constraints |
-|-------|------|----------|-------------|
-| method | Enum | Yes | GET/POST/PUT/PATCH/DELETE |
-| path | Short text | Yes | Must start with / |
-| description | Long text | Yes | - |
-| parameters | Embedded | No | -> Parameter (many) |
-| responseSchema | Long text | No | JSON Schema |
-| codeExamples | Embedded | No | -> CodeExample (many) |
-
-Parameters and code examples are **embedded** (not referenced) because they only exist in the context of their parent endpoint. They have no independent lifecycle. This is a key modeling decision -- the skill explains the difference between embedded (content nested within parent, no independent existence) and referenced (content exists independently, linked by ID).
-
-**Tutorial** is similar to Guide but adds sequential structure:
-
-```
-Tutorial ⊃ Step (embedded, ordered)
-           └─ Each step has: title, body, codeExample, expectedOutput
-```
-
-Steps are embedded and ordered because a tutorial's steps have no meaning outside the tutorial and must maintain their sequence.
-
-**Changelog** uses a date-based structure:
-
-| Field | Type | Required | Constraints |
-|-------|------|----------|-------------|
-| version | Short text | Yes | Semantic version format |
-| date | Date | Yes | - |
-| entries | Embedded | Yes | -> ChangeEntry (many) |
-
-Each ChangeEntry has a type (added/changed/fixed/removed), description, and optional link to related API or guide content.
-
-**Glossary** is the simplest type: term (short text, unique), definition (long text), relatedTerms (self-reference), and usedIn (reference to Guide/Tutorial).
-
-The hierarchical structure comes through a **Section** type:
-
-```
-Section
-├── Getting Started (Guide instances)
-│   ├── Installation
-│   └── Configuration
-├── API Reference (ApiEndpoint instances)
-│   ├── Authentication
-│   └── Resources
-└── Tutorials (Tutorial instances)
-```
-
-Sections use the hierarchical relationship type with parent-child references and an `order` field for sorting. Moving a page to a different section means updating one parent reference, not rewriting links.
-
-Now the multi-channel requirement:
-
-```
-Make this model work for in-product help tooltips and the mobile app, not just the web docs
-```
-
-The skill applies COPE principles. Every field is semantic (no "hero image width" or "sidebar content" fields). The body field uses structured rich text, not HTML. Code examples are separate embedded components with language metadata, so the mobile app can render them differently from the website. The glossary terms can be extracted as tooltip content by querying the API for the term definition.
-
-For the mobile app, the same content model serves a different presentation: guides render as scrollable articles, API references render as expandable cards, and tutorials render as step-by-step wizards. No content duplication -- the headless CMS API serves the same structured content, and each client renders it appropriately.
-
-The editorial workflow applies consistently: all content types follow draft/review/published lifecycle. Validation rules prevent publishing without required fields (e.g., `publishedAt` is required when status is `published`). The changelog type auto-populates the date field.
-
-The complete model is ready to implement in Contentful, Strapi, Sanity, or any headless CMS. The naming conventions (PascalCase types, camelCase fields, kebab-case slugs) are consistent across all types. The relationship diagram shows how everything connects. And the COPE architecture ensures the content investment serves web, mobile, and in-product channels from day one.
-
-## Usage Scenarios
-
-### Scenario 1: Designing a CMS schema from scratch
-
-**Context:** You are building a company website with a headless CMS and need to model the content before configuring the CMS platform.
-
-**You say:** "Design the content model for our company website -- we need pages, blog posts, team members, case studies, and a careers section"
-
-**The skill provides:**
-- Five content types with typed fields and validation constraints
-- Relationship map (team members referenced by blog posts and case studies, categories linked to posts)
-- Embedded vs referenced decision for each relationship
-- Editorial workflow with draft/review/published lifecycle
-- Naming conventions consistent across all types
-
-**You end up with:** A complete CMS schema document ready to implement in Contentful, Strapi, Sanity, or any headless CMS platform.
-
-### Scenario 2: Refactoring a monolithic content model
-
-**Context:** Your CMS has one "Page" content type used for everything -- blog posts, landing pages, team profiles, and product pages all share the same fields, most of which are optional for most content.
-
-**You say:** "Our CMS uses one Page type for everything -- help me break it into proper content types without losing existing content"
-
-**The skill provides:**
-- Analysis of the monolithic type to identify distinct content patterns
-- Decomposition into semantic content types based on actual field usage
-- Migration strategy: which fields map to which new types
-- Shared fields extracted into referenced types (e.g., Author, SEO Metadata)
-- Relationship mapping for cross-type references
-
-**You end up with:** A migration plan from monolithic to semantic content types, preserving all existing content while enabling reuse, multi-channel delivery, and proper editorial workflows.
-
-### Scenario 3: Adding multi-channel support to existing content
-
-**Context:** Your content works on the website but the mobile team needs the same content in their app, and the email team needs it in newsletters. The current model has presentation-specific fields.
-
-**You say:** "We need our blog and product content to work on web, mobile, and email -- right now the content has HTML and layout fields baked in"
-
-**The skill provides:**
-- COPE architecture assessment identifying presentation-coupled fields
-- Field-by-field migration from presentation to semantic fields
-- Structured rich text patterns replacing inline HTML
-- Multi-channel delivery patterns (same content, different rendering per channel)
-- API response design for headless content delivery
-
-**You end up with:** A refactored content model where all content is presentation-independent and deliverable to any channel through the headless CMS API.
-
-## Ideal For
-
-- **Teams building headless CMS implementations** -- the content type methodology prevents the modeling mistakes (page-based types, HTML in fields, monolithic types) that force rebuilds later
-- **Content architects designing multi-channel content** -- COPE principles and semantic field design ensure content works across web, mobile, email, and future channels
-- **Organizations refactoring legacy CMS content** -- the decomposition patterns break monolithic types into reusable, atomic content types with migration strategies
-- **Developers implementing content APIs** -- the relationship types (reference, embedded, hierarchical) and naming conventions translate directly to API schemas and database models
-
-## Not For
-
-- **Formal ontologies, taxonomies, and semantic modeling** -- use [ontology-design](../ontology-design/) for OWL/RDF ontologies with classes, properties, and formal reasoning
-- **Naming conventions and terminology standardization** -- use [consistency-standards](../consistency-standards/) for cross-project naming rules and glossary patterns
-- **Navigation structure and information architecture** -- use [navigation-design](../navigation-design/) for wayfinding, menu design, and IA patterns
-
-## How It Works Under the Hood
-
-The plugin is a focused single-skill plugin. The SKILL.md body contains the complete content modeling methodology in a compact, immediately usable format.
-
-The skill covers four areas: **content type design** (type templates with purpose, cardinality, lifecycle, fields with types and constraints, relationships with cardinality), **field types** (nine types from short text to reference, each with use cases and examples), **relationship modeling** (reference for independent content, embedded for nested content, hierarchical for parent-child), and **design principles** (COPE architecture, atomic content, anti-patterns to avoid).
-
-The compact structure means simple questions ("what field type for dates?") are answered from the field type table, and complex modeling questions ("design a content model for a documentation platform") use the full template pattern with relationships, validation rules, and COPE principles.
-
-## Related Plugins
-
-- **[Consistency Standards](../consistency-standards/)** -- Naming conventions, terminology standardization, and style guides for content teams
-- **[Ontology Design](../ontology-design/)** -- Formal knowledge models with OWL/RDF for semantic modeling beyond CMS content
-- **[Navigation Design](../navigation-design/)** -- Information architecture and wayfinding for organizing content hierarchies in user-facing applications
-- **[UX Writing](../ux-writing/)** -- Microcopy and interface text patterns for the content that fills the model
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Design my CMS" | "Design content types for a recipe website: recipes, ingredients, categories, authors, collections, and meal plans" |
+| "What fields do I need?" | "Define the field types for a Product content type: it needs name, description (formatted), price, SKU, images (multiple), and category relationship" |
+| "Make it work on mobile" | "Design a COPE content model where the same product content feeds our website, mobile app, in-store kiosk, and partner API" |
+
+### Structured Prompt Templates
+
+**For content type design:**
+```
+Design a content model for [domain/project]. Content types needed: [list types]. Relationships: [type A] has many [type B], [type C] belongs to [type D]. Each type needs: fields with types and constraints, lifecycle definition, and validation rules.
+```
+
+**For migration from page-based models:**
+```
+We have [N] page types in our current CMS: [list types]. Each is tied to a specific page layout. Help me restructure into content-first types that work across [channels]. Current pain point: [specific problem].
+```
+
+**For editorial workflow design:**
+```
+Design an editorial workflow for [content type]. Authors: [roles]. Review process: [steps]. Publication: [immediate/scheduled/approval-gated]. Archival: [policy].
+```
+
+### Prompt Anti-Patterns
+
+- **Designing content for one page layout**: "The homepage needs a hero banner, three feature cards, and a testimonial slider" -- this is page design, not content modeling. Ask instead: "What content types do we need for marketing content that appears on the homepage and can be reused on landing pages?"
+- **Putting HTML in field definitions**: "I need a rich text field that includes the sidebar layout" -- content fields should contain content, not layout instructions. Presentation is the rendering layer's job.
+- **One type for everything**: "Create a General Content type that can hold any kind of content" -- this produces an unusable type with dozens of optional fields. Design specific types for specific content.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a headless CMS for a B2B SaaS documentation site. The content needs to serve a marketing website, a developer docs portal, an in-app help system, and a knowledge base. Currently, content lives in a monolithic WordPress instance with page-based templates, making reuse across channels impossible.
+
+**Step 1: Content type inventory.** You ask: "Design a content model for our SaaS docs. We need: product guides, API reference entries, tutorials, changelogs, FAQ items, and marketing pages." The skill produces six content types, each with a purpose statement, expected instance count, and lifecycle definition.
+
+**Step 2: Field design for the Guide type.** The skill defines the Guide content type:
+- `title` (short text, required, max 100 chars)
+- `slug` (short text, required, URL-safe, unique within parent category)
+- `summary` (short text, required, max 300 chars -- for search results and cards)
+- `body` (rich text, required -- the actual guide content, NO layout markup)
+- `author` (reference to Author, required)
+- `category` (reference to Category, many-to-one)
+- `relatedGuides` (reference to Guide, many-to-many, max 5)
+- `difficulty` (enum: beginner/intermediate/advanced)
+- `status` (enum: draft/review/published/archived)
+- `publishedAt` (date, required when status = published)
+
+The skill explains why `summary` is a separate field rather than auto-generated from `body`: different channels need different summary lengths, and a human-written summary is always better than a truncated paragraph.
+
+**Step 3: Relationship modeling.** The skill designs the relationship structure: Guides belong to Categories (hierarchical), Guides reference Authors (linked, author exists independently), Guides contain SEO Metadata (embedded, metadata only exists within the guide), and Guides link to related Guides (reference, bidirectional). The skill explains the choice: embedded for SEO Metadata because it has no independent existence, but reference for Authors because an author can be edited once and the change propagates everywhere.
+
+**Step 4: COPE design.** You ask: "How do I serve the same content to 4 channels?" The skill designs the approach: every content type uses semantic fields only. The Guide type has `body` (rich text without layout), `summary`, `difficulty`, and `category` -- none of which assume a specific rendering. The website renders `body` in a full-width layout with a sidebar nav. The in-app help system renders `summary` in a tooltip with a link to the full `body`. The mobile app renders `body` in a reader-optimized view. All from the same source content.
+
+**Step 5: Editorial workflow.** The skill designs a four-stage workflow for Guides: draft (author writes), technical review (engineer verifies accuracy), editorial review (writer checks clarity and style), published (goes live with `publishedAt` timestamp). Status transitions are enforced: you cannot publish without passing both reviews. Archived guides remain accessible via direct URL but are removed from navigation and search.
+
+**Step 6: Naming convention.** Types use PascalCase (`BlogPost`), fields use camelCase (`publishedAt`), slugs use kebab-case (`getting-started`). The skill flags that the existing WordPress instance uses inconsistent naming and provides a migration mapping.
+
+**Gotchas discovered:** The initial model put `heroImage` on the Guide type, which is a presentation concern (not all channels show a hero image). The skill recommended moving it to a separate `MediaAsset` reference that the website rendering layer can use but that does not pollute the content model with layout assumptions.
+
+## Usage Scenarios
+
+### Scenario 1: E-commerce product catalog
+
+**Context:** You are building a headless commerce platform where product content feeds the website, mobile app, and point-of-sale system.
+
+**You say:** "Design a content model for an e-commerce catalog: products with variants (size, color), categories, brands, reviews, and collections."
+
+**The skill provides:**
+- Product type with semantic fields (no layout assumptions)
+- Variant modeling: Product -> Variant (embedded) with SKU, price, stock per combination
+- Category hierarchy with parent-child relationships
+- Review type with author reference, rating constraint (1-5), and moderation status
+- Collection type for curated product groupings
+
+**You end up with:** A content model that serves the website product page, the mobile browse experience, and the POS lookup screen from the same product data.
+
+### Scenario 2: Breaking up a monolithic content type
+
+**Context:** Your CMS has a "Page" type with 35 fields. Authors are confused about which fields to fill in for different content.
+
+**You say:** "Our Page type has 35 optional fields and is used for everything. Help me decompose it into specific types."
+
+**The skill provides:**
+- Analysis of field usage patterns to identify natural type boundaries
+- New types: LandingPage (8 fields), BlogPost (10 fields), CaseStudy (12 fields), ProductPage (9 fields)
+- Migration plan: map existing instances to new types based on which fields they use
+- Validation rules that make per-type required fields actually required
+
+**You end up with:** Four focused types instead of one bloated one, each with clear purpose and only the fields that type needs.
+
+### Scenario 3: Designing a multi-language content model
+
+**Context:** Your documentation needs to support English, Spanish, and Japanese with locale-specific variations.
+
+**You say:** "Add multi-language support to our content model. Some content is translated, some is locale-specific, and some is universal (like code samples)."
+
+**The skill provides:**
+- Localization strategy: base content type with locale-specific overrides
+- Universal fields (code samples, screenshots) vs. localized fields (body text, title)
+- Fallback chain: Japanese -> English -> default content
+- Locale-aware slug generation for SEO
+
+**You end up with:** A content model where translators only touch locale-specific fields, code samples are maintained once, and missing translations gracefully fall back.
+
+---
+
+## Decision Logic
+
+**When to use reference vs embedded relationships?**
+
+Reference (linked): when the related content has independent existence and should be editable in one place. An Author referenced by 50 Guides should be a reference -- updating the author's bio updates it everywhere. Embedded: when the content only exists within its parent. SEO Metadata for a Guide has no independent purpose -- embed it. Hierarchical: for parent-child tree structures like documentation categories.
+
+**When does this skill activate vs ontology-design or consistency-standards?**
+
+Content-modelling designs CMS schemas: content types, fields, and editorial workflows. Ontology-design models formal knowledge with classes, properties, and inference rules. Consistency-standards handles naming conventions and terminology. If you need a CMS schema for a blog, use content-modelling. If you need an RDF ontology for a knowledge graph, use ontology-design. If you need naming rules for your codebase, use consistency-standards.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Page-based content types | Content cannot be reused across channels without reformatting | Redesign with semantic fields; remove all layout-specific fields from content types |
+| HTML in rich text fields | Content renders incorrectly on mobile or in email | Enforce rich text fields as semantic markup only; strip layout HTML in migration |
+| Missing lifecycle definitions | Content goes from draft to published with no review; stale content never archived | Add status enum with transition rules and required review steps |
+| Monolithic content type | 40 optional fields; authors do not know which to fill in | Decompose into specific types based on field usage analysis |
+
+## Ideal For
+
+- **CMS architects designing new content systems** who need structured types, relationships, and governance from the start
+- **Teams migrating from page-based CMS to headless** who need to restructure content for multi-channel delivery
+- **Content strategists planning editorial workflows** who need lifecycle definitions, review stages, and governance rules
+- **Developers building multi-channel content APIs** who need content models that work for web, mobile, email, and third-party integrations
+
+## Not For
+
+- **Formal knowledge modeling** -- for ontologies with inference rules, SPARQL, and semantic reasoning, use `ontology-design`
+- **Naming convention standardization** -- for terminology glossaries and code style guides, use `consistency-standards`
+- **API endpoint design** -- for REST/GraphQL/gRPC schema design, use `api-design`
+
+## Related Plugins
+
+- **consistency-standards** -- Naming conventions that keep content types and fields uniformly named
+- **ontology-design** -- Formal knowledge modeling when content needs semantic precision
+- **api-design** -- Design APIs that serve the content models this plugin defines
+- **navigation-design** -- Information architecture for content hierarchies
+- **ux-writing** -- Microcopy and interface text patterns for content governance
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
