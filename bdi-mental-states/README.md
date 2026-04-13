@@ -1,261 +1,285 @@
 # BDI Mental States
 
-> **v1.0.4** | Agent Architecture | 5 iterations
-
-> Formal Belief-Desire-Intention cognitive architecture for LLM agents -- model what agents believe, want, and commit to doing, with RDF ontology, explainable reasoning chains, and neuro-symbolic integration.
+> **v1.0.4** | Belief-Desire-Intention cognitive architecture for LLM agents -- formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration.
+> 1 skill | 4 references | 15 trigger evals, 3 output evals
 
 ## The Problem
 
-LLM agents make decisions, but nobody can explain why. When an agent takes an unexpected action -- purchasing the wrong item, scheduling a conflicting meeting, ignoring a critical constraint -- there is no cognitive trace to inspect. The agent's "reasoning" is a black box of token generation. You cannot ask "what did the agent believe about the meeting time?" or "what desire motivated this purchase?" because there is no formal model of beliefs, desires, or intentions.
+LLM agents today operate as opaque input-output functions. They receive a prompt, produce a response, and offer no structured insight into why they chose one action over another. When an agent fails -- makes a bad decision, pursues a contradictory goal, or acts on stale information -- there is no formal way to trace the failure back through its reasoning chain. You can inspect the prompt and the output, but the cognitive process in between is a black box.
 
-This matters in production. Multi-agent systems need to share what they know -- but without a formal representation of beliefs, agents cannot communicate cognitive states, cannot negotiate based on differing beliefs, and cannot explain disagreements. Temporal reasoning is impossible: you cannot ask "what did the agent believe at 10am?" because beliefs are not tracked over time. And when an agent acts irrationally, you cannot trace the reasoning chain from perception through deliberation to action because no such chain exists in the system.
+This opacity becomes critical in multi-agent systems. When Agent A needs to communicate its understanding of the world to Agent B, it can only pass unstructured text. There is no standard vocabulary for saying "I believe X is true because of evidence Y" or "I intend to do Z because it fulfills desire W." Teams build ad hoc message formats, but these do not compose across systems and cannot be validated against formal reasoning rules. The result is agents that cannot explain their decisions, cannot share structured knowledge, and cannot be audited for rational consistency.
 
-The BDI (Belief-Desire-Intention) model from cognitive science provides the theoretical foundation, but applying it to LLM agents requires ontology design, RDF modeling, SPARQL queries, and integration patterns that span philosophy, knowledge representation, and practical engineering. This knowledge exists in academic papers but is not readily accessible to engineers building agent systems.
+The academic BDI (Belief-Desire-Intention) framework has solved these problems for decades in traditional agent systems. But adapting formal BDI ontology to work with LLM agents -- combining the reasoning power of language models with the structural rigor of cognitive architectures -- requires bridging two very different paradigms. Without guidance, teams either ignore cognitive structure entirely (losing explainability) or implement rigid rule systems that undermine the flexibility that makes LLMs valuable.
 
 ## The Solution
 
-This plugin provides a complete BDI implementation framework for LLM agents: formal ontology patterns for beliefs, desires, and intentions; the T2B2T (Triples-to-Beliefs-to-Triples) paradigm for bidirectional flow between RDF knowledge graphs and internal mental states; temporal validity intervals for tracking how beliefs change over time; compositional mental entities that support selective updates; justification chains that make every reasoning step explainable; and integration patterns for SEMAS, JADE, JADEX, and Logic Augmented Generation (LAG).
+This plugin provides a formal BDI ontology for modeling agent mental states -- beliefs, desires, and intentions -- as first-class structured entities. It defines how external knowledge (RDF triples, world states) transforms into agent beliefs, how beliefs motivate desires, how desires commit to intentions, and how intentions specify executable plans. Every mental state is justified, temporally bounded, and traceable.
 
-The skill walks you through modeling an agent's cognitive architecture: what it believes about the world (and why), what it wants to achieve (and what motivates those desires), and what it commits to doing (with plans decomposed into ordered tasks). Every mental state links to supporting evidence, has temporal bounds, and can be queried with SPARQL. When something goes wrong, you trace the chain: perception formed a belief, that belief motivated a desire, that desire became an intention, that intention specified a plan, and the plan's tasks executed in sequence.
+The core paradigm is T2B2T (Triples-to-Beliefs-to-Triples): external RDF context triggers belief formation through perception processes, BDI reasoning generates desires and intentions, and plan execution produces new RDF output that modifies the world state. This creates a bidirectional bridge between semantic knowledge graphs and agent cognition.
 
-You end up with agents whose reasoning is inspectable, communicable across platforms, and formally grounded in established cognitive science -- not just "the model decided."
+The skill also covers integration with production frameworks (SEMAS, JADE, JADEX), neuro-symbolic AI patterns (Logic Augmented Generation), compositional mental entities for selective updates, temporal reasoning with validity intervals, and SPARQL competency queries for validating implementations. The result is agents that can explain their reasoning, share structured mental states across platforms, and be formally audited for rational consistency.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Agent decisions are black boxes with no explainable reasoning chain | Every decision traces from perception through belief to desire to intention to plan |
-| No formal way to represent what an agent "believes" or "wants" | Formal BDI ontology with typed mental states, processes, and relationships |
-| Agents cannot share cognitive states across platforms | RDF-based mental state representation enables cross-platform communication via FIPA ACL |
-| No temporal tracking of how beliefs change over time | Validity intervals on every mental state enable "what did the agent believe at 10am?" queries |
-| Complex beliefs are all-or-nothing -- update one aspect and you replace everything | Compositional mental entities with `hasPart` relations enable selective updates |
-| Agent reasoning cannot be audited for compliance or debugging | Justification instances link every mental entity to supporting evidence |
+| Agent reasoning is a black box -- no way to trace why a decision was made | Every mental state links to justifications: "I believe X because of evidence Y" |
+| Multi-agent communication is unstructured text with ad hoc formats | Formal BDI ontology provides standard vocabulary for sharing beliefs, desires, and intentions |
+| Stale beliefs persist indefinitely with no expiration mechanism | Temporal validity intervals on every mental state; SPARQL queries find active beliefs at any time |
+| Complex beliefs are atomic -- updating one aspect requires replacing the whole thing | Compositional `hasPart` relations enable selective updates to belief components |
+| No formal connection between what the agent knows and what it decides to do | Cognitive chain: beliefs motivate desires, desires commit to intentions, intentions specify plans |
+| LLM outputs are unconstrained by formal reasoning rules | Logic Augmented Generation validates LLM output against ontological constraints |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install bdi-mental-states@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Help me model the cognitive architecture for a scheduling agent that needs to reason about meeting conflicts
+Help me model the mental states for an agent that monitors stock prices and decides when to send alerts
 ```
-
-The skill activates automatically when you mention BDI, mental states, or cognitive agent architecture.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your agent's cognitive requirements:
-   ```
-   I'm building an agent that manages purchase orders -- it needs to reason about budget constraints, approval requirements, and vendor reliability
-   ```
-3. The skill models the agent's beliefs (budget status, vendor ratings), desires (cost minimization, timely delivery), and intentions (specific purchase plans with task sequences).
-4. You get RDF/Turtle representations, SPARQL validation queries, and integration patterns for your framework.
-5. Add explainability:
-   ```
-   Make every purchase decision traceable -- I need to audit why the agent chose vendor X over vendor Y
-   ```
+1. Install the plugin using the commands above
+2. Ask: `Model the belief-desire-intention chain for an agent that processes incoming emails and decides which ones need urgent attention`
+3. The skill produces RDF/Turtle representations of beliefs (email attributes), desires (handle urgent items), and intentions (specific action plans)
+4. Explore deeper: `Add temporal validity to the beliefs so stale information expires after 24 hours`
+5. Validate: `Write SPARQL competency queries to verify the BDI model is consistent`
+
+---
+
+## System Overview
+
+```
+External World                    Agent Cognitive Architecture
++------------------+              +--------------------------------+
+|                  |              |                                |
+| RDF Knowledge    |  Triples    | +----------+    +-----------+  |
+| Graph / World    | ---------> | | Belief   | -> | Desire    |  |
+| State            |  to         | | Process  |    | Process   |  |
+|                  |  Beliefs    | +----------+    +-----------+  |
+|                  |              |      |               |        |
+|                  |              |      v               v        |
+|                  |              | +----------+    +-----------+  |
+|                  |  Beliefs    | | Beliefs  |    | Desires   |  |
+|                  | <--------- | |          | -> |           |  |
+|                  |  to         | +----------+    +-----------+  |
+|                  |  Triples    |      |               |        |
+|                  |              |      v               v        |
++------------------+              | +-----------+  +-----------+  |
+                                  | | Intention |  | Plans &   |  |
+                                  | | Process   |->| Tasks     |  |
+                                  | +-----------+  +-----------+  |
+                                  +--------------------------------+
+```
 
 ## What's Inside
 
-This is a single-skill plugin with four reference documents covering the full BDI implementation stack.
+| Component | Type | Description |
+|---|---|---|
+| `bdi-mental-states` | Skill | Core BDI ontology patterns, T2B2T paradigm, cognitive chains, temporal reasoning, and integration guidance |
+| `bdi-ontology-core.md` | Reference | Core ontology design patterns and class definitions for Belief, Desire, Intention, WorldState, Plan, and Task |
+| `rdf-examples.md` | Reference | Complete RDF/Turtle examples for all mental state types and relationships |
+| `sparql-competency.md` | Reference | Validation queries: what beliefs motivated a desire, what desire an intention fulfills, plan task ordering |
+| `framework-integration.md` | Reference | SEMAS rule translation, JADE/JADEX integration, Logic Augmented Generation patterns |
 
-| Component | Purpose |
-|---|---|
-| **bdi-mental-states** skill | Core methodology: mental state architecture (beliefs, desires, intentions), cognitive chain patterns, world state grounding, goal-directed planning, T2B2T paradigm, notation selection by C4 level, justification/explainability, temporal dimensions, compositional entities, LAG integration, SEMAS rules, 10 guidelines, 5 anti-patterns, competency queries |
-| **bdi-ontology-core.md** | Core ontology patterns: class hierarchy for mental states and processes, property definitions, existential restrictions, OWL axioms |
-| **rdf-examples.md** | Complete RDF/Turtle examples: full cognitive workflows from perception through action, compositional beliefs, temporal reasoning |
-| **sparql-competency.md** | Full SPARQL competency queries: validating belief motivation chains, intention-desire fulfillment, plan task ordering, temporal state queries |
-| **framework-integration.md** | Integration patterns: SEMAS rule translation, JADE agent platform mapping, JADEX goal lifecycle, Logic Augmented Generation (LAG) pipeline |
+### Component Spotlights
 
-**Eval coverage:** 15 trigger eval cases + 3 output eval cases.
+#### bdi-mental-states (skill)
 
-### How to Use: bdi-mental-states
+**What it does:** Activates when you need to model agent mental states using formal BDI architecture, transform RDF context into beliefs, build cognitive reasoning chains, implement the T2B2T paradigm, or integrate LLMs with formal cognitive structures. Provides ontology patterns in RDF/Turtle with SPARQL queries for validation.
 
-**What it does:** Guides you through modeling agent cognitive architecture using the Belief-Desire-Intention framework. Activates when you need to represent what agents believe, want, and commit to; when you need explainable agent reasoning; when building agents that share cognitive states across platforms; or when integrating formal ontology with LLM-based agents. Produces RDF/Turtle models, SPARQL queries, and framework integration code.
+**Input -> Output:** A description of agent behavior and reasoning needs -> Formal BDI model with RDF/Turtle representations of beliefs, desires, intentions, plans, and their relationships, plus SPARQL queries and integration patterns.
+
+**When to use:**
+- Processing external RDF context into structured agent beliefs
+- Modeling rational agency with perception-deliberation-action cycles
+- Building explainable agents with traceable reasoning chains
+- Implementing BDI frameworks (SEMAS, JADE, JADEX)
+- Augmenting LLMs with formal cognitive structures (Logic Augmented Generation)
+- Coordinating mental states across multi-agent platforms
+- Adding temporal reasoning to agent beliefs and intentions
+
+**When NOT to use:**
+- Multi-agent coordination or handoff protocols -> use `multi-agent-patterns`
+- Agent memory persistence or retrieval frameworks -> use `memory-systems`
+- Building formal ontologies for domain modeling -> use `ontology-design`
 
 **Try these prompts:**
 
 ```
-Design the cognitive architecture for a customer service agent that needs to reason about customer history, product knowledge, and escalation policies
+Model the mental states for a customer service agent that believes the customer is frustrated, desires to resolve the issue quickly, and intends to escalate to a human
 ```
 
 ```
-I need my agents to explain their decisions -- model the justification chain from perception to action for an inventory management agent
+Implement the T2B2T paradigm for an agent that reads sensor data from an IoT knowledge graph and decides when to trigger alerts
 ```
 
 ```
-Help me implement the T2B2T paradigm -- I have RDF triples from our knowledge graph and need to transform them into agent beliefs, then project decisions back as RDF
+Add temporal validity to my agent's beliefs so it automatically discards stale market data after 5 minutes
 ```
 
 ```
-How do I model temporal belief evolution? My agent's beliefs about stock levels change throughout the day and I need to query what it believed at specific times
-```
-
-```
-Integrate BDI mental states with our JADE multi-agent platform -- map the ontology to JADE agent behaviors and message passing
+Write SPARQL competency queries to verify that every intention in my BDI model is justified by at least one belief and fulfills at least one desire
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `bdi-ontology-core.md` | Class hierarchy, property definitions, OWL axioms, existential restrictions |
-| `rdf-examples.md` | Complete Turtle examples for cognitive workflows, compositional beliefs, temporal reasoning |
-| `sparql-competency.md` | Validation queries for belief chains, intention fulfillment, plan ordering, temporal states |
-| `framework-integration.md` | SEMAS production rules, JADE mapping, JADEX goal lifecycle, LAG pipeline patterns |
+| `bdi-ontology-core.md` | Class hierarchy: Belief, Desire, Intention as endurants; BeliefProcess, DesireProcess, IntentionProcess as perdurants; WorldState grounding |
+| `rdf-examples.md` | Complete Turtle examples: cognitive chains, world state references, compositional beliefs, temporal intervals |
+| `sparql-competency.md` | Validation queries: CQ1 (belief-to-desire), CQ2 (intention-to-desire), CQ3 (process-to-belief), CQ4 (plan task ordering) |
+| `framework-integration.md` | SEMAS production rules, JADE/JADEX agent mapping, Logic Augmented Generation pipeline for LLM constraint validation |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Make my agent think" | "Model the belief-desire-intention chain for an agent that monitors server health metrics and decides when to scale infrastructure" |
+| "Add BDI to my chatbot" | "Transform incoming customer context (name, history, sentiment) into formal beliefs that motivate the agent's response strategy" |
+| "Use ontology for my agent" | "Implement T2B2T: my agent receives RDF triples from a knowledge graph about flight schedules, forms beliefs about available routes, and produces booking intention triples" |
+
+### Structured Prompt Templates
+
+**For modeling a cognitive chain:**
+```
+Model the BDI cognitive chain for an agent that [perceives what]. The agent should form beliefs about [world state aspects], develop desires to [goals], and commit to intentions that [concrete actions]. Show the full chain in RDF/Turtle with justifications.
+```
+
+**For T2B2T integration:**
+```
+Implement T2B2T for [domain]. Input triples describe [data source]. The agent should transform these into beliefs about [aspects], reason about [decisions], and output triples that [actions/effects]. Show both directions of the flow.
+```
+
+**For temporal reasoning:**
+```
+Add temporal validity to [which mental states] in my BDI model. Beliefs about [data type] should expire after [duration]. Show the SPARQL query to find all active beliefs at a given timestamp.
+```
+
+### Prompt Anti-Patterns
+
+- **Conflating mental states with world states**: "The agent's belief IS that the server is down" -- mental states reference world states, they are not world states themselves. A belief about the server being down is a cognitive representation, not the server state.
+- **Skipping justifications**: "Just model the beliefs and intentions" -- every mental state should link to a justification for explainability. Without justifications, the BDI model is decoration, not structure.
+- **Flat belief structures**: "One belief per fact" -- complex beliefs should use compositional modeling with `hasPart` relations. A belief about a meeting has parts for time, location, and participants that can be updated independently.
 
 ## Real-World Walkthrough
 
-You are building a procurement agent for a manufacturing company. The agent needs to monitor inventory levels, evaluate vendor options, make purchase recommendations within budget constraints, and explain every decision to the compliance team. The compliance requirement is non-negotiable -- every purchase recommendation must trace back to specific beliefs about inventory, vendor reliability, and budget status.
+**Starting situation:** You are building a supply chain monitoring agent that watches inventory levels across multiple warehouses, detects low-stock situations, and decides whether to reorder automatically or alert a human. The agent receives data from an RDF-based inventory knowledge graph.
 
-You start by modeling the agent's belief system:
+**Step 1: World state modeling.** You ask: "Model the world states for a supply chain agent that monitors inventory across 3 warehouses." The skill produces WorldState instances representing current inventory levels, reorder thresholds, supplier lead times, and warehouse capacities -- all as RDF triples that the agent will perceive.
 
-```
-Design the belief structure for a procurement agent that tracks inventory levels, vendor performance ratings, budget constraints, and delivery timelines
-```
+**Step 2: Belief formation (Triples-to-Beliefs).** You ask: "Transform the inventory RDF into agent beliefs." The skill models BeliefProcess instances that consume WorldState triples and generate structured beliefs. When inventory at Warehouse A drops below threshold, a BeliefProcess generates `Belief_low_stock_warehouse_A` with a temporal validity of 1 hour (the belief expires because stock levels change). The belief is justified by the specific inventory reading triple.
 
-The skill models four belief categories as RDF/Turtle:
+**Step 3: Desire generation.** The skill shows how beliefs motivate desires through the cognitive chain. `Belief_low_stock_warehouse_A` motivates `Desire_replenish_warehouse_A`. But the system is not simplistic: a concurrent `Belief_supplier_delayed` (formed from supply chain status triples) also exists. The desire formation process considers both beliefs and generates `Desire_alert_procurement_team` instead of `Desire_auto_reorder` because the supplier delay makes automatic reordering futile.
 
-- `Belief_inventory_widget_A` with value "150 units, reorder threshold 200" and validity interval (updated every 4 hours from the ERP system)
-- `Belief_vendor_reliability_acme` with value "98.5% on-time delivery rate, average lead time 5 days" justified by historical delivery data
-- `Belief_budget_q2_remaining` with value "$45,000 remaining in Q2 procurement budget" linked to the finance system world state
-- `Belief_delivery_timeline_critical` with value "Widget A production line needs replenishment by March 15" motivated by the production schedule
+**Step 4: Intention commitment.** The agent commits to `Intention_send_procurement_alert`, which fulfills `Desire_alert_procurement_team` and is supported by both beliefs (low stock AND supplier delay). The intention specifies `Plan_alert_sequence` with three tasks: compose alert message, send to procurement Slack channel, log the decision.
 
-Each belief references its source world state, has temporal validity bounds, and links to a justification instance documenting the evidence.
+**Step 5: Beliefs-to-Triples output.** The plan execution produces new RDF triples: a `WorldState_alert_sent` triple recording the alert, and a `WorldState_reorder_pending` triple that will be consumed by the procurement system. The T2B2T cycle completes.
 
-Next, the desire layer:
+**Step 6: Validation with SPARQL.** You ask: "Write competency queries to validate the model." The skill produces four queries: (1) verify every desire is motivated by at least one belief, (2) verify every intention fulfills a desire, (3) verify no intention contradicts an active belief, (4) find all beliefs active at a given timestamp. Running these against the model confirms structural consistency.
 
-```
-What desires should the procurement agent form based on these beliefs?
-```
-
-The cognitive chain pattern triggers: `Belief_inventory_widget_A` (below reorder threshold) motivates `Desire_replenish_widget_A`. The desire is not just "buy widgets" -- it has specific parameters: sufficient quantity, within budget, before the production deadline. The `isMotivatedBy` link connects the desire back to the triggering beliefs, creating the first link in the explainability chain.
-
-Now intentions and plans:
-
-```
-Model how the agent commits to a specific vendor and creates an actionable purchase plan
-```
-
-The deliberation process evaluates `Desire_replenish_widget_A` against available vendor beliefs and budget constraints. `Intention_purchase_acme_500` commits to purchasing 500 Widget A units from Acme Corp. The intention specifies `Plan_acme_purchase` which decomposes into ordered tasks: `Task_verify_budget` (confirm $12,500 available) precedes `Task_generate_po` (create purchase order) precedes `Task_submit_approval` (route to manager) precedes `Task_confirm_delivery` (verify delivery date before March 15).
-
-Each intention links back through `fulfils` to the desire and through `isSupportedBy` to the beliefs that justified the vendor selection. When the compliance team asks "why did the agent choose Acme over Beta Corp?", you query:
-
-```sparql
-SELECT ?belief ?justification WHERE {
-    :Intention_purchase_acme_500 bdi:isSupportedBy ?belief .
-    ?belief bdi:isJustifiedBy ?justification .
-}
-```
-
-The query returns: Acme was chosen because of `Belief_vendor_reliability_acme` (98.5% on-time rate, justified by 24 months of delivery data) and `Belief_acme_price_competitive` (10% below Beta Corp quote, justified by the latest RFQ response). Every link in the chain is traceable.
-
-You then implement temporal belief updates:
-
-```
-The inventory level changes throughout the day as production consumes widgets -- how do I model belief evolution?
-```
-
-Each inventory belief gets a validity interval. When the ERP system reports a new level, a `BeliefProcess` generates a new belief with an updated validity interval and marks the previous belief's interval as ended. You can query the agent's belief at any point in time using the temporal SPARQL patterns from `sparql-competency.md`.
-
-Finally, you implement the T2B2T paradigm: RDF triples from the ERP system flow through belief formation processes, the BDI reasoning engine deliberates and commits to intentions, and the resulting purchase decisions are projected back as RDF triples to the procurement system. The bidirectional flow means the knowledge graph stays synchronized with the agent's cognitive state.
-
-The compliance team now has full audit trails. The production team trusts the agent's recommendations because every decision is explainable. And when the agent makes an unexpected choice, you debug it by inspecting the belief chain rather than guessing at token probabilities.
+**Gotchas discovered:** The initial model had desires directly triggering actions without an intermediate intention. The skill corrected this: intentions specify plans which contain tasks; actions execute tasks. This three-layer structure (desire -> intention -> plan -> task -> action) is essential because a desire might be fulfilled by different plans depending on context, and intentions can be dropped if circumstances change before execution.
 
 ## Usage Scenarios
 
 ### Scenario 1: Building an explainable decision agent
 
-**Context:** You are building an agent for a regulated industry (healthcare, finance, legal) where every decision must be auditable. Regulators require traceability from input data to final recommendation.
+**Context:** Your compliance team requires that automated decisions in a financial system be fully traceable -- from input data through reasoning to output action.
 
-**You say:** "I need a loan approval agent where every decision is fully traceable -- regulators must be able to audit why a specific loan was approved or denied"
-
-**The skill provides:**
-- Belief modeling for applicant data (income, credit score, employment history) with justification links to source documents
-- Desire formation based on risk assessment beliefs (desire to approve if risk is acceptable)
-- Intention commitment with full reasoning chain from beliefs through desires to approval/denial
-- SPARQL queries for auditors to trace any decision back to its supporting evidence
-- Temporal validity so auditors can see what the agent believed at the time of decision
-
-**You end up with:** A BDI-modeled loan approval agent where every decision links to specific beliefs, each belief cites its source data, and regulators can run SPARQL queries to audit the complete reasoning chain.
-
-### Scenario 2: Multi-agent belief sharing
-
-**Context:** You have three specialized agents (market analyst, risk assessor, portfolio manager) that need to share their beliefs and coordinate decisions in a trading system.
-
-**You say:** "My three trading agents need to share what they believe about market conditions -- design the mental state communication layer"
+**You say:** "Model a BDI architecture for a loan approval agent that must explain every decision. Regulators need to trace from the decision back to the specific data points and reasoning."
 
 **The skill provides:**
-- Shared BDI ontology so all agents model beliefs using the same vocabulary
-- RDF-based belief serialization for cross-agent communication
-- FIPA ACL integration patterns for belief sharing messages
-- Conflict resolution when agents hold contradictory beliefs about the same world state
-- Compositional beliefs with `hasPart` so agents can update specific aspects independently
+- Belief chain from application data through creditworthiness assessment
+- Justification links at every step (belief justified by data, desire justified by beliefs, intention justified by desire and policy)
+- SPARQL queries regulators can run to trace any decision
+- Temporal validity ensuring decisions reference current data
 
-**You end up with:** A shared cognitive communication layer where agents exchange typed beliefs as RDF triples, detect contradictions, and coordinate intentions based on their collective understanding of market conditions.
+**You end up with:** A formal cognitive model where every loan decision links back to specific data points, reasoning steps, and policy rules through an auditable chain.
 
-### Scenario 3: Integrating BDI with an LLM pipeline
+### Scenario 2: Implementing neuro-symbolic reasoning for an LLM agent
 
-**Context:** You have an LLM-based agent that makes good decisions but cannot explain them. You want to add BDI structure to make the reasoning inspectable without replacing the LLM.
+**Context:** Your LLM agent occasionally generates responses that contradict its own established knowledge. You want to add formal constraints without losing the flexibility of natural language generation.
 
-**You say:** "I want to augment my LLM agent with BDI mental states using the Logic Augmented Generation pattern -- the LLM handles reasoning but BDI provides the structure"
+**You say:** "Implement Logic Augmented Generation so my LLM agent's outputs are validated against a BDI ontology before being returned to the user."
 
 **The skill provides:**
-- Logic Augmented Generation (LAG) pipeline: ontology context injected into LLM prompts
-- Post-generation validation: extracting RDF triples from LLM output and validating against BDI axioms
-- Belief formation from LLM perception: translating LLM observations into formal beliefs
-- Intention extraction: mapping LLM action plans to BDI intention-plan-task structures
-- Consistency checking between LLM outputs and existing belief states
+- Ontology serialization pipeline (BDI graph -> Turtle -> prompt context)
+- LLM output validation: extract RDF triples from response, validate against ontology
+- Retry-with-feedback loop when validation fails
+- Integration pattern for production deployment
 
-**You end up with:** An LLM agent whose outputs are post-processed into formal BDI structures, making every decision inspectable and auditable while preserving the LLM's reasoning capabilities.
+**You end up with:** A LAG pipeline where the LLM generates responses constrained by formal BDI rules, catching contradictions before they reach users.
 
-## Ideal For
+### Scenario 3: Multi-agent belief sharing
 
-- **Teams building agents for regulated industries** -- the justification chains and SPARQL audit queries meet compliance requirements for explainable AI
-- **Researchers implementing cognitive agent architectures** -- the formal BDI ontology with OWL axioms and DOLCE alignment provides academically grounded foundations
-- **Engineers building multi-agent systems** -- RDF-based mental state representation enables cross-platform belief sharing and coordination
-- **Anyone needing explainable agent reasoning** -- the perception-belief-desire-intention-plan-task chain makes every decision traceable
-- **Teams combining LLMs with formal reasoning** -- the LAG integration pattern and T2B2T paradigm bridge neural and symbolic approaches
+**Context:** You have three specialized agents (research, analysis, reporting) that need to share their understanding of a situation. Currently they pass unstructured text and often contradict each other.
 
-## Not For
+**You say:** "Design a BDI-based communication protocol so my three agents can share beliefs formally instead of passing unstructured text."
 
-- **Multi-agent coordination protocols and handoff patterns** -- use [multi-agent-patterns](../multi-agent-patterns/) for supervisor, swarm, and hierarchical architectures
-- **Agent memory persistence and retrieval** -- use [memory-systems](../memory-systems/) for production memory frameworks (Mem0, Zep/Graphiti, Letta, Cognee, LangMem)
-- **Evaluating agent output quality** -- use [agent-evaluation](../agent-evaluation/) for rubrics, LLM-as-judge, and evaluation pipelines
+**The skill provides:**
+- Shared BDI ontology vocabulary all three agents use
+- Belief serialization format for inter-agent communication
+- Conflict resolution patterns when agents hold contradictory beliefs
+- FIPA ACL integration for cross-platform communication
 
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through four reference documents.
-
-The **SKILL.md** body provides the conceptual framework: the mental reality architecture (beliefs, desires, intentions as endurants; belief processes, desire processes, intention processes as perdurants), the cognitive chain pattern showing how beliefs motivate desires that become intentions specifying plans, world state grounding, the T2B2T paradigm for bidirectional RDF flow, justification and explainability patterns, temporal dimensions with validity intervals, compositional mental entities, and integration patterns for LAG and SEMAS.
-
-When deeper implementation detail is needed, Claude draws from the references:
-
-- **bdi-ontology-core.md** provides the formal class hierarchy, OWL property definitions, existential restrictions, and axioms for the BDI ontology
-- **rdf-examples.md** provides complete RDF/Turtle examples showing full cognitive workflows from perception through action
-- **sparql-competency.md** provides SPARQL queries for validating ontology implementations against competency questions (what beliefs motivated a desire, which tasks compose a plan, what was the agent's state at time T)
-- **framework-integration.md** provides concrete integration code for SEMAS production rules, JADE agent behaviors, JADEX goal lifecycle, and LAG pipeline implementation
-
-Simple questions ("what is the BDI model?") are answered from the core skill. Ontology design pulls from `bdi-ontology-core.md`. Implementation questions pull from `rdf-examples.md` and `framework-integration.md`. Validation queries pull from `sparql-competency.md`.
-
-## Related Plugins
-
-- **[Agent Evaluation](../agent-evaluation/)** -- Rubrics, LLM-as-judge, bias mitigation for measuring agent quality
-- **[Agent Project Development](../agent-project-development/)** -- Methodology for starting LLM projects: task-model fit, pipeline architecture
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for background agents: sandboxes, registries, self-spawning
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures comparing Mem0, Zep/Graphiti, Letta, Cognee, LangMem
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Supervisor, swarm, and hierarchical patterns for multi-agent systems
-- **[Ontology Design](../ontology-design/)** -- Formal knowledge models with classes, properties, relationships, and taxonomies
+**You end up with:** A structured communication protocol where agents share typed beliefs with justifications, and contradictions are detected and resolved formally rather than silently.
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Decision Logic
+
+**When should you use BDI modeling vs simple prompt engineering?**
+
+BDI modeling adds value when: (1) decisions must be explainable and auditable, (2) multiple agents need to share structured mental states, (3) beliefs have temporal validity and stale information causes failures, (4) you need formal validation that reasoning is consistent. Simple prompt engineering is sufficient when the agent performs straightforward input-output tasks without complex reasoning chains or explainability requirements.
+
+**When to use T2B2T vs direct LLM processing?**
+
+T2B2T is appropriate when external data is already in RDF or can be naturally expressed as triples, when the agent needs to produce structured output that feeds into other systems, and when bidirectional flow between knowledge graphs and agent cognition is the core architecture. Direct LLM processing is simpler when inputs and outputs are natural language without formal structure requirements.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Beliefs without temporal bounds | Agent acts on stale information (yesterday's stock price treated as current) | Add `hasValidity` with TimeInterval to every belief; implement expiration checks in the reasoning cycle |
+| Missing justifications | Cannot trace why the agent made a decision; audit fails | Enforce existential restriction: every Belief must link to at least one Justification instance |
+| Flat belief structures | Updating one aspect (meeting location changed) requires replacing the entire belief about the meeting | Model complex beliefs with `hasPart` relations; update only the changed component |
+| Conflating world states and mental states | Model is structurally wrong; beliefs ARE the world instead of ABOUT the world | Separate WorldState instances (objective) from Belief instances (agent's representation); beliefs reference world states via `refersTo` |
+
+## Ideal For
+
+- **Agent architects building explainable AI systems** who need formal reasoning chains that regulators and auditors can trace
+- **Knowledge graph engineers** who work with RDF data and want to bridge it into agent cognition through the T2B2T paradigm
+- **Multi-agent system designers** who need structured inter-agent communication beyond unstructured text passing
+- **Researchers in neuro-symbolic AI** who want to augment LLM outputs with formal ontological constraints
+
+## Not For
+
+- **Simple chatbot development** -- if your agent answers questions without complex multi-step reasoning, BDI adds overhead without value. Use standard prompt engineering.
+- **Multi-agent coordination protocols** -- BDI provides the cognitive model, not the coordination patterns. Use `multi-agent-patterns` for handoffs, routing, and orchestration.
+- **Persistent memory and retrieval** -- for storing and retrieving agent memories across sessions, use `memory-systems`.
+
+## Related Plugins
+
+- **multi-agent-patterns** -- Coordinate agents whose mental states this plugin helps you model
+- **ontology-design** -- Design formal domain ontologies that BDI agents can reason about
+- **memory-systems** -- Persist agent beliefs across sessions
+- **agent-evaluation** -- Evaluate the quality of BDI-based agent decisions
+- **agent-project-development** -- Plan the overall architecture of agent systems that use BDI cognitive models
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
