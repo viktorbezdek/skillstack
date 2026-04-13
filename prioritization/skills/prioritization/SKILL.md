@@ -1,10 +1,11 @@
 ---
 name: prioritization
 description: >-
-  Apply prioritization frameworks for decision-making including RICE, MoSCoW, ICE scoring,
-  and effort-impact matrices. Use when doing prioritization, RICE scoring, MoSCoW
-  categorization, ICE analysis, backlog ranking, or effort-impact analysis.
-  NOT for OKR or outcome definition (use outcome-orientation).
+  Apply RICE, MoSCoW, ICE, and effort-impact frameworks to rank options and decide what
+  to work on next. Use when the user asks to prioritize a backlog, rank features, decide
+  what to build first, apply RICE or MoSCoW scoring, cut scope, or compare items by
+  effort vs impact. NOT for defining success metrics or OKRs (use outcome-orientation).
+  NOT for making a strategic bet under uncertainty (use strategic-decision workflow).
 ---
 
 # Prioritization
