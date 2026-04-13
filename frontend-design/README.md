@@ -6,23 +6,7 @@ Comprehensive Frontend Design (UI/UX) skill combining UI design systems, compone
 
 ## What Problem Does This Solve
 
-Frontend teams routinely reinvent design decisions — colours, spacing, dark mode tokens, accessible keyboard patterns — because the knowledge is scattered across eleven different specialist areas and rarely consolidated in one place. This skill merges that expertise into a single reference covering the Tailwind + Radix UI + shadcn/ui stack, Figma-to-token extraction, WCAG 2.2 compliance, and responsive layout, so developers can build consistent, accessible UIs without context-switching across multiple docs.
-
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "Build a dashboard card component with Tailwind and shadcn/ui" | Quick-start component setup, shadcn/ui CLI commands, and a working TypeScript example with responsive grid |
-| "Set up a dark mode token system" | Three-tier CSS variable architecture (primitives, semantics, components) with `.dark` override pattern |
-| "Extract design tokens from our Figma file" | `extract_tokens.py` + `transform_tokens.py` + `validate_tokens.py` script workflow |
-| "Is our UI accessible? We need WCAG AA compliance" | WCAG 2.2 contrast table, accessibility checklist, and `audit_accessibility.sh` script |
-| "Which component library should we use and how does it layer together?" | Core stack architecture explaining Tailwind (styling) → Radix UI (behaviour) → shadcn/ui (complete components) |
-| "Evaluate the visual quality of this UI and suggest improvements" | UI evaluation with `evaluate-ui.ts` and A/B variation comparison with `compare-variations.ts` |
-
-## When NOT to Use This Skill
-
-- React component logic, hooks, or state management -- use [react-development](../react-development/) instead
-- Next
+Frontend teams routinely reinvent design decisions -- colours, spacing, dark mode tokens, accessible keyboard patterns -- because the knowledge is scattered across specialist areas and rarely consolidated in one place. This skill merges that expertise into a single reference covering the Tailwind CSS + Radix UI + shadcn/ui stack, Figma-to-token extraction, WCAG 2.2 compliance, responsive layout, Storybook patterns, and UI evaluation -- so developers can build consistent, accessible UIs without context-switching across multiple docs.
 
 ## Installation
 
@@ -35,63 +19,92 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
+## What's Inside
+
+This is a large single-skill plugin with a SKILL.md, 58 reference files, 30+ scripts, component templates, and design token templates.
+
+### Core Architecture
+
+The skill is organised around three pillars:
+
+| Layer | Technology | Role |
+|---|---|---|
+| **Styling** | Tailwind CSS | Utility-first CSS with build-time generation, zero runtime overhead, design tokens for colors/spacing/typography |
+| **Behavior** | Radix UI | Unstyled accessible component primitives with WAI-ARIA, keyboard navigation, focus management |
+| **Components** | shadcn/ui | Complete pre-built components combining Tailwind styling with Radix behavior |
+
+### Reference Files (58 files)
+
+Organised across these domains:
+
+- **Accessibility** -- WCAG 2.2 guidelines, accessibility checklist, accessible component patterns, audit procedures
+- **Architecture** -- Component patterns, composition patterns, file organisation, integration patterns
+- **Design Tokens** -- CSS variable guide, three-tier token architecture (primitives/semantics/components), W3C DTCG spec, Figma extraction
+- **Tailwind** -- Utilities reference, responsive patterns, customisation guide
+- **shadcn/ui** -- Component reference, theming, accessibility integration
+- **Testing** -- Testing patterns, Storybook integration, Playwright-based UI evaluation
+- **Performance** -- Core Web Vitals, performance optimisation, loading and error states
+
+### Scripts (30+ files)
+
+| Script | Purpose |
+|---|---|
+| `extract_tokens.py` | Extract design tokens from Figma |
+| `transform_tokens.py` | Transform tokens into CSS/SCSS/TypeScript |
+| `validate_tokens.py` | Validate token naming and structure |
+| `audit_accessibility.sh` | Run accessibility audit against WCAG criteria |
+| `evaluate-ui.ts` | Playwright-based UI quality evaluation |
+| `compare-variations.ts` | A/B comparison of UI design variations |
+| `generate_component.sh` | Scaffold new components with templates |
+| `setup_design_system.sh` | Set up a complete design system |
+| `scaffold_component.py` | Component scaffolding with types and tests |
+| `shadcn_add.py` | Add shadcn/ui components to a project |
+
+### Templates
+
+- Component templates (Button.tsx, Input.tsx, composed, extended, stories, tests, types)
+- CSS variables template, SCSS variables template, TypeScript types template, W3C tokens template
+- Documentation template for components
+
 ## How to Use
 
 **Direct invocation:**
 
 ```
-Use the frontend-design skill to ...
+Use the frontend-design skill to build a dashboard card component with Tailwind and shadcn/ui
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-- `frontend`
-- `ui-ux`
-- `tailwind`
-- `accessibility`
-- `design-tokens`
+`frontend` · `ui-ux` · `tailwind` · `accessibility` · `design-tokens`
 
-## What's Inside
+## Usage Scenarios
 
-- **When to Use This Skill** -- Decision criteria covering components, design systems, styling, accessibility, UI evaluation, and performance optimisation use cases.
-- **Quick Start Decision Tree** -- Branching guide routing requests to the right sub-section or script based on whether you are creating components, styling, working on a design system, addressing accessibility, or evaluating quality.
-- **Core Stack Architecture** -- Three-pillar explanation of how Tailwind CSS (styling), Radix UI (accessible behaviour), and shadcn/ui (complete components) layer on top of each other.
-- **Quick Start: Component Setup** -- `npx shadcn@latest` setup commands and a working TypeScript/React dashboard component example.
-- **Design Token System** -- Three-tier CSS variable architecture (primitives → semantics → components) with Figma extraction script workflow.
-- **Accessibility Standards** -- WCAG 2.2 contrast ratio table, eight-item accessibility checklist, and a summary of Radix UI's built-in accessibility guarantees.
-- **Best Practices Summary** -- Do/don't checklist covering semantic HTML, mobile-first layout, WCAG compliance, design tokens, TypeScript, and Core Web Vitals.
-- **External Resources** -- Links to TailwindCSS, Radix UI, shadcn/ui, WCAG 2.2, OKLCH color space, and WebAIM contrast checker.
+**1. Building a dashboard component from scratch.** You need a responsive card grid with dark mode support. The skill provides the shadcn/ui setup commands, a working TypeScript/React example, and the three-tier CSS variable architecture for light/dark theming -- getting you from zero to a polished component in minutes rather than hours.
 
-## Key Capabilities
+**2. Setting up a design token pipeline from Figma.** Your designer exports tokens from Figma and you need them in CSS variables, SCSS, and TypeScript types. Use the `extract_tokens.py` -> `transform_tokens.py` -> `validate_tokens.py` pipeline to automate the conversion, with validation catching naming violations before they ship.
 
-- **TailwindCSS:**
-- **Radix UI:**
-- **shadcn/ui:**
-- **WCAG Guidelines:**
-- **OKLCH Color Space:**
-- **WebAIM Contrast Checker:**
+**3. Achieving WCAG AA compliance on an existing UI.** Run `audit_accessibility.sh` against your app to get a report of contrast failures, missing ARIA labels, and keyboard navigation gaps. Then use the accessibility patterns reference to fix each finding with the correct Radix UI primitives.
 
-## Version History
+**4. Evaluating two design options objectively.** You have two candidate designs for a settings page and need to decide. Use `evaluate-ui.ts` for automated quality scoring and `compare-variations.ts` for side-by-side A/B evaluation, producing quantitative data for the design review.
 
-- `1.1.23` fix(frontend): disambiguate react-development vs nextjs-development vs frontend-design (6c64693)
-- `1.1.22` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.1.21` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.1.20` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.1.19` refactor: remove old file locations after plugin restructure (a26a802)
-- `1.1.18` docs: update README and install commands to marketplace format (af9e39c)
-- `1.1.17` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.1.16` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.1.15` fix: make all shell scripts executable and fix Python syntax errors (61ac964)
-- `1.1.14` docs: add detailed README documentation for all 34 skills (7ba1274)
+**5. Scaffolding a component library for a new project.** Run `setup_design_system.sh` to initialise Tailwind, install Radix UI and shadcn/ui, set up the token architecture, and generate starter components with TypeScript types, Storybook stories, and test files already wired up.
 
-## Related Skills
+## When to Use / When NOT to Use
 
-- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
-- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
-- **[Gws Cli](../gws-cli/)** -- Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace A...
-- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
-- **[Nextjs Development](../nextjs-development/)** -- Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Compon...
+**Use when:** You are building UI components, implementing design systems, styling with Tailwind/CSS, creating accessible interfaces, extracting design tokens from Figma, or evaluating UI quality.
+
+**Do NOT use for:**
+- **React component logic, hooks, or state management** -- use [react-development](../react-development/)
+- **Next.js routing, SSR, or server components** -- use [nextjs-development](../nextjs-development/)
+
+## Related Plugins in SkillStack
+
+- **[API Design](../api-design/)** -- REST, GraphQL, and gRPC API design patterns
+- **[Nextjs Development](../nextjs-development/)** -- App Router, Server Components, and Next.js framework patterns
+- **[React Development](../react-development/)** -- Hooks, state management, and React component architecture
+- **[TypeScript Development](../typescript-development/)** -- Type system patterns, generics, and TypeScript best practices
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
