@@ -6,32 +6,30 @@
 
 ## The Problem
 
-Running AI coding agents locally works for a single developer on a single task, but breaks down in every other scenario. The agent competes with the developer's IDE, browser, and build tools for CPU and memory. Each team member has a different local environment, so the agent produces inconsistent results. Only one person can use a session at a time -- when the PM wants to watch the agent work or the designer wants to describe a UI change, they have to take turns or screen-share.
+Running AI coding agents on local machines hits fundamental limits quickly. A developer's laptop can run one agent at a time, competing with their IDE, build tools, and browser for CPU and memory. When the developer closes the laptop, the agent stops. When two team members want to collaborate on the same agent session, they cannot -- sessions are tied to a single machine. When the agent needs to work on a repository that requires 20 minutes of dependency installation, the user waits 20 minutes before the first useful response.
 
-Moving agents to hosted infrastructure solves these problems but introduces new ones. Spinning up a development environment from scratch takes 30-90 seconds (clone the repo, install dependencies, run the build), which is an eternity when users expect near-instant responses. Per-session state isolation is straightforward for one user but becomes complex at scale -- hundreds of concurrent sessions each need their own database, filesystem, and process space without interfering with each other. Multi-client synchronization (a user starts a session in Slack, continues it on the web, and reviews the PR in VS Code) requires a real-time state layer that most teams have never built.
+Scaling beyond one developer reveals deeper problems. Each developer has a different machine configuration, different installed tools, different environment variables. An agent that works perfectly on one machine fails silently on another because a dependency is missing or a path is different. There is no consistent, reproducible environment for agent execution, which means every "it works on my machine" bug from traditional development is amplified in the agent context.
 
-The deeper problem is that most teams building hosted agents solve each of these challenges independently, discovering the same patterns through trial and error: image pre-building to reduce startup time, warm pools for predictive sandbox allocation, per-session SQLite for state isolation, WebSocket hibernation for idle connections. These patterns are well-established in production systems but not documented in a form that a new team can adopt systematically.
+The most critical constraint is session speed. If an agent takes 3 minutes to start (clone repository, install dependencies, run initial build), users will not wait. They will type the code themselves. The gap between "agent is ready" and "user loses patience" is measured in seconds, not minutes. Without infrastructure that brings session startup time below the model's time-to-first-token, hosted agents are a demo, not a product.
 
 ## The Solution
 
-This plugin documents the architectural patterns that production teams (including Ramp's background agent system) have used to build reliable hosted agent infrastructure. It covers the full three-layer architecture: sandbox infrastructure for isolated execution, API layer for state management and client coordination, and client interfaces for user interaction across platforms.
+This plugin provides production-tested infrastructure patterns for running AI coding agents in remote sandboxed environments. The core architecture addresses the session speed problem through image pre-building: environment images are rebuilt every 30 minutes with the repository cloned, dependencies installed, and initial builds completed. When a user starts a session, the sandbox spins up from a recent image and is ready in seconds, not minutes.
 
-The sandbox layer covers the image registry pattern (pre-build environment images every 30 minutes so sessions start from a recent snapshot instead of from scratch), filesystem snapshots for instant restore, Git configuration for background agents (app tokens for clone, user identity for commits), and warm pool strategy with predictive warm-up (start warming a sandbox when the user begins typing, not when they submit).
+The skill covers six infrastructure areas: sandbox setup (image registry pattern, snapshot and restore, git configuration for background agents), speed optimizations (predictive warm-up, parallel file reading, build-time maximization), self-spawning agents (agent-initiated sub-sessions for parallel work), API layer (per-session state isolation, real-time WebSocket streaming, multi-client synchronization), multiplayer support (shared sessions, user attribution, collaboration patterns), and client implementations (Slack integration, web interface, Chrome extension for non-engineers).
 
-The API layer covers per-session SQLite for state isolation at scale, WebSocket hibernation for idle connections, cross-client synchronization, and real-time streaming of tool execution and model output. The client layer covers Slack bot integration (with a repository classifier and virality loop design), web interface (with hosted VS Code and before/after screenshots), and Chrome extension (with DOM extraction instead of raw screenshots for token efficiency).
-
-The skill also covers self-spawning agents (tools for starting and checking sub-sessions, prompt engineering for when to spawn), multiplayer support (per-prompt authorship, shared session links), and metrics (merged PR rate as the primary KPI).
+The plugin ships one SKILL.md with all patterns, one reference file with detailed implementation patterns, 13 trigger eval cases, and 3 output quality eval cases.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Agent sessions take 45-90 seconds to start because the environment builds from scratch each time | Image registry pre-builds every 30 minutes; warm pool has sandboxes ready before the user types -- startup limited only by model time-to-first-token |
-| Each session re-clones the repo and reinstalls all dependencies, wasting compute and time | Pre-built images contain the cloned repo, installed dependencies, and cached build artifacts from running the test suite once |
-| Per-session state isolation is ad-hoc, leading to sessions that interfere with each other at scale | Per-session SQLite provides isolation by default; no session can impact another's performance |
-| Only one person can use an agent session at a time -- collaboration means screen-sharing | Multiplayer support with per-prompt authorship, shared session links, and real-time sync across clients |
-| Agent is only accessible through the CLI -- non-engineers cannot use it | Multi-client architecture: Slack bot for natural-language interaction, web interface for visual work, Chrome extension for non-engineers |
-| Large tasks run sequentially in one session, taking hours | Self-spawning agents break large tasks into parallel sub-sessions, each producing its own PR |
+| Agent starts by cloning, installing dependencies, and building -- 3-20 minute wait before first response | Image pre-building every 30 minutes means sandbox is at most 30 minutes stale; startup is seconds, not minutes |
+| Each developer's agent runs in a different environment; behavior varies across machines | Sandboxed environments provide consistent, reproducible execution regardless of the user's machine |
+| Sessions tied to one user on one machine; collaboration requires screen sharing | Multiplayer sessions with shared state; multiple users can interact with the same agent session |
+| Agent works only through one interface (CLI or IDE) | Multi-client architecture: Slack, web, Chrome extension, VS Code -- all synchronized to the same session |
+| Complex tasks require one agent doing everything sequentially | Self-spawning agents: an agent can create sub-sessions for parallel research or split large PRs into smaller ones |
+| No visibility into whether agent work produces value | Metrics infrastructure: track sessions-to-merged-PRs as the primary success metric |
 
 ## Installation
 
@@ -42,189 +40,288 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install hosted-agents@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention hosted agents, background agents, sandboxed execution, agent infrastructure, multiplayer agents, or remote coding environments.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention background agents, hosted agents, sandboxed execution, agent infrastructure, warm pools, multiplayer agents, or self-spawning agents.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
 2. Open a Claude Code session
-3. Type: `Design the sandbox infrastructure for a hosted coding agent that needs to start sessions in under 5 seconds`
-4. Claude produces the three-layer architecture with image registry pattern, warm pool strategy, predictive warm-up, and per-session state isolation
-5. Next, try: `How do I add multiplayer support so multiple team members can collaborate in the same agent session?` to get the data model changes, WebSocket sync architecture, and shared session link design
+3. Type: `Design the sandbox infrastructure for a hosted coding agent that works on our monorepo`
+4. Claude provides the image registry pattern with build cadence, snapshot strategy, and warm pool configuration
+5. Next, try: `How should the agent spawn sub-sessions for parallel research across multiple repositories?`
+
+---
+
+## System Overview
+
+```
+User prompt (hosted agent architecture / sandbox design / multiplayer)
+        |
+        v
++------------------+     +-------------------------------+
+|  hosted-agents   |---->| Topic routing                  |
+|  skill (SKILL.md)|     | (match to infrastructure area)|
++------------------+     +-------------------------------+
+        |                         |
+        v                         v
+  Core concepts:           6 infrastructure areas:
+  - Session speed is       1. Sandbox Infrastructure
+    everything               (image registry, snapshots, warm pools)
+  - Pre-build everything   2. Speed Optimizations
+  - Server-first             (predictive warm-up, parallel reads)
+    architecture           3. Self-Spawning Agents
+        |                    (sub-sessions, prompt engineering)
+        v                  4. API Layer
+  Practical guidance:        (state isolation, WebSocket, sync)
+  - Follow-up handling     5. Multiplayer Support
+  - Metrics that matter      (shared sessions, user attribution)
+  - Adoption strategy      6. Client Implementations
+                             (Slack, web, Chrome extension)
+                                   |
+                                   v
+                           +----------------------------+
+                           | Infrastructure Patterns    |
+                           | reference (detailed code)  |
+                           +----------------------------+
+```
+
+Single-skill plugin with one reference file for detailed implementation patterns. No hooks, no MCP servers, no scripts.
 
 ## What's Inside
 
-Single-skill plugin with one SKILL.md and one reference file, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | What It Provides |
+|---|---|---|
+| **hosted-agents** | Skill | 6 infrastructure areas, core concepts, practical guidance, adoption strategy |
+| **infrastructure-patterns.md** | Reference | Detailed implementation patterns for sandbox, API layer, and client integration |
+| **trigger-evals** | Eval | 13 trigger eval cases (8 positive, 5 negative) |
+| **output-evals** | Eval | 3 output quality eval cases |
 
-| Topic | What It Covers |
-|---|---|
-| **Sandbox Infrastructure** | Image registry pattern (30-min pre-build cadence), filesystem snapshots, Git config for background agents, warm pool with predictive warm-up |
-| **Agent Framework Selection** | Server-first architecture, code-as-source-of-truth principle, plugin system requirements (event listeners, conditional tool blocking, runtime context injection) |
-| **Speed Optimizations** | Parallel file reads before git sync, predictive sandbox warm-up, maximizing build-time work |
-| **Self-Spawning Agents** | Tools for starting/checking sub-sessions, prompt engineering for spawn-vs-inline decisions |
-| **API Layer** | Per-session SQLite, WebSocket hibernation, cross-client sync, real-time streaming |
-| **Multiplayer Support** | Per-prompt authorship data model, shared session links, concurrent editing patterns |
-| **Client Integration** | Slack bot (repository classifier, virality loop), web interface, Chrome extension (DOM extraction) |
-| **Metrics** | Merged PR rate as primary KPI, follow-up message handling strategies, adoption patterns |
+### Component Spotlight
 
-### Reference
+#### hosted-agents (skill)
 
-| Reference | Topic |
-|---|---|
-| `infrastructure-patterns.md` | Detailed implementation patterns from Ramp's background agent, Modal Sandboxes, Cloudflare Durable Objects, and OpenCode |
+**What it does:** Activates when you ask about building hosted or background coding agents, designing sandboxed execution environments, implementing multiplayer agent sessions, creating multi-client agent interfaces, or scaling agent infrastructure. Provides production-tested patterns for each infrastructure area with specific implementation guidance.
 
-### hosted-agents
+**Input -> Output:** You describe a hosted agent architecture challenge -> The skill provides the matching infrastructure pattern(s) with implementation approach, trade-offs, and guidance on what to build first.
 
-**What it does:** Activates when you ask about building background coding agents, designing sandbox environments, implementing multiplayer sessions, creating multi-client interfaces, scaling agent infrastructure, or building self-spawning agent systems. Provides the three-layer architecture (sandbox, API, client) with specific patterns for each layer and production-tested guidance from teams that have already shipped these systems.
+**When to use:**
+- Building background coding agents that run independently of user devices
+- Designing sandboxed execution environments for agent workloads
+- Implementing multiplayer agent sessions with shared state
+- Creating multi-client agent interfaces (Slack, Web, Chrome extensions)
+- Scaling agent infrastructure beyond local machine constraints
+- Building systems where agents spawn sub-agents for parallel work
+
+**When NOT to use:**
+- Agent coordination patterns and multi-agent design -> use [multi-agent-patterns](../multi-agent-patterns/)
+- Agent memory and persistence across sessions -> use [memory-systems](../memory-systems/)
+- Tool interface design for agents -> use [tool-design](../tool-design/)
+- Building MCP servers -> use [mcp-server](../mcp-server/)
 
 **Try these prompts:**
 
 ```
-Design the infrastructure for a hosted coding agent platform that serves 50 concurrent users with sub-5-second session startup
+Design the sandbox infrastructure for a hosted coding agent that works on our 50K-file monorepo
 ```
 
 ```
-How do I pre-build environment images for my agent's sandbox so sessions don't have to clone and install from scratch?
+How should I implement warm pools so agent sessions start in under 5 seconds?
 ```
 
 ```
-Add multiplayer support to our agent -- I want team members to share a session link and see each other's prompts in real time
+Design a self-spawning pattern where the agent can create sub-sessions for parallel code research
 ```
 
 ```
-Build a Slack bot interface for our coding agent so product managers can use it without leaving Slack
+Build a multiplayer architecture where 3 team members can collaborate on the same agent session
 ```
 
 ```
-Our agent needs to handle a 30-file refactoring task -- how do I implement self-spawning so it can parallelize the work?
+What's the best way to add a Slack bot interface to our hosted agent? We want team members to trigger agent sessions from a channel.
 ```
+
+**Key references:**
+
+| Reference | Topic |
+|---|---|
+| `infrastructure-patterns.md` | Detailed sandbox architecture, API layer, client patterns, and implementation code |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Build an agent" | "Design the sandbox infrastructure for a background coding agent that clones our repo, installs deps, and runs tasks" |
+| "Make it faster" | "How should I implement warm pools and predictive warm-up to get session startup under 5 seconds?" |
+| "Add multiplayer" | "Design a multiplayer architecture where team members can join an active agent session and send prompts attributed to their identity" |
+| "Scale the agent" | "Our agent runs 50 concurrent sessions. How should I isolate per-session state and handle WebSocket connections efficiently?" |
+| "Add Slack" | "Build a Slack bot that classifies which repository to work in based on the channel and message content, then spawns an agent session" |
+
+### Structured Prompt Templates
+
+**For sandbox design:**
+```
+Design sandbox infrastructure for a hosted agent. Repository: [size/language/build time]. Target session startup: [seconds]. Image build cadence: [frequency]. Expected concurrency: [sessions].
+```
+
+**For client integration:**
+```
+Add a [Slack / web / Chrome extension] client to our hosted agent. The client should: [trigger sessions / monitor progress / interact during execution]. Users: [engineers / non-engineers / mixed]. Auth: [GitHub / SSO / anonymous].
+```
+
+**For self-spawning agents:**
+```
+Design a self-spawning pattern where agents can: [parallel research / split PRs / cross-repo investigation]. Constraints: [max concurrent sub-sessions / coordination mechanism / how results merge].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking about agent coordination logic:** "How should agents decide who does what?" -- this plugin covers infrastructure, not coordination patterns. Use [multi-agent-patterns](../multi-agent-patterns/) for supervisor/swarm/pipeline patterns.
+- **Requesting memory system design:** "How should the agent remember past sessions?" -- use [memory-systems](../memory-systems/) for Mem0, Zep, Graphiti, or custom memory.
+- **Combining infrastructure with implementation:** "Build a hosted agent that does code review" -- first design the infrastructure (this plugin), then implement the code review logic (use [code-review](../code-review/)).
 
 ## Real-World Walkthrough
 
-You are the engineering lead at a 200-person company that has been using AI coding agents locally. Adoption is strong among senior engineers, but three problems keep coming up: sessions take over a minute to start (clone, install, build), only one person can work with the agent at a time, and non-engineers (PMs, designers) cannot use it at all because it requires a CLI. Your CTO asks you to build a hosted version.
+You are the platform engineering lead at a mid-size company. The team wants to build a hosted coding agent that developers can access from Slack. The agent should clone any of your 12 repositories, make code changes, and open PRs. Currently, developers use Claude Code locally, but adoption is limited because setup takes 15 minutes per repo and only works on the developer's machine.
 
-You start by asking Claude: **"Design the infrastructure for a hosted coding agent that starts sessions in under 5 seconds and supports multiplayer."**
+**Step 1: Sandbox design.** You ask Claude: **"Design the sandbox infrastructure for a hosted agent. We have 12 repositories, the largest is 50K files with a 10-minute cold build. We want session startup under 10 seconds for the top 5 most-used repos."**
 
-Claude activates the hosted-agents skill and begins with the **sandbox layer**. The key insight: session speed should be limited only by model time-to-first-token, with all infrastructure setup completed before the user starts their session.
+Claude activates the hosted-agents skill and provides the image registry pattern:
+- Build environment images every 30 minutes for the top 5 repositories
+- Each image contains: cloned repo at latest commit, all dependencies installed, initial build completed, test suite caches populated
+- When a session starts, spin up a sandbox from the most recent image (at most 30 minutes stale)
+- Run `git pull` to sync the last 30 minutes of changes (typically a few seconds for 1-2 commits)
 
-Claude designs the **image registry pattern**. A background job runs every 30 minutes for each active repository. It clones the repo, installs all dependencies, runs the build, executes the test suite once (to populate caches), and saves the result as a snapshot image. When a user starts a session, the sandbox spins up from the latest image -- the repo is at most 30 minutes old, so syncing with the current HEAD is a fast `git pull` of recent commits, not a full clone.
+For the remaining 7 less-used repos, use on-demand builds with a cache layer for dependencies.
 
-On top of this, Claude adds the **warm pool strategy**. For your top 10 most-used repositories, the system maintains a pool of 3 pre-warmed sandboxes each. These are already running, already synced, and ready to accept a session. When a user starts typing (not when they submit), the system starts warming a sandbox predictively. By the time they hit Enter, the sandbox is ready. Session startup drops from 60+ seconds to under 3 seconds.
+**Step 2: Warm pool.** You ask: **"The CEO tried the agent and said '10 seconds is too slow.' How do I get it under 3 seconds?"**
 
-Claude also adds a **speed optimization for file reads**: allow the agent to start reading files immediately even if the `git pull` from the latest branch has not completed. In large repositories, the files the user is asking about are rarely the ones that changed in the last 30 minutes. File reads proceed immediately; only file writes are blocked until synchronization completes.
+Claude provides the warm pool strategy:
+- Maintain 2-3 pre-warmed sandboxes per popular repository
+- When a user's Slack message is classified to a repository, assign them a pre-warmed sandbox instantly
+- The warm pool refills in the background as sandboxes are consumed
+- Predictive warm-up: start warming a sandbox when the user begins typing in Slack (the typing indicator API)
 
-Next, Claude designs the **API layer**. Each session gets its own SQLite database for state isolation -- no session can impact another's performance, and the system handles hundreds of concurrent sessions without a shared database bottleneck. Real-time updates (token streaming from the model, tool execution status, file change notifications) flow through WebSocket connections. Claude recommends WebSocket hibernation (Cloudflare Durable Objects pattern) to reduce compute costs during idle periods while maintaining open connections.
+**Step 3: Slack integration.** You ask: **"Design the Slack bot that triggers sessions."**
 
-For **multiplayer**, Claude explains the data model changes. The session model must not tie sessions to a single author. Each prompt carries its own authorship information: who sent it, when, and from which client. When the agent commits code, it uses the prompting user's Git identity (`user.name` and `user.email`), not the app's identity. This ensures correct commit attribution and prevents users from approving their own agent-generated PRs.
+Claude provides the repository classification pattern:
+- Build a fast classifier (small model) that maps Slack messages to repositories using channel name, message content, and thread context
+- Each channel is tagged with a default repository (e.g., #frontend -> `web-app`, #api -> `backend-service`)
+- If the classifier returns "unknown," ask the user which repo to use
+- The bot creates a thread for the agent session, streaming updates as the agent works
 
-Shared session links are simple: generate a unique URL for each session, and any authenticated user with the link can view and contribute. The WebSocket sync layer already handles real-time updates, so multiplayer is "nearly free" once the synchronization architecture is in place.
+**Step 4: Multiplayer.** You ask: **"Two developers want to work on the same agent session -- one reviewing while the other directs."**
 
-For **client integration**, Claude designs three surfaces. The **Slack bot** is the highest-priority client because it creates a virality loop: when a team member uses the agent in a public Slack channel, other team members see it working and want to try it. The bot uses a fast model (like Haiku) to classify which repository the user is referring to based on the message text, thread context, and channel name. The **web interface** provides a richer experience: real-time streaming of agent work, a hosted VS Code instance running inside the sandbox for live code editing, and before/after screenshots for PR review. The **Chrome extension** serves non-engineers: a sidebar chat interface with a screenshot tool that extracts DOM structure and React component tree instead of sending raw screenshots (reducing token usage while maintaining precision).
+Claude provides the multiplayer architecture:
+- Sessions are not tied to a single user -- any team member with access can join via a shared session URL
+- Each prompt is attributed to the user who sent it (using their GitHub identity for commits)
+- The data model stores `prompted_by` per message, not per session
+- Real-time sync via WebSocket ensures all participants see the same state
 
-Finally, Claude covers **metrics and adoption**. The primary KPI is sessions resulting in merged PRs -- not sessions started, not PRs created, but PRs that were actually merged. This measures real value delivered. The adoption strategy: work in public Slack channels for visibility, let the product create its own virality loop, and build to people's actual needs rather than hypothetical requirements.
+**Step 5: Metrics.** You ask: **"How do we measure if this is actually working?"**
 
-You ship the hosted agent over two months. Session startup drops from 60 seconds to 3 seconds. The Slack bot drives adoption among non-engineers -- within a month, PMs are using the agent to update copy, designers are using it to adjust CSS, and the agent-written code percentage across repositories climbs to 15%. The multiplayer feature becomes the surprise hit: pair debugging sessions where an engineer and a PM look at the same agent conversation become a daily occurrence.
+Claude provides the metrics framework:
+- Primary metric: sessions resulting in merged PRs (not sessions started, not lines generated)
+- Secondary: time from session start to first model response (target: < 3 seconds)
+- Secondary: PR approval rate and average revision count
+- Dashboard showing "agent-written code %" per repository, tracking adoption over time
+
+You now have a complete architecture: sandbox with warm pools, Slack integration with repository classification, multiplayer support, and a metrics framework -- ready to build incrementally.
 
 ## Usage Scenarios
 
-### Scenario 1: Designing sandbox infrastructure from scratch
+### Scenario 1: Building a sandboxed execution environment
 
-**Context:** You are building a hosted agent platform and need the sandbox architecture that supports fast session startup and clean isolation.
+**Context:** Your team wants to run AI coding agents in isolated cloud environments. The monorepo has a 15-minute cold build that makes local execution impractical.
 
-**You say:** "Design the sandbox infrastructure for our coding agent -- we need fast startup, clean isolation, and support for 100 concurrent sessions"
-
-**The skill provides:**
-- Image registry pattern with 30-minute pre-build cadence
-- Warm pool strategy with predictive warm-up
-- Per-session filesystem and process isolation
-- Git configuration for background agent commits
-- Snapshot and restore for session continuity
-
-**You end up with:** A complete sandbox architecture document with build pipeline, warm pool sizing, and isolation model.
-
-### Scenario 2: Reducing agent session startup time
-
-**Context:** Users complain that agent sessions take 45 seconds to start. You need to get this under 5 seconds.
-
-**You say:** "Our agent sessions take 45 seconds to start -- how do I reduce this to under 5 seconds?"
+**You say:** "Design a sandbox environment for our monorepo agent. Cold build is 15 minutes. We need sessions to start in under 5 seconds."
 
 **The skill provides:**
-- Image pre-building to move clone/install/build to background jobs
-- Warm pool with predictive warm-up (start warming when user types, not when they submit)
-- Parallel file reads before git sync completes
-- Metrics for measuring startup time breakdown
+- Image registry pattern with 30-minute build cadence
+- Build-time optimization: move all dependency installation and initial build to image creation
+- Snapshot strategy: filesystem snapshots at key checkpoints for instant restore
+- Warm pool sizing: 3-5 pre-warmed sandboxes based on expected usage patterns
 
-**You end up with:** A prioritized optimization plan with expected time savings for each technique, targeting sub-5-second startup.
+**You end up with:** A sandbox architecture where session startup is decoupled from build time -- users start working in seconds regardless of how long the build takes.
 
-### Scenario 3: Adding a Slack bot for non-engineer access
+### Scenario 2: Adding a Slack bot interface
 
-**Context:** Your agents work well for engineers via CLI, but PMs and designers cannot use them. You want a Slack interface.
+**Context:** Your engineering team of 30 people uses Slack daily. You want to distribute the hosted agent through Slack so developers can trigger sessions without any new tooling.
 
-**You say:** "Build a Slack bot interface so our PMs and designers can use the coding agent without learning the CLI"
-
-**The skill provides:**
-- Repository classifier using a fast model to route requests to the right repo
-- Natural-language command interface with no syntax required
-- Virality loop design (public channel usage drives organic adoption)
-- Session linking so a Slack conversation can continue on the web interface
-
-**You end up with:** A Slack bot architecture that classifies repositories, creates agent sessions, and streams results back to the channel.
-
-### Scenario 4: Implementing self-spawning for large tasks
-
-**Context:** A user asks the agent to refactor authentication across 30 files. Running sequentially would take hours.
-
-**You say:** "How do I make my agent spawn sub-agents to parallelize a large refactoring task?"
+**You say:** "Design a Slack bot for our hosted agent. 12 repositories. The bot should figure out which repo to work in from the message and channel."
 
 **The skill provides:**
-- Self-spawning tool design: start session, check status, retrieve results
-- Prompt engineering for when to spawn vs. handle inline
-- Work decomposition strategy (group independent files into parallel sub-tasks)
-- PR strategy (one PR per sub-agent or consolidated PR from coordinator)
+- Repository classifier using channel tags and message content
+- Thread-based session management (one thread = one agent session)
+- Streaming updates as the agent works (tool calls, file changes, PR creation)
+- Error handling for ambiguous repository classification
 
-**You end up with:** A self-spawning architecture where the agent breaks large tasks into parallel sub-sessions, each producing independent results.
+**You end up with:** A Slack bot that is the easiest distribution channel for internal adoption -- team members see others using it and start naturally.
+
+### Scenario 3: Implementing self-spawning for complex tasks
+
+**Context:** Your agent receives requests that require changes across 3 repositories. Currently it handles them sequentially, which takes too long.
+
+**You say:** "Design a self-spawning pattern where the agent can create sub-sessions for parallel work across multiple repos."
+
+**The skill provides:**
+- Agent tool design: `create_session(repo, prompt)`, `check_session_status(id)`, `get_session_result(id)`
+- Prompt engineering for when to spawn (cross-repo changes, research tasks, PR splitting)
+- Coordination pattern: main agent monitors sub-sessions and synthesizes results
+- Resource limits: maximum concurrent sub-sessions and timeout handling
+
+**You end up with:** An agent architecture that parallelizes naturally, creating sub-sessions for cross-repo work and merging results in the main session.
+
+---
+
+## Decision Logic
+
+The skill matches your query to one of six infrastructure areas:
+
+| Your situation | Infrastructure area |
+|---|---|
+| Need fast session startup, reproducible environments | Sandbox Infrastructure (image registry, snapshots, warm pools) |
+| Startup too slow even with images | Speed Optimizations (predictive warm-up, parallel reads, build-time maximization) |
+| Complex tasks need parallel work | Self-Spawning Agents (sub-session tools, prompt engineering) |
+| Need multi-client support, real-time streaming | API Layer (state isolation, WebSocket, synchronization) |
+| Team wants to collaborate on sessions | Multiplayer Support (shared sessions, user attribution) |
+| Need Slack, web, or browser interface | Client Implementations (Slack bot, web app, Chrome extension) |
+
+Most production systems combine multiple areas. A typical build order: sandbox first (core functionality), then Slack integration (distribution), then warm pools (speed), then multiplayer (collaboration).
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Image build fails silently | Sessions start from stale image; code is hours behind main branch | Monitor image build pipeline; alert on build failure; fall back to previous known-good image |
+| Warm pool exhausted during usage spike | Session startup degrades from 3 seconds to 30+ seconds (cold start) | Auto-scale warm pool size based on usage patterns; implement queueing with estimated wait time for users |
+| Self-spawned sub-session runs forever | Resource leak; cloud bill increases; main session waits indefinitely | Set timeout on all sub-sessions; main agent checks status periodically; auto-terminate stale sub-sessions |
+| Multiplayer attribution wrong | Code committed under wrong user identity | Verify git `user.name` and `user.email` are set from the prompting user's identity, not the app identity |
+| Slack classifier picks wrong repository | Agent starts working on the wrong codebase | Include a confirmation step: "I think this is about the `web-app` repo. Is that right?" Allow user to correct before sandbox spins up |
 
 ## Ideal For
 
-- **Teams building hosted coding agent platforms** -- the three-layer architecture (sandbox, API, client) provides the complete infrastructure blueprint
-- **Engineering leads scaling beyond local agent execution** -- image pre-building, warm pools, and predictive warm-up solve the startup time problem that blocks adoption
-- **Companies wanting non-engineer access to coding agents** -- Slack bot, web interface, and Chrome extension patterns serve different user types without requiring CLI skills
-- **Teams building collaborative AI workflows** -- multiplayer support with per-prompt authorship enables pair debugging, collaborative code review, and teaching sessions
-- **Organizations tracking agent ROI** -- merged PR rate as primary KPI and adoption strategy guidance for measuring and growing real value
+- **Platform engineering teams** building internal developer tools that include AI coding agents
+- **Startups building AI-native development products** (e.g., coding assistants, automated PR generators)
+- **Enterprise teams** that need multiplayer, audit trails, and user attribution for AI-generated code
+- **Teams adopting AI agents at scale** who have outgrown local CLI execution and need cloud infrastructure
 
 ## Not For
 
-- **Agent coordination patterns or multi-agent design** -- this plugin covers the infrastructure for hosting agents, not the patterns for how agents coordinate with each other. Use [multi-agent-patterns](../multi-agent-patterns/) for supervisor, swarm, and pipeline architectures
-- **Agent memory and persistence across sessions** -- use [memory-systems](../memory-systems/) for production memory frameworks (Mem0, Zep, Letta, Cognee, LangMem)
-- **Designing tools and tool interfaces for agents** -- use [tool-design](../tool-design/) for tool description optimization, parameter design, and error handling patterns
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with one SKILL.md and one reference file. The SKILL.md covers eight topics organized around the three-layer architecture:
-
-**Sandbox Layer:**
-1. Image registry pattern (pre-build cadence, snapshot contents, sync strategy)
-2. Warm pool strategy (pool sizing, predictive warm-up, expiration)
-3. Speed optimizations (parallel reads, build-time maximization)
-
-**API Layer:**
-4. Per-session state isolation (SQLite per session)
-5. Real-time streaming (WebSocket with hibernation)
-6. Self-spawning agents (tool design, prompt engineering)
-
-**Client Layer:**
-7. Slack bot (repository classifier, virality loop)
-8. Web interface and Chrome extension
-
-The reference file (`infrastructure-patterns.md`) provides detailed implementation patterns drawn from production systems: Ramp's background agent architecture, Modal Sandboxes for compute isolation, Cloudflare Durable Objects for per-session state, and OpenCode as a server-first agent framework reference.
+- **Agent coordination patterns** (supervisor, swarm, pipeline architectures) -- use [multi-agent-patterns](../multi-agent-patterns/)
+- **Agent memory and persistence** (remembering past sessions, learning over time) -- use [memory-systems](../memory-systems/)
+- **Tool interface design** (how agents call tools, tool description optimization) -- use [tool-design](../tool-design/)
 
 ## Related Plugins
 
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Supervisor, peer-to-peer, swarm, and hierarchical multi-agent architectures -- complements hosted agents with coordination logic
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures for persistent agent memory across sessions
-- **[Agent Evaluation](../agent-evaluation/)** -- Evaluation frameworks for measuring agent quality with rubrics and LLM-as-judge
-- **[Agent Project Development](../agent-project-development/)** -- Task-model fit analysis and pipeline architecture for LLM projects
-- **[BDI Mental States](../bdi-mental-states/)** -- Belief-Desire-Intention cognitive architecture for LLM agents
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Coordination patterns for self-spawning agents (supervisor, swarm, pipeline)
+- **[Memory Systems](../memory-systems/)** -- Persistent memory for agents that need to remember across sessions
+- **[Tool Design](../tool-design/)** -- Designing tools for agent spawning and status checking
+- **[MCP Server](../mcp-server/)** -- Build MCP servers that agents use to interact with external systems
+- **[Filesystem Context](../filesystem-context/)** -- Filesystem patterns for session state and artifacts within sandboxes
 
 ---
 
