@@ -2,326 +2,423 @@
 
 > **v2.0.23** | Development | 26 iterations
 
-> Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching, caching strategies, and module architecture.
+---
 
 ## The Problem
 
-Next.js moves fast. The App Router introduced Server Components, Server Actions, and an entirely new mental model for data fetching and caching. Next.js 16 made route parameters async, deprecated middleware in favor of proxy, and introduced Cache Components with `"use cache"`. Each major version changes what "correct" looks like, and the official docs -- while excellent -- spread guidance across dozens of pages without a unified decision framework.
+Next.js moves fast. Between App Router, Server Components, Server Actions, the `"use cache"` directive, async route parameters in Next.js 16, and the middleware-to-proxy migration, keeping up requires constant documentation reading. Teams building production applications face a compounding knowledge problem: the framework's surface area is enormous, breaking changes arrive with each major version, and the wrong architectural decision early (choosing Client Components where Server Components should be default, ignoring cache strategies, using deprecated middleware patterns) creates technical debt that is expensive to unwind.
 
-The result is predictable: developers add `'use client'` to everything because they are not sure when Server Components are safe. They skip cache strategy specifications on `fetch()` calls and get inconsistent behavior between development and production. They build async Client Components that break at runtime. They miss the `default.js` requirement for parallel routes and get cryptic errors. They try to migrate from Next.js 15 to 16 and discover that `params` is now a Promise, breaking every dynamic route in the app.
+The pain hits hardest during version transitions. Next.js 16 made `params`, `searchParams`, `cookies()`, `headers()`, and `draftMode()` async -- every page and layout that accesses these APIs needs updating. Middleware is deprecated in favor of `proxy.ts`. Parallel routes now require `default.js` fallbacks. Teams migrating large codebases spend days tracking down build failures that stem from these breaking changes, often discovering them one at a time in production.
 
-These are not edge cases -- they are the top errors that every Next.js team encounters. Without a consolidated reference that covers the decision tree (Server vs Client), the file conventions, the caching model, the data fetching patterns, and the version-specific breaking changes, developers waste hours debugging issues that have well-known solutions.
+Even within a single version, architectural decisions carry high stakes. Server Components are the default, but adding `'use client'` to the wrong component pulls its entire subtree to the client, ballooning bundle size. Cache strategies (`no-store`, `force-cache`, ISR, `"use cache"`) interact in non-obvious ways -- a missing cache directive on a fetch call can cause stale data in production or unnecessary revalidation that degrades performance. Module architecture (where services, hooks, types, and components live) varies across tutorials and blog posts, leaving teams with inconsistent project structures.
+
+Without a comprehensive, version-aware reference covering Next.js 13+, 15, and 16 patterns, teams oscillate between outdated blog posts, incomplete documentation, and trial-and-error. Each developer on the team learns different patterns, creating inconsistency that compounds with project size.
 
 ## The Solution
 
-This plugin provides a unified, version-aware Next.js development guide that covers everything from the Server vs Client Component decision tree to the Next.js 16 migration path. It consolidates five previously separate skills into a single comprehensive resource, covering App Router patterns, Server Components, Server Actions, caching strategies, data fetching, module architecture, and version-specific breaking changes.
+The Next.js Development plugin gives Claude deep, version-aware expertise in Next.js covering App Router, Server Components, Server Actions, caching strategies, data fetching, routing, module architecture, and the full Next.js 16 migration path. It is one of the largest SkillStack plugins -- a single skill backed by 11 reference documents, 20 resource guides, 9 code templates, and 3 analysis scripts.
 
-You get non-negotiable rules that prevent build failures (always use `<Image>`, never make async Client Components, always specify cache strategy on `fetch()`), a decision tree for Server vs Client Components, complete file convention references for App Router, and working templates for every common pattern -- async params, Cache Components, parallel routes, proxy migration, route handlers, and Server Action forms.
+The plugin covers critical rules (non-negotiable patterns that prevent build failures), the Server vs Client Component decision tree, App Router file conventions, data fetching patterns (Server Components, TanStack Query, SWR, parallel fetching, streaming), Server Actions with Zod validation and optimistic UI, caching strategies from `no-store` to `"use cache"` with revalidation profiles, and the complete 5-layer module architecture pattern.
 
-The skill ships with 11 reference files covering architecture, components, database patterns, hooks, pages, permissions, services, TypeScript patterns, migration guides, and common errors -- plus 20 resource files, 9 code templates, and 3 analysis scripts. It is the most comprehensive Next.js plugin in the SkillStack collection.
+For Next.js 16 specifically, the plugin provides: async route parameter migration, middleware-to-proxy migration, parallel route `default.js` requirements, `"use cache"` directive usage, and updated `revalidateTag()` API with cache life profiles. Templates provide copy-pasteable starting points for the most common patterns.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Add `'use client'` to everything out of uncertainty | Decision tree: Server Component unless you need hooks, event handlers, or browser APIs |
-| Skip cache strategy on `fetch()`, get inconsistent dev vs prod behavior | Every `fetch()` explicitly specifies `no-store`, `force-cache`, or `revalidate` with guidance on which to use |
-| Migrate to Next.js 16 and break every dynamic route (`params` is now async) | Migration guide with before/after code for async params, proxy migration, and Cache Components |
-| Build async Client Components that fail at runtime | Non-negotiable rule enforced: async components are Server Components only |
-| Miss `default.js` for parallel routes and get cryptic errors | File convention reference with all required files per pattern, including parallel route fallbacks |
-| Reinvent module architecture for each feature | 5-layer pattern: routes, services, hooks, types, components -- consistent across all features |
+| Accidentally use `<img>` instead of `next/image` and get build failures | Critical rule enforcement: always `<Image>`, always cache strategy on fetch, always await async APIs |
+| Add `'use client'` to components that should be Server Components, bloating bundle size | Server vs Client Component decision tree based on actual needs (hooks, event handlers, browser APIs) |
+| Spend days migrating to Next.js 16, discovering breaking changes one by one in production | Complete Next.js 16 migration guide: async params, proxy.ts, default.js, `"use cache"`, updated revalidateTag |
+| Inconsistent module architecture across team members | 5-layer module pattern: routes, services, hooks, types, components with clear boundaries |
+| Cache strategy chosen by guesswork -- stale data or unnecessary revalidation | Cache strategy decision framework: no-store vs force-cache vs ISR vs "use cache" with revalidation profiles |
+| No templates for common patterns -- every developer writes boilerplate from scratch | 9 code templates: async params, cache components, parallel routes, proxy migration, route handlers, Server Actions forms |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install nextjs-development@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you work with Next.js files or mention Next.js topics.
+### Prerequisites
+
+- Node.js 20.9+
+- Next.js 13+ (optimized for 15 and 16)
+- React 18, 19, or 19.2
+
+For React-specific patterns (hooks, state management, component architecture), also install `react-development`. For visual design systems and Tailwind CSS, also install `frontend-design`.
+
+### Verify installation
+
+After installing, test with:
+
+```
+I'm starting a new Next.js 16 project -- set up the file structure with App Router, a dashboard layout, and a data fetching pattern using Server Components
+```
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Start building with Next.js:
-   ```
-   Create a new blog page with Server Components, data fetching from a Postgres database, and ISR caching with 1-hour revalidation
-   ```
-3. The skill produces correct App Router code with proper file conventions, cache configuration, and Server Component data fetching.
-4. Ask about specific patterns:
-   ```
-   Should this component be a Server or Client Component? It displays a list but has a search input with onChange
-   ```
-5. Get a clear decision with the component split pattern: Server Component for the list, Client Component wrapper for the search input.
+1. Install the plugin using the commands above
+2. Ask: `Create a Next.js page with Server Components that fetches data from an API and handles loading and error states`
+3. The skill generates a complete page with proper App Router conventions, Suspense boundaries, and error handling
+4. You receive production-ready code following the 5-layer module pattern
+5. Next, try: `I need to migrate my middleware.ts to the new proxy.ts pattern in Next.js 16`
+
+---
+
+## System Overview
+
+```
+nextjs-development/
+├── .claude-plugin/
+│   └── plugin.json                    # Plugin manifest
+└── skills/
+    └── nextjs-development/
+        ├── SKILL.md                   # Core skill (critical rules, decision trees, patterns, architecture)
+        ├── references/                # 11 deep-dive reference documents
+        │   ├── architecture-patterns.md       # Overall architecture patterns
+        │   ├── component-patterns.md          # Component design patterns
+        │   ├── database-patterns.md           # Database schema and RLS
+        │   ├── extended-patterns.md           # Detailed code examples for all patterns
+        │   ├── hooks-patterns.md              # Custom hooks patterns
+        │   ├── next-16-migration-guide.md     # Next.js 16 migration guide
+        │   ├── page-patterns.md               # Page structure patterns
+        │   ├── permission-patterns.md         # Permission system patterns
+        │   ├── service-patterns.md            # Service layer patterns
+        │   ├── top-errors.md                  # Common errors and solutions
+        │   └── typescript-patterns.md         # TypeScript patterns
+        ├── resources/                 # 20 resource guides
+        │   ├── app-router-complete.md         # Complete App Router guide
+        │   ├── caching-strategies.md          # Caching deep dive
+        │   ├── data-fetching-complete.md      # Data fetching patterns
+        │   ├── metadata-api.md                # Metadata API guide
+        │   ├── rendering-strategies.md        # SSG, ISR, SSR, Streaming
+        │   ├── routing-patterns.md            # Routing patterns
+        │   ├── server-actions-complete.md     # Server Actions guide
+        │   ├── server-client-decision.md      # Server/Client decision guide
+        │   └── ... (12 more)
+        ├── templates/                 # 9 code templates
+        │   ├── app-router-async-params.tsx     # Async params pattern
+        │   ├── cache-component-use-cache.tsx   # Cache Components
+        │   ├── parallel-routes-with-default.tsx # Parallel routes
+        │   ├── proxy-migration.ts             # Proxy migration
+        │   ├── route-handler-api.ts           # Route handlers
+        │   ├── server-actions-form.tsx         # Server Actions forms
+        │   ├── layout-template.md             # Layout templates
+        │   └── page-template.md               # Page templates
+        ├── scripts/                   # 3 analysis scripts
+        │   ├── analyze-routing-structure.mjs  # Analyze App Router structure
+        │   ├── check-versions.sh              # Check Next.js/React/Node versions
+        │   └── validate-patterns.py           # Validate Next.js pattern compliance
+        └── evals/
+            ├── trigger-evals.json     # 13 trigger evaluation cases
+            └── evals.json             # 3 output evaluation cases
+```
+
+The plugin is a single comprehensive skill backed by a large reference library. The SKILL.md provides critical rules, decision trees, and quick references. References cover architecture, components, database, hooks, pages, permissions, services, TypeScript, migration, and errors. Resources provide complete guides for App Router, caching, data fetching, metadata, rendering, routing, and Server Actions. Templates provide copy-pasteable starting points. Scripts analyze and validate project patterns.
 
 ## What's Inside
 
-Large single-skill plugin with deep reference material, resource guides, code templates, and analysis scripts.
+| Component | Type | Purpose |
+|---|---|---|
+| `nextjs-development` | Skill | Critical rules, Server/Client decision tree, App Router conventions, data fetching, caching, module architecture |
+| 11 reference files | References | Architecture, components, database, hooks, pages, permissions, services, TypeScript, migration, errors |
+| 20 resource guides | Resources | Complete guides for App Router, caching, data fetching, metadata, rendering, routing, Server Actions, styling |
+| 9 code templates | Templates | Async params, cache components, parallel routes, proxy migration, route handlers, Server Actions forms, layouts, pages |
+| 3 scripts | Scripts | Routing structure analysis, version checking, pattern validation |
 
-| Component | Description |
-|---|---|
-| **SKILL.md** | Core skill with critical rules, Next.js 16 breaking changes, Server/Client decision tree, App Router file conventions, data fetching and caching quick reference, Server Actions patterns, and 5-layer module architecture |
-| **11 references** | Architecture, components, database/RLS, hooks, pages, permissions, services, TypeScript, migration guide, common errors |
-| **20 resources** | App Router, caching, data fetching, metadata API, Server Actions, rendering strategies, routing, Server/Client decision, styling, performance, and more |
-| **9 templates** | Async params, Cache Components, parallel routes, proxy migration, route handlers, Server Action forms, layout and page templates |
-| **3 scripts** | Routing structure analyzer, version checker, pattern validator |
-| **evals/** | 13 trigger evaluation cases + 3 output quality evaluation cases |
+### Component Spotlight
 
-### nextjs-development
+#### nextjs-development (skill)
 
-**What it does:** Activates when you are working with Next.js -- creating pages, implementing data fetching, deciding between Server and Client Components, building Server Actions, configuring caching, setting up routing, or migrating between versions. Covers Next.js 13+, 15, and 16 with version-specific guidance.
+**What it does:** Activates when you are building with Next.js. Provides critical build rules, the Server vs Client Component decision tree, App Router file conventions, data fetching patterns, Server Actions with validation, caching strategies, and the 5-layer module architecture pattern. Covers Next.js 13+, 15, and 16 with explicit breaking change documentation.
+
+**Input -> Output:** A Next.js development task (new page, data fetching, migration, caching, routing) -> Production-ready code following App Router conventions with proper cache strategies, Server/Client Component separation, and module architecture.
+
+**When to use:**
+- Creating new Next.js pages, layouts, or components
+- Implementing data fetching with Server Components, TanStack Query, or SWR
+- Deciding between Server and Client Components
+- Building Server Actions for forms and mutations
+- Implementing caching strategies (ISR, `"use cache"`, revalidation)
+- Migrating from Next.js 15 to 16
+- Setting up module architecture for feature-scale development
+
+**When NOT to use:**
+- Generic React patterns, hooks, or component logic (use `react-development`)
+- UI/CSS design systems or visual styling (use `frontend-design`)
+- TypeScript language features unrelated to Next.js (use `typescript-development`)
+- API design principles unrelated to Next.js route handlers (use `api-design`)
 
 **Try these prompts:**
 
 ```
-Create a dashboard page with a sidebar layout, parallel routes for modals, and streaming data with Suspense
+Create a dashboard page with a data table that fetches from a Postgres database using Server Components, with loading and error states
 ```
 
 ```
-I'm migrating from Next.js 15 to 16 -- what's going to break and how do I fix it?
+I need to implement ISR for a blog -- posts should revalidate every hour, but the homepage should revalidate on-demand when a post is published
 ```
 
 ```
-What's the right caching strategy for an e-commerce product page that updates inventory every 5 minutes?
+Migrate my Next.js 15 app to 16 -- I have 30 pages using params and searchParams that need async migration
 ```
 
 ```
-Build a Server Action for a multi-step form with Zod validation, optimistic updates, and error handling
+Design the module architecture for a multi-tenant SaaS app with Next.js -- users, projects, billing, and settings modules
 ```
 
 ```
-My page is slow -- show me how to implement parallel data fetching with Promise.all in Server Components
+Should this component be a Server Component or Client Component? It fetches data from an API and has a search input with onChange
 ```
 
 ```
-Set up the module architecture for a CRUD feature with list, detail, create, and edit pages
+Set up Server Actions for a form with Zod validation, optimistic UI updates, and revalidation on submit
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `extended-patterns.md` | Detailed code examples for all core patterns |
-| `architecture-patterns.md` | Overall application architecture |
-| `component-patterns.md` | Component composition and splitting |
-| `database-patterns.md` | Database schema and Row Level Security |
-| `hooks-patterns.md` | Custom hooks for Next.js apps |
-| `page-patterns.md` | Page structure and layout composition |
-| `permission-patterns.md` | Permission system implementation |
-| `service-patterns.md` | Service layer and data access patterns |
-| `typescript-patterns.md` | TypeScript patterns for Next.js |
-| `next-16-migration-guide.md` | Next.js 15 to 16 migration guide |
-| `top-errors.md` | Common errors and solutions |
+| `extended-patterns.md` | Detailed code examples for all major patterns |
+| `next-16-migration-guide.md` | Complete migration guide: async params, proxy.ts, default.js, "use cache" |
+| `top-errors.md` | Common build and runtime errors with solutions |
+| `architecture-patterns.md` | Overall application architecture patterns |
+| `component-patterns.md` | Server/Client Component design patterns |
+| `database-patterns.md` | Database schema, RLS, and data access patterns |
+| `service-patterns.md` | Service layer implementation patterns |
 
-**Shipped templates:**
+**Key templates:**
 
-| Template | Pattern |
+| Template | Purpose |
 |---|---|
-| `app-router-async-params.tsx` | Async route parameters (Next.js 16) |
-| `cache-component-use-cache.tsx` | Cache Components with `"use cache"` |
-| `parallel-routes-with-default.tsx` | Parallel routes with required default fallback |
+| `app-router-async-params.tsx` | Next.js 16 async params pattern |
+| `cache-component-use-cache.tsx` | `"use cache"` directive usage |
+| `server-actions-form.tsx` | Form with Server Actions and validation |
 | `proxy-migration.ts` | Middleware to proxy migration |
-| `route-handler-api.ts` | API route handlers |
-| `server-actions-form.tsx` | Server Actions with form handling |
-| `layout-template.md` | Layout structure template |
-| `page-template.md` | Page structure template |
+| `parallel-routes-with-default.tsx` | Parallel routes with required default.js |
 
-**Analysis scripts:**
+**Scripts:**
 
 | Script | Purpose |
 |---|---|
-| `analyze-routing-structure.mjs` | Analyze App Router file tree for convention compliance |
+| `analyze-routing-structure.mjs` | Analyze your App Router file structure for issues |
 | `check-versions.sh` | Verify Next.js, React, and Node.js version compatibility |
-| `validate-patterns.py` | Validate Next.js patterns against best practices |
-
-## Real-World Walkthrough
-
-You are building an internal tool for a logistics company -- a shipment tracking dashboard where operations staff can view, search, filter, and update shipment statuses. The app uses Next.js 16, Postgres with Prisma, and Tailwind CSS. You need a list page, a detail page, a create form, and real-time status updates.
-
-**Step 1: Set up the module architecture.**
-
-You start by asking for the project structure:
-
-```
-Set up the module architecture for a shipment tracking feature with list, detail, create, and edit pages using the 5-layer pattern
-```
-
-The skill produces the directory structure following the 5-layer module pattern:
-
-```
-app/(dashboard)/shipments/       # Route pages
-  page.tsx                       # List page (Server Component)
-  [id]/page.tsx                  # Detail page (Server Component)
-  create/page.tsx                # Create page
-  [id]/edit/page.tsx             # Edit page
-lib/services/shipments/          # Service layer
-  shipment-service.ts            # Data access with Prisma
-hooks/shipments/                 # Client-side hooks
-  use-shipment-filters.ts        # Filter state management
-types/shipment.ts                # TypeScript interfaces
-_components/shipments/           # Feature components
-  shipment-table.tsx             # List display
-  shipment-form.tsx              # Create/edit form
-  status-badge.tsx               # Status indicator
-```
-
-**Step 2: Build the list page with Server Components.**
-
-The list page needs to fetch shipments from Postgres and display them in a searchable table. You ask:
-
-```
-Build the shipment list page as a Server Component with parallel data fetching for both shipments and filter options, streamed with Suspense
-```
-
-The skill generates a Server Component that uses `Promise.all` to fetch shipments and filter options in parallel, wraps the table in `<Suspense>` with a loading skeleton, and specifies `cache: 'no-store'` on the fetch because shipment data changes frequently. The search input is extracted into a separate Client Component (`'use client'`) because it needs `onChange` -- following the decision tree: interactivity requires a Client Component, but only the interactive part.
-
-**Step 3: Implement the create form with Server Actions.**
-
-The create form needs validation, optimistic updates, and proper error handling. You ask:
-
-```
-Build a Server Action for creating shipments with Zod validation, useFormStatus for loading state, and error handling that shows field-level errors
-```
-
-The skill produces a Server Action marked with `'use server'` that validates form data with a Zod schema, calls the shipment service to create the record, revalidates the shipment list cache with `revalidateTag('shipments')`, and returns field-level errors. The form component uses `useFormStatus()` for the submit button loading state and `useOptimistic()` to show the new shipment in the list before the server confirms.
-
-**Step 4: Add the detail page with caching.**
-
-The detail page shows full shipment information and tracking history. You need it to be fast but also reasonably current. You ask:
-
-```
-What caching strategy should I use for the shipment detail page? Data changes when status updates happen, but I don't need real-time
-```
-
-The skill recommends ISR with tag-based revalidation: `next: { revalidate: 60, tags: ['shipment-${id}'] }`. The page serves from cache for 60 seconds, and when a status update happens (via the Server Action), it calls `revalidateTag('shipment-${id}')` to invalidate just that shipment's cache. This gives near-real-time freshness without hitting the database on every page view.
-
-**Step 5: Handle the Next.js 16 specifics.**
-
-During development, you encounter async params. The skill has already generated code with the correct Next.js 16 pattern:
-
-```typescript
-export default async function ShipmentPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  // ...
-}
-```
-
-Without the skill, you would have written `params.id` directly and gotten a runtime error. The skill also uses `proxy.ts` instead of the deprecated `middleware.ts` for auth protection on the dashboard routes.
-
-The result: a complete shipment tracking module built with correct Next.js 16 patterns from the start. Server Components handle data fetching without unnecessary client-side JavaScript. Server Actions handle mutations with validation and optimistic updates. Caching is explicitly configured per data-freshness requirement. The 5-layer architecture keeps the codebase organized as the feature grows. No time wasted debugging async params, missing cache strategies, or incorrect Server/Client splits.
-
-## Usage Scenarios
-
-### Scenario 1: Starting a new Next.js project
-
-**Context:** You are starting a greenfield SaaS application with Next.js 16 and want to set up the project with correct conventions from day one.
-
-**You say:** "Set up a Next.js 16 project with App Router, a root layout with auth protection, a marketing section and a dashboard section using route groups, and API routes for webhooks."
-
-**The skill provides:**
-- Complete App Router file structure with route groups `(marketing)` and `(dashboard)`
-- Root layout with proper metadata configuration
-- Auth protection using `proxy.ts` (not deprecated middleware)
-- API route handler template with proper request/response typing
-- File conventions checklist: `layout.tsx`, `loading.tsx`, `error.tsx`, `not-found.tsx`
-
-**You end up with:** A correctly structured Next.js 16 project with all file conventions in place, ready to build features.
-
-### Scenario 2: Migrating from Next.js 15 to 16
-
-**Context:** Your production app runs Next.js 15 and you need to upgrade. You have 40+ dynamic routes, middleware for auth, and heavy use of `params` and `searchParams`.
-
-**You say:** "I'm upgrading from Next.js 15 to 16. I have 40 dynamic routes using params and middleware for auth. Walk me through the migration."
-
-**The skill provides:**
-- Breaking changes checklist: async params, proxy migration, parallel route defaults, Cache Components
-- Before/after code for every breaking change
-- Codemod suggestions and manual migration steps
-- The `validate-patterns.py` script to check for violations after migration
-
-**You end up with:** A step-by-step migration plan with code transformations for every affected file, and a validation script to catch anything you missed.
-
-### Scenario 3: Optimizing a slow page
-
-**Context:** Your product listing page loads slowly because it fetches product data, category data, and user preferences sequentially.
-
-**You say:** "My product page makes 3 sequential fetch calls and takes 4 seconds to load. How do I speed it up with Next.js patterns?"
-
-**The skill provides:**
-- Parallel data fetching with `Promise.all` for independent requests
-- Streaming with `<Suspense>` boundaries so the page renders progressively
-- Caching strategy: `force-cache` with `revalidate` for product data that changes infrequently
-- Component splitting: keep the heavy product grid as a Server Component, extract the filter bar as a Client Component
-
-**You end up with:** A page that loads in under 1 second by fetching in parallel, streaming content progressively, and caching appropriately.
-
-### Scenario 4: Building a form with Server Actions
-
-**Context:** You need a multi-step form for user onboarding with validation, file uploads, and progress persistence.
-
-**You say:** "Build a 3-step onboarding form with Server Actions. Step 1 collects profile info, step 2 handles avatar upload, step 3 selects preferences. I need validation on each step and the ability to go back without losing data."
-
-**The skill provides:**
-- Server Action per step with Zod validation schemas
-- Form state management using `useFormStatus()` and `useOptimistic()`
-- File upload handling in Server Actions
-- Progressive enhancement: form works without JavaScript enabled
-- Back/forward navigation with state preservation
-
-**You end up with:** A production-quality multi-step form with server-side validation, optimistic updates, and progressive enhancement.
-
-## Ideal For
-
-- **Teams building production Next.js applications** -- the consolidated reference prevents the top runtime errors and build failures
-- **Developers learning App Router after Pages Router** -- the decision tree and file conventions make the mental model shift explicit
-- **Engineers migrating to Next.js 16** -- version-specific breaking changes with before/after code and migration scripts
-- **Full-stack developers building CRUD features** -- the 5-layer module architecture provides a consistent pattern for every feature
-- **Anyone confused about Server vs Client Components** -- the decision tree gives a definitive answer for every scenario
-
-## Not For
-
-- **Generic React patterns, hooks, or component logic** -- use [react-development](../react-development/) for React-specific patterns independent of Next.js
-- **UI/CSS design systems or visual styling** -- use [frontend-design](../frontend-design/) for Tailwind CSS, design tokens, and component libraries
-- **Backend API design unrelated to Next.js** -- use [api-design](../api-design/) for REST, GraphQL, and gRPC patterns
-- **TypeScript type system patterns** -- use [typescript-development](../typescript-development/) for generics, Zod, and advanced type patterns
-
-## How It Works Under the Hood
-
-This is the largest single-skill plugin in the SkillStack collection, organized into four layers of depth:
-
-**Core SKILL.md** provides the critical rules, decision trees, and quick references that handle 80% of Next.js development questions. It is designed to load fully into context and give immediate, actionable guidance.
-
-**11 reference files** cover specific architectural domains (architecture, components, database, hooks, pages, permissions, services, TypeScript, migration, errors). These load on demand when the conversation requires depth in a specific area.
-
-**20 resource files** provide comprehensive guides on individual Next.js features (App Router, caching, data fetching, metadata, Server Actions, rendering strategies, routing, Server/Client decisions, styling, performance). These are the deep-dive material for feature-specific questions.
-
-**9 templates and 3 scripts** are production-ready starting points: code templates for every common App Router pattern (async params, Cache Components, parallel routes, proxy, route handlers, Server Actions, layouts, pages) and analysis scripts for routing structure validation, version checking, and pattern compliance.
-
-The evaluation suite (13 trigger cases, 3 output quality cases) ensures the skill activates on Next.js queries and produces code that follows current best practices.
-
-## Related Plugins
-
-- **[React Development](../react-development/)** -- React-specific patterns (hooks, state, component architecture) that complement Next.js
-- **[TypeScript Development](../typescript-development/)** -- TypeScript type system patterns used throughout Next.js development
-- **[Frontend Design](../frontend-design/)** -- Visual design systems, Tailwind CSS, and component libraries
-- **[API Design](../api-design/)** -- API design patterns for Next.js route handlers and external APIs
-- **[Test-Driven Development](../test-driven-development/)** -- Testing methodology for Next.js applications
-
-## Version History
-
-- `2.0.23` fix(design+docs): regenerate READMEs for design and documentation plugins
-- `2.0.22` fix: add standard keywords and expand READMEs
-- `2.0.21` fix: change author field from string to object
-- `2.0.20` fix: rename all claude-skills references to skillstack
-- `2.0.0` Merged from 5 separate Next.js skills into unified plugin
-- `1.0.0` Initial release
+| `validate-patterns.py` | Validate code against Next.js pattern best practices |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Help me with React" | "Create a Next.js Server Component that fetches user data and passes it to a Client Component with a search filter" |
+| "Fix my page" | "My Next.js 16 page crashes with 'params is not iterable' -- I'm destructuring params without awaiting" |
+| "How do I cache things?" | "Implement ISR for my product pages with 1-hour revalidation and on-demand revalidation when products are updated via Server Actions" |
+| "Make a form" | "Build a Server Action form with Zod validation, useFormStatus for loading state, and useOptimistic for immediate UI feedback" |
+| "Help with routing" | "Set up parallel routes for a dashboard with @analytics and @notifications slots, including default.js fallbacks" |
+
+### Structured Prompt Templates
+
+**For new pages:**
+```
+Create a Next.js [version] page at [route path] that [data requirement]. It needs [loading state / error boundary / streaming]. The data comes from [source]. User interactions: [list any client-side needs].
+```
+
+**For migration:**
+```
+Migrate [component/page/layout] from Next.js [old version] to [new version]. Current code uses [specific APIs: params, searchParams, middleware, etc.]. Show the before and after.
+```
+
+**For caching strategy:**
+```
+Design the caching strategy for [page/feature]. Data freshness requirements: [how stale is acceptable]. Revalidation triggers: [on-demand events, time-based, or both]. Scale: [traffic level].
+```
+
+**For module architecture:**
+```
+Design the module architecture for [feature] in a Next.js app. The feature needs: [CRUD operations / data fetching / forms / real-time updates]. Related modules: [other features it interacts with].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for React patterns without Next.js context** -- if you need `useState` or `useEffect` guidance without Next.js routing/fetching, use `react-development` instead
+- **Requesting "the best" cache strategy without freshness requirements** -- caching depends entirely on how stale data can be; provide acceptable staleness duration and revalidation triggers
+- **Mixing Next.js versions in one request** -- specify which version you are targeting (13+, 15, or 16); patterns differ significantly
+- **Ignoring the Server Component default** -- starting with `'use client'` and asking how to fetch data is backwards; start with Server Components and only add `'use client'` when you need interactivity
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a multi-tenant project management SaaS with Next.js 16. The app needs: a dashboard with real-time project stats, a project list with filtering, project detail pages with task management, team member management, and billing settings. You need to establish the architecture, data fetching patterns, and caching strategy before the team starts building features.
+
+**Step 1: Module architecture.** You ask: "Design the module architecture for a project management SaaS with Next.js 16 -- users, projects, tasks, teams, billing."
+
+The skill applies the 5-layer module pattern. For the projects module:
+- `app/(routes)/projects/` -- pages (list, `[id]` detail, create, edit)
+- `lib/services/projects/` -- service layer with data access functions
+- `hooks/projects/` -- custom hooks for client-side state
+- `types/projects.ts` -- TypeScript interfaces and DTOs
+- `_components/projects/` -- feature-specific components
+
+Each module follows the same structure, creating consistency across the team.
+
+**Step 2: Server vs Client Component split.** You describe the dashboard: "The dashboard shows project stats (server-fetched) and has a search filter for the project list (client-side)." The skill applies the decision tree: the stats display is a Server Component (no interactivity, fetches data), the search filter is a Client Component (needs `useState` and `onChange`). The pattern: Server Component fetches all projects, passes them as props to a Client Component that handles filtering. This keeps the data fetch on the server while enabling interactivity.
+
+**Step 3: Data fetching with Next.js 16 async params.** You build a project detail page. The skill generates the page with `params: Promise<{ id: string }>` (Next.js 16 async requirement), awaits params before use, fetches project data directly in the Server Component, and wraps child components in `<Suspense>` for streaming. The template from `app-router-async-params.tsx` provides the exact pattern.
+
+**Step 4: Caching strategy.** You ask about caching for the project list and dashboard. The skill designs a layered strategy: dashboard stats use `next: { revalidate: 60 }` (acceptable to be 1 minute stale), project list uses `next: { tags: ['projects'] }` with on-demand revalidation via `revalidateTag('projects')` when a project is created/updated, and individual project pages use `"use cache"` with the `'hours'` life profile.
+
+**Step 5: Server Actions for mutations.** You need a project creation form. The skill generates a Server Action with `'use server'`, Zod schema validation (`schema.safeParse()`), database insert, `revalidateTag('projects')` after mutation, and a client-side form using `useFormStatus()` for loading state and `useOptimistic()` for immediate UI feedback. The `server-actions-form.tsx` template provides the complete pattern.
+
+**Step 6: Route structure.** The skill maps out the App Router file structure:
+```
+app/
+  layout.tsx            # Root layout with auth
+  (dashboard)/
+    page.tsx            # Dashboard
+  projects/
+    page.tsx            # Project list
+    [id]/
+      page.tsx          # Project detail
+      tasks/page.tsx    # Task list
+  settings/
+    billing/page.tsx    # Billing
+    team/page.tsx       # Team management
+```
+
+Each route group uses layouts for shared UI, loading.tsx for Suspense fallbacks, and error.tsx for error boundaries.
+
+**Final outcome:** A complete architectural blueprint with 5-layer module pattern, Server/Client Component split, Next.js 16 async param handling, tiered caching strategy (time-based + on-demand + `"use cache"`), Server Actions with validation and optimistic UI, and App Router file structure. The team can now build features against consistent patterns.
+
+**Gotchas discovered:** The skill flagged that parallel routes (used for the dashboard's @stats and @projects slots) require `default.tsx` fallback files in Next.js 16 -- missing these causes silent rendering failures that are hard to debug.
+
+## Usage Scenarios
+
+### Scenario 1: Migrating from Next.js 15 to 16
+
+**Context:** You have a production Next.js 15 app with 40 pages, many using `params` and `searchParams` synchronously, a `middleware.ts` for auth redirects, and parallel routes without default files.
+
+**You say:** "Migrate my Next.js 15 app to 16. I have 40 pages accessing params synchronously and a middleware.ts for auth."
+
+**The skill provides:**
+- Systematic migration checklist: async params, proxy.ts, default.js, "use cache"
+- Before/after code for every breaking change
+- The `proxy-migration.ts` template for middleware replacement
+- The `app-router-async-params.tsx` template for param migration
+- Warning about parallel routes needing default.js
+
+**You end up with:** A migration plan you can execute page-by-page with copy-pasteable patterns for each breaking change.
+
+### Scenario 2: Implementing real-time data with caching
+
+**Context:** You need a dashboard that shows mostly static data (refreshed hourly) but includes a live notification count that updates every few seconds.
+
+**You say:** "Build a dashboard with hourly-refreshed stats and a live notification counter. How do I mix static caching with real-time data in the same page?"
+
+**The skill provides:**
+- Server Component for stats with `next: { revalidate: 3600 }` (hourly ISR)
+- Client Component for notification count using TanStack Query with polling
+- Composition pattern: Server Component fetches static data, Client Component island handles real-time
+- Suspense boundary wrapping the Client Component for progressive loading
+
+**You end up with:** A hybrid page that caches expensive data fetches while keeping the notification counter live, with proper Suspense boundaries for smooth loading.
+
+### Scenario 3: Building a complete CRUD feature module
+
+**Context:** You need to add a "Teams" feature to your SaaS app -- list teams, create team, edit team, manage members -- following consistent architecture.
+
+**You say:** "Build a complete Teams module with CRUD operations following the 5-layer pattern. I need list, create, edit, and member management pages."
+
+**The skill provides:**
+- Route structure: `app/teams/page.tsx`, `app/teams/create/page.tsx`, `app/teams/[id]/page.tsx`, `app/teams/[id]/edit/page.tsx`, `app/teams/[id]/members/page.tsx`
+- Service layer: `lib/services/teams/` with `getTeams()`, `getTeam()`, `createTeam()`, `updateTeam()`
+- Server Actions: form handlers with Zod validation and revalidation
+- Types: `types/teams.ts` with Team, CreateTeamDTO, UpdateTeamDTO interfaces
+- Components: `_components/teams/` with TeamList, TeamForm, MemberList
+
+**You end up with:** A complete feature module following the 5-layer pattern that the rest of the team can reference when building other modules.
+
+### Scenario 4: Debugging common Next.js errors
+
+**Context:** Your build fails with "Text content does not match server-rendered HTML" and you see hydration errors in the console.
+
+**You say:** "I'm getting hydration mismatch errors -- 'Text content does not match server-rendered HTML'. The component renders user-specific data."
+
+**The skill provides:**
+- Diagnosis: Server Component rendered with server data, Client Component rehydrated with different client data
+- Fix: move user-specific rendering to a Client Component wrapped in Suspense
+- Alternative: use `useEffect` for client-only data to avoid SSR mismatch
+- Reference to `top-errors.md` for the complete error catalog
+
+**You end up with:** A fixed hydration error and understanding of the Server/Client rendering boundary that prevents recurrence.
+
+---
+
+## Decision Logic
+
+**Server Component vs Client Component?**
+
+The skill applies a strict decision tree: Server Components are the default. Only add `'use client'` when the component needs React hooks (`useState`, `useEffect`), event handlers (`onClick`, `onChange`), or browser APIs (`window`, `localStorage`). Data fetching strongly prefers Server Components. Mixed needs (data fetch + interactivity) use the composition pattern: Server Component fetches, passes data as props to a Client Component child.
+
+**Which caching strategy?**
+
+- `cache: 'no-store'` -- data must be fresh on every request (user-specific, real-time)
+- `cache: 'force-cache'` -- data rarely changes (static content, configuration)
+- `next: { revalidate: N }` -- ISR, acceptable to be N seconds stale (product pages, blog posts)
+- `next: { tags: [...] }` -- on-demand revalidation when specific data changes (after mutations)
+- `"use cache"` with life profiles -- Next.js 16 component-level caching (`'max'`, `'hours'`, `'days'`, `'weeks'`)
+
+**When to use which data fetching approach?**
+
+- Server Components with `async/await` -- default for most data fetching (preferred)
+- `Promise.all([...])` -- parallel fetching of independent data in Server Components
+- `<Suspense>` -- streaming for progressive loading of async components
+- TanStack Query / SWR -- client-side fetching when data must update without page reload
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Using `<img>` instead of `next/image` | Build failure with ESLint error | Replace with `<Image>` component from `next/image` with width/height |
+| Synchronous params in Next.js 16 | Runtime error: params is not iterable | Add `Promise<>` type wrapper and `await` before destructuring |
+| Missing `default.tsx` in parallel routes | Silent rendering failure -- slot shows nothing | Add default.tsx that returns null or a fallback UI in every parallel route slot |
+| No cache strategy on `fetch()` | Unpredictable caching behavior, stale or always-fresh based on framework defaults | Explicitly specify `cache` or `next` option on every fetch call |
+| `'use client'` on data-fetching component | Data fetched on client instead of server, larger bundle, slower page load | Move data fetch to Server Component parent, pass data as props |
+| Async Client Component | Build error or unexpected behavior | Never make Client Components async; use `useEffect` or hooks for async client work |
+
+## Performance & Constraints
+
+The plugin has a large reference surface (11 references + 20 resources). The skill loads the SKILL.md core content on activation and pulls references on demand when deeper context is needed. For simple questions (decision tree, critical rules), only the SKILL.md is consulted. For complex tasks (migration, architecture, debugging), relevant references are loaded selectively.
+
+Templates are designed to be copy-pasted and modified -- they follow all critical rules and include TypeScript types. Scripts can be run directly in your project to analyze patterns and validate compliance.
+
+## Ideal For
+
+- **Next.js teams** building production applications who need consistent, version-aware patterns across the team
+- **Developers migrating** from Next.js 15 to 16 who need systematic breaking-change coverage and migration templates
+- **Solo developers** starting new Next.js projects who want production-grade architecture from day one
+- **Teams debugging** Next.js build failures, hydration errors, or caching issues who need a comprehensive error reference
+- **Frontend architects** designing module architecture for large Next.js applications with multiple feature areas
+
+## Not For
+
+- **Generic React development** -- hooks, state management, and component patterns without Next.js context use `react-development`
+- **Visual design and styling** -- Tailwind CSS, design tokens, and component libraries use `frontend-design`
+- **API design principles** -- REST conventions, GraphQL, or gRPC design use `api-design`
+- **TypeScript language features** -- type system patterns unrelated to Next.js use `typescript-development`
+
+## Related Plugins
+
+- **react-development** -- React-specific patterns (hooks, state management, component architecture) that complement Next.js development
+- **frontend-design** -- visual design systems, Tailwind CSS, and UI component libraries
+- **typescript-development** -- TypeScript type system patterns, generics, and Zod integration
+- **api-design** -- REST and GraphQL API design for route handlers
+- **testing-framework** -- test infrastructure for Next.js applications
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
