@@ -1,11 +1,13 @@
 ---
 name: skill-foundry
 description: >-
-  Create high-quality Claude Code skills using philosophy-first design, evidence-based
-  prompting, progressive disclosure, and anti-pattern prevention. Use when creating
-  skills, building skills, designing skills, reviewing skill quality, building skills
-  from documentation, or applying skill best practices. NOT for prompt engineering
-  (use prompt-engineering).
+  Author high-quality Claude Code SKILL.md files using philosophy-first design, evidence-based
+  prompting, progressive disclosure, and anti-pattern prevention. Use when the user asks to
+  write a skill file, create a new Claude Code skill, design a SKILL.md, review whether a
+  skill's description will trigger correctly, or convert a workflow into a reusable skill.
+  NOT for optimizing standalone prompts or system prompts (use prompt-engineering). NOT for
+  full plugin development with hooks and MCP (use plugin-architecture). NOT for generating
+  code documentation (use documentation-generator).
 allowed-tools:
 - Read
 - Write
