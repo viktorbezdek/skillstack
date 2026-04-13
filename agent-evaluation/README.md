@@ -1,253 +1,305 @@
 # Agent Evaluation
 
-> **v1.0.4** | Agent Architecture | 5 iterations
-
-> Build evaluation systems for LLM agents that actually correlate with human judgment -- rubrics, bias mitigation, scoring pipelines, and production monitoring.
+> **v1.0.4** | Comprehensive evaluation framework for LLM agent systems -- multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, and continuous monitoring.
+> 1 skill | 4 references | 15 trigger evals, 3 output evals
 
 ## The Problem
 
-You changed a prompt and the agent "feels" better. But you have no data. You run the same query five times and get five different quality levels, and there is no systematic way to tell whether version A outperforms version B. Traditional unit tests are useless here -- agent outputs are non-deterministic, multiple valid paths exist for any task, and there is no single "correct" answer to compare against.
+Evaluating LLM agents is nothing like testing traditional software. You cannot write a unit test that asserts a single correct answer because agents take different valid paths to reach the same goal. One agent searches three sources, another searches ten, and both produce correct results -- but a naive test that checks for specific steps flags one as failing. Teams that try to apply conventional testing frameworks to agents waste weeks building brittle harnesses that break every time the model takes a slightly different approach.
 
-Teams building with LLMs discover this the hard way. They ship a prompt change that looks great on three hand-picked examples, only to find it regressed on edge cases nobody tested. Or they build an automated evaluation pipeline using LLM-as-judge, but the scores do not match what human reviewers think -- because position bias, length bias, and self-enhancement bias are silently corrupting every result. Debugging why an evaluation system disagrees with humans requires understanding which bias is at play and how to mitigate it.
+The consequences compound fast. Without proper evaluation, teams ship agents that score well on cherry-picked demos but fail on real user queries. Regressions sneak in because nobody measured the baseline. Prompt changes that improve one dimension (accuracy) silently degrade another (efficiency). And when someone finally notices quality has dropped, there is no data to pinpoint when or why it happened.
 
-The gap is not "evaluation is hard" -- it is that building a trustworthy evaluation system requires rubric design, bias mitigation protocols, metric selection, test set stratification, and production pipeline architecture, all working together. Most teams get one or two of these right and wonder why their numbers are unreliable.
+The worst outcome is invisible: teams that lack evaluation methodology never discover that their agents are mediocre. They optimize blindly -- changing prompts, swapping models, adding tools -- with no systematic way to know if anything actually improved. Every change is a coin flip dressed up as engineering.
 
 ## The Solution
 
-This plugin provides the complete evaluation toolkit: multi-dimensional rubrics with calibrated scoring scales, five documented bias types with concrete mitigation techniques (position swap protocol, length-normalized scoring, cross-model evaluation), both direct scoring and pairwise comparison approaches with decision frameworks for choosing between them, test set design stratified by complexity, and production pipeline architecture from criteria loading through confidence scoring.
+This plugin provides a complete evaluation methodology purpose-built for LLM agent systems. It covers rubric design with multi-dimensional scoring, two distinct evaluation approaches (direct scoring for objective criteria, pairwise comparison for subjective preferences), systematic bias mitigation protocols, confidence calibration, and production pipeline architecture for continuous evaluation.
 
-The skill walks you through designing rubrics that reduce evaluation variance by 40-60%, implementing position swap protocols that catch position bias before it corrupts your results, choosing the right metric for your task type (Spearman's rho for ordinal scales, Cohen's kappa for classification, agreement rate for pairwise), and building CI-integrated evaluation pipelines with quality gates. It includes the 95% performance variance finding from BrowseComp research (80% token usage, 10% tool calls, 5% model choice) so you know where to focus optimization efforts.
+The skill teaches you to build evaluation systems that account for agent-specific challenges: non-determinism, multiple valid paths, composite quality dimensions, and context-dependent failures. It provides concrete prompt templates for both direct scoring and pairwise comparison, protocols for mitigating position bias and length bias, and frameworks for test set design stratified by complexity.
 
-You end up with evaluation systems that produce numbers you can trust, catch regressions before they ship, and improve through feedback loops between automated and human judgment.
+The result is an evaluation pipeline that runs automatically on agent changes, tracks quality metrics over time, catches regressions early, and gives you the data to make informed decisions about prompt engineering, model selection, and architecture changes.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Eyeballing agent quality on 3 hand-picked examples | Systematic evaluation across complexity-stratified test sets |
-| LLM-as-judge scores that silently suffer from position and length bias | Position swap protocol and length-normalized scoring catching bias before it corrupts results |
-| Single "quality score" that hides dimension-specific regressions | Multi-dimensional rubrics scoring accuracy, completeness, efficiency, and more independently |
-| No data on whether a prompt change helped or hurt | Automated pipeline comparing versions with statistical metrics (Spearman's rho, Cohen's kappa) |
-| Evaluation scores that do not match human judgment | Calibrated scoring with confidence levels and human-in-the-loop validation |
-| Ad hoc evaluation before releases only | Continuous evaluation in CI with alert thresholds for quality drops |
+| Cherry-picked demos masquerade as evaluation | Multi-dimensional rubrics score accuracy, completeness, efficiency, and process quality independently |
+| Regressions go undetected for weeks | Continuous evaluation pipeline catches quality drops on every change |
+| Prompt changes are coin flips -- no data on what improved or degraded | Before/after comparison with statistical confidence across stratified test sets |
+| Single "it works" metric hides dimension-specific failures | Weighted multi-dimensional scores reveal that accuracy improved but efficiency dropped |
+| Position bias in pairwise comparison corrupts A/B test results | Automatic position-swap protocol with consistency checks eliminates first-position preference |
+| No baseline means no way to measure progress | Baseline metrics established before changes, tracked over time with trend analysis |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install agent-evaluation@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Help me design an evaluation rubric for my customer support agent
+Help me build an evaluation framework for my customer support agent
 ```
-
-The skill activates automatically when you mention evaluation-related topics.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your evaluation need:
-   ```
-   I need to measure whether my prompt changes are actually improving my agent's accuracy
-   ```
-3. The skill guides you through rubric design -- choosing dimensions, calibrating scales, and defining level descriptions with domain-specific language.
-4. You get a multi-dimensional rubric, a test set structure stratified by complexity, and a scoring pipeline with bias mitigation built in.
-5. Next, build continuous evaluation:
-   ```
-   Help me add this evaluation as a quality gate in my CI pipeline
-   ```
+1. Install the plugin using the commands above
+2. Ask: `I need to evaluate whether my coding agent produces correct solutions -- help me design rubrics`
+3. The skill walks you through multi-dimensional rubric design with scoring scales, level descriptions, and edge case guidance
+4. Apply the rubrics by asking: `Now help me build an automated evaluation pipeline that runs these rubrics on every agent change`
+5. Iterate by asking: `My evaluation shows position bias in pairwise comparisons -- how do I fix that?`
+
+---
+
+## System Overview
+
+```
+                        +---------------------------+
+                        |     Agent Evaluation       |
+                        |         Skill              |
+                        +---------------------------+
+                                    |
+            +-----------+-----------+-----------+
+            |           |           |           |
+     +-----------+ +-----------+ +-----------+ +-----------+
+     |  Rubric   | |  Direct   | | Pairwise  | |  Bias     |
+     |  Design   | |  Scoring  | | Comparison| | Mitigation|
+     +-----------+ +-----------+ +-----------+ +-----------+
+            |           |           |           |
+            +-----+-----+-----+-----+----------+
+                  |           |
+          +-------------+ +------------------+
+          | Test Set     | | Production       |
+          | Design       | | Pipeline         |
+          +-------------+ +------------------+
+```
+
+The skill operates as a single comprehensive unit that covers the full evaluation lifecycle: designing rubrics, choosing and implementing evaluation approaches, mitigating systematic biases, building test sets, and running production evaluation pipelines.
 
 ## What's Inside
 
-This is a single-skill plugin backed by four deep reference documents and a comprehensive eval suite.
+| Component | Type | Description |
+|---|---|---|
+| `agent-evaluation` | Skill | Core evaluation methodology covering rubrics, scoring, comparison, bias mitigation, and pipeline design |
+| `bias-mitigation.md` | Reference | Techniques for mitigating position, length, self-enhancement, verbosity, and authority biases |
+| `implementation-patterns.md` | Reference | Production-grade patterns for building LLM evaluation systems |
+| `metrics-guide.md` | Reference | Guidance on selecting appropriate metrics for different evaluation scenarios |
+| `metrics.md` | Reference | Core metric definitions and implementation details |
 
-| Component | Purpose |
-|---|---|
-| **agent-evaluation** skill | Core methodology: rubric design, bias landscape, evaluation taxonomy, pipeline architecture, 18 actionable guidelines |
-| **bias-mitigation.md** | Implementation code for position swap, multi-shuffle comparison, length-normalized scoring, cross-model evaluation, blind evaluation, aggregate bias monitoring |
-| **implementation-patterns.md** | Five production patterns: structured pipeline, hierarchical evaluation, Panel of LLM Judges (PoLL), confidence calibration, structured output formatting |
-| **metrics-guide.md** | Metric selection guide: classification metrics, agreement metrics, correlation metrics, pairwise comparison metrics, decision tree by task type |
-| **metrics.md** | Rubric implementation code: five evaluation dimensions, weighted scoring, test set management, evaluation runner, production monitoring with alert thresholds |
+### Component Spotlights
 
-**Eval coverage:** 15 trigger eval cases + 3 output eval cases.
+#### agent-evaluation (skill)
 
-### How to Use: agent-evaluation
+**What it does:** Activates when you need to evaluate LLM agent performance, build evaluation frameworks, design rubrics, implement LLM-as-judge systems, or compare model outputs. Provides a structured methodology covering rubric design, two evaluation approaches (direct scoring and pairwise comparison), bias mitigation, test set design, and production pipeline architecture.
 
-**What it does:** Guides you through designing, implementing, and operating evaluation systems for LLM agents. Activates when you need to measure agent quality, build rubrics, compare model outputs, set up evaluation pipelines, or debug bias in existing evaluation systems. Covers the full spectrum from rubric design through production monitoring.
+**Input -> Output:** A description of what you need to evaluate -> Multi-dimensional rubrics, evaluation prompts, bias mitigation protocols, test set structure, and pipeline architecture.
+
+**When to use:**
+- Building a new evaluation framework for an agent system
+- Designing rubrics for scoring agent outputs
+- Comparing two agent configurations or model versions
+- Setting up continuous evaluation in a production pipeline
+- Debugging inconsistent evaluation results
+
+**When NOT to use:**
+- Testing traditional software code -> use `testing-framework`
+- Coordinating multiple agents -> use `multi-agent-patterns`
+- Evaluating Claude Code plugin activation quality -> use `plugin-evaluation`
 
 **Try these prompts:**
 
 ```
-Help me design an evaluation rubric for a code review agent that checks for security issues, code style, and test coverage
+Help me design evaluation rubrics for my research agent that synthesizes information from multiple sources
 ```
 
 ```
-My LLM-as-judge scores don't correlate with what our human reviewers think -- how do I debug this?
+I'm comparing GPT-4o vs Claude Sonnet for our customer support agent -- set up a pairwise comparison with bias mitigation
 ```
 
 ```
-I need to compare two prompt versions head-to-head for my customer support agent -- what approach should I use?
+My evaluation pipeline shows inconsistent results between runs -- help me diagnose what's going wrong
 ```
 
 ```
-Set up a production evaluation pipeline with quality gates for our RAG agent that runs on every prompt change
+Build me a test set for our coding agent that covers simple, medium, and complex tasks with realistic token budgets
 ```
 
 ```
-How should I build my test set? I have a search agent that handles everything from simple lookups to multi-step research tasks
+I need to add continuous evaluation to our agent pipeline -- what metrics should I track and how do I set up alerting?
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `bias-mitigation.md` | Position swap protocol, length-normalized scoring, cross-model evaluation, aggregate bias monitoring with z-score detection |
-| `implementation-patterns.md` | Structured pipeline, hierarchical evaluation, Panel of LLM Judges, confidence calibration, retry logic |
-| `metrics-guide.md` | Metric selection by task type: precision/recall for classification, Spearman's rho for ordinal, agreement rate for pairwise |
-| `metrics.md` | Rubric implementation with five dimensions, weighted scoring, test set management class, evaluation runner, production alerts |
-
-## Real-World Walkthrough
-
-You are building a research agent that searches the web, synthesizes information from multiple sources, and produces summary reports. The agent has been running for a month, and your team has iterated on the prompt three times. Each time, someone says "this version feels better" but nobody has data. Last week, a customer complained that the agent cited a source that did not actually support the claim it was making -- a hallucination that your ad hoc testing missed.
-
-You start by asking Claude:
-
-```
-I have a research agent that synthesizes web sources into reports. I need to evaluate it systematically -- we've had hallucination issues and I want to catch them before customers do.
-```
-
-The skill begins with rubric design. For a research agent, it recommends five dimensions: factual accuracy (weight 0.3), citation accuracy (weight 0.25), completeness (weight 0.2), source quality (weight 0.15), and coherence (weight 0.1). Each dimension gets a 1-5 scale with domain-specific level descriptions. For citation accuracy, level 1 is "citations do not match claimed sources" and level 5 is "every claim links to the correct source passage." This is not a generic quality rubric -- it targets exactly the failure mode your customer reported.
-
-Next, you build the test set:
-
-```
-Help me design a test set that covers simple lookups through complex multi-source synthesis
-```
-
-The skill structures your test set into four complexity tiers: simple (single-source factual lookup, 5 cases), medium (two-source comparison, 5 cases), complex (multi-source synthesis with conflicting information, 5 cases), and very complex (research requiring chain-of-reasoning across 5+ sources, 5 cases). Each case includes the query, expected source types, and known ground truth where available. The skill emphasizes including cases where sources contradict each other -- this is where hallucination is most likely.
-
-Now the evaluation approach. Factual accuracy and citation accuracy have objective ground truth, so they use direct scoring. Coherence is subjective, so it uses pairwise comparison between the current and previous prompt versions. You implement the position swap protocol for the pairwise evaluations -- running each comparison twice with responses in swapped positions and checking for consistency.
-
-You wire the evaluation into your CI pipeline:
-
-```
-Now help me build this into a pipeline that runs automatically when we change the prompt
-```
-
-The skill produces a pipeline architecture: criteria loader pulls the rubric, primary scorer runs direct scoring on each dimension, bias mitigation layer applies length-normalized scoring (your agent's longer responses were scoring artificially higher), and confidence scoring calibrates based on evidence strength. The pipeline outputs per-dimension scores, an overall weighted score, confidence levels, and specific justifications. A quality gate blocks prompt changes if the overall score drops below 0.7 or if any single dimension drops below 0.5.
-
-After running the pipeline on your three historical prompt versions, you discover that version 2 actually regressed on citation accuracy (from 0.78 to 0.61) even though it improved coherence (from 0.65 to 0.82). The "feels better" judgment was tracking coherence while ignoring the hallucination regression. With the multi-dimensional rubric, you would have caught this immediately.
-
-You also find that your evaluation scores for longer responses were inflated by 15% due to length bias. After applying length-normalized scoring, the rankings change -- a concise version that was ranked third actually produces the most accurate citations. This is the kind of insight that only a properly debiased evaluation system reveals.
-
-The pipeline now runs on every prompt change, tracks metrics over time, and alerts when any dimension drops below threshold. Your hallucination problem has a systematic defense, not just a hope that someone will notice.
-
-## Usage Scenarios
-
-### Scenario 1: Validating a prompt change with data
-
-**Context:** You rewrote your agent's system prompt to improve response quality. It looks better on the few examples you tested manually, but you need to know if it actually improved across the board before shipping to production.
-
-**You say:** "I changed my agent's system prompt and need to validate it didn't regress -- help me set up a before/after comparison"
-
-**The skill provides:**
-- Decision framework for choosing direct scoring vs. pairwise comparison per quality dimension
-- Test set design stratified by complexity so edge cases are covered
-- Position swap protocol to prevent bias from corrupting the comparison
-- Statistical metrics (Spearman's rho, weighted kappa) for quantifying the difference
-- Quality gate thresholds for deciding ship vs. no-ship
-
-**You end up with:** A data-backed comparison showing per-dimension scores for both prompt versions, statistical confidence in the difference, and a clear ship/no-ship recommendation.
-
-### Scenario 2: Debugging an unreliable LLM-as-judge
-
-**Context:** You built an automated evaluation system, but when you compare its scores to human reviewer judgments, the correlation is only 0.45. You need to figure out why the automated judge disagrees with humans and fix it.
-
-**You say:** "My automated evaluation scores have low correlation with human reviewers -- what's going wrong and how do I fix it?"
-
-**The skill provides:**
-- Systematic diagnosis through the five bias types (position, length, self-enhancement, verbosity, authority)
-- Metric selection for measuring human-automated agreement (Spearman's rho, Cohen's kappa)
-- Specific mitigation implementations for each identified bias
-- Aggregate bias monitoring with z-score detection for ongoing tracking
-- Confidence calibration to flag low-confidence judgments for human review
-
-**You end up with:** An identified root cause (e.g., length bias inflating scores for verbose responses), a concrete fix (length-normalized scoring), and improved human-automated correlation above 0.7.
-
-### Scenario 3: Building evaluation into CI/CD
-
-**Context:** Your team iterates on an agent weekly. Changes ship without systematic quality checks because nobody has time to manually evaluate. You need automated quality gates.
-
-**You say:** "Set up a production evaluation pipeline with quality gates for our agent that runs on every prompt change in CI"
-
-**The skill provides:**
-- Pipeline architecture: criteria loader, primary scorer, bias mitigation, confidence scoring
-- Hierarchical evaluation pattern for cost efficiency (cheap model screens, expensive model handles edge cases)
-- Quality gate configuration with per-dimension thresholds
-- Production monitoring with alert thresholds and trend tracking
-- Panel of LLM Judges (PoLL) pattern for high-stakes evaluations
-
-**You end up with:** A CI-integrated evaluation pipeline that blocks prompt changes when quality drops below threshold, with cost-efficient hierarchical scoring and production dashboards tracking quality trends over time.
-
-### Scenario 4: Comparing two models head-to-head
-
-**Context:** You are deciding between GPT-4o and Claude for your agent's backbone. You need a fair comparison that accounts for the biases inherent in having one LLM judge another.
-
-**You say:** "I need to compare GPT-4o and Claude for my research agent -- how do I run a fair head-to-head evaluation?"
-
-**The skill provides:**
-- Cross-model evaluation setup to avoid self-enhancement bias
-- Pairwise comparison with position swap protocol
-- Multi-shuffle variant with majority vote for high-stakes decisions
-- Blind evaluation where the judge does not know which model produced which response
-- Dimension-specific scoring so you see where each model excels
-
-**You end up with:** A bias-mitigated head-to-head comparison with per-dimension breakdowns, confidence scores, and a justified recommendation for which model fits your use case.
-
-## Ideal For
-
-- **Teams iterating on agent prompts** -- the evaluation framework catches regressions that "feels better" testing misses, using systematic comparison with statistical metrics
-- **Engineers building LLM-as-judge systems** -- the bias mitigation protocols (position swap, length normalization, cross-model) prevent the five most common failure modes
-- **Organizations adding quality gates to agent CI/CD** -- the production pipeline patterns and hierarchical evaluation strategy balance thoroughness with cost
-- **Anyone debugging evaluation reliability** -- the metric selection framework and human-automated correlation analysis pinpoint exactly why scores diverge from human judgment
-- **Researchers benchmarking agent performance** -- the test set stratification by complexity and multi-dimensional rubrics provide publishable evaluation methodology
-
-## Not For
-
-- **Testing application code or APIs** -- use [testing-framework](../testing-framework/) for unit, integration, and E2E test design
-- **Designing or coordinating multi-agent systems** -- use [multi-agent-patterns](../multi-agent-patterns/) for supervisor, swarm, and hierarchical architectures
-- **Building the agent itself** -- use [agent-project-development](../agent-project-development/) for task-model fit, pipeline architecture, and cost estimation
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through four reference documents.
-
-The **SKILL.md** body provides the conceptual framework: why agent evaluation differs from traditional testing (non-determinism, multiple valid paths, composite quality dimensions), the evaluation taxonomy (direct scoring vs. pairwise comparison), rubric design methodology (multi-dimensional, scale-calibrated, domain-adapted), the five bias types and their mitigations, and production pipeline architecture. It includes 18 actionable guidelines and a 10-step framework for building evaluation systems from scratch.
-
-When deeper implementation detail is needed, Claude draws from the reference documents:
-
-- **bias-mitigation.md** activates when you need concrete code for position swap protocols, length normalization, or aggregate bias monitoring
-- **implementation-patterns.md** activates for production pipeline construction -- structured evaluation, hierarchical evaluation, Panel of LLM Judges, and confidence calibration
-- **metrics-guide.md** activates when choosing between metrics -- the decision tree routes from task type (binary, ordinal, pairwise, multi-label) to appropriate primary and secondary metrics
-- **metrics.md** activates for rubric implementation code, including the evaluation runner class and production monitoring with alert thresholds
-
-This layered structure means simple questions ("what evaluation approach should I use?") get answered from the core skill, while deep implementation questions ("show me the position swap protocol code") pull from the right reference automatically.
-
-## Related Plugins
-
-- **[Agent Project Development](../agent-project-development/)** -- Methodology for starting LLM projects: task-model fit, pipeline architecture, cost estimation
-- **[BDI Mental States](../bdi-mental-states/)** -- Cognitive architecture for agents with formal belief-desire-intention modeling
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for background agents: sandboxes, registries, self-spawning
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures comparing Mem0, Zep/Graphiti, Letta, Cognee, LangMem
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Architecture patterns for supervisor, swarm, and hierarchical multi-agent systems
+| `bias-mitigation.md` | Position bias, length bias, self-enhancement bias, verbosity bias -- specific mitigation techniques for each |
+| `implementation-patterns.md` | Structured evaluation pipeline, hierarchical evaluation, Panel of LLMs (PoLL), human-in-the-loop patterns |
+| `metrics-guide.md` | Metric selection by task type: binary, ordinal, pairwise, multi-label |
+| `metrics.md` | Core metric definitions: F1, Cohen's kappa, Spearman's rho, agreement rates |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Test my agent" | "Help me design evaluation rubrics for my RAG agent that answers legal questions" |
+| "Is my agent good?" | "Set up a pairwise comparison between our current and new prompt -- the agent summarizes financial reports" |
+| "Use agent-evaluation to check quality" | "My agent evaluation shows 80% accuracy but users complain about incomplete answers -- help me add completeness and citation dimensions" |
+| "Evaluate something" | "Build a production evaluation pipeline that runs on every commit and alerts when quality drops below 0.7" |
+
+### Structured Prompt Templates
+
+**For rubric design:**
+```
+Design a multi-dimensional evaluation rubric for [agent type] that scores [dimension 1], [dimension 2], and [dimension 3]. The agent handles [task description] and needs to be [strict/balanced/lenient] because [reason].
+```
+
+**For A/B comparison:**
+```
+I'm comparing [config A] vs [config B] for [agent purpose]. Set up a pairwise evaluation with position bias mitigation. The key criteria are [list criteria]. Show me the prompt templates and the consistency check protocol.
+```
+
+**For pipeline setup:**
+```
+Build an automated evaluation pipeline for [agent name]. It should run [frequency], track [metrics], and alert when [threshold condition]. We have [N] test cases stratified by [complexity levels].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for a single score**: "Rate my agent 1-10" -- agents have multiple quality dimensions. A single score hides that accuracy is great but efficiency is terrible. Always use multi-dimensional rubrics.
+- **Skipping rubric design**: "Just compare the two outputs and tell me which is better" -- without explicit criteria and level descriptions, the evaluator's judgment is uncalibrated and unreproducible. Define rubrics first.
+- **Evaluating specific execution steps**: "Check that my agent called the search tool exactly twice" -- agents take different valid paths. Evaluate outcomes, not specific steps.
+
+## Real-World Walkthrough
+
+**Starting situation:** You run a customer support agent that answers questions about your SaaS product. Users have been complaining that answers are sometimes wrong, often too long, and occasionally miss the point entirely. You have no evaluation system -- quality feedback comes from sporadic user complaints.
+
+**Step 1: Rubric design.** You start by asking: "Help me design evaluation rubrics for a customer support agent that answers product questions. I need to measure factual accuracy, answer relevance, conciseness, and tone appropriateness."
+
+The skill produces a four-dimension rubric with 1-5 scoring scales for each. Factual accuracy gets the highest weight (0.4) because wrong answers erode trust. Each level has descriptive characteristics -- for example, a score of 3 on conciseness means "answer addresses the question but includes some unnecessary detail or preamble." Edge cases are documented: when the question is ambiguous, accuracy should be scored based on whether the agent asked for clarification rather than guessing.
+
+**Step 2: Test set construction.** Next you ask: "Build me a test set from our real support tickets -- I have 500 historical tickets with verified correct answers." The skill guides you to stratify by complexity: 10 simple tickets (single-fact lookups), 10 medium tickets (require combining information from multiple docs), 5 complex tickets (ambiguous questions or multi-step procedures), and 5 edge cases (questions about features that don't exist, unclear product versions). Starting with 30 cases is sufficient for development -- you add more later.
+
+**Step 3: Direct scoring implementation.** You ask: "Implement direct scoring for the accuracy and relevance dimensions -- these have objective ground truth." The skill provides prompt templates that require chain-of-thought justification before each score, structured JSON output, and specific instructions to find evidence in the response before scoring. Research shows this improves reliability by 15-25% compared to score-first approaches.
+
+**Step 4: Pairwise comparison for subjective dimensions.** For conciseness and tone, you ask: "Set up pairwise comparison with bias mitigation for the subjective dimensions." The skill implements a position-swap protocol: each pair of responses is evaluated twice with positions swapped. If both passes agree, confidence is the average. If they disagree, the result is a TIE with 0.5 confidence. This eliminates the systematic first-position preference that LLM judges exhibit.
+
+**Step 5: Baseline measurement.** You run the evaluation on your current agent and discover: accuracy 0.78, relevance 0.82, conciseness 0.61, tone 0.73. The low conciseness score confirms user complaints about verbose answers. Now you have a baseline.
+
+**Step 6: Continuous pipeline.** Finally you ask: "Set up this evaluation to run on every prompt change with alerting." The skill designs a pipeline that runs the 30-case test set on every commit to the prompt repository, tracks all four dimensions over time, and alerts when any dimension drops more than 0.05 from the rolling average. After three months, you expand the test set to 100 cases and add a human review loop for low-confidence evaluations.
+
+**Gotchas discovered:** The initial rubric for "tone" was too vague -- "appropriate tone" means different things for billing complaints versus feature questions. The skill recommended splitting it into "empathy" and "professionalism" as separate dimensions with domain-specific rubrics. Also, test cases from three months ago referenced a deprecated feature, producing false accuracy failures -- the skill recommended a quarterly test set review cadence.
+
+## Usage Scenarios
+
+### Scenario 1: Evaluating a RAG pipeline after retrieval changes
+
+**Context:** You changed the retrieval strategy in your RAG agent from keyword search to hybrid search. You need to know if answer quality improved without regressing on any dimension.
+
+**You say:** "I changed my RAG retrieval from BM25 to hybrid BM25+vector. Help me evaluate whether answer quality improved. I care about factual accuracy, citation correctness, and completeness."
+
+**The skill provides:**
+- Three-dimension rubric with weighted scoring
+- Test set design stratified by query complexity
+- Before/after comparison framework with statistical significance
+- Confidence intervals for each dimension score
+
+**You end up with:** A structured comparison showing that accuracy improved from 0.81 to 0.87, citation correctness improved from 0.72 to 0.85, but completeness dropped slightly from 0.79 to 0.76 because the new retriever sometimes returns fewer but more relevant documents.
+
+### Scenario 2: Building quality gates for an agent deployment pipeline
+
+**Context:** Your team deploys agent updates weekly and occasionally ships regressions. You need automated quality gates that block deploys when quality drops.
+
+**You say:** "Set up quality gates for our weekly agent deploy. Block the deploy if any quality dimension drops below threshold."
+
+**The skill provides:**
+- Per-dimension pass/fail thresholds calibrated to your use case
+- Pipeline architecture with fast screening (cheap model) and edge case review (expensive model)
+- Alert routing for different failure modes (regression vs. flaky test)
+- Dashboard metrics for trend analysis
+
+**You end up with:** A CI pipeline stage that runs evaluation on every release candidate and blocks deployment if accuracy drops below 0.75 or any other dimension drops below 0.65.
+
+### Scenario 3: Mitigating bias in model comparison
+
+**Context:** You are comparing Claude Sonnet vs GPT-4o for your coding agent. Initial results show GPT-4o winning 70% of comparisons, but you suspect position bias.
+
+**You say:** "My A/B comparison might be biased -- GPT-4o is always in position A. How do I check and fix this?"
+
+**The skill provides:**
+- Position-swap protocol implementation
+- Consistency analysis between first-pass and second-pass results
+- Length normalization to control for verbosity bias
+- Confidence calibration based on inter-pass agreement
+
+**You end up with:** After position swapping, the real winner ratio is 55/45 in favor of GPT-4o (not 70/30), with 20% of comparisons being genuine ties that were artificially broken by position bias.
+
+### Scenario 4: Designing rubrics for a creative writing agent
+
+**Context:** You built an agent that generates marketing copy and need to evaluate quality, but "good copy" is subjective and there is no single correct answer.
+
+**You say:** "Help me evaluate my marketing copy agent. There's no ground truth -- I need to assess creativity, brand voice alignment, and persuasiveness."
+
+**The skill provides:**
+- Pairwise comparison setup (not direct scoring) because the criteria are subjective
+- Domain-specific rubrics with concrete examples for each score level
+- Human evaluation protocol to validate automated judgments
+- Correlation analysis between automated and human scores
+
+**You end up with:** An evaluation system where pairwise comparison achieves 78% agreement with human raters, validated quarterly with a 50-case human evaluation sample.
+
+---
+
+## Decision Logic
+
+**When does direct scoring activate vs pairwise comparison?**
+
+The skill uses a clear decision tree: if there is an objective ground truth (factual accuracy, format compliance, instruction following), use direct scoring. If the evaluation is preference-based (tone, style, creativity, persuasiveness), use pairwise comparison. If you are comparing summaries against a source document, consider reference-based evaluation. When in doubt, the skill asks about your criteria to route correctly.
+
+**What happens when evaluation results are inconsistent?**
+
+The skill diagnoses inconsistency through several checks: position consistency in pairwise comparisons (disagree = TIE), confidence calibration (low evidence = low confidence), and rubric ambiguity analysis (vague level descriptions cause inter-rater disagreement). Recovery involves tightening rubric definitions, adding edge case guidance, and increasing the evaluation panel size.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Position bias corrupting pairwise results | One position wins disproportionately regardless of content | Implement position-swap protocol with consistency check; inconsistent pairs become TIEs |
+| Rubric too vague | High variance between evaluation runs on the same response | Add concrete level descriptions with observable characteristics and edge case guidance; reduce scoring variance by 40-60% |
+| Test set not representative | High eval scores but poor user satisfaction | Stratify test set by complexity; add cases from real user failures; review quarterly |
+| Evaluator model rating its own outputs higher | Self-generated responses score 0.2+ higher than competitors | Use a different model for evaluation than for generation; document this limitation |
+| Single-metric obsession | Optimizing accuracy while completeness and efficiency degrade silently | Use multi-dimensional rubrics with per-dimension thresholds and alerting |
+
+## Ideal For
+
+- **ML engineers building agent systems** who need to measure and improve quality systematically rather than relying on spot-checks and user complaints
+- **Teams comparing model providers** (Claude vs GPT vs Gemini) who need unbiased A/B evaluation with statistical rigor rather than subjective impressions
+- **Platform engineers setting up quality gates** who need automated evaluation pipelines that block bad deploys and catch regressions before users do
+- **Research teams running experiments** who need reproducible evaluation methodology with tracked baselines, confidence intervals, and bias mitigation
+
+## Not For
+
+- **Testing traditional software** -- code that has deterministic correct outputs needs unit tests and integration tests, not LLM-as-judge. Use `testing-framework`.
+- **Coordinating multiple agents** -- if your problem is agent handoffs, task routing, or multi-agent orchestration, evaluation is a cross-cutting concern but not the primary tool. Use `multi-agent-patterns`.
+- **Evaluating Claude Code plugin activation** -- whether a skill triggers on the right queries is a different evaluation problem with its own methodology. Use `plugin-evaluation`.
+
+## Related Plugins
+
+- **agent-project-development** -- Design the agent pipeline that this plugin evaluates
+- **multi-agent-patterns** -- Evaluate coordination quality across multi-agent systems
+- **prompt-engineering** -- Improve the prompts that evaluation identifies as underperforming
+- **context-optimization** -- Measure and improve context efficiency that evaluation reveals as wasteful
+- **testing-framework** -- Complement agent evaluation with traditional software testing for deterministic components
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
