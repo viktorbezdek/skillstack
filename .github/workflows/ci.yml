@@ -39,8 +39,8 @@ jobs:
         run: |
           find . -name "*.sh" -not -path "./.git/*" | xargs shellcheck --severity=error
 
-  pytest-skill-creator:
-    name: pytest / skill-creator
+  pytest-skill-foundry:
+    name: pytest / skill-foundry
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,8 +49,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run skill-creator validator tests
-        working-directory: skill-creator/skills/skill-creator/scripts
+      - name: Run skill-foundry validator tests
+        working-directory: skill-foundry/skills/skill-foundry/scripts
         run: |
           pip install pytest pyyaml
           pytest tests/ -v
