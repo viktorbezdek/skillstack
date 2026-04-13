@@ -1,6 +1,6 @@
 ---
 name: creative-problem-solving
-description: Generate new ideas and breakthrough solutions through brainstorming, lateral thinking, SCAMPER, first principles reasoning, game theory, strategic reframing, and innovative problem-solving. NOT for analyzing or critiquing existing ideas, bias detection, or pattern recognition in evidence (use critical-intuition).
+description: Generate new ideas and breakthrough solutions using brainstorming, lateral thinking, SCAMPER, first principles reasoning, game theory, and strategic reframing. Use when the user asks to brainstorm, ideate, "think outside the box", generate alternatives, explore creative solutions, reframe a problem, or come up with ideas — especially when stuck in conventional thinking. NOT for stress-testing or finding flaws in existing ideas (use critical-intuition). NOT for making a final decision between options (use strategic-decision or prioritization).
 ---
 
 # Creative Problem-Solving
