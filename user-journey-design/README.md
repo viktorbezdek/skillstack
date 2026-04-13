@@ -6,22 +6,9 @@ Design user journey maps with touchpoints, emotional states, pain points, and op
 
 ## What Problem Does This Solve
 
-Product teams often optimize individual screens while missing the friction that accumulates across the full experience — the confusion between discovering a product and successfully using it for the first time, or the drop-off between onboarding and sustained engagement. User journey mapping makes that cross-stage friction visible by mapping what users do, think, feel, and struggle with at every touchpoint, so improvements can be prioritized where they reduce the most pain rather than where they are easiest to implement.
+Product teams often optimize individual screens while missing the friction that accumulates across the full experience. A signup page might test well in isolation, but the journey from discovering a product to successfully using it for the first time could be full of dead ends, confusing hand-offs, and emotional low points that never surface in screen-level reviews. User journey mapping makes that cross-stage friction visible by documenting what users do, think, feel, and struggle with at every touchpoint -- so improvements can be prioritized where they reduce the most pain rather than where they are easiest to implement.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "Map out what a new user experiences from first hearing about the product to being a power user" | A stage-by-stage journey (Awareness -> Evaluation -> Onboarding -> Usage -> Mastery) with the structured template for goals, actions, touchpoints, emotion scores, and opportunities |
-| "Where are users getting frustrated during API integration?" | An API integration journey (Discover -> Credentials -> Read ref -> Test -> Production) with pain point and opportunity analysis per stage |
-| "I need to compare the current experience with the redesigned one" | Current-state vs. future-state journey types with side-by-side structure |
-| "We need to see both the user's path and the internal org steps that support it" | Service blueprint format that layers front-stage user actions over back-stage organizational touchpoints |
-| "What questions should I ask in user research to fill in a journey map?" | Touchpoint, action, thought, and emotion elements that guide interview and observation questions |
-| "Help me find where to invest in documentation improvements" | Getting-started and troubleshooting journey templates revealing where doc gaps create user drop-off |
-
-## When NOT to Use This Skill
-
-- creating personas
+This skill provides three journey formats (current-state, future-state, service blueprint), a structured template with seven elements per stage, and pre-built journey outlines for common technical documentation flows.
 
 ## Installation
 
@@ -34,12 +21,10 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
-## How to Use
-
 **Direct invocation:**
 
 ```
-Use the user-journey-design skill to ...
+Use the user-journey-design skill to map the onboarding experience
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -50,32 +35,63 @@ Use the user-journey-design skill to ...
 
 ## What's Inside
 
-- **Journey Types** -- Three formats: current-state (as-is experience), future-state (to-be design), and service blueprint (combined user and organizational view).
-- **Core Elements** -- The seven building blocks of every stage: stages, touchpoints, actions, thoughts, emotions (on a confidence-to-frustration scale), pain points, and opportunities.
-- **Journey Template** -- Filled markdown template with a table structure for documenting all seven elements at each stage, ready to copy and populate.
-- **Documentation Journeys** -- Three pre-built journey outlines for common technical documentation flows: Getting Started, Troubleshooting, and API Integration.
+This is a **single-skill plugin** with no reference documents and two eval suites.
 
-## Version History
+| Component | Path | Purpose |
+|---|---|---|
+| Skill | `skills/user-journey-design/SKILL.md` | Journey types, core elements, structured template, and documentation journey outlines |
+| Evals | `evals/trigger-evals.json` | Trigger scenarios for activation boundary testing |
+| Evals | `evals/evals.json` | Output quality scenarios for journey map generation |
 
-- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
-- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
-- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
-- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
-- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
+**Journey types covered:**
 
-## Related Skills
+| Type | Focus | Use when... |
+|---|---|---|
+| Current-state | As-is experience | Mapping what users experience today to find friction |
+| Future-state | To-be design | Designing the improved experience before building it |
+| Service blueprint | Combined user + org view | You need to see both front-stage user actions and back-stage organizational processes |
 
-- **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
-- **[Elicitation](../elicitation/)** -- Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivat...
-- **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
-- **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
-- **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
+**Seven elements per stage:** Stages, Touchpoints, Actions, Thoughts, Emotions (confidence-to-frustration scale), Pain Points, Opportunities.
+
+## Usage Scenarios
+
+**1. "Map the new user experience from first hearing about the product to being a power user"**
+The skill provides a stage-by-stage journey (Awareness, Evaluation, Onboarding, Usage, Mastery) with the structured template for goals, actions, touchpoints, emotion scores, and opportunities at each stage. Fill in the template per stage to see where the emotional low points cluster.
+
+**2. "Where are users getting frustrated during API integration?"**
+Use the pre-built API Integration journey (Discover, Credentials, Read Reference, Test, Production) as a starting framework. Each stage gets its own pain point and opportunity analysis. Common findings: credentials setup is confusing, reference docs lack runnable examples, error messages during testing are opaque.
+
+**3. "I need to compare the current experience with the redesign"**
+Create two journey maps -- current-state and future-state -- using the same stage structure. Side-by-side comparison reveals which stages improve, which get worse, and where the redesign introduces new friction the team did not anticipate.
+
+**4. "What questions should I ask in user research to fill in a journey map?"**
+The seven elements (touchpoints, actions, thoughts, emotions, pain points, opportunities) directly map to interview and observation questions. For each stage, ask: "What did you do?", "Where did you interact with us?", "What were you thinking?", "How confident or frustrated did you feel?", "What was painful?", "What would have helped?"
+
+**5. "Help me find where to invest in documentation improvements"**
+Use the Getting Started and Troubleshooting journey templates. They reveal where documentation gaps create user drop-off -- for example, if users land on the quickstart but cannot find the setup prerequisites, or if the troubleshooting flow assumes knowledge the user does not have.
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Mapping end-to-end user experiences across multiple touchpoints
+- Identifying where friction accumulates across stages (not just individual screens)
+- Designing before/after comparisons for a product redesign
+- Planning documentation improvements based on where users drop off
+- Creating service blueprints that show both user and organizational processes
+
+**Do NOT use when:**
+- Creating individual user personas -- use [persona-definition](../persona-definition/) instead
+- Designing navigation patterns or information architecture -- use [navigation-design](../navigation-design/) instead
+- Writing the actual interface copy for touchpoints -- use [ux-writing](../ux-writing/) instead
+
+## Related Plugins in SkillStack
+
+- **[Persona Definition](../persona-definition/)** -- Create the personas whose journeys you map
+- **[Navigation Design](../navigation-design/)** -- Design the navigation systems users encounter at each touchpoint
+- **[UX Writing](../ux-writing/)** -- Write the microcopy for error states, empty states, and confirmation dialogs along the journey
+- **[Content Modelling](../content-modelling/)** -- Design the content structures that back your documentation journeys
+- **[Ontology Design](../ontology-design/)** -- Model the knowledge relationships that inform your journey stages
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
