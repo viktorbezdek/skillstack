@@ -6,22 +6,9 @@ Comprehensive TypeScript development skill covering type system mastery, runtime
 
 ## What Problem Does This Solve
 
-TypeScript's type system is powerful enough to prevent whole classes of runtime bugs — but only when used correctly. Teams that rely on `any`, ignore strict mode, or bolt on Zod schemas as an afterthought end up with a false sense of safety: types pass at compile time but data still blows up at runtime. This skill provides opinionated, production-tested patterns for strict type configuration, branded types that prevent ID mixups, discriminated unions for exhaustive state modeling, runtime validation library selection (Zod vs TypeBox vs Valibot), and Clean Architecture integration for NestJS and React 19.
+TypeScript's type system is powerful enough to prevent whole classes of runtime bugs -- but only when used correctly. Teams that rely on `any`, ignore strict mode, or bolt on Zod schemas as an afterthought end up with a false sense of safety: types pass at compile time but data still blows up at runtime. Choosing between Zod, TypeBox, and Valibot requires understanding trade-offs in bundle size, OpenAPI compatibility, and performance that are not obvious from each library's README. And framework-specific patterns for React 19, Next.js 16, NestJS, and React Native each have their own conventions that are easy to get wrong.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "How do I model loading/success/error states without bugs?" | Discriminated union pattern for `AsyncState<T>` with exhaustive switch handling |
-| "I keep mixing up user IDs and order IDs at runtime" | Branded types pattern using `Brand<T, B>` to make structurally identical types type-incompatible |
-| "Which validation library should I use — Zod, TypeBox, or Valibot?" | Decision tree comparing all three on bundle size, OpenAPI compatibility, performance, and React form integration |
-| "My tsconfig is not strict enough and I'm getting runtime nulls" | Recommended tsconfig with `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, and explanations for each flag |
-| "How do I structure a NestJS API with Clean Architecture?" | Repository pattern, Use Case pattern, dependency injection setup, and a complete NestJS + TypeORM example |
-| "I need to handle unknown API response shapes safely" | `unknown` + Zod validation pattern, type guard authoring, and when to use assertion functions vs. type predicates |
-
-## When NOT to Use This Skill
-
-- Python development -- use [python-development](../python-development/) instead
+This skill provides opinionated, production-tested patterns for strict type configuration, branded types that prevent ID mixups, discriminated unions for exhaustive state modeling, runtime validation library selection, and Clean Architecture integration -- all in one place so you stop context-switching between docs.
 
 ## Installation
 
@@ -34,12 +21,10 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
-## How to Use
-
 **Direct invocation:**
 
 ```
-Use the typescript-development skill to ...
+Use the typescript-development skill to set up strict tsconfig for my project
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -51,45 +36,71 @@ Use the typescript-development skill to ...
 
 ## What's Inside
 
-- **Overview** -- What the merged skill covers: type system, runtime validation, framework integration, architecture, security, configuration, and testing.
-- **Core TypeScript Principles** -- Strict mode tsconfig flags, no-`any` policy, type-only imports, and the reasoning behind each constraint.
-- **Type System Patterns** -- Code patterns for discriminated unions, conditional types, mapped types with modifiers, template literal types, and branded types with `unique symbol`.
-- **Validation Library Decision Tree** -- When to choose Zod vs TypeBox vs Valibot based on API validation needs, JSON Schema requirements, bundle size, performance, and form integration.
-- **Decision Trees** -- Type vs. interface, `unknown` vs. `any`, and generics vs. union types — each as a flowchart with decision criteria.
-- **Common Patterns Quick Reference** -- Table mapping 10 patterns (discriminated union, branded types, result type, repository pattern, etc.) to their primary use cases.
-- **Resources** -- Index of all reference documents, the TypeScript config validator script, tsconfig template, and the complete NestJS + TypeORM example project.
-- **Version Compatibility** -- Confirmed compatibility matrix: TypeScript 5.x, React 18/19, Next.js 14-16, Node.js 20+, NestJS 10+, ESM and CommonJS.
+This is a **single-skill plugin** with 13 reference documents, a validator script, a tsconfig template, a complete NestJS example project, and two eval suites.
 
-## Key Capabilities
+| Component | Path | Purpose |
+|---|---|---|
+| Skill | `skills/typescript-development/SKILL.md` | Core methodology: strict mode, type system patterns, validation library decision tree, decision trees (type vs interface, unknown vs any, generics vs union), common patterns quick reference |
+| Reference | `references/extended-patterns.md` | Detailed code examples for all patterns including runtime validation, React integration, Clean Architecture, error handling |
+| Reference | `references/advanced-types.md` | Deep dives into conditional types, mapped types, template literal types |
+| Reference | `references/advanced-patterns-2025.md` | Latest TypeScript 5.x patterns |
+| Reference | `references/runtime-validation.md` | Zod, TypeBox, Valibot comparison with code examples and benchmarks |
+| Reference | `references/decision-trees.md` | Flowcharts for type vs interface, validation library choice |
+| Reference | `references/configuration.md` | tsconfig.json flag-by-flag optimization guide |
+| Reference | `references/troubleshooting.md` | Common TypeScript errors and solutions |
+| Reference | `references/security-examples.md` | Branded types for SafeSQL, sensitive data handling patterns |
+| Reference | `references/typescript-standards.md` | Strict mode conventions, naming patterns |
+| Reference | `references/typescript-patterns.md` | React Native-specific TypeScript patterns |
+| Reference | `references/reference.md` | Clean Architecture patterns, API design with TypeScript |
+| Reference | `references/examples.md` | Complete feature implementation walkthroughs |
+| Reference | `references/advanced-patterns.md` | Builder pattern, typed event systems |
+| Script | `scripts/typescript-validator.js` | Validates tsconfig.json against recommended strict settings |
+| Template | `templates/typescript-config.json` | Production-ready tsconfig.json with all strict flags enabled |
+| Example | `examples/nestjs-typeorm-api/` | Complete NestJS + TypeORM REST API with DTOs, entities, services, and modules |
 
-- **Type System Mastery**
-- **Runtime Validation**
-- **Framework Integration**
-- **Architecture Patterns**
-- **Security**
-- **Configuration**
+## Usage Scenarios
 
-## Version History
+**1. "How do I model loading/success/error states without bugs?"**
+The skill provides the discriminated union pattern for `AsyncState<T>` with exhaustive switch handling. Each state variant carries only the data relevant to that state (`data: T` on success, `error: Error` on error), so the compiler enforces that you cannot access `data` in the loading state.
 
-- `1.1.20` fix(languages+tools): optimize descriptions for git-workflow, mcp-server, python, typescript (b65bc7d)
-- `1.1.19` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.1.18` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.1.17` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.1.16` refactor: remove old file locations after plugin restructure (a26a802)
-- `1.1.15` docs: update README and install commands to marketplace format (af9e39c)
-- `1.1.14` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.1.13` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.1.12` docs: add detailed README documentation for all 34 skills (7ba1274)
-- `1.1.11` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
+**2. "Which validation library should I use -- Zod, TypeBox, or Valibot?"**
+The validation library decision tree compares all three on five axes: API validation (Zod wins for general use), OpenAPI/JSON Schema generation (TypeBox), bundle size sensitivity (Valibot at 1/10th the size), raw performance (TypeBox with compiled validators), and React form integration (Zod + react-hook-form). Includes code examples for each.
 
-## Related Skills
+**3. "My tsconfig is not strict enough and I'm getting runtime nulls"**
+The skill provides a recommended tsconfig with `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitReturns`, `noFallthroughCasesInSwitch`, and `noPropertyAccessFromIndexSignature` -- with an explanation of what each flag catches. The `typescript-validator.js` script checks your existing config against these recommendations.
 
-- **[Api Design](../api-design/)** -- Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, aut...
-- **[Debugging](../debugging/)** -- Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with ...
-- **[Frontend Design](../frontend-design/)** -- Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, acce...
-- **[Gws Cli](../gws-cli/)** -- Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace A...
-- **[Mcp Server](../mcp-server/)** -- Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Pyth...
+**4. "How do I structure a NestJS API with Clean Architecture?"**
+The `examples/nestjs-typeorm-api/` directory contains a complete working example with entities, DTOs (using class-validator), services with repository injection, controllers, and module wiring. The reference documents cover the Repository Pattern, Use Case Pattern, and dependency injection setup in detail.
+
+**5. "I keep mixing up user IDs and order IDs at runtime"**
+The branded types pattern uses `Brand<T, B>` with `unique symbol` to make structurally identical string types (UserId, OrderId, Email, SafeSQL) type-incompatible. Passing a `UserId` where an `OrderId` is expected becomes a compile-time error, not a production bug.
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Working with TypeScript files, tsconfig, or type system patterns
+- Choosing between Zod, TypeBox, and Valibot for runtime validation
+- Setting up NestJS with Clean Architecture and dependency injection
+- Implementing branded types, discriminated unions, or advanced generics
+- Configuring strict tsconfig for a new or existing project
+
+**Do NOT use when:**
+- Python development -- use [python-development](../python-development/) instead
+- React component patterns, hooks, or state management -- use [react-development](../react-development/) instead
+- Next.js framework specifics (App Router, Server Components, SSR) -- use [nextjs-development](../nextjs-development/) instead
+
+## Version Compatibility
+
+TypeScript 5.x (including 5.9 features) | React 18/19 | Next.js 14-16 | Node.js 20+ | NestJS 10+ | ESM and CommonJS
+
+## Related Plugins in SkillStack
+
+- **[React Development](../react-development/)** -- React hooks, component architecture, and state management patterns
+- **[Next.js Development](../nextjs-development/)** -- App Router, Server Components, Server Actions, and Next.js-specific patterns
+- **[API Design](../api-design/)** -- REST, GraphQL, and gRPC endpoint design that pairs with TypeScript types
+- **[Frontend Design](../frontend-design/)** -- UI/UX design systems, Tailwind CSS, and component libraries
+- **[Test-Driven Development](../test-driven-development/)** -- TDD methodology that applies to TypeScript testing strategies
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
