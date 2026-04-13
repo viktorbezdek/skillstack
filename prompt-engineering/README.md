@@ -219,7 +219,7 @@ The skill references the platform-specific guide and translates the Claude-optim
 
 ## Not For
 
-- **Building MCP servers or Claude Code plugins** -- use [mcp-server](../mcp-server/) for MCP development and [skill-creator](../skill-creator/) for skill authoring
+- **Building MCP servers or Claude Code plugins** -- use [mcp-server](../mcp-server/) for MCP development and [skill-forge](../skill-forge/) for skill authoring
 - **Creating few-shot examples from scratch** -- use [Example Design](../example-design/) for systematic example creation; this skill will reference it when Few-Shot technique is selected
 - **Generating creative content directly** -- this skill optimizes the prompt, not the content itself. Use [Creative Problem Solving](../creative-problem-solving/) for ideation workflows
 
@@ -236,7 +236,7 @@ Three Python utility scripts support the workflow: `analyze_structure.py` for st
 
 ## Related Plugins
 
-- **[Skill Creator](../skill-creator/)** -- Create Claude Code skills with philosophy-first design and progressive disclosure architecture
+- **[Skill Creator](../skill-forge/)** -- Create Claude Code skills with philosophy-first design and progressive disclosure architecture
 - **[Outcome Orientation](../outcome-orientation/)** -- Define measurable outcomes to evaluate whether your prompt changes actually improve results
 - **[Example Design](../example-design/)** -- Design effective few-shot examples for prompts that need input/output demonstrations
 - **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough approaches when standard prompting techniques are not producing the results you need

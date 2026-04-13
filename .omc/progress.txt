@@ -1,0 +1,9 @@
+# Ralph Progress — Plugin Evaluation for All Skills
+
+## Scope
+- 67 total skills across 52 plugins
+- 3 already have evals (plugin-dev: plugin-evaluation, plugin-hooks, plugin-validation)
+- 64 need evals generated
+
+## Iteration 1
+Starting...

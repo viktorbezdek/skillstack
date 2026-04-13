@@ -185,10 +185,10 @@ Skills are one level deep under `skills/`. No subcategories.
 ### Shape 1: single-skill plugin
 
 ```
-skill-creator/
+skill-forge/
 ├── .claude-plugin/plugin.json
 ├── README.md
-└── skills/skill-creator/
+└── skills/skill-forge/
     ├── SKILL.md
     └── references/
 ```

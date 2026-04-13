@@ -135,7 +135,7 @@ Use this table to find the right plugin for what you actually want to do. Each r
 |---|---|
 | Generate repository documentation at scale (monorepo or library) | [documentation-generator](documentation-generator/) |
 | Design good code examples and progressive-complexity tutorials | [example-design](example-design/) |
-| Create a high-quality Claude Code skill myself | [skill-creator](skill-creator/) |
+| Create a high-quality Claude Code skill myself | [skill-forge](skill-forge/) |
 | Build a full Claude Code plugin — hooks, MCPs, multi-skill composition, validation, evals | [plugin-dev](plugin-dev/) |
 
 ### I want a playbook for a multi-stage problem
@@ -170,7 +170,7 @@ Use this table to find the right plugin for what you actually want to do. Each r
 
 > The complete SkillStack library — 52 expert skills for Claude Code covering the full software development lifecycle.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-creator`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-forge`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
@@ -178,7 +178,7 @@ Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-men
 
 > Core development skills: Python, TypeScript, React, Next.js, API design, debugging, frontend design, and plugin authoring.
 
-Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `plugin-dev`, `prompt-engineering`, `python-development`, `react-development`, `skill-creator`, `typescript-development`
+Plugins: `api-design`, `debugging`, `frontend-design`, `gws-cli`, `mcp-server`, `nextjs-development`, `plugin-dev`, `prompt-engineering`, `python-development`, `react-development`, `skill-forge`, `typescript-development`
 </details>
 
 <details>
@@ -247,7 +247,7 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 | [Prompt Engineering](prompt-engineering/README.md) | `1.1.15` | Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform. |
 | [Python Development](python-development/README.md) | `1.1.24` | Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows. |
 | [React Development](react-development/README.md) | `1.1.20` | Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture. |
-| [Skill Creator](skill-creator/README.md) | `1.1.19` | Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows. |
+| [Skill Forge](skill-forge/README.md) | `2.0.0` | Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills. Philosophy-first design, evidence-based prompting, progressive disclosure, eval-driven iteration. Distinct from Anthropic's bundled skill-creator. |
 | [Typescript Development](typescript-development/README.md) | `1.1.20` | Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies. |
 
 ### ⚙️ Devops (5)
@@ -410,7 +410,7 @@ Contributions are welcome — bug reports, reference improvements, new skills, a
 
 **Improve an existing skill.** Every skill has a `skills/{name}/SKILL.md` and (usually) a `skills/{name}/references/` directory. Fork, make your changes, run `python3 .github/scripts/validate_plugins.py` locally to check structure, and open a PR.
 
-**Add a new skill.** Use the [skill-creator](skill-creator/) plugin as a starting point — it knows the repo conventions. Your new plugin needs:
+**Add a new skill.** Use the [skill-forge](skill-forge/) plugin as a starting point — it knows the repo conventions. Your new plugin needs:
 - `your-skill/.claude-plugin/plugin.json` with `name`, `version`, `description`, `author`
 - `your-skill/skills/your-skill/SKILL.md` with YAML frontmatter (`name` must match directory)
 - `your-skill/skills/your-skill/evals/trigger-evals.json` — ≥8 positive + ≥5 negative trigger cases

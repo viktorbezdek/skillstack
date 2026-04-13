@@ -1,0 +1,12 @@
+{
+  "active": true,
+  "iteration": 1,
+  "max_iterations": 100,
+  "started_at": "2026-04-12T14:12:30.621Z",
+  "prompt": "/ralph /plugin-evaluation each plugin",
+  "session_id": "c3c78bb6-c650-48d8-a161-8e9908818044",
+  "project_path": "/Users/vbezdek/Work/skillstack",
+  "reinforcement_count": 0,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-12T14:12:30.621Z"
+}

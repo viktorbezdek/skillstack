@@ -7,7 +7,7 @@ description: Measures whether a Claude Code plugin actually works by running tri
 
 > **If you haven't measured the activation rate and the output pass rate, you have not evaluated your plugin.** Shipping a skill without evals is shipping an untested function. This skill teaches the two eval types, the harness, and the iteration loop.
 
-Primary source: Anthropic's skill-creator (`/Users/vbezdek/Work/skillstack/skill-creator` — skills/skill-creator/scripts/run_loop.py and README). This skill adapts that pattern and adds an offline smoke mode so you can validate eval *structure* without burning API calls.
+Primary source: Anthropic's skill-creator (`/Users/vbezdek/Work/skillstack/skill-forge` — skills/skill-forge/scripts/run_loop.py and README). This skill adapts that pattern and adds an offline smoke mode so you can validate eval *structure* without burning API calls.
 
 ---
 

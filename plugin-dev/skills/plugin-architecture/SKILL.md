@@ -1,6 +1,6 @@
 ---
 name: plugin-architecture
-description: Decides which Claude Code extension type to use for a given capability — skill, hook, MCP server, subagent, or slash command — and designs the plugin.json manifest around that decision. Use when designing a plugin, planning plugin structure, choosing between skill vs hook vs mcp, setting up plugin composition, laying out plugin components, or refactoring an existing plugin whose decomposition feels wrong. Covers the five extension types, the decision matrix (when each fits), plugin.json schema reference, directory layout, namespacing conventions, and worked examples from real plugins. NOT for the content of a single component — use skill-creator, plugin-hooks, mcp-server, or plugin-composition for deep dives.
+description: Decides which Claude Code extension type to use for a given capability — skill, hook, MCP server, subagent, or slash command — and designs the plugin.json manifest around that decision. Use when designing a plugin, planning plugin structure, choosing between skill vs hook vs mcp, setting up plugin composition, laying out plugin components, or refactoring an existing plugin whose decomposition feels wrong. Covers the five extension types, the decision matrix (when each fits), plugin.json schema reference, directory layout, namespacing conventions, and worked examples from real plugins. NOT for the content of a single component — use skill-forge, plugin-hooks, mcp-server, or plugin-composition for deep dives.
 ---
 
 # Plugin Architecture
@@ -19,7 +19,7 @@ description: Decides which Claude Code extension type to use for a given capabil
 
 ## When NOT to use this skill
 
-- **Writing a single skill's content** → `skill-creator` (Anthropic's bundled skill)
+- **Writing a single skill's content** → `skill-forge` (advanced framework) or Anthropic's bundled `skill-creator`
 - **Writing hook scripts** → `plugin-hooks`
 - **Building an MCP server** → `mcp-server`
 - **Integrating multiple components inside one plugin** → `plugin-composition`
@@ -164,7 +164,7 @@ Each example shows **what they chose, why, and what they could have chosen inste
 
 | Goal | Skill to use |
 |---|---|
-| Write a single good SKILL.md | `skill-creator` (Anthropic's bundled skill) |
+| Write a single good SKILL.md | `skill-forge` (SkillStack's advanced framework) |
 | Author a hooks.json with safe patterns | `plugin-hooks` (this plugin) |
 | Build an MCP server | `mcp-server` (skillstack plugin) |
 | Compose multiple components safely | `plugin-composition` (this plugin) |

@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"ls /Users/vbezdek/Work/skillstack/tool-design/hooks/ 2>/dev/null; ls /Users/vbezdek/Work/skillstack/tool-design/scripts/ 2>/dev/null\"}",
+  "error": "Exit code 1\n[rerun: b2]",
+  "timestamp": "2026-04-13T05:58:47.250Z",
+  "retry_count": 1
+}

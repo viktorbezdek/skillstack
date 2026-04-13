@@ -21,7 +21,7 @@ description: Validates a plugin idea by surveying the marketplace, reading autho
 
 - **Deciding if the idea is worth pursuing** → `plugin-ideation`
 - **Designing component layout** → `plugin-architecture`
-- **Building the plugin** → `skill-creator`, `plugin-hooks`, `plugin-composition`
+- **Building the plugin** → `skill-forge`, `plugin-hooks`, `plugin-composition`
 
 ---
 
@@ -42,7 +42,7 @@ Each step can kill the project. **Killing the project is a good outcome.**
 
 Search, in order:
 
-1. **Anthropic's bundled plugins** (the ones shipped by default with Claude Code). `skill-creator`, `debug`, etc. — these are curated and high-quality. If Anthropic covers your use case, use their plugin instead.
+1. **Anthropic's bundled plugins** (the ones shipped by default with Claude Code). `skill-creator` (Anthropic's bundled), `debug`, etc. — these are curated and high-quality. If Anthropic covers your use case, use their plugin instead.
 2. **The skillstack marketplace** and other known marketplaces/collections:
    - `github.com/viktorbezdek/skillstack`
    - `github.com/anthropics/skills` (official skills repo)
@@ -160,7 +160,7 @@ If research gives you the green light, hand off to:
 1. **`plugin-architecture`** — decide component decomposition based on your findings
 2. **`plugin-composition`** — layout and integration (if multi-component)
 3. **`plugin-hooks`** — hook authoring (if hooks involved)
-4. **`skill-creator`** — single-skill authoring (Anthropic's bundled skill)
+4. **`skill-forge`** — advanced skill authoring (SkillStack)
 5. **`plugin-validation`** — structural checks
 6. **`plugin-evaluation`** — trigger and output evals before shipping
 

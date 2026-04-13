@@ -1,0 +1,10 @@
+{
+  "active": true,
+  "started_at": "2026-04-11T06:50:19.718Z",
+  "original_prompt": "/autopilot create the useful CI for this project, update main readme to better serve users.",
+  "session_id": "c3c78bb6-c650-48d8-a161-8e9908818044",
+  "project_path": "/Users/vbezdek/Work/skillstack",
+  "reinforcement_count": 0,
+  "awaiting_confirmation": true,
+  "last_checked_at": "2026-04-11T06:50:19.718Z"
+}

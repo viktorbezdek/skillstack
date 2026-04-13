@@ -909,21 +909,23 @@
       ]
     },
     {
-      "id": "skill-creator",
-      "name": "Skill Creator",
+      "id": "skill-forge",
+      "name": "Skill Forge",
       "type": "skill",
       "category": "development",
-      "description": "Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.",
+      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills. Philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, eval-driven iteration. Distinct from Anthropic's bundled skill-creator.",
       "repo_id": "viktorbezdek-skillstack",
-      "path_in_repo": "skill-creator/skills/skill-creator",
-      "version": "1.1.19",
+      "path_in_repo": "skill-forge/skills/skill-forge",
+      "version": "2.0.0",
       "tags": [
         "skill",
-        "plugin",
-        "creation",
-        "framework"
+        "skill-forge",
+        "engineering",
+        "framework",
+        "progressive-disclosure",
+        "eval-driven"
       ],
-      "documentation_path": "./skill-creator/README.md",
+      "documentation_path": "./skill-forge/README.md",
       "status": "active",
       "platforms": [
         "claude-code"

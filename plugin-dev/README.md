@@ -445,14 +445,14 @@ pytest tests/ -v
 
 ## Not For
 
-- **Writing a single SKILL.md in depth** -- use Anthropic's bundled `skill-creator` for deep single-skill authoring with progressive disclosure
+- **Writing a single SKILL.md in depth** -- use Anthropic's bundled `skill-creator` or SkillStack's more advanced `skill-forge` for deep single-skill authoring with progressive disclosure
 - **Building an MCP server** -- use [mcp-server](../mcp-server/) for FastMCP, TypeScript SDK, and MCP evaluation patterns
 - **Designing a complete end-to-end workflow skill** -- use [skillstack-workflows](../skillstack-workflows/) `write-your-own-skill` for workflow composition
 - **Quick one-off automation** -- plugins are for repeatable work; use a CLAUDE.md entry for project-specific rules
 
 ## Related Plugins
 
-- **[Skill Creator](../skill-creator/)** -- Deep single-skill authoring with progressive disclosure (Anthropic bundled)
+- **[Skill Forge](../skill-forge/)** -- Advanced skill engineering framework (8-phase methodology, 59 references, 20+ scripts) with progressive disclosure (Anthropic bundled)
 - **[MCP Server](../mcp-server/)** -- MCP server authoring with FastMCP, TypeScript SDK, and evaluation patterns
 - **[SkillStack Workflows](../skillstack-workflows/)** -- 18 composed workflows including `build-a-plugin` and `write-your-own-skill`
 

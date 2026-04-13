@@ -21,7 +21,7 @@ description: Integrates multiple components inside a single Claude Code plugin �
 ## When NOT to use this skill
 
 - **Deciding which component type to use** → `plugin-architecture`
-- **Writing a single skill's content** → `skill-creator`
+- **Writing a single skill's content** → `skill-forge`
 - **Writing hook scripts** → `plugin-hooks`
 - **Designing MCP tools** → `mcp-server`
 
@@ -158,7 +158,7 @@ Two plugins with the same component name collide. Namespace defensively:
 - **Hook matchers**: no namespacing needed — matchers filter by tool name, not plugin name
 - **MCP tools**: prefix with the plugin name — `plugin_dev_validate`, not `validate`
 
-**Exception**: single-skill plugins can use an unprefixed name if it's already distinctive (`skill-creator`, `plugin-dev`). Multi-skill plugins should consider prefixing internally (`plugin-dev/skills/plugin-hooks` rather than `plugin-dev/skills/hooks`).
+**Exception**: single-skill plugins can use an unprefixed name if it's already distinctive (`skill-forge`, `plugin-dev`). Multi-skill plugins should consider prefixing internally (`plugin-dev/skills/plugin-hooks` rather than `plugin-dev/skills/hooks`).
 
 ---
 

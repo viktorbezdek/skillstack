@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: skill-forge
 description: >-
   Create high-quality Claude Code skills using philosophy-first design, evidence-based
   prompting, progressive disclosure, and anti-pattern prevention. Use when creating

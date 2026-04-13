@@ -565,16 +565,18 @@
       ]
     },
     {
-      "name": "skill-creator",
-      "source": "./skill-creator",
-      "description": "Comprehensive skill creation framework combining philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, and enterprise-grade workflows.",
-      "version": "1.1.19",
+      "name": "skill-forge",
+      "source": "./skill-forge",
+      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills. Distinct from Anthropic's bundled skill-creator.",
+      "version": "2.0.0",
       "category": "development",
       "tags": [
         "skill",
-        "plugin",
-        "creation",
-        "framework"
+        "skill-forge",
+        "engineering",
+        "framework",
+        "progressive-disclosure",
+        "eval-driven"
       ]
     },
     {
