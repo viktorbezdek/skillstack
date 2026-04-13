@@ -2,89 +2,224 @@
 
 # Context Fundamentals
 
-The foundational theory of context engineering -- what context is, how attention works, why larger contexts hurt, and how to budget tokens -- that you need before tackling compression, optimization, or degradation.
+> The foundational theory of context engineering -- what context is, how attention works, and why the smallest high-signal token set outperforms dumping everything into the window.
 
-## What Problem Does This Solve
+## The Problem
 
-Engineers building AI agent systems routinely hit unpredictable behavior, ballooning costs, and degraded outputs without understanding the underlying cause: context is a finite, attention-constrained resource, not an unlimited memory store. Without a mental model of how the five context components (system prompts, tool definitions, retrieved documents, message history, tool outputs) compete for attention budget, every architectural decision is guesswork. Tool outputs alone consume 83.9% of total context in typical agent trajectories, yet most teams treat context as a simple append-only log. This skill provides the foundational theory that all the other context engineering skills build on.
+Most teams building LLM agents treat context like a bucket: pour in the system prompt, tool definitions, retrieved documents, message history, and tool outputs, then hope the model figures out what matters. When the agent produces poor results, they add more context -- longer system prompts, more retrieved documents, fuller tool descriptions -- making the problem worse. They have no mental model for why context quality matters more than context quantity, or why their 200K-token context window produces worse results than a carefully curated 20K-token one.
+
+The consequences compound. Engineers write system prompts at the wrong altitude -- either so vague the model guesses at behavior, or so brittle that any deviation breaks the agent. Tool definitions lack usage context, forcing agents to guess which tool applies. Retrieved documents get dumped into context without relevance filtering, consuming attention budget on irrelevant content. Tool outputs -- which research shows can reach 83.9% of total context usage -- accumulate without any strategy for retention or masking. And nobody monitors context utilization during development, so degradation hits in production as a surprise.
+
+Without foundational understanding of how attention works, what progressive disclosure means in practice, and why context is a finite resource with diminishing returns, every other context engineering skill builds on sand. Teams cannot diagnose degradation if they do not understand the attention budget. They cannot design compression strategies if they do not know what context components matter most. They cannot build effective multi-agent systems if they do not understand why context isolation works.
+
+## The Solution
+
+This plugin teaches the foundational theory of context engineering through five interconnected concepts: the anatomy of context (system prompts, tool definitions, retrieved documents, message history, tool outputs), attention mechanics (the finite budget, position encoding, the n-squared relationship constraint), progressive disclosure (load information only when needed, not upfront), context quality versus quantity (informativity over exhaustiveness), and context budgeting (explicit limits, monitoring, compaction triggers).
+
+The skill provides concrete guidance on system prompt organization (section boundaries, the right altitude between brittle specificity and vague abstraction), tool definition design (descriptions that steer behavior, the consolidation principle), and progressive document loading (just-in-time retrieval, file-system-based access patterns). It explains why models allocate attention as they do and what this means for where you place information in context.
+
+After working through this plugin, you have a mental model that makes every other context engineering decision -- compression, optimization, degradation diagnosis, filesystem offloading -- grounded in first principles rather than cargo-culted from blog posts.
+
+## Before vs After
+
+| Without this plugin | With this plugin |
+|---|---|
+| Treat context as an unlimited bucket and dump everything in | Understand context as a finite resource with diminishing marginal returns and curate accordingly |
+| System prompts are either too vague (model guesses) or too brittle (breaks on deviation) | System prompts hit the right altitude: specific enough to guide, flexible enough to provide strong heuristics |
+| Tool definitions lack context and examples, forcing agents to guess | Tool descriptions include usage context, examples, and defaults following the consolidation principle |
+| Load all documents upfront "just in case" they are needed | Progressive disclosure loads information only when activated, keeping active context lean |
+| No awareness of where information gets attention in the window | Place critical information at attention-favored positions (beginning and end) based on the U-shaped attention curve |
+| No context budget -- discover limits through production failures | Explicit context budgets with monitoring and compaction triggers at 70-80% utilization |
 
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
 
-```bash
+```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install context-fundamentals@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
+### Verify installation
+
+After installing, test with:
+
+```
+Explain how context engineering works for LLM agents -- I'm building my first agent and need to understand the fundamentals
+```
+
+## Quick Start
+
+1. Install the plugin using the commands above
+2. Start with the big picture: `I'm designing a new coding agent -- what do I need to know about context engineering?`
+3. The skill walks you through context anatomy (the five components), attention mechanics (why placement matters), and progressive disclosure (load only what you need)
+4. Apply the principles: organize your system prompt with clear sections, add usage context to tool descriptions, and implement just-in-time document loading
+5. Set up monitoring: establish context budgets and compaction triggers before deploying to production
 
 ## What's Inside
 
-This is a single-skill plugin with two reference documents:
-
 | Component | Description |
 |---|---|
-| `skills/context-fundamentals/SKILL.md` | Core skill covering context anatomy (five component types), attention budget mechanics (n-squared relationship growth), position encoding and context extension, the progressive disclosure principle, context quality vs. quantity, context as a finite resource, and practical guidance on file-system-based access, hybrid strategies, and context budgeting |
-| `references/context-components.md` | Technical reference with system prompt engineering (section structure, altitude calibration with too-low/too-high/optimal examples), tool definition specification (schema structure, description engineering), retrieved document management (identifier design, semantic chunking), message history management (turn representation, summary injection), tool output optimization (response formats, observation masking), context budget estimation, and progressive disclosure implementation patterns |
-| `references/latest-research-2026.md` | Comprehensive survey of 2025-2026 research: frontier model context windows (Gemini 3 Pro 10M, Llama 4 Scout 10M, Claude Opus 4.6 ~200K), attention sink phenomenon (ICLR 2025), iRoPE architecture, YaRN position interpolation, SWAT training, production compression techniques, KV-cache advances (EAGLE-3, LongSpec), RULER/HELM/LongBench Pro benchmarks, and patterns from Anthropic, Google DeepMind, and Meta |
+| `context-fundamentals` skill | Core skill covering context anatomy, attention mechanics, progressive disclosure, quality-vs-quantity, context budgeting, system prompt organization, tool definition design, and hybrid loading strategies |
+| `context-components.md` reference | Technical reference with detailed system prompt engineering, section structure patterns, and component-specific design guidance |
+| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
+| 3 output eval cases | Tests fundamentals explanation, architecture guidance, and concept application |
+
+### context-fundamentals
+
+**What it does:** Activates when you need to understand context engineering from first principles -- what context is, how the attention mechanism constrains it, why quality beats quantity, and how to design context-aware agent architectures. This is the prerequisite skill for all other context engineering work.
+
+**Try these prompts:**
+
+```
+I'm building my first LLM agent -- explain what context engineering is and why it matters for agent performance
+```
+
+```
+How should I organize my agent's system prompt? Right now it's a wall of text and the agent ignores half of it
+```
+
+```
+My agent has access to 200K tokens of context but performance gets worse when I use more than 30K -- why is bigger not better?
+```
+
+```
+What's progressive disclosure in context engineering? I keep hearing the term but I don't understand how to apply it
+```
+
+```
+I need to design a context budget for my agent system -- how do I decide what goes in context vs what gets loaded on demand?
+```
+
+**Key references:**
+
+| Reference | Topic |
+|---|---|
+| `context-components.md` | Detailed technical reference for system prompt section structure, component engineering patterns, and design guidance for each context component type |
+
+## Real-World Walkthrough
+
+You are building a customer support agent that handles technical questions about your company's API. The agent has access to 150 documentation pages, a system prompt, 12 tool definitions, and message history from ongoing conversations. You have thrown everything into context and the agent is producing mediocre results: it sometimes answers from the wrong documentation page, ignores relevant tool definitions, and starts degrading noticeably after 20 messages.
+
+You open Claude Code to get foundational guidance:
+
+```
+I'm building a support agent and the quality is bad -- it uses wrong docs, ignores tools, and degrades after 20 messages. I think my context setup is fundamentally wrong. Help me understand context engineering basics.
+```
+
+The context-fundamentals skill activates and starts with the anatomy of context. Your agent has five components competing for the same attention budget: system prompt, tool definitions, retrieved documents, message history, and tool outputs. The skill explains that attention is not evenly distributed -- it follows a U-shaped curve where the beginning and end of context receive disproportionate attention, and everything in the middle gets less.
+
+You realize your first mistake: all 150 documentation pages are loaded at session start. That is roughly 120K tokens of documents, most of which are irrelevant to any individual question. The skill introduces progressive disclosure: instead of pre-loading everything, maintain lightweight identifiers (page titles, summaries) and load full pages only when a question matches. This mirrors how humans work -- you do not memorize an entire manual, you use the table of contents to find the right section.
+
+You implement a two-stage retrieval system. Stage one loads a 500-token document index at session start. Stage two loads the full content of the top 3 relevant pages when a question arrives. Your active context drops from 120K to about 8K tokens of documentation per question. Immediately, the agent stops referencing wrong pages because irrelevant pages are no longer in context competing for attention.
+
+Next, the skill addresses your system prompt. You show it to the skill:
+
+```
+You are a helpful customer support agent. Be professional and accurate. Use the tools available. Follow company policies.
+```
+
+The skill identifies this as too high an altitude -- vague instructions that fail to give the model concrete signals. It walks you through the recommended structure: background information (domain, customer types, product context), instructions (specific behavioral guidelines with examples), tool guidance (when to use each tool, with defaults and edge cases), and output description (response format, tone, escalation triggers). You restructure the prompt into four clearly delimited sections using XML tags.
+
+Then you tackle tool definitions. Your 12 tools have one-line descriptions like "Search the knowledge base" and "Create a ticket." The skill explains the consolidation principle: if a human engineer cannot definitively say which tool should be used in a given situation, the agent cannot either. You rewrite descriptions with usage context: "Search the knowledge base -- use when the customer asks a question about API functionality, rate limits, or authentication. Returns top 5 matching articles with relevance scores. Default: search the most recent documentation version."
+
+With tool descriptions improved, the agent stops ignoring relevant tools. It now selects the right tool 90% of the time versus 60% before, because the descriptions provide the usage context the model needs for disambiguation.
+
+Finally, the skill addresses the degradation after 20 messages. Tool outputs -- API responses, search results, file contents -- accumulate in message history and consume attention budget. Research shows tool outputs can reach 83.9% of total context usage. After 20 messages of accumulated tool results, your agent's active context is dominated by old tool outputs that are no longer relevant. The skill recommends implementing observation masking (replacing verbose old tool outputs with compact summaries) and compaction triggers at 70-80% context utilization.
+
+After these changes, your support agent handles 50+ message conversations without degradation, answers from the correct documentation 95% of the time, and selects the right tool on the first attempt. The model did not change. The total amount of information available to the agent did not change. What changed was how context is assembled, organized, and maintained -- the fundamentals.
 
 ## Usage Scenarios
 
-**1. Starting a new agent system from scratch**
+### Scenario 1: Designing context architecture for a new agent
 
-You are designing an agent system and need to understand what context even is before making architectural decisions. This skill explains the five context components, how they interact, which one dominates token usage (tool outputs at 83.9%), and provides the progressive disclosure principle: load only skill names at startup, retrieve full content on demand.
+**Context:** You are starting a new agent project and want to set up the context architecture correctly from the beginning rather than debugging it later.
 
-**2. Agent performance degrades as conversations get longer**
+**You say:** `I'm designing a new coding agent from scratch -- walk me through how to set up the context architecture so I don't run into problems later`
 
-Your agent works well on short conversations but quality drops after 50+ turns. This skill explains the attention budget constraint: n-squared relationships between tokens must be computed, and models have less experience with long-range dependencies from training data distributions. This foundational understanding helps you decide whether you need compression, optimization, or architectural isolation.
+**The skill provides:**
+- Anatomy of the five context components and how they interact
+- System prompt organization with section boundaries and the right altitude
+- Progressive disclosure strategy for document loading
+- Context budget framework with monitoring and compaction triggers
+- Attention-aware placement guidelines
 
-**3. Designing a system prompt that actually works**
+**You end up with:** A context architecture design that handles growth gracefully, with explicit budgets and loading strategies for each component type.
 
-Your system prompt is either too brittle (complex if-else logic that breaks when anything changes) or too vague (the agent guesses what you want). The skill provides altitude calibration with concrete examples of too-low, too-high, and optimal instruction levels, plus structural organization using XML tags or Markdown headers for background information, instructions, tool guidance, and output description.
+### Scenario 2: Fixing a vague or brittle system prompt
 
-**4. Agent loads all documents upfront and runs out of context**
+**Context:** Your agent ignores parts of its system prompt or follows instructions too literally, breaking when inputs vary slightly from the expected pattern.
 
-Instead of stuffing everything into context, use progressive disclosure: maintain lightweight identifiers (file paths, stored queries, web links) and load data dynamically. The file system provides natural structure -- file sizes suggest complexity, naming conventions hint at purpose, timestamps indicate relevance. The skill covers hybrid strategies: pre-load critical context (like CLAUDE.md files), enable autonomous exploration for the rest.
+**You say:** `My agent either ignores half its system prompt or follows it so literally that it breaks on edge cases -- how do I write a system prompt at the right level?`
 
-**5. Understanding the latest research before making architectural choices**
+**The skill provides:**
+- The altitude concept: too vague vs too brittle, and the sweet spot between them
+- Section structure with XML tags or Markdown headers for background, instructions, tool guidance, and output format
+- The principle that structural clarity matters more than exact formatting
+- Examples of well-organized system prompts with appropriate specificity
 
-The research reference covers frontier developments through March 2026: Chroma Research testing 18 models and finding all degrade as context grows (not just near the limit), the attention sink phenomenon where first tokens receive disproportionate attention regardless of semantic relevance, and the key finding that context quality matters more than quantity -- a well-curated 10K-token context outperforms a noisy 100K-token context on most tasks.
+**You end up with:** A restructured system prompt that guides behavior effectively without creating brittleness.
 
-## How to Use
+### Scenario 3: Understanding why more context produces worse results
 
-**Direct invocation:**
+**Context:** You expanded your agent's context window and loaded more reference documents, but quality dropped instead of improving.
 
-```
-Use the context-fundamentals skill to explain context budgeting for my agent system
-```
+**You say:** `I upgraded to a model with 200K context and loaded all our docs into it, but the agent's answers are worse than before with 30K context -- what's going on?`
 
-**Natural language triggers** -- Claude activates this skill automatically when you mention:
+**The skill provides:**
+- The attention budget constraint: n-squared relationships stretch the budget as context grows
+- Quality versus quantity: the smallest high-signal token set outperforms exhaustive loading
+- Empirical evidence that performance degrades beyond model-specific thresholds
+- Cost implications of large-context processing (non-linear growth)
+- Progressive disclosure as the alternative to pre-loading
 
-- `context-engineering`
-- `attention`
-- `progressive-disclosure`
-- `context-window`
+**You end up with:** Understanding of why bigger is not better for context, and a strategy for loading only what the agent needs for each task.
 
-## When to Use / When NOT to Use
+### Scenario 4: Setting up context monitoring for production
 
-**Use when:**
-- Designing new agent systems or modifying existing architectures
-- Onboarding team members to context engineering concepts
-- Reviewing context-related design decisions
-- Needing to understand context anatomy before diving into specific techniques
+**Context:** Your agent works in development but you want to prevent context-related failures in production before they happen.
 
-**Do NOT use when:**
-- Fixing broken context or diagnosing failures -- use [context-degradation](../context-degradation/) instead
-- Compressing or summarizing context -- use [context-compression](../context-compression/) instead
-- Optimizing KV-cache or context partitioning -- use [context-optimization](../context-optimization/) instead
-- Working with file-based context patterns or scratch pads -- use [filesystem-context](../filesystem-context/) instead
+**You say:** `How do I set up context budgeting and monitoring for my agent before it goes to production?`
+
+**The skill provides:**
+- Context budget framework: know the effective limit for your model and task type
+- Monitoring strategy: track context utilization during sessions
+- Compaction trigger placement at 70-80% utilization
+- Design for degradation: assume context will degrade and plan accordingly
+- Attention distribution awareness for critical information placement
+
+**You end up with:** A monitoring and budgeting plan that catches context problems before they impact users.
+
+## Ideal For
+
+- **Teams building their first LLM agent** who need foundational understanding before making architectural decisions
+- **Engineers debugging mysterious agent behavior** that might stem from context mismanagement rather than model limitations
+- **Tech leads onboarding team members** to context engineering concepts before they start building
+- **Anyone who has read about context windows** but does not understand why their 200K-token window performs worse than a curated 20K-token one
+- **Architects evaluating context strategies** who need first-principles understanding to make informed decisions about compression, optimization, or multi-agent isolation
+
+## Not For
+
+- **Diagnosing specific context failures** (lost-in-middle, poisoning, distraction) -- use [context-degradation](../context-degradation/) instead
+- **Compressing or summarizing context** to reduce token usage -- use [context-compression](../context-compression/) instead
+- **KV-cache optimization, observation masking, or context partitioning** -- use [context-optimization](../context-optimization/) instead
+- **File-based context patterns** like scratch pads and plan persistence -- use [filesystem-context](../filesystem-context/) instead
+
+## How It Works Under the Hood
+
+The plugin is a single-skill architecture with one technical reference document.
+
+The **core skill** (`SKILL.md`) covers five foundational topics: context anatomy (the five component types and their characteristics), attention mechanics (the finite budget, n-squared constraint, position encoding), progressive disclosure (just-in-time loading, file-system-based access, hybrid strategies), quality versus quantity (informativity over exhaustiveness, the cost of large contexts), and context budgeting (explicit limits, monitoring, compaction triggers, attention-aware placement). It provides practical guidance on system prompt organization, tool definition design, and document loading strategies.
+
+The **context-components reference** (`context-components.md`) provides the technical depth layer with detailed section structure patterns for system prompts, engineering guidelines for each component type, and design patterns for context-aware architectures. This reference activates when you need to implement specific component designs rather than understand general principles.
+
+The skill serves as the prerequisite for all other context engineering plugins. It explicitly routes to context-degradation for failure diagnosis, context-compression for summarization strategies, context-optimization for performance techniques, and filesystem-context for file-based patterns.
 
 ## Related Plugins
 
-- **[Context Compression](../context-compression/)** -- Reducing context size through summarization strategies, anchored iterative summarization, and probe-based evaluation
-- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, clash, and confusion patterns with model-specific thresholds
-- **[Context Optimization](../context-optimization/)** -- Extending effective context capacity: KV-cache optimization, observation masking, and context partitioning
+- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, clash, and confusion patterns with empirical thresholds
+- **[Context Compression](../context-compression/)** -- Reducing context size: summarization strategies, anchored iterative summarization, and probe-based evaluation
+- **[Context Optimization](../context-optimization/)** -- Extending effective context capacity: KV-cache optimization, observation masking, and retrieval strategies
 - **[Filesystem Context](../filesystem-context/)** -- Using the file system for context: scratch pads, plan persistence, and sub-agent file workspaces
 
 ---
