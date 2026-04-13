@@ -3,6 +3,7 @@
 > **v1.0.10** | Strategic Thinking | 11 iterations
 
 > Analyze complex problems through feedback loops, leverage points, system archetypes, and causal loop diagrams -- see the structure behind the symptoms.
+> Single skill, self-contained methodology
 
 ## The Problem
 
@@ -48,7 +49,7 @@ After installing, test with:
 Our engineering team keeps adding people to projects that are behind schedule, but the projects keep slipping further. Help me understand why.
 ```
 
-The skill should activate and identify the reinforcing loop (more people, more communication overhead, slower progress) and the balancing loop (Brook's Law) that makes this intervention counterproductive.
+The skill should activate and identify the reinforcing loop (more people, more communication overhead, slower progress) and the balancing loop that makes this intervention counterproductive.
 
 ## Quick Start
 
@@ -58,19 +59,70 @@ The skill should activate and identify the reinforcing loop (more people, more c
 4. It **identifies feedback loops**: a reinforcing loop where quick fixes increase tech debt which increases outage probability, and a balancing loop where outages reduce deploy confidence which slows releases
 5. It **recommends leverage points**: not more monitoring (parameter-level, low leverage) but changing the deployment rules to require test coverage thresholds (rule-level, high leverage)
 
+---
+
+## System Overview
+
+```
+User describes a recurring / complex / systemic problem
+    │
+    ▼
+┌─────────────────────────────────────────────────────────┐
+│               systems-thinking (skill)                    │
+│                                                           │
+│  5-Step Analysis Workflow:                                 │
+│                                                           │
+│  1. BOUNDARY DEFINITION                                   │
+│     Scope, internal vs external, timescale                │
+│         │                                                 │
+│  2. ELEMENT MAPPING                                       │
+│     Variables, stocks, flows                              │
+│         │                                                 │
+│  3. RELATIONSHIP IDENTIFICATION                           │
+│     Causal connections, +/- classification                │
+│     A --[+]--> B (same direction)                         │
+│     A --[-]--> B (opposite direction)                     │
+│         │                                                 │
+│  4. LOOP DETECTION                                        │
+│     Reinforcing (R) and Balancing (B) loops               │
+│     Dominant loop identification                          │
+│         │                                                 │
+│  5. LEVERAGE POINT ANALYSIS                               │
+│     Meadows' 12 levels (paradigms → parameters)           │
+│     Intervention ranking by systemic effectiveness        │
+│                                                           │
+│  System Archetypes (pattern matching):                    │
+│  ├── Fixes that Fail                                      │
+│  ├── Shifting the Burden                                  │
+│  ├── Limits to Growth                                     │
+│  └── Tragedy of the Commons                               │
+│                                                           │
+│  Output: Causal loop diagrams + loop classification +     │
+│          archetype identification + leverage rankings      │
+└─────────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with no reference files -- the complete methodology is contained in the SKILL.md body.
+| Component | Type | Purpose |
+|---|---|---|
+| `systems-thinking` | skill | Feedback loops (reinforcing/balancing), Meadows' 12 leverage points, four system archetypes, causal loop notation, five-step analysis workflow, four common pitfalls |
 
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Feedback loops (reinforcing and balancing), Meadows' 12 leverage points, four system archetypes, causal loop notation, five-step analysis workflow, common pitfalls |
+This is a self-contained plugin -- the complete methodology lives in the SKILL.md body. Systems thinking is a lens, not a procedure, so the value comes from applying the concepts to your specific situation rather than from loading reference material.
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-### systems-thinking
+### Component Spotlights
 
-**What it does:** Activates when you need to analyze complex problems through a systems lens -- mapping feedback loops, identifying leverage points, recognizing system archetypes, and designing interventions that address structure rather than symptoms. The skill applies a five-step workflow: boundary definition, element mapping, relationship identification, loop detection, and leverage point analysis.
+#### systems-thinking (skill)
+
+**What it does:** Activates when you need to analyze complex problems through a systems lens -- mapping feedback loops, identifying leverage points, recognizing system archetypes, and designing interventions that address structure rather than symptoms. Applies a five-step workflow: boundary definition, element mapping, relationship identification, loop detection, and leverage point analysis.
+
+**Input -> Output:** A description of a recurring, complex, or systemic problem -> Causal loop diagrams, feedback loop classification (reinforcing/balancing), archetype identification, leverage point rankings for proposed interventions, and structural intervention recommendations.
+
+**When to use:** A problem keeps returning after being "fixed." Adding resources does not help. Multiple people blame different causes for the same problem. A growth initiative stalled. Organizational changes produce unexpected side effects. You need to rank competing interventions by systemic effectiveness.
+
+**When NOT to use:** Simple linear problems where fixing A solves B permanently. Detailed project risk tracking (use risk-management for registers and monitoring). Data analysis and visualization (use domain-specific tools). Problems that need execution, not analysis.
 
 **Try these prompts:**
 
@@ -98,6 +150,56 @@ Our customer support team is overwhelmed. Adding more agents helps temporarily b
 Rank these five proposed interventions by their leverage point level -- which one will have the most lasting impact?
 ```
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (linear framing, gets linear answer) | Good (systemic framing, gets structural analysis) |
+|---|---|
+| "Why are we having outages?" | "We've had 5 outages in 3 months. Each gets a fix but new ones keep appearing in different services. Map the systemic pattern." |
+| "How do we go faster?" | "Our deployment frequency dropped from 15/week to 4 despite adding 30 engineers. My managers each blame different things. Find the systemic cause." |
+| "Should we hire more people?" | "Adding more engineers to our late project made it later. Help me map the feedback loops to understand why and find a higher-leverage intervention." |
+| "What's the root cause?" | "Revenue growth stalled after 3 months of 40% MoM. We doubled the referral budget but it didn't help. What system dynamics are at play?" |
+| "Fix our team morale" | "Team morale is declining and attrition is up, but exit interviews mention different reasons. Map the reinforcing loops driving the decline." |
+
+### Structured Prompt Templates
+
+**For recurring problems:**
+```
+[Problem] keeps happening. We've tried [interventions], but [what happens].
+Map the feedback loops that regenerate this problem and identify which
+leverage point would break the cycle.
+```
+
+**For ranking interventions:**
+```
+We're debating [N] proposals: [list interventions]. Rank them by their
+Meadows leverage point level and explain which one addresses the most
+structural cause in our system.
+```
+
+**For understanding unexpected side effects:**
+```
+We [changed something]. We expected [desired outcome]. Instead, [unexpected
+outcome] happened. Map the causal connections to show why and identify the
+feedback loop we missed.
+```
+
+**For archetype identification:**
+```
+We're experiencing [pattern: growth plateau / recurring failures / resource
+depletion / burden shift]. Which system archetype describes this, and what
+is the known intervention strategy?
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for "the root cause" of a systemic problem:** This frames a multi-loop problem as single-cause, which is exactly the linear thinking systems thinking exists to overcome. Instead, ask to "map the feedback loops" or "identify the interacting causes."
+- **Describing a problem without specifying what has already been tried:** The most valuable insight from systems thinking is why interventions fail. If you describe only the problem but not the failed fixes, the skill misses the opportunity to identify Fixes that Fail or Shifting the Burden archetypes.
+- **Asking to "analyze the system" without defining scope:** Every system exists within a larger system. Without boundaries (which variables, what timescale, which organizational scope), the analysis expands indefinitely. Specify the boundary: "within the engineering org," "over the last 6 months," "focusing on the deployment pipeline."
+
 ## Real-World Walkthrough
 
 You are the VP of Engineering at a 200-person company. Over the last year, deployment frequency has dropped from 15 deploys per week to 4. The team is larger than it was a year ago, the tooling is better, and yet output has slowed. The CEO is asking why. Your engineering managers each point to different causes: flaky tests, code review bottleneck, unclear requirements, and growing tech debt. You suspect these are all symptoms of the same underlying structure.
@@ -114,124 +216,120 @@ Next, **element mapping** and **relationship identification** produce the causal
 
 ```
 Team Size --[+]--> Code Review Queue Length
-    (more people = more PRs to review)
-
 Code Review Queue Length --[+]--> Cycle Time
-    (longer queue = longer wait)
-
 Cycle Time --[+]--> Batch Size
-    (longer cycles = developers batch more changes per PR)
-
 Batch Size --[+]--> Defect Rate
-    (larger PRs = more bugs = harder to review)
-
 Defect Rate --[+]--> Tech Debt
-    (bugs get quick-fixed, not properly fixed)
-
 Tech Debt --[+]--> Defect Rate
-    (more debt = more fragile code = more defects)
-
 Defect Rate --[-]--> Engineer Confidence
-    (more bugs = less confidence in deploying)
-
 Engineer Confidence --[+]--> Deploy Frequency
-    (less confidence = fewer deploys)
 ```
 
 **Loop detection** identifies two critical loops:
 
-**Reinforcing Loop R1 (Vicious Cycle of Batch Size):** Longer cycle time causes larger batches, which cause more defects, which cause more tech debt, which causes more defects, which further reduces deploy frequency and extends cycle time. This is the dominant loop -- it is self-amplifying and explains why the problem gets worse over time despite adding resources.
+**Reinforcing Loop R1 (Vicious Cycle of Batch Size):** Longer cycle time causes larger batches, which cause more defects, which cause more tech debt, which causes more defects, which further reduces deploy frequency and extends cycle time. This is the dominant loop -- it is self-amplifying.
 
-**Balancing Loop B1 (Code Review Bottleneck):** More engineers create more PRs, which increases the review queue, which increases cycle time. This is a natural balancing loop -- the system resists growth in output despite growth in input. Adding reviewers helps temporarily but creates more code that needs reviewing.
+**Balancing Loop B1 (Code Review Bottleneck):** More engineers create more PRs, which increases the review queue, which increases cycle time. Adding reviewers helps temporarily but creates more code that needs reviewing.
 
-The skill identifies the **system archetype**: this is a classic **Limits to Growth** pattern. The initial growth (more engineers) hit a constraint (review capacity and deployment confidence) that created a reinforcing loop in the opposite direction. The team tried to address the symptoms (adding more reviewers, investing in test infrastructure) without addressing the structural limit.
+The skill identifies the **system archetype**: **Limits to Growth**. The initial growth (more engineers) hit a constraint (review capacity and deployment confidence) that created a reinforcing loop in the opposite direction.
 
-**Leverage point analysis** ranks the interventions your managers proposed:
+**Leverage point analysis** ranks the proposed interventions:
 
 | Intervention | Leverage Level | Assessment |
 |---|---|---|
-| Add more reviewers | Level 1 (Parameters) | Low leverage -- temporarily reduces queue but adds to the system that creates the queue |
-| Fix flaky tests | Level 4 (Material stocks) | Medium leverage -- reduces one input to the defect rate but does not address batch size |
-| Reduce PR size limits | Level 9 (Rules) | High leverage -- directly breaks the batch-size reinforcing loop by constraining its driver |
-| Create clear deploy criteria | Level 8 (Information flows) | High leverage -- makes deployment confidence evidence-based rather than fear-based |
-| Change to trunk-based development | Level 10 (Self-organization) | Highest leverage -- restructures the development model to eliminate the review bottleneck entirely |
+| Add more reviewers | Level 1 (Parameters) | Low -- temporarily reduces queue but adds to the system that creates it |
+| Fix flaky tests | Level 4 (Material stocks) | Medium -- reduces one defect input but does not address batch size |
+| Reduce PR size limits | Level 9 (Rules) | High -- directly breaks the batch-size reinforcing loop |
+| Create clear deploy criteria | Level 8 (Information flows) | High -- makes deployment confidence evidence-based |
+| Change to trunk-based development | Level 10 (Self-organization) | Highest -- restructures the development model entirely |
 
-The skill recommends starting with **PR size limits** (rule change, immediate effect on the dominant reinforcing loop) and **deploy criteria** (information flow change, addresses the confidence problem). These two interventions break the reinforcing loop at its strongest point -- batch size -- and restore the information engineers need to deploy confidently. Trunk-based development is the highest-leverage option but requires more organizational change and should be phased in.
-
-You now have a causal loop diagram you can present to the CEO showing exactly why adding engineers made deployment slower, the name for the pattern (Limits to Growth), and a ranked list of interventions ordered by systemic leverage rather than by which manager argued loudest.
+The skill recommends starting with PR size limits and deploy criteria -- these two interventions break the reinforcing loop at its strongest point and restore the information engineers need to deploy confidently. You now have a causal loop diagram, the pattern name (Limits to Growth), and a ranked intervention list you can present to the CEO.
 
 ## Usage Scenarios
 
 ### Scenario 1: Understanding why a growth initiative stalled
 
-**Context:** Your company launched a referral program that grew 40% month-over-month for three months, then plateaued despite increased investment.
+**Context:** Your referral program grew 40% month-over-month for three months, then plateaued despite doubling the budget.
 
 **You say:** `Our referral program grew 40% for 3 months then flatlined. We doubled the budget but it didn't help. What's happening systemically?`
 
 **The skill provides:**
-- Limits to Growth archetype identification: the reinforcing loop (referrals generate users who generate referrals) hit a balancing loop (market saturation within the current user segment)
+- Limits to Growth archetype: reinforcing loop (referrals generate users who generate referrals) hit a balancing loop (market saturation)
 - Causal loop diagram showing the interacting loops
-- Leverage point analysis: budget increase is Level 1 (parameter) with minimal leverage; expanding to a new user segment is Level 10 (self-organization) with high leverage
+- Leverage point analysis: budget is Level 1 (parameter, low leverage); new user segment is Level 10 (self-organization, high leverage)
 
-**You end up with:** A system map showing that the constraint is market saturation, not budget -- and that the intervention should target new segments rather than amplify the exhausted loop.
+**You end up with:** A system map showing the constraint is market saturation, not budget.
 
 ### Scenario 2: Diagnosing recurring production outages
 
-**Context:** Your team has had 5 production outages in 3 months. Each one gets a post-mortem and a fix. But new outages keep appearing in different services.
+**Context:** Five outages in three months. Each gets a post-mortem and fix, but new ones keep appearing.
 
 **You say:** `We keep having production outages. Each gets fixed but new ones appear. Help me map the systemic pattern.`
 
 **The skill provides:**
-- Fixes that Fail archetype: each quick fix increases system complexity, which increases fragility, which increases outage probability
-- Shifting the Burden diagnosis: the "fundamental solution" (reducing system complexity, improving test coverage) is being undermined by the "symptomatic solution" (quick patches)
-- Causal loop diagram showing both the symptomatic and fundamental loops
+- Fixes that Fail archetype: quick fixes increase system complexity, increasing fragility
+- Shifting the Burden: symptomatic solution (patches) undermines fundamental solution (complexity reduction)
+- Causal loop diagram with both symptomatic and fundamental loops
 
-**You end up with:** A structural explanation for why fixing individual outages makes the overall outage rate worse, plus an intervention strategy that addresses the fundamental loop (complexity reduction) rather than the symptomatic loop (individual fixes).
+**You end up with:** A structural explanation for why fixing individual outages worsens the overall outage rate, plus a strategy targeting the fundamental loop.
 
 ### Scenario 3: Evaluating competing organizational changes
 
-**Context:** Leadership is debating three proposals for improving engineering velocity: hiring 20 more engineers, adopting microservices, or implementing trunk-based development.
+**Context:** Leadership debates three proposals for improving velocity: hire 20 engineers, adopt microservices, or implement trunk-based development.
 
 **You say:** `Rank these three proposals by systemic leverage: hiring 20 engineers, adopting microservices, implementing trunk-based development`
 
 **The skill provides:**
-- Leverage point classification for each proposal (hiring = Level 4, microservices = Level 2, trunk-based = Level 10)
-- Second-order effects analysis for each: hiring adds coordination overhead, microservices add operational complexity, trunk-based reduces batch size
-- Recommendation with rationale based on which intervention addresses the highest-leverage point in the current system
+- Leverage point classification: hiring = Level 4, microservices = Level 2, trunk-based = Level 10
+- Second-order effects for each proposal
+- Recommendation based on which addresses the highest-leverage point
 
-**You end up with:** An evidence-based ranking that prevents the organization from investing in low-leverage interventions (hiring) while ignoring high-leverage ones (development workflow changes).
+**You end up with:** An evidence-based ranking that prevents investing in low-leverage interventions while ignoring high-leverage ones.
 
-### Scenario 4: Mapping team dynamics
+---
 
-**Context:** Your team's morale has been declining for months. Attrition is up, but exit interviews mention different reasons. You suspect there is a systemic pattern.
+## Decision Logic
 
-**You say:** `Team morale is declining and attrition is up. Exit interviews blame different things. Help me find the underlying system dynamics.`
+**How does the skill choose which archetype applies?**
 
-**The skill provides:**
-- Reinforcing loop identification: attrition increases workload on remaining team, which decreases morale, which increases attrition (death spiral)
-- Balancing loops that could stabilize: hiring replaces departures, but onboarding new hires adds load to the remaining team (Shifting the Burden)
-- Leverage point: the intervention is not "hire faster" (parameter) but "reduce scope" (rules) or "redistribute work across the system" (information flows)
+The skill matches your situation to archetype recognition patterns:
+- **Fixes that Fail**: A fix is applied, the problem temporarily improves, then returns worse. The fix created a side effect.
+- **Shifting the Burden**: A quick solution is available alongside a slower fundamental solution. The quick solution reduces pressure to implement the fundamental one, and over time the system becomes dependent on the quick solution.
+- **Limits to Growth**: Rapid growth or improvement hits a plateau. Pushing harder on the growth engine does not help because a constraint has activated.
+- **Tragedy of the Commons**: Multiple actors share a common resource. Each acts rationally in self-interest but the collective effect depletes the resource.
 
-**You end up with:** A causal loop diagram of the team dynamics showing why hiring alone does not solve the attrition problem, and which structural changes would break the reinforcing loop.
+If the situation matches multiple archetypes, the skill presents both and explains which loop is currently dominant.
+
+**How does leverage point ranking work?**
+
+Meadows' 12 levels rank from most powerful (Level 12: changing the paradigm or mental model underlying the system) to least powerful (Level 1: adjusting parameters like budgets and headcounts). Most organizations default to Level 1-4 interventions because they are easiest to implement. The skill's value is surfacing Level 7-12 interventions that the team has not considered.
+
+**When does the analysis stop?**
+
+The five-step workflow has natural stopping points. Boundary definition prevents scope creep. Loop detection identifies the dominant loops (usually 2-3). Leverage point analysis ranks the top interventions. If the analysis keeps expanding, the boundary was set too wide -- the skill will suggest narrowing scope.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| System boundary is too wide | The analysis expands indefinitely with dozens of variables and loops, none clearly dominant | Narrow the boundary: focus on one subsystem (e.g., "the deployment pipeline" not "the engineering organization"). A good analysis has 6-10 variables and 2-3 dominant loops. |
+| Problem is actually linear, not systemic | The causal chain does not loop back -- A causes B causes C, and fixing A permanently solves C | Systems thinking is not needed for linear problems. If the five-step workflow finds no feedback loops, the fix is straightforward: address the upstream cause. |
+| Archetype matching forces a fit | The situation does not cleanly match any of the four archetypes, but the analysis tries to squeeze it in | Not every system matches a named archetype. The archetypes are recognition shortcuts, not exhaustive. The causal loop diagram is the primary output -- archetype matching is supplementary. |
+| Leverage point recommendations are too abstract | "Change the paradigm" is Level 12 advice that nobody can act on Monday morning | The skill should ground high-leverage recommendations in concrete actions. Level 12 (paradigm) becomes "reframe from 'deploy less to reduce risk' to 'deploy more with smaller changes to reduce risk.'" Every level needs an actionable translation. |
+| Analysis becomes academic instead of actionable | Beautiful causal loop diagram but no clear intervention recommendation | The analysis should always end with a ranked intervention list. If the diagram is done but no interventions are clear, the boundary is wrong or the variables are too abstract. Redefine variables as things that can be changed. |
 
 ## Ideal For
 
-- **Engineering leaders diagnosing recurring organizational problems** -- systems thinking reveals the feedback loops that make problems return after being "fixed," enabling structural interventions instead of symptomatic ones
-- **Product and business leaders evaluating strategic initiatives** -- leverage point analysis ranks proposed interventions by systemic effectiveness rather than by gut feeling or political pressure
-- **Technical architects analyzing complex system behavior** -- causal loop diagrams surface second-order effects of architectural changes before they are implemented
-- **Anyone stuck in a pattern that keeps repeating** -- system archetypes (Fixes that Fail, Limits to Growth, Shifting the Burden, Tragedy of the Commons) name the patterns so you can recognize and break them
+- **Engineering leaders diagnosing recurring organizational problems** -- systems thinking reveals the feedback loops that make problems return after being "fixed"
+- **Product and business leaders evaluating strategic initiatives** -- leverage point analysis ranks proposed interventions by systemic effectiveness
+- **Technical architects analyzing complex system behavior** -- causal loop diagrams surface second-order effects of architectural changes
+- **Anyone stuck in a pattern that keeps repeating** -- system archetypes name the patterns so you can recognize and break them
 
 ## Not For
 
-- **Detailed project risk tracking** -- use [risk-management](../risk-management/) for risk registers, scoring matrices, and monitoring cadences; systems thinking identifies systemic risks but does not manage them
-- **Data analysis and metrics dashboards** -- use domain-specific analytics tools; systems thinking provides the framework for interpreting data but does not produce visualizations or reports
-- **Simple linear problems** -- if A causes B and you fix A, you are done. Systems thinking is for problems where the fix creates new problems, or where multiple causes interact through feedback loops
-
-## How It Works Under the Hood
-
-The plugin is a compact single-skill plugin with no reference files. The SKILL.md body contains the complete systems thinking toolkit: reinforcing and balancing feedback loop definitions with notation, Meadows' 12 leverage points ranked by effectiveness with examples, four system archetypes (Fixes that Fail, Shifting the Burden, Limits to Growth, Tragedy of the Commons) with recognition patterns, causal loop diagram notation, a five-step analysis workflow (boundary definition, element mapping, relationship identification, loop detection, leverage point analysis), and four common pitfalls with diagnostic questions.
-
-The design is intentionally compact because systems thinking is a lens, not a procedure. The value comes from applying the concepts to the user's specific situation, not from loading reference material. Every interaction follows the five-step workflow and produces concrete artifacts: causal loop diagrams, loop classifications, archetype identification, and leverage point rankings.
+- **Detailed project risk tracking** -- use [risk-management](../risk-management/) for risk registers, scoring matrices, and monitoring cadences
+- **Data analysis and metrics dashboards** -- use domain-specific analytics tools; systems thinking interprets data but does not produce visualizations
+- **Simple linear problems** -- if A causes B and fixing A solves B permanently, systems thinking adds unnecessary complexity
 
 ## Related Plugins
 
