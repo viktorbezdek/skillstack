@@ -1,6 +1,6 @@
 ---
 name: persona-definition
-description: Create individual user personas and customer archetypes with demographics, goals, pain points, behaviors, empathy maps, and audience definitions. NOT for mapping stakeholders across organizations, RACI charts, or influence analysis (use persona-mapping).
+description: Create individual user personas and customer archetypes — with demographics, goals, pain points, behaviors, and empathy maps — to represent the humans a product or system is built for. Use when the user asks to define personas, create user archetypes, describe target users, build empathy maps, or characterize the audience for a product or design decision. NOT for mapping stakeholders across an organization, RACI charts, or influence analysis (use persona-mapping). NOT for designing research interview flows (use elicitation).
 ---
 
 # Persona Definition
