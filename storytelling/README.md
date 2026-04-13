@@ -3,6 +3,7 @@
 > **v1.0.0** | Design & UX | 1 iteration
 
 > Expert guidance for writing, editing, and teaching stories across fiction, business, data, speech, UX, and interactive narrative -- from structural frameworks through craft technique to anti-pattern diagnosis.
+> Single skill + 12 references (progressive disclosure by domain)
 
 ## The Problem
 
@@ -58,37 +59,81 @@ The skill should activate and apply business storytelling frameworks to restruct
 4. It **applies the right structure** (Duarte SparkLine for the keynote, Before-After-Bridge for the pivot story) and grounds every technique in your actual material
 5. Before concluding, it **audits against anti-patterns** to catch info dumps, telling-not-showing in key emotional beats, and manufactured conflict
 
+---
+
+## System Overview
+
+```
+User asks about writing / editing / teaching stories
+    │
+    ▼
+┌────────────────────────────────────────────────────────┐
+│              storytelling (skill)                        │
+│                                                         │
+│  5 Core Principles (always active):                     │
+│  1. Story = causality + change + stakes                 │
+│  2. Specificity is power                                │
+│  3. Conflict is the engine                              │
+│  4. Show vs tell (deliberate choice)                    │
+│  5. The ending earns everything                         │
+│                                                         │
+│  7-Step Reasoning Sequence (every response):            │
+│  Identify context → Ask about audience → Load refs →    │
+│  Structure before surface → Ground abstractions →       │
+│  Audit anti-patterns → Connect to meaning               │
+│                                                         │
+│  Domain Routing (progressive disclosure):               │
+│  ┌────────────────────────────────────────────────┐     │
+│  │ Foundations                                     │     │
+│  │  narrative-fundamentals | story-structures      │     │
+│  ├────────────────────────────────────────────────┤     │
+│  │ Craft (fiction / long-form)                     │     │
+│  │  character-design | scene-and-pacing |          │     │
+│  │  dialogue | point-of-view                       │     │
+│  ├────────────────────────────────────────────────┤     │
+│  │ Applied (business / data / speech / interactive)│     │
+│  │  business-storytelling | data-storytelling |    │     │
+│  │  speech-and-presentation | interactive-narrative│     │
+│  ├────────────────────────────────────────────────┤     │
+│  │ Diagnostics                                     │     │
+│  │  anti-patterns | narrative-theory               │     │
+│  └────────────────────────────────────────────────┘     │
+│                                                         │
+│  Typically loads 1-3 references per interaction          │
+└────────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with 12 progressive-disclosure reference files covering every storytelling domain.
-
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Core principles, domain routing table, reasoning sequence (7 steps applied to every response) |
-| 12 reference files | Domain-specific deep guidance loaded on demand |
+| Component | Type | Purpose |
+|---|---|---|
+| `storytelling` | skill | Core principles, domain routing table, 7-step reasoning sequence applied to every response |
+| `narrative-fundamentals.md` | reference | What a story is: character, desire, obstacle, transformation, the causality test, the "so what?" question |
+| `story-structures.md` | reference | 9 canonical structures (3-Act, Freytag, Fichtean, Hero's Journey, Story Circle, Save the Cat, Kishotenketsu, StoryBrand, Pixar Spine) with decision framework |
+| `character-design.md` | reference | Want vs. need, flaws, arcs (positive/flat/negative), dimensionality, supporting cast roles |
+| `scene-and-pacing.md` | reference | Scene/sequel model, motivation-reaction units, beat structure, tension curves, chapter endings |
+| `dialogue.md` | reference | Subtext vs. text, voice differentiation, interiority, "as you know Bob", on-the-nose diagnosis |
+| `point-of-view.md` | reference | POV selection, psychic distance, head-hopping, unreliable narrators |
+| `business-storytelling.md` | reference | StoryBrand 7-part framework, Pixar Spine, Before-After-Bridge, founder stories, 12 brand archetypes, case study structure |
+| `data-storytelling.md` | reference | Knaflic 6 lessons, situation-complication-resolution, charts as narrative devices, executive briefing structure |
+| `speech-and-presentation.md` | reference | Duarte SparkLine, TED 18-minute structure, Monroe's Motivated Sequence, Aristotelian rhetoric |
+| `interactive-narrative.md` | reference | Branching vs. state-based, environmental storytelling, ludonarrative dissonance, player agency, quest design |
+| `anti-patterns.md` | reference | 7 anti-patterns with diagnosis signals and fixes: info dump, Mary Sue, deus ex machina, "as you know Bob", telling not showing, moral misalignment, manufactured conflict |
+| `narrative-theory.md` | reference | Propp's 31 functions, Polti's 36 situations, Booker's 7 plots, Tobias's 20 master plots, Campbell's monomyth, Genette, Greimas |
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-**Key references:**
+### Component Spotlights
 
-| Reference | Topic |
-|---|---|
-| `narrative-fundamentals.md` | What a story is: character, desire, obstacle, transformation, the causality test, the "so what?" question |
-| `story-structures.md` | 9 canonical structures (3-Act, Freytag, Fichtean, Hero's Journey, Story Circle, Save the Cat, Kishotenketsu, StoryBrand, Pixar Spine) with decision framework |
-| `character-design.md` | Want vs. need, flaws, arcs (positive/flat/negative), dimensionality, internal/external conflict, supporting cast roles |
-| `scene-and-pacing.md` | Scene/sequel model, motivation-reaction units, beat structure, pacing techniques, tension curves, chapter endings |
-| `dialogue.md` | Subtext vs. text, voice differentiation, interiority, "as you know Bob", on-the-nose diagnosis, attribution |
-| `point-of-view.md` | POV selection (1st, 3rd limited, 3rd omniscient, 2nd), psychic distance, head-hopping, unreliable narrators |
-| `business-storytelling.md` | StoryBrand 7-part framework, Pixar Spine, Before-After-Bridge, founder stories, 12 brand archetypes, case study structure |
-| `data-storytelling.md` | Knaflic 6 lessons, situation-complication-resolution, charts as narrative devices, executive briefing structure |
-| `speech-and-presentation.md` | Duarte SparkLine, TED 18-minute structure, Monroe's Motivated Sequence, Aristotelian rhetoric, opening/closing patterns |
-| `interactive-narrative.md` | Branching vs. state-based, environmental storytelling, ludonarrative dissonance, player agency, quest design |
-| `anti-patterns.md` | 7 anti-patterns with diagnosis signals and concrete fixes: info dump, Mary Sue, deus ex machina, "as you know Bob", telling not showing, moral misalignment, manufactured conflict |
-| `narrative-theory.md` | Propp's 31 functions, Polti's 36 situations, Booker's 7 plots, Tobias's 20 master plots, Campbell's monomyth, Genette, Greimas |
+#### storytelling (skill)
 
-### storytelling
+**What it does:** Activates when you are writing, editing, critiquing, or teaching stories in any domain -- fiction, business narrative, data presentations, speeches, UX scenarios, or interactive media. Identifies your domain, loads the matching references, applies narrative craft principles grounded in your actual material, and audits every response against anti-patterns.
 
-**What it does:** Activates when you are writing, editing, critiquing, or teaching stories in any domain -- fiction, business narrative, data presentations, speeches, UX scenarios, or interactive media. The skill identifies your domain, loads the matching references, and applies narrative craft principles grounded in your actual material. Every response ends with an anti-pattern audit.
+**Input -> Output:** A storytelling challenge (a draft, a pitch, a data deck, a speech outline, a stuck novel) -> Structural diagnosis, framework recommendation, concrete revision guidance grounded in the user's actual content, and an anti-pattern audit.
+
+**When to use:** Writing fiction or creative nonfiction. Structuring business pitches and founder stories. Turning data into narrative presentations. Writing speeches and keynotes. Designing interactive narrative for games. Diagnosing why a story is not working. Teaching narrative principles to writers, designers, or founders.
+
+**When NOT to use:** Plain technical documentation (use documentation-generator). UX microcopy like button labels and error messages (use ux-writing). Persona creation (use persona-definition). Clinical or therapeutic narrative work.
 
 **Try these prompts:**
 
@@ -116,6 +161,59 @@ I'm giving a 20-minute keynote at a tech conference. Help me structure it so the
 Which story structure should I use for a customer case study -- Hero's Journey, StoryBrand, or something else?
 ```
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, gets generic advice) | Good (specific, gets grounded craft guidance) |
+|---|---|
+| "Help me with my story" | "I'm writing a thriller about a journalist investigating corporate corruption -- the middle third sags and I can't figure out the act 2 structure" |
+| "Make my pitch better" | "My investor pitch is a chronological list of what we built. Turn it into a Before-After-Bridge narrative -- the customer problem is [describe]" |
+| "How do I present data" | "I have 15 charts for our quarterly review but revenue is up while churn is also up. Help me frame the conflict in the data." |
+| "Write me a speech" | "I'm giving a 20-minute keynote about why we moved from microservices back to a monolith -- it's a contrarian take and I want it to be memorable" |
+| "Fix my dialogue" | "My characters sound the same -- here's a scene where two people argue about a promotion. How do I give each person a distinct voice and add subtext?" |
+
+### Structured Prompt Templates
+
+**For fiction writing:**
+```
+I'm writing a [genre] [form: short story / novel / screenplay] about [premise].
+My protagonist wants [desire] but faces [obstacle]. I'm stuck on [specific problem:
+structure, character arc, dialogue, pacing]. What structure and craft techniques
+should I use?
+```
+
+**For business narrative:**
+```
+I need to [pitch investors / present a case study / write a founder story].
+The audience is [who]. The key facts are [what happened]. Right now it reads
+like [a list / a timeline / a feature dump]. Turn it into a narrative with
+conflict, transformation, and stakes.
+```
+
+**For data storytelling:**
+```
+I have [N] charts showing [summary of data]. The headline is [what matters].
+The complication is [what's surprising or concerning]. Help me structure this
+as a narrative that leads to [specific decision or recommendation].
+```
+
+**For speech writing:**
+```
+I'm giving a [duration]-minute [talk type: keynote / internal presentation / ceremony]
+about [topic]. The audience is [who]. The one thing I want them to remember is
+[key point]. Structure it so the audience feels [desired emotional arc].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for generic storytelling advice without a specific piece of material:** "How do I tell better stories?" produces theory. "Here's my pitch deck -- why doesn't it land?" produces actionable revision guidance. The skill is most powerful when it has your actual content to diagnose.
+- **Requesting structure without specifying audience or domain:** "Which story structure should I use?" has no answer without knowing who the audience is and what domain you are working in. A thriller needs Fichtean Curve; a founder pitch needs Before-After-Bridge; a keynote needs Duarte SparkLine. Specify the context.
+- **Treating storytelling as decoration on top of existing content:** Asking to "add storytelling" to a data deck or pitch does not work. The narrative IS the structure -- you do not layer it on top. The skill needs to restructure the content, not decorate it.
+- **Asking to "make it more engaging" without identifying the specific problem:** The skill diagnoses with anti-patterns (info dump, telling not showing, flat dialogue). Point to what feels wrong -- "the middle is boring," "the dialogue is flat," "the ending falls flat" -- and the skill can diagnose the specific failure.
+
 ## Real-World Walkthrough
 
 You are the CTO of a mid-stage startup preparing for a Series B fundraise. Your CEO asks you to write the "technical vision" section of the investor deck -- three slides that explain why your technology is defensible. You have a draft that lists your technical advantages: proprietary data pipeline, ML models trained on 3 years of customer data, and a patent-pending optimization algorithm. It is accurate but lifeless. Investors glaze over when they see it.
@@ -132,83 +230,115 @@ You explain: before your product, e-commerce companies manually optimized their 
 
 The skill applies the **Before-After-Bridge** framework. Instead of listing technical features, the slides now tell a story:
 
-**Before:** "A team of four merchandisers at a mid-size retailer spends 60 person-hours per week manually reordering 12,000 product listings. They make decisions based on last week's sales data -- by the time they finish, the data is stale. Conversion suffers. Merchandising talent burns out and turns over every 18 months."
+**Before:** "A team of four merchandisers at a mid-size retailer spends 60 person-hours per week manually reordering 12,000 product listings. They make decisions based on last week's sales data -- by the time they finish, the data is stale."
 
-**After:** "The same team now spends 8 hours per week reviewing AI-generated optimizations. The model processes real-time behavioral data -- not last week's sales -- and reorders listings continuously. Conversion is up 23%. The team focuses on creative merchandising decisions instead of repetitive reordering."
+**After:** "The same team now spends 8 hours per week reviewing AI-generated optimizations. The model processes real-time behavioral data. Conversion is up 23%."
 
-**Bridge (your technology):** "This is possible because of three engineering decisions we made in 2022..." -- and now the technical advantages are motivated. Investors understand WHY the proprietary data pipeline matters (it enables real-time behavioral data), WHY the ML models are defensible (3 years of customer data creates a moat), and WHY the patent matters (the optimization algorithm is the bridge between data and action).
+**Bridge (your technology):** "This is possible because of three engineering decisions we made in 2022..." -- and now the technical advantages are motivated. Investors understand WHY each piece of technology matters because they have felt the problem it solves.
 
-You notice the third slide is still a feature list. You say:
+You notice the third slide is still a feature list. You ask for help making investors feel why the patent matters. The skill applies the **specificity** principle: instead of "patent-pending optimization algorithm with O(n log n) complexity," it becomes "when a customer searches for 'red running shoes,' our algorithm evaluates 847 products in 12 milliseconds, weighing 14 behavioral signals. The closest competitor processes 200 products in 300 milliseconds using 3 signals."
 
-```
-The third slide about our patent is still a list of technical specs. How do I make investors feel why this matters?
-```
+The skill then runs the **anti-pattern audit**. It flags one issue: the first slide has an info dump -- a parenthetical explanation of how the ML model works that interrupts narrative flow. The skill recommends moving it to the appendix: "Investors who want technical depth will ask during Q&A. The deck slide should create the desire to ask, not answer the question before it is asked."
 
-The skill applies the **specificity** principle. Instead of "Patent-pending optimization algorithm with O(n log n) complexity," the slide now reads: "When a customer searches for 'red running shoes,' our algorithm evaluates 847 products in 12 milliseconds, weighing 14 behavioral signals. The closest competitor processes 200 products in 300 milliseconds using 3 signals. This is why our conversion rates are 4x higher on tail queries."
-
-The skill then runs the **anti-pattern audit**. It flags one issue: the first slide has an "info dump" in the form of a parenthetical explanation of how the ML model works. The technical detail is correct but interrupts the narrative flow. The skill recommends moving it to the appendix: "Investors who want technical depth will ask during Q&A. The deck slide should create the *desire* to ask, not answer the question before it's asked."
-
-After two iterations, you have three slides that tell a coherent story: a painful before, a transformative after, and a technology bridge that makes the transformation proprietary. The CEO reads the revised slides and says: "Now I actually understand what our tech does."
-
-The skill reminds you of principle five: "The ending earns everything." The last slide should not end with technical specs -- it should end with what comes next. You close with: "Every day this model runs, it learns. In 12 months, our data advantage will be 4x what it is today. The companies who join now get the compounding benefit. The companies who wait are training our model for their competitors."
+After two iterations, you have three slides that tell a coherent story: a painful before, a transformative after, and a technology bridge that makes the transformation proprietary. The skill reminds you of principle five: "The ending earns everything." The last slide closes with: "Every day this model runs, it learns. In 12 months, our data advantage will be 4x what it is today."
 
 ## Usage Scenarios
 
 ### Scenario 1: Structuring a novel's plot
 
-**Context:** You have a novel idea about a journalist uncovering corporate corruption, but you cannot figure out the right structure. You have 80,000 words in mind and a strong protagonist but no clear act breaks.
+**Context:** You have a novel idea about a journalist uncovering corporate corruption, but you cannot figure out the right structure. You have a strong protagonist but no clear act breaks.
 
 **You say:** `I'm writing a thriller about a journalist investigating corporate corruption. I have a strong protagonist but the plot structure isn't working. Which structure should I use?`
 
 **The skill provides:**
-- Decision framework comparing Hero's Journey (protagonist transformation focus), Fichtean Curve (crisis-driven escalation for thrillers), and 3-Act (traditional dramatic structure)
-- Recommendation for Fichtean Curve (rising action through escalating crises fits the thriller/investigation genre)
-- Character design guidance: want (get the story published) vs. need (confront their own complicity in the system)
-- Scene/sequel pacing for investigation chapters alternating with personal-cost chapters
+- Decision framework comparing Hero's Journey, Fichtean Curve, and 3-Act for this genre
+- Recommendation for Fichtean Curve (crisis-driven escalation fits thriller/investigation)
+- Character design: want (get the story published) vs. need (confront their own complicity)
+- Scene/sequel pacing for alternating investigation and personal-cost chapters
 
-**You end up with:** A complete plot outline with crisis escalation points, a protagonist arc driven by want vs. need tension, and pacing guidance for alternating action and reflection.
+**You end up with:** A complete plot outline with crisis escalation points, a protagonist arc, and pacing guidance.
 
 ### Scenario 2: Turning a quarterly review into a narrative
 
-**Context:** You are a data analyst presenting quarterly results to the executive team. You have 15 charts showing mixed results -- revenue is up but customer churn increased.
+**Context:** You have 15 charts for the quarterly review. Revenue is up but customer churn increased.
 
 **You say:** `I have 15 charts for our quarterly review. Revenue is up 12% but churn increased from 4% to 7%. Help me tell the story in these numbers.`
 
 **The skill provides:**
-- Situation-complication-resolution framework: situation (growth), complication (churn threatens sustainability), resolution (proposed retention initiatives)
-- Knaflic pattern for selecting the 5 charts that tell the story and cutting the 10 that are noise
-- Executive briefing structure: lead with the headline, support with data, close with a decision to make
-- Anti-pattern check: no info dump of all 15 charts
+- Situation-complication-resolution framework for the mixed data
+- Knaflic pattern: select the 5 charts that tell the story, cut the 10 that are noise
+- Executive briefing structure: headline, supporting data, decision to make
 
-**You end up with:** A 5-slide narrative that frames the mixed results as a strategic decision point -- not a reporting exercise -- with the data supporting a specific recommendation.
+**You end up with:** A 5-slide narrative that frames mixed results as a strategic decision point with a specific recommendation.
 
 ### Scenario 3: Writing a keynote speech
 
-**Context:** You are giving a 20-minute keynote at a developer conference about why your team rewrote their microservices in a monolith. It is a contrarian take and you want it to be memorable.
+**Context:** You are giving a 20-minute keynote about why your team rewrote microservices as a monolith.
 
-**You say:** `I'm giving a 20-minute talk about why we moved from microservices back to a monolith. Help me structure it so it's memorable and not just a technical post-mortem.`
+**You say:** `I'm giving a 20-minute talk about why we moved from microservices back to a monolith. Help me structure it so it's memorable.`
 
 **The skill provides:**
-- Duarte SparkLine structure: alternating between "what is" (microservices complexity, team pain) and "what could be" (simplicity, speed, joy of shipping)
-- Monroe's Motivated Sequence for the contrarian angle: Attention (shocking admission), Need (microservices pain), Satisfaction (the monolith solution), Visualization (what the team looks like now), Action (how to evaluate for yourself)
-- Opening pattern: start with the moment the CTO said "we're going back" and the room went silent
-- Anti-pattern audit: avoiding info dump of technical details that belong in a blog post, not a talk
+- Duarte SparkLine alternating "what is" (microservices pain) and "what could be" (simplicity)
+- Monroe's Motivated Sequence for the contrarian angle
+- Opening pattern: start with the moment the CTO said "we're going back"
 
-**You end up with:** A structured keynote that moves the audience emotionally (from skepticism to curiosity to conviction) rather than just informing them technically.
+**You end up with:** A structured keynote that moves the audience emotionally from skepticism to conviction.
 
 ### Scenario 4: Diagnosing why a short story is not working
 
-**Context:** You wrote a short story for a literary magazine submission. You have been revising it for weeks but something is off. The feedback you got was "technically proficient but emotionally distant."
+**Context:** Your short story keeps getting rejected with feedback like "technically proficient but emotionally distant."
 
-**You say:** `My short story keeps getting rejected with feedback like "technically proficient but emotionally distant." What's wrong and how do I fix it?`
+**You say:** `My short story keeps getting rejected with feedback like "technically proficient but emotionally distant." What's wrong?`
 
 **The skill provides:**
-- Anti-pattern diagnosis: likely "telling not showing" at emotional beats and/or excessive psychic distance in the POV
-- Point-of-view analysis: is the narrator too detached? Could reducing psychic distance (moving from "he felt angry" to showing anger through action) create intimacy?
-- Scene audit: are the key emotional moments happening in scene (real-time, with dialogue and action) or in summary (narrated past tense)?
-- Dialogue check: is there subtext in the conversations, or are characters saying exactly what they mean?
+- Anti-pattern diagnosis: likely telling-not-showing at emotional beats and/or excessive psychic distance
+- POV analysis and psychic distance adjustment recommendations
+- Scene audit identifying where key moments happen in summary instead of scene
+- Dialogue subtext check
 
-**You end up with:** A specific revision plan targeting the 3-5 passages where emotional distance is the problem, with before/after examples showing how to rewrite each for greater intimacy.
+**You end up with:** A revision plan targeting the specific passages where emotional distance is the problem, with before/after examples.
+
+---
+
+## Decision Logic
+
+**How does the skill choose which references to load?**
+
+The skill uses a domain routing table. It examines your request and loads only the matching references:
+- Fiction/creative writing -> `story-structures.md` + the relevant craft reference (character, scene/pacing, dialogue, or POV)
+- Business pitch or founder story -> `business-storytelling.md`
+- Data presentation -> `data-storytelling.md`
+- Speech or keynote -> `speech-and-presentation.md`
+- Interactive/game narrative -> `interactive-narrative.md`
+- "Something feels wrong" / critique request -> `anti-patterns.md`
+- Multi-domain queries load 2-3 references. Loading more than 4 indicates the query is not focused enough.
+
+**How does the skill choose between 9 story structures?**
+
+The `story-structures.md` reference includes a decision framework:
+- **3-Act Structure**: general-purpose, works for most narratives
+- **Hero's Journey**: protagonist transformation with external adventure
+- **Story Circle (Harmon)**: simplified Hero's Journey for TV/series
+- **Save the Cat (Snyder)**: beat-by-beat for screenplays and commercial fiction
+- **Fichtean Curve**: crisis-driven escalation for thrillers and investigations
+- **Freytag's Pyramid**: traditional dramatic arc (tragedies, literary fiction)
+- **Kishotenketsu**: twist-based structure without conflict (East Asian narrative)
+- **StoryBrand (Miller)**: customer-as-hero for business narrative
+- **Pixar Spine**: "Once upon a time... Until one day..." for pitches and presentations
+
+**Why does every response end with an anti-pattern audit?**
+
+Most narrative failures are anti-patterns, not missing principles. A draft can follow the Hero's Journey perfectly and still fail if it has an info dump in act one, flat dialogue in act two, or a deus ex machina ending. The audit catches failures that structural advice alone misses.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| User wants "storytelling" but really needs documentation | They ask to "tell the story of our API" -- they need documentation structure, not narrative structure | Clarify the intent. If they need people to understand how the API works, that is documentation (use documentation-generator). If they need people to care about why the API exists, that is storytelling. |
+| Framework imposed on content that does not fit | Before-After-Bridge applied to a topic where there is no meaningful "before" state | Not every communication is a story. Status updates, reference documents, and process descriptions are not narratives. The skill should tell you when storytelling is the wrong tool. |
+| Anti-pattern diagnosed incorrectly because context is missing | The skill flags "telling not showing" in a passage that is intentionally summary | Some telling is correct -- time jumps, logistics, transitional passages. The principle is "show when you want the audience to feel, tell when you need to move past information efficiently." If the flagged passage is logistical, the anti-pattern does not apply. |
+| Multiple structures recommended with no clear winner | The user's project could plausibly use Hero's Journey, 3-Act, or Story Circle | Ask about the audience and medium. The answer usually collapses the options: screenwriters lean Save the Cat, novelists lean 3-Act or Fichtean, presenters lean StoryBrand or SparkLine. |
+| User expects the skill to write the story, not teach the craft | They paste a topic and expect a finished draft | The skill provides structure, technique, and revision guidance. It can produce drafts, but its primary value is the diagnostic and structural framework. For pure content generation, the skill's output is a structured outline and revision plan. |
 
 ## Ideal For
 
@@ -224,24 +354,12 @@ The skill reminds you of principle five: "The ending earns everything." The last
 - **UX microcopy** -- use [ux-writing](../ux-writing/) for button labels, error messages, and form instructions; storytelling principles inform tone but microcopy has its own constraints
 - **Persona creation** -- use [persona-definition](../persona-definition/) for user personas and customer archetypes; storytelling helps animate personas but does not replace the research process
 
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through 12 reference files. The SKILL.md body contains five core principles (causality + change + stakes, specificity, conflict, show vs. tell, the ending earns everything), a domain routing table, and a 7-step reasoning sequence applied to every response. This core is domain-agnostic -- the principles apply whether you are writing fiction, a business pitch, or a data presentation.
-
-Domain-specific expertise lives in the reference files, organized into three tiers:
-
-- **Foundations (2 files):** `narrative-fundamentals.md` (what a story is) and `story-structures.md` (9 structures with decision framework)
-- **Craft for long-form narrative (4 files):** character design, scene/pacing, dialogue, point of view
-- **Applied storytelling (4 files):** business, data, speech/presentation, interactive narrative
-
-Two diagnostic references (`anti-patterns.md` and `narrative-theory.md`) support the audit phase of every interaction. The skill loads only the references that match the query -- typically 1-3 per interaction -- keeping context lean and responses focused.
-
 ## Related Plugins
 
 - **[UX Writing](../ux-writing/)** -- Microcopy, error messages, and interface text -- the word-level craft that complements narrative-level storytelling
 - **[Persona Definition](../persona-definition/)** -- Create user personas that storytelling can then animate into compelling narratives
-- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough ideas and approaches when narrative conventions are not producing the desired effect
-- **[Prompt Engineering](../prompt-engineering/)** -- Optimize prompts that use storytelling principles (role assignment, context layering) for LLM interactions
+- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough ideas when narrative conventions are not producing the desired effect
+- **[Prompt Engineering](../prompt-engineering/)** -- Optimize prompts that use storytelling principles for LLM interactions
 - **[Content Modelling](../content-modelling/)** -- Structure content types and editorial workflows for the stories you produce
 
 ---
