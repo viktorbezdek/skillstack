@@ -2,253 +2,345 @@
 
 # Documentation Generator
 
-> Generate comprehensive documentation for repositories of any size -- from small libraries to large monorepos -- with audience-aware templates, automated analysis, and quality validation.
+> Generate comprehensive documentation for repositories of any size -- from small libraries to large monorepos -- with audience-aware personas, automated analysis, 24 templates, skill-orchestrated writing, and quality validation.
+> Single skill + 6 scripts + 24 templates + 1 example | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-Documentation is where good intentions go to die. Every team agrees documentation matters. Few teams produce documentation that anyone actually reads. The README is either a single paragraph ("Install with npm install") or a 3,000-line dump that mixes installation, API reference, architecture decisions, and troubleshooting into an unsearchable wall of text. Neither helps the three different audiences who need it: the new developer trying to get started, the senior engineer understanding the architecture, and the DevOps engineer running it in production.
+Documentation is where good software goes to be misunderstood. Most repositories have either no documentation, outdated documentation, or documentation written by the developer who built the system -- who is the worst person to explain it because they cannot see what is not obvious. The result: new developers take weeks to onboard, external teams misuse APIs, operations teams create runbooks from tribal knowledge, and stakeholders make decisions based on incomplete understanding.
 
-When teams do attempt comprehensive documentation, they face a blank page problem at scale. A monorepo with 50 services needs dozens of documents: READMEs, quickstart guides, API references, architecture docs, runbooks, troubleshooting guides, contributing guides, and domain specifications. Writing each from scratch produces inconsistent structure, terminology, and quality. Documentation for Service A covers error handling exhaustively while Service B does not mention it. The glossary in one guide contradicts terminology in another. And nobody validates whether the documentation actually helps users accomplish their goals or just checks a compliance box.
+The underlying problem is that documentation generation is a multi-disciplinary task disguised as a writing exercise. Effective documentation requires understanding your audience (persona definition), structuring information for discovery (navigation design), modeling domain concepts (ontology design), writing clear interface text (UX writing), covering edge cases (edge case coverage), and measuring effectiveness (outcome orientation). Most documentation efforts fail because they treat it as "just write it down" rather than as a design problem with its own methodology and quality metrics.
 
-The result is documentation debt that compounds over time. New features ship without docs. Existing docs drift from reality. Teams answer the same questions in Slack that should be answered in documentation. Support tickets pile up for problems that are documented somewhere but unfindable. And the next person who tries to write documentation starts from scratch because there is no template, no process, and no quality standard.
+The cost of bad documentation compounds exponentially. One developer misunderstanding an API writes code that creates three support tickets. Three support tickets create a FAQ document that contradicts the official docs. The contradictory FAQ confuses the next developer more than having no documentation at all. Within a year, the team's documentation is an unreliable maze that everyone avoids and nobody trusts.
 
 ## The Solution
 
-This plugin provides a six-phase documentation workflow -- Analysis, Planning, Structure, Writing, Coverage, Validation -- with an automated analysis script, 24 document templates across 11 categories, and quality validation tooling. Instead of staring at a blank page, you run the analysis script against your repository, get a structural understanding of what needs to be documented, and fill in templates designed for specific documentation types and audiences.
+This plugin provides a six-phase documentation generation workflow -- Analysis, Planning, Structure, Writing, Coverage, and Validation -- that orchestrates 10+ SkillStack plugins to produce professional documentation. It ships with 24 comprehensive templates covering READMEs, quickstarts, API references, architecture documents, domain specifications, operations runbooks, and more. An analysis script examines repository structure automatically, and a validation script measures documentation quality with configurable minimum scores.
 
-The workflow integrates with 10 other SkillStack plugins at specific phases: persona-definition and persona-mapping for audience planning, prioritization for deciding what to document first, systems-thinking and ontology-design for architecture and domain documentation, navigation-design for information architecture, ux-writing for user-facing content, example-design for code samples, consistency-standards for terminology, edge-case-coverage for troubleshooting, user-journey-design for onboarding flows, outcome-orientation for measuring effectiveness, and risk-management for identifying gaps.
-
-The result is not just documentation but a documentation system: repeatable, template-driven, audience-aware, and measurable. The same process works for a 500-line library and a 500,000-line monorepo.
+The key innovation is skill orchestration: each phase loads specific SkillStack plugins to apply domain expertise. Planning uses persona-definition and persona-mapping to identify audiences, then prioritization to decide what to write first. Structure uses systems-thinking and ontology-design to model the domain. Writing uses ux-writing for clear copy, example-design for code samples, and consistency-standards for uniform style. Coverage uses edge-case-coverage and user-journey-design to catch gaps. Validation uses outcome-orientation and risk-management to measure and improve.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Blank page paralysis -- where do you even start documenting a large repo? | Automated analysis script maps the repo structure, then templates provide starting points for every document type |
-| One README tries to serve new developers, senior architects, and DevOps at the same time | Persona-driven planning creates audience-specific documents: quickstart, architecture, runbooks |
-| Inconsistent documentation across services: different structure, terminology, and depth | 24 templates enforce consistent structure; consistency-standards skill standardizes terminology |
-| Documentation drifts from code with no detection mechanism | Drift detection script compares docs against current code and flags discrepancies |
-| No way to measure whether documentation actually helps users | Outcome-orientation phase defines success metrics: time-to-first-success, support ticket reduction |
-| Code examples are outdated, incomplete, or do not run | Example-design skill ensures progressive complexity, runnable code, and error handling coverage |
+| Documentation written by developers who cannot see what is not obvious to newcomers | Persona-driven documentation targeting specific audiences: new developers, senior architects, DevOps, external consumers |
+| No structure: docs are a flat list of markdown files with no navigation plan | Navigation design with information architecture, breadcrumbs, and sitemaps planned before writing |
+| Domain concepts are undefined -- different docs use different terms for the same thing | Ontology design creates a glossary, taxonomy, and entity relationship map before any writing begins |
+| Code examples are copy-pasted from tests, not designed for learning | Example design with progressive complexity: simple, realistic, advanced, error-handling |
+| No way to measure documentation quality or detect drift from code | Validation script scores documentation and drift detection compares docs against current codebase |
+| Documentation is a one-time effort that rots immediately | Quality tracking with minimum scores, link checking, and drift detection integrated into workflow |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install documentation-generator@skillstack
 ```
 
+### Prerequisites
+
+Python 3 for the analysis and validation scripts. For maximum value, install these complementary SkillStack plugins that the generator orchestrates:
+- `persona-definition` and `persona-mapping` (audience analysis)
+- `systems-thinking` and `ontology-design` (domain modeling)
+- `ux-writing` and `example-design` (content quality)
+- `edge-case-coverage` and `user-journey-design` (completeness)
+- `outcome-orientation` and `risk-management` (quality measurement)
+
+The generator works without these plugins but produces better documentation when they are available.
+
 ### Verify installation
 
 After installing, test with:
 
 ```
-Generate comprehensive documentation for this repository -- start by analyzing the codebase structure
+Generate documentation for this repository. Start with the analysis phase and tell me what doc types are needed.
 ```
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Ask for documentation: `Document this repository -- I need a README, quickstart guide, and API reference`
-3. The skill runs the analysis script to understand repository structure, languages, frameworks, and dependencies
-4. It generates documentation using the appropriate templates, tailored to your codebase
-5. Validate with: `Check the documentation quality and identify any gaps`
+2. Run the analysis script: `python scripts/doc-gen.py analyze /path/to/repo --output analysis.json --pretty`
+3. Ask: `"Based on this analysis, what documentation does this repository need? Prioritize by audience impact."`
+4. The skill loads persona-definition and prioritization to recommend doc types in priority order
+5. Ask: `"Generate a quickstart guide for new developers using the quickstart template."`
+
+---
+
+## System Overview
+
+```
+documentation-generator (plugin)
+└── documentation-generator (skill)
+    ├── 6-phase workflow
+    │   ├── Phase 1: Analysis (repo scanning script)
+    │   ├── Phase 2: Planning (persona-definition, persona-mapping, prioritization)
+    │   ├── Phase 3: Structure (systems-thinking, ontology-design, navigation-design)
+    │   ├── Phase 4: Writing (ux-writing, example-design, consistency-standards)
+    │   ├── Phase 5: Coverage (edge-case-coverage, user-journey-design)
+    │   └── Phase 6: Validation (outcome-orientation, risk-management)
+    ├── Scripts
+    │   ├── doc-gen.py (unified CLI: analyze, generate, validate, check-links, drift)
+    │   ├── core/analyze_repo.py (repository structure analysis)
+    │   ├── generation/generate_docs.py (document generation)
+    │   ├── validation/validate_docs.py (quality scoring)
+    │   ├── validation/check_links.py (link validation)
+    │   └── management/detect_drift.py (code-docs drift detection)
+    └── Templates (24)
+        ├── Core: README, quickstart, installation, user guide, config, deployment, contributing, changelog
+        ├── API: overview, REST endpoint, GraphQL schema
+        ├── Architecture: system design, repo structure, ownership map, component spec, data flow, ADR
+        ├── Domain: domain spec, ontology
+        ├── Specs: product spec, feature spec
+        ├── Integrations: external integration
+        └── Operations: runbook, troubleshooting
+```
 
 ## What's Inside
 
-| Component | Description |
-|---|---|
-| `documentation-generator` skill | Core skill with the six-phase workflow (analysis, planning, structure, writing, coverage, validation), template portfolio, and supporting skill integration map |
-| 3 reference documents | Diataxis framework for documentation types, writing for audiences guide, and document quality index |
-| 24 document templates | README, quickstart, installation, user guide, configuration, deployment, contributing, changelog, API overview, REST endpoint, GraphQL schema, system design, repository structure, ownership map, component spec, data flow, ADR, domain spec, ontology, product spec, feature spec, external integration, runbook, troubleshooting |
-| `doc-gen.py` script | Automated tooling: analyze repos, generate docs, validate quality, check links, detect drift |
-| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
-| 3 output eval cases | Tests documentation quality, completeness, and audience appropriateness |
+| Component | Type | Description |
+|---|---|---|
+| `documentation-generator` | Skill | Six-phase workflow orchestrating 10+ skills for comprehensive documentation |
+| `doc-gen.py` | Script | Unified CLI for analysis, generation, validation, link checking, and drift detection |
+| `analyze_repo.py` | Script | Scans repository structure, languages, frameworks, and documentation gaps |
+| `generate_docs.py` | Script | Generates documentation from templates with repo-specific content |
+| `validate_docs.py` | Script | Scores documentation quality against configurable thresholds |
+| `check_links.py` | Script | Validates all links in documentation files |
+| `detect_drift.py` | Script | Detects where documentation has drifted from current code |
+| 24 templates | Templates | Complete template portfolio for every documentation type (see template table below) |
+| `sample-readme.md` | Example | Reference README demonstrating the template output |
+| Trigger evals | Test suite | 13 trigger evaluation cases |
+| Output evals | Test suite | 3 output quality evaluation cases |
 
-### documentation-generator
+### Component Spotlights
 
-**What it does:** Activates when you need to create documentation for a repository -- from a single README to a complete documentation suite. Runs automated analysis to understand the codebase, plans documentation based on audience personas, generates content using structured templates, and validates quality against measurable criteria.
+#### documentation-generator (skill)
+
+**What it does:** Activates when users need to create, audit, or improve repository documentation. Orchestrates a six-phase workflow that uses specialized SkillStack plugins at each phase -- from audience analysis through domain modeling, content writing, coverage checking, to quality validation.
+
+**Input -> Output:** A repository path or documentation request -> Structured documentation following the appropriate template, with audience-aware language, progressive complexity, consistent terminology, and measurable quality scores.
+
+**When to use:**
+- Creating documentation for a new repository
+- Auditing and improving existing documentation
+- Generating API references, architecture docs, or quickstart guides
+- Building a documentation site structure
+- Measuring documentation quality and detecting drift
+
+**When NOT to use:**
+- Writing UX microcopy or interface text (use `ux-writing` directly)
 
 **Try these prompts:**
 
 ```
-Generate complete documentation for this repository -- README, quickstart, architecture docs, and API reference
+Analyze this repository and tell me what documentation is missing. Prioritize by impact on developer onboarding time.
 ```
 
 ```
-I need to document our microservices monorepo -- there are 12 services with no documentation at all. Where do I start?
+Generate a quickstart guide for new developers. They should be able to run the app in under 5 minutes.
 ```
 
 ```
-Write a quickstart guide that gets a new developer from clone to running the app in under 10 minutes
+Create API documentation for our REST endpoints. Include authentication, pagination, error codes, and code examples in Python and JavaScript.
 ```
 
 ```
-Create API documentation for our REST endpoints with examples, error codes, and authentication details
+Our docs are 6 months old and the code has changed significantly. Run drift detection and show me what's outdated.
 ```
 
+**Template portfolio (24 templates):**
+
+| Category | Templates | Orchestrated Skills |
+|---|---|---|
+| Core | README, quickstart, installation, user guide, configuration, deployment, contributing, changelog | ux-writing, persona-definition, user-journey-design |
+| API | API overview, REST endpoint, GraphQL schema | example-design, edge-case-coverage, ux-writing |
+| Architecture | System design, repo structure, ownership map, component spec, data flow, ADR | systems-thinking, ontology-design, navigation-design |
+| Domain | Domain spec, ontology | ontology-design |
+| Specs | Product spec, feature spec | persona-definition, outcome-orientation, user-journey-design |
+| Integrations | External integration | edge-case-coverage, example-design |
+| Operations | Runbook, troubleshooting | edge-case-coverage, risk-management, ux-writing |
+
+#### doc-gen.py (script)
+
+**CLI:**
+```bash
+python doc-gen.py analyze /path/to/repo --output analysis.json --pretty
+python doc-gen.py generate /path/to/repo --output ./docs
+python doc-gen.py validate /path/to/docs --min-score 70
+python doc-gen.py check-links /path/to/docs
+python doc-gen.py drift /path/to/repo --docs-path /path/to/docs
+python doc-gen.py full /path/to/repo  # Run entire workflow
 ```
-Audit our existing documentation -- what's missing, what's outdated, and what needs to be rewritten?
-```
 
-**Key references:**
-
-| Reference | Topic |
-|---|---|
-| `frameworks/diataxis-framework.md` | Diataxis documentation framework: tutorials, how-to guides, reference, explanation -- when to use each type |
-| `patterns/writing-for-audiences.md` | Audience-aware writing techniques for different personas (developers, operators, stakeholders) |
-| `quality/document-quality-index.md` | Quality scoring rubric for measuring documentation effectiveness and completeness |
-
-## Real-World Walkthrough
-
-You just joined a company as a tech lead. The engineering team has 8 backend services, 2 frontend apps, and a shared library -- all in a monorepo with zero documentation. The README says "TODO: add docs." New developers take 2 weeks to become productive because everything is tribal knowledge passed through Slack threads and pair programming sessions. Your first mandate: document everything so the next hire ramps up in 3 days.
-
-You open Claude Code in the monorepo root:
-
-```
-We have a monorepo with 8 backend services, 2 frontend apps, and a shared library. Zero documentation. New devs take 2 weeks to onboard. I need comprehensive docs that get the next hire productive in 3 days. Start with analysis.
-```
-
-The documentation-generator skill activates and runs the analysis phase. It executes `doc-gen.py analyze` against your repository, producing a structural map: languages (TypeScript, Go), frameworks (NestJS, React, Chi), database dependencies (PostgreSQL, Redis), build tools (Turborepo), and service boundaries. The analysis identifies 47 public API endpoints across the 8 services, 3 shared database schemas, and a message queue connecting 4 services.
-
-**Planning phase:** The skill loads persona-definition to identify your audiences. For a 3-day onboarding goal, the primary persona is a new developer who needs to: understand the system architecture (day 1), set up a local development environment and run services (day 1), understand the service they are assigned to (day 2), and make their first contribution (day 3). Secondary personas are senior engineers reviewing architecture decisions and DevOps engineers running services in production.
-
-The skill uses prioritization to determine document order. For the 3-day onboarding target, the minimum viable documentation is:
-1. Root README with system overview and service map
-2. Quickstart guide (clone to running in 30 minutes)
-3. Architecture document with service interactions
-4. Per-service README with API overview and ownership
-
-**Structure phase:** The skill loads systems-thinking to map the service interactions. It identifies the request flow: API Gateway routes to services, services communicate through the message queue, all services share PostgreSQL through isolated schemas, and Redis handles caching and sessions. This map becomes the architecture document's core diagram.
-
-It loads ontology-design to create a domain glossary. Terms like "workspace," "tenant," "project," and "environment" are used inconsistently across services. The skill establishes canonical definitions that all documentation will use, preventing the confusion that currently costs new developers days of "wait, is a workspace the same as a tenant?"
-
-Navigation-design structures the documentation hierarchy: root README links to quickstart, quickstart links to per-service docs, per-service docs link to API references and architecture decisions. Every page has clear "next steps" so a reader never hits a dead end.
-
-**Writing phase:** Using the templates, the skill generates the root README from `templates/readme/standard.md`, the quickstart from `templates/getting-started/quickstart.md`, the architecture doc from `templates/architecture/system-design.md`, and per-service READMEs from `templates/readme/standard.md` customized for each service. The example-design skill ensures all code examples are runnable -- the quickstart includes every command needed to go from `git clone` to seeing "Hello World" in the browser, including database setup, environment variables, and dependency installation.
-
-The consistency-standards skill catches terminology issues: three services call the same concept "user," "account," and "profile." The documentation standardizes on "user" with a glossary entry explaining the mapping.
-
-**Coverage phase:** Edge-case-coverage identifies common onboarding failure points: Docker not installed, wrong Node.js version, port conflicts, missing environment variables. Each gets a troubleshooting entry. User-journey-design maps the emotional arc of onboarding: excitement (day 1 quickstart works), frustration (day 2 first real task is confusing), and accomplishment (day 3 first PR merged). The documentation adds encouragement and "this is normal" notes at the frustration points.
-
-**Validation phase:** The skill runs `doc-gen.py validate` against the generated documentation, scoring it on completeness (all services documented?), accuracy (do commands actually work?), and navigability (can you find what you need?). It identifies 3 gaps: the shared library has no documentation, the message queue schema is undocumented, and the deployment process is not covered. These go into the documentation risk register for the next iteration.
-
-You deploy the documentation. The next hire clones the repo on Monday morning, follows the quickstart guide, has all 8 services running locally by lunch, understands the architecture by end of day, and merges their first PR on Wednesday. Onboarding time: 3 days, down from 14. The documentation paid for itself with the first hire.
-
-## Usage Scenarios
-
-### Scenario 1: Documenting a repository from scratch
-
-**Context:** You have a mature codebase with hundreds of files but no documentation beyond inline comments. You need to create comprehensive docs.
-
-**You say:** `Document this entire repository from scratch -- I need a README, architecture overview, and getting-started guide`
-
-**The skill provides:**
-- Automated analysis of repository structure, languages, frameworks, and dependencies
-- Persona planning to determine audience priorities
-- Template-driven generation for README, architecture docs, and quickstart guide
-- Consistency validation across all generated documents
-
-**You end up with:** A complete documentation package tailored to your repository's specific structure and technology stack.
-
-### Scenario 2: Documenting a monorepo with multiple services
-
-**Context:** Your monorepo has 12 services with varying levels of documentation -- some have READMEs, most have nothing, and there is no top-level overview.
-
-**You say:** `I have a monorepo with 12 services and inconsistent documentation -- create a unified documentation structure`
-
-**The skill provides:**
-- Root-level README with service map and navigation
-- Per-service README template applied consistently across all 12 services
-- Architecture document showing service interactions and data flows
-- Shared glossary to standardize terminology across services
-- Link validation to ensure cross-references work
-
-**You end up with:** A unified documentation structure where every service is documented to the same standard and readers can navigate between them.
-
-### Scenario 3: Creating API documentation
-
-**Context:** Your REST API has 30+ endpoints but the only documentation is Swagger auto-generation, which lacks examples, error descriptions, and authentication details.
-
-**You say:** `Generate API documentation for our REST endpoints -- the Swagger output is not enough, I need real examples and error handling docs`
-
-**The skill provides:**
-- API overview document with authentication, rate limiting, and common patterns
-- Per-endpoint documentation with request/response examples, error codes, and edge cases
-- Progressive complexity in examples: basic request, with authentication, with pagination, with error handling
-- Troubleshooting section for common API integration issues
-
-**You end up with:** API documentation that developers can actually use to integrate with your API without reading your source code.
-
-### Scenario 4: Auditing existing documentation
-
-**Context:** Your team has been writing documentation for a year but nobody knows if it is complete, consistent, or up to date. You want to find and fix the gaps.
-
-**You say:** `Audit our existing documentation -- find what's missing, what's outdated, and what needs to be rewritten`
-
-**The skill provides:**
-- Drift detection comparing documentation against current code
-- Quality scoring using the document quality index
-- Gap analysis identifying undocumented features, endpoints, and configuration options
-- Risk register prioritizing documentation gaps by impact
-- Link checking to find broken cross-references
-
-**You end up with:** A prioritized remediation plan showing exactly which documents need updating, which are missing entirely, and which are actively misleading.
-
-### Scenario 5: Writing operational runbooks
-
-**Context:** Your team handles production incidents but response depends on whoever is on-call remembering the procedures. You need formal runbooks.
-
-**You say:** `Create operational runbooks for our production services -- we need step-by-step procedures for common incidents`
-
-**The skill provides:**
-- Runbook template with severity classification, response steps, and escalation procedures
-- Troubleshooting template with symptom-cause-resolution structure
-- Edge case coverage for unusual failure modes
-- Risk assessment for each documented procedure
-
-**You end up with:** Step-by-step runbooks that any on-call engineer can follow during an incident, reducing mean-time-to-resolution and removing dependency on tribal knowledge.
-
-## Ideal For
-
-- **Teams with zero documentation** who need to go from nothing to comprehensive docs using a repeatable process
-- **Monorepo maintainers** who need consistent documentation across many services with a unified navigation structure
-- **Open source maintainers** who want professional-quality README, contributing guide, and API docs
-- **Tech leads responsible for onboarding** who need documentation that actually reduces ramp-up time, not just checks a box
-- **Organizations with documentation debt** who need to audit, prioritize, and systematically fill gaps
-
-## Not For
-
-- **UX copy and microcopy** (button labels, error messages, empty states) -- use [ux-writing](../ux-writing/) instead
-- **API design decisions** (endpoint structure, versioning, error format) -- use [api-design](../api-design/) instead
-- **Code-level documentation** (inline comments, docstrings) -- these are part of the code itself, not standalone documents
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with reference documents, 24 templates, and an automated analysis/validation script.
-
-The **core skill** (`SKILL.md`) defines a six-phase workflow that integrates with 10 other SkillStack plugins at specific points: Analysis (automated repo scanning), Planning (persona-definition, persona-mapping, prioritization), Structure (systems-thinking, ontology-design, navigation-design), Writing (ux-writing, example-design, consistency-standards), Coverage (edge-case-coverage, user-journey-design), and Validation (outcome-orientation, risk-management). Each phase has mandatory skill-loading steps and specific application guidance.
-
-The **reference library** provides three depth documents:
-- **Diataxis framework** -- the four documentation types (tutorials, how-to guides, reference, explanation) and when each is appropriate
-- **Writing for audiences** -- techniques for adapting content to different personas (developers, operators, stakeholders)
-- **Document quality index** -- scoring rubric for measuring documentation completeness, accuracy, and effectiveness
-
-The **template portfolio** (24 templates across 11 categories) provides structured starting points for every common documentation type: core docs (README, quickstart, installation, user guide, configuration, deployment, contributing, changelog), API docs (overview, REST endpoint, GraphQL schema), architecture docs (system design, repository structure, ownership map, component spec, data flow, ADR), domain docs (domain spec, ontology), specifications (product spec, feature spec), integrations (external integration), and operations (runbook, troubleshooting).
-
-The **doc-gen.py script** automates five operations: `analyze` (scan repository structure), `generate` (create documentation from templates), `validate` (score documentation quality), `check-links` (find broken cross-references), and `drift` (detect discrepancies between code and docs).
-
-## Related Plugins
-
-- **[UX Writing](../ux-writing/)** -- Microcopy, error messages, and interface text used within the writing phase
-- **[Example Design](../example-design/)** -- Code example methodology used for API docs and tutorials
-- **[Consistency Standards](../consistency-standards/)** -- Naming conventions and terminology standardization across documentation
-- **[Navigation Design](../navigation-design/)** -- Information architecture and wayfinding for documentation sites
-- **[Systems Thinking](../systems-thinking/)** -- System mapping used for architecture documentation
-- **[Ontology Design](../ontology-design/)** -- Domain concept modeling used for glossaries and domain docs
+**What it produces:**
+- `analyze`: JSON report of repository structure, languages, frameworks, existing docs, and gaps
+- `generate`: Documentation files from templates, customized for the repository
+- `validate`: Quality score with per-document breakdowns and improvement recommendations
+- `check-links`: Report of broken internal and external links
+- `drift`: List of documentation sections that no longer match the current code
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "Write some docs" | "Analyze this repo and generate a prioritized documentation plan targeting new developers and API consumers" |
+| "Make a README" | "Generate a README for this TypeScript library following the standard template, with quickstart, API reference, and examples" |
+| "Document the API" | "Create REST endpoint documentation for /api/users including auth, pagination, error codes, and Python/JS code examples" |
+| "Update the docs" | "Run drift detection against our codebase and show me which documentation sections are outdated" |
+
+### Structured Prompt Templates
+
+**For full documentation generation:**
+```
+Generate documentation for [repo path]. Primary audience: [new developers / senior architects / DevOps / external consumers]. Priority: [onboarding speed / API accuracy / operational safety]. Start with the analysis phase.
+```
+
+**For specific document types:**
+```
+Create a [document type: quickstart / API reference / architecture doc / runbook] for [component/service]. Key constraints: [reader should be able to X in Y minutes / must cover Z edge cases].
+```
+
+**For documentation audit:**
+```
+Audit the existing documentation in [docs path]. Score quality, check links, detect drift from the codebase at [repo path]. Minimum acceptable score: [N].
+```
+
+### Prompt Anti-Patterns
+
+- **Skipping the analysis phase:** "Just generate the docs" misses the most valuable step. The analysis phase identifies what exists, what is missing, and what to prioritize. Always start with analysis.
+- **Not specifying the audience:** "Write documentation" for whom? New developers need different docs than API consumers. Specify the target audience to get properly scoped content.
+- **Expecting one-shot documentation:** Documentation generation is iterative. The first pass identifies structure and gaps; subsequent passes fill in details. Do not expect a single prompt to produce final documentation.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are a tech lead at a company with a 200K-line monorepo. The project has grown from 3 developers to 15 in the past year. Onboarding takes 3 weeks because documentation is scattered -- some in the README, some in Confluence, some in developer heads. You need to fix this systematically.
+
+**Step 1: Analysis.** You run the analysis script: `python doc-gen.py analyze ./monorepo --output analysis.json --pretty`. The script identifies 4 main packages, 12 services, 3 API boundaries, and 47 existing markdown files. Of those, 31 are outdated (last modified before the last major refactor). The skill loads persona-definition and identifies four documentation audiences: new developers (onboarding), senior developers (architecture decisions), DevOps team (deployment and operations), and external API consumers (integration).
+
+**Step 2: Planning.** You ask: "Based on this analysis, what documentation should I create first? We need to cut onboarding from 3 weeks to 3 days."
+
+The skill loads prioritization and applies RICE scoring. Top priority: quickstart guide (high reach: all new hires; high impact: directly reduces onboarding time; low effort: one document). Second: architecture overview with system design document (high impact: reduces "why is this designed this way?" questions that consume senior time). Third: API documentation for external consumers (high reach: partner integrations are blocked). Fourth: operations runbooks (medium reach but high severity when missing: outages last longer without them).
+
+**Step 3: Structure.** The skill loads systems-thinking to map the monorepo architecture: 4 packages have clear dependency relationships, 12 services form 3 clusters, and the data flows through specific paths. It loads ontology-design to create a glossary: "tenant" means X in this codebase, "workspace" means Y, "environment" has a specific technical definition different from common usage. It loads navigation-design to plan the doc site: getting-started/ for onboarding, architecture/ for system understanding, api/ for references, operations/ for runbooks.
+
+**Step 4: Writing.** The skill generates the quickstart guide using the `templates/getting-started/quickstart.md` template, loading ux-writing for clear instructional copy and example-design for the code samples. The quickstart includes: prerequisites check (3 items), clone and install (2 commands), environment setup (copy .env.example, configure 3 values), run the application (1 command), verify it works (what you should see), next steps (links to architecture doc for deeper understanding).
+
+**Step 5: Coverage.** The skill loads edge-case-coverage to identify what the quickstart missed: what happens if Docker is not installed? What if port 3000 is in use? What if the database migration fails? Each edge case gets a troubleshooting entry. It loads user-journey-design to trace the new developer's path: the quickstart should lead naturally to the architecture doc, which should lead to the API reference. Each document links to the next.
+
+**Step 6: Validation.** The skill runs `python doc-gen.py validate ./docs --min-score 70`. The quickstart scores 85. The architecture doc scores 72 (missing ADR references -- needs architectural decision records). The API docs score 68 (below threshold -- missing pagination and error code documentation). The link checker finds 4 broken links to old Confluence pages. The drift detector flags 3 sections referencing an API endpoint that was renamed.
+
+**Final outcome:** Onboarding time drops from 3 weeks to 4 days. The documentation scores above 75 across all documents. Drift detection runs monthly to catch documentation rot before it accumulates.
+
+**Gotchas discovered:** The biggest value was not the writing but the analysis and planning phases. Knowing what documentation was missing and in what priority order prevented the team from writing the wrong docs first. The glossary from ontology-design resolved a terminology confusion ("tenant" vs "workspace") that had caused two integration bugs.
+
+## Usage Scenarios
+
+### Scenario 1: New open-source library needs documentation
+
+**Context:** You are releasing a TypeScript library. It has no documentation beyond code comments.
+
+**You say:** "Generate complete documentation for this TypeScript library. It needs a README, quickstart, API reference, and contributing guide."
+
+**The skill provides:**
+- Analysis of the library structure, exported functions, and types
+- README from `templates/readme/standard.md` with project description, installation, quickstart, API summary
+- Quickstart from `templates/getting-started/quickstart.md` with progressive examples
+- API reference from `templates/api/api-overview.md` with each exported function documented
+- Contributing guide from `templates/contributing/CONTRIBUTING.md`
+
+**You end up with:** Publication-ready documentation that covers every audience: casual users (README), new users (quickstart), power users (API reference), and contributors.
+
+### Scenario 2: Auditing documentation for a growing team
+
+**Context:** Your team doubled in size. New developers keep asking questions that "should be in the docs."
+
+**You say:** "Audit our existing documentation. Score quality, find gaps, and tell me what to fix first to reduce new-developer questions."
+
+**The skill provides:**
+- Quality scores per document with specific improvement recommendations
+- Gap analysis showing what documentation types are missing
+- Link validation report
+- Drift detection comparing docs against current code
+- Prioritized fix list based on impact on developer experience
+
+**You end up with:** A ranked action plan that addresses the highest-impact documentation gaps first.
+
+### Scenario 3: Operations team needs runbooks
+
+**Context:** Your SRE team handles incidents using tribal knowledge. There are no written runbooks.
+
+**You say:** "Generate operations runbooks for our 5 critical services. Each runbook needs incident response procedures, health checks, and recovery steps."
+
+**The skill provides:**
+- Runbook from `templates/operations/runbook.md` for each service
+- Health check commands and expected outputs
+- Troubleshooting decision trees from `templates/operations/troubleshooting.md`
+- Edge-case coverage for unusual failure modes
+
+**You end up with:** Structured runbooks that any on-call engineer can follow, reducing incident response time and removing dependence on specific individuals.
+
+---
+
+## Decision Logic
+
+**Which phase should I start with?**
+
+Always start with Phase 1 (Analysis). The analysis script identifies repository structure, existing documentation, and gaps. Skipping to writing produces documentation that does not match what the repository actually needs.
+
+**Which template should I use?**
+
+The skill selects based on document purpose:
+- New users need to get started -> `quickstart.md` and `installation.md`
+- Developers need to understand the system -> `system-design.md` and `component-spec.md`
+- API consumers need references -> `rest-endpoint.md` or `graphql-schema.md`
+- Operations needs incident response -> `runbook.md` and `troubleshooting.md`
+- Decision history needs recording -> `adr-template.md`
+
+**When should I use the orchestrated skills vs. writing directly?**
+
+For documentation that will be read by 10+ people or maintained long-term, use the full six-phase workflow with skill orchestration. For internal one-off documents or quick READMEs, the templates alone are sufficient without loading all supporting skills.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Documentation scores high but users still confused | Quality metrics measure structure and coverage, not clarity; users may understand the words but not the concepts | Load ux-writing and user-journey-design for a clarity pass; test documentation with an actual new user and observe where they get stuck |
+| Drift detection misses semantic drift | Code behavior changed but the API signature did not; docs are technically accurate but practically misleading | Supplement drift detection with user feedback; semantic drift requires human or LLM review, not just string matching |
+| Template output is generic | Generated docs follow the template but lack project-specific context and nuance | Templates are starting points; every generated document needs a project-specific editing pass that adds concrete details, examples, and context |
+
+## Ideal For
+
+- **Tech leads** responsible for documentation at companies where the team has grown and tribal knowledge no longer scales
+- **Open-source maintainers** who need publication-ready documentation covering README, quickstart, API reference, and contributing guides
+- **DevOps and SRE teams** who need structured runbooks and troubleshooting guides to reduce incident response dependence on individuals
+- **Documentation engineers** who want a systematic methodology with quality measurement rather than ad-hoc writing
+
+## Not For
+
+- **UX microcopy or interface text** -- if you need button labels, error messages, or form instructions, use `ux-writing` directly
+- **Single-file documentation** -- if you just need to write one README and do not need the full analysis/planning workflow, use the README template directly without the orchestration
+- **Non-repository documentation** -- this skill is designed for software repositories; for general business documentation, the templates are less applicable
+
+## Related Plugins
+
+- **persona-definition** -- Create audience personas that drive documentation targeting (orchestrated in Phase 2)
+- **persona-mapping** -- Map stakeholder priority for documentation effort allocation (orchestrated in Phase 2)
+- **systems-thinking** -- Model system architecture for architecture documentation (orchestrated in Phase 3)
+- **ontology-design** -- Define domain vocabulary and relationships for glossaries (orchestrated in Phase 3)
+- **navigation-design** -- Plan documentation site structure and information architecture (orchestrated in Phase 3)
+- **ux-writing** -- Write clear interface text and instructional copy (orchestrated in Phase 4)
+- **example-design** -- Design progressive code examples for tutorials and API docs (orchestrated in Phase 4)
+- **consistency-standards** -- Maintain uniform terminology and style across all documentation (orchestrated in Phase 4)
+- **edge-case-coverage** -- Identify boundary conditions and error scenarios for troubleshooting docs (orchestrated in Phase 5)
+- **user-journey-design** -- Map the reader's path through documentation to ensure smooth flow (orchestrated in Phase 5)
+- **outcome-orientation** -- Define success metrics for documentation effectiveness (orchestrated in Phase 6)
+- **risk-management** -- Identify documentation gaps and create improvement plans (orchestrated in Phase 6)
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
