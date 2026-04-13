@@ -6,22 +6,9 @@ Write effective microcopy, error messages, button labels, and interface text usi
 
 ## What Problem Does This Solve
 
-Interface text is often written by engineers as an afterthought — "Submit", "Error 404", "Click here" — leaving users confused about what just happened or what to do next. UX writing treats every label, error message, button, and empty state as a design decision that either guides the user toward success or creates friction. This skill provides the Clear-Concise-Useful-Human framework, tone guidelines by context (success, error, warning, empty), and concrete before/after rewrites for the most common UI patterns.
+Interface text is often written by engineers as an afterthought -- "Submit", "Error 404", "Click here" -- leaving users confused about what just happened or what to do next. Every label, error message, button, and empty state is a design decision that either guides the user toward success or creates friction. A "Submit" button does not tell the user what they are submitting. "Error 404" does not tell them what to do about it. "Click here" does not tell them why they should.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "Write better error messages for my form validation" | Error message pattern: human-readable description of what went wrong plus a specific next step to resolve it |
-| "The submit button just says 'Submit' — how do I improve it?" | Verb + Object formula for button labels (e.g., "Save changes", "Download report") with examples of common weak labels and rewrites |
-| "Users don't know what to do on the empty state screen" | Encouraging empty state copy pattern that describes what the feature does and provides a clear first action |
-| "Write a confirmation dialog for a destructive action" | Confirmation dialog template with action-specific title, irreversibility warning, and labeled confirm/cancel buttons |
-| "My error messages are too technical for end users" | Tone-by-context guidance for turning technical error codes into helpful, empathetic copy |
-| "How do I write form field labels that reduce support tickets?" | Form label pattern with placeholder text, helper text positioning, and follow-up confirmation messaging |
-
-## When NOT to Use This Skill
-
-- generating
+This skill treats interface copy as a UX discipline, not a fill-in-the-blank exercise. It provides the Clear-Concise-Useful-Human framework, tone guidelines calibrated by context (success, error, warning, empty state), and concrete before/after rewrites for the most common UI text patterns -- buttons, errors, confirmation dialogs, and form labels.
 
 ## Installation
 
@@ -34,12 +21,10 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
-## How to Use
-
 **Direct invocation:**
 
 ```
-Use the ux-writing skill to ...
+Use the ux-writing skill to improve the error messages in my form
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -50,31 +35,71 @@ Use the ux-writing skill to ...
 
 ## What's Inside
 
-- **Core Principles** -- Four writing principles (Clear, Concise, Useful, Human) with description of what each means in practice for interface copy.
-- **Tone by Context** -- Tone guidance for four UI states — success (celebratory), error (helpful), warning (direct), and empty (encouraging) — with example copy for each.
-- **UI Patterns** -- Before/after rewrites for the four highest-impact copy locations: button labels (Verb + Object formula), error messages (human description + next step), confirmation dialogs (action title + consequence + labeled buttons), and form labels (label + placeholder + helper text).
+This is a **single-skill plugin** with no reference documents and two eval suites.
 
-## Version History
+| Component | Path | Purpose |
+|---|---|---|
+| Skill | `skills/ux-writing/SKILL.md` | Core principles, tone-by-context guidance, and four UI pattern rewrites |
+| Evals | `evals/trigger-evals.json` | Trigger scenarios for activation boundary testing |
+| Evals | `evals/evals.json` | Output quality scenarios for copy improvement |
 
-- `1.0.10` fix(strategy+ux): optimize descriptions for outcome, prioritization, risk, systems, journey, ux-writing (9661735)
-- `1.0.9` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.0.8` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.7` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.6` docs: update README and install commands to marketplace format (af9e39c)
-- `1.0.5` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.0.4` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.0.3` docs: add detailed README documentation for all 34 skills (7ba1274)
-- `1.0.2` refactor: standardize frontmatter and split oversized SKILL.md files (4a21a62)
-- `1.0.1` docs: improve strategic skill descriptions (f59b24a)
+**The four principles:**
 
-## Related Skills
+| Principle | What it means in practice |
+|---|---|
+| Clear | Simple words, active voice, no jargon |
+| Concise | Front-load the key information, cut filler |
+| Useful | Always provide a next step the user can take |
+| Human | Empathetic and conversational, not robotic |
 
-- **[Content Modelling](../content-modelling/)** -- Design content models with types, fields, relationships, and governance rules for structured content systems.
-- **[Elicitation](../elicitation/)** -- Psychological profiling through natural conversation using narrative identity, self-defining memory elicitation, Motivat...
-- **[Navigation Design](../navigation-design/)** -- Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applicat...
-- **[Ontology Design](../ontology-design/)** -- Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.
-- **[Persona Definition](../persona-definition/)** -- Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.
+**Tone calibrated by context:**
+
+| Context | Tone | Example |
+|---|---|---|
+| Success | Celebratory | "You're all set!" |
+| Error | Helpful | "Let's fix this" |
+| Warning | Direct | "This can't be undone" |
+| Empty state | Encouraging | "Create your first..." |
+
+## Usage Scenarios
+
+**1. "Write better error messages for my form validation"**
+The skill applies the error message pattern: human-readable description of what went wrong plus a specific next step to resolve it. Instead of "Error 404" or "Invalid input", you get "Page not found -- try searching or go to homepage" or "Email address needs an @ symbol".
+
+**2. "The submit button just says 'Submit' -- how do I improve it?"**
+The Verb + Object formula replaces generic labels with action-specific ones. "Submit" becomes "Save changes". "Click here" becomes "Download report". "OK" becomes "Confirm deletion". The verb tells the user what will happen; the object tells them what it applies to.
+
+**3. "Users don't know what to do on the empty state screen"**
+The empty state copy pattern describes what the feature does and provides a clear first action. Instead of a blank page or "No items found", the user sees "Create your first project to start organizing your work" with a visible action button.
+
+**4. "Write a confirmation dialog for a destructive action"**
+The confirmation dialog template uses an action-specific title ("Delete 'Report'?"), an irreversibility warning ("This can't be undone"), and labeled confirm/cancel buttons where the confirm button uses the destructive verb ("[Delete]") rather than a generic "[OK]".
+
+**5. "My error messages are too technical for end users"**
+The tone-by-context guidance transforms technical error codes into helpful copy. The error tone is "helpful, not blaming" -- the copy acknowledges what went wrong without jargon and immediately offers the user something they can do about it.
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Writing or rewriting button labels, error messages, or confirmation dialogs
+- Improving empty state copy that leaves users confused
+- Reviewing interface text for clarity and actionability
+- Establishing a tone guide for UI copy across your product
+- Training a team on UX writing principles
+
+**Do NOT use when:**
+- Generating long-form documentation -- use [documentation-generator](../documentation-generator/) instead
+- Designing the visual layout or navigation patterns -- use [frontend-design](../frontend-design/) or [navigation-design](../navigation-design/)
+- Creating content models for a CMS -- use [content-modelling](../content-modelling/) instead
+
+## Related Plugins in SkillStack
+
+- **[User Journey Design](../user-journey-design/)** -- Map the journeys where your microcopy appears at each touchpoint
+- **[Persona Definition](../persona-definition/)** -- Understand who reads your copy so tone and vocabulary match
+- **[Navigation Design](../navigation-design/)** -- Design the navigation labels and wayfinding text
+- **[Content Modelling](../content-modelling/)** -- Structure the content types that contain your copy
+- **[Frontend Design](../frontend-design/)** -- Design the visual components where your copy lives
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
