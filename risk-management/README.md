@@ -3,6 +3,7 @@
 > **v1.0.10** | Strategic Thinking | 11 iterations
 
 > Systematic risk assessment, mitigation planning, and monitoring for projects, products, and organizations -- from identification through response planning to ongoing review.
+> Single skill, self-contained methodology
 
 ## The Problem
 
@@ -58,19 +59,74 @@ The skill should activate and produce a categorized risk register with scored en
 4. Each risk is **scored** on the likelihood-impact matrix and assigned a mitigation strategy with specific actions
 5. You receive a **complete risk register** you can share with your team, plus a monitoring schedule for ongoing review
 
+---
+
+## System Overview
+
+```
+User describes project / initiative / change
+    │
+    ▼
+┌──────────────────────────────────────────────────────┐
+│              risk-management (skill)                    │
+│                                                        │
+│  Step 1: IDENTIFY                                      │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  Five Risk Categories                            │   │
+│  │  Technical | Schedule | Resource | External |    │   │
+│  │  Organizational                                  │   │
+│  └─────────────────────────────────────────────────┘   │
+│          │                                             │
+│  Step 2: ASSESS                                        │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  3x3 Assessment Matrix                           │   │
+│  │  Likelihood (1-3) x Impact (1-3) = Score (1-9)  │   │
+│  └─────────────────────────────────────────────────┘   │
+│          │                                             │
+│  Step 3: RESPOND                                       │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  Four Mitigation Strategies                      │   │
+│  │  Avoid | Transfer | Mitigate | Accept            │   │
+│  │  + trigger conditions + contingency actions      │   │
+│  └─────────────────────────────────────────────────┘   │
+│          │                                             │
+│  Step 4: MONITOR                                       │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  Monitoring Cadences                             │   │
+│  │  Daily: trigger checks                           │   │
+│  │  Weekly: active risk review                      │   │
+│  │  Monthly: score reassessment                     │   │
+│  │  Quarterly: full register review                 │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                        │
+│  Optional: PRE-MORTEM                                  │
+│  Imagine failure → work backward → convert to risks    │
+│                                                        │
+│  Output: Risk Register + Response Plans + Schedule     │
+└──────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with no reference files -- the complete methodology is contained in the SKILL.md body.
+| Component | Type | Purpose |
+|---|---|---|
+| `risk-management` | skill | Complete methodology: assessment matrix, five risk categories, risk register template, four mitigation strategies, response template, monitoring cadences, pre-mortem technique |
 
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Risk assessment matrix, five risk categories, risk register template, four mitigation strategies, risk response template, monitoring cadences, pre-mortem technique |
+This is a self-contained plugin -- the complete methodology lives in the SKILL.md body with no reference files needed. The risk register and response templates are embedded directly in the skill for immediate use.
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-### risk-management
+### Component Spotlights
 
-**What it does:** Activates when you need to identify, assess, and plan responses for risks in projects, products, migrations, launches, or organizational changes. The skill walks through systematic risk identification by category, scores each risk on a likelihood-impact matrix, recommends mitigation strategies, and produces a structured risk register with owners and review dates.
+#### risk-management (skill)
+
+**What it does:** Activates when you need to identify, assess, and plan responses for risks in projects, products, migrations, launches, or organizational changes. Walks through systematic risk identification by category, scores each risk on a likelihood-impact matrix, recommends mitigation strategies, and produces a structured risk register.
+
+**Input -> Output:** A description of a project, initiative, or change -> A scored risk register with mitigation strategies, response plans with trigger conditions and contingency actions, and a monitoring schedule with owners and review dates.
+
+**When to use:** Starting a new project or initiative. Planning a migration, launch, or infrastructure change. Running a pre-mortem before a critical project begins. Activating a contingency plan when a tracked risk materializes. Assessing organizational risks from team restructuring or strategic changes.
+
+**When NOT to use:** Security vulnerability scanning of code (use dedicated security audit tools). Financial risk modeling requiring quantitative analysis (Monte Carlo, VaR). Real-time incident response during outages (use debugging for troubleshooting).
 
 **Try these prompts:**
 
@@ -98,6 +154,56 @@ What are the organizational and resource risks of restructuring our engineering 
 We accepted a risk 3 months ago and the trigger conditions are now appearing -- help me activate the contingency plan
 ```
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, produces generic output) | Good (specific, produces actionable risk register) |
+|---|---|
+| "What are the risks of this project?" | "We're migrating 12 microservices to Aurora PostgreSQL with a 10-week deadline and near-zero downtime requirement -- build a risk register" |
+| "Help me with risk management" | "Run a pre-mortem on our auth system replacement -- we're switching from custom JWT to Clerk across 3 apps with shared sessions" |
+| "Is this risky?" | "Score the likelihood and impact of our vendor dependency on Twilio for SMS -- they had 3 outages last quarter and we have no fallback provider" |
+| "What could go wrong?" | "Identify the technical, schedule, and resource risks of launching a new feature that depends on a third-party API we haven't integrated before" |
+| "Make a risk plan" | "We have a risk register with 15 items but no monitoring schedule or owners -- add scores, assign mitigation strategies, and set review dates" |
+
+### Structured Prompt Templates
+
+**For new project risk assessment:**
+```
+We're [project description: migrating / launching / building / restructuring] [scope].
+Timeline: [duration]. Team: [size and composition]. Key constraints: [hard deadlines,
+compliance, dependencies]. Build a risk register covering all five categories.
+```
+
+**For pre-mortem:**
+```
+Run a pre-mortem on [project description]. Imagine it's [timeline] from now and the
+project has failed. What went wrong? Convert the findings into scored risk register
+entries with mitigation strategies.
+```
+
+**For contingency activation:**
+```
+We identified [risk description] [timeframe] ago and chose to Accept it with a
+contingency plan. The trigger condition [describe what happened] has now occurred.
+Help me activate the contingency plan and identify new risks from the response.
+```
+
+**For existing risk register improvement:**
+```
+Here's our current risk register: [paste]. It's missing [scores / owners / mitigation
+strategies / monitoring schedule]. Help me complete it with proper scoring and
+assigned actions.
+```
+
+### Prompt Anti-Patterns
+
+- **Listing concerns without project context:** Saying "is microservices risky?" produces generic advice. Instead, describe your specific situation: team size, timeline, current architecture, constraints. The skill tailors risk identification to your actual circumstances.
+- **Asking for risks without specifying the assessment scope:** "What are the risks?" could mean anything from a code change to a company reorganization. Specify what you are assessing -- a migration, a launch, a hiring decision, a vendor change -- so the skill applies the right risk categories.
+- **Expecting the skill to replace domain expertise:** The skill provides the framework (categories, matrix, strategies, monitoring), but you provide the domain knowledge. "What are the risks of our Kubernetes migration?" works best when you describe your current infrastructure, team expertise, and constraints.
+
 ## Real-World Walkthrough
 
 Your company is planning to migrate from a self-hosted PostgreSQL database to a managed Aurora PostgreSQL instance on AWS. The migration affects 12 microservices, needs to happen with near-zero downtime, and must be completed before the current hosting contract expires in 10 weeks. The engineering team has done database migrations before, but never at this scale and never with a hard deadline.
@@ -120,15 +226,15 @@ The skill begins with **systematic risk identification** across all five categor
 
 **Organizational risks** surface (R12) -- stakeholders may not understand the near-zero-downtime constraint and push for a "just do it over a weekend" approach that the technical team knows is too risky.
 
-The skill **scores each risk** on the assessment matrix. R1 (schema incompatibility) gets Likelihood: Medium, Impact: High, Score: 6 -- it is likely that at least one extension is incompatible, and the impact is a blocked migration path for that service. R4 (performance regression) gets Likelihood: High, Impact: Medium, Score: 6 -- query plan changes are almost certain, but the impact is degraded performance rather than outright failure.
+The skill **scores each risk** on the assessment matrix. R1 (schema incompatibility) gets Likelihood: Medium, Impact: High, Score: 6. R4 (performance regression) gets Likelihood: High, Impact: Medium, Score: 6. R5 (deadline with no buffer) gets Likelihood: High, Impact: High, Score: 9 -- the highest-scored risk in the register.
 
-For each risk, the skill recommends a **mitigation strategy**. R1 gets "Mitigate": run Aurora extension compatibility audit in week 1, identify alternatives for unsupported extensions, and have a fallback plan (RDS PostgreSQL without Aurora features) if critical extensions cannot be replaced. R5 (deadline with no buffer) gets "Mitigate": build the migration schedule with two-week buffer by starting immediately, and "Accept" the residual risk with a contingency plan to negotiate a contract extension if needed.
+For each risk, the skill recommends a **mitigation strategy**. R1 gets "Mitigate": run Aurora extension compatibility audit in week 1, identify alternatives for unsupported extensions, and have a fallback plan (RDS PostgreSQL without Aurora features) if critical extensions cannot be replaced. R5 gets "Mitigate": build the migration schedule with two-week buffer by starting immediately, and "Accept" the residual risk with a contingency plan to negotiate a contract extension if needed.
 
-The skill produces a **complete risk register** with all 12 risks scored, categorized, and assigned to owners. It adds a **monitoring schedule**: the database team checks extension compatibility daily during week 1, the project lead reviews migration progress weekly, scores are reassessed monthly (weeks 4 and 8), and a full register review happens at the midpoint (week 5).
+The skill produces a **complete risk register** with all 12 risks scored, categorized, and assigned to owners. It adds a **monitoring schedule**: the database team checks extension compatibility daily during week 1, the project lead reviews migration progress weekly, scores are reassessed at weeks 4 and 8, and a full register review happens at the midpoint (week 5).
 
-Finally, the skill runs a **pre-mortem**: "Imagine it is week 11. The migration failed. What happened?" This surfaces an additional risk the team had not considered: (R13) rollback complexity -- if a migrated service needs to roll back to the old database after other services have already migrated and written new data to Aurora, the rollback path may corrupt data. This gets scored Critical and assigned an "Avoid" strategy: maintain dual-write capability during the migration window so rollback is always clean.
+Finally, the skill runs a **pre-mortem**: "Imagine it is week 11. The migration failed. What happened?" This surfaces an additional risk: (R13) rollback complexity -- if a migrated service needs to roll back after other services have already written new data to Aurora, the rollback path may corrupt data. This gets scored Critical and assigned an "Avoid" strategy: maintain dual-write capability during the migration window so rollback is always clean.
 
-You now have a 13-entry risk register, a monitoring schedule, and contingency plans for the three highest-scored risks, all in a format you can paste directly into a project plan.
+You now have a 13-entry risk register, a monitoring schedule, and contingency plans for the three highest-scored risks.
 
 ## Usage Scenarios
 
@@ -188,6 +294,39 @@ You now have a 13-entry risk register, a monitoring schedule, and contingency pl
 
 **You end up with:** An activated response plan with clear next steps, timeline, and owner assignments -- not a panic scramble.
 
+---
+
+## Decision Logic
+
+**How does the skill choose which technique to use?**
+
+The skill routes based on your request:
+- Describing a project, initiative, or change -> **Full risk assessment** with five-category identification, scoring, mitigation strategies, and monitoring schedule
+- Asking for a pre-mortem -> **Pre-mortem technique**: assume failure, work backward, convert findings to scored risk register entries
+- Presenting an existing risk list without scores -> **Risk scoring and prioritization**: apply the 3x3 matrix, assign strategies, add owners and review dates
+- Reporting that a tracked risk has materialized -> **Contingency activation**: transition from monitoring to active response, generate new risks from the response itself
+
+**How does the scoring system work?**
+
+Likelihood (1 = Low, 2 = Medium, 3 = High) multiplied by Impact (1 = Low, 2 = Medium, 3 = High) produces a Score from 1 to 9. Scores map to priority: 1-2 = Low priority (Accept or monitor), 3-4 = Medium (Mitigate with standard actions), 6-9 = High/Critical (Mitigate aggressively, Avoid, or Transfer). The 3x3 matrix is intentionally simple -- it forces decisive categorization instead of allowing teams to hide behind nuanced 5-point scales.
+
+**When is Avoid vs Mitigate vs Transfer vs Accept the right strategy?**
+
+- **Avoid**: The risk is Critical (score 6-9) and can be eliminated by changing the approach. Example: avoid vendor lock-in risk by using an open-source alternative.
+- **Transfer**: The risk involves financial loss or liability that can be shifted. Example: transfer data breach risk through cyber insurance.
+- **Mitigate**: The risk cannot be avoided but its likelihood or impact can be reduced. Example: mitigate performance regression risk by running load tests before migration.
+- **Accept**: The risk is Low (score 1-2) or the cost of mitigation exceeds the expected impact. Example: accept the risk that a minor UI change confuses some users temporarily.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Risk register becomes a checkbox exercise | Team fills in the register mechanically without real analysis -- every risk gets "Medium/Medium" scores | Challenge the scores: for each "Medium," ask "what specific evidence supports this?" and "what would change this to High?" Use the pre-mortem technique to surface risks the team is unconsciously minimizing. |
+| Monitoring schedule is not followed | Risks are identified and scored but nobody checks trigger conditions between reviews | Assign each risk a specific owner with a concrete check action ("run load test against staging Aurora instance every Monday"). Vague monitoring ("keep an eye on it") always fails. |
+| Risk register grows indefinitely | Every concern gets added but nothing is ever closed or accepted, creating a 50-item list that nobody reads | At each quarterly review, close resolved risks, merge duplicates, and force an Accept decision on low-score items that have been open for 2+ review cycles. A register over 20 items loses its usefulness. |
+| Pre-mortem produces only obvious risks | The team imagines failure but only surfaces risks they already knew about | Push deeper with "why did that happen?" for each failure mode. If "the API failed" is a risk, ask "why did it fail? Was it rate limits, authentication changes, or schema incompatibility?" The second-order causes are where the non-obvious risks hide. |
+| Mitigation strategies are vague | Register says "Mitigate: reduce risk" without specific actions, triggers, or owners | Every mitigation must answer three questions: What specific action? Who owns it? By when? "Mitigate: reduce risk" is not a strategy. "Mitigate: run Aurora compatibility audit by end of week 1, owned by DB lead, trigger: any incompatible extension found" is a strategy. |
+
 ## Ideal For
 
 - **Engineering leads planning complex migrations or infrastructure changes** -- systematic risk identification catches the risks that "we'll deal with it when it happens" thinking misses
@@ -200,12 +339,6 @@ You now have a 13-entry risk register, a monitoring schedule, and contingency pl
 - **Security vulnerability scanning** -- use dedicated security audit tools for code-level security risks; this skill handles project and organizational risk
 - **Financial risk modeling** -- use specialized financial tools for quantitative risk models (Monte Carlo, VaR); this skill covers qualitative risk assessment
 - **Incident response during outages** -- use [debugging](../debugging/) for real-time troubleshooting; this skill is for proactive risk planning, not reactive crisis management
-
-## How It Works Under the Hood
-
-The plugin is a compact single-skill plugin with no reference files. The SKILL.md body contains the complete risk management methodology: the 3x3 assessment matrix, five risk categories, risk register template with scoring, four mitigation strategies, risk response template with trigger conditions and contingency planning, monitoring frequency table, and the pre-mortem technique. This design means the full methodology is available in every interaction without needing progressive disclosure.
-
-The risk register template uses a standardized format (ID, Risk, Category, Likelihood, Impact, Score, Mitigation, Owner, Status) that maps directly to project management tools and spreadsheets. The scoring system (Likelihood 1-3 x Impact 1-3 = Score 1-9) is simple enough for non-technical stakeholders to understand while providing sufficient granularity for prioritization.
 
 ## Related Plugins
 
