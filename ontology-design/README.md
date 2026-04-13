@@ -2,70 +2,106 @@
 
 > **v1.0.10** | Design & UX | 11 iterations
 
-> Design formal knowledge models with classes, properties, relationships, and taxonomies that give your domain a shared, unambiguous vocabulary.
+---
 
 ## The Problem
 
-Every software project implicitly defines a domain model, but most teams never make it explicit. The database has a `users` table, the API returns `customer` objects, the frontend calls them `accounts`, and the documentation says `clients`. These are the same concept with four names, and no one notices until the billing team's "customer" does not map to the support team's "account" during an integration.
+Every software system embeds a model of the world -- classes, properties, relationships, taxonomies -- whether the team designs it intentionally or not. When the model is implicit, problems emerge gradually and painfully. A "User" entity means different things in billing, authentication, and analytics. A "Product" class accumulates 40 properties because nobody defined whether accessories, subscriptions, and physical goods are distinct types. Relationships between entities are expressed as foreign keys with no semantics -- you know two things are connected but not why or how.
 
-Without a deliberate ontology, teams reinvent entity relationships in every new feature. One developer models a product with a flat category field. Another adds a hierarchical category system in a different service. A third creates a tagging system that partially overlaps with both. The data becomes inconsistent, migrations become painful, and answering cross-domain questions ("Which products in category X were purchased by users who also bought from category Y?") requires heroic data engineering because the relationships were never formally defined.
+The consequences cascade through the entire stack. Database schemas encode an incoherent world model, requiring application-layer hacks to compensate. APIs expose inconsistent naming -- `userId` in one endpoint, `accountId` in another, both meaning the same thing. Search and recommendation systems fail because the taxonomy conflates unrelated concepts. New team members spend weeks understanding the implicit model buried across code, schemas, and tribal knowledge.
 
-The deeper problem is communication. When business stakeholders say "order" and engineers hear "order," they often mean different things -- the business includes draft orders, the engineering model starts at checkout. Ontology design makes these distinctions visible before they become production bugs.
+Domain experts and engineers speak different languages about the same system. The business says "customers" while the code says "users" and the database says "accounts." Without a shared formal model -- an ontology -- these gaps persist indefinitely, creating friction at every integration point and every new feature.
 
 ## The Solution
 
-This plugin provides a systematic approach to designing formal knowledge models using classes, properties, relationships, and taxonomies. It gives you a vocabulary of relationship types (is-a, has-a, uses, instance-of), a design template for documenting classes with their properties and cardinalities, design principles (MECE, single inheritance, normalization, domain-driven), and a catalog of anti-patterns to avoid.
+The Ontology Design plugin gives Claude expertise in formal knowledge modeling with classes, properties, relationships, and taxonomies. It provides a structured approach to designing domain models that are explicit, consistent, and shared across technical and business stakeholders.
 
-The skill produces concrete ontology artifacts: class hierarchies with inheritance, property tables with types and constraints, relationship maps with cardinality, and taxonomy structures. These are not abstract diagrams -- they translate directly into database schemas, API contracts, and type definitions. The output bridges the gap between domain experts who think in business concepts and developers who think in data structures.
+The plugin covers the four core components (classes, properties, relationships, instances), four relationship types (is-a, has-a, uses, instance-of), taxonomy design from flat to deep hierarchies, a reusable class design template, and design principles grounded in MECE (mutually exclusive, collectively exhaustive) thinking. It identifies anti-patterns that cause long-term modeling problems: god classes, orphan classes, circular dependencies, and over-abstraction.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Same concept has different names across services (user, customer, account, client) | Single authoritative class definition with explicit synonyms and scope |
-| Entity relationships reinvented differently in each feature | Formal relationship map with cardinality and direction, reused across features |
-| Flat category fields that cannot express hierarchy or cross-cutting concerns | Taxonomy structures with inheritance and MECE classification |
-| God classes with 30+ properties because no one modeled subclasses | Proper class hierarchy with single inheritance and focused responsibilities |
-| Domain discussions between business and engineering produce different interpretations | Shared ontology artifact that makes distinctions explicit before implementation |
-| Circular dependencies between entities discovered during implementation | Anti-pattern detection catches circular dependencies, orphan classes, and over-abstraction at design time |
+| Entity definitions are implicit, scattered across code and schemas | Explicit class definitions with properties, relationships, and cardinality documented in one place |
+| "User" means different things in different parts of the system | MECE taxonomy ensures each concept has exactly one definition with clear boundaries |
+| Relationships between entities are just foreign keys with no semantics | Typed relationships (is-a, has-a, uses, instance-of) with cardinality and directionality |
+| God classes accumulate dozens of unrelated properties | Single responsibility classes with inheritance for shared properties and composition for parts |
+| New team members reverse-engineer the domain model from code | Shareable ontology documents that both engineers and domain experts can read |
+| Taxonomy design is ad hoc -- categories overlap and miss edge cases | MECE principle applied: mutually exclusive categories that collectively cover the domain |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install ontology-design@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention relevant topics.
+### Prerequisites
+
+None. For CMS content types and editorial workflows built on top of ontologies, also install `content-modelling`. For consistency in naming conventions, also install `consistency-standards`.
+
+### Verify installation
+
+After installing, test with:
+
+```
+Help me design the domain model for an e-commerce platform -- products, categories, orders, customers, and inventory
+```
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe the domain you need to model:
-   ```
-   Design the ontology for an e-commerce platform -- I need to model products, categories, orders, customers, and inventory
-   ```
-3. The skill produces a class hierarchy with properties, relationships, cardinalities, and taxonomy structure.
-4. Drill into specific modeling questions:
-   ```
-   Should product variants be subclasses of Product or a separate class with a relationship?
-   ```
-5. Get a decision with trade-off analysis based on MECE principles and your specific cardinality requirements.
+1. Install the plugin using the commands above
+2. Ask: `Design an ontology for a project management system with users, projects, tasks, and permissions`
+3. The skill generates class definitions with properties, relationship types, and cardinality
+4. You receive a formal domain model with MECE taxonomy and anti-pattern checks
+5. Next, try: `Review my existing data model -- I think my User class has too many responsibilities`
+
+---
+
+## System Overview
+
+```
+ontology-design/
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+└── skills/
+    └── ontology-design/
+        ├── SKILL.md         # Core skill (classes, properties, relationships, taxonomy, templates)
+        └── evals/
+            ├── trigger-evals.json   # 13 trigger evaluation cases
+            └── evals.json           # 3 output evaluation cases
+```
+
+A single skill with no additional references. The SKILL.md contains the complete ontology design framework: core components, relationship types, taxonomy levels, the class design template, design principles, and anti-patterns.
 
 ## What's Inside
 
-Compact single-skill plugin focused on knowledge modeling and taxonomy design.
+| Component | Type | Purpose |
+|---|---|---|
+| `ontology-design` | Skill | Class design, relationship typing, taxonomy structure, MECE principles, anti-pattern detection |
 
-| Component | Description |
-|---|---|
-| **SKILL.md** | Core skill covering ontology components (classes, properties, relationships, instances), relationship types, taxonomy levels, class design template, design principles (MECE, single inheritance, normalization), and anti-patterns |
-| **evals/** | 13 trigger evaluation cases + 3 output quality evaluation cases |
+### Component Spotlight
 
-### ontology-design
+#### ontology-design (skill)
 
-**What it does:** Activates when you need to design formal knowledge models, class hierarchies, taxonomies, entity-relationship structures, or semantic models for any domain. It provides a structured methodology for defining classes with properties and constraints, mapping relationships with cardinality, building classification taxonomies, and avoiding common modeling mistakes.
+**What it does:** Activates when you need to design or review formal knowledge models. Provides class/property/relationship definitions, four relationship types with cardinality, taxonomy design from flat to deep hierarchies, a reusable class design template, and anti-pattern detection for common modeling mistakes.
+
+**Input -> Output:** A domain description or existing data model -> Formal ontology with class definitions, typed relationships, cardinality, taxonomy hierarchy, and anti-pattern audit.
+
+**When to use:**
+- Designing domain models for new systems
+- Reviewing existing data models for structural problems
+- Creating taxonomies for product catalogs, content systems, or knowledge bases
+- Defining entity relationships with proper typing and cardinality
+- Normalizing inconsistent class structures across services
+
+**When NOT to use:**
+- CMS content types, editorial workflows, or publishing pipelines (use `content-modelling`)
+- Database schema design and SQL optimization (use a database-specific tool)
+- API resource naming and endpoint design (use `api-design`)
+- Visual entity-relationship diagrams (use a diagramming tool)
 
 **Try these prompts:**
 
@@ -74,215 +110,176 @@ Design the domain model for a healthcare system with patients, providers, appoin
 ```
 
 ```
-I have a Product class with 25 properties -- help me decompose it into a proper class hierarchy
+My User class has 30 properties including billing info, preferences, auth tokens, and team membership -- help me decompose it
 ```
 
 ```
-Build a taxonomy for categorizing support tickets by type, severity, and product area
+Create a product taxonomy for an electronics retailer that covers laptops, phones, accessories, and services without overlap
 ```
 
 ```
-What's the right way to model a many-to-many relationship between students and courses with enrollment metadata?
+What relationship type should I use between Organization and Employee? Is it has-a, is-a, or something else?
 ```
 
 ```
-Review my entity model -- I think I have circular dependencies between Order, Invoice, and Payment
+Review this class hierarchy: Vehicle > Car > ElectricCar, Vehicle > Truck, Vehicle > Bicycle -- is this well-structured?
 ```
-
-```
-Design an ontology for a knowledge management system that needs to represent articles, topics, authors, and cross-references
-```
-
-## Real-World Walkthrough
-
-You are building a learning management system (LMS) for a corporate training company. The system needs to handle courses, modules, lessons, quizzes, instructors, learners, enrollments, certifications, and learning paths. The business has been using spreadsheets with inconsistent terminology -- "course" and "program" mean different things to different departments, and no one agrees on how certifications relate to course completions.
-
-**Step 1: Identify the core classes.**
-
-You start by describing the domain:
-
-```
-Design the ontology for a corporate LMS. We have courses that contain modules and lessons, quizzes for assessment, instructors who teach and learners who take courses, enrollments tracking progress, certifications awarded on completion, and learning paths that group courses into sequences.
-```
-
-The skill produces the initial class inventory, immediately flagging the business terminology issue: "course" and "program" need disambiguation. It proposes `Course` as the atomic unit of instruction (containing modules and lessons), and `LearningPath` as the sequence of courses -- what some departments call a "program." This distinction, made explicit in the ontology, prevents the confusion that has been plaguing the spreadsheets.
-
-**Step 2: Define the class hierarchy.**
-
-The skill maps out inheritance relationships:
-
-```
-LearningContent (abstract)
-├── Course
-│   ├── SelfPacedCourse
-│   └── InstructorLedCourse
-├── Module
-├── Lesson
-│   ├── VideoLesson
-│   ├── TextLesson
-│   └── InteractiveLesson
-└── Assessment
-    ├── Quiz
-    └── FinalExam
-```
-
-It applies the MECE principle: every piece of learning content is exactly one type (mutually exclusive), and the subtypes cover all possibilities in the domain (collectively exhaustive). Single inheritance keeps the hierarchy clean -- a `VideoLesson` is a `Lesson` which is `LearningContent`, with no diamond problem.
-
-**Step 3: Map relationships with cardinality.**
-
-You ask for the relationship model:
-
-```
-Map the relationships between all the LMS classes, including cardinality and direction
-```
-
-The skill produces a relationship table:
-
-| Relation | Source | Target | Cardinality | Description |
-|----------|--------|--------|-------------|-------------|
-| contains | Course | Module | one-to-many | Course contains ordered modules |
-| contains | Module | Lesson | one-to-many | Module contains ordered lessons |
-| teaches | Instructor | Course | many-to-many | Instructors can teach multiple courses |
-| enrolledIn | Learner | Course | many-to-many | Via Enrollment join class |
-| completedBy | Assessment | Learner | many-to-many | Via AttemptRecord join class |
-| awards | Course | Certification | many-to-one | Completing a course may award a cert |
-| sequences | LearningPath | Course | many-to-many | Ordered sequence via PathStep join class |
-
-The skill flags that `enrolledIn` and `completedBy` need join classes (Enrollment and AttemptRecord) because the relationships carry metadata -- enrollment date, progress percentage, attempt score, completion timestamp.
-
-**Step 4: Design property tables.**
-
-For the core class `Course`, the skill produces:
-
-```markdown
-## Class: Course
-
-**Description**: An atomic unit of instruction comprising modules and lessons
-**Parent**: LearningContent
-
-### Properties
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| id | UUID | yes | Unique identifier |
-| title | string | yes | Display title |
-| slug | string | yes | URL-friendly identifier |
-| description | text | yes | Course overview |
-| difficulty | enum | yes | beginner/intermediate/advanced |
-| estimatedHours | number | yes | Expected completion time |
-| status | enum | yes | draft/published/archived |
-| prerequisites | Course[] | no | Required prior courses |
-
-### Relationships
-| Relation | Target | Cardinality |
-|----------|--------|-------------|
-| contains | Module | one-to-many |
-| taughtBy | Instructor | many-to-many |
-| awards | Certification | many-to-one |
-```
-
-**Step 5: Validate against anti-patterns.**
-
-The skill reviews the complete ontology and catches two issues. First, `LearningPath` initially had both a `courses` property (direct list) and a `sequences` relationship through `PathStep` -- redundant and potentially inconsistent. The fix: remove the direct list, use only the `PathStep` join class which carries the sequence order. Second, `Certification` had no relationship back to the awarding authority -- an orphan class risk. The fix: add an `issuedBy` relationship to `Organization`.
-
-The result: a complete LMS ontology with 12 classes, clear inheritance hierarchies, explicit relationships with cardinality, property tables for every class, and validated adherence to MECE, single inheritance, and normalization principles. The ontology document becomes the shared reference for the development team, resolving the "course vs. program" terminology debate and providing the blueprint for the database schema, API contracts, and TypeScript type definitions.
-
-## Usage Scenarios
-
-### Scenario 1: Designing a product catalog data model
-
-**Context:** You are building an e-commerce platform and need to model products with variants, categories, pricing, and inventory across multiple warehouses.
-
-**You say:** "Design the ontology for a product catalog. Products have variants (size, color), belong to hierarchical categories, have prices that vary by region, and inventory tracked per warehouse."
-
-**The skill provides:**
-- Class hierarchy: Product > ProductVariant with is-a and has-a relationship analysis
-- Category taxonomy with hierarchical levels following MECE
-- Price as a separate class with region and currency properties (not a flat field on Product)
-- Inventory as a join class between ProductVariant and Warehouse with quantity and threshold properties
-- Anti-pattern check: ensures no god class, no circular dependencies
-
-**You end up with:** A normalized ontology that translates directly into a database schema, with clear cardinalities that prevent data inconsistencies.
-
-### Scenario 2: Decomposing a god class
-
-**Context:** Your `User` model has grown to 35 properties covering authentication, profile, preferences, billing, permissions, and activity tracking.
-
-**You say:** "My User class has 35 properties and does everything. Help me decompose it into a proper class hierarchy."
-
-**The skill provides:**
-- Subclass analysis: which properties cluster into coherent groups
-- Proposed hierarchy: User (core identity) with related classes Profile, Preferences, BillingInfo, Permissions, ActivityLog
-- Relationship mapping: User has-a Profile (one-to-one), User has-a BillingInfo (one-to-one), etc.
-- Property migration table showing which properties move to which class
-- Single inheritance validation
-
-**You end up with:** A clean class hierarchy where User has 6 properties (identity only) and related classes hold domain-specific attributes, each with clear boundaries.
-
-### Scenario 3: Building a classification taxonomy
-
-**Context:** Your content platform needs to classify articles into topics, but the current flat tag system has become unmanageable with 500+ tags and no hierarchy.
-
-**You say:** "I have 500 tags with no structure. Help me design a hierarchical taxonomy for classifying articles by topic."
-
-**The skill provides:**
-- Taxonomy design with 3-4 levels following the biological taxonomy model
-- MECE classification ensuring each article fits into exactly one primary category
-- Faceted classification for cross-cutting concerns (topic + difficulty + format)
-- Migration strategy from flat tags to hierarchical taxonomy
-
-**You end up with:** A structured taxonomy with clear levels, MECE categories, and a migration path from the existing tag system.
-
-### Scenario 4: Modeling complex relationships
-
-**Context:** You are building a project management tool where users can belong to multiple organizations, each organization has projects, and users have different roles per project.
-
-**You say:** "Users belong to multiple orgs, orgs have projects, and users have different roles per project. How do I model the three-way relationship between User, Organization, and Project?"
-
-**The skill provides:**
-- Join class analysis: Membership (User-Organization) and ProjectRole (User-Project) as separate classes
-- Cardinality mapping for each relationship
-- Role as an enum property on the join class, not on User or Project
-- Anti-pattern check: avoids circular dependency between User > Organization > Project > User
-
-**You end up with:** A clean relationship model with explicit join classes that carry the context-specific metadata (role, permissions, dates).
-
-## Ideal For
-
-- **Backend engineers designing database schemas** -- the ontology translates directly into normalized tables with foreign keys and join tables
-- **API designers defining resource models** -- class hierarchies map to REST resources and GraphQL types
-- **Domain modelers aligning business and engineering vocabulary** -- the shared ontology artifact makes terminology disagreements visible and resolvable
-- **Data architects planning for cross-service integration** -- formal ontologies prevent the "same concept, four names" problem across microservices
-- **Anyone decomposing a god class or untangling circular dependencies** -- the anti-pattern catalog identifies structural problems before they become production issues
-
-## Not For
-
-- **CMS content types, editorial workflows, or structured content for publishing** -- use [content-modelling](../content-modelling/) for COPE (Create Once, Publish Everywhere) patterns
-- **Database performance tuning, indexing, or query optimization** -- the ontology defines the logical model, not the physical storage
-- **API endpoint design, status codes, or pagination** -- use [api-design](../api-design/) for API-level concerns that build on top of the ontology
-
-## How It Works Under the Hood
-
-The skill is a compact, focused knowledge base covering the core discipline of ontology design. The SKILL.md provides the complete framework: four ontology components (classes, properties, relationships, instances), four relationship types (is-a, has-a, uses, instance-of), a full taxonomy hierarchy model, a reusable class design template with property and relationship tables, four design principles (MECE, single inheritance, normalization, domain-driven), and an anti-pattern catalog (god class, orphan classes, circular dependencies, over-abstraction).
-
-There are no additional reference files -- the skill is deliberately compact so it loads fully into context and delivers immediate, actionable ontology design. This makes it fast to activate and directly productive.
-
-The evaluation suite (13 trigger cases, 3 output quality cases) ensures the skill activates reliably on ontology and knowledge modeling queries.
-
-## Related Plugins
-
-- **[Content Modelling](../content-modelling/)** -- CMS-specific content types and editorial workflows built on top of domain ontologies
-- **[Consistency Standards](../consistency-standards/)** -- Naming conventions and taxonomy standards for consistent terminology
-- **[API Design](../api-design/)** -- API resource design that implements the ontology as endpoints
-- **[Systems Thinking](../systems-thinking/)** -- Systems-level analysis of how ontology components interact and influence each other
-
-## Version History
-
-- `1.0.10` fix(design+docs): regenerate READMEs for design and documentation plugins
-- `1.0.9` fix: add standard keywords and expand READMEs to full format
-- `1.0.8` fix: change author field from string to object in all plugin.json files
-- `1.0.7` fix: rename all claude-skills references to skillstack
-- `1.0.0` Initial release
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Help me with my data" | "Design an ontology for a multi-tenant SaaS with organizations, workspaces, projects, and role-based access" |
+| "I need classes" | "Decompose my Order class -- it currently holds customer info, line items, shipping, payment, and fulfillment status" |
+| "Make a taxonomy" | "Create a MECE product taxonomy for a grocery delivery platform covering fresh produce, packaged goods, household items, and prepared meals" |
+| "What's a good model?" | "Review my class hierarchy: Content > Article, Content > Video, Content > Podcast -- should Newsletter be a subclass of Content or Article?" |
+
+### Structured Prompt Templates
+
+**For new domain models:**
+```
+Design an ontology for [domain]. Key entities: [list entities]. Key relationships: [describe how entities connect]. Constraints: [business rules, cardinality limits, invariants].
+```
+
+**For class decomposition:**
+```
+My [class name] class has these properties: [list all]. It's becoming a god class. Help me decompose it into focused classes with proper relationships.
+```
+
+**For taxonomy design:**
+```
+Create a taxonomy for [domain] that covers [list categories]. Requirements: MECE (no overlap, no gaps), max [N] levels deep, must accommodate [edge cases].
+```
+
+### Prompt Anti-Patterns
+
+- **Describing the UI instead of the domain** -- "I need a form with fields for name, email, and address" is a UI question; describe the entities and their relationships instead
+- **Asking for a database schema directly** -- ontology design produces a conceptual model; translate to physical schema after the model is validated
+- **Ignoring cardinality** -- "User has Projects" is incomplete without specifying one-to-many, many-to-many, or the constraints on the relationship
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a learning management system (LMS) for a corporate training platform. The current data model evolved organically: a `Course` table with 25 columns including instructor info, a `User` table that conflates students, instructors, and admins, and a `Content` table that mixes video lessons, quizzes, and downloadable resources. The team wants to add certification tracking, but the existing model has no clean place for it.
+
+**Step 1: Entity identification.** You ask: "Design the ontology for an LMS with courses, lessons, quizzes, users (students/instructors/admins), enrollments, progress tracking, and certifications."
+
+The skill identifies the core classes: Course, Lesson, Quiz, User, Enrollment, Progress, Certification, and Content (abstract). It immediately flags the mixed-responsibility issues: User should be decomposed by role, Course should not contain instructor data directly, and Content needs a proper type hierarchy.
+
+**Step 2: Class hierarchy design.** The skill designs the taxonomy. `User` becomes an abstract class with three subclasses: Student (has enrollments, progress), Instructor (has courses taught, credentials), and Admin (has permissions, audit trail). The skill applies single inheritance and notes that if a user can be both student and instructor, a role-based composition pattern is better than multiple inheritance.
+
+**Step 3: Content type hierarchy.** The skill creates: `Content` (abstract: id, title, duration, format) with subclasses `VideoLesson`, `TextLesson`, `Quiz`, and `Resource`. Each subclass has type-specific properties: VideoLesson has `videoUrl` and `transcript`; Quiz has `questions` and `passingScore`; Resource has `fileType` and `downloadUrl`. This is an is-a (inheritance) relationship.
+
+**Step 4: Relationship mapping.** The skill defines typed relationships:
+- Course has-a Lesson (one-to-many, ordered by `sequence`)
+- Lesson has-a Content (one-to-one)
+- Student uses Course via Enrollment (many-to-many with junction entity)
+- Enrollment has-a Progress (one-to-one per student-course pair)
+- Course produces Certification (one-to-one template, many instances per student)
+
+Each relationship gets cardinality and directionality. The skill notes that Enrollment is a first-class entity (not just a join table) because it carries its own properties: enrollment date, completion date, score.
+
+**Step 5: Anti-pattern audit.** The skill checks the model against its anti-pattern list. No god classes (Course was decomposed, User was split). No orphan classes (every class has at least one relationship). No circular dependencies (the relationship graph is a directed acyclic graph with Enrollment as the hub). Slight over-abstraction risk flagged: the Content abstract class may be unnecessary if VideoLesson, TextLesson, Quiz, and Resource share fewer than 3 properties.
+
+**Step 6: Certification integration.** With the clean model, certification fits naturally: `Certification` is a class with `template` (course-level definition of requirements) and `instance` (student-level issued certificate). The relationship: Course defines-a CertificationTemplate (one-to-one), Student earns-a CertificationInstance (one-to-many). Progress.completionPercentage >= CertificationTemplate.threshold triggers issuance.
+
+**Final outcome:** A formal ontology with 10 classes, 4 relationship types, proper cardinality, a content type hierarchy, role-based user model, and clean certification integration. The model is documented using the class design template from the skill, readable by both engineers and the training operations team.
+
+**Gotchas discovered:** The skill identified that the "student can also be an instructor" edge case requires composition (role assignment) rather than inheritance (User > Student, User > Instructor). This prevented a diamond inheritance problem that would have surfaced during implementation.
+
+## Usage Scenarios
+
+### Scenario 1: Decomposing a god class
+
+**Context:** Your `Product` class has 45 properties covering physical attributes, pricing, inventory, shipping, reviews, and marketing metadata. Every query touches this one table.
+
+**You say:** "My Product class has 45 properties including dimensions, weight, price, discount rules, stock levels, warehouse locations, reviews, ratings, SEO metadata, and category tags. Help me decompose it."
+
+**The skill provides:**
+- Decomposition into 6 focused classes: Product (core identity), PhysicalAttributes (dimensions, weight), Pricing (price, discounts, rules), Inventory (stock, warehouse), Reviews (ratings, comments), and MarketingMetadata (SEO, tags)
+- Relationship types: Product has-a PhysicalAttributes (one-to-one), Product has-a Pricing (one-to-one, versioned), Product has-a Inventory (one-to-many per warehouse)
+- MECE validation: each property belongs to exactly one class
+
+**You end up with:** Six focused classes with clear responsibilities and typed relationships, replacing the 45-property monolith.
+
+### Scenario 2: Designing a MECE taxonomy
+
+**Context:** You are building a content platform and need to categorize articles, tutorials, case studies, news, and opinion pieces. Current categories overlap (a tutorial can also be a case study).
+
+**You say:** "Create a MECE content taxonomy where articles, tutorials, case studies, news, and opinion pieces have clear boundaries without overlap."
+
+**The skill provides:**
+- MECE analysis showing the overlap: "tutorial" is a format, "case study" is a subject -- they are different classification dimensions
+- Two-axis taxonomy: Format (article, tutorial, video, infographic) x Subject (case study, announcement, opinion, reference)
+- Faceted classification: content tagged on both axes instead of shoehorned into one
+- Decision rule for each category boundary
+
+**You end up with:** A faceted taxonomy where content is classified along two orthogonal dimensions, eliminating the overlap problem.
+
+### Scenario 3: Modeling complex relationships
+
+**Context:** You are building a legal case management system where cases involve parties (plaintiffs, defendants, witnesses), documents (filings, exhibits, orders), and events (hearings, depositions, rulings). Relationships are many-to-many with role qualifiers.
+
+**You say:** "Design the relationship model for a legal case system. Cases have parties with different roles, documents with different types, and events with participants. A person can be a plaintiff in one case and a witness in another."
+
+**The skill provides:**
+- Person as a role-independent entity, with CaseParty as a junction entity carrying the role (plaintiff, defendant, witness)
+- Document with type hierarchy (Filing, Exhibit, Order) using is-a inheritance
+- Event with participant junction entity carrying role (judge, attorney, witness)
+- Cardinality: Case has-a CaseParty (many), CaseParty uses Person (many-to-one), Event has-a EventParticipant (many)
+
+**You end up with:** A relationship model where people exist independently of cases, with role-qualified junction entities that allow the same person to hold different roles across cases.
+
+---
+
+## Decision Logic
+
+**When is-a vs has-a vs uses?**
+
+- **Is-a (inheritance)** -- when the child IS a specialized version of the parent and shares all parent properties. Test: "An ElectricCar IS a Car" -- true, use is-a. "An Engine IS a Car" -- false, don't use is-a.
+- **Has-a (composition)** -- when the parent CONTAINS the child as a part. Test: "A Car HAS an Engine" -- true, use has-a. The child cannot exist independently of the parent.
+- **Uses (association)** -- when two entities are related but neither contains the other. Test: "A Person USES a Tool" -- true, use uses. Both exist independently.
+- **Instance-of** -- when relating a specific entity to its class definition. "Fido instance-of Dog."
+
+**When to use a junction entity vs a simple foreign key?**
+
+Use a junction entity (first-class relationship) when the relationship carries its own properties (enrollment date, role, status), when the relationship has its own lifecycle (created, active, expired), or when the same pair can be related multiple times with different qualifiers.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| God class | One class has 20+ properties spanning multiple concerns | Decompose by responsibility; each class should have a single cohesive purpose |
+| Orphan class | A class with no relationships to any other class | Either delete it (YAGNI) or identify its connections -- every entity should relate to at least one other |
+| Circular dependency | A references B which references A, creating update cascades | Break the cycle with a junction entity or event-driven decoupling |
+| Over-abstraction | Abstract base classes that add no shared properties or behavior | Eliminate abstractions that share fewer than 3 properties; prefer composition over deep hierarchies |
+| Diamond inheritance | A class inherits from two classes that share a common ancestor | Switch to composition with roles or interfaces; single inheritance preferred |
+| MECE violation | Categories overlap (item belongs to two) or have gaps (item belongs to none) | Audit taxonomy with concrete examples; faceted classification resolves overlap by splitting into orthogonal dimensions |
+
+## Ideal For
+
+- **Backend engineers** designing data models for new systems who want principled domain modeling before writing schemas
+- **Architects** normalizing inconsistent entity definitions across microservices where "User" means different things
+- **Product managers** defining domain vocabulary that both business and engineering teams share
+- **Data engineers** building knowledge graphs, search taxonomies, or recommendation systems that need clean entity hierarchies
+- **Teams refactoring** legacy systems where the implicit domain model has accumulated god classes and circular dependencies
+
+## Not For
+
+- **CMS content modeling** -- content types, editorial workflows, and publishing pipelines use `content-modelling`
+- **Database schema optimization** -- index design, query optimization, and physical schema layout are implementation concerns, not conceptual modeling
+- **API resource design** -- endpoint naming, versioning, and response formats use `api-design`
+
+## Related Plugins
+
+- **content-modelling** -- content type design built on top of ontological foundations
+- **consistency-standards** -- naming conventions and taxonomy standards that complement ontology design
+- **api-design** -- API resource naming and endpoint design informed by the domain model
+- **edge-case-coverage** -- identifying boundary conditions that stress-test ontology completeness
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
