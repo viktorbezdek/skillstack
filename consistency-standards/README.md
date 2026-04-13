@@ -1,247 +1,260 @@
 # Consistency Standards
 
-> **v1.0.10** | Quality & Testing | 11 iterations
-
-> Establish and enforce uniform naming conventions, terminology, style guides, and content reuse patterns across documentation and code -- eliminating synonym sprawl, mixed voice, and inconsistent formatting.
+> **v1.0.10** | Establish and maintain naming conventions, taxonomy standards, style guides, and content reuse patterns across documentation and code.
+> 1 skill | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-A codebase uses `getUserName` in one file, `get_user_name` in another, and `fetchUserName` in a third -- all doing the same thing. Documentation says "click" in one section, "press" in the next, and "tap" in the mobile guide. The API returns `created_at` on one endpoint and `createdAt` on another. A new developer joins and cannot tell which naming convention is official because there are three in active use.
+Inconsistency is the silent tax on every project. One developer names it `getUserName`, another names it `fetch_user_name`, a third names it `retrieveUsername`. Documentation says "click" in one section, "press" in another, and "tap" in a third. Date formats shift between `2024-01-15`, `January 15, 2024`, and `01/15/24` within the same page. None of these are individually harmful, but they compound into a codebase and documentation set that feels unprofessional, confusing, and hard to maintain.
 
-Inconsistency accumulates invisibly. Each individual decision -- camelCase here, snake_case there -- seems harmless. But the compound effect is a codebase where naming cannot be predicted, documentation where terminology confuses rather than clarifies, and onboarding where new team members spend weeks learning which variant is "correct" in which context. Search breaks because the same concept has five names. Content cannot be reused because every document uses different formatting. Style reviews become subjective arguments because there is no documented standard.
+The cost is real and measurable. New team members spend extra time learning which naming convention to follow because the codebase uses three. Technical writers waste hours reconciling terminology after discovering that "user," "account," and "member" all refer to the same concept in different documents. API consumers file support tickets because endpoint naming is unpredictable -- some use camelCase, others use snake_case, and one inexplicably uses kebab-case. Every inconsistency is a small friction point that adds up to hours of lost productivity per week across a team.
 
-The cost is not just aesthetics. Inconsistent APIs cause integration bugs. Inconsistent terminology causes user confusion. Inconsistent file naming breaks automated tooling. And the longer inconsistency persists, the harder it is to fix -- every fix is a breaking change somewhere.
+The deeper problem is that consistency requires active maintenance. Left to entropy, any project drifts toward inconsistency as new contributors bring their own conventions. Without explicit standards, style guides, and enforcement patterns, consistency is a constantly losing battle.
 
 ## The Solution
 
-This plugin provides structured patterns for establishing and maintaining consistency: case style rules mapped to specific contexts (camelCase for JS variables, PascalCase for components, snake_case for Python and databases, kebab-case for URLs), file naming templates with type-name-variant conventions, terminology glossaries with "do not use" columns that eliminate synonym sprawl, voice and tone guidelines per context (direct for instructions, helpful for errors, brief for success), content reuse patterns (snippets, variables, conditionals, templates), and a style checklist for auditing existing content.
+This plugin provides a framework for establishing and maintaining consistency across naming conventions, terminology, voice and tone, content reuse, and code style. It covers case style standards (camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE), file naming patterns, glossary creation for standardizing terminology, voice and tone guidelines for different contexts, and content reuse patterns (snippets, variables, conditionals, templates) that enforce single-source authoring.
 
-The skill does not just document conventions -- it provides the anti-patterns to watch for (synonym sprawl, inconsistent capitalization, mixed voice, orphaned content) and the DRY documentation patterns (single-source components, shared includes, template variables) that prevent inconsistency from recurring.
-
-You describe your project's context -- "we have a TypeScript API with Python microservices and React frontend" -- and get a consistent naming convention map that covers every layer, a glossary template for your domain terms, and a style checklist tailored to your stack.
+The skill is deliberately compact -- it provides the standards framework and auditing approach, not hundreds of pages of rules. The goal is to give you the tools to define your project's consistency standards and the patterns to enforce them, whether you are standardizing code style, documentation terminology, or both.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Three naming conventions in active use across the codebase | One documented convention per context (camelCase for JS, snake_case for Python, kebab-case for URLs) |
-| Documentation says "click," "press," "tap," and "select" interchangeably | Glossary with canonical terms and "do not use" alternatives |
-| Each document uses different voice (you/we/user/one) | Consistent voice per context: direct for instructions, helpful for errors |
-| Same content copy-pasted across 5 documents, drifting over time | Single-source content reuse with snippets, variables, and template includes |
-| No way to audit existing content for consistency | Style checklist covering capitalization, date formats, UI element names, code style |
-| New developers guess which convention to follow | Documented standards that answer "which case style for what?" definitively |
+| Three naming conventions in the same codebase | Explicit case style guide: camelCase for JS variables, PascalCase for classes, snake_case for Python |
+| "Click," "press," "tap," and "select" used interchangeably | Glossary with preferred terms and forbidden synonyms |
+| Product name spelled three different ways in docs | Variables (`{{product_name}}`) enforcing single-source naming |
+| Inconsistent voice: "you should," "the user must," "we recommend" | Voice and tone guide per context: instructions use direct active voice, errors use helpful calm tone |
+| Same installation steps copy-pasted into 8 documents | Single-source snippet included via `{{> shared/installation.md}}` |
+| New contributors introduce new inconsistencies with every PR | Style checklist for review: capitalization, dates, UI element names, voice, glossary terms, code style |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install consistency-standards@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Create a naming convention standard for our TypeScript monorepo with React frontend and Node.js API
+Create a naming convention guide for our TypeScript project with React components and a Python backend
 ```
-
-The skill activates automatically when you mention naming conventions, style guides, terminology, or consistency.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your consistency need:
-   ```
-   Our codebase mixes camelCase and snake_case everywhere -- help me establish a naming standard
-   ```
-3. The skill produces a case style map for your stack, a file naming convention, and a glossary template.
-4. Audit existing content:
-   ```
-   Audit our API documentation for terminology inconsistencies and mixed voice
-   ```
-5. You get a list of specific violations with corrections and a style checklist to prevent recurrence.
+1. Install the plugin using the commands above
+2. Ask: `Audit the naming conventions in our codebase -- we have a mix of camelCase and snake_case and it's causing confusion`
+3. The skill produces a case style guide with per-context rules and a migration plan for inconsistencies
+4. Expand: `Create a glossary for our documentation -- we use "user," "account," and "member" interchangeably`
+5. Enforce: `Design a content reuse strategy so our installation steps are maintained in one place`
+
+---
+
+## System Overview
+
+```
++------------------------------------------------------+
+|              consistency-standards skill               |
++------------------------------------------------------+
+|                                                        |
+|  +----------------+  +------------------+              |
+|  | Naming         |  | Terminology      |              |
+|  | Conventions    |  | Standards        |              |
+|  | - Case styles  |  | - Glossary       |              |
+|  | - File naming  |  | - Voice & tone   |              |
+|  | - Per-context  |  | - Forbidden terms|              |
+|  +----------------+  +------------------+              |
+|                                                        |
+|  +----------------+  +------------------+              |
+|  | Content Reuse  |  | Style Checklist  |              |
+|  | - Snippets     |  | - Capitalization |              |
+|  | - Variables    |  | - Date formats   |              |
+|  | - Conditionals |  | - UI elements    |              |
+|  | - Templates    |  | - Code style     |              |
+|  +----------------+  +------------------+              |
++------------------------------------------------------+
+```
 
 ## What's Inside
 
-This is a focused single-skill plugin with no references -- the SKILL.md body contains the complete methodology.
+| Component | Type | Description |
+|---|---|---|
+| `consistency-standards` | Skill | Naming conventions, terminology standards, voice/tone, content reuse patterns, and consistency auditing |
 
-| Component | Purpose |
-|---|---|
-| **consistency-standards** skill | Naming conventions (5 case styles with usage rules), file naming templates, terminology glossary pattern, voice and tone guidelines, content reuse patterns (4 types), DRY documentation with includes/variables, style checklist, anti-patterns |
+### Component Spotlights
 
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
+#### consistency-standards (skill)
 
-### How to Use: consistency-standards
+**What it does:** Activates when you need to establish, audit, or enforce naming conventions, terminology standards, style guides, or content reuse patterns. Provides frameworks for defining and maintaining consistency across code and documentation.
 
-**What it does:** Guides you through establishing uniform naming conventions, terminology standards, voice and tone guidelines, and content reuse patterns. Activates when you need to create or enforce naming rules, build glossaries, standardize documentation voice, audit content for consistency, or set up content reuse patterns. Provides specific rules for every case style (camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE) mapped to appropriate contexts.
+**Input -> Output:** Project context and consistency concerns -> Naming convention guide, terminology glossary, voice/tone rules, content reuse patterns, and audit checklist.
+
+**When to use:**
+- Establishing naming conventions for a new project
+- Auditing existing code or docs for consistency issues
+- Creating a terminology glossary to standardize vocabulary
+- Defining voice and tone guidelines for different content types
+- Designing content reuse strategies (DRY documentation)
+- Onboarding new team members with style standards
+
+**When NOT to use:**
+- Formal ontology or semantic modeling -> use `ontology-design`
+- Content type and CMS schema design -> use `content-modelling`
+- Writing the actual documentation content -> use `documentation-generator`
 
 **Try these prompts:**
 
 ```
-Create a comprehensive naming convention standard for our full-stack TypeScript project -- files, variables, classes, URLs, database columns, and CSS
+Create a naming convention guide for our full-stack project: TypeScript frontend, Python backend, PostgreSQL database
 ```
 
 ```
-Build a terminology glossary for our payment processing documentation -- we use "charge," "payment," "transaction," and "purchase" inconsistently
+Audit our API documentation for terminology inconsistencies -- we suspect multiple terms are used for the same concepts
 ```
 
 ```
-Audit our README files for voice consistency -- some use "you," others use "we," and some are passive
+Design a content reuse strategy for our docs site -- the same installation steps appear in 8 different guides
 ```
 
 ```
-Design a content reuse strategy for our docs -- we have the same authentication instructions copy-pasted in 8 different guides
+Define voice and tone guidelines for our product: instructions, error messages, success states, and marketing copy
 ```
-
-```
-What naming convention should I use for React components, hooks, utility functions, types, and test files?
-```
-
-## Real-World Walkthrough
-
-Your team maintains a SaaS product with a React frontend, Node.js API, Python data pipeline, and PostgreSQL database. Over two years, three different naming conventions have emerged because each developer brought their preferences. The frontend uses `PascalCase` for components (correct) but also `camelCase` for file names (some files) and `kebab-case` (other files). The API uses `camelCase` for JSON responses but the database columns are `snake_case`, and the ORM mapping is inconsistent. Documentation refers to the same feature as "workspace," "project," "team space," and "organization" depending on who wrote the section.
-
-You start by establishing the naming standard:
-
-```
-Create a naming convention for our stack -- React frontend, Node.js Express API, Python data pipeline, PostgreSQL database
-```
-
-The skill produces a comprehensive case style map:
-
-**Frontend (TypeScript/React):**
-- Components: `PascalCase` (`UserProfile.tsx`)
-- Hooks: `camelCase` with `use` prefix (`useAuthentication.ts`)
-- Utilities: `camelCase` (`formatCurrency.ts`)
-- Constants: `SCREAMING_SNAKE_CASE` (`MAX_RETRIES`)
-- CSS classes: `kebab-case` (`user-profile-card`)
-- File naming: `PascalCase` for components, `camelCase` for utilities, `kebab-case` for styles
-
-**API (Node.js/Express):**
-- JSON response fields: `camelCase` (`createdAt`, `userName`)
-- Route paths: `kebab-case` (`/api/v1/user-profiles`)
-- Variables and functions: `camelCase`
-- Environment variables: `SCREAMING_SNAKE_CASE`
-
-**Data Pipeline (Python):**
-- Variables and functions: `snake_case` (`get_user_name`)
-- Classes: `PascalCase` (`DataProcessor`)
-- Constants: `SCREAMING_SNAKE_CASE`
-- File naming: `snake_case` (`data_processor.py`)
-
-**Database (PostgreSQL):**
-- Tables: `snake_case`, plural (`user_profiles`)
-- Columns: `snake_case` (`created_at`)
-- Indexes: `idx_` prefix (`idx_user_profiles_email`)
-
-The ORM mapping layer explicitly translates between database `snake_case` and API `camelCase` -- this is documented as the boundary convention.
-
-Next, the terminology problem:
-
-```
-Build a glossary for our product -- we use "workspace," "project," "team space," and "organization" to mean the same thing
-```
-
-The skill produces a glossary with the pattern:
-
-| Term | Definition | Do Not Use |
-|------|------------|------------|
-| workspace | A container for projects and team members | project, team space, organization, group |
-| member | A person with access to a workspace | user, team member, participant |
-| project | A collection of tasks within a workspace | board, folder, channel |
-
-Each entry has the canonical term, a clear definition, and a "Do Not Use" column listing the synonyms that must be replaced. The glossary gets committed to the repository and referenced in the contribution guidelines.
-
-You then audit the existing documentation:
-
-```
-Audit our docs/ folder for consistency against these standards
-```
-
-The audit reveals: 23 instances of "project" used where "workspace" is the correct term, 8 instances of mixed voice (switching between "you" and "we" mid-paragraph), 4 different date formats (`Jan 5, 2025`, `2025-01-05`, `January 5`, `01/05/2025`), and 3 documents with copy-pasted authentication instructions that have drifted.
-
-For the authentication duplication, the skill sets up a content reuse pattern: a single `shared/authentication.md` file with the canonical instructions, included in each guide using the template pattern `{{> shared/authentication.md}}`. When the auth flow changes, you update one file instead of finding and fixing 8.
-
-The style checklist becomes part of the PR review process. Every documentation PR is checked against: consistent capitalization, uniform date format (ISO 8601: `2025-01-05`), glossary terms used correctly, single voice throughout (second person "you" for instructions), and code style matching the project convention.
-
-Six months later, onboarding time for new developers has dropped noticeably -- they do not spend the first week asking "which naming convention do we use?" because the answer is documented, enforced, and consistent.
-
-## Usage Scenarios
-
-### Scenario 1: Establishing naming conventions for a new project
-
-**Context:** You are starting a new monorepo with multiple languages and want to establish naming rules before the codebase grows.
-
-**You say:** "Set up naming conventions for our new monorepo -- Kotlin backend, React frontend, and shared TypeScript libraries"
-
-**The skill provides:**
-- Case style map for each language layer (Kotlin conventions, React conventions, TypeScript library conventions)
-- File naming templates with type-name-variant pattern
-- Boundary conventions for data serialization between layers
-- Constants and environment variable standards
-- Convention documentation template for the repo
-
-**You end up with:** A documented naming standard committed to the repository that every developer follows from day one, preventing the three-convention drift that happens organically.
-
-### Scenario 2: Fixing terminology sprawl in documentation
-
-**Context:** Your product documentation uses five different words for the same feature. Customer support tickets frequently cite confusion about terminology.
-
-**You say:** "We have terminology sprawl in our docs -- 'workspace,' 'project,' 'team,' and 'group' all mean the same thing. Help me standardize"
-
-**The skill provides:**
-- Glossary template with canonical term, definition, and "do not use" alternatives
-- Audit pattern for finding all instances of non-canonical terms
-- Search-and-replace plan ordered by document priority
-- Process for handling terms that are ambiguous (workspace vs project when they are different things)
-
-**You end up with:** A canonical glossary, a list of specific replacements to make across the documentation, and a process for maintaining terminology consistency going forward.
-
-### Scenario 3: Setting up content reuse to eliminate copy-paste
-
-**Context:** Your getting-started guide, API reference, and tutorial all contain the same authentication instructions, and they have drifted apart over time.
-
-**You say:** "We have the same auth instructions in 6 documents and they've all drifted -- set up single-source content reuse"
-
-**The skill provides:**
-- Single-source component patterns (snippet, variable, conditional, template)
-- DRY documentation structure using includes and variables
-- Migration plan for consolidating drifted copies into one source
-- Variable pattern for product names and versions that change
-
-**You end up with:** A shared content directory with single-source components included across all documents, so changes propagate automatically and drift is impossible.
-
-## Ideal For
-
-- **Teams starting new projects** -- establishing naming conventions before the codebase grows prevents the costly cleanup needed when three conventions compete
-- **Documentation teams fighting terminology sprawl** -- glossary patterns with "do not use" columns eliminate the ambiguity that confuses users and support teams
-- **Organizations with multi-language stacks** -- the case style mapping across languages and the boundary convention for serialization answer "which style where?" definitively
-- **Anyone maintaining copy-pasted content across documents** -- the DRY documentation patterns with includes and variables eliminate drift and reduce maintenance
-
-## Not For
-
-- **Code formatting and linting** -- use language-specific formatters (Prettier, Black, gofmt) and linters for automated style enforcement
-- **API design conventions (endpoint naming, status codes)** -- use [api-design](../api-design/) for REST, GraphQL, and gRPC conventions
-- **Content modeling and CMS architecture** -- use [content-modelling](../content-modelling/) for content types, fields, and editorial workflows
-
-## How It Works Under the Hood
-
-The plugin is a single-skill plugin with no reference documents -- the SKILL.md body is compact and self-contained.
-
-The skill covers four areas: **naming conventions** (five case styles with context-specific usage rules, file naming templates), **terminology standards** (glossary template with canonical terms and banned synonyms, voice and tone guidelines per context), **content reuse patterns** (four component types: snippets, variables, conditionals, templates, plus DRY documentation with includes), and **consistency auditing** (style checklist with six verification points, four documented anti-patterns).
-
-The compact structure means the full methodology loads into every session without requiring reference document lookups. Simple questions ("what case style for React components?") are answered from the case style table. Complex questions ("set up a glossary and content reuse for our docs") use the full terminology and DRY documentation sections.
-
-## Related Plugins
-
-- **[Content Modelling](../content-modelling/)** -- CMS content models, editorial workflows, and structured content architecture
-- **[UX Writing](../ux-writing/)** -- Microcopy, error messages, and interface text patterns
-- **[Ontology Design](../ontology-design/)** -- Formal knowledge models with classes, properties, and taxonomies
-- **[Navigation Design](../navigation-design/)** -- Information architecture and wayfinding patterns
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Fix our naming" | "Create a naming convention guide for a TypeScript/React project: components, hooks, utilities, API routes, and database columns" |
+| "Make docs consistent" | "Audit our docs for terminology: we use 'user,' 'account,' and 'member' interchangeably. Create a glossary with preferred terms." |
+| "Style guide please" | "Define voice and tone for our developer docs: API reference sections should be formal and precise, tutorials should be friendly and encouraging" |
+
+### Structured Prompt Templates
+
+**For naming conventions:**
+```
+Create a naming convention guide for [project type] with [languages/frameworks]. Cover: [code elements], [file naming], [database columns], [API endpoints]. We currently mix [style A] and [style B] and need to standardize.
+```
+
+**For terminology standardization:**
+```
+Create a glossary for [domain]. Terms that need standardization: [list of synonym groups]. For each, define: preferred term, definition, and forbidden alternatives.
+```
+
+**For content reuse:**
+```
+Design a content reuse strategy for [content type]. These sections are duplicated across [N] documents: [list sections]. I want to maintain each in one place and include it wherever needed.
+```
+
+### Prompt Anti-Patterns
+
+- **Standards without scope**: "Make everything consistent" -- consistency standards need to be per-context. camelCase is right for JavaScript variables but wrong for Python. Specify the scope.
+- **Glossary without enforcement plan**: Creating a glossary nobody reads is wasted effort. Ask for the glossary AND the enforcement strategy (linting, review checklist, automated checks).
+- **Over-standardizing**: Not every variation needs a rule. Focus on high-impact inconsistencies that cause real confusion, not cosmetic preferences.
+
+## Real-World Walkthrough
+
+**Starting situation:** You maintain a SaaS documentation site with 120 pages written by 6 different authors over 2 years. A new technical writer joining the team reports that the docs are "all over the place" -- different terminology for the same features, inconsistent date formats, mixed voice, and the installation guide appears in 5 slightly different versions across the site.
+
+**Step 1: Terminology audit.** You ask: "Audit our docs for terminology inconsistencies. Known problem areas: what we call users, what we call workspaces vs projects, and how we refer to the settings page." The skill produces a glossary draft identifying 12 synonym groups. Key findings: "user" / "account" / "member" / "profile" all refer to the same concept in different contexts. "Workspace" and "project" are used interchangeably but are actually different features. The skill creates a glossary table with preferred terms, definitions, and "Do Not Use" alternatives for each.
+
+**Step 2: Voice and tone guidelines.** You ask: "Define voice and tone for our docs." The skill produces context-specific rules: instructional content uses direct active voice ("Click Save"), error messages use helpful calm tone ("Let's fix this -- check that your API key is valid"), success confirmations are positive and brief ("Done! Your changes are live"), and API reference uses precise technical voice without conversational filler.
+
+**Step 3: Content reuse strategy.** You ask: "The installation guide exists in 5 versions. Design a single-source approach." The skill designs a snippet system: the canonical installation steps live in `shared/installation.md`, and each page that needs them includes `{{> shared/installation.md}}`. For pages that need variations (Docker install vs. npm install), the skill recommends conditional includes: `{{#if docker}}...{{/if}}`. This reduces the 5 versions to 1 source with 3 conditional sections.
+
+**Step 4: Style checklist.** The skill produces a review checklist for the team: consistent capitalization (feature names capitalized only when proper nouns), uniform date format (ISO 8601: YYYY-MM-DD), standardized UI element references (use "button" not "button control", use "field" not "input box"), and voice consistency (no "we" in tutorials -- use "you" throughout). This checklist becomes part of the PR review process for documentation changes.
+
+**Step 5: File naming conventions.** The skill standardizes file names across the docs: `[type]-[name]-[variant].[ext]` pattern. Current mess: `setup.md`, `Setup-Guide.md`, `SETUP_instructions.md`, `installation_guide.md`. Standardized: `guide-setup.md`, `guide-installation.md`, `reference-api.md`, `tutorial-quickstart.md`.
+
+**Gotchas discovered:** Two terms that the team assumed were synonyms ("workspace" and "project") turned out to be distinct features in the product. The glossary audit revealed a real terminology bug in the product itself -- the UI said "workspace" in some places and "project" in others for the same feature. This triggered a product fix, not just a docs fix.
+
+## Usage Scenarios
+
+### Scenario 1: Standardizing a multi-language codebase
+
+**Context:** Your project has a TypeScript frontend, Python backend, and SQL database. Each uses different naming conventions and there is no shared standard.
+
+**You say:** "Create a unified naming convention guide for our stack: TypeScript React frontend, Python FastAPI backend, PostgreSQL database."
+
+**The skill provides:**
+- Per-context case style rules: camelCase for TS variables, PascalCase for React components, snake_case for Python, snake_case for SQL columns
+- Mapping rules: how `user_name` in the database becomes `userName` in the API response and `userName` in the frontend
+- File naming: `component-button.tsx`, `service_user.py`, `migration_001_create_users.sql`
+
+**You end up with:** A single-page naming guide that any team member can reference, with clear rules per language and explicit mapping between layers.
+
+### Scenario 2: Creating a documentation style guide
+
+**Context:** Your open-source project has 30 contributors writing docs. Quality varies wildly and there is no style guide.
+
+**You say:** "Create a documentation style guide for our open-source project. Contributors range from native English speakers to ESL developers."
+
+**The skill provides:**
+- Glossary of project-specific terms with definitions
+- Voice and tone rules: inclusive, simple, direct
+- Formatting standards: heading levels, code block annotations, link text conventions
+- ESL-friendly guidelines: short sentences, active voice, avoid idioms
+
+**You end up with:** A `STYLE_GUIDE.md` that contributors reference before writing, reducing editorial review burden by standardizing quality expectations.
+
+### Scenario 3: Auditing an existing project for consistency
+
+**Context:** After 18 months of development, your codebase has accumulated naming inconsistencies that make it hard for new developers to predict how things are named.
+
+**You say:** "Audit our codebase for naming inconsistencies. Common problems: some APIs use camelCase, others use snake_case. Component files sometimes use PascalCase, sometimes kebab-case."
+
+**The skill provides:**
+- Categorized list of inconsistencies by type (case style, file naming, API endpoints)
+- Recommended standard for each category with rationale
+- Migration priority: high-impact public API naming first, internal code second
+- Automated detection rules (ESLint/Ruff) to prevent new inconsistencies
+
+**You end up with:** A prioritized cleanup plan that addresses the most confusing inconsistencies first, with linting rules to prevent regression.
+
+---
+
+## Decision Logic
+
+**When does this skill activate vs content-modelling or ontology-design?**
+
+This skill handles naming conventions, style guides, and terminology standardization -- how things are named and described. Content-modelling handles CMS content types, fields, and relationships -- how content is structured. Ontology-design handles formal knowledge models with classes, properties, and semantic relationships. If your concern is "we call the same thing by different names," that is consistency-standards. If your concern is "what fields should this content type have," that is content-modelling.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Standards defined but not enforced | Compliance is high for the first month, then decays | Add automated enforcement: linting rules, CI checks, PR review checklists |
+| Over-standardized | Team spends more time checking rules than writing code | Focus on high-impact inconsistencies only; not every preference needs a rule |
+| Glossary conflicts with product UI | Docs say "workspace" but the product UI says "project" | Treat it as a product bug; align docs to the correct term, then fix the UI |
+
+## Ideal For
+
+- **Technical writing teams maintaining large doc sets** who need terminology standardization and content reuse strategies
+- **Engineering teams with multi-language codebases** who need clear naming convention guides per language with mapping rules between layers
+- **Open-source projects with many contributors** who need style guides that maintain quality without gatekeeping
+- **Teams onboarding new developers** who need explicit, documented conventions instead of tribal knowledge
+
+## Not For
+
+- **Formal semantic modeling** -- for ontologies with classes, properties, and inference rules, use `ontology-design`
+- **CMS content type design** -- for defining content structures, fields, and relationships, use `content-modelling`
+- **Code style enforcement** -- for automated linting and formatting (ESLint, Prettier, Ruff), use language-specific development skills
+
+## Related Plugins
+
+- **content-modelling** -- Structure the content that consistency-standards keeps uniformly named
+- **ontology-design** -- Formal modeling for terms that need semantic precision beyond naming conventions
+- **ux-writing** -- Microcopy and interface text patterns that benefit from voice/tone guidelines
+- **documentation-generator** -- Generate documentation that follows the standards this plugin defines
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
