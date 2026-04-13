@@ -1,247 +1,297 @@
 # Agent Project Development
 
-> **v1.0.4** | Agent Architecture | 5 iterations
-
-> A structured methodology for starting LLM projects right -- task-model fit validation, pipeline architecture, file system state machines, cost estimation, and knowing when to simplify.
+> **v1.0.4** | Methodology for LLM-powered project development -- task-model fit analysis, pipeline architecture, file system state machines, cost estimation, and architectural reduction.
+> 1 skill | 2 references | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-Engineers starting LLM-powered projects routinely make the same expensive mistakes. They spend days building a full automation pipeline before checking whether the model can actually handle the task -- then discover the approach is fundamentally flawed. They build monolithic scripts that mix deterministic data fetching with non-deterministic LLM calls, making it impossible to iterate on prompts without re-running the entire pipeline. They scale to 10,000 items without estimating costs, then get a four-figure API bill they did not budget for.
+Starting an LLM-powered project without methodology leads to a predictable sequence of failures. Teams jump straight into building automation around a task the model cannot actually do well, burning weeks before discovering that the fundamental approach is flawed. A developer spends three days building a batch processing pipeline, only to find that the model hallucinates on 30% of inputs -- something a five-minute manual test would have revealed.
 
-Even teams that avoid these traps struggle with architecture decisions. Should this be one agent or three? Do I need 17 specialized tools or can the model work with bash and file access? When my pipeline fails on item 847 of 2,000, do I need to re-run everything from scratch? These questions do not have generic answers -- they depend on task characteristics, model capabilities, and cost constraints that need systematic evaluation.
+Even when the task is well-suited to LLM processing, teams build monolithic pipelines where the expensive LLM call, the fragile output parsing, and the deterministic rendering are all tangled together in a single script. When the parsing breaks (and it will -- LLMs do not follow format instructions perfectly), the only option is to re-run the entire pipeline, including all the LLM calls at $0.03 per item. At 1,000 items, that is $30 per debugging cycle.
 
-The result is wasted development time, unexpectedly high costs, over-engineered architectures that constrain model performance, and pipelines that cannot be debugged or iterated on efficiently. The knowledge to avoid these mistakes exists in production case studies, but it is scattered across blog posts and conference talks rather than structured into an actionable methodology.
+Architecture decisions compound the problem. Teams add 17 specialized tools when the model only needs two. They build complex multi-agent orchestrations when a simple batch pipeline would suffice. They skip cost estimation and discover a $500 surprise bill after their first production run. Without a structured methodology, every LLM project is an expensive experiment that teams repeat from scratch each time.
 
 ## The Solution
 
-This plugin provides a complete project development methodology grounded in production case studies from Karpathy (HN Time Capsule, 930 docs for $58), Vercel (d0 agent, 17 tools reduced to 2 with 80% to 100% success rate), Manus (KV-cache optimization, file system as memory), and Anthropic (multi-agent research, 95% variance from three factors).
+This plugin provides a complete methodology for LLM-powered project development, from initial task-model fit assessment through production pipeline architecture. It starts with the most important step most teams skip: manually testing one example with the target model before writing any code. This five-minute validation prevents weeks of wasted development.
 
-The skill starts with task-model fit evaluation -- a structured comparison of your task characteristics against LLM strengths and weaknesses, followed by a manual prototype step that takes minutes and prevents hours of wasted automation. It then guides pipeline architecture using the acquire-prepare-process-parse-render pattern where only the LLM call is non-deterministic, with file system state machines that provide natural idempotency, easy debugging, and trivial caching. Cost estimation happens before you commit, not after the bill arrives. And the architectural reduction framework helps you decide when simplifying (fewer tools, simpler architecture) actually improves performance.
+The core architecture is a five-stage pipeline -- acquire, prepare, process, parse, render -- where each stage is discrete, idempotent, and cacheable. The expensive non-deterministic LLM call (stage 3) is isolated from the deterministic stages, so you can iterate on parsing and rendering without re-running LLM calls. The file system serves as the state machine: each processing unit gets a directory, and stage completion is marked by file existence.
 
-You end up with a validated project plan, a pipeline architecture that can be debugged and iterated stage by stage, cost estimates grounded in real token measurements, and an architecture right-sized for your actual needs.
+The skill also covers task-model fit recognition (which problems benefit from LLMs and which do not), cost estimation formulas, architectural reduction (when removing tools improves performance), and the decision framework for single-agent vs multi-agent approaches. Real case studies ground the methodology: Karpathy's HN Time Capsule ($58 for 930 items) and Vercel's d0 agent (80% to 100% success rate by reducing from 17 tools to 2).
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Building full automation before validating the model can do the task | Manual prototype in minutes validates task-model fit before writing code |
-| Monolithic scripts where prompt iteration requires re-running everything | Staged pipeline where you re-run only the LLM call stage, preserving all other work |
-| No idea what 10,000 items will cost until the bill arrives | Cost estimation formula with 20-30% buffer calculated before committing |
-| 17 specialized tools that constrain rather than enable the model | Architectural reduction framework -- fewer tools can mean higher success rates |
-| Pipeline fails on item 847 and you re-run all 2,000 from scratch | File system state machine where each item's progress persists independently |
-| Guessing whether to use single-agent or multi-agent | Decision framework based on context isolation needs, not role anthropomorphization |
+| Build automation first, discover the model cannot do the task weeks later | Manual prototype in 5 minutes validates task-model fit before any code |
+| Monolithic pipeline re-runs all LLM calls ($30+) when parsing breaks | Staged pipeline isolates LLM calls; iterate on parsing for free |
+| No cost estimate until the bill arrives | Formula-based estimation before development: items x tokens x price + 20-30% buffer |
+| 17 specialized tools, 80% success rate | Architectural reduction to 2 primitives, 100% success rate (Vercel d0 pattern) |
+| Debug by reading logs and guessing | File system state machine: every intermediate result is a human-readable file |
+| Default to multi-agent because it sounds sophisticated | Decision framework: single-agent for independent items, multi-agent only when context isolation is necessary |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install agent-project-development@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-I'm starting a project to analyze customer reviews with an LLM -- help me plan the architecture
+I want to build a batch pipeline that analyzes 500 customer reviews with LLMs -- help me plan the architecture
 ```
-
-The skill activates automatically when you mention LLM project development topics.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your project idea:
-   ```
-   Should I use an LLM to classify and summarize 5,000 support tickets, or should I just write rules?
-   ```
-3. The skill evaluates task-model fit, walks you through a manual prototype, and recommends an approach.
-4. If the fit is good, you get a staged pipeline architecture with cost estimates:
-   ```
-   Design the pipeline architecture for processing these 5,000 tickets with structured output
-   ```
-5. You end up with a file system state machine, parallel execution plan, and cost projection before writing a line of production code.
+1. Install the plugin using the commands above
+2. Ask: `I have an idea for an LLM project -- help me figure out if it's worth building`
+3. The skill walks you through task-model fit analysis: characteristics that match vs. don't match LLM strengths
+4. Once validated, ask: `Design the pipeline architecture for this project`
+5. The skill produces a staged pipeline with file system state management, cost estimate, and development plan
+
+---
+
+## System Overview
+
+```
+Task Idea
+    |
+    v
++-------------------+
+| Task-Model Fit    |  <-- Manual prototype validation
+| Assessment        |
++-------------------+
+    |
+    v
++-------------------+     +-----------------------+
+| Pipeline Design   | --> | acquire -> prepare -> |
+| (5-stage)         |     | process -> parse ->   |
+|                   |     | render                |
++-------------------+     +-----------------------+
+    |                              |
+    v                              v
++-------------------+     +-------------------+
+| Cost Estimation   |     | File System State |
+| items x tokens    |     | data/{id}/        |
+| x price           |     | raw.json          |
++-------------------+     | prompt.md         |
+    |                     | response.md       |
+    v                     | parsed.json       |
++-------------------+     +-------------------+
+| Architecture      |
+| Decision          |
+| single vs multi   |
++-------------------+
+```
 
 ## What's Inside
 
-This is a single-skill plugin backed by two detailed reference documents and a comprehensive eval suite.
+| Component | Type | Description |
+|---|---|---|
+| `agent-project-development` | Skill | Complete methodology for LLM project planning, architecture, and development |
+| `case-studies.md` | Reference | Detailed analysis of production LLM projects: Karpathy HN Capsule, Vercel d0, Manus patterns |
+| `pipeline-patterns.md` | Reference | Detailed pipeline architecture patterns for batch processing, data analysis, and content generation |
 
-| Component | Purpose |
-|---|---|
-| **agent-project-development** skill | Core methodology: task-model fit tables, manual prototype step, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, structured output design, cost estimation, single vs multi-agent decision framework, architectural reduction, 10 guidelines |
-| **case-studies.md** | Four production case studies: Karpathy HN Time Capsule (930 docs, $58, 5-stage pipeline), Vercel d0 (17 tools to 2, 80% to 100% success), Manus context engineering (KV-cache, append-only context), Anthropic multi-agent research (95% variance from three factors). Cross-case pattern analysis |
-| **pipeline-patterns.md** | Implementation code: file system state management, parallel execution (ThreadPoolExecutor, rate limiting), structured output parsing with graceful degradation, error handling with retry/backoff, cost estimation, CLI structure, checkpoint/resume, stage testing |
+### Component Spotlights
 
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
+#### agent-project-development (skill)
 
-### How to Use: agent-project-development
+**What it does:** Activates when you are starting an LLM-powered project, evaluating task-model fit, designing pipeline architecture, estimating costs, or deciding between single-agent and multi-agent approaches. Provides a structured methodology that starts with manual validation and progresses through staged pipeline design.
 
-**What it does:** Guides you from "I have an idea for an LLM project" through task validation, architecture design, cost estimation, and implementation planning. Activates when you are starting a new LLM project, evaluating task-model fit, designing batch pipelines, estimating costs, choosing between single and multi-agent approaches, or diagnosing over-engineered agent systems.
+**Input -> Output:** A project idea or requirement description -> Task-model fit assessment, pipeline architecture, cost estimate, development plan, and architectural decision rationale.
+
+**When to use:**
+- Starting a new project that might benefit from LLM processing
+- Designing a batch processing pipeline for structured outputs
+- Estimating costs and feasibility before committing development time
+- Deciding between single-agent and multi-agent approaches
+- Refactoring an existing LLM pipeline that is too complex or expensive
+
+**When NOT to use:**
+- Evaluating agent quality or building evaluation rubrics -> use `agent-evaluation`
+- Designing multi-agent coordination, handoffs, or routing -> use `multi-agent-patterns`
+- Building the actual tools for your agent -> use `tool-design`
 
 **Try these prompts:**
 
 ```
-I want to process 10,000 product descriptions through an LLM to generate SEO metadata -- is this a good fit and how should I architect it?
+I want to use an LLM to classify 10,000 support tickets by category and urgency -- is this a good fit?
 ```
 
 ```
-My agent has 12 specialized tools but keeps failing on complex queries -- should I simplify?
+Design a batch pipeline that takes company 10-K filings and produces structured financial summaries
 ```
 
 ```
-Help me estimate how much it will cost to run 50,000 customer reviews through Claude for sentiment analysis and summarization
+My LLM pipeline costs $200 per run and takes 4 hours -- help me optimize the architecture
 ```
 
 ```
-I have a batch pipeline that fails halfway through and I have to restart from scratch -- how do I fix this?
-```
-
-```
-Should I use a single agent or break this into multiple specialized agents? The task is research synthesis across 20+ sources.
+Should I use a single agent or multi-agent setup for my research synthesis project?
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `case-studies.md` | Karpathy HN Time Capsule ($58 for 930 docs), Vercel d0 (17 tools to 2), Manus context engineering, Anthropic multi-agent research |
-| `pipeline-patterns.md` | File system state management, parallel execution, structured output parsing, error handling, cost estimation, checkpoint/resume |
-
-## Real-World Walkthrough
-
-Your team wants to analyze 2,000 competitor product listings to extract pricing patterns, feature comparisons, and market positioning insights. Nobody has done this before, and the VP wants a cost estimate by Friday.
-
-You start by checking task-model fit:
-
-```
-We have 2,000 competitor product listings scraped as HTML. We want to extract pricing, features, and positioning for each. Is this a good fit for LLM processing?
-```
-
-The skill evaluates your task against the fit tables. Synthesis across structured and unstructured sources -- good fit. Subjective judgment needed for "positioning" classification -- good fit. Error tolerance (a few misclassified products will not break the analysis) -- good fit. No real-time requirements -- good fit. The skill recommends proceeding but flags that pricing extraction might work better with traditional parsing if the HTML is consistent. You decide to test both approaches.
-
-Next, the manual prototype. You copy one product listing HTML into Claude and ask for the structured output you need. The response correctly extracts price ($299/year), identifies five features, and classifies the positioning as "enterprise mid-market." This took three minutes and confirmed the model can do the task. You also notice the output format needs adjustment -- the model includes explanations you do not need. You refine the prompt template.
-
-Now the architecture:
-
-```
-Design the pipeline for processing 2,000 product listings -- I need it to be resumable if it fails partway through
-```
-
-The skill produces the canonical five-stage pipeline: **acquire** (read HTML files from the scraper output directory), **prepare** (strip HTML to relevant sections and build the prompt with your template), **process** (send to Claude API with structured output requirements), **parse** (extract pricing, features, and positioning from the response), **render** (generate the comparison spreadsheet and summary report).
-
-The file system state machine puts each product in `data/{product_id}/` with `raw.html`, `prompt.md`, `response.md`, and `parsed.json` marking each stage's completion. If the pipeline crashes on item 1,247, you re-run and it skips the 1,246 already-completed items automatically. No database needed -- file existence is the state.
-
-Cost estimation comes next:
-
-```
-Estimate the cost for 2,000 items -- each HTML page is about 15KB, and I need roughly 500 tokens of structured output per item
-```
-
-The skill calculates: input tokens per item (roughly 4,000 tokens for 15KB of HTML context plus prompt template), output tokens per item (500), total tokens (2,000 items times 4,500 tokens), API cost at Claude Sonnet pricing, plus 25% buffer for retries. The estimate comes to approximately $12-18 -- well within budget. You report this to the VP with confidence.
-
-For the process stage, the skill recommends ThreadPoolExecutor with 10 workers to stay within API rate limits, with exponential backoff on failures. Each worker processes one product directory independently, writes the response file, and moves to the next item. The parallel execution cuts wall-clock time from 6 hours to under 40 minutes.
-
-You build the pipeline in a day, run it overnight, and find that 1,847 of 2,000 items parsed cleanly. The 153 failures are logged with their error details. You examine a few -- mostly unusual HTML structures the prompt did not anticipate. You adjust the prepare stage to handle these edge cases, delete only the failed items' `response.md` files, and re-run. The pipeline processes only the 153 items, and 149 succeed. Four genuinely malformed listings are flagged for manual review.
-
-Total cost: $14.50. Total time: about 5 hours of development plus 40 minutes of execution. The VP gets the competitive analysis report on Thursday, a day ahead of schedule.
-
-## Usage Scenarios
-
-### Scenario 1: Evaluating task-model fit before committing
-
-**Context:** Your team wants to use an LLM to auto-generate release notes from git commit histories. Nobody has tested whether this actually works well enough to ship.
-
-**You say:** "We want to generate customer-facing release notes from git commits -- is this a good task for an LLM or should we just write templates?"
-
-**The skill provides:**
-- Task-model fit evaluation against the characteristics tables
-- Manual prototype instructions (copy 10 commits into Claude, evaluate the output)
-- Identification of edge cases (merge commits, dependency updates, security fixes)
-- Recommendation on hybrid approach (LLM for narrative, templates for structured sections)
-
-**You end up with:** A validated decision on whether to proceed, with a manual prototype proving the approach works before any automation is built.
-
-### Scenario 2: Designing a resumable batch pipeline
-
-**Context:** You need to process 50,000 documents through an LLM but your last attempt crashed at item 23,000 and you had to start over, burning $200 in API costs.
-
-**You say:** "I have a batch pipeline that keeps failing halfway through -- how do I make it resumable so I don't waste money re-processing items?"
-
-**The skill provides:**
-- File system state machine pattern with per-item directories
-- Stage completion markers (file existence = done)
-- Idempotent re-run logic (skip items with existing output files)
-- Checkpoint/resume implementation code
-- Error logging per item for post-run analysis
-
-**You end up with:** A pipeline architecture where crashes only lose the single in-progress item, and re-running automatically resumes from where it left off.
-
-### Scenario 3: Deciding on architectural simplification
-
-**Context:** Your agent has 15 specialized tools (search, summarize, classify, extract, validate, format, etc.) but performance has been declining as you add more tools. Complex queries that used to work now fail.
-
-**You say:** "My agent has 15 tools but performance is getting worse -- the Vercel team improved by removing tools. Should I do the same?"
-
-**The skill provides:**
-- The Vercel d0 case study (17 tools to 2, 80% to 100% success rate, 3.5x faster)
-- Decision framework for when reduction outperforms complexity
-- Analysis of whether your tools are constraining vs. enabling the model
-- Reduction strategy: identify which tools duplicate file system capabilities
-
-**You end up with:** A concrete reduction plan identifying which tools to remove, with the d0 case study as evidence that fewer tools can mean dramatically better performance.
-
-### Scenario 4: Estimating costs before committing
-
-**Context:** The product team wants to run an LLM analysis on your entire customer feedback database (100,000 entries). Leadership wants a cost estimate before approving the project.
-
-**You say:** "Estimate how much it will cost to process 100,000 customer feedback entries through Claude for sentiment, topic classification, and summary generation"
-
-**The skill provides:**
-- Token estimation methodology (input context + prompt template + output per item)
-- Cost formula with the 20-30% retry buffer
-- Comparison of model tiers (Haiku for classification, Sonnet for summaries)
-- Hierarchical processing strategy (cheap model for simple items, expensive model for complex ones)
-- Reference to the Karpathy case study ($58 for 930 items) for calibration
-
-**You end up with:** A defensible cost estimate with confidence intervals, a recommended model-tier strategy, and a phased rollout plan (start with 1,000 items to validate estimates).
-
-## Ideal For
-
-- **Engineers starting their first LLM project** -- the task-model fit evaluation and manual prototype step prevent the most common costly mistake: building automation before validating the model can do the task
-- **Teams building batch processing pipelines** -- the staged pipeline architecture with file system state machines provides resumability, debuggability, and fast iteration out of the box
-- **Technical leads estimating LLM project costs** -- the cost estimation framework with real case study calibration points ($58 for 930 items) produces defensible numbers for leadership
-- **Anyone with an over-engineered agent** -- the architectural reduction framework, backed by the Vercel d0 case study, provides evidence-based guidance on when simplifying improves performance
-- **Developers choosing between single and multi-agent architectures** -- the decision framework based on context isolation needs (not role anthropomorphization) prevents unnecessary complexity
-
-## Not For
-
-- **Evaluating agent quality or building scoring rubrics** -- use [agent-evaluation](../agent-evaluation/) for LLM-as-judge, bias mitigation, and evaluation pipelines
-- **Designing multi-agent coordination and handoff protocols** -- use [multi-agent-patterns](../multi-agent-patterns/) for supervisor, swarm, and hierarchical architectures
-- **Building agent memory systems** -- use [memory-systems](../memory-systems/) for production memory architectures comparing Mem0, Zep/Graphiti, Letta, Cognee, LangMem
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through two reference documents.
-
-The **SKILL.md** body covers the full project development methodology: task-model fit recognition tables, the manual prototype validation step, the acquire-prepare-process-parse-render pipeline architecture, file system state machine patterns, structured output design with format enforcement, agent-assisted development practices, cost estimation formulas, single vs. multi-agent decision framework, architectural reduction principles, anti-patterns to avoid, and a five-step project planning template.
-
-When deeper implementation detail is needed, Claude draws from the references:
-
-- **case-studies.md** provides four detailed production case studies with concrete numbers (Karpathy's $58 for 930 documents, Vercel's 80% to 100% success rate improvement). These ground the methodology in real-world evidence rather than theoretical advice.
-- **pipeline-patterns.md** provides implementation code for file system state management, parallel execution with ThreadPoolExecutor and rate limiting, structured output parsing with graceful degradation, error handling with retry/backoff, cost estimation calculations, and checkpoint/resume logic.
-
-Simple questions ("should I use an LLM for this?") are answered from the core skill's task-model fit tables. Architecture design pulls from both the skill body and the pipeline patterns reference. "Show me how Vercel improved by removing tools" pulls from the case studies reference.
-
-## Related Plugins
-
-- **[Agent Evaluation](../agent-evaluation/)** -- Rubrics, LLM-as-judge, bias mitigation for measuring agent quality
-- **[BDI Mental States](../bdi-mental-states/)** -- Cognitive architecture with belief-desire-intention modeling for agents
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for background agents: sandboxes, registries, self-spawning
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures comparing Mem0, Zep/Graphiti, Letta, Cognee, LangMem
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Supervisor, swarm, and hierarchical patterns for multi-agent systems
+| `case-studies.md` | Karpathy's HN Time Capsule (930 items, $58), Vercel d0 (17 tools to 2), Manus refactoring patterns |
+| `pipeline-patterns.md` | Acquire-prepare-process-parse-render pipeline, file system state machines, structured output design, parallelization |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Build me an AI app" | "I want to analyze 500 product reviews and extract sentiment, key themes, and improvement suggestions -- help me plan the pipeline" |
+| "Should I use agents?" | "I have a data enrichment task: take company names and produce structured profiles. Is this suited for LLM processing or should I use APIs?" |
+| "Make it faster" | "My batch pipeline processes 1000 items but re-runs all LLM calls when parsing fails. How do I restructure it?" |
+| "Use agent-project-development" | "Estimate the cost of running Claude Sonnet on 5,000 research papers with 4K token prompts and 2K token outputs" |
+
+### Structured Prompt Templates
+
+**For task-model fit assessment:**
+```
+I want to use an LLM to [task description]. The inputs are [input type and size]. The outputs need to be [output format]. Error tolerance is [high/low]. Help me assess whether this is a good fit for LLM processing.
+```
+
+**For pipeline design:**
+```
+Design a batch processing pipeline for [task]. I have [N] items, each is [item description]. I need [output format]. Show me the stage breakdown, file system structure, and parallelization approach.
+```
+
+**For cost estimation:**
+```
+Estimate the cost of processing [N] [items] with [model name]. Each item has approximately [N] input tokens and I expect [N] output tokens. Include a buffer for retries.
+```
+
+### Prompt Anti-Patterns
+
+- **Skipping manual validation**: "Build the full pipeline for analyzing legal contracts" -- without first testing one contract manually, you risk building automation around a task the model cannot do. Always start with "test one example first."
+- **Requesting multi-agent by default**: "I need a multi-agent system with a coordinator, researcher, and writer" -- multi-agent adds complexity. The skill will help you determine if your task actually needs context isolation across agents or if a simple pipeline suffices.
+- **Ignoring costs**: "Process all 100K items in one run" -- token costs compound. The skill estimates costs before execution and recommends staging approaches (start with 100 items, validate quality, then scale).
+
+## Real-World Walkthrough
+
+**Starting situation:** You work at a fintech company with 5,000 quarterly earnings call transcripts. You need to extract structured data -- revenue figures, guidance changes, risk factors, and sentiment -- from each transcript and produce a searchable database. The transcripts average 15,000 words each.
+
+**Step 1: Task-model fit assessment.** You ask: "Is extracting structured financial data from earnings call transcripts a good fit for LLM processing?" The skill walks through the fit criteria: synthesis across sources (yes -- each transcript is a single source, but the extraction requires understanding financial context), subjective judgment with rubrics (partially -- revenue figures are objective, but "risk factor significance" is subjective), error tolerance (moderate -- a few missed data points are acceptable, but fabricated revenue numbers are not). The skill identifies a key risk: hallucinated numbers. Recommendation: proceed with validation, but add a post-processing verification step for numerical claims.
+
+**Step 2: Manual prototype.** You test one transcript manually. You paste it into Claude with a structured prompt requesting JSON output. The result is promising: revenue figures are correct, guidance changes are captured, risk factors are reasonable. Output tokens average 800 per transcript. Estimated input tokens: ~5,000 per transcript (after truncating non-essential sections like operator instructions).
+
+**Step 3: Cost estimation.** You ask: "Estimate the cost for 5,000 transcripts with Claude Sonnet." The skill calculates: 5,000 items x (5,000 input + 800 output tokens) x pricing = approximately $195 base cost. With 25% retry buffer: ~$245 total. Wall-clock time with 15 parallel workers: approximately 2.5 hours. This is feasible for a quarterly run.
+
+**Step 4: Pipeline architecture.** You ask: "Design the pipeline." The skill produces a five-stage architecture:
+- **Acquire**: Download transcripts from SEC EDGAR API into `data/{ticker}_{date}/raw.txt`
+- **Prepare**: Truncate to relevant sections, format as prompt with structured output template, write to `data/{ticker}_{date}/prompt.md`
+- **Process**: Run LLM calls with 15 parallel workers, write responses to `data/{ticker}_{date}/response.md`
+- **Parse**: Extract JSON from markdown response, validate numerical fields against regex patterns, write to `data/{ticker}_{date}/parsed.json`
+- **Render**: Aggregate all parsed.json files into SQLite database and generate summary report
+
+Each stage checks for output file existence before running, making the pipeline idempotent and resumable.
+
+**Step 5: Architectural decision.** You consider whether to split extraction into specialized sub-agents (one for revenue, one for risk factors). The skill recommends against it: the transcript is a single document that fits in one context window, the extraction task does not exceed context limits, and a single prompt with multiple extraction targets is simpler and cheaper than coordinating multiple agents. Multi-agent would make sense if transcripts were 100K+ tokens or if different extraction tasks required different tools.
+
+**Step 6: Iteration.** After the first run of 100 transcripts, parsing fails on 12% of items due to the model occasionally using different section headers. You fix the parser to handle variations (the skill warned about this) and re-run only the parse and render stages -- no LLM calls needed. Total cost of debugging: $0.
+
+**Gotchas discovered:** The prepare stage needed to strip boilerplate sections (operator introductions, safe harbor disclaimers) to keep input tokens under 5,000. The skill recommended building a section-detection heuristic in the prepare stage rather than asking the LLM to ignore irrelevant content, saving ~30% on token costs.
+
+## Usage Scenarios
+
+### Scenario 1: Evaluating whether a task fits LLM processing
+
+**Context:** Your PM wants to use AI to auto-generate personalized onboarding emails for new users based on their signup data. You are not sure if this is actually a good use of LLMs versus template-based generation.
+
+**You say:** "We want to generate personalized onboarding emails from user signup data -- name, industry, use case. Should we use an LLM or stick with templates?"
+
+**The skill provides:**
+- Task-model fit analysis against six suitability criteria
+- Identification that this is a natural language output task with synthesis (good fit) but has deterministic personalization needs (templates might suffice)
+- Decision framework: if emails need to vary significantly by industry context, use LLM; if it is slot-filling with fixed structure, use templates
+- Manual prototype instructions to test one email with the target model
+
+**You end up with:** A clear recommendation with rationale, and one manually-generated example email to compare against your current template output.
+
+### Scenario 2: Designing a batch content analysis pipeline
+
+**Context:** Your content team has 2,000 blog posts and needs to categorize each by topic, extract key takeaways, and score readability. This needs to run monthly on new content.
+
+**You say:** "Design a batch pipeline to analyze 2,000 blog posts for topic, takeaways, and readability score. It runs monthly."
+
+**The skill provides:**
+- Five-stage pipeline with file system state management
+- Cost estimate ($40-60 per monthly run with Claude Haiku)
+- Structured output prompt template with explicit format requirements
+- Parallelization strategy (20 workers) and error handling
+- Incremental processing: only analyze new/modified posts each month
+
+**You end up with:** A production-ready pipeline architecture document with cost projections, directory structure, and implementation milestones.
+
+### Scenario 3: Reducing an over-engineered agent system
+
+**Context:** Your agent has 12 specialized tools for data analysis, but success rate is only 65%. Adding more tools and examples has not helped.
+
+**You say:** "My data analysis agent has 12 tools and only succeeds 65% of the time. More tools don't seem to help. What's wrong?"
+
+**The skill provides:**
+- Architectural reduction analysis following the Vercel d0 pattern
+- Identification that specialized tools may be constraining rather than enabling
+- Recommendation to test with 2-3 primitive tools (bash, SQL, file read) instead
+- Before/after comparison framework to measure improvement
+
+**You end up with:** A reduction plan that removes 9 tools and replaces them with direct file access, with a test protocol to validate that simpler architecture actually improves success rate.
+
+---
+
+## Decision Logic
+
+**When does this skill recommend single-agent vs multi-agent?**
+
+Single-agent is the default recommendation when items are independent (no cross-item dependencies), context fits in one window, and the task does not require specialized sub-tools that would benefit from isolated context. Multi-agent is recommended when context isolation is needed (tasks exceed one context window), when specialized sub-agents measurably improve quality on specific subtasks, or when parallel exploration of different aspects is required. The primary reason for multi-agent is context isolation, not role anthropomorphization.
+
+**When does architectural reduction apply?**
+
+Reduction is recommended when success rate plateaus or declines as tools are added, when the data layer is well-documented and consistently structured (the model can navigate it directly), and when teams spend more time maintaining scaffolding than improving outcomes. The skill points to the Vercel d0 case study as evidence.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Skipped manual validation | Pipeline built on a task the model hallucinates on consistently | Stop. Test one example manually. If it fails, the task is not suited for LLM processing. |
+| Monolithic pipeline | Debugging requires re-running all LLM calls; costs escalate | Refactor into five discrete stages with file system checkpoints between each |
+| Cost overrun | Bill 5x higher than expected | Re-estimate with actual token counts from first 100 items; add retry buffer; consider cheaper model tier for simple items |
+| Over-engineered architecture | Many tools, low success rate, high maintenance | Apply architectural reduction: test with 2-3 primitive tools; measure before/after |
+| Parsing fragility | LLM output format varies; parser breaks on 10%+ of items | Build flexible regex parsers, add format enforcement in prompt, log failures for review |
+
+## Ideal For
+
+- **Engineers starting their first LLM-powered project** who need a structured methodology instead of trial-and-error
+- **Data teams building batch processing pipelines** who need cost-effective, resumable, debuggable architectures
+- **Technical leads evaluating project feasibility** who need task-model fit analysis and cost estimates before committing resources
+- **Teams with over-engineered agent systems** who need to simplify architecture to improve success rates
+
+## Not For
+
+- **Evaluating agent quality after building** -- once the pipeline is running, use `agent-evaluation` for systematic quality measurement
+- **Designing multi-agent coordination** -- if you already know you need multiple agents, use `multi-agent-patterns` for handoff protocols, routing, and orchestration
+- **Building specific agent tools** -- for tool schema design and error handling patterns, use `tool-design`
+
+## Related Plugins
+
+- **agent-evaluation** -- Evaluate the outputs of the pipelines this skill helps you build
+- **multi-agent-patterns** -- When your project outgrows single-agent architecture
+- **tool-design** -- Design the tools your agent pipeline uses
+- **context-optimization** -- Manage context efficiently in long-running agent tasks
+- **prompt-engineering** -- Optimize the prompts within your pipeline stages
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
