@@ -1,6 +1,6 @@
 ---
 name: content-modelling
-description: Design CMS content models with content types, fields, editorial workflows, governance rules, structured content architecture, and COPE (Create Once, Publish Everywhere) patterns. NOT for formal ontologies, taxonomies, or semantic modeling (use ontology-design).
+description: Design CMS content models — content types, fields, editorial workflows, governance rules, and COPE (Create Once, Publish Everywhere) patterns — for structured, multi-channel publishing. Use when the user asks to design a content model, define content types in a CMS, structure fields for editorial content, plan a headless CMS architecture, or design content reuse across channels. NOT for formal knowledge graphs, OWL/RDF ontologies, or semantic modeling (use ontology-design). NOT for naming conventions or taxonomy standards across code (use consistency-standards).
 ---
 
 # Content Modelling
