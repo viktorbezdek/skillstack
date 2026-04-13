@@ -1,0 +1,72 @@
+[
+  {
+    "query": "document the plugin at https://github.com/viktorbezdek/skillstack/tree/main/cloud-finops",
+    "should_trigger": true,
+    "note": "Direct invocation with GitHub URL — the primary use case"
+  },
+  {
+    "query": "write a comprehensive README for my Claude Code plugin",
+    "should_trigger": true,
+    "note": "Plugin README writing request"
+  },
+  {
+    "query": "I found this plugin on GitHub but the docs are sparse — can you analyze it and write proper documentation?",
+    "should_trigger": true,
+    "note": "Documentation gap-filling for an existing plugin"
+  },
+  {
+    "query": "generate a usage guide for the debugging plugin with real-world scenarios",
+    "should_trigger": true,
+    "note": "Usage guide with scenarios — a key output of this skill"
+  },
+  {
+    "query": "explain how the skillstack-workflows plugin works — what's inside, how to use each workflow",
+    "should_trigger": true,
+    "note": "Plugin explanation/breakdown request"
+  },
+  {
+    "query": "create installation instructions and a tutorial for my custom plugin",
+    "should_trigger": true,
+    "note": "Installation + tutorial generation"
+  },
+  {
+    "query": "I need to document a multi-skill plugin that has hooks and an MCP server — analyze all the components",
+    "should_trigger": true,
+    "note": "Multi-component plugin documentation"
+  },
+  {
+    "query": "what does the plugin-dev plugin do? break it down component by component",
+    "should_trigger": true,
+    "note": "Component-by-component analysis request"
+  },
+  {
+    "query": "help me write docs for a plugin I'm about to publish to the marketplace",
+    "should_trigger": true,
+    "note": "Pre-publication documentation"
+  },
+  {
+    "query": "validate my plugin's frontmatter and check for structural errors",
+    "should_trigger": false,
+    "note": "Near-miss — plugin-validation territory, not documentation"
+  },
+  {
+    "query": "build me a new Claude Code plugin with hooks and skills",
+    "should_trigger": false,
+    "note": "Near-miss — plugin building, not documenting"
+  },
+  {
+    "query": "run trigger evals on my plugin to check activation rates",
+    "should_trigger": false,
+    "note": "Near-miss — plugin-evaluation territory"
+  },
+  {
+    "query": "generate API documentation for my Express.js server",
+    "should_trigger": false,
+    "note": "Near-miss — generic API docs, not Claude plugin docs"
+  },
+  {
+    "query": "write a blog post about our product launch",
+    "should_trigger": false,
+    "note": "Off-topic — content writing, not plugin documentation"
+  }
+]

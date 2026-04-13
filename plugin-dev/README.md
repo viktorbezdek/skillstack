@@ -2,7 +2,7 @@
 
 > **v1.0.0** | Development | End-to-end Claude Code plugin authoring toolkit
 
-Seven skills covering the full plugin lifecycle — **ideate → research → architect → build (hooks / composition) → validate → evaluate** — plus four runnable scripts for scaffolding, validation, evaluation, and hook testing. Built to fill the gap Anthropic's "Complete Guide to Building Skills for Claude" doesn't cover: **hooks, multi-component plugin composition, and plugin-level evaluation**.
+Eight skills covering the full plugin lifecycle — **ideate → research → architect → build (hooks / composition) → validate → evaluate → document** — plus four runnable scripts for scaffolding, validation, evaluation, and hook testing. Built to fill the gap Anthropic's "Complete Guide to Building Skills for Claude" doesn't cover: **hooks, multi-component plugin composition, plugin-level evaluation, and plugin documentation generation**.
 
 ## When to use this plugin
 
@@ -15,6 +15,7 @@ Seven skills covering the full plugin lifecycle — **ideate → research → ar
 | You're building a multi-component plugin (skills + hooks together) | `plugin-composition` → directory layout, path substitution |
 | You want to know if your plugin structure is valid before shipping | `plugin-validation` → `validate_plugin.py` + frontmatter rules |
 | You want to measure if your skill actually activates on real queries | `plugin-evaluation` → `run_eval.py` trigger + output evals |
+| You found a plugin and want to generate comprehensive documentation for it | `plugin-documenter` → fetch, analyze, write full README with scenarios |
 
 ## When NOT to use this plugin
 
@@ -32,11 +33,11 @@ Add the SkillStack marketplace and install this plugin from inside a Claude Code
 /plugin install plugin-dev@skillstack
 ```
 
-After installation, the 7 skills activate automatically based on trigger phrases in user prompts. The 4 runnable scripts live at `plugin-dev/scripts/` and are invoked via their CLI.
+After installation, the 8 skills activate automatically based on trigger phrases in user prompts. The 4 runnable scripts live at `plugin-dev/scripts/` and are invoked via their CLI.
 
 ## What's inside
 
-### 7 skills
+### 8 skills
 
 | Skill | Trigger phrases | What it does |
 |---|---|---|
@@ -47,6 +48,7 @@ After installation, the 7 skills activate automatically based on trigger phrases
 | `plugin-composition` | "multi-component plugin", "CLAUDE_PLUGIN_ROOT", "plugin directory structure" | Canonical directory layout, path substitution variables (ROOT/DATA/PROJECT_DIR/ENV_FILE), namespacing, hook merge semantics, MCP auto-start lifecycle |
 | `plugin-validation` | "validate plugin", "check SKILL.md frontmatter", "plugin structure issues" | Structural validator + frontmatter rules + per-layer checklist |
 | `plugin-evaluation` | "evaluate plugin", "skill activation testing", "eval harness", "trigger rate", "output quality" | Two eval formats (trigger-evals.json + evals.json), grader/analyzer/comparator pattern, quality criteria, iteration methodology |
+| `plugin-documenter` | "document a plugin", "write plugin README", "explain how a plugin works", "plugin tutorial" | Fetches all plugin files (GitHub URL or local path), analyzes architecture, generates comprehensive documentation with problem statement, scenarios, installation, and component breakdown |
 
 ### 4 runnable scripts
 

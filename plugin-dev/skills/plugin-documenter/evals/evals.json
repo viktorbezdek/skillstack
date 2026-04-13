@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Document the cloud-finops plugin at ./cloud-finops/ — I need a full README with problem statement, installation, usage scenarios, and component breakdown.",
+    "files": [],
+    "expected_behavior": "Agent reads .claude-plugin/plugin.json, skills/cloud-finops/SKILL.md, all references/*.md files, and evals/. Produces a structured document that (1) explains the FinOps problem in plain language without jargon, (2) provides copy-pasteable /plugin marketplace add + /plugin install commands, (3) lists at least 3 specific usage scenarios grounded in the skill's actual reference content (not generic 'user asks about costs'), and (4) maps the component architecture (single skill + N references)."
+  },
+  {
+    "query": "Analyze the skillstack-workflows plugin and write documentation explaining each of the 18 workflows with when to use each one.",
+    "files": [],
+    "expected_behavior": "Agent reads plugin.json, all 18 SKILL.md files under skills/, and produces documentation that (1) summarizes each workflow in 2-3 sentences, (2) maps which underlying plugins each workflow composes, (3) provides a scenario table matching user situations to workflow names, and (4) includes installation instructions for both the workflow plugin and its prerequisite plugins."
+  },
+  {
+    "query": "I found a plugin at https://github.com/someone/repo but the README just says '# My Plugin'. Generate proper documentation for it.",
+    "files": [],
+    "expected_behavior": "Agent fetches the repo contents (or asks for local path if URL is inaccessible), inventories all plugin files (plugin.json, SKILL.md, hooks, references), analyzes the architecture, and produces a complete documentation package following the 7-step process: inventory → architecture → problem statement → scenarios → installation → assembled doc → quality check. The output replaces the sparse README with substantive content."
+  }
+]

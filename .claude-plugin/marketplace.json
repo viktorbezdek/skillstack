@@ -484,8 +484,8 @@
     {
       "name": "plugin-dev",
       "source": "./plugin-dev",
-      "description": "End-to-end Claude Code plugin authoring toolkit. Covers ideation, research, component architecture (skill vs hook vs MCP vs agent vs command), hook authoring (28 events, 4 handler types), plugin composition, structural validation, and quality evaluation. Includes 4 runnable scripts: scaffolder, validator, eval harness, hook tester. Multi-skill plugin.",
-      "version": "1.0.0",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts. Multi-skill plugin.",
+      "version": "1.1.0",
       "category": "development",
       "tags": [
         "plugin-development",
