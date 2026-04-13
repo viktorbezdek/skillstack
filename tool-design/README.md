@@ -1,8 +1,7 @@
 # Tool Design
 
-> **v1.0.4** | Agent Architecture | 5 iterations
-
-> Design tools that agents actually use correctly -- the difference between an agent that completes tasks and one that flails.
+> **v1.0.4** | Design tools that agents actually use correctly -- the difference between an agent that completes tasks and one that flails.
+> Single skill + 2 deep references | 13 trigger evals + 3 output evals
 
 ## The Problem
 
@@ -60,21 +59,64 @@ Review my agent's tool set -- I have 25 tools and the agent keeps picking the wr
 4. You get a concrete consolidation plan: which tools to merge, how to rewrite descriptions, and what error contracts to add
 5. Next, try: `Should I give my agent file system access or build custom tools for data exploration?`
 
+---
+
+## System Overview
+
+```
+User prompt (natural language about tool design)
+        |
+        v
++------------------+
+|   tool-design    |  <-- Single skill, activates on tool design / MCP / consolidation mentions
+|   (SKILL.md)     |
++------------------+
+   |            |
+   v            v
++-----------+  +-------------------------+
+| best_     |  | architectural_          |
+| practices |  | reduction               |
+| .md       |  | .md                     |
++-----------+  +-------------------------+
+| Description  | Case study: 17 tools    |
+| structure,   | to 2 primitives.        |
+| naming,      | Before/after metrics    |
+| errors,      | on time, tokens,        |
+| anti-patterns| success rate.           |
++-----------+  +-------------------------+
+```
+
+The skill loads the core methodology on activation. When the conversation touches description structure, naming, or error design, it draws on `best_practices.md`. When the conversation turns to radical simplification or "should I use primitives instead of specialized tools?", it draws on `architectural_reduction.md`.
+
 ## What's Inside
 
-This is a **single-skill plugin** with deep reference material and eval coverage.
+| Component | Type | Purpose |
+|---|---|---|
+| `skills/tool-design/SKILL.md` | Skill | Core methodology: Consolidation Principle, Architectural Reduction, description engineering, error message design, MCP naming, tool collection sizing |
+| `references/best_practices.md` | Reference | Extended guidelines: description structure, naming conventions, error message schemas, response format optimization, anti-pattern catalog, design checklist |
+| `references/architectural_reduction.md` | Reference | Production case study: text-to-SQL agent rebuilt from 17 specialized tools to 2 primitives -- 3.5x faster, 37% fewer tokens, 100% success rate |
+| `evals/trigger-evals.json` | Eval | 13 trigger scenarios including 5 boundary/negative tests |
+| `evals/evals.json` | Eval | 3 output quality scenarios for design walkthroughs, reviews, and greenfield setup |
 
-| Component | Purpose |
-|---|---|
-| `skills/tool-design/SKILL.md` | Core methodology: Consolidation Principle, Architectural Reduction, description engineering, error message design, MCP naming, tool collection sizing |
-| `references/best_practices.md` | Extended guidelines: description structure, naming conventions, error message schemas, response format optimization, anti-pattern catalog, design checklist |
-| `references/architectural_reduction.md` | Production case study: text-to-SQL agent rebuilt from 17 specialized tools to 2 primitives -- 3.5x faster, 37% fewer tokens, 100% success rate |
-| `evals/trigger-evals.json` | 13 trigger scenarios including 3 NOT-for boundary tests |
-| `evals/evals.json` | 3 output quality scenarios for design walkthroughs, reviews, and greenfield setup |
+### Component Spotlight
 
-### tool-design
+#### tool-design (skill)
 
 **What it does:** Activates when you need to design, review, or optimize tools that agents use. It walks you through the Consolidation Principle to merge overlapping tools, Architectural Reduction to eliminate unnecessary complexity, description engineering to make each tool unambiguous, and error message design that gives agents a path to recovery. Works for greenfield tool design and retrofitting existing tool sets.
+
+**Input -> Output:** You describe your agent's tool set, the failures you are seeing, or the system you need tools for -> You get a consolidation plan, rewritten descriptions, error contracts, and sizing recommendations.
+
+**When to use:**
+- Creating new tools for agent systems from scratch
+- Debugging why an agent picks the wrong tool or misuses parameters
+- Optimizing an existing tool set that has grown past 20 tools
+- Writing or rewriting tool descriptions for MCP servers
+- Evaluating whether to use primitives (bash, SQL) or specialized wrappers
+
+**When NOT to use:**
+- Building MCP servers or implementing the MCP protocol -> use [mcp-server](../mcp-server/)
+- Designing multi-agent coordination or agent handoffs -> use [multi-agent-patterns](../multi-agent-patterns/)
+- Implementing agent memory or persistence -> use [memory-systems](../memory-systems/)
 
 **Try these prompts:**
 
@@ -91,7 +133,7 @@ Review this tool description and tell me why agents might misuse it: "search(que
 ```
 
 ```
-Should I build a custom data exploration tool or just give the agent bash access to query files directly?
+Should I build custom data analysis tools or just give the agent bash and SQL access? Our data is in PostgreSQL.
 ```
 
 ```
@@ -105,6 +147,54 @@ How should I write error messages so my agent can recover instead of retrying th
 | `best_practices.md` | Description structure, naming conventions, error schemas, response format optimization, anti-pattern catalog |
 | `architectural_reduction.md` | Production case study: 17 specialized tools reduced to 2 primitives with measurable performance gains |
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, may not activate) | Good (specific, activates reliably) |
+|---|---|
+| "Help me with tools" | "My agent has 30 tools and keeps picking the wrong one when users ask about orders" |
+| "Fix my MCP" | "Review these three MCP tool descriptions and tell me why agents confuse them" |
+| "Make tools better" | "Should I consolidate getUser and searchUsers into one tool? The agent calls both interchangeably" |
+| "Tool design" | "I'm building a coding assistant -- help me design the initial tool set for file ops, tests, search, and git" |
+| "How do I use tools?" | "How should I structure error messages so my agent can self-correct after a failed tool call?" |
+
+### Structured Prompt Templates
+
+**For greenfield tool set design:**
+```
+I'm building a [type of agent] that needs to [core capabilities]. Help me design the tool set -- what tools should I create, and what should their descriptions look like?
+```
+
+**For debugging tool selection failures:**
+```
+My agent has [N] tools and keeps calling [wrong tool] when it should call [right tool]. Here are the descriptions for both: [paste descriptions]. What's causing the confusion?
+```
+
+**For deciding primitives vs specialized tools:**
+```
+Should I build custom [domain] tools or give the agent [primitive access, e.g., bash/SQL]? Our data is [structured/unstructured] and [well/poorly] documented.
+```
+
+**For rewriting a tool description:**
+```
+Review this tool description and rewrite it so agents use it correctly: [paste current description]. The main misuse I see is [describe the failure pattern].
+```
+
+**For error message design:**
+```
+My tool returns [current error format] when [failure condition]. Rewrite the error so agents can self-correct without human intervention.
+```
+
+### Prompt Anti-Patterns
+
+- **Naming the skill instead of the need:** Saying "use tool-design to help me" instead of describing the actual problem. The skill activates from natural language -- describe the situation, not the skill name.
+- **Asking about tools generically without context:** "What makes a good tool?" is too broad. Provide your specific tool set, the failures you observe, or the system you are designing for.
+- **Conflating tool design with MCP server implementation:** Asking "help me build an MCP server" will not activate this skill -- that is implementation work handled by the mcp-server skill. This skill is about the design of tool interfaces, not the transport layer.
+- **Dumping a full codebase without a question:** Pasting 50 tool definitions and saying "review these" works better when you highlight which tools cause problems and what failures you observe.
+
 ## Real-World Walkthrough
 
 You are building an internal support agent for a SaaS company. The agent needs to look up customer accounts, check subscription status, view recent support tickets, search the knowledge base, and escalate issues to human agents. Your first pass produces 12 tools:
@@ -117,25 +207,25 @@ searchKnowledgeBase, getArticle, escalateToHuman, getAgentAvailability
 
 You deploy and immediately see problems. When a user says "what's going on with Acme Corp's account?", the agent calls `searchCustomers` instead of `getCustomer` because it does not know whether the user has a customer ID or a name. When a user asks "are there similar tickets?", the agent calls `searchKnowledgeBase` instead of `searchTickets` because "similar" could mean knowledge base articles or past tickets.
 
-You ask the skill to review your tool set:
+**Step 1 -- Identify the overlap.** You ask the skill to review your tool set:
 
 ```
 Review my support agent's 12 tools -- the agent keeps confusing searchCustomers with getCustomer and searchTickets with searchKnowledgeBase
 ```
 
-The skill applies the Consolidation Principle. It identifies three overlap clusters: `getCustomer`/`searchCustomers` (both retrieve customer data), `getTicket`/`searchTickets` (both retrieve ticket data), and `searchKnowledgeBase`/`getArticle` (both retrieve knowledge content). The recommendation: merge each pair into a single tool that accepts flexible identifiers.
+The skill applies the Consolidation Principle. It identifies three overlap clusters: `getCustomer`/`searchCustomers` (both retrieve customer data), `getTicket`/`searchTickets` (both retrieve ticket data), and `searchKnowledgeBase`/`getArticle` (both retrieve knowledge content).
 
-`lookupCustomer` replaces both customer tools. It accepts an ID, email, or company name and returns the right customer. No ambiguity about which tool to call -- there is only one. `lookupTicket` replaces both ticket tools, accepting a ticket ID, customer reference, or search keywords. `lookupKnowledge` replaces both knowledge tools.
+**Step 2 -- Consolidate.** The recommendation: merge each pair into a single tool that accepts flexible identifiers. `lookupCustomer` replaces both customer tools. It accepts an ID, email, or company name and returns the right customer. No ambiguity about which tool to call -- there is only one. `lookupTicket` replaces both ticket tools, accepting a ticket ID, customer reference, or search keywords. `lookupKnowledge` replaces both knowledge tools.
 
-Your 12 tools become 7: `lookupCustomer`, `lookupTicket`, `lookupKnowledge`, `createTicket`, `updateTicket`, `escalateToHuman`, `getAgentAvailability`. But the skill does not stop there.
+Your 12 tools become 7: `lookupCustomer`, `lookupTicket`, `lookupKnowledge`, `createTicket`, `updateTicket`, `escalateToHuman`, `getAgentAvailability`.
 
-It examines description quality. Your `escalateToHuman` tool description says "Escalate the current issue to a human agent." The skill flags this: when should the agent escalate? What information should it include? The revised description specifies triggers (customer explicitly requests human help, issue requires account-level changes the agent cannot make, three failed resolution attempts), required parameters (customer ID, conversation summary, attempted solutions), and return value (escalation ID and estimated wait time).
+**Step 3 -- Improve descriptions.** The skill examines your `escalateToHuman` tool description: "Escalate the current issue to a human agent." It flags this: when should the agent escalate? What information should it include? The revised description specifies triggers (customer explicitly requests human help, issue requires account-level changes the agent cannot make, three failed resolution attempts), required parameters (customer ID, conversation summary, attempted solutions), and return value (escalation ID and estimated wait time).
 
-It also examines error messages. Your `createTicket` tool returns `{"error": "Invalid priority"}` when the agent passes an unsupported priority level. The skill rewrites this to `{"error": "INVALID_PRIORITY", "message": "Priority must be one of: low, medium, high, critical", "provided": "urgent", "suggestion": "Did you mean 'high'? Use 'critical' only for production outages."}` -- giving the agent everything it needs to self-correct on the next call.
+**Step 4 -- Fix error messages.** Your `createTicket` tool returns `{"error": "Invalid priority"}` when the agent passes an unsupported priority level. The skill rewrites this to `{"error": "INVALID_PRIORITY", "message": "Priority must be one of: low, medium, high, critical", "provided": "urgent", "suggestion": "Did you mean 'high'? Use 'critical' only for production outages."}` -- giving the agent everything it needs to self-correct on the next call.
 
-After consolidation and description improvements, the agent's task completion rate on your internal test suite goes from 72% to 91%. Tool selection accuracy jumps from 68% to 95%. The total description token count drops by 40%, freeing context for longer conversations.
+**Step 5 -- Measure the result.** After consolidation and description improvements, the agent's task completion rate on your internal test suite goes from 72% to 91%. Tool selection accuracy jumps from 68% to 95%. The total description token count drops by 40%, freeing context for longer conversations.
 
-The entire process -- from "my agent keeps picking the wrong tool" to a redesigned, tested tool set -- takes one focused session. No model changes, no prompt rewrites, no orchestration logic changes. Just better tools.
+**Gotchas discovered:** The biggest win was not reducing tool count -- it was eliminating the get/search ambiguity pattern. Any time you have both a `getFoo` and a `searchFoo`, an agent will confuse them because the distinction ("I have an ID" vs "I have a search term") is clear to humans but ambiguous in natural language. Merge them into `lookupFoo` that handles both cases.
 
 ## Usage Scenarios
 
@@ -209,37 +299,56 @@ The entire process -- from "my agent keeps picking the wrong tool" to a redesign
 
 **You end up with:** Tool responses that default to minimal tokens, with detailed mode available when the agent explicitly needs full context.
 
+---
+
+## Decision Logic
+
+**When does the Consolidation Principle apply vs Architectural Reduction?**
+
+Consolidation is the default first move. If you have overlapping tools (`getFoo` + `searchFoo`, `listBar` + `filterBar`), merge them into single tools. This works for any tool count and any domain. The test: can a human instantly tell which tool to use for a given request? If not, consolidate.
+
+Architectural Reduction is the aggressive follow-up. After consolidation, ask: are the remaining specialized tools enabling the agent, or constraining it? If the agent would perform better with bash + SQL + file access than with 15 remaining specialized tools, reduce. This works when your data layer is well-documented and consistently structured. It fails when the domain requires specialized knowledge, safety constraints limit what the agent can do, or data is messy and inconsistent.
+
+**When does the four-question description framework apply?**
+
+Always. Every tool description should answer: what does it do, when should it be used, what inputs does it accept, what does it return. This applies to both consolidated tools and primitive tools. Even a simple `executeSQL` tool needs a description that specifies when to use it versus `executeBash`, what SQL dialects it supports, and what the response format looks like.
+
+**What triggers error message redesign?**
+
+Any tool that returns generic errors ("Invalid input", "Not found", "Error") needs redesign. The test: after reading the error message, can the agent construct a corrected call without human help? If not, the error message is insufficient.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Over-consolidation: merging tools that serve genuinely different workflows | Agent receives a "swiss army knife" tool and uses the wrong mode, or the tool description becomes so long it confuses the model | Split back into separate tools along workflow boundaries. The Consolidation Principle says merge when scopes overlap -- not when workflows are fundamentally different. |
+| Architectural Reduction applied to messy data | Agent stumbles navigating files, guesses at schema names, generates invalid queries against undocumented tables | Do not reduce until the data layer is well-documented. Add README files, schema descriptions, and example queries to the file system before giving the agent primitive access. |
+| Description too long and detailed | Agent ignores the description because it exceeds the attention it allocates to tool selection, or the descriptions collectively consume too much context | Shorten to essentials: one sentence for "what", one for "when", parameter list, return format. Move extended guidance into system prompts or reference docs. |
+| Missing negative triggers in descriptions | Agent calls the tool for adjacent use cases it was not designed for (e.g., calling a pricing tool for product catalog queries) | Add explicit "NOT for..." clauses to descriptions. Reference the correct tool by name. |
+| Generic error messages with no recovery path | Agent retries the same failed call 3-5 times, wasting tokens and time, then gives up or hallucinates a result | Redesign errors to include: error code, human-readable message, the invalid value provided, and a suggestion for correction. |
+
 ## Ideal For
 
-- **Teams whose agents pick the wrong tool** -- the Consolidation Principle directly eliminates the most common source of tool selection errors
-- **Agent architects starting greenfield projects** -- the design framework prevents the tool sprawl that cripples agents at 30+ tools
-- **Engineers maintaining large tool collections** -- Architectural Reduction provides a principled approach to simplifying without losing capability
-- **Anyone writing tool descriptions** -- the four-question framework and anti-pattern catalog turn vague docs into precise contracts
+- **Teams whose agents pick the wrong tool** -- the Consolidation Principle directly eliminates the most common source of tool selection errors by merging overlapping tools into single comprehensive ones
+- **Agent architects starting greenfield projects** -- the design framework prevents the tool sprawl that cripples agents at 30+ tools, giving you a principled starting point
+- **Engineers maintaining large tool collections** -- Architectural Reduction provides a production-tested approach to radical simplification with measurable metrics
+- **Anyone writing tool descriptions** -- the four-question framework and anti-pattern catalog turn vague docs into precise contracts that agents use correctly on the first call
 
 ## Not For
 
 - **Building MCP servers or implementing the MCP protocol** -- use [mcp-server](../mcp-server/) for server implementation, transport layer, and protocol compliance
 - **Designing multi-agent coordination or agent handoffs** -- use [multi-agent-patterns](../multi-agent-patterns/) for supervisor/worker topologies, swarm architectures, and inter-agent communication
 - **Implementing agent memory or persistence** -- use [memory-systems](../memory-systems/) for episodic, semantic, and procedural memory architectures
-
-## How It Works Under the Hood
-
-The plugin is a single skill with two reference documents providing depth. When activated, the skill loads the core methodology covering the Consolidation Principle, Architectural Reduction, description engineering, error message design, and MCP naming conventions.
-
-The `best_practices.md` reference extends the core with detailed description structure patterns, naming convention rules, error message schemas, response format optimization techniques, and a complete anti-pattern catalog with a design checklist.
-
-The `architectural_reduction.md` reference provides production evidence: the full case study of a text-to-SQL agent rebuilt from 17 specialized tools to 2 primitives, with before/after metrics on execution time, success rate, and token usage.
-
-The skill activates from natural language -- mentioning tool design, MCP tools, consolidation, or architectural reduction triggers it automatically. No slash commands needed.
+- **Evaluating whether tools work after designing them** -- use [agent-evaluation](../agent-evaluation/) for rubrics, LLM-as-judge scoring, and test harnesses
 
 ## Related Plugins
 
-- **[Agent Evaluation](../agent-evaluation/)** -- Measure tool usage effectiveness with rubrics and LLM-as-judge scoring
+- **[Agent Evaluation](../agent-evaluation/)** -- Measure tool usage effectiveness with rubrics and LLM-as-judge scoring after you design the tools
 - **[Agent Project Development](../agent-project-development/)** -- End-to-end agent project methodology including tool selection strategy
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Coordination patterns where each agent gets its own tool set
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Coordination patterns where each agent gets its own tool set designed with these principles
 - **[MCP Server](../mcp-server/)** -- Build the MCP servers that expose the tools this skill teaches you to design
 - **[Memory Systems](../memory-systems/)** -- Agent memory architectures that complement well-designed tool interfaces
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
