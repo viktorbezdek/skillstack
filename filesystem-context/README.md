@@ -6,30 +6,30 @@
 
 ## The Problem
 
-LLM agents working on long-horizon tasks hit the same wall: the context window fills up. A web search returns 10,000 tokens of raw content. A build produces 50,000 lines of output. A multi-step refactoring task takes 30 turns and the agent loses track of which files have been updated. The standard workarounds -- summarization and truncation -- destroy information. The agent forgets details it needed, repeats work it already did, or loses the plan it was following.
+LLM agents operate within a fixed context window. Every tool output, every plan step, every intermediate result consumes tokens and stays in the window for the rest of the conversation. A single web search returning 10,000 tokens of raw content occupies that space permanently, even if only 50 tokens were relevant. Over a multi-step task, the context fills with stale tool outputs, completed plan steps, and intermediary data that degrades attention to the information that actually matters now.
 
-The problem compounds in multi-agent architectures. When sub-agents report findings to a coordinator through message chains, each hop summarizes and loses fidelity. By the time three sub-agents have reported to a coordinator, the original details are gone -- replaced by summaries of summaries. And as agents accumulate more capabilities (tools, skills, instructions), the static system prompt grows until it crowds out space for the actual task.
+The consequences are predictable and systematic. Long-horizon tasks lose coherence because the plan that was clear 20 turns ago has been pushed out of effective attention by accumulated tool output. Multi-agent systems suffer "telephone effect" where findings degrade through summarization at each message-passing hop. Agents with many skills carry all their instructions in the system prompt, wasting tokens on guidance that is irrelevant to 90% of tasks. And when context windows compress or summarize, details that seemed unimportant at compression time turn out to be critical three steps later -- but they are gone.
 
-The deeper issue is architectural. Context windows are treated as the only memory layer, when they should be the working memory -- small, focused, and frequently refreshed from a persistent store. Without a persistent layer, agents carry everything they have ever seen in the conversation, burning tokens on information that was relevant three steps ago but is noise now.
+The root issue is that most agent architectures treat the context window as the only working memory. Everything must fit, and everything competes for space. This is like trying to do knowledge work using only your short-term memory -- no notes, no files, no reference materials on your desk. It works for simple tasks. It breaks for anything with more than a few steps.
 
 ## The Solution
 
-This plugin treats the filesystem as an unlimited external memory layer for LLM agents. Instead of stuffing everything into the context window, agents write large outputs to files and keep only a summary and a file reference in context. Plans are persisted as YAML files and re-read each turn so the agent always knows where it left off. Sub-agents share state through file directories instead of message chains. Skills are loaded dynamically from files rather than crammed into the system prompt.
+This plugin teaches Claude how to use the filesystem as an unlimited external memory layer for agent operations. Instead of accumulating large outputs in the context window, agents write them to files and retain only summaries and references. Plans are persisted as structured YAML so they survive context compression. Sub-agents communicate through shared file workspaces instead of message chains, preserving fidelity. Skills and instructions are loaded dynamically from files instead of being stuffed into static context.
 
-The six patterns in this plugin address six specific failure modes: context bloat from tool outputs (scratch pad), plan amnesia over long trajectories (plan persistence), information loss in multi-agent communication (sub-agent workspaces), system prompt overload from too many skills (dynamic loading), inaccessible terminal output (log persistence), and inability to learn across sessions (self-modification).
+The skill provides six concrete patterns with implementation code: filesystem as scratch pad (offload large tool outputs), plan persistence (survive context compression), sub-agent communication via filesystem (bypass telephone effect), dynamic skill loading (reduce static context bloat), terminal and log persistence (searchable output files), and learning through self-modification (agents that improve their own instructions). Each pattern includes the problem it solves, the implementation approach, and practical guidance on when to use it versus when the overhead is not justified.
 
-The implementation is concrete: code examples with before/after token counts, a recommended directory structure, and ten operational rules for when and how to apply each pattern. The reference file provides worked examples showing exactly how much context is saved by each technique.
+The plugin ships one SKILL.md with all six patterns, one reference file with detailed implementation patterns, 13 trigger eval cases, and 3 output quality eval cases.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Web search returns 8,000 tokens that stay in context for the entire conversation | Scratch pad writes results to a file, returns a 100-token summary -- agent greps the file when it needs specific details |
-| Agent loses track of a 30-step refactoring task after context summarization | YAML plan file is re-read each turn -- the agent always knows which step is next |
-| Sub-agents report to a coordinator through message chains, losing detail at each hop | Each sub-agent writes to its own directory; coordinator reads files directly with full fidelity |
-| 50 skills stuffed into the system prompt waste tokens and confuse the model | Only skill names and one-line descriptions are static; full SKILL.md files are loaded on demand |
-| 50,000-line build output is either dumped into context (too large) or lost (not useful) | Terminal output is synced to dated files; the agent greps for "ERROR" or stack traces |
-| Agent cannot remember user preferences or learned patterns across sessions | Self-modification pattern writes learned information to files loaded at session start |
+| Web search returns 10K tokens that stay in context forever, even if only 50 tokens were relevant | Large outputs written to scratch files; only a summary and file reference enter the context window |
+| Plans drift or disappear after context compression because they live only in message history | Plans persisted as structured YAML files that agents re-read at the start of each turn |
+| Multi-agent findings degrade through message-passing summarization (telephone effect) | Sub-agents write findings to shared workspace files; coordinator reads originals directly |
+| All skill instructions stuffed into system prompt, wasting tokens on irrelevant guidance | Skills stored as files, loaded dynamically when the task requires them |
+| Terminal output from long processes must be copy-pasted or carried in context | Terminal sessions persisted as searchable files; agents grep for relevant sections |
+| Agent behavior is static between sessions -- no learning from user preferences | Agents write learned preferences to instruction files that subsequent sessions load |
 
 ## Installation
 
@@ -40,226 +40,279 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install filesystem-context@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention filesystem context, scratch pads, plan persistence, dynamic skill loading, or file-based agent memory.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention offloading context to files, scratch pads, plan persistence, filesystem-based agent memory, tool output persistence, or dynamic context loading.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
 2. Open a Claude Code session
-3. Type: `Design a scratch pad system for my agent that offloads large tool outputs to files`
-4. Claude produces the scratch pad pattern with threshold logic (write to file if > 2,000 tokens), summary extraction, file reference format, and grep-based retrieval
-5. Next, try: `How should I persist my agent's plan so it survives context compaction?` to get the YAML plan persistence pattern with re-read-on-each-turn architecture
+3. Type: `How should I implement a scratch pad pattern for my agent that makes web searches? The search results are flooding the context.`
+4. Claude provides the scratch-pad implementation pattern: write outputs to files, return summaries with file references, use grep for targeted retrieval
+5. Next, try: `Design a sub-agent file workspace layout for a research agent that spawns 3 parallel sub-agents`
+
+---
+
+## System Overview
+
+```
+User prompt (context engineering question / agent architecture design)
+        |
+        v
++---------------------+     +-------------------------------+
+|  filesystem-context  |---->| Pattern selection              |
+|  skill (SKILL.md)    |     | (match query to 1-6 patterns) |
++---------------------+     +-------------------------------+
+        |                              |
+        v                              v
+  Core concepts:              6 implementation patterns:
+  - Static vs dynamic         1. Scratch Pad (offload outputs)
+  - Write once, read          2. Plan Persistence (survive compression)
+    selectively               3. Sub-Agent Communication (bypass telephone)
+  - Dynamic discovery         4. Dynamic Skill Loading (reduce bloat)
+        |                     5. Terminal/Log Persistence (searchable)
+        v                     6. Self-Modification (agent learning)
+  Practical guidance:                  |
+  - When to use filesystem             v
+  - File organization         +----------------------------+
+  - Token accounting           | Implementation Patterns    |
+  - Search techniques          | reference (detailed code)  |
+                               +----------------------------+
+```
+
+Single-skill plugin with one reference file for detailed implementation patterns. No hooks, no MCP servers, no external dependencies.
 
 ## What's Inside
 
-Single-skill plugin with one SKILL.md and one reference file, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | What It Provides |
+|---|---|---|
+| **filesystem-context** | Skill | 6 filesystem patterns, static vs dynamic context theory, practical guidance, file organization |
+| **implementation-patterns.md** | Reference | Detailed code implementations for each pattern |
+| **trigger-evals** | Eval | 13 trigger eval cases (8 positive, 5 negative) |
+| **output-evals** | Eval | 3 output quality eval cases |
 
-| Component | What It Provides |
-|---|---|
-| **Scratch Pad Pattern** | Write large outputs (> 2,000 tokens) to files, return summary + reference, use grep for retrieval |
-| **Plan Persistence** | YAML schema for objective, steps, and status; re-read each turn for attention manipulation |
-| **Sub-Agent Workspaces** | Per-agent file directories for direct state sharing, bypassing message chains |
-| **Dynamic Skill Loading** | Static index of skill names + descriptions; full content loaded on demand |
-| **Terminal Log Persistence** | Sync stdout to dated files; agents grep for error patterns |
-| **Self-Modification** | Agents write learned preferences/patterns to files loaded at session start |
-| **`implementation-patterns.md`** | Reference with worked examples, before/after token counts, directory structure, and ten rules |
+### Component Spotlight
 
-### filesystem-context
+#### filesystem-context (skill)
 
-**What it does:** Activates when you ask about using files for agent context management, offloading tool outputs, persisting plans, coordinating sub-agents through files, loading skills dynamically, or building agents that learn across sessions. Provides six concrete patterns with code examples, token accounting, and a recommended directory structure.
+**What it does:** Activates when you ask about using the filesystem for agent context, offloading tool outputs, persisting plans, designing agent workspaces, or implementing dynamic skill loading. Provides six concrete implementation patterns with code examples and practical guidance on when each pattern is worth the overhead.
+
+**Input -> Output:** You describe a context engineering challenge (bloated context, lost plans, agent coordination) -> The skill provides the matching filesystem pattern(s) with implementation code, file organization layout, and token accounting guidance.
+
+**When to use:**
+- Tool outputs are bloating the context window (search results, API responses, database queries)
+- Long-horizon tasks lose coherence because plans fall out of attention
+- Multi-agent systems need to share state without message-passing degradation
+- System prompt is overloaded with instructions for skills that are rarely needed
+- Terminal or build output needs to be accessible to agents without copy-pasting
+- Building agents that learn and update their own instructions between sessions
+
+**When NOT to use:**
+- Tasks complete in a single turn with no context pressure -> filesystem overhead not justified
+- In-context optimization (KV-cache tuning, observation masking) -> use [context-optimization](../context-optimization/)
+- Summarization and compression techniques -> use [context-compression](../context-compression/)
+- Understanding context theory and fundamentals -> use [context-fundamentals](../context-fundamentals/)
 
 **Try these prompts:**
 
 ```
-My agent's web search tool returns 10,000+ tokens per query and it's filling up the context window -- how do I offload this to files?
+How should I implement a scratch pad for my agent? Web search results are flooding the context window with 10K+ tokens per search.
 ```
 
 ```
-Design a plan persistence system so my refactoring agent doesn't lose track of progress when the context compacts
+Design a file workspace layout for a coordinator agent that manages 4 parallel research sub-agents
 ```
 
 ```
-I have three sub-agents (research, code, test) that need to share findings with a coordinator -- how do I use the filesystem instead of message passing?
+My agent keeps losing track of its plan after context compression. How do I persist plans so they survive summarization?
 ```
 
 ```
-My agent has 40 skills and the system prompt is enormous -- how do I load skills dynamically instead of including them all?
+I have 15 skills in my system prompt but only 2-3 are relevant per task. How do I load them dynamically from files instead?
 ```
 
 ```
-How should I structure the file system for an agent that needs scratch space, persistent memory, and sub-agent workspaces?
+Build a self-modification pattern where my agent remembers user preferences between sessions by writing to an instruction file
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `implementation-patterns.md` | Detailed pattern implementations with before/after token counts, directory structure templates, and ten operational rules |
+| `implementation-patterns.md` | Detailed code implementations for all 6 filesystem patterns |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Help with context management" | "How do I offload large tool outputs to files instead of keeping them in the agent's context window?" |
+| "My agent forgets things" | "My agent loses track of its multi-step plan after context compression -- how do I persist the plan as a file?" |
+| "Design a multi-agent system" | "Design a file workspace layout where 3 sub-agents write findings and a coordinator reads them without message passing" |
+| "Reduce token usage" | "I have 15 skill files in my system prompt consuming 8K tokens. How do I switch to dynamic loading?" |
+| "Make my agent smarter" | "How should my agent write learned user preferences to an instruction file so subsequent sessions can load them?" |
+
+### Structured Prompt Templates
+
+**For scratch pad implementation:**
+```
+My agent calls [tool name] which returns [approximate token count] tokens per call. Over a [number]-step task, this accumulates to [total tokens]. How should I implement a scratch pad pattern to offload these outputs? The agent needs to [what it does with the output later].
+```
+
+**For sub-agent workspace design:**
+```
+Design a file workspace for [number] sub-agents coordinated by a [coordinator type]. Sub-agents perform [task type] and need to share [data types]. The coordinator needs to [synthesize / prioritize / route] findings.
+```
+
+**For dynamic skill loading:**
+```
+I have [number] skills totaling [token count] in my system prompt. Most tasks use [number] skills. How do I restructure for dynamic loading? Skills are currently in [current format].
+```
+
+### Prompt Anti-Patterns
+
+- **Treating filesystem context as a silver bullet:** "Move everything to files" -- some context should stay in the window (critical rules, current task state). The skill helps you decide what to offload and what to keep.
+- **Asking about in-context optimization:** "How do I optimize my KV cache?" -- this plugin is about filesystem-based context, not in-context optimization techniques. Use [context-optimization](../context-optimization/) instead.
+- **No specifics about the context pressure:** "My context is too large" -- describe what is filling it (tool outputs? skill instructions? message history?) so the skill can match the right pattern.
 
 ## Real-World Walkthrough
 
-You are building a code review agent that analyzes pull requests across a monorepo. The agent receives a PR diff (often 2,000-5,000 lines), reads the relevant source files for context, checks test coverage, runs linters, and produces a structured review. After three PRs, the agent's context window is full of old diff content, previous review comments, and stale lint output from PRs that are already merged.
+You are building a research agent that takes a topic, searches the web for 5-10 sources, synthesizes findings, and produces a summary report. The agent works well for simple queries, but on complex topics requiring 8+ searches, the context fills with raw search results and the synthesis quality drops sharply -- the agent starts contradicting itself or forgetting earlier findings.
 
-You start by asking Claude: **"Design a filesystem-based context architecture for a code review agent that handles multiple PRs in a single session."**
+**Step 1: Diagnosing the context pressure.** You ask Claude: **"My research agent makes 8-10 web searches per task, each returning 5-10K tokens. By the time it tries to synthesize, the context is full of raw search results and the quality degrades. How do I fix this?"**
 
-Claude activates the filesystem-context skill and begins with the **scratch pad pattern** for the largest context consumer: PR diffs. Instead of loading a 4,000-line diff directly into context, the agent writes it to `scratch/pr-1234-diff.txt` and returns a summary: "PR #1234: 47 files changed, 1,200 additions, 800 deletions. Key areas: `src/auth/` (12 files), `src/api/` (8 files), `tests/` (27 files). Full diff in `scratch/pr-1234-diff.txt`." This reduces 4,000 lines to 5 lines. When the agent needs to review a specific file's changes, it runs `grep -A 20 "src/auth/token.ts" scratch/pr-1234-diff.txt` to extract just that section.
+Claude activates the filesystem-context skill and identifies this as a classic scratch-pad pattern. The core problem: 80K+ tokens of raw search results are competing for attention with the synthesis task.
 
-Next, Claude applies the **plan persistence pattern** to the review workflow itself. The agent creates a YAML plan at the start of each PR review:
+**Step 2: Implementing the scratch pad.** Claude provides the implementation: after each web search, write the full results to `scratch/search_{topic}_{n}.txt` and return only a 200-token summary to the context. The agent's message history now contains summaries like: `"[Results in scratch/search_kubernetes_1.txt. Key finding: Kubernetes HPA scales based on CPU metrics by default, custom metrics require metrics-server configuration.]"`
+
+When the agent needs a specific detail during synthesis, it uses `grep` to search the scratch files: `grep -A 5 "metrics-server" scratch/search_kubernetes_1.txt`. Only the 5 relevant lines enter the context, not the entire 8,000-token search result.
+
+**Step 3: Adding plan persistence.** You notice the agent sometimes loses track of which sources it has already searched. Claude adds the plan persistence pattern: the agent writes its research plan to `scratch/research_plan.yaml`:
 
 ```yaml
-# scratch/plans/pr-1234-review.yaml
-objective: "Review PR #1234 - Auth token refresh"
+objective: "Research Kubernetes autoscaling patterns"
 status: in_progress
-steps:
-  - id: 1
-    description: "Read diff summary and identify high-risk areas"
-    status: completed
-  - id: 2
-    description: "Review auth module changes for security issues"
-    status: in_progress
-  - id: 3
-    description: "Check test coverage for changed functions"
-    status: pending
-  - id: 4
-    description: "Run linter and check for style violations"
-    status: pending
-  - id: 5
-    description: "Produce structured review with findings"
-    status: pending
+sources_searched:
+  - url: "https://..."
+    key_finding: "HPA scales on CPU by default"
+    scratch_file: "scratch/search_kubernetes_1.txt"
+sources_remaining:
+  - "vertical pod autoscaling"
+  - "KEDA event-driven scaling"
 ```
 
-The agent re-reads this file at the start of each turn. If context compaction fires between Step 2 and Step 3, the agent does not lose its place -- it reads the plan file and sees exactly where to resume.
+The agent re-reads this file at the start of each search cycle, ensuring it never searches the same source twice and can resume after context compression.
 
-Claude then designs the **sub-agent workspace** for the review components. Instead of one agent doing everything sequentially, three sub-agents work in parallel:
+**Step 4: Measuring the improvement.** Before the filesystem pattern, a 10-search task consumed approximately 80K tokens in context. After: the context contains 10 summaries (approximately 2K tokens total) plus the plan file reference. The agent can still access all 80K tokens of raw data through targeted grep searches, but they do not compete for attention during synthesis. Synthesis quality improves because the agent is working with a clean context containing summaries and the plan, not a wall of raw search output.
+
+**Step 5: Extending to sub-agents.** You then parallelize: instead of one agent doing 10 sequential searches, you spawn 3 sub-agents that each search 3-4 topics. Each sub-agent writes to its own workspace:
 
 ```
 workspace/
   agents/
-    security-reviewer/
-      findings.md          # Security issues found
-      severity-summary.txt # High/Medium/Low counts
-    test-coverage/
-      coverage-report.txt  # Coverage analysis output
-      gaps.md             # Untested code paths
-    style-checker/
-      lint-output.txt     # Raw linter output
-      violations.md       # Grouped violations with fix suggestions
-  coordinator/
-    review.md             # Final synthesized review
+    agent_1/findings.md
+    agent_2/findings.md
+    agent_3/findings.md
+  coordinator/synthesis.md
 ```
 
-Each sub-agent writes to its own directory. The coordinator reads all three directories and synthesizes a final review without any information passing through message chains. The security reviewer's full analysis is preserved verbatim -- not summarized through a message hop.
-
-For the lint and test output, Claude applies the **terminal log persistence pattern**. The linter produces 500 lines of output; the test runner produces 2,000 lines. Both are written to files in the sub-agent workspace. The style-checker agent greps for warnings and errors rather than processing the full output: `grep -c "warning" lint-output.txt` (count), then `grep -B2 -A5 "error" lint-output.txt` (details for errors only).
-
-Finally, Claude applies **dynamic skill loading** to the review knowledge base. The agent has specialized review checklists for different code areas (auth, API, database, frontend, infrastructure), but loading all of them into context wastes tokens. The static index includes one-line descriptions:
-
-```
-Available review checklists:
-- auth-review: Token validation, session handling, RBAC checks
-- api-review: Input validation, rate limiting, error responses
-- database-review: Query optimization, migration safety, index usage
-```
-
-When the agent identifies that PR #1234 touches the auth module, it loads `skills/auth-review/SKILL.md` and applies only the relevant checklist.
-
-The result: each PR review uses approximately 3,000 tokens of active context instead of 15,000+. The agent can review 10 PRs in a single session without context degradation. The plan file ensures no review step is skipped even when compaction fires. Sub-agent findings are preserved at full fidelity. And the agent only loads the review checklists it actually needs.
+The coordinator reads the findings files directly instead of receiving summarized messages, preserving the full fidelity of each sub-agent's research.
 
 ## Usage Scenarios
 
-### Scenario 1: Offloading web search results for a research agent
+### Scenario 1: Offloading large tool outputs to scratch files
 
-**Context:** Your research agent runs 5-10 web searches per task, each returning 8,000-12,000 tokens. After three searches, the context window is dominated by search results from the first query.
+**Context:** Your agent integrates with a database that returns 500+ row query results. Carrying all results in context wastes tokens and degrades attention.
 
-**You say:** "Design a scratch pad system for my research agent that keeps search results accessible without filling the context window"
-
-**The skill provides:**
-- Scratch pad implementation with 2,000-token threshold
-- Summary extraction function that produces key findings in 200 tokens
-- File reference format that the agent can grep for specific claims
-- Cleanup strategy for removing stale scratch files after the task completes
-
-**You end up with:** A working pattern where each search adds 200 tokens to context (not 10,000) while the full results remain accessible via grep.
-
-### Scenario 2: Keeping a multi-step migration on track
-
-**Context:** Your agent is running a 25-step database migration and keeps losing track after context compaction. It re-runs steps it already completed.
-
-**You say:** "How do I persist my agent's migration plan so it always knows which step is next?"
+**You say:** "My agent queries a database that returns 500-row results. How do I offload these to files and use grep for targeted retrieval?"
 
 **The skill provides:**
-- YAML plan schema with step IDs, descriptions, and status fields
-- Re-read-on-each-turn architecture that refreshes the plan at the start of every turn
-- Status update pattern that marks steps completed immediately after execution
-- Recovery strategy for when the agent is mid-step during compaction
+- Scratch pad pattern with a token threshold (write to file if output > 2000 tokens)
+- Summary extraction function that returns key metrics and file reference
+- Grep-based retrieval patterns for specific rows or columns
+- File naming conventions with timestamps for disambiguation
 
-**You end up with:** A plan persistence system where the agent never repeats a completed step and always resumes from the correct position.
+**You end up with:** A working scratch pad implementation where database results are written to files and only summary statistics enter the context, with targeted retrieval when specific rows are needed.
 
-### Scenario 3: Coordinating parallel sub-agents without information loss
+### Scenario 2: Persisting plans across context compression
 
-**Context:** You have a frontend agent, a backend agent, and a database agent working on a feature. The coordinator agent gets summarized results from each, losing implementation details.
+**Context:** Your agent runs multi-hour coding tasks. After context compression, it loses track of which files it modified and which tasks remain.
 
-**You say:** "Set up file workspaces so my sub-agents share results with the coordinator without message chains"
-
-**The skill provides:**
-- Directory structure with per-agent workspaces
-- File naming conventions for findings, outputs, and status
-- Coordinator read pattern that processes all agent outputs directly
-- Conflict resolution for when agents need to reference each other's work
-
-**You end up with:** A workspace layout where the coordinator reads full-fidelity results from each agent without any summarization loss.
-
-### Scenario 4: Scaling from 5 skills to 50 without degrading agent performance
-
-**Context:** Your agent started with 5 skills in the system prompt and worked well. Now it has 50 skills, the system prompt is 30,000 tokens, and the model frequently picks the wrong skill.
-
-**You say:** "How do I load skills dynamically so the system prompt stays small but all 50 skills are available?"
+**You say:** "My coding agent loses its plan after context compression. How do I persist the plan so it survives summarization?"
 
 **The skill provides:**
-- Static index format: skill name + one-line description (50 lines instead of 30,000 tokens)
-- On-demand loading pattern: agent reads full SKILL.md only when a query matches
-- Matching logic for determining which skill to load based on the query
-- Cache-and-evict strategy for skills loaded in the same session
+- YAML-based plan persistence with status tracking per task
+- Re-read strategy: agent reads the plan file at the start of each turn
+- Checkpoint approach: update the plan file as tasks complete
+- Recovery from corrupted or stale plan files
 
-**You end up with:** A system prompt under 2,000 tokens with all 50 skills accessible on demand.
+**You end up with:** A plan persistence system where the agent writes its plan to a file, updates it as tasks complete, and re-reads it after any context interruption.
+
+### Scenario 3: Designing a multi-agent file workspace
+
+**Context:** You are building a code review system with 3 parallel agents (security, performance, style) that report to a coordinator.
+
+**You say:** "Design a file workspace for a code review system with 3 specialized agents and a coordinator that synthesizes their findings."
+
+**The skill provides:**
+- Directory structure with per-agent workspaces and a coordinator synthesis directory
+- Writing conventions for each agent (structured findings with severity, location, description)
+- Coordinator reading strategy (read all agent findings, cross-reference, prioritize)
+- Conflict resolution for overlapping findings
+
+**You end up with:** A workspace layout that enables parallel agent execution with filesystem-based coordination, preserving full fidelity of each agent's findings.
+
+---
+
+## Decision Logic
+
+The skill matches your query to one or more of its six patterns:
+
+| Your situation | Pattern applied |
+|---|---|
+| Tool outputs exceeding 2000 tokens | Pattern 1: Scratch Pad |
+| Plans lost after context compression | Pattern 2: Plan Persistence |
+| Multi-agent coordination with information loss | Pattern 3: Sub-Agent Communication |
+| System prompt overloaded with skill instructions | Pattern 4: Dynamic Skill Loading |
+| Terminal/build output needs agent access | Pattern 5: Terminal/Log Persistence |
+| Agent needs to remember things between sessions | Pattern 6: Self-Modification |
+
+Multiple patterns can be combined. A research agent typically uses patterns 1 (scratch pad for search results), 2 (plan persistence for research plan), and 3 (sub-agent workspaces for parallel research).
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Over-offloading to files | Agent writes everything to files, including small outputs that fit comfortably in context. Adds file I/O latency for no token savings. | Apply the 2000-token threshold: only offload outputs that exceed this size. Small results stay in context. |
+| Scratch files accumulate without cleanup | After many tasks, the scratch directory grows unbounded, confusing file discovery | Implement cleanup: delete scratch files after task completion, or use timestamped directories per session |
+| Plan file becomes stale or corrupted | Agent reads an outdated plan after a crash or interrupted session | Include a `last_updated` timestamp in the plan YAML; if stale, regenerate from current state |
+| Dynamic loading fails for simple models | Less capable models do not recognize when to load additional context from files | Use this pattern only with frontier models. For weaker models, keep critical instructions in static context |
+| Self-modification accumulates contradictory instructions | Agent writes conflicting preferences to the instruction file over time | Implement validation: new preferences must not contradict existing ones. Periodically review and clean the preferences file |
 
 ## Ideal For
 
-- **Agent builders working on long-horizon tasks** -- plan persistence and scratch pads keep agents on track across 30+ turn conversations
-- **Multi-agent system architects** -- sub-agent workspaces eliminate the information loss inherent in message-chain coordination
-- **Teams scaling agent capabilities** -- dynamic skill loading lets you add skills without proportionally growing the system prompt
-- **Developers building research or analysis agents** -- scratch pad offloading prevents tool outputs from dominating the context window
-- **Context engineers optimizing token budgets** -- the before/after token accounting in the reference file provides concrete savings measurements
+- **Agent framework developers** building long-running agents that need to survive context compression
+- **Multi-agent system architects** designing coordination patterns that avoid message-passing degradation
+- **Tool integrators** whose agents call high-volume APIs (search, databases, logs) that flood the context
+- **Plugin developers** building skills or tools for Claude Code that need context-efficient patterns
 
 ## Not For
 
-- **In-context optimization** (KV-cache tuning, observation masking, attention manipulation) -- use [context-optimization](../context-optimization/) for techniques that work within the context window rather than offloading from it
-- **Summarization and compression techniques** -- use [context-compression](../context-compression/) for anchored iterative summarization and tokens-per-task optimization
-- **Understanding context theory** -- use [context-fundamentals](../context-fundamentals/) for the foundational theory of how attention works and why context engineering matters
-
-## How It Works Under the Hood
-
-The plugin uses a single SKILL.md with one reference file. The SKILL.md covers six patterns, each with a problem statement, solution, implementation code example, and benefits:
-
-1. **Scratch Pad** -- threshold-based offloading with summary extraction and file references
-2. **Plan Persistence** -- YAML plan schema with re-read-on-each-turn architecture
-3. **Sub-Agent Workspaces** -- per-agent directories with coordinator read patterns
-4. **Dynamic Skill Loading** -- static index + on-demand file reads
-5. **Terminal Log Persistence** -- stdout sync to dated files with grep-based querying
-6. **Self-Modification** -- learned preferences written to files loaded at session start
-
-The reference file (`implementation-patterns.md`) provides detailed worked examples with before/after token counts and a recommended directory structure for organizing agent files.
-
-The skill connects to four related plugins: context-optimization (filesystem offloading as a form of observation masking), memory-systems (filesystem-as-memory as a simple memory layer), multi-agent-patterns (sub-agent workspaces enable agent isolation), and context-compression (file references as lossless compression).
+- **Single-turn tasks** where context pressure is not an issue -- filesystem overhead adds latency without benefit
+- **In-context optimization** (KV-cache, observation masking, attention patterns) -- use [context-optimization](../context-optimization/)
+- **Summarization and compression** techniques for reducing context size -- use [context-compression](../context-compression/)
+- **Context theory and fundamentals** (how attention works, progressive disclosure principles) -- use [context-fundamentals](../context-fundamentals/)
 
 ## Related Plugins
 
-- **[Context Optimization](../context-optimization/)** -- KV-cache optimization, observation masking, and retrieval strategies for extending effective context capacity
-- **[Context Compression](../context-compression/)** -- Anchored iterative summarization and tokens-per-task optimization
-- **[Context Fundamentals](../context-fundamentals/)** -- Foundational theory of context engineering for AI agent systems
-- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, and confusion patterns
-- **[Memory Systems](../memory-systems/)** -- Production memory frameworks (Mem0, Zep, Letta) for persistent agent memory
-- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Supervisor, swarm, and pipeline architectures for multi-agent systems
+- **[Context Optimization](../context-optimization/)** -- Token reduction techniques for in-context efficiency (complementary to filesystem offloading)
+- **[Context Compression](../context-compression/)** -- Summarization strategies and compression triggers
+- **[Context Fundamentals](../context-fundamentals/)** -- Theory of context engineering and how attention works
+- **[Memory Systems](../memory-systems/)** -- Persistent storage patterns for agent memory (production frameworks like Mem0, Zep, Letta)
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Coordination patterns for multi-agent systems (filesystem context is one coordination mechanism)
+- **[Tool Design](../tool-design/)** -- Designing tools that return file references for large outputs
 
 ---
 
