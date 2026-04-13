@@ -1,10 +1,13 @@
 ---
 name: documentation-generator
 description: >-
-  Generate comprehensive documentation for repositories of any size, from small libraries
-  to large monorepos. Use when creating documentation, generating docs, writing READMEs,
-  producing API docs, architecture docs, or technical references for a repository.
-  NOT for UX copy or microcopy (use ux-writing).
+  Generate comprehensive documentation for a codebase by reading the repository and
+  producing READMEs, API docs, architecture docs, and technical references. Use when the
+  user asks to "document this repo", "generate docs", "write a README", "create API
+  documentation", "document this codebase", "write architecture docs", or "produce
+  technical references" for an existing project. NOT for UX copy, button labels, or
+  interface microcopy (use ux-writing). NOT for pedagogical code examples or tutorials
+  (use example-design). NOT for inline code comments.
 ---
 
 # Repository Documentation Generator
