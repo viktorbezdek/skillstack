@@ -1,9 +1,13 @@
 ---
 name: navigation-design
 description: >-
-  Design information architecture, wayfinding systems, and navigation patterns for
-  documentation and applications. Use when working with navigation, information
-  architecture, wayfinding, breadcrumbs, sitemaps, menu structure, or content hierarchy.
+  Design information architecture, wayfinding systems, and navigation structures for
+  documentation sites and applications. Use when the user asks to design navigation,
+  plan a sitemap, structure a sidebar or menu, define content hierarchy, design breadcrumbs,
+  or organize how users move through content. NOT for user journey maps or touchpoint
+  flows across time (use user-journey-design). NOT for microcopy, labels, or button
+  text in navigation (use ux-writing). NOT for Next.js routing, layouts, or parallel
+  routes (use nextjs-development).
 ---
 
 # Navigation Design
