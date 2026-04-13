@@ -1,10 +1,13 @@
 ---
 name: example-design
 description: >-
-  Design effective code examples, tutorials, and runnable samples with progressive
-  complexity. Use when creating code examples, tutorials, quickstart guides, sample code,
-  runnable examples, or progressive disclosure content. NOT for generating full
-  documentation (use documentation-generator).
+  Design pedagogically effective code examples, tutorials, and runnable samples using
+  progressive complexity and deliberate scaffolding. Use when the user asks to write a
+  code example that teaches a concept, design a quickstart tutorial, create sample code
+  for a library or API, build a runnable demo, or structure examples from simple to
+  advanced. NOT for generating full repo documentation or READMEs (use
+  documentation-generator). NOT for writing examples inside a skill file (use
+  skill-foundry).
 ---
 
 # Example Design
