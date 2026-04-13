@@ -1,8 +1,7 @@
 # SkillStack Workflows
 
-> **v2.0.0** | Strategic Thinking | Composable workflow playbooks
-
-> Eighteen playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
+> **v2.0.0** | Eighteen playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
+> 18 workflow skills, no references | 234 trigger evals + 54 output evals (288 total)
 
 ## The Problem
 
@@ -73,9 +72,39 @@ I've been stuck on this race condition for 3 hours -- help me debug it systemati
 4. Follow each phase -- the workflow gates prevent you from deploying before tests pass or skipping code review
 5. Next, try: `Our Claude API costs tripled last month -- help me fix it without degrading quality`
 
-## What's Inside
+---
 
-This is a **multi-skill plugin** with 18 independently-activating workflow skills and 288 eval cases across all workflows. No reference documents -- each workflow is self-contained in its SKILL.md.
+## System Overview
+
+```
+User prompt (multi-stage problem description)
+        |
+        v
+   Skill activation: matches against 18 workflow descriptions
+        |
+        v
++------------------------------------------------------------------+
+|                    Workflow Playbook (SKILL.md)                    |
+|  Phase 1 ──gate──> Phase 2 ──gate──> Phase 3 ──gate──> Phase N   |
+|     |                 |                 |                 |       |
+|     v                 v                 v                 v       |
+|  [Skill A]         [Skill B]         [Skill C]         [Skill D] |
+|  (installed)       (installed)       (installed)       (installed)|
++------------------------------------------------------------------+
+
+Workflow Types:
+  Sequential gates .... linear phases with checkpoints (api-to-production)
+  Diagnostic loops .... hypothesis-test-fix cycles (debug-complex-issue)
+  Funnels ............. wide intake, successive filtering (build-ai-agent)
+  Funnel + gate ....... funnel with mandatory quality gate (llm-cost-optimization)
+  Parallel-merge ...... parallel streams that converge (pitch-sprint)
+  Layered build ....... load-bearing layer order (content-platform-build)
+  Multi-pass audit .... audit everything, then fix (security-hardening-audit)
+```
+
+Each workflow is a standalone SKILL.md with its own activation triggers. There are no shared references -- every workflow is self-contained. When activated, the workflow tells Claude to follow phases in order, draw on the underlying skills by name, respect gates, and produce output artifacts at each phase.
+
+## What's Inside
 
 ### The 18 Workflows
 
@@ -85,7 +114,7 @@ This is a **multi-skill plugin** with 18 independently-activating workflow skill
 |---|---|---|
 | `api-to-production` | Sequential gates | Design, TDD, code review, CI/CD, containerized deployment. Three gates: contract frozen, tests green, pipeline green. |
 | `debug-complex-issue` | Diagnostic loop | Observation-before-hypothesis, family classification, multi-hypothesis differentiation, blast-radius assessment, TDD as debugging oracle. |
-| `legacy-rescue` | Safety-net loop | Codemap generation, feedback-center identification, characterization test safety net, rollback-planned atomic commits, debugging loops for surprises. |
+| `legacy-rescue` | Safety-net loop | Codemap generation, feedback-center identification, characterization test safety net, rollback-planned atomic commits. |
 | `security-hardening-audit` | Multi-pass audit | Threat surface mapping, security-focused code review, edge case analysis, test hardening, remediation. Audit all before fixing any. |
 | `onboard-to-codebase` | Ramp-up sequence | Auto-generate codemap, build system model, trace key flows, build context strategy for ongoing work. |
 
@@ -112,51 +141,26 @@ This is a **multi-skill plugin** with 18 independently-activating workflow skill
 | Workflow | Type | What it does |
 |---|---|---|
 | `strategic-decision` | Gate-driven | Define outcomes measurably, generate options widely, stress-test for bias, assess downside, rank on original criteria, outcome-gate catches criteria drift. |
-| `pitch-sprint` | Parallel-merge | Three parallel streams (interviews, system mapping, persona sharpening) merge into a story spine, audited via critical intuition, polished via UX writing. 5/3/1-day variants. |
+| `pitch-sprint` | Parallel-merge | Three parallel streams (interviews, system mapping, persona sharpening) merge into a story spine, audited via critical intuition. 5/3/1-day variants. |
 | `storytelling-for-stakeholders` | Narrative build | Structure (3-act, SparkLines, SCR), find the angle, anchor to outcomes, craft and polish. Every beat passes the "so what?" test. |
 
 #### Meta (Building Skills & Plugins)
 
 | Workflow | Type | What it does |
 |---|---|---|
-| `build-a-plugin` | End-to-end lifecycle | Ideation (7-criteria check), research (marketplace survey), architecture (component decomposition), build (hooks + composition + skills), validation, evaluation. Three gates prevent wasted work. |
+| `build-a-plugin` | End-to-end lifecycle | Ideation (7-criteria check), research (marketplace survey), architecture (component decomposition), build (hooks + composition + skills), validation, evaluation. |
 | `write-your-own-skill` | Meta-workflow | Spec first, elicit domain depth, design examples before prose, validate against anti-patterns, ship with structural tests. |
 
-### How the Workflows Work
+### Component Spotlights
 
-Each workflow skill has its own frontmatter with specific activation triggers. When you describe a problem, Claude matches it against all active skills' descriptions and activates the best match. Once activated, the workflow's SKILL.md tells Claude to:
-
-1. Follow the phase-by-phase process in order
-2. Draw on the underlying skills you have installed (explicitly referenced by name in each phase)
-3. Respect the gates (conditions that must be met before proceeding to the next phase)
-4. Respect the loops (steps that repeat until a quality bar is met)
-5. Produce the expected output artifacts at each phase
-
-### pitch-sprint
-
-**What it does:** A time-boxed sprint for producing a pitch -- investor deck, board proposal, internal funding request, or customer sales narrative. Three parallel streams (interviews, system mapping, persona sharpening) merge into a narrative spine using StoryBrand, Pixar Spine, or founder-story structures. Audited via critical intuition, polished via UX writing. Available in 5-day, 3-day, and 1-day variants.
-
-**Try these prompts:**
-
-```
-Help me write a pitch for our Series A meeting next week -- we're a developer tools company
-```
-
-```
-I need to present our quarterly results to the board in 3 days -- help me build the narrative
-```
-
-```
-Create a compelling customer case study for our enterprise sales deck
-```
-
-```
-We're pitching internally for headcount -- help me build the business case
-```
-
-### debug-complex-issue
+#### debug-complex-issue (workflow skill)
 
 **What it does:** A systematic debugging workflow for bugs that have defeated a first-pass attempt. Enforces observation-before-hypothesis discipline, classifies the bug family (race condition, state machine, environment, LLM, etc.), generates and differentiates multiple hypotheses, assesses blast radius, and uses TDD as a debugging oracle.
+
+**Input -> Output:** You describe a bug you have been stuck on -> You get a phased debugging process with hypothesis ranking, differentiation tests, blast-radius assessment, and a verified fix with regression test.
+
+**When to use:** You have been debugging for more than 30 minutes with no progress, or the bug is intermittent, environment-dependent, or multi-system.
+**When NOT to use:** Simple bugs with obvious causes -- just fix them directly.
 
 **Try these prompts:**
 
@@ -176,9 +180,14 @@ Users report intermittent 500 errors but I can't reproduce them
 My agent loops forever on certain inputs and I don't know where the cycle starts
 ```
 
-### build-ai-agent
+#### build-ai-agent (workflow skill)
 
-**What it does:** A 9-phase funnel from "I want an agent that does X" to a deployed, evaluated, cost-monitored agent. Critical gate: evaluation pipeline before prompt iteration. Includes the "is this even an agent task?" filter and tool-surface minimization to prevent over-engineering.
+**What it does:** A 9-phase funnel from "I want an agent that does X" to a deployed, evaluated, cost-monitored agent. Critical gate: evaluation pipeline must be in place before prompt iteration begins. Includes the "is this even an agent task?" filter that prevents over-engineering.
+
+**Input -> Output:** You describe what you want an agent to do -> You get a phased build process with task-model fit assessment, tool-surface minimization, evaluation pipeline, prompt iteration with data, and deployment with monitoring.
+
+**When to use:** Building a new agent, or rebuilding an agent that is not performing well.
+**When NOT to use:** A simple deterministic script would suffice -- the "is this even an agent task?" filter in Phase 1 will tell you.
 
 **Try these prompts:**
 
@@ -198,9 +207,38 @@ We need an agent that monitors our production logs and alerts on anomalies
 Should this automation be an agent or a simple script? Help me decide and build it
 ```
 
-### strategic-decision
+#### llm-cost-optimization (workflow skill)
 
-**What it does:** A gate-driven workflow for making high-stakes decisions under uncertainty when multiple options have merit. Defines outcomes measurably first, generates options widely, stress-tests for bias and hidden assumptions, assesses downside, ranks on original criteria, and uses the outcome-gate to catch criteria drift during deliberation.
+**What it does:** A funnel-with-gate workflow for reducing LLM costs without degrading quality. Diagnoses six AI cost anti-patterns, optimizes in priority order (prompt caching, context compression, model routing, etc.), and enforces a non-negotiable quality gate that rolls back any optimization that degrades output.
+
+**Input -> Output:** You describe your LLM cost problem -> You get a diagnosis of where money is going, prioritized optimizations, and verified cost reduction with quality preserved.
+
+**When to use:** LLM costs have increased significantly and you need to reduce them without degrading the product.
+**When NOT to use:** Costs are reasonable and you want to optimize for performance or capability instead of cost.
+
+**Try these prompts:**
+
+```
+Our Claude API costs tripled last month -- help me cut costs without degrading quality
+```
+
+```
+Which of our agents is the biggest cost driver and what can we do about it?
+```
+
+```
+We need to reduce LLM spend by 50% before the next board meeting -- where do we start?
+```
+
+```
+Our agent sends full documents as context on every call -- how do we fix this cost-efficiently?
+```
+
+#### strategic-decision (workflow skill)
+
+**What it does:** A gate-driven workflow for high-stakes decisions under uncertainty. Defines outcomes measurably first, generates options widely, stress-tests for bias and hidden assumptions, assesses downside, ranks on original criteria, and uses the outcome-gate to catch criteria drift during deliberation.
+
+**Input -> Output:** You describe a decision with multiple viable options -> You get a structured evaluation with measurable criteria, stress-tested options, and a documented recommendation with rationale.
 
 **Try these prompts:**
 
@@ -220,9 +258,11 @@ We have three architecture options and strong opinions on each -- help us decide
 Our team is split on whether to rewrite or refactor -- what's the right framework for deciding?
 ```
 
-### api-to-production
+#### api-to-production (workflow skill)
 
-**What it does:** Takes an API from design through TDD, code review, CI/CD, and containerized deployment. Three gates prevent premature progression: contract must be frozen before implementation, tests must be green before review, pipeline must be green before deployment.
+**What it does:** Takes an API from design through TDD, code review, CI/CD, and containerized deployment. Three gates: contract frozen before implementation, tests green before review, pipeline green before deployment.
+
+**Input -> Output:** You describe an API you need to ship -> You get a phased build with design, tests, review, pipeline, and deployment -- each gated.
 
 **Try these prompts:**
 
@@ -242,9 +282,11 @@ Help me take this API from prototype to production-ready with proper CI/CD and c
 We need a new microservice endpoint -- walk me through the full lifecycle
 ```
 
-### legacy-rescue
+#### legacy-rescue (workflow skill)
 
-**What it does:** A safety-net workflow for making real progress on legacy code without breaking production. Generates a codemap first, identifies feedback centers (high-connectivity modules), adds characterization tests as a safety net, makes rollback-planned atomic commits, and runs debugging loops for surprises.
+**What it does:** A safety-net workflow for making real progress on legacy code without breaking production. Generates a codemap first, identifies feedback centers, adds characterization tests as a safety net, makes rollback-planned atomic commits.
+
+**Input -> Output:** You describe a legacy codebase you need to modify -> You get a codemap, safety net of characterization tests, and a structured approach to making changes with rollback plans.
 
 **Try these prompts:**
 
@@ -253,7 +295,7 @@ I inherited a legacy codebase and I'm terrified to touch it -- help me make chan
 ```
 
 ```
-We need to add a feature to a 10-year-old monolith with no tests -- how do I not break everything?
+We need to add a feature to a 10-year-old monolith with no tests
 ```
 
 ```
@@ -264,118 +306,205 @@ Help me understand and safely modify this undocumented legacy system
 Our legacy code has no tests and we need to refactor the payment module without downtime
 ```
 
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, may not activate the right workflow) | Good (specific, activates the right workflow) |
+|---|---|
+| "Help me with my API" | "I need to ship a new REST API from design to production -- walk me through the full lifecycle" |
+| "Fix this bug" | "I've been stuck on this race condition for 3 hours -- help me debug it systematically" |
+| "Build me an agent" | "I want to build an agent that automates support ticket triage -- walk me from idea to deployed" |
+| "Our costs are too high" | "Our Claude API costs tripled after adding three agent features -- help me cut costs without degrading quality" |
+| "Review our security" | "Run a systematic security audit across our codebase -- threat surface, code review, edge cases, then remediation" |
+
+### Structured Prompt Templates
+
+**For engineering workflows:**
+```
+I need to [build / ship / debug / secure / onboard to] [what] -- [context about constraints, timeline, or current state]. Walk me through the full process.
+```
+
+**For product workflows:**
+```
+We [ran N user interviews / have research notes / need to prioritize features]. Help me turn [raw input] into [deliverable: prioritized backlog / personas / journey maps].
+```
+
+**For AI/agent workflows:**
+```
+[I want to build / Our agent is underperforming / Our LLM costs are too high]. [Describe the situation]. Help me [build it right / diagnose and improve / cut costs without degrading quality].
+```
+
+**For strategy workflows:**
+```
+We need to decide between [options]. [Describe the stakes and constraints]. Help me evaluate this systematically so we make the right call.
+```
+
+**For meta workflows:**
+```
+I want to [build a Claude Code plugin / create a skill] for [what it does]. Walk me through the full process from idea to validated artifact.
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for a workflow by name instead of describing the problem:** Saying "run the api-to-production workflow" is less effective than describing what you need. The skill activates from natural language problem descriptions, not workflow names.
+- **Describing a single-skill problem as a multi-stage workflow:** If the problem fits entirely within one skill (e.g., "design a REST API"), use that skill directly. Workflows add value when the problem spans multiple domains -- design + build + test + deploy.
+- **Skipping context about your current state:** "Help me debug this" activates debug-complex-issue, but the workflow is much more effective when you include how long you have been stuck, what you have tried, and what makes the bug unusual. Context determines which phase to start in.
+- **Expecting programmatic execution:** These workflows are playbooks Claude follows, not automated chains. If you need programmatic multi-step orchestration (scripts, state machines), use the workflow-automation plugin instead.
+
 ## Real-World Walkthrough
 
-You are an engineering manager at a startup. Your team's Claude API bill went from $2,000/month to $6,800/month after adding three new agent features. The CEO asks you to cut costs without degrading the product quality that users have been praising in reviews. You have no idea where to start -- cutting context might break the features, switching to a smaller model might reduce quality, and you do not know which agent is the biggest spender.
+You are an engineering manager at a startup. Your team's Claude API bill went from $2,000/month to $6,800/month after adding three new agent features. The CEO asks you to cut costs without degrading product quality.
 
-You describe the problem:
+**Step 1 -- Diagnose the cost surface.** You describe the problem:
 
 ```
 Our Claude API costs tripled last month after adding three new agent features. Help me cut costs without degrading product quality.
 ```
 
-The `llm-cost-optimization` workflow activates. It is a funnel-with-gate design: diagnose first, optimize in priority order, and enforce a non-negotiable quality gate that rolls back any optimization that degrades output.
+The `llm-cost-optimization` workflow activates. It draws on `cloud-finops` to break down costs by agent, model, and token type. You discover Agent C (document analysis) accounts for 60% of cost because it sends entire documents as context on every call. Agent A (search) costs 15% but runs 10x more calls. Agent B (chat) costs 25% with reasonable per-call costs but high volume.
 
-**Phase 1: Diagnose the cost surface.** The workflow draws on the `cloud-finops` skill to break down costs by agent, model, and token type (input vs output). You discover that Agent C (the document analysis agent) accounts for 60% of total cost because it sends entire documents as context on every call. Agent A (the search agent) costs 15% but runs 10x more calls. Agent B (the chat agent) costs 25% with reasonable per-call costs but high volume.
-
-**Phase 2: Identify anti-patterns.** The workflow checks for six AI cost anti-patterns:
+**Step 2 -- Identify anti-patterns.** The workflow checks for six AI cost anti-patterns:
 1. Stuffing full documents into context (Agent C -- guilty)
-2. Using the most expensive model for everything (all three agents use Claude Sonnet when Haiku would suffice for classification steps)
-3. No prompt caching (Agent A makes the same system prompt call thousands of times without caching)
-4. Redundant tool calls (Agent C calls the same tool 3x per conversation due to context loss)
-5. No context compression (Agent B sends full conversation history on every turn)
-6. No model routing (all tasks go to the same model regardless of complexity)
+2. Using the most expensive model for everything (all three use Sonnet when Haiku suffices for classification)
+3. No prompt caching (Agent A repeats the same system prompt thousands of times)
+4. Redundant tool calls (Agent C calls the same tool 3x per conversation)
+5. No context compression (Agent B sends full history every turn)
+6. No model routing (all tasks go to the same model)
 
-**Phase 3: Optimize in priority order.** The workflow prioritizes optimizations by cost impact:
+**Step 3 -- Optimize in priority order.** The workflow prioritizes by cost impact:
 
-First, enable prompt caching for Agent A. The `context-optimization` skill guides you through adding cache control headers to the system prompt. This alone cuts Agent A's costs by 75% (from $1,020 to $255) because the system prompt is identical across calls.
+First: prompt caching for Agent A. The `context-optimization` skill guides cache control headers. Agent A costs drop 75% ($1,020 to $255).
 
-Second, add context compression for Agent C. Instead of sending full documents, the `context-compression` skill helps you implement chunked retrieval with summarization. Agent C's per-call cost drops by 80%.
+Second: context compression for Agent C. Chunked retrieval with summarization via `context-compression`. Per-call cost drops 80%.
 
-Third, implement model routing. Classification and extraction steps use Haiku instead of Sonnet. The `agent-project-development` skill provides the routing logic. This cuts per-call cost for simple steps by 90%.
+Third: model routing. Classification steps use Haiku. The `agent-project-development` skill provides routing logic. Simple step costs drop 90%.
 
-**Phase 4: Quality gate (non-negotiable).** Before deploying any optimization, the workflow requires running your existing test suite and comparing output quality against the pre-optimization baseline. The gate uses the `agent-evaluation` skill to measure output quality on a held-out set of real conversations.
+**Step 4 -- Quality gate (non-negotiable).** Before deploying any optimization, the workflow requires running the test suite and comparing output quality against the pre-optimization baseline using `agent-evaluation`. Prompt caching passes -- responses identical. Context compression passes for 95% of documents but degrades on 50+ page documents -- rolled back for those. Model routing passes for classification but fails for multi-step reasoning -- those stay on Sonnet.
 
-The prompt caching optimization passes easily -- responses are identical. The context compression optimization passes for 95% of documents but degrades quality on documents longer than 50 pages. The workflow rolls back compression for long documents and keeps it for shorter ones. The model routing passes for classification (Haiku performs identically to Sonnet on binary choices) but fails for multi-step reasoning tasks -- those stay on Sonnet.
+**Step 5 -- Result.** Monthly cost drops from $6,800 to $2,400 (65% reduction). Two sub-optimizations were automatically rolled back by the quality gate. Cost savings validated without degrading product quality.
 
-**Result:** Your monthly cost drops from $6,800 to $2,400 -- a 65% reduction. The quality gate ensured that every optimization was validated before deployment, and two sub-optimizations were automatically rolled back because they degraded output quality. The CEO gets cost savings; users get the same product quality.
+**Gotchas discovered:** The quality gate caught two optimizations that would have degraded output. Without it, you would have deployed all optimizations and discovered the quality regression from user complaints weeks later.
 
 ## Usage Scenarios
 
 ### Scenario 1: Shipping an API from scratch to production
 
-**Context:** You are a backend engineer tasked with building a new user management API endpoint. You need to design, implement, test, review, and deploy it -- and you want to do every step right.
+**Context:** You need to build a new user management API and ship it to production with proper testing, review, and CI/CD.
 
 **You say:** `I need to build a user management API and ship it to production -- walk me through the full lifecycle`
 
 **The workflow provides:**
 - Phase 1: API design with `api-design` -- resource naming, status codes, error contracts
 - Phase 2: TDD with `test-driven-development` -- failing tests first, then implementation
-- Phase 3: Code review with `code-review` -- security, performance, style, test coverage
-- Phase 4: CI/CD with `cicd-pipelines` -- pipeline configuration for build, test, deploy
-- Phase 5: Containerization with `docker-containerization` -- Dockerfile, compose, deployment
+- Phase 3: Code review with `code-review` -- security, performance, style, coverage
+- Phase 4: CI/CD with `cicd-pipelines` -- build, test, deploy pipeline
+- Phase 5: Containerization with `docker-containerization`
 - Three gates: contract frozen, tests green, pipeline green
 
-**You end up with:** A production-deployed API with tests, code review, CI/CD pipeline, and containerized deployment -- not a prototype that "works on my machine."
+**You end up with:** A production-deployed API with tests, review, CI/CD, and containerized deployment.
 
 ### Scenario 2: Onboarding to an unfamiliar codebase
 
-**Context:** You just joined a team and cloned a repository with 200+ files, no documentation, and a build system you have never used. You need to understand it well enough to contribute within a week.
+**Context:** You just joined a team and cloned a 200+ file repository with no documentation.
 
 **You say:** `I just cloned this repo and I have no idea how it works -- help me understand it fast`
 
 **The workflow provides:**
-- Phase 1: Auto-generated codemap showing file structure, dependencies, and entry points
-- Phase 2: System model identifying feedback loops, critical paths, and high-connectivity modules
-- Phase 3: End-to-end trace of 2-3 key flows (e.g., request lifecycle, data pipeline)
-- Phase 4: Context strategy for ongoing work -- what to read first, what to keep in mind, what to look up
+- Auto-generated codemap showing structure, dependencies, and entry points
+- System model identifying critical paths and high-connectivity modules
+- End-to-end trace of 2-3 key flows
+- Context strategy for ongoing work
 
-**You end up with:** A mental model of the codebase that would normally take 2-3 weeks of exploration, compressed into one structured session.
+**You end up with:** A mental model compressed from weeks of exploration into one session.
 
 ### Scenario 3: Making a high-stakes technical decision
 
-**Context:** Your startup needs to decide between three database options (PostgreSQL, DynamoDB, CockroachDB) for a new product, and the decision will be expensive to reverse. Each option has vocal advocates on the team.
+**Context:** Your team needs to choose between PostgreSQL, DynamoDB, and CockroachDB for a new product.
 
 **You say:** `We need to choose our primary database and each option has strong advocates -- help us decide objectively`
 
 **The workflow provides:**
-- Outcome definition: what measurable criteria matter (latency p99, ops cost, developer velocity, migration effort)
-- Option generation: ensures no options were prematurely eliminated
-- Stress testing: challenges each option's assumptions and identifies hidden risks
-- Downside assessment: what is the worst case for each option
-- Criteria-locked ranking: ranks options against the original criteria, catching any drift that occurred during discussion
+- Measurable criteria definition (latency p99, ops cost, developer velocity)
+- Option generation ensuring nothing was prematurely eliminated
+- Stress testing of each option's assumptions
+- Downside assessment per option
+- Criteria-locked ranking that catches drift during discussion
 
-**You end up with:** A documented decision with rationale that the team can align behind, plus a clear record of what was considered and why alternatives were rejected.
+**You end up with:** A documented decision with rationale the team can align behind.
 
 ### Scenario 4: Building a Claude Code skill from scratch
 
-**Context:** You have a repeatable workflow that you want to turn into a reusable Claude Code skill, but you have never written one before and want it to actually activate reliably.
+**Context:** You want to turn a repeatable workflow into a reusable skill but have never written one.
 
-**You say:** `I want to create a Claude Code skill for database migration reviews -- walk me through the process`
+**You say:** `I want to create a Claude Code skill for database migration reviews`
 
 **The workflow provides:**
-- Spec first: define what the skill does, who uses it, and what triggers it
-- Domain depth: elicit the migration review methodology you currently apply manually
-- Example design: create examples before writing prose (the examples become the test cases)
-- Anti-pattern validation: check the SKILL.md against known anti-patterns
-- Structural tests: validate frontmatter, trigger evals, and output quality
+- Spec definition (what it does, who uses it, triggers)
+- Domain depth elicitation (your migration review methodology)
+- Example design before prose (examples become test cases)
+- Anti-pattern validation
+- Structural tests (frontmatter, trigger evals, output quality)
 
-**You end up with:** A skill that activates reliably for migration review queries, with evals that prove it works and a validated structure that will not break on installation.
+**You end up with:** A skill that activates reliably with evals that prove it works.
 
 ### Scenario 5: Turning user research into a prioritized backlog
 
-**Context:** You are a product manager who just completed 12 user interviews. You have pages of notes but no clear path from research to engineering stories.
+**Context:** You completed 12 user interviews and need to go from notes to sprint-ready stories.
 
-**You say:** `We ran 12 user interviews and I need to turn them into a prioritized backlog -- help me go from notes to sprint-ready stories`
+**You say:** `We ran 12 user interviews and I need to turn them into a prioritized backlog`
 
 **The workflow provides:**
-- Interview analysis with `elicitation` -- extract patterns, pain points, and unmet needs
-- Journey mapping with `user-journey-design` -- map the end-to-end experience with friction points
-- Persona synthesis with `persona-definition` -- build data-grounded personas from the interview patterns
-- Outcome definition with `outcome-orientation` -- convert pain points to measurable outcomes
-- Prioritization with `prioritization` -- RICE or MoSCoW scoring with provenance chains back to the original research
+- Pattern extraction from interviews via `elicitation`
+- Journey mapping via `user-journey-design`
+- Persona synthesis via `persona-definition`
+- Outcome definition via `outcome-orientation`
+- RICE/MoSCoW prioritization via `prioritization` with provenance chains
 
-**You end up with:** A prioritized backlog where every story traces back to specific user research findings, not product team assumptions.
+**You end up with:** A prioritized backlog where every story traces to specific research findings.
+
+---
+
+## Decision Logic
+
+**How does the right workflow get activated?**
+
+Each of the 18 workflows has its own SKILL.md with distinct activation triggers in the frontmatter description. When you describe a problem, Claude matches your description against all active skill descriptions. The match is based on natural language similarity, not keywords. Describe the problem you face, not the workflow name.
+
+**When multiple workflows could apply:**
+
+| Your situation | Workflow | Why this one |
+|---|---|---|
+| Stuck on a bug for 30+ minutes | `debug-complex-issue` | The diagnostic loop with hypothesis differentiation |
+| Need to ship an API end-to-end | `api-to-production` | Sequential gates from design to deployment |
+| Need to build a new agent | `build-ai-agent` | 9-phase funnel with "is this an agent task?" filter |
+| Agent exists but underperforms | `evaluate-and-improve-agent` | Diagnostic loop with baseline comparison |
+| LLM costs too high | `llm-cost-optimization` | Funnel with mandatory quality gate |
+| Legacy code scares you | `legacy-rescue` | Safety-net with characterization tests |
+| Inherited a new codebase | `onboard-to-codebase` | Ramp-up sequence, not safety-net (different from legacy-rescue) |
+| High-stakes decision | `strategic-decision` | Gate-driven with criteria-drift detection |
+| Need a pitch/deck | `pitch-sprint` | Parallel-merge with time-boxed variants |
+| Security review needed | `security-hardening-audit` | Multi-pass: audit all, then fix all |
+
+**What is the difference between `debug-complex-issue` and just using the debugging skill directly?**
+
+The debugging skill provides methodology for systematic root cause analysis. The `debug-complex-issue` workflow wraps that methodology in a structured loop with additional stages: it enforces multi-hypothesis generation (not just the first plausible cause), requires differentiation tests between hypotheses, assesses blast radius before applying fixes, and loops back if the fix does not resolve the issue. Use the skill for straightforward bugs; use the workflow when you have been stuck for 30+ minutes.
+
+**What is the difference between `onboard-to-codebase` and `legacy-rescue`?**
+
+`onboard-to-codebase` is for understanding a codebase you have just joined -- read-only exploration that produces a mental model. `legacy-rescue` is for modifying a codebase you are afraid to touch -- it adds characterization tests and makes rollback-planned changes. If you need to understand but not yet modify, use onboard. If you need to modify safely, use rescue.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Workflow activated but underlying skills not installed | Claude follows the process structure but provides generic guidance instead of domain-depth recommendations | Install the specific SkillStack plugins referenced by the workflow. Each workflow's SKILL.md names the skills it draws on. Install the full SkillStack collection for complete coverage. |
+| Wrong workflow activated for the problem | You asked about debugging but the strategic-decision workflow activated, or vice versa | Be more specific in your problem description. Include domain signals: "debugging a race condition" vs "deciding between two architectures." If the wrong workflow persists, explicitly name the workflow: "use the debug-complex-issue workflow." |
+| Quality gate in llm-cost-optimization blocks all optimizations | Every optimization degrades output quality and gets rolled back, leaving costs unchanged | The quality gate is working correctly -- it prevents shipping degraded quality. The problem is that your current approach requires expensive processing. Look for structural changes (different architecture, different prompting strategy) rather than surface-level cost cuts. |
+| Workflow feels too rigid for the problem | The phased structure does not match how the problem actually unfolds -- some phases are irrelevant or the order needs adjustment | Workflows are playbooks, not chains. Tell Claude "skip Phase 3 -- we already have tests" or "start at Phase 4 -- the design is done." The gates still apply, but phases can be reordered or skipped when the situation warrants it. |
+| Diagnostic loop does not converge | debug-complex-issue or evaluate-and-improve-agent keeps looping without resolving the issue after 3+ iterations | The loop should converge within 3 iterations. If it does not, the problem is likely misclassified. Step back and re-classify: is this really a race condition, or is it a state machine bug? Is the agent architecture fundamentally wrong, or is it a prompt issue? Reclassification often unlocks the solution. |
 
 ## Ideal For
 
@@ -388,26 +517,10 @@ The prompt caching optimization passes easily -- responses are identical. The co
 
 ## Not For
 
-- **Single-skill tasks** -- if the problem fits cleanly inside one skill's domain, use that skill directly. These workflows are for problems that span multiple domains.
+- **Single-skill tasks** -- if the problem fits cleanly inside one skill's domain, use that skill directly. Workflows are for problems that span multiple domains.
 - **Reversible experiments** -- if you can try something cheaply and see what happens, just experiment. Workflows add structure for when the stakes are high.
-- **You have not installed the underlying plugins** -- the workflows reference specific SkillStack skills by name. Without them, you get process guidance but not domain depth.
+- **You have not installed the underlying plugins** -- the workflows reference specific skills by name. Without them, you get process guidance but not domain depth.
 - **Programmatic multi-step orchestration** -- these are playbooks Claude follows, not automated chains. For programmatic orchestration, use the [workflow-automation](../workflow-automation/) plugin.
-
-## How It Works Under the Hood
-
-Each of the 18 workflows is a standalone SKILL.md with its own frontmatter triggers. There are no shared reference documents -- each workflow is self-contained. When you describe a problem, Claude matches it against all active skills' descriptions and activates the best match.
-
-The workflow types reflect different problem structures:
-
-- **Sequential gates** (api-to-production): linear phases with checkpoints that must pass before proceeding
-- **Diagnostic loops** (debug-complex-issue, evaluate-and-improve-agent): hypothesis-test-fix cycles that repeat until the issue is resolved
-- **Funnels** (build-ai-agent, user-research-to-insight): wide intake that narrows through successive filtering stages
-- **Funnel + gate** (llm-cost-optimization): funnel with a mandatory quality gate that can roll back optimizations
-- **Parallel-merge** (pitch-sprint): parallel streams that converge into a unified output
-- **Layered build** (content-platform-build): dependencies between layers where order is load-bearing
-- **Multi-pass audit** (security-hardening-audit, design-review-sprint): audit everything before fixing anything, so systemic patterns emerge
-
-The 288 eval cases across all 18 workflows test both activation (does the right workflow activate for a given query?) and output quality (does the workflow produce the correct phase structure and artifacts?).
 
 ## Version History
 
@@ -416,11 +529,13 @@ The 288 eval cases across all 18 workflows test both activation (does the right 
 
 ## Related Plugins
 
-- **[Skill Forge](../skill-foundry/)** -- Create the individual skills these workflows reference
 - **[Plugin Dev](../plugin-dev/)** -- Full plugin authoring toolkit referenced by `build-a-plugin`
 - **[Workflow Automation](../workflow-automation/)** -- Programmatic multi-step orchestration (not playbook-style)
+- **[Debugging](../debugging/)** -- Single debugging skill that `debug-complex-issue` wraps in a structured loop
+- **[Agent Evaluation](../agent-evaluation/)** -- Evaluation framework that `build-ai-agent` and `evaluate-and-improve-agent` draw on
+- **[Cloud FinOps](../cloud-finops/)** -- Cost analysis that `llm-cost-optimization` uses for diagnosing spend
 - All 32+ SkillStack skills referenced by the workflows -- install them for domain depth
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
