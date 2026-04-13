@@ -1,6 +1,6 @@
 ---
 name: ontology-design
-description: Design formal knowledge models with classes, properties, relationships, taxonomies, semantic modeling, class hierarchies, and entity relationships. NOT for CMS content types, editorial workflows, or structured content for publishing (use content-modelling).
+description: Design formal knowledge models — classes, properties, relationships, hierarchies, and semantic graphs — for knowledge representation and reasoning. Use when the user asks to build an ontology, design a knowledge graph, model entity relationships formally, define class hierarchies, create a taxonomy for semantic reasoning, or structure data for RDF/OWL. NOT for CMS content types, editorial workflows, or publishing structures (use content-modelling). NOT for naming conventions or terminology standards across docs (use consistency-standards).
 ---
 
 # Ontology Design
