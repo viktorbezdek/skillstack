@@ -1,302 +1,338 @@
 # API Design
 
-> **v1.2.23** | Development | 26 iterations
-
-> Design production-grade APIs across REST, GraphQL, gRPC, and Python library architectures -- with templates, scripts, and checklists that ship working code, not just advice.
+> **v1.2.23** | Comprehensive API design for REST, GraphQL, gRPC, and Python library architectures -- endpoints, schemas, authentication, pagination, error handling, federation, and security.
+> 1 skill | 18 references | 7 templates | 8 examples | 5 scripts | 7 assets | 2 checklists | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-API design mistakes are expensive to fix after launch. You ship an endpoint with verb-based URLs (`/getUsers`) and inconsistent error responses, then discover you need to maintain it forever because clients depend on the broken contract. Pagination gets bolted on after launch when the list endpoint starts timing out at 50,000 records. Authentication is an afterthought, CORS is misconfigured for weeks while the frontend team works around it, and rate limiting does not exist until someone hammers your API with 10,000 requests per minute.
+API design failures are expensive because they are hard to fix after launch. A poorly named endpoint becomes a permanent contract once external consumers depend on it. Inconsistent error response formats mean every client team writes bespoke error handling. Missing pagination on a list endpoint works fine with 50 records in development and causes outages with 50,000 in production. These are not obscure edge cases -- they are the same mistakes repeated across thousands of APIs because teams design ad hoc instead of following established patterns.
 
-The knowledge exists -- REST conventions, GraphQL best practices, gRPC patterns, OpenAPI specifications -- but it is scattered across documentation sites, blog posts, and tribal knowledge. Engineers re-learn the same lessons project after project: use nouns not verbs, return 201 with a Location header for POST, implement cursor-based pagination from day one, never leak internal error details in production responses. Each lesson learned the hard way costs hours or days.
+The problem multiplies across API paradigms. A team building a REST API may also need GraphQL for mobile clients and gRPC for internal services. Each paradigm has its own best practices, anti-patterns, and tooling, and most teams are expert in at most one. The result is a REST API with good pagination but no versioning strategy, a GraphQL schema with N+1 query problems, and gRPC services with no streaming where streaming would cut latency by 80%.
 
-Even experienced engineers struggle when crossing paradigm boundaries. A REST expert designing their first GraphQL schema does not know about Relay connection patterns, DataLoader for N+1 prevention, or query complexity limits. A Python developer building their first public API does not know the 18 reference files worth of security, versioning, and federation patterns that production APIs require.
+Security compounds everything. Teams forget CORS configuration until the frontend team reports cross-origin errors. Rate limiting is added as an afterthought. API keys are passed in query strings instead of headers. Authentication patterns are inconsistent across endpoints. Each gap is a future incident, and the cost of retrofitting security into a shipped API is 10x the cost of designing it in from the start.
 
 ## The Solution
 
-This plugin puts the full API design toolkit into every Claude Code session: REST resource design with HTTP semantics, GraphQL schema patterns with federation support, gRPC service definitions, Python library architecture with SOLID principles, authentication flows (OAuth 2.0, JWT, API keys), pagination (cursor-based and offset), rate limiting, CORS, error handling, and versioning strategies.
+This plugin provides a unified API design skill that covers REST, GraphQL, gRPC, and Python library architectures in one place. It ships with 18 reference files covering every aspect from URL naming conventions to Apollo Federation, 7 production-ready templates you can use as starting points, 5 automation scripts for validation and code generation, and 2 review checklists for pre-launch audits.
 
-It ships six code templates (FastAPI CRUD endpoint, Pydantic schemas, repository pattern, rate limiter, error handler, TanStack server functions), five runnable scripts (schema analyzer, resolver generator, federation scaffolder, API helper, spec validator), seven worked examples, two review checklists (API design and security), and 18 reference documents covering every production concern from OpenAPI specs to gRPC Protocol Buffers.
+The skill provides concrete, copy-pasteable patterns: FastAPI route templates with proper dependency injection, Pydantic schema patterns with validation, GraphQL schema design with Relay-compliant pagination, gRPC service definitions with streaming, and authentication patterns for OAuth 2.0, JWT, and API keys. It covers both greenfield design (creating a new API from scratch) and review/audit of existing APIs.
 
-You describe what you are building -- "a REST API for a bookstore" or "GraphQL schema for a multi-tenant SaaS" -- and get production-ready patterns with the right HTTP status codes, consistent error envelopes, proper pagination, authentication, and rate limiting. The templates generate working code, not pseudocode. The checklists catch the issues that would otherwise surface in production.
+Time savings are substantial: 50%+ reduction in API development time through templates, code generation scripts, and consistent patterns that eliminate the "how do I structure this?" decision overhead.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Verb-based URLs (`/getUsers`) and inconsistent conventions across endpoints | Resource-oriented URLs with consistent REST semantics from the start |
-| Pagination bolted on after the list endpoint times out in production | Cursor-based or offset pagination designed into every list endpoint from day one |
-| Error responses that leak stack traces or return inconsistent formats | Structured error envelope with codes, messages, field-level details, and request IDs |
-| First GraphQL schema with N+1 query problems and no pagination | Relay connection patterns, DataLoader batching, and complexity limits built in |
-| Authentication implemented differently per endpoint | Consistent OAuth 2.0 / JWT / API key patterns with documented flows |
-| Manual spec writing that drifts from implementation | OpenAPI/Swagger templates and validation scripts that catch spec errors |
+| Verb-based URLs (`/getUsers`) that violate REST conventions | Resource-oriented URLs (`/api/v1/users`) following established patterns |
+| Inconsistent error responses across endpoints | Standardized error envelope with code, message, details, requestId, and timestamp |
+| No pagination -- list endpoints return all records | Cursor-based and offset-based pagination patterns with proper response metadata |
+| Rate limiting added as an afterthought after an outage | Rate limit headers (X-RateLimit-Limit, Remaining, Reset) designed in from day one |
+| N+1 queries in GraphQL that grind the database | DataLoader pattern for batching with caching and complexity limits |
+| Security gaps discovered in production | Pre-launch security checklist covering OAuth, CORS, secrets, and input validation |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install api-design@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Design a REST API for a task management application with users, projects, and tasks
+Help me design a REST API for a multi-tenant project management app with teams, projects, and tasks
 ```
-
-The skill activates automatically when you mention API design topics.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe your API:
-   ```
-   I need a REST API for an e-commerce platform with products, orders, and customers -- design the endpoints and schemas
-   ```
-3. The skill produces resource URLs, HTTP method mappings, request/response schemas, pagination patterns, and error handling -- all following REST conventions.
-4. Generate the implementation:
-   ```
-   Generate the FastAPI endpoints and Pydantic schemas for the products resource
-   ```
-5. The templates produce working FastAPI code with CRUD operations, repository pattern, and proper status codes.
+1. Install the plugin using the commands above
+2. Ask: `Design a REST API for a bookstore with books, authors, and reviews`
+3. The skill produces resource URLs, HTTP methods, request/response schemas, pagination, and error handling
+4. Refine: `Add authentication with JWT and rate limiting at 100 requests per minute`
+5. Validate: `Run the API design checklist on what we've built`
+
+---
+
+## System Overview
+
+```
++-------------------------------------------------------------------+
+|                        api-design skill                            |
++-------------------------------------------------------------------+
+|                                                                    |
+|  +------------------+  +------------------+  +------------------+  |
+|  |  REST Patterns   |  | GraphQL Patterns |  |  gRPC Patterns   |  |
+|  |  - Resources     |  | - Schema-first   |  |  - Protobuf      |  |
+|  |  - HTTP methods  |  | - Relay pagination|  |  - Streaming     |  |
+|  |  - Status codes  |  | - Federation     |  |  - Services      |  |
+|  |  - Versioning    |  | - DataLoader     |  +------------------+  |
+|  +------------------+  +------------------+                        |
+|                                                                    |
+|  +------------------+  +------------------+  +------------------+  |
+|  | Python Library   |  |    Security      |  |   FastAPI        |  |
+|  | - SOLID patterns |  | - OAuth/JWT      |  |   - Routes       |  |
+|  | - Package layout |  | - CORS           |  |   - Pydantic     |  |
+|  | - PEP standards  |  | - Rate limiting  |  |   - Repository   |  |
+|  +------------------+  +------------------+  +------------------+  |
+|                                                                    |
+|  Templates (7) | Examples (8) | Scripts (5) | Checklists (2)      |
++-------------------------------------------------------------------+
+```
 
 ## What's Inside
 
-This is a comprehensive single-skill plugin with 18 references, 6 templates, 7 examples, 5 scripts, 2 checklists, and 7 assets.
+| Component | Type | Description |
+|---|---|---|
+| `api-design` | Skill | Unified API design methodology for REST, GraphQL, gRPC, and Python libraries |
 
-| Component | Purpose |
-|---|---|
-| **api-design** skill | Core methodology: REST resource design, HTTP semantics, GraphQL schema patterns, gRPC services, pagination, authentication, error handling, rate limiting, versioning, anti-patterns, quality checklist |
-| **18 reference documents** | Deep coverage of every API concern (see table below) |
-| **6 code templates** | Production-ready FastAPI, Pydantic, rate limiter, error handler, repository pattern, TanStack server functions |
-| **7 examples** | Worked implementations: CRUD, schemas, pagination, testing, TanStack, OpenAPI spec, GraphQL schema |
-| **5 scripts** | Runnable tooling: schema analyzer, resolver generator, federation scaffolder, API helper, spec validator |
-| **2 checklists** | API design review and security review |
-| **7 assets** | Python library scaffolding: pyproject.toml, README, CONTRIBUTING, project structure, exceptions, configuration |
-
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
-
-### How to Use: api-design
-
-**What it does:** Guides you through designing and implementing APIs across REST, GraphQL, gRPC, and Python library architectures. Activates when you are designing endpoints, writing schemas, implementing authentication, setting up pagination, configuring rate limiting, writing OpenAPI specs, or reviewing API designs. Ships templates that generate working code and scripts that validate specifications.
-
-**Try these prompts:**
-
-```
-Design a REST API for a multi-tenant SaaS project management tool -- I need endpoints for workspaces, projects, tasks, and team members
-```
-
-```
-Review my API design -- I'm not sure about the pagination approach and whether my error responses are consistent enough
-```
-
-```
-I need to add GraphQL federation to split our monolith API into user-service and order-service subgraphs
-```
-
-```
-Generate a complete OpenAPI 3.1 spec for our inventory API with authentication, rate limiting, and proper error schemas
-```
-
-```
-What's the right authentication pattern for a public API that needs both user tokens and service-to-service auth?
-```
-
-**Key references:**
+### References (18 files)
 
 | Reference | Topic |
 |---|---|
-| `rest-best-practices.md` | REST patterns, HTTP methods, status codes, resource naming |
-| `authentication.md` | OAuth 2.0 flows, JWT patterns, API keys, MFA |
+| `rest-best-practices.md` | REST API patterns, URL conventions, status codes |
+| `authentication.md` | OAuth 2.0, JWT, API keys, MFA patterns |
 | `versioning-strategies.md` | API versioning and deprecation strategies |
-| `common-patterns.md` | Health checks, webhooks, batch operations, idempotency |
+| `common-patterns.md` | Health checks, webhooks, batch operations |
 | `schema-patterns.md` | GraphQL schema design patterns |
-| `federation-guide.md` | Apollo Federation architecture and entity references |
-| `performance-optimization.md` | DataLoader, caching, query complexity limits |
-| `architectural-principles.md` | SOLID principles for Python library APIs |
-| `pep-standards.md` | Python PEP quick reference for API code |
-| `fastapi-setup.md` | FastAPI application configuration |
+| `federation-guide.md` | Apollo Federation architecture |
+| `performance-optimization.md` | GraphQL performance, DataLoader, caching |
+| `architectural-principles.md` | Python library SOLID principles |
+| `pep-standards.md` | Python PEP quick reference |
+| `fastapi-setup.md` | FastAPI main app configuration |
 | `openapi.md` | OpenAPI specification customization |
 | `error-handlers.md` | FastAPI exception handlers |
-| `cors-rate-limiting.md` | CORS and rate limiting configuration |
-| `openapi-spec.yaml` | Complete OpenAPI 3.1 example specification |
+| `cors-rate-limiting.md` | CORS and rate limiting setup |
+| `openapi-spec.yaml` | Complete OpenAPI 3.1 example spec |
 | `graphql-schema.graphql` | GraphQL schema with Relay connections |
 | `grpc-service.proto` | Protocol Buffer service definitions |
 | `rate-limiting.yaml` | Tier-based rate limit configuration |
-| `api-security.yaml` | Auth, CORS, and security header configuration |
+| `api-security.yaml` | Auth, CORS, and security header config |
 
-**Shipped templates:**
+### Templates (7 files)
 
-| Template | What it generates |
+| Template | Purpose |
 |---|---|
-| `fastapi-crud-endpoint.py` | Complete CRUD router with dependency injection |
-| `pydantic-schemas.py` | Request/response validation schemas |
+| `fastapi-crud-endpoint.py` | Complete CRUD router template |
+| `pydantic-schemas.py` | Request/response schema template |
 | `repository-pattern.py` | Repository with tenant isolation |
 | `rate-limiter.py` | Upstash Redis rate limiter |
 | `error-handler.py` | FastAPI exception handlers |
 | `tanstack-server-function.ts` | TanStack Start server functions |
 
-**Shipped scripts:**
+### Scripts (5 files)
 
-| Script | What it does |
-|---|---|
-| `schema_analyzer.py` | Analyzes GraphQL schemas for quality issues |
-| `resolver_generator.py` | Generates TypeScript resolvers from schema |
-| `federation_scaffolder.py` | Scaffolds Apollo Federation subgraphs |
-| `api_helper.py` | Validates OpenAPI specs and generates docs |
-| `validate-api-spec.sh` | Shell script for API specification validation |
+| Script | CLI | Purpose |
+|---|---|---|
+| `schema_analyzer.py` | `python schema_analyzer.py schema.graphql --validate` | Analyze GraphQL schemas for quality |
+| `resolver_generator.py` | `python resolver_generator.py schema.graphql` | Generate TypeScript resolvers from schema |
+| `federation_scaffolder.py` | `python federation_scaffolder.py service-name --entities Entity` | Scaffold Apollo Federation subgraphs |
+| `api_helper.py` | `python api_helper.py validate --spec openapi.yaml` | Validate OpenAPI specs and generate docs |
+| `validate-api-spec.sh` | `bash validate-api-spec.sh` | Validate API specifications |
 
-## Real-World Walkthrough
+### Component Spotlights
 
-You are building the backend for a B2B SaaS application that manages customer feedback. The product has three core resources -- organizations (multi-tenant), feedback items, and tags -- and needs to support both a web dashboard and a public API for integrations.
+#### api-design (skill)
 
-You start with the resource design:
+**What it does:** Activates when you are designing, reviewing, or troubleshooting APIs across any paradigm -- REST, GraphQL, gRPC, or Python library architecture. Provides concrete patterns, templates, and validation tools for building production-grade APIs.
 
-```
-Design a REST API for a multi-tenant customer feedback platform -- organizations own feedback items, which can be tagged and have status workflows
-```
+**Input -> Output:** API requirements (resources, operations, constraints) -> URL design, schemas, authentication setup, pagination, error handling, OpenAPI spec, and implementation templates.
 
-The skill produces the resource hierarchy: `/api/v1/organizations/{org_id}/feedback` for feedback items scoped to an organization, `/api/v1/organizations/{org_id}/tags` for organization-specific tags. It enforces the conventions: plural nouns, max two levels of nesting, lowercase with hyphens. Each resource gets the full HTTP method mapping -- GET (list with pagination), GET by ID, POST (returns 201 with Location header), PATCH (partial update), DELETE (returns 204).
+**When to use:**
+- Creating new API endpoints in any paradigm
+- Designing resource hierarchies and URL structures
+- Writing OpenAPI/Swagger specifications
+- Implementing authentication (OAuth, JWT, API keys)
+- Setting up pagination, filtering, and sorting
+- Reviewing existing API designs for best practices
+- Building GraphQL schemas with federation
+- Designing Python library public APIs
 
-The error response format uses a structured envelope with error code, human-readable message, field-level validation details, request ID for tracing, and timestamp. This format is consistent across every endpoint, so API consumers write one error handler.
+**When NOT to use:**
+- Building MCP servers for Claude Code -> use `mcp-server`
+- Writing actual endpoint implementation logic -> use language-specific development skills
+- Designing database schemas -> use `content-modelling` for data modeling
 
-Next, you need the implementation:
-
-```
-Generate the FastAPI endpoints and Pydantic schemas for the feedback resource -- it needs cursor-based pagination and tenant isolation
-```
-
-The skill pulls from the FastAPI CRUD template and repository pattern template. You get a complete router with `create_feedback`, `get_feedback`, `list_feedback` (with cursor-based pagination), `update_feedback`, and `delete_feedback`. The Pydantic schemas enforce validation: `FeedbackCreate` requires a title (1-500 chars) and description, `FeedbackRead` exposes only public fields with `from_attributes=True` for ORM compatibility. The repository pattern handles tenant isolation -- every query is scoped to `current_user.tenant_id`.
-
-The pagination implementation uses cursor-based pagination by default (the skill recommends this over offset for production APIs). The response includes `nextCursor` and `hasMore` fields. You ask about the trade-offs:
-
-```
-When should I use offset pagination instead of cursor-based? Some of our internal tools need page numbers.
-```
-
-The skill explains: cursor-based is more performant and consistent (no skipped/duplicated items when data changes), but offset gives you page numbers and total counts that admin dashboards often need. For the public API, stick with cursor. For internal admin endpoints, offset is acceptable. Both patterns are in the pagination example file.
-
-Now authentication. The public API needs API keys for integrations, but the web dashboard uses OAuth:
+**Try these prompts:**
 
 ```
-Set up authentication -- API keys for the public integration API and OAuth 2.0 with JWT for the web dashboard
+Design a REST API for an e-commerce platform with products, orders, customers, and inventory tracking
 ```
 
-The skill references `authentication.md` and produces the dual authentication setup: API keys validated via middleware with the `X-API-Key` header pattern, OAuth 2.0 Authorization Code flow with PKCE for the SPA dashboard, and JWT tokens with appropriate claims (user ID, tenant ID, roles). The FastAPI dependency injection handles both auth methods transparently -- endpoints accept either authentication type through a unified `get_current_user` dependency.
+```
+Review my API endpoints -- I'm not sure about the pagination approach and the error response format looks inconsistent
+```
 
-Rate limiting comes next. You use the rate limiter template with tier-based configuration: free-tier organizations get 100 requests/minute, paid get 1,000, enterprise gets 10,000. The `X-RateLimit-*` headers and `429 Too Many Requests` response follow the conventions in `rate-limiting.yaml`.
+```
+I need a GraphQL schema for a social media app with users, posts, comments, and real-time notifications via subscriptions
+```
 
-Before shipping, you run the API design checklist: all endpoints use nouns, consistent response envelopes, error responses include codes and actionable messages, pagination on all list endpoints, authentication documented, rate limit headers defined, versioning strategy documented, CORS configured for known origins, idempotency keys for mutations. You also run the security review checklist from `security-review.md`.
+```
+Set up Apollo Federation to split our monolith GraphQL API into user, product, and order subgraphs
+```
 
-The OpenAPI spec is generated and validated with the shipped `api_helper.py` script. Client SDK generation from the spec produces TypeScript and Python clients that your integration partners can use immediately.
-
-Total development time for the full API: two days instead of the week it would have taken designing each pattern from scratch. The API launches with consistent conventions, proper security, pagination that scales, and a validated specification that generates client libraries.
-
-## Usage Scenarios
-
-### Scenario 1: Designing a REST API from scratch
-
-**Context:** You are starting a new microservice and need to design the API before implementation. The service manages user subscriptions with plans, billing, and usage tracking.
-
-**You say:** "Design a REST API for a subscription management service -- plans, subscriptions, invoices, and usage metering"
-
-**The skill provides:**
-- Resource hierarchy with proper nesting (`/plans`, `/subscriptions/{id}/invoices`)
-- HTTP method mapping with correct status codes for each operation
-- Request/response schemas with validation rules
-- Cursor-based pagination for list endpoints
-- Webhook design for subscription lifecycle events (created, renewed, cancelled)
-- Idempotency key pattern for payment-related mutations
-
-**You end up with:** A complete API design document with URLs, methods, schemas, and an OpenAPI specification ready for implementation and client SDK generation.
-
-### Scenario 2: Adding GraphQL federation to a monolith
-
-**Context:** Your monolithic GraphQL API is becoming unwieldy. You want to split it into federated subgraphs by domain without breaking existing clients.
-
-**You say:** "I need to split our monolith GraphQL API into federated subgraphs -- we have users, products, and orders that reference each other"
-
-**The skill provides:**
-- Federation architecture with entity references between subgraphs
-- Entity key definitions and reference resolver patterns
-- Gateway configuration for composing subgraphs
-- Federation scaffolder script to generate subgraph boilerplate
-- Migration strategy from monolith to federation without client-side changes
-
-**You end up with:** Scaffolded subgraph projects with proper entity references, a gateway configuration, and a migration plan that preserves backward compatibility.
-
-### Scenario 3: Reviewing and hardening an existing API
-
-**Context:** Your API is in production but was built quickly without following conventions. You are getting bug reports about inconsistent error responses and missing pagination.
-
-**You say:** "Review our API -- error responses are inconsistent, some endpoints return arrays instead of paginated results, and we have no rate limiting"
-
-**The skill provides:**
-- API design checklist audit identifying specific violations
-- Consistent error envelope format with migration path
-- Pagination retrofit strategy (adding cursor pagination without breaking existing clients)
-- Rate limiting configuration with tier-based limits
-- Versioning strategy for making breaking changes safely
-
-**You end up with:** A prioritized list of fixes with implementation patterns for each, plus a versioning plan for changes that cannot be made backward-compatibly.
-
-### Scenario 4: Building a Python library with a clean public API
-
-**Context:** You are packaging internal code as a public Python library and need to design the API surface to be intuitive, well-documented, and maintainable.
-
-**You say:** "I'm turning our internal data processing code into a public Python library -- help me design the public API following best practices"
-
-**The skill provides:**
-- Package structure template with clear public/private separation
-- SOLID principles applied to library API design
-- Exception hierarchy pattern for the library
-- Configuration pattern for flexible initialization
-- pyproject.toml template with proper metadata, dependencies, and entry points
-- README and CONTRIBUTING templates
-
-**You end up with:** A production-ready Python library scaffold with clean public API, proper exception handling, configuration management, and complete project metadata.
-
-## Ideal For
-
-- **Teams shipping their first production API** -- the design patterns, status codes, and error conventions prevent the mistakes you would learn from in year two
-- **Backend engineers crossing paradigm boundaries** -- REST expert building first GraphQL schema gets Relay connections, DataLoader, and complexity limits from day one
-- **Organizations standardizing API conventions** -- the checklists and reference documents serve as a living style guide for API design reviews
-- **Developers needing working code fast** -- six templates generate production-ready FastAPI, Pydantic, and TypeScript code, not pseudocode
-- **Teams maintaining public APIs** -- versioning strategies, deprecation patterns, and SDK generation from OpenAPI specs reduce maintenance burden
-
-## Not For
-
-- **Building MCP (Model Context Protocol) servers** -- use [mcp-server](../mcp-server/) for MCP-specific tool definitions and server patterns
-- **Designing agent tool schemas for LLM consumption** -- use [tool-design](../tool-design/) for tool description optimization and parameter design
-- **Frontend-only development without API concerns** -- use [react-development](../react-development/) or [nextjs-development](../nextjs-development/) for client-side patterns
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through a deep resource tree.
-
-The **SKILL.md** body provides the quick reference: REST resource design with URL patterns and HTTP methods, status code tables, error response format, GraphQL schema patterns, FastAPI route patterns, Pydantic schema patterns, pagination (cursor and offset), authentication patterns (JWT, API keys, OAuth flows), rate limiting headers, and anti-patterns to avoid. This covers the most common design decisions without needing the references.
-
-When deeper detail is needed, Claude draws from the 18 reference documents organized by concern area:
-
-- **REST references** (`rest-best-practices.md`, `common-patterns.md`, `versioning-strategies.md`) provide comprehensive REST conventions, webhook patterns, batch operations, and deprecation strategies
-- **GraphQL references** (`schema-patterns.md`, `federation-guide.md`, `performance-optimization.md`, `graphql-schema.graphql`) cover schema design, Apollo Federation, DataLoader, caching, and query complexity
-- **Security references** (`authentication.md`, `cors-rate-limiting.md`, `api-security.yaml`, `rate-limiting.yaml`) handle OAuth flows, JWT patterns, CORS configuration, and tier-based rate limiting
-- **Implementation references** (`fastapi-setup.md`, `openapi.md`, `error-handlers.md`, `openapi-spec.yaml`, `grpc-service.proto`) provide framework-specific configuration and specification examples
-- **Python references** (`architectural-principles.md`, `pep-standards.md`) apply SOLID principles and PEP conventions to library API design
-
-The templates, scripts, and examples are invoked when you need working code: templates generate implementation starters, scripts validate and analyze specifications, and examples demonstrate complete patterns.
-
-## Related Plugins
-
-- **[Code Review](../code-review/)** -- Multi-agent swarm review covering security, performance, and style for API implementation code
-- **[Testing Framework](../testing-framework/)** -- Test infrastructure and strategy for API endpoint testing
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline design for deploying and monitoring APIs
-- **[Docker Containerization](../docker-containerization/)** -- Container patterns for API service deployment
+```
+What's the best authentication pattern for a mobile app that also has a public API for third-party developers?
+```
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Make me an API" | "Design a REST API for a multi-tenant SaaS with teams, projects, and role-based access control" |
+| "Fix my API" | "My list endpoint returns all 50K records with no pagination -- design cursor-based pagination with proper response metadata" |
+| "Add security" | "Implement OAuth 2.0 authorization code flow for our web app and client credentials for service-to-service calls" |
+| "Use api-design skill" | "Review my OpenAPI spec for best practices -- I'm concerned about versioning, error formats, and rate limiting" |
+
+### Structured Prompt Templates
+
+**For REST API design:**
+```
+Design a REST API for [domain]. The main resources are [resource 1], [resource 2], [resource 3]. Relationships: [resource 1] has many [resource 2], [resource 2] belongs to [resource 3]. I need [auth type] authentication, [pagination type] pagination, and the API will be [public/internal].
+```
+
+**For GraphQL schema design:**
+```
+Design a GraphQL schema for [domain]. Types: [type 1] with fields [fields], [type 2] with fields [fields]. I need Relay-compliant pagination on [list fields], subscriptions for [real-time events], and federation-ready entity definitions.
+```
+
+**For API review:**
+```
+Review these API endpoints for best practices: [paste endpoint list or OpenAPI spec]. Check for: URL naming, HTTP method usage, error response consistency, pagination, authentication, rate limiting, and versioning.
+```
+
+### Prompt Anti-Patterns
+
+- **Designing without specifying resources**: "Build me an API for my app" -- the skill needs to know your domain resources, relationships, and constraints. Be specific about what entities exist and how they relate.
+- **Mixing paradigms without rationale**: "I want REST and GraphQL and gRPC for everything" -- each paradigm has strengths. The skill will help you choose the right one for each use case rather than using all three everywhere.
+- **Skipping security until the end**: "First design the endpoints, we'll add auth later" -- security patterns affect URL design, response formats, and error handling. Design them together.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a multi-tenant project management SaaS. The frontend is a React SPA, there will eventually be a mobile app, and enterprise customers will need a public API for integrations. You have three main resources: organizations (tenants), projects, and tasks.
+
+**Step 1: Resource design.** You ask: "Design a REST API for a multi-tenant project management app. Resources: organizations, projects, tasks. An organization has many projects, a project has many tasks. Tasks have assignees (users within the organization)." The skill produces a resource hierarchy:
+```
+/api/v1/organizations/{org_id}/projects
+/api/v1/organizations/{org_id}/projects/{project_id}/tasks
+/api/v1/organizations/{org_id}/members
+```
+It recommends limiting nesting to 2 levels and providing shortcut routes for frequently-accessed resources: `/api/v1/tasks?project_id=X` for cross-project task queries.
+
+**Step 2: Schema design.** You ask: "Define the Pydantic schemas for tasks with validation." The skill produces `TaskCreate`, `TaskRead`, `TaskUpdate`, and `TaskList` schemas using the Pydantic patterns from the reference. TaskCreate requires title (min 1, max 255 chars) and project_id, with optional description, assignee_id, due_date, and priority (enum: low, medium, high, urgent). TaskRead includes computed fields: created_at, updated_at, and organization_id (derived from project).
+
+**Step 3: Pagination and filtering.** The skill recommends cursor-based pagination for tasks (they change frequently, offset-based would skip or duplicate items) and provides the response format with nextCursor, hasMore, and totalCount. Filtering supports `?status=open&assignee_id=X&due_before=2025-01-01` with validation on all filter parameters.
+
+**Step 4: Authentication.** You ask: "Design auth for three contexts: web SPA, future mobile app, and enterprise public API." The skill recommends:
+- **Web SPA**: Authorization Code Flow with PKCE (no client secret stored in browser)
+- **Mobile**: Same PKCE flow with deep link redirect
+- **Public API**: Client credentials flow for service-to-service, with API key fallback for simpler integrations
+- Tenant isolation enforced at the repository layer (every query scoped to org_id from the JWT claims)
+
+**Step 5: Error handling and rate limiting.** The skill produces a standardized error envelope, maps it to HTTP status codes for each failure type, and adds rate limiting at three tiers: free (100 req/min), pro (1000 req/min), enterprise (custom). Rate limit headers are included in every response.
+
+**Step 6: Validation.** You run the API design checklist: all endpoints use nouns, consistent response envelope, error responses include codes and messages, pagination on all list endpoints, auth documented, rate limits defined, versioning via URL prefix, CORS configured for known origins, idempotency keys for mutations, OpenAPI spec validates. Two items flagged: missing webhook endpoints for task events (added) and no deprecation strategy (added sunset header pattern).
+
+**Gotchas discovered:** The initial design used `/projects/{id}/tasks` without the organization prefix, which would have required resolving the organization from the project in every request. The skill caught this and recommended the explicit hierarchy for clarity and security. Also, the initial error format used different field names for validation errors vs. auth errors -- standardized to a single envelope.
+
+## Usage Scenarios
+
+### Scenario 1: Designing a public API for a developer platform
+
+**Context:** You are building a developer platform with webhooks, API keys, and SDK generation. Third-party developers will build integrations against your API.
+
+**You say:** "Design a public API for a developer platform. Developers register apps, get API keys, configure webhooks, and access user data with OAuth consent. I need excellent DX."
+
+**The skill provides:**
+- OAuth 2.0 authorization code flow for user data access
+- API key management endpoints (create, rotate, revoke)
+- Webhook registration and delivery with retry logic and signature verification
+- OpenAPI spec structured for SDK generation (proper operationIds, tags, descriptions)
+- Rate limiting tiers with clear upgrade paths
+
+**You end up with:** A complete API design document that an SDK generator can consume, with developer-friendly error messages and a webhook system that handles delivery failures gracefully.
+
+### Scenario 2: Migrating from REST to GraphQL for mobile clients
+
+**Context:** Your mobile app makes 8 REST calls per screen load because each endpoint returns a fixed shape. You want to move to GraphQL to reduce round trips.
+
+**You say:** "My mobile app hits 8 REST endpoints per screen. Help me design a GraphQL schema that lets the mobile team fetch everything in one query."
+
+**The skill provides:**
+- GraphQL schema with types that map to your existing REST resources
+- Relay-compliant connection types for paginated lists
+- DataLoader setup to prevent N+1 queries from the flexible graph
+- Complexity limiting to prevent abusive queries
+- Migration strategy: GraphQL gateway in front of existing REST services
+
+**You end up with:** A GraphQL schema that reduces 8 round trips to 1, with performance guardrails that prevent the flexibility from becoming a liability.
+
+### Scenario 3: Setting up Apollo Federation for microservices
+
+**Context:** Your monolith GraphQL API is becoming a bottleneck. Three teams own different parts of the schema and deploy conflicts are frequent.
+
+**You say:** "Split our GraphQL monolith into federated subgraphs for user, product, and order teams."
+
+**The skill provides:**
+- Entity definitions with `@key` directives for cross-subgraph references
+- Gateway configuration with subgraph routing
+- Scaffolding via `federation_scaffolder.py` script
+- Schema composition validation steps
+- Migration plan: incremental extraction starting with the most independent subgraph
+
+**You end up with:** Three independently deployable subgraphs with a federated gateway, plus CI validation that catches schema composition errors before deploy.
+
+---
+
+## Decision Logic
+
+**When to use REST vs GraphQL vs gRPC?**
+
+REST is the default for public APIs, CRUD-heavy services, and when cacheability matters (HTTP caching works natively). GraphQL is recommended when clients need flexible data shapes (mobile apps with varying screen sizes), when reducing round trips matters, or when multiple teams consume the same backend with different data needs. gRPC is recommended for internal service-to-service communication where latency matters, for streaming (bidirectional real-time data), and when strong typing with code generation is a priority.
+
+**When to use cursor-based vs offset-based pagination?**
+
+Cursor-based for datasets that change frequently (new items inserted, items deleted) or large datasets where deep pagination is common. Offset-based when simplicity matters, the dataset is small and stable, or when "jump to page N" is a UI requirement.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| No versioning strategy | Breaking change deployed, all clients break simultaneously | Add URL-based versioning (`/v1/`, `/v2/`) with sunset headers and 6-month deprecation windows |
+| N+1 queries in GraphQL | Database overwhelmed by nested queries; response times spike | Implement DataLoader for batching; add query complexity limits |
+| Inconsistent error formats | Client teams write bespoke error handling for each endpoint | Standardize on single error envelope; add response interceptor middleware |
+| Rate limiting missing | Single abusive client takes down the API for everyone | Add per-user rate limiting with tiered limits; return 429 with Retry-After header |
+| CORS misconfigured | Frontend team blocked by browser; wildcard origin used as quick fix | Configure specific allowed origins; never use `*` in production with credentials |
+
+## Ideal For
+
+- **Backend engineers designing new APIs** who need production-ready patterns for REST, GraphQL, or gRPC instead of inventing conventions from scratch
+- **Full-stack developers building SaaS products** who need authentication, multi-tenancy, rate limiting, and pagination designed correctly from the start
+- **Teams migrating API paradigms** (REST to GraphQL, monolith to federation) who need migration strategies with concrete implementation steps
+- **API reviewers and tech leads** who need checklists and validation tools to catch design problems before launch
+- **Python developers building libraries** who need SOLID architecture patterns, PEP-compliant packaging, and clean public API design
+
+## Not For
+
+- **Building MCP servers** for Claude Code -- MCP has its own protocol and patterns. Use `mcp-server`.
+- **Database schema design** -- data modeling for CMS and content systems. Use `content-modelling`.
+- **Frontend API consumption** -- how to call APIs from React/Next.js. Use `react-development` or `nextjs-development`.
+
+## Related Plugins
+
+- **code-review** -- Review your API implementation code for security, performance, and style
+- **testing-framework** -- Test your API endpoints with integration tests
+- **cicd-pipelines** -- Deploy your API with CI/CD pipelines and container orchestration
+- **docker-containerization** -- Containerize your API service
+- **typescript-development** -- Implement TypeScript API clients and server-side handlers
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
