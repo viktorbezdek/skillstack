@@ -1,7 +1,7 @@
 """
 Drift contract test for validate_plugin.py vs .github/scripts/validate_plugins.py.
 
-Both validators are run against well-known plugins (skillstack-workflows, skill-creator)
+Both validators are run against well-known plugins (skillstack-workflows, skill-foundry)
 and their outputs are compared to detect drift between the two implementations.
 
 The contract: for plugins that are VALID, both validators should agree on "no errors".
@@ -60,11 +60,11 @@ class TestValidatorDrift:
         assert local == [], f"local validator found errors: {local}"
         assert repo == [], f"repo validator found errors: {repo}"
 
-    def test_skill_creator_clean_in_both(self) -> None:
-        """skill-creator (single-skill plugin) should pass both validators."""
-        plugin_dir = REPO_ROOT / "skill-creator"
+    def test_skill_foundry_clean_in_both(self) -> None:
+        """skill-foundry (single-skill plugin) should pass both validators."""
+        plugin_dir = REPO_ROOT / "skill-foundry"
         if not plugin_dir.is_dir():
-            pytest.skip("skill-creator not found in repo")
+            pytest.skip("skill-foundry not found in repo")
 
         local = local_errors(plugin_dir)
         repo = repo_errors(plugin_dir)
