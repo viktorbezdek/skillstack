@@ -6,22 +6,9 @@ Design tools optimized for LLM agents rather than human developers. Consolidatio
 
 ## What Problem Does This Solve
 
-When agent systems underperform, the culprit is often the tool interface, not the model. Overlapping tool descriptions cause agents to pick the wrong tool; vague parameter names force agents to guess; missing error context leaves agents unable to recover; and growing tool collections consume context budget with redundant descriptions. This skill applies the Consolidation Principle and Architectural Reduction to shrink tool sets, sharpen descriptions, and design error messages that give agents enough information to self-correct — producing measurable gains in task completion without changing the underlying model.
+When agent systems underperform, the culprit is often the tool interface, not the model. Overlapping tool descriptions cause agents to pick the wrong tool. Vague parameter names force agents to guess. Missing error context leaves agents unable to recover. Growing tool collections consume context budget with redundant descriptions. Most teams approach tool design the way they approach human-facing APIs -- clear enough for a developer who can read docs and experiment. But agents infer contracts from descriptions and generate calls from natural language, so every ambiguity becomes a failure mode that no amount of prompt engineering can fix.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "My agent keeps calling the wrong tool when there are multiple options" | The Consolidation Principle — merging overlapping tools into single comprehensive tools with unambiguous scopes |
-| "How should I write tool descriptions so the model uses them correctly?" | Description structure covering what the tool does, when to use it, parameter constraints, return format, and error conditions |
-| "I have 30 tools and the agent seems confused about which to pick" | Namespacing strategy, the 10-20 tool guideline, and hierarchy patterns with umbrella routing tools |
-| "My tool errors give the agent no way to fix its mistake" | Error message design patterns that include retry guidance, corrected format examples, and actionable recovery steps |
-| "Should I use MCP tools and how do I reference them correctly?" | MCP fully-qualified naming requirements (`ServerName:tool_name`) and why unqualified names fail in multi-server setups |
-| "Is it better to give the agent file system access or build custom tools?" | The File System Agent Pattern and Architectural Reduction case study showing when primitive tools outperform specialized wrappers |
-
-## When NOT to Use This Skill
-
-- building MCP servers or MCP protocol implementation -- use [mcp-server](../mcp-server/) instead
+This skill applies the Consolidation Principle and Architectural Reduction to shrink tool sets, sharpen descriptions, and design error messages that give agents enough information to self-correct -- producing measurable gains in task completion without changing the underlying model.
 
 ## Installation
 
@@ -34,12 +21,10 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
-## How to Use
-
 **Direct invocation:**
 
 ```
-Use the tool-design skill to ...
+Use the tool-design skill to review my agent's tool set
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -51,31 +36,55 @@ Use the tool-design skill to ...
 
 ## What's Inside
 
-- **When to Activate** -- Specific conditions for using this skill: new tool creation, debugging tool failures, optimizing existing tool sets, or standardizing tool conventions.
-- **Core Concepts** -- The foundational ideas: tools as contracts between deterministic systems and non-deterministic agents, the Consolidation Principle, and tool descriptions as prompt engineering.
-- **Detailed Topics** -- Deep dives into the tool-agent interface, namespacing strategies, Architectural Reduction (including the File System Agent Pattern), description engineering, response format optimization, and error message design.
-- **Practical Guidance** -- Anti-patterns to avoid (vague descriptions, cryptic parameters, missing error handling) and a 5-step tool selection framework.
-- **Examples** -- Annotated well-designed vs. poorly-designed tool side-by-side, with failure mode analysis for the bad example.
-- **Guidelines** -- 12 actionable rules covering descriptions, consolidation, token efficiency, naming conventions, tool count limits, and iterating on failure data.
-- **Integration** -- How this skill connects to context-fundamentals, multi-agent-patterns, and evaluation.
-- **References** -- Links to the Best Practices reference and the Architectural Reduction case study with production evidence.
+This is a **single-skill plugin** with two reference documents and two eval suites.
 
-## Version History
+| Component | Path | Purpose |
+|---|---|---|
+| Skill | `skills/tool-design/SKILL.md` | Core methodology: Consolidation Principle, Architectural Reduction, description engineering, error message design, MCP naming, tool collection sizing |
+| Reference | `references/best_practices.md` | Extended guidelines: description structure, naming conventions, error message schemas, response format optimization, anti-pattern catalog, design checklist |
+| Reference | `references/architectural_reduction.md` | Production case study: text-to-SQL agent rebuilt from 17 specialized tools to 2 primitive tools -- 3.5x faster, 37% fewer tokens, 100% success rate |
+| Evals | `evals/trigger-evals.json` | 13 trigger scenarios including 3 NOT-for boundary tests (MCP servers, multi-agent, memory) |
+| Evals | `evals/evals.json` | 3 output quality scenarios for design walkthroughs, reviews, and greenfield setup |
 
-- `1.0.4` fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins (f25da8a)
-- `1.0.3` fix(tool-design): add standard keywords and expand README to full format (4502e00)
-- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.0` Initial release (697ea68)
+## Usage Scenarios
 
-## Related Skills
+**1. "My agent keeps calling the wrong tool when there are multiple options"**
+The skill teaches the Consolidation Principle: if a human engineer cannot definitively say which tool to use, the agent cannot either. It walks through merging overlapping tools into single comprehensive tools with unambiguous scopes, reducing tool count from 30+ to the recommended 10-20 range.
 
-- **[Agent Evaluation](../agent-evaluation/)** -- Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, ...
-- **[Agent Project Development](../agent-project-development/)** -- Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process...
-- **[Bdi Mental States](../bdi-mental-states/)** -- Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPA...
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents...
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Cov...
+**2. "We rebuilt our agent with fewer tools and it actually got better"**
+The Architectural Reduction case study documents a production text-to-SQL agent that went from 17 specialized tools (GetEntityJoins, LoadCatalog, SearchSchema, etc.) to 2 primitive tools (ExecuteCommand, ExecuteSQL). Results: average execution time dropped from 275s to 77s, success rate went from 80% to 100%, and token usage dropped 37%. The skill explains when this pattern applies and when it does not.
+
+**3. "How should I write tool descriptions so the model uses them correctly?"**
+The description engineering section provides a four-question framework: what does the tool do, when should it be used, what inputs does it accept, and what does it return. Includes side-by-side examples of well-designed vs poorly-designed tools with failure mode analysis for the bad example.
+
+**4. "My tool errors give the agent no way to fix its mistake"**
+The error message design section covers structured error responses with actionable recovery guidance -- including retry timing for rate limits, corrected format examples for validation errors, and alternative suggestions for not-found errors. Error messages serve two audiences (developers and agents), and the skill prioritizes agent recovery.
+
+**5. "Should I give the agent file system access or build custom tools?"**
+The File System Agent Pattern shows when primitive tools (bash + SQL) outperform specialized wrappers. The skill provides prerequisites for success (high documentation quality, sufficient model capability, safe sandbox) and explicit failure conditions (messy data, specialized domain knowledge, safety constraints).
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Creating new tools for an agent system
+- Debugging tool-related failures or misuse (agent picks wrong tool, generates bad parameters)
+- Optimizing an existing tool set for better agent performance
+- Standardizing tool conventions across a codebase
+- Evaluating whether to build custom tools or provide primitive capabilities
+
+**Do NOT use when:**
+- Building MCP servers or implementing the MCP protocol -- use [mcp-server](../mcp-server/) instead
+- Designing multi-agent coordination or agent handoffs -- use [multi-agent-patterns](../multi-agent-patterns/) instead
+- Implementing agent memory or persistence -- use [memory-systems](../memory-systems/) instead
+
+## Related Plugins in SkillStack
+
+- **[Agent Evaluation](../agent-evaluation/)** -- Evaluate agent systems including tool usage effectiveness
+- **[Agent Project Development](../agent-project-development/)** -- End-to-end agent project methodology including tool selection
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Coordination patterns where each agent has its own tool set
+- **[MCP Server](../mcp-server/)** -- Build MCP servers that expose the tools this skill teaches you to design
+- **[Memory Systems](../memory-systems/)** -- Agent memory architectures that complement well-designed tool interfaces
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
