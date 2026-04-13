@@ -2,229 +2,296 @@
 
 # Critical Intuition
 
-> Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis that reads between the lines -- the analytical complement to creative problem-solving.
+> Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth -- pattern recognition, bias detection, Bayesian reasoning, red flag identification, and reading between the lines.
+> Single skill + 5 reference documents | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-When someone presents a plan, a proposal, or a decision, the natural response is to engage with what is explicitly stated. Teams evaluate the arguments on the surface, check the numbers that are presented, and assess the logic of the stated reasoning. But the most important information is often what is not said: the assumptions embedded so deeply they are invisible, the data conspicuously absent from the analysis, the incentive structures driving the framing, and the subtle signals that something does not fit.
+Important decisions fail not because the analysis was wrong, but because critical information was hiding in plain sight. A proposal passes review because nobody asked what was conspicuously absent. A partnership agreement looks favorable until someone notices the incentive structure guarantees misalignment. A technical architecture gets approved because the team evaluated what was presented without questioning what was not.
 
-This is how bad decisions get made by smart people. A vendor proposal looks compelling because the comparison omits the criteria where the vendor is weakest. A technical plan seems sound because it addresses the obvious risks while ignoring the systemic ones. A quarterly report reads as positive because the narrative emphasizes growth metrics while burying the retention numbers. The surface-level analysis says "yes" but the deeper reading says "wait."
+The gap is not intelligence -- it is analytical depth. Surface-level analysis catches obvious problems. But the most dangerous failures come from subtext (what is implied but not stated), anomalies (what does not fit the pattern), and hidden dynamics (power structures, incentive misalignments, unstated constraints). These require a different kind of analysis: multi-level reading that examines surface, subtext, and meta layers simultaneously. Most people default to surface-level evaluation because deeper reading is cognitively expensive and there is no systematic process for it.
 
-Most teams lack a systematic process for this kind of critical analysis. They rely on individual experience and gut feelings, which are inconsistent and hard to communicate. When someone says "something feels off about this proposal" they cannot articulate what specifically is wrong, which means the concern gets dismissed. And when nobody in the room has the pattern recognition to spot the issue, the concern never gets raised at all. Teams ship products with unexamined assumptions, sign contracts with hidden downsides, and commit to strategies with undetected contradictions -- not because they are careless, but because they have no structured approach to reading below the surface.
+The cost compounds silently. A team that misses one red flag makes a decision that creates three more hidden problems. By the time the failure is visible, the root cause is buried under layers of subsequent decisions. Retroactively, everyone says "we should have seen that coming" -- and they are right, because the signals were there. They just were not reading at the right level.
 
 ## The Solution
 
-This plugin provides a seven-step analytical methodology that moves from surface-level reading through deep analysis, pattern detection, critical reasoning, probabilistic assessment, intuitive synthesis, and judgment formation. At each step, it draws on specific techniques from five reference libraries covering pattern recognition, critical thinking frameworks, early warning detection, synthesis methods, and extended analysis patterns.
+This plugin provides a seven-step analytical process that moves from surface reading through deep signal detection, critical reasoning, probabilistic assessment, intuitive synthesis, early warning detection, to judgment formation. It is backed by five comprehensive reference documents covering pattern recognition, critical thinking frameworks, sixth sense and early warning signals, synthesis frameworks, and extended patterns for advanced techniques.
 
-The skill teaches multi-level reading: surface level (what is explicitly stated), subtext level (what is implied, what assumptions are embedded, what is conspicuously absent), and meta level (why is this being communicated this way, what are the incentives and constraints). It applies formal reasoning analysis (argument structure, fallacy detection, evidence evaluation), Bayesian probability assessment (prior beliefs updated with evidence strength), and gestalt synthesis (combining disparate signals into a coherent picture).
-
-For early warnings and red flags, the skill identifies leading indicators (upstream signals, stress accumulation, resilience degradation), trajectory sensing (momentum shifts, inflection point detection, tipping point proximity), and red flag clusters (multiple small concerns that individually seem minor but collectively signal a problem). The result is not just "something feels off" but a precise articulation of what specifically is wrong and why it matters.
+The skill teaches multi-level reading (surface, subtext, meta), signal detection (patterns, anomalies, micro-signals, gaps), critical reasoning (argument analysis, fallacy detection, evidence evaluation), probabilistic assessment (Bayesian thinking, multiple hypotheses, confidence calibration), and intuitive synthesis (gestalt perception, cross-domain connections, tacit knowledge). It provides red and green flag catalogs, output format templates, and validation checks to ensure analysis is thorough before forming judgments.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Evaluate proposals based on what is explicitly stated | Multi-level reading catches what is implied, hidden, or conspicuously absent |
-| Accept reasoning at face value if the logic seems sound | Critical reasoning analysis detects hidden assumptions, informal fallacies, and motivated reasoning |
-| "Something feels off" but cannot articulate what | Pattern detection and signal analysis produce specific, communicable concerns |
-| Miss early warning signs until problems become crises | Leading indicators, trajectory sensing, and red flag clusters catch issues upstream |
-| Gut feelings are inconsistent and get dismissed | Structured intuitive synthesis produces calibrated confidence judgments backed by evidence |
-| No process for distinguishing signal from noise in complex situations | Bayesian assessment with multiple hypothesis testing and discriminating evidence identification |
+| Evaluate proposals at face value; miss what is conspicuously absent or implied | Multi-level reading at surface, subtext, and meta layers; gap analysis catches what was not said |
+| Accept evidence without evaluating source credibility or confounding factors | Critical reasoning framework evaluates argument structure, detects fallacies, and assesses evidence quality |
+| Form opinions based on initial impressions without calibrating confidence | Bayesian reasoning updates beliefs with evidence, generates alternative hypotheses, and calibrates confidence |
+| Discover problems only after they become visible failures | Early warning detection identifies leading indicators, stress accumulation, and red flag clusters before tipping points |
+| Analysis stays within a single domain; miss cross-domain patterns | Intuitive synthesis connects analogical reasoning, structural similarities, and principle transfer across domains |
+| Cognitive biases go unchecked; confirmation bias reinforces initial readings | Explicit metacognitive checks for biases, blind spots, and what would change the conclusion |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install critical-intuition@skillstack
 ```
 
+### Prerequisites
+
+No additional dependencies. Pairs naturally with `creative-problem-solving` (generating ideas to analyze), `risk-management` (systematic risk assessment), and `systems-thinking` (understanding feedback loops in complex situations).
+
 ### Verify installation
 
 After installing, test with:
 
 ```
-Read between the lines on this vendor proposal -- something feels off but I can't put my finger on it
+Read between the lines on this vendor proposal -- what are they not telling us, and what incentives are driving their recommended approach?
 ```
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Share something you want analyzed critically: `Analyze this product strategy -- what am I missing?`
-3. The skill reads at multiple levels (surface facts, implied assumptions, meta-level framing) and identifies what is conspicuously absent
-4. It detects patterns, anomalies, and red flag clusters that signal potential problems
-5. You get a calibrated judgment with specific findings, confidence levels, and what would change the assessment
+2. Ask: `"What am I missing in this architecture decision? The team is confident but something feels off."`
+3. The skill activates and performs multi-level reading, identifying hidden assumptions and potential failure modes
+4. Follow up with: `"What are the early warning signs I should watch for if we proceed?"`
+5. The skill provides leading indicators and red flag clusters to monitor
+
+---
+
+## System Overview
+
+```
+critical-intuition (plugin)
+└── critical-intuition (skill)
+    ├── 7-step analysis process
+    │   ├── Step 1: Multi-level reading (surface, subtext, meta)
+    │   ├── Step 2: Signal detection (patterns, anomalies, micro-signals)
+    │   ├── Step 3: Critical reasoning (arguments, fallacies, evidence)
+    │   ├── Step 4: Probabilistic assessment (Bayesian, hypotheses)
+    │   ├── Step 5: Intuitive synthesis (gestalt, cross-domain)
+    │   ├── Step 6: Early warning detection (leading indicators, red flags)
+    │   └── Step 7: Judgment formation (integration, metacognitive check)
+    └── references/
+        ├── pattern-recognition.md (advanced pattern detection, signal vs noise)
+        ├── critical-thinking.md (argument analysis, logical structure, fallacies)
+        ├── sixth-sense.md (subtle signal detection, micro-signals, early warnings)
+        ├── synthesis-frameworks.md (multi-source synthesis, decision under uncertainty)
+        └── extended-patterns.md (advanced techniques, red/green flag catalogs)
+```
 
 ## What's Inside
 
-| Component | Description |
-|---|---|
-| `critical-intuition` skill | Core skill with the seven-step analytical methodology: multi-level reading, signal detection, critical reasoning, probabilistic assessment, intuitive synthesis, early warning detection, and judgment formation |
-| 5 reference libraries | Pattern recognition, critical thinking, sixth sense and early warnings, synthesis frameworks, and extended patterns with advanced techniques |
-| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
-| 3 output eval cases | Tests pattern detection, critical analysis depth, and judgment quality |
+| Component | Type | Description |
+|---|---|---|
+| `critical-intuition` | Skill | Seven-step analysis from surface reading to judgment formation |
+| `pattern-recognition.md` | Reference | Advanced pattern detection, signal vs. noise discrimination, anomaly detection |
+| `critical-thinking.md` | Reference | Argument analysis, logical structure, formal and informal fallacy detection |
+| `sixth-sense.md` | Reference | Subtle signal detection, micro-signals, early warning systems, tipping points |
+| `synthesis-frameworks.md` | Reference | Multi-source synthesis, information integration, decision under uncertainty |
+| `extended-patterns.md` | Reference | Advanced reading-between-lines techniques, red/green flag catalogs, output templates |
+| Trigger evals | Test suite | 13 trigger evaluation cases |
+| Output evals | Test suite | 3 output quality evaluation cases |
 
-### critical-intuition
+### Component Spotlights
 
-**What it does:** Activates when you need to analyze something critically, detect what is hidden or implied, identify red flags and early warnings, evaluate reasoning rigor, or form judgments under uncertainty. Provides structured analytical depth that goes beyond surface-level evaluation.
+#### critical-intuition (skill)
+
+**What it does:** Activates when users need rigorous analytical depth -- detecting hidden patterns, exposing blind spots, evaluating proposals, or reading between the lines. Provides a seven-step process from multi-level reading through signal detection, critical reasoning, probabilistic assessment, intuitive synthesis, early warning detection, to judgment formation.
+
+**Input -> Output:** A situation, proposal, document, or decision to analyze -> Multi-level analysis revealing hidden dynamics, bias assessment, probabilistic judgment with confidence calibration, early warning indicators, and actionable implications.
+
+**When to use:**
+- Reading between the lines on proposals, communications, or situations
+- Identifying what is missing, hidden, or unstated
+- Critically evaluating arguments, evidence, or reasoning
+- Detecting early warning signs or red flags
+- Synthesizing complex information under uncertainty
+- Risk assessment requiring deep pattern analysis
+
+**When NOT to use:**
+- Generating new creative solutions (use `creative-problem-solving`)
+- Brainstorming or strategic reframing (use `creative-problem-solving`)
+- First-principles reasoning about what to build (use `creative-problem-solving`)
 
 **Try these prompts:**
 
 ```
-Read between the lines on this email from our biggest client -- they say everything is fine but I sense a problem
+Read between the lines on this vendor's proposal. They're recommending a 3-year contract with early termination penalties. What incentives are driving this structure?
 ```
 
 ```
-What am I missing in this technical design? It looks sound but my gut says we're overlooking something
+What am I missing? Our competitor just open-sourced their core product. On the surface it seems like a gift. What's the strategic game being played?
 ```
 
 ```
-Analyze this competitor's strategy announcement critically -- what are they really saying and what aren't they saying?
+Analyze this team's architecture decision critically. They're confident but the timeline seems aggressive. What are the hidden risks?
 ```
 
 ```
-I have a feeling our project timeline is at risk despite all green status reports -- help me identify the early warning signs
-```
-
-```
-We're about to make a major hiring decision between two candidates -- help me detect the subtle signals I might be missing in their interview feedback
+I have a gut feeling something is wrong with this partnership but I can't articulate it. Help me identify what my intuition is picking up on.
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `pattern-recognition.md` | Advanced pattern detection, multi-level reading techniques, anomaly identification, and signal-to-noise separation |
-| `critical-thinking.md` | Argument analysis, fallacy detection, evidence evaluation frameworks, and reasoning rigor assessment |
-| `sixth-sense.md` | Subtle signal detection, leading indicators, trajectory sensing, tipping point proximity, and red flag clusters |
-| `synthesis-frameworks.md` | Information integration, Bayesian synthesis, decision under uncertainty, and metacognitive calibration |
-| `extended-patterns.md` | Advanced techniques for reading between lines, sixth sense development, critical questioning, bias mitigation, and output format templates |
-
-## Real-World Walkthrough
-
-You are a VP of Engineering evaluating a proposal from your infrastructure team to migrate from AWS to Google Cloud. The proposal is 15 pages long, well-structured, with cost comparisons, timeline estimates, risk assessments, and a detailed migration plan. On the surface, it looks thorough and compelling -- the projected savings are 30% annually, the timeline is 9 months, and the risk section identifies and addresses the major concerns. Your CTO is enthusiastic. But something nags at you.
-
-You open Claude Code and share the key sections:
-
-```
-Analyze this cloud migration proposal critically. The numbers look good and the plan seems thorough but something feels off and I can't articulate what. Read between the lines for me.
-```
-
-The critical-intuition skill activates and begins with multi-level reading.
-
-**Surface level:** The proposal states a 30% cost reduction, 9-month timeline, 3-person dedicated team, and low risk of service disruption. The comparison shows GCP winning on 8 of 12 evaluation criteria.
-
-**Subtext level:** The skill identifies several conspicuous absences. The cost comparison includes compute and storage but does not mention egress costs, which are notoriously high during migration. The 9-month timeline assumes no feature development freeze, but the proposal does not address how the migration team will handle ongoing production changes to the systems being migrated. The risk section covers technical risks (data loss, downtime) but omits organizational risks (team ramp-up on GCP, loss of AWS-specific institutional knowledge, impact on hiring pipeline for AWS-experienced candidates).
-
-**Meta level:** The skill examines why this proposal is being made now. It notes that the infrastructure team's annual review is in two months, and a major migration project would significantly strengthen their visibility and headcount justification. This does not mean the proposal is wrong, but it means the framing is optimistic by default -- the team has strong incentives to present the most favorable case.
-
-**Pattern detection:** The skill identifies a pattern in the cost projections: they assume current usage levels grow linearly. But your company grew 3x last year. At 3x scale, the GCP pricing tiers shift significantly. The skill calculates that at 3x current usage, the savings drop from 30% to 11%. At 5x, GCP is actually more expensive because of their pricing structure for high-volume compute.
-
-**Anomaly detection:** The 12-criteria comparison rates GCP higher on "managed services ecosystem." But the proposal's own migration plan lists 4 critical AWS-specific managed services (Aurora, SQS, CloudFront, Lambda@Edge) that have no direct GCP equivalents and would need to be replaced with different architectural patterns. The comparison criterion and the migration plan contradict each other.
-
-**Red flag cluster:** Individually, each finding is minor. But clustered together -- omitted egress costs, unaddressed feature development conflicts, organizational incentive bias, growth-blind cost projections, and self-contradicting evaluation criteria -- they form a pattern suggesting the proposal was built backward from the conclusion rather than forward from the evidence.
-
-**Bayesian assessment:** The skill's prior for "cloud migration saves 30% annually" given industry data is about 15% (most migrations save less than projected due to unforeseen costs). The evidence in this proposal does not update that prior upward because the cost analysis has significant gaps. Updated probability of achieving 30% savings: roughly 10-15%.
-
-**Judgment formation:** The migration may still be worthwhile for non-cost reasons (technical capabilities, team preference, strategic alignment), but the financial case is substantially weaker than presented. The skill recommends requesting: a cost analysis including egress fees and growth projections at 3x and 5x, a parallel-development plan for the 9-month migration window, and an independent review by someone outside the infrastructure team.
-
-You present these specific, evidenced concerns to the CTO. The infrastructure team revises the proposal. The updated cost analysis shows 14% savings (not 30%), the timeline extends to 14 months with parallel development, and the team acknowledges two GCP service gaps requiring architectural changes. The project proceeds, but with realistic expectations and proper planning. Your "gut feeling" was right -- the skill just helped you articulate exactly what was wrong.
-
-## Usage Scenarios
-
-### Scenario 1: Evaluating a vendor proposal
-
-**Context:** You received a detailed proposal from a SaaS vendor. The sales team is pushing for a quick decision. The proposal looks good but you want to ensure you are not missing hidden downsides.
-
-**You say:** `Read between the lines on this vendor proposal -- I want to know what they're not telling me`
-
-**The skill provides:**
-- Multi-level reading: surface claims, implied limitations, conspicuous absences
-- Incentive analysis: what the vendor is motivated to emphasize vs downplay
-- Gap detection: what information is missing that you should request before deciding
-- Red flag identification: pricing structures, lock-in clauses, SLA ambiguities
-
-**You end up with:** A specific list of concerns to investigate and questions to ask the vendor before proceeding.
-
-### Scenario 2: Sensing project risk despite green status
-
-**Context:** Your project status reports show green across all workstreams, but you have a nagging sense that the team is behind. You cannot point to any specific data point.
-
-**You say:** `All our status reports are green but I feel like we're heading for trouble -- help me identify the early warning signs I might be sensing`
-
-**The skill provides:**
-- Leading indicator analysis: what signals appear before status turns yellow?
-- Stress accumulation detection: increased overtime, declining code review quality, growing tech debt
-- Trajectory sensing: is velocity stable, increasing, or subtly declining?
-- Red flag cluster mapping: which "minor" issues might collectively indicate a systemic problem?
-
-**You end up with:** Specific metrics to check and questions to ask that will either confirm or dispel your concern with evidence.
-
-### Scenario 3: Analyzing a competitor's public statements
-
-**Context:** Your main competitor announced a "strategic pivot" in their latest earnings call. You need to understand what they are really doing and what it means for your market position.
-
-**You say:** `Our competitor just announced a 'strategic pivot to enterprise' -- analyze what they're really saying and what it means for us`
-
-**The skill provides:**
-- Meta-level reading: why announce this publicly? What is the intended audience?
-- Gap analysis: what did they not say? Which products or markets went unmentioned?
-- Pattern matching: does this match known patterns of companies in similar situations (growth stall, market retreat, repositioning)?
-- Probability assessment: likelihood of different interpretations with discriminating evidence
-
-**You end up with:** A range of interpretations with calibrated probabilities and specific signals to watch that would confirm which interpretation is correct.
-
-### Scenario 4: Evaluating team member signals
-
-**Context:** A key engineer's behavior has changed subtly over the past month. Their work quality is still good but something seems different. You want to understand what you are sensing before it becomes a problem.
-
-**You say:** `My senior engineer seems different lately -- work is still good but something's off. Help me articulate what I might be picking up on`
-
-**The skill provides:**
-- Micro-signal analysis: what behavioral changes are significant vs noise?
-- Pattern matching: common patterns that precede disengagement, burnout, or departure
-- Gap analysis: what interactions or behaviors have stopped or changed?
-- Action framework: how to investigate without being intrusive, and when to have a direct conversation
-
-**You end up with:** A structured assessment of what the behavioral changes might mean and a concrete approach for addressing it.
-
-## Ideal For
-
-- **Leaders making high-stakes decisions** who need to see past well-crafted presentations to the reality underneath
-- **Engineers evaluating technical proposals** where the surface analysis looks sound but experience says something is missing
-- **Product managers assessing market signals** from competitors, customers, or usage data where the important information is in what is not said
-- **Anyone with a "gut feeling" about a situation** who needs help transforming intuition into specific, communicable analysis
-- **Teams building a culture of critical thinking** who want a structured methodology for questioning assumptions and detecting blind spots
-
-## Not For
-
-- **Generating new creative solutions** or brainstorming from scratch -- use [creative-problem-solving](../creative-problem-solving/) instead
-- **Systematic risk assessment** with probability matrices and mitigation planning -- use [risk-management](../risk-management/) instead
-- **Prioritizing work items** or deciding what to build -- use [prioritization](../prioritization/) instead
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with five reference libraries providing analytical depth.
-
-The **core skill** (`SKILL.md`) defines a seven-step analytical methodology: multi-level reading (surface, subtext, and meta levels), signal detection (pattern recognition, anomaly detection, micro-signals, gap analysis), critical reasoning (argument structure, fallacy detection, evidence evaluation), probabilistic assessment (Bayesian updating, multiple hypotheses, confidence calibration), intuitive synthesis (gestalt perception, cross-domain connections, tacit knowledge integration), early warning detection (leading indicators, trajectory sensing, red flag clusters), and judgment formation (information integration, decision under uncertainty, metacognitive calibration). It includes validation checks to ensure analytical rigor before finalizing any judgment.
-
-The five **reference libraries** provide technique depth on demand:
-- **Pattern recognition** -- advanced detection techniques, multi-level reading methods, anomaly identification, and signal-to-noise separation for complex analytical situations
-- **Critical thinking** -- argument analysis, formal and informal fallacy detection, evidence evaluation frameworks, and statistical reasoning assessment
-- **Sixth sense** -- subtle signal detection, leading indicator identification, trajectory sensing, tipping point proximity assessment, and red flag cluster analysis for early warning
-- **Synthesis frameworks** -- information integration methods, Bayesian synthesis, decision under uncertainty, and metacognitive calibration techniques
-- **Extended patterns** -- advanced reading-between-lines techniques, sixth sense development, critical questioning frameworks, bias mitigation strategies, and structured output format templates
-
-The skill explicitly routes to creative-problem-solving when the user needs to generate new ideas rather than analyze existing ones.
-
-## Related Plugins
-
-- **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough solutions through lateral thinking, first principles, game theory, and strategic reframing
-- **[Risk Management](../risk-management/)** -- Systematic risk assessment with probability matrices, mitigation strategies, and monitoring
-- **[Systems Thinking](../systems-thinking/)** -- Analyze complex problems through feedback loops, leverage points, and system dynamics
-- **[Prioritization](../prioritization/)** -- Apply RICE, MoSCoW, ICE, and effort-impact matrices for decision-making
+| `pattern-recognition.md` | Advanced pattern detection, signal vs. noise, meta-patterns, anomaly detection |
+| `critical-thinking.md` | Argument structure analysis, fallacy detection (formal, informal, statistical) |
+| `sixth-sense.md` | Micro-signals, subtle energy shifts, timing variations, early warning systems |
+| `synthesis-frameworks.md` | Multi-source synthesis, information integration, decision making under uncertainty |
+| `extended-patterns.md` | Reading between lines, sixth sense development, red/green flag catalogs, output templates |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "What do you think?" | "Read between the lines on this email from our VP -- what's the real message behind the reorganization announcement?" |
+| "Is this a good idea?" | "Analyze this acquisition target critically. The financials look clean but three board members just sold shares. What patterns do you see?" |
+| "Help me decide" | "I have two conflicting data sources about market size. How should I weight them using Bayesian reasoning?" |
+| "Find problems" | "What early warning signs should I watch for if we proceed with this migration? What are the leading indicators of failure?" |
+
+### Structured Prompt Templates
+
+**For reading between the lines:**
+```
+Analyze [this communication/proposal/document] at three levels: what is explicitly stated, what is implied but not said, and what incentives or power dynamics explain why it is being communicated this way.
+```
+
+**For detecting hidden risks:**
+```
+Our team is [confident/excited] about [decision]. Play devil's advocate: what are we not seeing? What assumptions are we making that could be wrong? What would need to be true for this to fail?
+```
+
+**For early warning monitoring:**
+```
+We're proceeding with [initiative]. What leading indicators should I monitor to detect problems early? What red flag clusters would signal we need to change course?
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for creative solutions:** "How should we solve this?" is a generation question. This skill analyzes existing situations and ideas. Use `creative-problem-solving` to generate, then this skill to evaluate.
+- **Requesting validation instead of analysis:** "Confirm this is a good plan" biases the analysis toward agreement. Instead ask "What am I missing?" or "What could go wrong?"
+- **Providing too little context:** "What do you think about our strategy?" gives the skill nothing to analyze at the subtext and meta levels. Share the actual document, proposal, or situation details.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are CTO of a mid-stage startup. Your company is in acquisition talks with a larger company. The term sheet looks favorable -- premium valuation, retention packages, technical autonomy for 2 years. Your board is enthusiastic. Your CEO has scheduled the signing for next week. But something feels off and you cannot articulate what.
+
+**Step 1: Multi-level reading.** You share the term sheet and ask: "Read between the lines on this acquisition offer. The terms look great but something feels wrong. Help me identify what."
+
+The skill performs three-level analysis. Surface: generous premium, strong retention packages, autonomy guarantees. Subtext: the autonomy clause has a "consistent with parent company strategy" qualifier that could nullify it. The retention packages vest over 4 years but the autonomy guarantee is only 2 years -- meaning years 3-4 of retention have no autonomy protection. Meta: the acquiring company just lost a major product bet and needs your technology to fill the gap. The favorable terms are not generosity -- they are urgency. This affects negotiating position.
+
+**Step 2: Signal detection.** The skill identifies anomalies: (1) the acquiring company's VP of Engineering was not in the meetings -- unusual for a technical acquisition, suggesting the deal is being driven by business strategy, not technical alignment. (2) The due diligence questions focused on customer list and revenue metrics, not technical architecture -- suggesting they value the business more than the technology. (3) The "consistent with parent company strategy" clause appeared in version 3 of the term sheet, not version 1 -- something changed internally.
+
+**Step 3: Critical reasoning.** The skill examines the argument structure of the term sheet: "We value your technical autonomy" paired with a clause that allows overriding it. This is a formal contradiction. The retention packages assume continued autonomy (engineers stay because they have independence), but the term sheet allows removing the condition that makes retention work. The logical conclusion: the retention packages are structured to be exercised, not necessarily honored in spirit.
+
+**Step 4: Probabilistic assessment.** Using Bayesian reasoning: the prior probability that post-acquisition autonomy survives 2+ years is approximately 25% based on industry data. The evidence (VP of Engineering absent, business-focused diligence, strategy-qualifier clause) updates this downward to approximately 10-15%. The tail risk is that your team leaves in years 3-4 when autonomy evaporates but before packages vest, leaving you with neither autonomy nor talent.
+
+**Step 5: Early warning detection.** The skill provides red flag clusters to watch for if you proceed: (1) "alignment meetings" appearing on calendars within 3 months, (2) hiring freezes "until integration planning completes," (3) requests to use the parent company's development tools or processes, (4) your roadmap items being reprioritized to "support the broader platform." Any two of these in the first 6 months indicates autonomy erosion is accelerating.
+
+**Step 6: Judgment formation.** The skill synthesizes: this is not a bad deal, but the real deal is different from the presented deal. The terms are buying your customer base and team, not your technology's independence. The negotiating leverage is that they need this deal more urgently than the premium suggests. The recommendation: renegotiate the autonomy clause to remove the strategy qualifier, extend autonomy to match retention vesting (4 years), and add objective criteria for what constitutes autonomy. If they refuse, that is the clearest signal of what post-acquisition life will look like.
+
+**Gotchas discovered:** The "gut feeling" was real -- it was pattern-matching the contradiction between generous financial terms and a clause that undermined their intent. The skill articulated what intuition was detecting but could not express: the term sheet was internally inconsistent.
+
+## Usage Scenarios
+
+### Scenario 1: Evaluating a technical architecture proposal
+
+**Context:** Your team proposes a microservices migration. The presentation is polished and the team is confident.
+
+**You say:** "Critically analyze this microservices proposal. The team is enthusiastic but the 6-month timeline concerns me. What are we not seeing?"
+
+**The skill provides:**
+- Gap analysis: what was not addressed (data migration, service discovery, distributed tracing)
+- Assumption testing: "our services are already loosely coupled" -- verify against actual code dependencies
+- Red flags: confident timelines without contingency buffers; no mention of rollback strategy
+- Probabilistic assessment of timeline risk based on industry data
+
+**You end up with:** A list of hidden risks, specific questions to ask the team, and early warning indicators for timeline slippage.
+
+### Scenario 2: Reading a competitor's strategic move
+
+**Context:** Your main competitor just announced a free tier for their product -- previously entirely paid.
+
+**You say:** "Our competitor just launched a free tier. What's the strategic game being played? What does this signal about their position?"
+
+**The skill provides:**
+- Multi-level reading: surface (growth strategy), subtext (possibly growth has stalled), meta (may be preparing for funding round needing user metrics)
+- Pattern recognition: free tier launches often precede pricing changes for paid tiers
+- Game theory implications: how this changes the competitive dynamics for your pricing
+- Early warning: watch for their paid tier pricing changes within 6 months
+
+**You end up with:** Strategic interpretation that goes beyond the press release, with actionable monitoring indicators.
+
+### Scenario 3: Gut feeling about a hire
+
+**Context:** You interviewed a senior engineering candidate. Resume is excellent, technical interview was strong, but something feels off.
+
+**You say:** "I can't articulate why but I have a bad feeling about this candidate. Help me identify what my intuition is picking up on."
+
+**The skill provides:**
+- Micro-signal analysis: what specific moments triggered the feeling? (Language hedging, topic avoidance, emphasis patterns)
+- Gap analysis: what questions did the candidate avoid or redirect? What would normally be mentioned but was not?
+- Pattern matching: does the career trajectory have discontinuities that were not explained?
+- Confidence calibration: how much weight should the gut feeling carry vs. the strong technical signals?
+
+**You end up with:** Specific follow-up questions to resolve the ambiguity, and a framework for weighing intuitive signals against objective evidence.
+
+---
+
+## Decision Logic
+
+**When does critical-intuition activate vs. creative-problem-solving?**
+
+These skills are complementary opposites:
+- **critical-intuition:** Analyzing what exists -- proposals, situations, evidence, patterns. Convergent, evaluative, backward-looking.
+- **creative-problem-solving:** Generating what does not yet exist -- solutions, strategies, alternatives. Divergent, generative, forward-looking.
+
+Rule of thumb: if the input is an existing thing to evaluate, use critical-intuition. If the input is a problem to solve, use creative-problem-solving. In practice, they alternate: generate options, critique them, refine, evaluate again.
+
+**Which analysis depth is appropriate?**
+
+The skill calibrates based on stakes:
+- Low stakes (minor decision, reversible): surface + subtext reading, quick red flag scan
+- Medium stakes (significant decision, partially reversible): full seven-step process, probabilistic assessment
+- High stakes (irreversible decision, major consequences): full process with extended patterns, multiple hypothesis testing, explicit metacognitive checks
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Over-reading: finding signals that are not there | Analysis produces alarming conclusions from ambiguous data; every proposal looks suspicious | Calibrate confidence: distinguish high-confidence findings from speculation; require corroborating evidence for strong claims |
+| Analysis paralysis: too many hypotheses, no judgment | Analysis identifies 10 possible interpretations but cannot recommend which is most likely | Force probabilistic ranking: assign relative likelihoods even if uncertain; identify the discriminating evidence that would resolve ambiguity |
+| Confirmation bias in analysis direction | The "gut feeling" biases the analysis toward confirming the initial suspicion | Explicit metacognitive check: what would change my mind? Generate the strongest counter-argument to the conclusion |
+
+## Ideal For
+
+- **Technical leaders** evaluating proposals, architectures, or strategic decisions who need to see beyond the presented surface to hidden risks and dynamics
+- **Negotiators** reading between the lines on term sheets, contracts, or partnership offers who need to understand the other party's actual position and incentives
+- **Product managers** interpreting market signals, competitor moves, or customer feedback where what is not said is as important as what is said
+- **Risk analysts** who need to identify early warning indicators and red flag clusters before problems become visible failures
+
+## Not For
+
+- **Generating new ideas or solutions** -- if you need creative alternatives or breakthrough thinking, use `creative-problem-solving`
+- **Brainstorming or divergent thinking** -- if the problem requires expanding the solution space, use `creative-problem-solving`
+- **Systematic risk frameworks** -- if you need structured risk registers and mitigation plans, use `risk-management` (which this skill complements with deeper pattern detection)
+
+## Related Plugins
+
+- **creative-problem-solving** -- The generative counterpart: create ideas with creative-problem-solving, then evaluate them with critical-intuition
+- **risk-management** -- Structured risk assessment frameworks that critical-intuition's pattern detection feeds into
+- **systems-thinking** -- Deeper systems dynamics for understanding the feedback loops that critical-intuition identifies
+- **prioritization** -- For ranking the risks and opportunities that critical-intuition surfaces
+- **outcome-orientation** -- Define measurable criteria for monitoring the early warning indicators identified here
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
