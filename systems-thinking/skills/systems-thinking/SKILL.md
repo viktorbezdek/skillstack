@@ -1,10 +1,14 @@
 ---
 name: systems-thinking
 description: >-
-  Apply systems thinking principles to analyze problems through feedback loops, leverage
-  points, and system dynamics. Use when doing system analysis, mapping feedback loops,
-  tracing causal relationships, analyzing emergent behavior, complexity analysis, or
-  identifying leverage points.
+  Analyze complex problems through feedback loops, system dynamics, causal relationships,
+  and leverage points to understand WHY a system behaves the way it does. Use when the
+  user asks to map feedback loops, trace causal chains, identify why a problem keeps
+  recurring, find leverage points for change, analyze emergent behavior, or understand
+  a complex system before intervening. NOT for generating creative solutions (use
+  creative-problem-solving). NOT for stress-testing specific assumptions (use
+  critical-intuition). NOT for structured risk registers or mitigation plans (use
+  risk-management).
 ---
 
 # Systems Thinking
