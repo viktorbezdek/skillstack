@@ -50,22 +50,69 @@ Run the commands above from inside a Claude Code session. After installation, th
 4. The skill produces a coverage matrix mapping every input field against valid, empty, null, overflow, and malformed conditions -- plus boundary analysis for numeric fields and a validation checklist
 5. Hand the resulting list to your testing workflow: `Now write tests for all of these edge cases` (which activates test-driven-development or testing-framework)
 
+---
+
+## System Overview
+
+```
+User prompt (describes function/endpoint/form)
+        |
+        v
++------------------+
+|  edge-case-      |
+|  coverage skill  |
++------------------+
+        |
+        +---> Edge Case Categories (classify input space into 6 types)
+        |         |
+        |         v
+        +---> Boundary Analysis (7-value template per numeric/string field)
+        |         |
+        |         v
+        +---> Coverage Matrix (field x condition grid)
+        |         |
+        |         v
+        +---> Validation Checklist (6 input + 4 state dimensions)
+        |         |
+        |         v
+        +---> Error Scenario Template (trigger/symptoms/cause/prevention/recovery)
+        |         |
+        |         v
+        +---> Anti-Pattern Audit (5 common defensive-programming gaps)
+                  |
+                  v
+        Actionable checklist / coverage matrix / runbook entries
+```
+
+Single-skill plugin with no hooks, no MCP servers, and no external dependencies. The skill contains six structured components that Claude applies sequentially to any code artifact you describe.
+
 ## What's Inside
 
-Single-skill plugin shipping one SKILL.md with six structured components, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | What It Provides |
+|---|---|---|
+| **edge-case-coverage** | Skill | Single SKILL.md with six structured analysis components |
+| **trigger-evals** | Eval | 13 trigger eval cases (8 positive, 5 negative) |
+| **output-evals** | Eval | 3 output quality eval cases |
 
-| Component | What It Provides |
-|---|---|
-| **Edge Case Categories** | Taxonomy of six types -- boundary, input, state, resource, network, permission -- each with concrete examples |
-| **Boundary Analysis** | Templates for numeric and string limits showing the seven canonical values to test around any boundary |
-| **Error Scenario Template** | Five-field documentation format (trigger, symptoms, root cause, prevention, recovery) for each failure mode |
-| **Validation Checklist** | Two-section checklist covering input validation (type, format, range, length, characters) and state validation (initialization, resources, permissions, dependencies) |
-| **Coverage Matrix** | Tabular format mapping every input field against five key test conditions: valid, empty, null, overflow, malformed |
-| **Anti-Patterns** | The five most common defensive-programming mistakes with explanations |
+### Component Spotlight
 
-### edge-case-coverage
+#### edge-case-coverage (skill)
 
 **What it does:** Activates when you ask about edge cases, boundary conditions, validation gaps, corner cases, or error scenarios. Walks through a six-category taxonomy (boundary, input, state, resource, network, permission) and applies structured templates to your specific code, producing coverage matrices, boundary analysis trees, validation checklists, and error scenario documentation.
+
+**Input -> Output:** You provide a description of a function, API endpoint, form, or state machine -> The skill produces a coverage matrix, boundary analysis, validation checklist, error scenario documentation, and anti-pattern audit.
+
+**When to use:**
+- Hardening an API endpoint before code review
+- Auditing validation logic for gaps between client and server
+- Documenting failure modes for an on-call runbook
+- Pre-review self-audit on a pull request
+- Analyzing state machine transitions for unguarded paths
+
+**When NOT to use:**
+- Writing the actual test code -> use [test-driven-development](../test-driven-development/) or [testing-framework](../testing-framework/)
+- Performance testing or load analysis -> use dedicated load-testing tools
+- Validating business rules (age limits, pricing tiers) -> product decision, not edge case analysis
 
 **Try these prompts:**
 
@@ -88,6 +135,60 @@ Document the failure modes for our third-party payment gateway integration using
 ```
 Audit this form validation logic -- I want to know every gap between what the client checks and what the server checks
 ```
+
+**Key components in the skill:**
+
+| Component | What It Covers |
+|---|---|
+| Edge Case Categories | Six-type taxonomy: boundary, input, state, resource, network, permission |
+| Boundary Analysis | Seven canonical values to test around any numeric or string limit |
+| Error Scenario Template | Five-field format: trigger, symptoms, root cause, prevention, recovery |
+| Validation Checklist | Six input dimensions (required, type, format, range, length, characters) + four state dimensions |
+| Coverage Matrix | Field-by-condition grid: valid, empty, null, overflow, malformed |
+| Anti-Patterns | Five common defensive-programming mistakes to audit against |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Check my code" | "What edge cases am I missing in this file upload handler?" |
+| "Is this API safe?" | "Build a coverage matrix for this user registration endpoint -- it accepts name, email, password, and date of birth" |
+| "Find bugs" | "Analyze the boundary conditions for the quantity field -- it should be between 1 and 99" |
+| "Help with validation" | "Audit the validation gaps between our React form and the Express API for the checkout flow" |
+| "What could go wrong?" | "Document the error scenarios for our Stripe webhook integration -- timeout, duplicate delivery, out-of-order events" |
+
+### Structured Prompt Templates
+
+**For API endpoint hardening:**
+```
+Build a coverage matrix for my [METHOD] /[path] endpoint. It accepts: [list fields with types and constraints]. Show me every edge case per field.
+```
+
+**For error scenario documentation:**
+```
+Document the failure modes for our [service/integration] using the error scenario template. Key failure paths: [list known failure triggers].
+```
+
+**For pre-review self-audit:**
+```
+What edge cases am I missing in this [function/handler]? [paste code or describe inputs]. Focus on [boundary values / validation gaps / state transitions / resource limits].
+```
+
+**For state machine analysis:**
+```
+Analyze the edge cases in this state machine with states [list states] and transitions [list transitions]. What transitions could happen that shouldn't?
+```
+
+### Prompt Anti-Patterns
+
+- **Naming the skill instead of the need:** "Use edge-case-coverage on my code" -- describe the actual problem instead: "What boundary conditions should I test for this price calculation?"
+- **No context about the code:** "Find edge cases" without describing inputs, types, or constraints -- the skill needs concrete fields to build a coverage matrix against.
+- **Asking for test code instead of edge case enumeration:** "Write edge case tests for my API" -- this plugin identifies *what* to test, not *how*. Hand the output to test-driven-development for implementation.
+- **Combining with unrelated requests:** "Review my code for edge cases and also refactor it and add logging" -- the skill works best when focused on a single function or endpoint at a time.
 
 ## Real-World Walkthrough
 
@@ -112,13 +213,13 @@ Next, Claude applies the **boundary analysis template** to the numeric fields. F
 
 ```
 Value: items[].quantity
-├── Below min: -1 (negative quantity -- refund attack?)
-├── At min: 0 (zero quantity -- valid or rejected?)
-├── Just above min: 1 (minimum valid order)
-├── Normal: 5
-├── Just below max: 99 (assuming stock limit)
-├── At max: 100 (business rule limit)
-└── Above max: 101 (over stock limit)
++-- Below min: -1 (negative quantity -- refund attack?)
++-- At min: 0 (zero quantity -- valid or rejected?)
++-- Just above min: 1 (minimum valid order)
++-- Normal: 5
++-- Just below max: 99 (assuming stock limit)
++-- At max: 100 (business rule limit)
++-- Above max: 101 (over stock limit)
 ```
 
 And for `unitPrice`, the same seven-value analysis reveals that you need to decide: does the server trust the client-supplied price, or validate it against the catalog? If the client sends `unitPrice: 0.01` for a $500 item, is that a bug or a fraud attempt?
@@ -192,6 +293,31 @@ You now have a concrete list of 20+ edge cases, three documented failure scenari
 
 **You end up with:** A complete state transition table with explicit handling for every cell, including the invalid ones.
 
+---
+
+## Decision Logic
+
+This is a single-skill plugin, so there is no component-selection logic. The skill activates when your prompt mentions edge cases, boundary conditions, corner cases, validation, error scenarios, or defensive programming. Once activated, Claude applies the six components sequentially:
+
+1. **Edge Case Categories** -- classifies the input space into six categories (boundary, input, state, resource, network, permission) and identifies which apply
+2. **Boundary Analysis** -- applies the seven-value template to each numeric or string field
+3. **Coverage Matrix** -- builds the field-by-condition grid
+4. **Validation Checklist** -- walks through six input dimensions and four state dimensions
+5. **Error Scenario Template** -- fills in the five-field template for each identified failure mode
+6. **Anti-Pattern Audit** -- checks the code against the five common defensive-programming mistakes
+
+Not every component applies to every query. If you ask about a pure state machine (no input fields), the coverage matrix and boundary analysis may be skipped in favor of state validation. If you ask about a simple function with one numeric input, the error scenario template may not be needed. Claude selects the relevant components based on what you describe.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Prompt is too vague ("find bugs in my code") | Skill activates but produces generic categories without specific values or a coverage matrix | Provide concrete input fields, types, and constraints: "this endpoint accepts name (string, 1-255 chars), age (int, 0-150), email (string, RFC 5322)" |
+| Code is not provided, only described abstractly | Coverage matrix has placeholder values instead of code-specific edge cases | Paste the actual function signature, request schema, or form fields so the skill can produce concrete test values |
+| Expecting test code instead of edge case enumeration | Skill produces a checklist and matrix but no executable tests | Hand the output to test-driven-development or testing-framework: "Now write tests for all of these edge cases" |
+| Business rules confused with technical edge cases | Skill flags "user must be 18+" as a boundary condition when it is actually a product decision | Clarify which constraints are technical (type, format, overflow) vs business rules (minimum age, pricing tiers) -- the skill handles technical boundaries |
+| Over-enumeration on simple inputs | Skill produces 30+ edge cases for a function with two boolean parameters | Scope the request: "Focus on the payment amount and currency code fields, skip the boolean flags" |
+
 ## Ideal For
 
 - **Backend developers shipping API endpoints** -- the coverage matrix catches input validation gaps that code reviews systematically miss
@@ -206,24 +332,12 @@ You now have a concrete list of 20+ edge cases, three documented failure scenari
 - **Performance testing and load analysis** -- resource boundaries (disk, memory, connections) are covered, but systematic load testing is a different discipline. Use dedicated load-testing tools
 - **Business rule validation** -- this plugin identifies *technical* edge cases (null, overflow, timeout). Whether a business rule like "users must be 18+" is correct is a product question, not an edge case question
 
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with no references, hooks, or MCP dependencies. The SKILL.md contains six structured sections that Claude applies sequentially:
-
-1. **Edge Case Categories** -- Claude classifies the input space into six categories (boundary, input, state, resource, network, permission) and identifies which categories apply to the user's specific code
-2. **Boundary Analysis** -- For each numeric or string field, Claude applies the seven-value template (below min, at min, just above, normal, just below max, at max, above max)
-3. **Coverage Matrix** -- Claude builds a table mapping every identified field against five test conditions (valid, empty, null, overflow, malformed)
-4. **Validation Checklist** -- Claude walks through the six input dimensions and four state dimensions, checking each against the existing code
-5. **Error Scenario Template** -- For each identified failure mode, Claude fills in the five-field template (trigger, symptoms, root cause, prevention, recovery)
-6. **Anti-Pattern Audit** -- Claude checks the code against the five common defensive-programming mistakes
-
-The skill is designed to pair with downstream plugins: its output (a list of edge cases) is the input to test-driven-development (which writes the tests) or code-review (which verifies the cases are covered).
-
 ## Related Plugins
 
 - **[Test Driven Development](../test-driven-development/)** -- Takes the edge case list and implements tests using the Red-Green-Refactor cycle
 - **[Testing Framework](../testing-framework/)** -- Test infrastructure setup and suite authoring across multiple languages
 - **[Code Review](../code-review/)** -- Multi-agent swarm review covering security, performance, style, and test coverage
+- **[Debugging](../debugging/)** -- When edge cases have already escaped to production and you need root cause analysis
 - **[Consistency Standards](../consistency-standards/)** -- Naming conventions and taxonomy standards for uniform documentation
 
 ---
