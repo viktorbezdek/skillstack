@@ -2,260 +2,312 @@
 
 > **v1.0.5** | Agent Architecture | 6 iterations
 
-> Production memory architectures for LLM agents -- choose the right framework, design retrieval that scales, and stop losing context between sessions.
+---
 
 ## The Problem
 
-Every time an LLM agent session ends, everything it learned disappears. User preferences, prior decisions, accumulated domain knowledge, entity relationships -- gone. The next session starts from zero, and the user has to re-explain context they already provided. This is not a minor inconvenience; it fundamentally limits what agents can do.
+LLM agents forget everything the moment a session ends. Every conversation starts from zero -- no recollection of user preferences, past decisions, accumulated domain knowledge, or entity relationships established in previous interactions. Teams building production agents discover this the hard way: a customer support agent that asks the same onboarding questions every session, a coding assistant that re-discovers project conventions daily, or a research agent that cannot build on yesterday's findings.
 
-The naive fix -- stuffing all prior interactions into the prompt -- hits context limits fast and degrades response quality as the window fills up. Teams that try unstructured vector dumps find that retrieval accuracy erodes as memory grows: the agent confidently surfaces outdated facts, confuses entities with similar names, and cannot answer questions that require connecting information across multiple past conversations.
+The pain compounds quickly. Without persistent memory, agents cannot maintain entity consistency ("John Doe" in session 1 becomes an unknown stranger in session 2), cannot reason over accumulated knowledge (connecting facts from multiple sessions to derive new insights), and cannot adapt to evolving information (a user's address changed three months ago, but the agent still references the old one). Teams attempt workarounds -- stuffing entire conversation histories into prompts, maintaining manual knowledge bases, or building custom persistence layers from scratch -- and discover that naive approaches either blow context limits, degrade retrieval quality, or both.
 
-Choosing a memory framework is its own maze. Mem0, Zep/Graphiti, Letta, Cognee, and LangMem each make compelling claims, but their architectures differ fundamentally -- vector stores vs. temporal knowledge graphs vs. self-editing tiered storage. Without benchmark data and clear trade-off analysis, teams pick based on marketing, discover limitations six weeks later, and face a costly migration. Meanwhile, the agent keeps forgetting.
+The framework landscape makes the problem worse. Mem0, Zep/Graphiti, Letta, LangMem, and Cognee each take fundamentally different architectural approaches. Without direct comparison data, teams spend weeks evaluating options only to choose a framework mismatched to their actual retrieval needs. A team needing temporal reasoning picks a vector-only solution. A team needing simple preference storage over-engineers with a full knowledge graph. The mismatch surfaces months later when the system fails under production load.
 
 ## The Solution
 
-This plugin gives you a structured decision framework for designing agent memory that actually persists. It walks you through the five-layer memory model (working, short-term, long-term, entity, temporal knowledge graph), helps you choose the right layer for each type of knowledge, and provides side-by-side framework comparisons backed by real benchmark numbers -- Letta's 74% on LoCoMo, Zep's 94.8% DMR accuracy, Cognee's top HotPotQA scores.
+The Memory Systems plugin gives Claude deep expertise in production memory architectures for LLM agents. It provides framework-by-framework comparison with benchmark data (LoCoMo, LongMemEval, DMR, HotPotQA), layered memory design patterns (working, short-term, long-term, entity, temporal knowledge graph), retrieval strategy selection (semantic, entity-based, temporal, hybrid), and consolidation approaches that prevent unbounded growth.
 
-You get an architecture progression path that starts simple (file-system memory for prototyping) and scales incrementally through vector stores, graph databases, and temporal knowledge graphs -- adding complexity only when retrieval quality demands it. Each step includes working code, integration patterns, and the specific signals that tell you it is time to move to the next tier.
+The plugin delivers a single skill backed by two reference documents covering implementation patterns and the latest 2025-2026 research. It compares five production frameworks -- Mem0, Zep/Graphiti, Letta, LangMem, and Cognee -- with concrete benchmarks rather than marketing claims. It covers the full spectrum from file-system prototypes to temporal knowledge graphs, helping you choose the right complexity for your stage.
 
-The skill also covers the hard operational problems: memory consolidation strategies that prevent unbounded growth, temporal validity tracking so stale facts do not poison context, hybrid retrieval approaches that combine semantic search with graph traversal, and error recovery patterns for empty results, conflicting facts, and storage failures.
+The practical guidance follows a "start simple, add complexity when retrieval fails" philosophy. You get decision trees for architecture selection, integration patterns for connecting memory to context systems, error recovery strategies for empty retrieval / stale results / conflicting facts, and anti-patterns that prevent common production failures.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Agent forgets everything between sessions; users re-explain context repeatedly | Layered memory architecture retains preferences, decisions, and domain knowledge across sessions |
-| Pick a memory framework based on blog posts and hope it works | Side-by-side benchmark comparison (LoCoMo, DMR, HotPotQA) with concrete numbers for evidence-based decisions |
-| Naive vector dump degrades as memory grows; retrieval accuracy drops silently | Hybrid retrieval strategies (semantic + keyword + graph) with consolidation triggers that maintain quality at scale |
-| Outdated facts surface alongside current ones, confusing the agent | Temporal knowledge graph patterns with validity intervals -- stale facts are invalidated, not deleted |
-| Over-engineer a complex memory system on day one and waste weeks | Architecture progression path: file-system to vector store to temporal KG, adding complexity only when needed |
-| Entity confusion -- "John Doe" in session 3 is a different person than session 7 | Entity registry patterns with consistent identity tracking across conversations |
+| Spend weeks evaluating memory frameworks without benchmark data to guide the choice | Framework comparison table with LoCoMo, LongMemEval, DMR, and HotPotQA scores for direct comparison |
+| Over-engineer with a temporal knowledge graph when a file-system approach would suffice | Graduated complexity path: file-system -> vector store -> knowledge graph -> temporal KG, matched to retrieval needs |
+| Agents forget user preferences and entity relationships across sessions | Layered memory architecture (working/short-term/long-term/entity/temporal) with persistence strategies |
+| Retrieval quality degrades as memory grows without consolidation | Consolidation patterns that invalidate-but-don't-discard, preserving history for temporal queries |
+| Naive vector search fails on multi-hop reasoning and time-sensitive facts | Hybrid retrieval strategy selection (semantic + keyword + graph) with framework-specific guidance |
+| No error handling for empty retrieval, stale results, or conflicting facts | Explicit recovery patterns: broader search fallback, validity timestamp checks, recency-based conflict resolution |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install memory-systems@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention relevant topics.
+### Prerequisites
+
+None. This is a standalone knowledge plugin. For cross-agent memory patterns, also install `multi-agent-patterns`. For context integration strategies, also install `context-optimization`.
+
+### Verify installation
+
+After installing, test with:
+
+```
+Help me design a memory architecture for a customer support agent that needs to remember user preferences across sessions
+```
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Start a conversation about your agent's memory needs:
-   ```
-   My chatbot forgets user preferences between sessions -- how should I add persistent memory?
-   ```
-3. The skill provides a layered memory architecture tailored to your use case, starting with the simplest approach that works.
-4. Ask for framework-specific guidance:
-   ```
-   Compare Mem0 and Cognee for my use case -- I need multi-hop reasoning over customer support history
-   ```
-5. Get working integration code and a progression path for scaling your memory layer as your agent grows.
+1. Install the plugin using the commands above
+2. Ask: `I'm building an agent that needs to persist knowledge across sessions -- which memory framework should I use?`
+3. The skill activates and walks you through framework selection based on your requirements (multi-tenant, temporal reasoning, graph traversal, etc.)
+4. You receive a concrete architecture recommendation with implementation guidance
+5. Next, try: `Show me how to implement memory consolidation so retrieval quality doesn't degrade over time`
+
+---
+
+## System Overview
+
+```
+memory-systems/
+├── .claude-plugin/
+│   └── plugin.json              # Plugin manifest
+└── skills/
+    └── memory-systems/
+        ├── SKILL.md             # Core skill (framework comparison, architecture patterns, retrieval strategies)
+        ├── references/
+        │   ├── implementation.md        # Implementation patterns: vector stores, Mem0, Graphiti, Cognee code
+        │   └── latest-research-2026.md  # 2025-2026 research: benchmarks, academic advances, integration patterns
+        └── evals/
+            ├── trigger-evals.json   # 15 trigger evaluation cases
+            └── evals.json           # 3 output evaluation cases
+```
+
+The plugin is a single skill with two deep-dive reference documents. The SKILL.md provides the decision framework and overview; the references provide implementation code and research data that the skill loads on demand when deeper context is needed.
 
 ## What's Inside
 
-Single-skill plugin with deep reference material and evaluation suites.
+| Component | Type | Purpose |
+|---|---|---|
+| `memory-systems` | Skill | Framework comparison, architecture design, retrieval strategy selection |
+| `implementation.md` | Reference | Working code for vector stores, Mem0, Graphiti, Cognee integration |
+| `latest-research-2026.md` | Reference | Benchmark landscape, academic advances, production patterns from 2025-2026 |
 
-| Component | Description |
-|---|---|
-| **SKILL.md** | Core skill covering framework landscape, memory layer decision matrix, retrieval strategies, architecture progression, error recovery, and production guidelines |
-| **references/implementation.md** | Working code for vector store implementation, Mem0 integration, temporal relationship queries, Cognee knowledge graph ingestion and search, and memory consolidation patterns |
-| **references/latest-research-2026.md** | Current benchmark landscape (LoCoMo, LongMemEval, DMR, HotPotQA), detailed framework state for all five production systems, emerging research, and decision matrix |
-| **evals/** | 15 trigger evaluation cases + 3 output quality evaluation cases |
+### Component Spotlight
 
-### memory-systems
+#### memory-systems (skill)
 
-**What it does:** Activates when you need to design, implement, or troubleshoot persistent memory for LLM agents. It provides a decision framework spanning five production frameworks (Mem0, Zep/Graphiti, Letta, Cognee, LangMem), five memory layers (working through temporal knowledge graph), and four retrieval strategies -- all backed by benchmark data from LoCoMo, LongMemEval, DMR, and HotPotQA.
+**What it does:** Activates when you need to design, implement, or evaluate memory systems for LLM agents. Provides framework comparison with benchmark data, layered memory architecture patterns, retrieval strategy selection, consolidation approaches, and error recovery guidance.
+
+**Input -> Output:** A description of your agent's memory requirements (persistence needs, query patterns, scale) -> A concrete memory architecture recommendation with framework selection, layer design, retrieval strategy, and integration patterns.
+
+**When to use:**
+- Building agents that must persist knowledge across sessions
+- Choosing between Mem0, Zep/Graphiti, Letta, LangMem, or Cognee
+- Designing retrieval strategies (semantic, entity-based, temporal, hybrid)
+- Implementing memory consolidation to prevent unbounded growth
+- Evaluating memory systems against benchmarks
+
+**When NOT to use:**
+- Multi-agent coordination or agent handoffs (use `multi-agent-patterns`)
+- Tool design or tool interfaces (use `tool-design`)
+- Hosted agent infrastructure or sandboxed VMs (use `hosted-agents`)
+- General context window optimization (use `context-optimization`)
 
 **Try these prompts:**
 
 ```
-My agent loses context between sessions -- how do I fix that?
+I need to add long-term memory to my Python agent -- it should remember user preferences and past decisions across sessions
 ```
 
 ```
-Which memory framework should I use for a multi-tenant customer support bot: Mem0, Zep, or Cognee?
+Compare Mem0 vs Zep/Graphiti vs Cognee for a multi-tenant SaaS where each user's agent needs isolated memory
 ```
 
 ```
-I need to track how user preferences change over time without losing the history of what they used to prefer
+My agent's memory retrieval is returning stale results -- facts changed weeks ago but old versions keep surfacing
 ```
 
 ```
-My agent's memory retrieval is getting slow and less accurate as the knowledge base grows -- what do I do?
+Design a temporal knowledge graph for a legal research agent that needs to track how regulations change over time
 ```
 
 ```
-Walk me through adding Cognee's knowledge graph to my existing RAG pipeline for multi-hop reasoning
-```
-
-```
-A user changed their address but my agent keeps surfacing the old one -- how do I handle facts that change?
+Show me how to implement memory consolidation -- my agent has accumulated thousands of memories and retrieval quality is degrading
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `implementation.md` | Working code patterns for vector stores, Mem0, Cognee, temporal queries, and memory consolidation |
-| `latest-research-2026.md` | 2025-2026 benchmark data, detailed framework comparisons, emerging research directions, and production patterns at scale |
-
-## Real-World Walkthrough
-
-You are building a customer support agent for a SaaS platform with 50,000 active users. The agent handles billing questions, feature requests, and technical troubleshooting. Right now, every session starts cold -- a user who explained their complex enterprise setup three times last month has to do it again today.
-
-**Step 1: Assess your memory needs.**
-
-You start by describing the situation:
-
-```
-I'm building a support agent for a SaaS platform. Users come back repeatedly, and the agent needs to remember their account context, prior issues, and preferences. We have 50K users and need multi-tenant isolation. What memory architecture should I use?
-```
-
-The skill walks you through the memory layer decision matrix. For your case, you need: working memory (current conversation scratchpad), long-term memory (user preferences and account context persisted across sessions), and entity memory (tracking that "Acme Corp" is the same customer across all their support tickets). You do not need a full temporal knowledge graph yet -- your facts mostly do not change retroactively.
-
-**Step 2: Choose a framework.**
-
-The skill presents the framework comparison table with benchmark numbers. For multi-tenant SaaS with 50K users, Mem0 stands out: it was designed for multi-tenant isolation, offers managed infrastructure for fast deployment, and scored 68.5% on LoCoMo. Cognee scores higher on multi-hop reasoning benchmarks, but your support queries are mostly direct factual lookups ("What plan is this user on?"), not multi-hop chains. You go with Mem0 for now, knowing you can migrate later if reasoning demands grow.
-
-**Step 3: Implement the memory layer.**
-
-You ask for integration guidance:
-
-```
-Show me how to integrate Mem0 for user-scoped memory with preference tracking and prior issue history
-```
-
-The skill provides the Mem0 integration pattern -- adding memories scoped by `user_id`, searching with semantic queries, and handling the case where a user's preference changes (Mem0 surfaces the most recent fact). You implement a memory layer that stores three types of information per user: account context (plan, team size, integrations), interaction history (prior issues and resolutions), and stated preferences (communication style, technical depth).
-
-**Step 4: Add entity tracking.**
-
-Two weeks in, you notice the agent sometimes confuses users who share a company account. You ask:
-
-```
-How do I maintain consistent entity identity when multiple users belong to the same organization?
-```
-
-The skill guides you to add an entity registry layer on top of Mem0. Each organization and user gets a stable entity ID. When the agent encounters "Acme Corp", it resolves to the same entity regardless of which team member is chatting. The entity registry links users to their organization, so the agent can say "I see your colleague Maria reported a similar issue last week" without confusing identities.
-
-**Step 5: Plan for scale.**
-
-Three months later, with growing memory per user, retrieval latency creeps up and some queries return stale information. You ask:
-
-```
-My memory retrieval is getting slower and sometimes surfaces outdated billing info -- how do I fix this at scale?
-```
-
-The skill identifies two issues: no consolidation strategy (memory is growing unbounded) and no temporal validity on billing facts. It recommends adding consolidation triggers (when a user's memory count exceeds a threshold, summarize and archive older entries) and temporal validity metadata on facts that change (plan upgrades, billing changes). If these measures are not enough, the architecture progression path shows when to consider migrating to Zep/Graphiti for native temporal knowledge graph support -- but only when the data justifies the infrastructure investment.
-
-The result: your support agent now remembers each user's context across sessions, resolves entity identity correctly, manages memory growth through consolidation, and handles changing facts without surfacing stale information. Support satisfaction scores improve because users stop repeating themselves, and the agent can reference prior interactions to provide contextually rich responses.
-
-## Usage Scenarios
-
-### Scenario 1: Choosing a memory framework for a new project
-
-**Context:** You are starting an agent project and need to decide between Mem0, Zep/Graphiti, Letta, and Cognee before writing any code.
-
-**You say:** "I'm building a research assistant that needs to accumulate domain knowledge across sessions and answer questions that connect information from multiple sources. Which memory framework should I use?"
-
-**The skill provides:**
-- Side-by-side framework comparison with architecture differences and trade-offs
-- Benchmark numbers relevant to multi-hop reasoning (HotPotQA scores, LoCoMo results)
-- Architecture-specific strengths: Cognee's multi-layer semantic graphs for interconnected knowledge, Zep's temporal model for evolving facts
-- A recommendation based on your specific retrieval pattern (multi-hop vs. direct lookup)
-
-**You end up with:** An evidence-based framework choice with a clear rationale you can explain to your team, plus an implementation starting point.
-
-### Scenario 2: Debugging degraded retrieval quality
-
-**Context:** Your agent has been running in production for months. Users report it sometimes gives outdated answers or misses relevant context it used to surface correctly.
-
-**You say:** "My agent's memory worked well initially but now it's returning stale results and missing relevant context. Memory has grown to 200K entries. What's going wrong?"
-
-**The skill provides:**
-- Diagnostic checklist: unbounded growth, no consolidation, missing temporal validity
-- Consolidation trigger strategies (count-based, quality-based, scheduled)
-- Hybrid retrieval patterns that combine semantic search with graph traversal for better accuracy
-- The "invalidate but don't discard" principle for handling stale facts
-- Monitoring patterns for memory growth and retrieval latency
-
-**You end up with:** A consolidation strategy and retrieval upgrade plan that restores accuracy without losing historical context.
-
-### Scenario 3: Adding temporal awareness to existing memory
-
-**Context:** Your agent tracks user profiles but surfaces outdated information when facts change -- old addresses, previous job titles, expired subscription plans.
-
-**You say:** "A fact changed -- how do I update memory without poisoning old context? Users change jobs, move addresses, upgrade plans, and my agent keeps mixing old and new information."
-
-**The skill provides:**
-- Temporal knowledge graph patterns with `valid_from` and `valid_until` intervals
-- The bi-temporal model (when the fact was true vs. when it was recorded)
-- Working code for temporal relationship queries
-- Migration path from flat memory to temporal-aware storage
-- Zep/Graphiti's native temporal model vs. building temporal tracking on top of Mem0
-
-**You end up with:** A temporal validity layer that correctly answers "What was true at time T?" while preserving full history.
-
-### Scenario 4: Designing memory for multi-agent systems
-
-**Context:** You have multiple specialized agents (planner, researcher, executor) that need to share accumulated knowledge without duplicating storage or creating conflicts.
-
-**You say:** "I have three agents that each discover different things during a task. How do I share memory across agents without conflicts when two agents update the same entity?"
-
-**The skill provides:**
-- Shared memory architecture patterns with conflict resolution strategies
-- Entity registry design for multi-agent identity consistency
-- Framework-specific multi-agent support (Letta's agent-scoped vs. shared memory tiers)
-- Cross-reference to multi-agent-patterns for coordination concerns beyond memory
-
-**You end up with:** A shared memory layer design with clear ownership rules and conflict resolution, plus pointers to multi-agent-patterns for the coordination aspects.
-
-## Ideal For
-
-- **Teams building production agents that need cross-session memory** -- the framework comparison and benchmark data prevent weeks of trial-and-error with the wrong tool
-- **Developers migrating from naive vector stores to structured memory** -- the architecture progression path shows exactly when and why to add complexity
-- **Architects evaluating memory frameworks (Mem0, Zep, Letta, Cognee)** -- side-by-side benchmarks on LoCoMo, DMR, and HotPotQA replace guesswork with evidence
-- **Engineers debugging degraded retrieval in production** -- error recovery patterns, consolidation strategies, and monitoring guidelines address real operational pain
-- **Anyone building agents that track entities and relationships over time** -- temporal knowledge graph patterns with validity intervals solve the stale-fact problem
-
-## Not For
-
-- **Multi-agent coordination and handoffs** -- use [multi-agent-patterns](../multi-agent-patterns/) for supervisor architectures, communication protocols, and agent orchestration
-- **Tool design and agent tool interfaces** -- use [tool-design](../tool-design/) for designing the tools agents call, not the memory they persist
-- **Hosted agent infrastructure and sandboxed execution** -- use [hosted-agents](../hosted-agents/) for VM provisioning, sandboxing, and deployment patterns
-- **Context window optimization without persistent storage** -- use [context-optimization](../context-optimization/) for making the most of a single session's context
-
-## How It Works Under the Hood
-
-The skill is structured around a progressive disclosure model. The core SKILL.md provides the framework landscape, memory layer decision matrix, retrieval strategies, and practical guidance -- enough for most decisions. When you need implementation detail, the skill draws on two reference files:
-
-**implementation.md** contains working code patterns: a from-scratch vector store, Mem0 integration with user-scoped memory, temporal relationship queries with validity intervals, Cognee knowledge graph ingestion and multi-hop search, and memory consolidation routines. These are not toy examples -- they cover error handling, edge cases, and production considerations.
-
-**latest-research-2026.md** tracks the current state of the field as of March 2026: benchmark results across LoCoMo, LongMemEval, DMR, and HotPotQA for all five frameworks, architectural deep-dives into each framework's internals, emerging research directions (sleep-time compute, memory-augmented transformers), and a decision matrix that maps use cases to framework recommendations.
-
-The evaluation suite (15 trigger cases, 3 output quality cases) ensures the skill activates reliably on memory-related queries and produces structurally sound guidance.
-
-## Related Plugins
-
-- **[Multi Agent Patterns](../multi-agent-patterns/)** -- Architecture patterns for multi-agent LLM systems with shared memory across agents
-- **[Context Optimization](../context-optimization/)** -- Extending effective context capacity with memory-based context loading
-- **[Agent Evaluation](../agent-evaluation/)** -- Evaluation frameworks for measuring memory quality and agent performance
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for hosted agents that need persistent state
-- **[BDI Mental States](../bdi-mental-states/)** -- BDI cognitive architecture with belief management that connects to memory systems
-
-## Version History
-
-- `1.0.5` fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins
-- `1.0.4` fix(memory-systems): add standard keywords and expand README to full format
-- `1.0.3` fix: change author field from string to object in all plugin.json files
-- `1.0.2` fix: rename all claude-skills references to skillstack
-- `1.0.1` docs: add 2025-2026 research references for context and memory plugins
-- `1.0.0` Initial release
+| `implementation.md` | Vector store implementation, Mem0 integration, Graphiti temporal KG, Cognee ECL pipeline code |
+| `latest-research-2026.md` | LoCoMo/LongMemEval/DMR benchmarks, MemBench framework, 2025-2026 academic advances |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "How do I save data?" | "Design a memory architecture for my coding assistant that needs to remember project conventions across sessions" |
+| "Tell me about Mem0" | "Compare Mem0 vs Graphiti for a multi-tenant agent that needs temporal reasoning over user history" |
+| "My agent forgets things" | "My agent retrieves outdated facts -- the user changed their address but the old one keeps appearing in responses" |
+| "What's the best memory framework?" | "I need a memory framework for an agent that handles 10K users, each with isolated memory and cross-session entity tracking" |
+
+### Structured Prompt Templates
+
+**For framework selection:**
+```
+I'm building [agent type] that needs to [memory requirement]. Key constraints: [multi-tenant/single-user], [temporal reasoning needed/not needed], [expected memory volume]. Which memory framework fits best?
+```
+
+**For architecture design:**
+```
+Design a memory architecture for [use case]. The agent needs to persist [what data] across sessions and retrieve it when [trigger condition]. Current scale: [users/memories].
+```
+
+**For retrieval troubleshooting:**
+```
+My agent uses [framework] for memory but [specific problem: stale results / empty retrieval / conflicting facts / slow queries]. How do I fix this?
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for "the best" framework without constraints** -- there is no universally best framework; the skill needs your requirements (multi-tenant? temporal? graph traversal?) to make a recommendation
+- **Requesting a full implementation before choosing an architecture** -- start with architecture selection, then ask for implementation details for the chosen approach
+- **Treating memory as a single monolithic system** -- memory has layers (working, short-term, long-term, entity, temporal); ask about the specific layer you need
+- **Ignoring retrieval strategy** -- storing memories is the easy part; ask specifically about how your agent will retrieve and use them
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a customer success agent for a SaaS product. The agent handles support conversations, tracks customer health metrics, and proactively suggests improvements. Currently, every session starts fresh -- the agent has no memory of previous interactions, customer context, or resolved issues.
+
+**Step 1: Architecture assessment.** You ask: "I need to design a memory system for a customer success agent that handles 500 enterprise accounts. Each account has a dedicated agent instance. The agent needs to remember past conversations, track evolving customer health, and connect related issues across sessions."
+
+The skill activates and maps your requirements to the memory layer framework. It identifies you need: working memory (current conversation context), long-term memory (customer preferences, product usage patterns), entity memory (contacts, accounts, products as distinct entities), and temporal memory (health scores that change over time, issue timelines).
+
+**Step 2: Framework selection.** Based on your multi-tenant requirement (500 isolated accounts), temporal reasoning need (health scores over time), and entity tracking (contacts and accounts), the skill recommends Zep/Graphiti for the temporal knowledge graph layer and suggests evaluating Cognee if you need richer multi-hop reasoning across interconnected customer data. It explains the trade-off: Graphiti uses generic relations keeping graphs simple; Cognee builds denser multi-layer semantic graphs with detailed relationship edges.
+
+**Step 3: Retrieval strategy design.** You ask about retrieval, and the skill recommends a hybrid approach: semantic search for natural language queries ("What issues has Acme Corp reported?"), entity-based graph traversal for relationship queries ("Who are the key stakeholders at Acme?"), and temporal filtering for time-sensitive queries ("How has Acme's health score changed this quarter?"). It cites Zep's benchmark: 90% latency reduction (2.58s vs 28.9s) by retrieving only relevant subgraphs instead of scanning all memories.
+
+**Step 4: Consolidation planning.** The skill warns about unbounded growth -- 500 accounts generating memories daily will degrade retrieval. It recommends periodic consolidation triggered by memory count thresholds per account, with an invalidate-but-don't-discard approach so temporal queries still work. Stale facts get marked with `valid_until` timestamps rather than deleted.
+
+**Step 5: Error recovery design.** The skill provides recovery patterns: empty retrieval falls back to broader search (remove entity filter, widen time range), stale results trigger validity timestamp checks and consolidation, conflicting facts prefer the most recent `valid_from` with low-confidence conflicts surfaced to the human operator.
+
+**Step 6: Integration.** You connect memory to the agent's context system using just-in-time loading -- memories are retrieved at conversation start and injected at attention-favored positions (beginning/end of context). The skill notes that strategic injection placement matters more than memory volume.
+
+**Final outcome:** A production-ready memory architecture with Graphiti temporal KG for relationship/temporal reasoning, hybrid retrieval across three strategies, consolidation scheduled nightly per account, and error recovery that handles the five most common failure modes. Total design time: one session instead of weeks of framework evaluation.
+
+**Gotchas discovered:** The skill flagged that Letta's filesystem approach scored 74% on LoCoMo, beating Mem0's 68.5% -- tool complexity matters less than reliable retrieval. This prevented over-engineering the prototype phase before validating the architecture.
+
+## Usage Scenarios
+
+### Scenario 1: Choosing a memory framework for a prototype
+
+**Context:** You are building an AI coding assistant MVP and need the agent to remember project conventions, past code reviews, and user preferences between sessions. You want the simplest viable approach.
+
+**You say:** "I'm prototyping a coding assistant that needs to remember project conventions and user preferences across sessions. What's the simplest memory approach that actually works?"
+
+**The skill provides:**
+- Recommendation to start with file-system memory (structured JSON with timestamps)
+- Validation that Letta's filesystem agents scored 74% on LoCoMo using basic file operations
+- Graduation path: move to Mem0 when you need semantic search and multi-tenant isolation
+- Working code example for file-based memory with timestamps
+
+**You end up with:** A file-system memory implementation you can build in an afternoon, with a clear upgrade path when retrieval demands increase.
+
+### Scenario 2: Debugging degraded retrieval quality
+
+**Context:** Your production agent uses Mem0 for memory but users are reporting that the agent references outdated information -- a user changed their tech stack preference months ago, but the agent keeps suggesting the old stack.
+
+**You say:** "My agent uses Mem0 but keeps retrieving outdated preferences. A user switched from React to Vue three months ago but the agent still recommends React patterns."
+
+**The skill provides:**
+- Diagnosis: missing temporal validity tracking on preference memories
+- Recovery pattern: check `valid_until` timestamps, prefer most recent `valid_from`
+- Consolidation strategy to mark outdated preferences as invalid without deleting them
+- Migration path to Zep/Graphiti if temporal reasoning becomes a core requirement
+
+**You end up with:** A fix for the immediate stale-data problem plus a consolidation schedule that prevents recurrence.
+
+### Scenario 3: Designing cross-agent shared memory
+
+**Context:** You are building a multi-agent research system where a search agent, analysis agent, and writing agent need to share accumulated knowledge without passing full context between them.
+
+**You say:** "I have three specialized agents (search, analysis, writing) that need to share accumulated knowledge. How do I design shared memory without bloating each agent's context?"
+
+**The skill provides:**
+- File-system memory as the coordination mechanism (agents read/write to shared persistent storage)
+- Entity registry pattern for maintaining consistent entity identity across agents
+- Integration guidance connecting to `multi-agent-patterns` for context isolation strategies
+- Warning about consistency challenges with shared memory and recommended mitigation
+
+**You end up with:** A shared memory architecture where agents coordinate through persistent storage rather than context passing, maintaining entity consistency without context bloat.
+
+### Scenario 4: Implementing a temporal knowledge graph
+
+**Context:** You are building a legal research agent that must track how regulations, case law, and compliance requirements change over time, including the ability to answer "what was the rule on date X?"
+
+**You say:** "Design a temporal knowledge graph for a legal research agent that needs to track regulation changes and answer time-travel queries like 'what was the GDPR interpretation in March 2024?'"
+
+**The skill provides:**
+- Graphiti's bi-temporal model (when events occurred vs when they were ingested)
+- Temporal relationship creation with `valid_from` / `valid_until` intervals
+- Time-travel query implementation using `query_at_time`
+- Benchmark data: Zep achieves 94.8% DMR accuracy with 18.5% accuracy improvement on LongMemEval
+
+**You end up with:** A temporal knowledge graph design with bi-temporal tracking, time-travel query capability, and confidence that the approach is backed by benchmark performance data.
+
+---
+
+## Decision Logic
+
+**When does the skill recommend each framework?**
+
+The skill follows a graduated complexity model:
+
+1. **File-system memory** -- when you are prototyping, have a single agent, and need to validate behavior before investing in infrastructure. Benchmark support: Letta filesystem scored 74% on LoCoMo.
+2. **Mem0** -- when you need multi-tenant isolation, managed infrastructure, and semantic search. Fastest path to production. Best for broad integrations without deep relationship modeling.
+3. **Zep/Graphiti** -- when you need relationship traversal, temporal validity (bi-temporal model), or cross-session synthesis. Enterprise-grade but advanced features are cloud-locked.
+4. **Cognee** -- when you need multi-hop reasoning, richer interconnected knowledge structures, or a customizable ECL pipeline. Highest HotPotQA scores but heavier ingest-time processing.
+5. **Letta** -- when you need full agent self-management of memory with deep introspection and tiered storage (in-context/core/archival).
+6. **LangMem** -- when you are already on LangGraph and need memory tools that integrate natively.
+
+**When does the skill escalate complexity?**
+
+Only when retrieval quality degrades. The skill will not recommend a temporal knowledge graph until you demonstrate that simpler approaches (vector search, entity lookup) fail for your query patterns.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Over-engineering early | Spent weeks setting up a temporal KG for an agent that only needs preference storage | Start with file-system memory; the skill's graduated path prevents this |
+| Unbounded memory growth | Retrieval latency increases, irrelevant results surface more often | Implement consolidation on count thresholds; invalidate but don't discard |
+| Stale retrieval | Agent references outdated facts (old address, old preferences) | Add `valid_until` timestamps; trigger consolidation when most results are expired |
+| Empty retrieval | Memory lookup returns nothing for valid queries | Fall back to broader search: remove entity filter, widen time range, prompt user |
+| Conflicting facts | Two contradictory memories for the same entity/property | Prefer most recent `valid_from`; surface conflict to user if confidence is low |
+| Framework mismatch | Chose Mem0 but need temporal reasoning; chose Graphiti but only need simple preferences | Use the skill's framework comparison table before committing; re-evaluate when requirements change |
+
+## Ideal For
+
+- **Agent builders** who need persistent memory across sessions and want benchmark-backed framework selection instead of guessing
+- **Platform engineers** designing multi-tenant memory architectures where each user's agent needs isolated, scalable memory
+- **ML engineers** evaluating memory frameworks against LoCoMo, LongMemEval, DMR, or HotPotQA benchmarks for production readiness
+- **Teams with existing agents** experiencing retrieval degradation, stale data, or conflicting facts and needing systematic fixes
+- **Researchers** exploring temporal knowledge graphs, memory consolidation strategies, or hybrid retrieval approaches
+
+## Not For
+
+- **Multi-agent coordination** -- use `multi-agent-patterns` for agent handoffs, supervisor/swarm architectures, and context isolation
+- **Tool design for agents** -- use `tool-design` for designing tool interfaces and function calling patterns
+- **Hosted agent infrastructure** -- use `hosted-agents` for sandboxed execution environments and deployment patterns
+- **General context optimization** -- use `context-optimization` for attention management and context partitioning without persistent memory
+
+## Related Plugins
+
+- **multi-agent-patterns** -- shared memory across agents, context isolation strategies for multi-agent systems
+- **context-fundamentals** -- foundational context engineering that memory systems build upon
+- **context-optimization** -- memory-based context loading and partitioning strategies
+- **context-degradation** -- diagnosing retrieval failures that may originate from memory system issues
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
