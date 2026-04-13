@@ -2,34 +2,34 @@
 
 > **v1.0.10** | Documentation | 11 iterations
 
-> Design code examples, tutorials, and runnable samples that actually teach -- with progressive complexity and copy-paste reliability.
+> Design code examples, tutorials, and runnable samples that actually teach -- with progressive complexity, realistic naming, and copy-paste reliability.
 
 ## The Problem
 
-Most code examples in documentation fail the reader before they finish reading. The quickstart dumps 80 lines of production code with no context about which line matters. The tutorial omits the import statements, so the developer copy-pastes, hits an error, and loses trust in the entire doc. The API reference uses `foo`, `bar`, and `baz` as variable names, forcing the reader to mentally map meaningless tokens to real concepts while simultaneously learning a new API. None of the examples show expected output, so there is no way to verify whether the code worked.
+Most code examples fail at their primary job: teaching. They use `foo` and `bar` as variable names, omit imports, skip error handling, and present a wall of uncommented code that the reader must reverse-engineer. The result is that developers copy-paste examples, discover they don't run, spend 20 minutes fixing missing dependencies, and still don't understand the concept the example was supposed to demonstrate.
 
-These are not style preferences -- they are adoption blockers. Developer experience research consistently shows that the first working code example is the make-or-break moment for library adoption. If a developer cannot copy-paste and run the first example within 5 minutes, most will abandon the library and try the next alternative. Yet the majority of open-source documentation treats examples as an afterthought: written once by the library author (who does not need the imports because they know the codebase), never tested after the API changes, and organized by API surface rather than by what the developer is trying to accomplish.
+The problem is worse at scale. A library with 50 API methods needs 50+ examples, each at multiple complexity levels (minimal, configured, production-ready). Without a framework, example quality varies wildly across the documentation: some are runnable and well-commented, others are pseudocode fragments that have never been tested. Tutorials jump from trivial to advanced without intermediate steps, losing readers who needed the middle complexity level. Quickstart guides assume knowledge they don't teach, creating a gap between "hello world" and "real project" that new users fall through.
 
-The deeper problem is structural. A single code example cannot serve every audience. A beginner needs the minimal happy path; an intermediate developer needs error handling and configuration; an advanced developer needs production patterns with edge cases. When all of these are crammed into one example, it overwhelms beginners and bores experts. When they are split across separate pages with no progression, each example exists in isolation and the reader cannot see how simple usage evolves into production code.
+The cost is measured in adoption. Developers evaluate libraries by trying the first example. If it doesn't run in under 2 minutes, they move to the next option. Studies of developer documentation consistently find that runnable, copy-pasteable examples are the single strongest predictor of library adoption -- more than API completeness, more than performance benchmarks, more than community size. Bad examples directly cost users.
 
 ## The Solution
 
-This plugin gives Claude a structured methodology for designing code examples at four levels of scope (snippet, complete example, tutorial, reference app) and five levels of complexity (minimal, configured, error-handled, edge-cased, production-ready). Every example follows a four-part anatomy: context comment explaining what this does, setup with all imports and prerequisites, the core concept highlighted as the key line, and expected output showing what the reader should see.
+This plugin gives Claude a structured methodology for designing code examples that teach effectively through progressive complexity. Instead of generating a single code block, Claude applies a four-level complexity ladder (minimal happy path, add configuration, add error handling, add edge cases, production-ready) and a quality checklist that enforces runnability, completeness, minimality, commenting, and realistic naming.
 
-The quality checklist catches the six most common example failures before they ship: is it runnable (copy-paste works), complete (all imports included), minimal (no unrelated code), commented (key lines explained), realistic (real-world names, not foo/bar), and tested (verified working after the last API change). The tutorial structure template adds time estimates, prerequisites, numbered steps with explanation-code-result triples, and next-steps navigation.
+The skill provides four distinct example types (snippet, complete example, tutorial, reference app) with specific templates for each. Every example follows a four-part anatomy: context (what this does), setup (prerequisites), core (the key concept, highlighted), and result (expected output). Tutorials get a structured template with time estimate, prerequisites, step-by-step progression, and next steps. Anti-patterns are explicitly flagged: foo/bar variables, missing imports, outdated syntax, no expected output, untested code, and wall-of-code formatting.
 
-The progressive complexity ladder is the key structural innovation. Instead of writing one example that tries to serve everyone, you write five levels -- each building on the previous one. Level 1 is the minimal happy path in 10 lines. Level 2 adds configuration. Level 3 adds error handling. Level 4 covers edge cases. Level 5 shows the production-ready implementation. The reader enters at their level and reads forward to learn more or backward to understand fundamentals.
+The plugin ships a single SKILL.md with all templates and checklists, 13 trigger eval cases, and 3 output quality eval cases.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Examples dump 80 lines of production code with no indication of which line is the key concept | Four-part anatomy highlights the core concept and separates it from setup, context, and output |
-| Developers copy-paste and hit import errors because the example omits prerequisites | Quality checklist enforces "all imports included" as a non-negotiable |
-| Variable names are `foo`, `bar`, `baz` -- the reader learns nothing about real usage | Anti-pattern audit flags meaningless names and requires realistic alternatives (`createUser`, `orderTotal`) |
-| No expected output -- the developer cannot tell if the code worked | Every example includes expected output showing what the reader should see |
-| One example tries to serve beginners and experts, overwhelming the former and boring the latter | Five-level progressive complexity ladder lets each audience enter at their level |
-| Tutorials are walls of code with occasional prose, no structure or time estimates | Tutorial template provides prerequisites, numbered steps with explanation-code-result triples, and next-steps navigation |
+| Examples use `foo`, `bar`, `baz` as variable names, teaching nothing about real usage | Realistic naming convention enforced: `user`, `order`, `paymentResult` -- variables that map to real domains |
+| Missing imports mean copy-paste fails immediately | All imports included; quality checklist verifies the example runs as-is |
+| Single code block with no explanation | Four-part anatomy: context comment, setup, highlighted core concept, expected output |
+| One complexity level (either too simple or too complex) | Five-level progressive complexity: minimal -> configured -> error handling -> edge cases -> production |
+| Tutorials jump from trivial to advanced with no intermediate steps | Structured tutorial template with time estimate, prerequisites, and step-by-step progression |
+| No expected output -- reader cannot verify if their result is correct | Every example includes an expected output comment showing what success looks like |
 
 ## Installation
 
@@ -40,178 +40,285 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install example-design@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention code examples, tutorials, sample code, quickstart guides, or runnable examples.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention code examples, tutorials, quickstart guides, sample code, runnable examples, or progressive complexity.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
 2. Open a Claude Code session in your project
-3. Type: `Write a code example for the createUser API method -- show progressive complexity from minimal to production-ready`
-4. Claude produces a five-level example set: Level 1 minimal happy path, Level 2 with configuration, Level 3 with error handling, Level 4 with edge cases, Level 5 production-ready -- each following the four-part anatomy with context, setup, core concept, and expected output
-5. Next, try: `Audit the code examples in our README for quality issues` to run the six-item checklist against existing examples
+3. Type: `Create a progressive example showing how to use our authentication API -- from minimal to production-ready`
+4. Claude produces a five-level example set: basic happy path, with configuration, with error handling, with edge cases, and production-ready with retry logic and logging
+5. Next, try: `Write a 10-minute tutorial for first-time users of this library`
+
+---
+
+## System Overview
+
+```
+User prompt (create example / write tutorial / design quickstart)
+        |
+        v
++------------------+
+|  example-design  |
+|  skill (SKILL.md)|
++------------------+
+        |
+        +---> Example Type Selection
+        |     (snippet / complete / tutorial / reference app)
+        |
+        +---> Progressive Complexity Ladder
+        |     Level 1: Minimal (happy path)
+        |     Level 2: Add configuration
+        |     Level 3: Add error handling
+        |     Level 4: Add edge cases
+        |     Level 5: Production-ready
+        |
+        +---> Example Anatomy (per example)
+        |     1. Context comment
+        |     2. Setup (imports/prerequisites)
+        |     3. Core concept (highlighted)
+        |     4. Expected output
+        |
+        +---> Quality Checklist
+        |     Runnable / Complete / Minimal / Commented / Realistic / Tested
+        |
+        +---> Anti-Pattern Audit
+              foo/bar vars / missing imports / outdated syntax / no output / untested / wall of code
+```
+
+Single-skill plugin with no references, hooks, or MCP dependencies. The skill contains structured templates for four example types and a five-level complexity ladder.
 
 ## What's Inside
 
-Single-skill plugin shipping one SKILL.md with six structured components, 13 trigger eval cases, and 3 output eval cases. No references, hooks, or MCP dependencies.
+| Component | Type | What It Provides |
+|---|---|---|
+| **example-design** | Skill | Templates for 4 example types, 5-level complexity ladder, quality checklist, anti-pattern list |
+| **trigger-evals** | Eval | 13 trigger eval cases (8 positive, 5 negative) |
+| **output-evals** | Eval | 3 output quality eval cases |
 
-| Component | What It Provides |
-|---|---|
-| **Example Types** | Four-row reference mapping snippet (5-15 lines), complete example (20-50 lines), tutorial (multi-file), and reference app (full project) to their purpose |
-| **Progressive Complexity** | Five-level ladder from minimal happy path through configuration, error handling, edge cases, to production-ready |
-| **Example Anatomy** | Four-part structure: context comment, setup/imports, highlighted core concept, and expected output |
-| **Quality Checklist** | Six-item verification: runnable, complete, minimal, commented, realistic, tested |
-| **Tutorial Structure** | Markdown template with time estimate, prerequisites, numbered steps (explanation + code + expected result), and next-steps |
-| **Anti-Patterns** | Six common mistakes: foo/bar names, missing imports, outdated syntax, no expected output, untested code, wall of code |
+### Component Spotlight
 
-### example-design
+#### example-design (skill)
 
-**What it does:** Activates when you ask about creating code examples, writing tutorials, designing quickstart guides, building sample code, or auditing existing documentation examples for quality. Applies a structured methodology that ensures every example is copy-pasteable, progressively complex, and teaches through realistic scenarios rather than abstract demonstrations.
+**What it does:** Activates when you ask about creating code examples, tutorials, quickstart guides, sample code, or runnable demonstrations. Applies a progressive complexity framework and structured templates to produce examples that teach effectively and run correctly on first try.
+
+**Input -> Output:** You provide a concept, API, or library to demonstrate -> The skill produces structured examples at appropriate complexity levels with realistic naming, complete imports, highlighted core concepts, and expected output.
+
+**When to use:**
+- Writing documentation examples for a library or API
+- Creating a quickstart guide for new users
+- Building a step-by-step tutorial with progressive complexity
+- Designing a reference application that demonstrates production patterns
+- Reviewing existing examples for quality (runnability, completeness, clarity)
+
+**When NOT to use:**
+- Generating full documentation (API reference, architecture guides) -> use [documentation-generator](../documentation-generator/)
+- Writing production application code -> this skill designs *teaching* code, not production code
+- Creating test cases -> use [test-driven-development](../test-driven-development/) or [testing-framework](../testing-framework/)
 
 **Try these prompts:**
 
 ```
-Write a quickstart guide for our authentication SDK -- someone should be able to go from install to first authenticated request in under 5 minutes
+Create a progressive example showing how to use our REST API client -- from minimal to production-ready with retry logic
 ```
 
 ```
-Audit the code examples in our API documentation -- check if they're runnable, have all imports, and show expected output
+Write a 10-minute tutorial that takes a new user from installation to their first successful API call
 ```
 
 ```
-Design a progressive tutorial for our GraphQL API: start with a simple query, then add variables, then mutations, then subscriptions, then error handling
+Review these code examples for our SDK documentation -- are they runnable, realistic, and well-structured?
 ```
 
 ```
-Convert this wall-of-code example into a properly structured snippet with context, setup, highlighted core concept, and expected output
+Design a reference application that demonstrates authentication, CRUD operations, and error handling for our framework
 ```
 
 ```
-What type of example should I write for this feature? I have a simple use case and a complex one -- should it be a snippet, a complete example, or a full tutorial?
+Our quickstart guide loses users between step 2 and step 3. Help me redesign the examples to bridge that gap.
 ```
+
+**Key components in the skill:**
+
+| Component | What It Covers |
+|---|---|
+| Example Types | Snippet (5-15 lines), complete example (20-50 lines), tutorial (multi-file), reference app (full project) |
+| Progressive Complexity | 5-level ladder: minimal -> configured -> error handling -> edge cases -> production-ready |
+| Example Anatomy | 4-part structure: context, setup, core (highlighted), expected output |
+| Quality Checklist | 6 criteria: runnable, complete, minimal, commented, realistic, tested |
+| Tutorial Template | Structured format: goal, time estimate, prerequisites, step-by-step, next steps |
+| Anti-Patterns | 6 common mistakes: foo/bar variables, missing imports, outdated syntax, no output, untested, wall of code |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Show me how to use this" | "Create a progressive example showing how to connect to Redis -- from basic get/set to production-ready with connection pooling" |
+| "Write some code samples" | "Write runnable examples for each of our 5 SDK methods, with realistic variable names and expected output" |
+| "Make a tutorial" | "Write a 10-minute tutorial that takes a Python developer from pip install to their first webhook handler" |
+| "Document this API" | "Design examples for our pagination API at three complexity levels: basic list, with cursor, with error handling and retry" |
+| "Give me an example" | "Show me a complete working example of file upload with progress tracking, including all imports and expected console output" |
+
+### Structured Prompt Templates
+
+**For progressive example sets:**
+```
+Create a progressive example set for [concept/API/method]. Start with the minimal happy path and build up through: configuration options, error handling, edge cases, and production-ready patterns. Language: [language]. Target audience: [beginner/intermediate/advanced].
+```
+
+**For tutorials:**
+```
+Write a [duration]-minute tutorial for [audience]. Goal: [what they'll build/learn]. Prerequisites: [what they need installed/known]. The tutorial should go from [starting point] to [end result] in [number] steps.
+```
+
+**For example review:**
+```
+Review these code examples for [quality issues / runnability / progressive complexity]. Flag any that use placeholder names, miss imports, or lack expected output. Suggest specific fixes.
+```
+
+### Prompt Anti-Patterns
+
+- **No target audience specified:** "Write examples for our API" -- beginner examples look very different from advanced examples. Specify who will read them.
+- **Asking for examples without context:** "Show me an example of caching" -- caching in what framework? With what data? For what use case? The more context, the more realistic the example.
+- **Requesting a wall of code:** "Give me a complete application example" without specifying which concepts to highlight -- the skill will produce a reference app, but it works best when you specify which concepts each section should teach.
 
 ## Real-World Walkthrough
 
-You are the lead developer of an open-source Node.js ORM library. Your GitHub stars are growing, but your Discord is full of the same question: "How do I get started?" Your current README has a single code example -- 45 lines that create a connection, define a model, run a migration, seed data, and execute a query. It works, but new users report spending 20 minutes figuring out which parts are required and which are optional.
+You are writing documentation for a new Python HTTP client library. The library is a wrapper around `httpx` with automatic retry, circuit breaking, and structured logging. Your current documentation has one example: a 200-line script that demonstrates everything at once. New users are confused because they can't tell which parts are the library and which parts are their application code.
 
-You start by asking Claude: **"Audit this code example from our ORM README"** and paste the 45-line block.
+**Step 1: Scoping the example set.** You ask Claude: **"Design a progressive example set for our HTTP client library. The key features are: basic requests, retry configuration, circuit breaking, and structured logging. Target audience is intermediate Python developers."**
 
-Claude activates the example-design skill and runs the quality checklist. It flags three failures. First, **missing imports**: the example uses `createConnection` but does not show where it comes from -- `import { createConnection } from 'myorm'` is nowhere in the code. Second, **no expected output**: the example ends with `const users = await User.findAll()` but does not show what `users` looks like. Third, **wall of code**: five distinct concepts (connection, model, migration, seeding, querying) are crammed into one block with no comments explaining which line does what.
+Claude activates the example-design skill and proposes a five-level progression:
 
-You then ask Claude: **"Redesign this as a progressive complexity tutorial -- from first query to production-ready."**
+**Level 1 (Minimal, 8 lines):** Import the client, make a GET request, print the response. No configuration, no error handling. Just the "hello world" that proves the library works:
 
-Claude applies the progressive complexity ladder and produces five levels:
+```python
+"""Make your first request with our HTTP client."""
+from mylib import Client
 
-**Level 1 -- First Query (8 lines).** Just the connection and a single query. Context comment: "Connect to a database and fetch all users." All imports shown. The core concept (the query) is highlighted. Expected output: `[{ id: 1, name: "Alice" }, { id: 2, name: "Bob" }]`.
-
-```javascript
-// Connect to a database and fetch all users
-import { createConnection } from 'myorm';
-
-const db = await createConnection('sqlite://demo.db');
-const users = await db.query('SELECT * FROM users');
-
-console.log(users);
-// Output: [{ id: 1, name: "Alice" }, { id: 2, name: "Bob" }]
+client = Client(base_url="https://api.example.com")
+response = client.get("/users/1")
+print(response.json())  # Output: {"id": 1, "name": "Alice"}
 ```
 
-**Level 2 -- Define a Model (15 lines).** Builds on Level 1 by adding a model definition with typed fields. Context: "Define a User model with validation." New concept highlighted: the `define` method with field types. Expected output: the same query result, now via `User.findAll()` instead of raw SQL.
+Every line is commented. The import is explicit. The output shows what success looks like.
 
-**Level 3 -- Error Handling (22 lines).** Builds on Level 2 by wrapping the connection in try/catch, handling connection failures, and showing what happens when a query fails. New concepts highlighted: connection retry logic and error types. Expected output: both the success case and the error case.
+**Level 2 (Configured, 15 lines):** Add retry configuration. The diff from Level 1 is exactly 3 lines -- the reader can see what changed:
 
-**Level 4 -- Migrations and Seeding (35 lines).** Builds on Level 3 by adding schema migration and seed data. Context: "Set up the database from scratch." This is where the migration and seeding code from the original example belongs -- not in Level 1. Expected output: "Migration complete: users table created" then the query results.
+```python
+"""Configure automatic retry for transient failures."""
+from mylib import Client, RetryConfig
 
-**Level 5 -- Production-Ready (50 lines).** Builds on Level 4 by adding connection pooling, environment-based configuration, graceful shutdown, and logging. Context: "Production deployment pattern." This is the full example that advanced users need, with every line commented to explain why the production version differs from the tutorial version.
+retry = RetryConfig(max_attempts=3, backoff_factor=0.5)
+client = Client(base_url="https://api.example.com", retry=retry)
+# ... same request as Level 1
+```
 
-Claude also applies the tutorial structure template, producing a complete markdown document with time estimates (Level 1: 2 minutes, Level 2: 5 minutes, Level 3: 8 minutes, Level 4: 12 minutes, Level 5: 15 minutes), prerequisites (Node.js 18+, npm, SQLite), and next-steps navigation pointing to the API reference and the migrations guide.
+**Step 2: Tutorial design.** You then ask: **"Now write a 15-minute tutorial that takes a new user from pip install to a working retry-enabled client."**
 
-Finally, Claude runs the anti-patterns audit on each level. It catches one issue in Level 4: a variable named `data` that should be `seedUsers` for clarity. It also suggests adding a "What you'll build" section at the top showing the final result (a working API that serves user data) so readers know where the tutorial is heading before they start.
+Claude produces a structured tutorial with time estimate, prerequisites (Python 3.9+, pip), and 5 steps. Each step has exactly one concept, one code block, and one expected result. The tutorial explicitly calls out what to look for: "Run this. You should see a 200 status code. If you see a ConnectionError, check that the URL is reachable."
 
-You replace the 45-line README example with Level 1 (the 8-line quickstart) and link to the full tutorial for developers who want to go deeper. Within a week, the "How do I get started?" questions in Discord drop by half, and two community members submit PRs improving examples in other parts of the docs -- following the same progressive structure.
+**Step 3: Quality audit.** You paste your existing 200-line example and ask: **"Review this example for quality issues."**
+
+Claude flags: 3 uses of `data` as a variable name (ambiguous -- is it request data? response data? parsed data?), 2 missing imports that only work because of a wildcard import at the top, no expected output for any code block, and a jump from "basic request" to "circuit breaking" with no intermediate step. It suggests splitting the single example into the five-level progression designed in Step 1.
+
+**Step 4: Anti-pattern cleanup.** Claude identifies that the original example uses `temp`, `result`, and `x` as variable names. It replaces them with `user_response`, `retry_count`, and `health_check` -- names that teach what the code does, not just what the syntax is.
+
+You now have a five-level example set, a structured tutorial, and a cleaned-up reference example -- all designed to get a new user from installation to productive usage in under 15 minutes.
 
 ## Usage Scenarios
 
-### Scenario 1: Writing a quickstart for a new open-source library
+### Scenario 1: Writing SDK documentation examples
 
-**Context:** You just published an npm package and need a README example that gets developers from install to first working result in under 5 minutes.
+**Context:** You are documenting a JavaScript SDK with 12 methods. Each method needs at least one example, and the key methods need examples at multiple complexity levels.
 
-**You say:** "Write a quickstart example for my HTTP client library -- show how to make a GET request and handle the response"
-
-**The skill provides:**
-- A Level 1 snippet following the four-part anatomy (context, setup, core concept, expected output)
-- All imports explicitly shown
-- Realistic variable names and URLs
-- Expected output showing the actual response shape
-
-**You end up with:** An 8-10 line example that a developer can copy-paste, run, and verify within 2 minutes.
-
-### Scenario 2: Auditing existing documentation for broken examples
-
-**Context:** Your SDK documentation has 30 code examples and you have received three bug reports about examples that no longer work after the v2.0 API change.
-
-**You say:** "Audit these code examples against the quality checklist -- check for missing imports, outdated syntax, and missing expected output"
+**You say:** "Design examples for each of our 12 SDK methods. For the 4 core methods (create, read, update, delete), provide examples at 3 complexity levels. For the rest, provide a single runnable example with expected output."
 
 **The skill provides:**
-- A pass/fail report for each example against the six quality criteria
-- Specific failures identified (e.g., "Line 3: uses deprecated `connect()`, should be `createConnection()`")
-- Priority ranking by severity (broken examples first, then missing output, then style issues)
+- 12 complete examples with realistic variable names, all imports, and expected output
+- 4 three-level progressive examples for core methods (minimal, with options, with error handling)
+- Quality checklist verification for each example (runnable, complete, minimal, commented)
+- Consistent naming conventions across all 12 examples
 
-**You end up with:** A prioritized fix list that the documentation team can work through systematically.
+**You end up with:** A complete set of documentation examples that a developer can copy-paste and run immediately, with progressive depth for the methods that need it.
 
-### Scenario 3: Building a progressive tutorial for a complex feature
+### Scenario 2: Designing a quickstart guide for a CLI tool
 
-**Context:** Your authentication library supports API key auth (simple) and OAuth2 with refresh tokens (complex). You need documentation that serves both audiences.
+**Context:** Your CLI tool has a 5-minute quickstart guide but users drop off between installation and their first successful command. The current guide has 8 steps with no expected output shown.
 
-**You say:** "Design a progressive tutorial for our auth library -- start with API key auth and build up to OAuth2 with token refresh"
-
-**The skill provides:**
-- Five-level progression from API key (Level 1) through OAuth2 basics (Level 2), error handling for token failures (Level 3), refresh token edge cases (Level 4), to production-ready auth middleware (Level 5)
-- Tutorial template with time estimates and prerequisites for each level
-- Anti-pattern audit on the resulting examples
-
-**You end up with:** A complete tutorial document where beginners can stop at Level 1 and advanced users can jump to Level 4, with each level building cleanly on the previous one.
-
-### Scenario 4: Deciding what type of example to write
-
-**Context:** A PM asks for "a tutorial" for a feature that can be demonstrated in 10 lines of code. You suspect a full tutorial is overkill.
-
-**You say:** "Should this be a snippet, a complete example, or a tutorial? The feature is a single function call with two parameters"
+**You say:** "Redesign our CLI quickstart to show expected output at every step. Users should go from install to their first meaningful result in under 5 minutes."
 
 **The skill provides:**
-- Example types table showing that a snippet (5-15 lines) is appropriate for single concepts
-- Recommendation to write a snippet with full anatomy (context, setup, core, output) rather than a tutorial
-- Guidelines for when to escalate to a complete example or tutorial (multiple concepts, multi-step setup, or complex configuration)
+- Restructured 5-step quickstart with expected output after every command
+- Progressive complexity: step 1 is the simplest possible command, step 5 is a realistic workflow
+- Troubleshooting hints embedded inline ("If you see X, run Y to fix it")
+- Time estimates per step so users know if they are on track
 
-**You end up with:** A clear recommendation with rationale, preventing over-engineering of documentation.
+**You end up with:** A quickstart guide where users can verify success at every step, reducing the drop-off point from step 3 to zero.
+
+### Scenario 3: Creating a reference application
+
+**Context:** Your framework needs a "todo app" reference implementation that demonstrates routing, data persistence, authentication, and error handling in a realistic context.
+
+**You say:** "Design a reference todo application for our framework. It should demonstrate the 4 core concepts (routing, persistence, auth, errors) with realistic code, not toy examples."
+
+**The skill provides:**
+- Multi-file reference application with clear separation of concerns
+- Each file focused on teaching one concept (router.ts teaches routing, auth.ts teaches authentication)
+- Progressive complexity within the app: basic CRUD first, then auth middleware, then error handling
+- README with architecture diagram and "start here" guidance
+
+**You end up with:** A reference application that developers can clone, run, and learn from -- with each file teaching one concept clearly.
+
+---
+
+## Decision Logic
+
+This is a single-skill plugin with no component-selection logic. The skill activates when your prompt mentions code examples, tutorials, quickstart guides, sample code, or runnable examples. Once activated, Claude selects the appropriate example type and complexity level based on your request:
+
+| You ask for... | Example type | Complexity levels |
+|---|---|---|
+| A quick code snippet | Snippet (5-15 lines) | Level 1 only |
+| A working example | Complete example (20-50 lines) | Level 1-3 |
+| A step-by-step guide | Tutorial (multi-file) | Levels 1-5 progressive |
+| A full demo project | Reference app (full project) | Level 5 (production-ready) |
+| Progressive examples | Complete examples at each level | All 5 levels |
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| No language or framework specified | Skill produces generic pseudocode instead of runnable examples | Specify the language and framework: "Python with FastAPI" or "TypeScript with Express" |
+| Audience level unclear | Examples are too simple for advanced users or too complex for beginners | Specify the audience: "intermediate Python developers who know HTTP but not our library" |
+| Example scope too broad | 200-line wall of code that tries to demonstrate everything | Scope to one concept per example: "just show retry configuration" or split into a progressive example set |
+| Expected output depends on external state | Output section says "varies" instead of showing a concrete result | Use deterministic examples or mock the external dependency so the expected output is consistent |
+| Framework/library version mismatch | Example uses deprecated API from an older version | Specify the version in your prompt: "examples for v3.x of our SDK" |
 
 ## Ideal For
 
-- **Open-source maintainers writing README quickstarts** -- the four-part anatomy and quality checklist produce examples that pass the "copy-paste and run" test
-- **Developer advocates creating tutorials and guides** -- the progressive complexity ladder structures content for multiple skill levels without duplication
-- **Documentation teams auditing existing example quality** -- the six-item checklist and anti-patterns list provide objective criteria for identifying broken or unhelpful examples
-- **SDK teams shipping code samples with API docs** -- the example types table matches each documentation need to the right format and scope
-- **Technical writers restructuring legacy docs** -- the anti-patterns audit systematically identifies and fixes foo/bar names, missing imports, and walls of code
+- **Library and SDK authors** who need documentation examples that run correctly and teach effectively
+- **Developer advocates** writing quickstart guides, tutorials, and getting-started content
+- **Technical writers** who need to audit existing examples for quality (runnability, completeness, clarity)
+- **Team leads** establishing example code standards across a documentation set
+- **Open source maintainers** whose README examples are the primary driver of adoption
 
 ## Not For
 
-- **Generating full API reference documentation** -- this plugin is about the code examples *within* documentation, not the documentation structure itself. Use [documentation-generator](../documentation-generator/) for comprehensive docs
-- **Writing production application code** -- the examples are designed for teaching, not for deploying. The Level 5 "production-ready" examples show patterns, not ship-ready implementations
-- **Automated documentation from source code** -- this plugin designs hand-crafted examples, not auto-generated API docs. Use code-level documentation tools for the latter
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with no references, hooks, or MCP dependencies. The SKILL.md contains six structured sections that Claude applies based on the query:
-
-1. **Example Types** -- Claude determines the appropriate scope (snippet, complete example, tutorial, reference app) based on the concept's complexity
-2. **Progressive Complexity** -- For multi-level requests, Claude applies the five-level ladder, ensuring each level builds on the previous one
-3. **Example Anatomy** -- Every code example follows the four-part structure: context comment, setup/imports, highlighted core concept, expected output
-4. **Quality Checklist** -- Claude verifies each example against six criteria before delivering: runnable, complete, minimal, commented, realistic, tested
-5. **Tutorial Structure** -- For tutorial-scope requests, Claude applies the markdown template with time estimates, prerequisites, and step structure
-6. **Anti-Patterns** -- Claude audits for the six common mistakes and flags any that appear in the output or in existing examples being reviewed
+- **Full documentation generation** -- this skill designs examples and tutorials, not complete API references or architecture guides. Use [documentation-generator](../documentation-generator/) for that.
+- **Production application code** -- the skill optimizes for teaching clarity, not production performance. Use language-specific development skills for production code.
+- **Test case generation** -- use [test-driven-development](../test-driven-development/) or [testing-framework](../testing-framework/) for writing tests.
 
 ## Related Plugins
 
-- **[Documentation Generator](../documentation-generator/)** -- Comprehensive documentation generation for repositories of any size -- pairs with this plugin (generate the docs there, design the examples here)
-- **[Consistency Standards](../consistency-standards/)** -- Naming conventions and style guides that complement example quality standards
+- **[Documentation Generator](../documentation-generator/)** -- Generate comprehensive documentation for repositories of any size
+- **[Consistency Standards](../consistency-standards/)** -- Naming conventions and style guides for uniform examples across a documentation set
+- **[API Design](../api-design/)** -- Design the APIs that examples demonstrate
+- **[Frontend Design](../frontend-design/)** -- When examples need UI component demonstrations
+- **[Prompt Engineering](../prompt-engineering/)** -- When examples are for LLM prompt templates rather than code
 
 ---
 
