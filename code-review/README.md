@@ -1,276 +1,319 @@
 # Code Review
 
-> **v1.1.24** | Quality & Testing | 26 iterations
-
-> Multi-agent swarm code review covering security, performance, style, tests, and documentation -- with evidence-based findings, PR comment analysis, and actionable fix plans.
+> **v1.1.24** | Multi-agent swarm code review covering security, performance, style, tests, and documentation -- with PR comment analysis, TRUST 5 validation, and evidence-based findings.
+> 1 skill | 19 references | 4 templates | 8 examples | 6 modules | 22 scripts | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-Code reviews are inconsistent. One reviewer catches security issues but misses performance problems. Another focuses on style but overlooks test gaps. PR comments from three reviewers conflict, lack file/line references, and nobody synthesizes them into a prioritized action plan. When a reviewer writes "this might have a performance issue," there is no evidence, no measurement, and no specific fix -- just a vague concern that gets marked "resolved" without actually being addressed.
+Code reviews in most teams are inconsistent. One reviewer checks for security issues, another focuses on style, a third skips the tests entirely. Pull requests with 500+ lines of changes get rubber-stamped because nobody has the bandwidth to review them thoroughly across all quality dimensions simultaneously. Critical security vulnerabilities pass review because the reviewer was focused on performance. Performance bottlenecks ship because the reviewer was focused on code style.
 
-The review quality depends entirely on who reviews it and how much time they have that day. Security vulnerabilities slip through because the reviewer is not a security expert. Performance bottlenecks pass because nobody profiles. Test coverage gaps are invisible because nobody checks which lines the tests actually exercise. And when a PR has 30 comments from four reviewers, the author spends more time triaging and deduplicating feedback than fixing the actual issues.
+The feedback itself is often low-value. Comments like "looks good" or "maybe consider refactoring this" provide no actionable direction. When comments do identify real issues, they lack file and line references, making them hard to locate. When multiple reviewers leave feedback, nobody consolidates or prioritizes it -- the developer faces 30 unranked comments and must guess which ones matter most.
 
-Systematic review that covers all quality dimensions -- security, performance, style, tests, documentation -- on every PR, with evidence for every finding and prioritized action plans, is what teams want but rarely achieve with manual-only review processes.
+For teams that want automated code review, the tooling landscape is fragmented. You need separate tools for security scanning, performance analysis, style checking, test coverage, and documentation quality -- each with its own configuration, false positive rate, and output format. The overhead of maintaining five tools often means teams use zero, falling back to manual review that misses what it misses.
 
 ## The Solution
 
-This plugin provides a multi-agent swarm review system where five specialized reviewers analyze code in parallel: security (vulnerabilities, unsafe patterns, secrets), performance (bottlenecks, optimization opportunities), style (best practices, maintainability), tests (coverage, quality, edge cases), and documentation (comments, API docs, README updates). Every finding includes a file:line reference, evidence type, severity level, confidence score, and suggested fix with specific code changes.
+This plugin provides a comprehensive code review skill that uses a multi-agent swarm approach: five specialized review agents (security, performance, style, test coverage, documentation) analyze code in parallel, producing evidence-based findings with file:line references, severity levels, confidence scores, and specific fix suggestions. Every finding must cite direct evidence from the code -- no finding is valid without a code location and supporting observation.
 
-The PR comment analysis capability extracts all comments from GitHub PRs, groups them by file and code section, identifies high-consensus issues (where 2+ reviewers flagged the same concern), and runs a three-phase validation: consolidation, context validation, and impact analysis. The output is a prioritized action plan, not a pile of disconnected comments.
+The skill also handles PR comment analysis: extracting all comments from GitHub PRs, grouping them by file and code section, identifying high-consensus issues (where 2+ reviewers flagged the same concern), and generating prioritized action plans. The TRUST 5 validation framework (Truthfulness, Relevance, Usability, Safety, Timeliness) provides a structured quality assessment beyond line-level issues.
 
-The TRUST 5 framework validates every finding against five dimensions: Truthfulness (code does what it claims), Relevance (changes fit the context), Usability (maintainable and understandable), Safety (no security vulnerabilities), and Timeliness (follows current best practices). Findings require 2+ confirming signals before being flagged, keeping the false positive rate below 5%.
+The plugin ships with 22 scripts for automated analysis, 19 reference files covering best practices, analysis prompts, and example reviews, and 6 deep-dive modules covering AI debugging, automated review, performance optimization, smart refactoring, and TDD.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Review quality depends on which reviewer has time today | Five specialized agents review security, performance, style, tests, and docs on every PR |
-| Vague comments like "this might be slow" with no evidence | Evidence-based findings with file:line references, severity, confidence scores, and specific fixes |
-| 30 PR comments from 4 reviewers with duplicates and conflicts | Consolidated, deduplicated feedback with high-consensus issues identified and prioritized |
-| Security vulnerabilities slip through non-expert reviewers | Dedicated security scanner checking for vulnerabilities, unsafe patterns, and secrets |
-| No systematic way to prioritize which review comments to fix first | Severity classification (CRITICAL/MAJOR/MINOR/NIT) with impact analysis and action plans |
-| Review coverage depends on reviewer expertise | Consistent coverage across all five quality dimensions on every review |
+| Reviews check whatever the reviewer thinks of -- inconsistent coverage | Five specialized agents cover security, performance, style, tests, and docs in parallel |
+| "Looks good to me" on 500-line PRs | Evidence-based findings with file:line, severity, confidence, and suggested fix for every issue |
+| PR comments from 3 reviewers -- unsorted, unranked, contradictory | Consolidated comments grouped by file, consensus issues highlighted, prioritized action plan |
+| Security issues found in production, not in review | Dedicated security agent catches vulnerabilities, unsafe patterns, and exposed secrets |
+| False positives waste developer time | Confidence scoring (0-1) and 2+ confirming signals required before flagging |
 
 ## Installation
 
-Add the SkillStack marketplace, then install:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install code-review@skillstack
 ```
 
-### Verify Installation
+### Verify installation
 
 After installing, test with:
 
 ```
-Review the code changes in my current branch for security and performance issues
+Review my authentication module for security issues -- I'm worried about JWT handling and password storage
 ```
-
-The skill activates automatically when you ask to review code, audit a PR, or assess code quality.
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Ask for a review:
-   ```
-   Review the changes in my latest PR -- focus on security and performance
-   ```
-3. The skill runs specialized reviewers in parallel, producing findings with file:line references, severity levels, and suggested fixes.
-4. Get a prioritized action plan:
-   ```
-   Prioritize the findings and create a fix plan I can work through
-   ```
-5. Each finding includes the exact code location, evidence, and a specific fix so you can address issues systematically from CRITICAL to NIT.
+1. Install the plugin using the commands above
+2. Ask: `Review this pull request: [paste diff or describe changes]`
+3. The skill analyzes across all five dimensions and produces prioritized findings with file:line references
+4. Drill down: `Explain the security finding on line 42 of auth.py and show me the fix`
+5. Consolidate: `I have feedback from 3 reviewers on PR #123 -- extract and prioritize all their comments`
+
+---
+
+## System Overview
+
+```
++------------------------------------------------------------------+
+|                      code-review skill                            |
++------------------------------------------------------------------+
+|                                                                    |
+|  Multi-Agent Swarm Review                                          |
+|  +----------------------------------------------------------+     |
+|  |  +----------+ +----------+ +--------+ +------+ +-------+ |     |
+|  |  | Security | | Perform. | | Style  | | Test | | Docs  | |     |
+|  |  | Reviewer | | Analyst  | | Review | | Spec | | Review| |     |
+|  |  +----+-----+ +----+-----+ +---+----+ +--+---+ +---+---+ |     |
+|  |       |             |           |         |         |     |     |
+|  |       +------+------+-----+-----+----+----+----+---+     |     |
+|  |              |                        |                   |     |
+|  |       +------v------+         +-------v-------+           |     |
+|  |       | Consolidate |         | TRUST 5       |           |     |
+|  |       | & Prioritize|         | Validation    |           |     |
+|  |       +------+------+         +-------+-------+           |     |
+|  +----------------------------------------------------------+     |
+|                        |                                           |
+|  +------------------+  |  +------------------+                     |
+|  | PR Comment       |  |  | AI Consultation  |                     |
+|  | Analysis         |  |  | (LiteLLM)        |                     |
+|  +------------------+  |  +------------------+                     |
+|                        v                                           |
+|  Evidence-Based Findings: file:line, severity, confidence, fix     |
++------------------------------------------------------------------+
+```
 
 ## What's Inside
 
-This is a comprehensive single-skill plugin combining four review methodologies, backed by scripts, references, templates, examples, and modules.
+| Component | Type | Count |
+|---|---|---|
+| `code-review` | Skill | 1 comprehensive skill |
+| References | Best practices, analysis prompts, validation workflows | 19 files |
+| Scripts | PR analysis, security scanning, performance checking, style audit | 22 files |
+| Modules | Deep-dive guides: AI debugging, automated review, performance, refactoring, TDD | 6 files |
+| Examples | Security, performance, and style review examples | 8 files |
+| Templates | Review checklist, security rules, performance thresholds | 4 files |
 
-| Component | Purpose |
+### Key References
+
+| Reference | Topic |
 |---|---|
-| **code-review** skill | Core methodology: evidence-based review, PR comment analysis, multi-agent swarm, AI consultation, TRUST 5 validation, severity levels, validation rules |
-| **8 scripts** | PR comment extraction/filtering, full PR analysis workflow, multi-agent swarm orchestration, security scanning, performance checking, style auditing, AI consultation CLI |
-| **8+ reference documents** | Extended patterns, analysis prompts, GitHub API, impact analysis methodology, validation workflows, best practices, review categories |
-| **3 templates** | Review checklist (YAML), security rules (JSON), performance thresholds (JSON) |
-| **4 examples** | Security review, performance review, style review walkthrough examples |
-| **6 modules** | AI debugging, automated code review, performance optimization, smart refactoring, TDD with Context7 |
+| `extended-patterns.md` | Detailed finding templates, PR comment workflow, multi-agent execution, CI/CD integration |
+| `best-practices.md` | Code review best practices and methodology |
+| `analysis-prompt-v2.md` | Enhanced LLM prompt for PR comment analysis with validation |
+| `advanced-patterns.md` | Advanced review patterns for complex codebases |
+| `impact-analysis-methodology.md` | Risk assessment framework for code changes |
+| `validation-workflow.md` | Three-phase validation: Consolidation, Context Validation, Impact Analysis |
 
-**Eval coverage:** 13 trigger eval cases + 3 output eval cases.
+### Key Scripts
 
-### How to Use: code-review
+| Script | Purpose |
+|---|---|
+| `pr-comment-grabber.py` | Extract all comments from a GitHub PR |
+| `pr-comment-filter.py` | Filter and categorize PR comments |
+| `analyze-pr.sh` | Full PR analysis workflow |
+| `multi_agent_review.py` | Multi-agent swarm orchestration |
+| `security_scan.sh` | Security vulnerability scanning |
+| `performance_check.py` | Performance bottleneck detection |
+| `style_audit.py` | Style and best practices audit |
+| `consultant_cli.py` | AI consultation CLI for deep analysis |
 
-**What it does:** Performs systematic code reviews using multi-agent swarm analysis, covering security, performance, style, test coverage, and documentation quality. Also extracts and prioritizes PR comments from GitHub, consolidating feedback from multiple reviewers into action plans. Every finding is evidence-based with file:line references, severity classification, and suggested fixes.
+### Component Spotlights
+
+#### code-review (skill)
+
+**What it does:** Activates when you need to review code, analyze PRs, audit for security, assess quality, or consolidate review feedback. Uses five specialized review agents working in parallel to cover all quality dimensions with evidence-based findings.
+
+**Input -> Output:** Code diff, PR number, or code snippet -> Prioritized findings with file:line references, severity (CRITICAL/MAJOR/MINOR/NIT), confidence scores (0-1), evidence citations, and specific fix suggestions.
+
+**When to use:**
+- Reviewing pull requests with systematic multi-dimensional analysis
+- Security auditing code for vulnerabilities, unsafe patterns, and exposed secrets
+- Performance reviewing code for bottlenecks and optimization opportunities
+- Extracting and prioritizing feedback from multiple PR reviewers
+- Assessing code quality before release (compliance, security gates)
+- Deep architectural analysis requiring AI-powered consultation
+
+**When NOT to use:**
+- Writing new code or implementing features -> use development skills
+- Finding and fixing runtime bugs -> use `debugging`
+- Writing tests or test infrastructure -> use `testing-framework`
+- TDD methodology -> use `test-driven-development`
 
 **Try these prompts:**
 
 ```
-Review all the changes in this branch for security vulnerabilities -- I'm about to merge to production
+Review this PR diff for security, performance, and maintainability issues -- focus on the authentication changes
 ```
 
 ```
-Analyze the PR comments on our GitHub PR #142 -- consolidate the feedback and create a prioritized fix plan
+I have 25 comments from 3 reviewers on PR #456. Extract them all, find where reviewers agree, and give me a prioritized action plan.
 ```
 
 ```
-Do a full code review of src/auth/ -- check security, performance, test coverage, and code style
+Audit our payment processing module for security vulnerabilities. I need findings with file:line references and severity levels.
 ```
 
 ```
-I need a security audit of our payment processing module before the compliance review next week
+This function handles user input but I'm worried about injection attacks. Review it and show me exactly what's unsafe and how to fix it.
 ```
-
-```
-Review my API endpoints for performance bottlenecks -- we're seeing slow response times on the /search endpoint
-```
-
-**Key resources:**
-
-| Resource | Topic |
-|---|---|
-| `extended-patterns.md` | Finding templates, PR comment workflows, swarm execution, CI/CD integration, quality gates |
-| `impact-analysis-methodology.md` | Risk assessment framework for evaluating finding severity |
-| `validation-workflow.md` | Three-phase validation: consolidation, context validation, impact analysis |
-| `best-practices.md` | Code review best practices and reviewer guidelines |
-| `review-categories.md` | Severity and scope category definitions |
-| `security-rules.json` | Security rule definitions for automated scanning |
-| `performance-thresholds.json` | Performance threshold configuration |
-
-**Shipped scripts:**
-
-| Script | What it does |
-|---|---|
-| `pr-comment-grabber.py` | Extracts all PR comments from GitHub (inline + conversation) |
-| `pr-comment-filter.py` | Filters PR comments by criteria (severity, file, reviewer) |
-| `analyze-pr.sh` | Full PR analysis workflow |
-| `multi_agent_review.py` | Orchestrates multi-agent swarm review |
-| `security_scan.sh` | Security vulnerability scanning |
-| `performance_check.py` | Performance bottleneck detection |
-| `style_audit.py` | Style and best practices audit |
-| `consultant_cli.py` | AI consultation CLI supporting 100+ LLM providers |
-
-## Real-World Walkthrough
-
-Your team is preparing to merge a large PR that adds OAuth 2.0 authentication to your FastAPI application. The PR has 847 lines changed across 12 files, and three reviewers have left 28 comments over the past two days. The tech lead wants to ship by Friday but is worried about security -- this is a payment processing application.
-
-You start with the PR comment analysis:
-
-```
-Analyze the comments on our GitHub PR -- consolidate the feedback from the three reviewers and identify the highest-priority issues
-```
-
-The skill extracts all 28 comments using `pr-comment-grabber.py`, groups them by file, and runs the three-phase analysis. Phase 1 (consolidation) reduces 28 comments to 14 unique issues -- 6 comments were duplicates where two reviewers flagged the same concern. Phase 2 (context validation) checks each finding against the actual code to verify the concern is valid. Phase 3 (impact analysis) scores each finding for severity.
-
-The output identifies three high-consensus issues (2+ reviewers agreed): token storage in localStorage (security concern -- should use httpOnly cookies), missing rate limiting on the token endpoint (DoS vulnerability), and no token rotation on privilege escalation. These get CRITICAL severity because they are security issues in a payment application.
-
-Now you run the full multi-agent swarm review:
-
-```
-Run a full code review on the OAuth PR -- all five dimensions: security, performance, style, tests, and documentation
-```
-
-Five specialized agents analyze the code in parallel:
-
-**Security Reviewer** finds four issues:
-- CRITICAL [src/auth/token.py:47]: JWT secret key loaded from environment variable without fallback -- if env var is missing, the application starts with an empty secret. Evidence: DIRECT. Confidence: 0.95. Fix: add validation that raises on startup if the secret is missing.
-- CRITICAL [src/auth/routes.py:23]: Token endpoint has no rate limiting -- attacker could brute-force tokens. Evidence: BEST_PRACTICE. Confidence: 0.90. Fix: add rate limiter middleware.
-- MAJOR [src/auth/middleware.py:89]: Token validation does not check the `aud` (audience) claim -- tokens from other applications could be accepted. Evidence: DIRECT. Confidence: 0.85. Fix: add audience validation.
-- MINOR [src/auth/utils.py:12]: Password hashing uses bcrypt with default rounds -- acceptable but should document the choice. Evidence: STYLE_RULE. Confidence: 0.70.
-
-**Performance Analyst** finds two issues:
-- MAJOR [src/auth/middleware.py:15]: Token validation hits the database on every request to check revocation -- should use a cached revocation list with TTL. Evidence: DIRECT. Confidence: 0.88. Fix: implement Redis-backed revocation cache.
-- MINOR [src/auth/routes.py:67]: User lookup during login does two separate queries (email lookup, then role fetch) -- should be a single joined query. Evidence: DIRECT. Confidence: 0.80.
-
-**Test Specialist** finds three gaps:
-- MAJOR: No tests for token expiration handling -- what happens when a token expires mid-request?
-- MAJOR: No tests for concurrent token refresh -- race condition risk when multiple tabs refresh simultaneously.
-- MINOR: Missing edge case test for malformed JWT tokens.
-
-**Style Reviewer** and **Documentation Reviewer** identify four MINOR and NIT issues about naming conventions and missing docstrings.
-
-The prioritized action plan groups findings by severity: fix the 2 CRITICAL issues first (JWT secret validation, rate limiting), then the 4 MAJOR issues (audience claim, revocation cache, test gaps), then the MINOR and NIT issues as time permits.
-
-You work through the CRITICAL issues first, fixing both in under two hours with the specific code changes from the findings. The MAJOR issues take another half day. By Thursday afternoon, the PR passes all review criteria. The tech lead merges confidently on Friday, knowing every security concern was caught, validated, and fixed with evidence.
-
-## Usage Scenarios
-
-### Scenario 1: Pre-merge security audit
-
-**Context:** You are merging a PR that touches authentication code in a healthcare application. HIPAA compliance requires documented security review before deployment.
-
-**You say:** "Run a security audit on this PR -- it touches patient authentication and we need compliance documentation"
-
-**The skill provides:**
-- Security reviewer findings with CRITICAL/MAJOR severity for every vulnerability
-- File:line references with evidence type (DIRECT, STYLE_RULE, BEST_PRACTICE)
-- TRUST 5 validation focusing on Safety dimension
-- Specific fix suggestions with code changes
-- Compliance-ready finding report with severity, evidence, and resolution status
-
-**You end up with:** A documented security audit with every finding linked to specific code, severity-classified, and accompanied by fix guidance -- ready for the compliance team to review.
-
-### Scenario 2: Consolidating PR feedback from multiple reviewers
-
-**Context:** Your PR has 35 comments from 5 reviewers. Half overlap, some conflict, and you cannot figure out what to fix first.
-
-**You say:** "Analyze the PR comments on our GitHub PR #287 -- consolidate the duplicates and tell me what to fix first"
-
-**The skill provides:**
-- All 35 comments extracted and grouped by file
-- Duplicate detection: comments addressing the same issue from different reviewers
-- High-consensus identification: issues flagged by 2+ reviewers
-- Conflict resolution: where reviewers disagree, the analysis notes the disagreement
-- Prioritized action plan from CRITICAL to NIT
-
-**You end up with:** 35 comments reduced to 18 unique issues, sorted by priority, with the 4 high-consensus issues flagged for immediate attention.
-
-### Scenario 3: Performance review of a slow endpoint
-
-**Context:** Your /search endpoint responds in 3 seconds when it should be under 500ms. You suspect the code changes from last sprint introduced the regression.
-
-**You say:** "Review the search endpoint code for performance bottlenecks -- it went from 500ms to 3 seconds after last sprint's changes"
-
-**The skill provides:**
-- Performance analyst findings with specific bottleneck identification
-- File:line references showing the slow code paths
-- N+1 query detection, missing index suggestions, caching opportunities
-- Before/after performance estimates for each suggested fix
-- Prioritized by expected impact (fix the 80% bottleneck first)
-
-**You end up with:** Identified bottlenecks (e.g., N+1 query in the filter logic, missing database index on the search column) with specific fixes and estimated performance improvement per fix.
-
-### Scenario 4: Full quality review before a release
-
-**Context:** You are cutting a release and want a comprehensive review of all changes since the last release. The changes span 40 files across 15 PRs.
-
-**You say:** "Review all changes since our last release tag -- full review across security, performance, style, tests, and docs"
-
-**The skill provides:**
-- Multi-agent swarm review across all five dimensions
-- Findings aggregated across the full changeset (not per-PR)
-- Cross-cutting issues that span multiple files or PRs
-- Release readiness assessment based on finding severity
-- Go/no-go recommendation with blocking issues listed
-
-**You end up with:** A release readiness report with all CRITICAL and MAJOR findings that must be addressed before release, plus MINOR/NIT items for the next sprint.
-
-## Ideal For
-
-- **Teams with inconsistent review quality** -- the multi-agent swarm ensures security, performance, style, tests, and documentation are covered on every review regardless of who reviews
-- **PRs with many comments from multiple reviewers** -- the consolidation and prioritization turns comment chaos into an actionable plan
-- **Security-sensitive applications** -- the dedicated security reviewer catches vulnerabilities, secrets, and unsafe patterns with evidence-based findings
-- **Pre-release quality gates** -- the severity classification and TRUST 5 validation provide structured go/no-go criteria
-- **Compliance-driven organizations** -- evidence-based findings with file:line references and severity levels produce audit-ready review documentation
-
-## Not For
-
-- **Writing new code or implementing features** -- use the relevant development skill (react-development, python-development, etc.)
-- **Finding and fixing runtime bugs** -- use [debugging](../debugging/) for systematic root cause analysis
-- **Writing tests or setting up test infrastructure** -- use [testing-framework](../testing-framework/) for test design and infrastructure
-- **TDD methodology** -- use [test-driven-development](../test-driven-development/) for red-green-refactor workflow
-
-## How It Works Under the Hood
-
-The plugin is a single skill that merges four complementary review methodologies into one unified system.
-
-The **core skill** defines the review framework: evidence-based findings (every finding must have file:line, evidence type, severity, confidence, and fix), the five-agent swarm (security, performance, style, tests, documentation), PR comment analysis (extract, consolidate, validate, prioritize), AI-powered consultation for complex architectural decisions, and the TRUST 5 validation framework.
-
-The **scripts** provide automation: `pr-comment-grabber.py` and `pr-comment-filter.py` extract and filter GitHub PR comments, `multi_agent_review.py` orchestrates the swarm review, `security_scan.sh` and `performance_check.py` run specialized analysis, and `consultant_cli.py` provides AI consultation through 100+ LLM providers via LiteLLM.
-
-The **references** provide depth: extended patterns for finding templates and CI/CD integration, analysis prompts for LLM-based review, impact analysis methodology for risk assessment, and validation workflows for the three-phase process.
-
-The **modules** add specialized capabilities: AI-powered debugging, automated code review, performance optimization patterns, smart refactoring, and TDD integration with Context7 documentation.
-
-Simple requests ("review this file") trigger a single-pass review with all five agents. Complex requests ("analyze the PR comments and create a fix plan") use the PR comment analysis pipeline. Full pre-release reviews combine both approaches across the entire changeset.
-
-## Related Plugins
-
-- **[Testing Framework](../testing-framework/)** -- Test infrastructure setup and suite authoring for the test gaps identified during review
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline integration for automated review gates
-- **[Debugging](../debugging/)** -- Root cause analysis for bugs discovered during review
-- **[API Design](../api-design/)** -- API design patterns for endpoints identified as needing redesign during review
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Review my code" | "Review the authentication module in src/auth/ -- focus on JWT validation, password hashing, and session management" |
+| "Is this PR good?" | "Review PR #123: it adds a new payment endpoint. Check for SQL injection, improper error handling, and missing input validation" |
+| "Find bugs" | "Audit src/api/handlers.py for security issues. I need CRITICAL findings with file:line, evidence, and fix code." |
+| "Check the PR comments" | "Extract all comments from PR #456 on github.com/org/repo, group by file, identify consensus issues, and prioritize by severity" |
+
+### Structured Prompt Templates
+
+**For comprehensive code review:**
+```
+Review [file/directory/PR] focusing on [dimensions: security, performance, style, tests, docs]. Severity threshold: [CRITICAL only / MAJOR+ / all]. I care most about [specific concern]. Evidence format: file:line with code context.
+```
+
+**For PR comment analysis:**
+```
+Analyze comments from PR #[number] on [repo]. Consolidate duplicate feedback, identify where 2+ reviewers agree, and produce a prioritized action plan. Group by: [file / severity / reviewer].
+```
+
+**For security audit:**
+```
+Security audit [scope: file, module, or full repo]. Check for: [injection, auth bypass, secrets, SSRF, XSS, etc.]. Report format: CRITICAL findings first with exploitation scenario, then MAJOR, then MINOR.
+```
+
+### Prompt Anti-Patterns
+
+- **Reviewing without scope**: "Review my entire codebase" -- focus on specific changes, modules, or concerns. A codebase-wide review produces too many findings to be actionable.
+- **Asking for approval instead of analysis**: "Is this code okay to merge?" -- the skill produces evidence-based findings, not approval stamps. Ask for specific quality dimension analysis.
+- **Ignoring severity guidance**: Not specifying which severity levels matter means the review includes every NIT-level formatting suggestion alongside CRITICAL security vulnerabilities. Set a threshold.
+
+## Real-World Walkthrough
+
+**Starting situation:** Your team is preparing to launch a payment processing feature. The PR has 800 lines across 12 files: new API endpoints, database models, Stripe integration, and tests. Three team members have reviewed it and left a total of 28 comments. You need to consolidate the feedback, ensure nothing critical was missed, and create an action plan before merge.
+
+**Step 1: PR comment consolidation.** You ask: "Extract and consolidate all 28 comments from PR #789 on our repo. Group by file and identify consensus issues." The skill processes all comments and identifies: 4 high-consensus issues (where 2+ reviewers flagged the same concern), 8 unique findings, and 16 comments that are acknowledgments or discussions. The high-consensus issues are: (1) SQL injection risk in the order query builder, (2) missing rate limiting on the payment endpoint, (3) Stripe API key handling concern, (4) insufficient error logging on payment failures.
+
+**Step 2: Multi-agent swarm review.** You ask: "Now run a full review on the same PR. The human reviewers might have missed things." The five specialized agents analyze in parallel:
+- **Security agent** confirms the SQL injection risk (CRITICAL, confidence 0.95) and finds an additional issue: the Stripe webhook signature verification is missing, allowing spoofed webhook events (CRITICAL, confidence 0.9).
+- **Performance agent** finds that the order history query lacks an index on `customer_id + created_at` (MAJOR) and that the payment confirmation loop polls synchronously instead of using webhooks (MAJOR).
+- **Style agent** identifies inconsistent error handling (some handlers return structured errors, others return raw strings) (MINOR) and unused imports (NIT).
+- **Test agent** notes that the happy-path tests are good but edge cases are missing: expired cards, duplicate payments, partial refunds (MAJOR).
+- **Documentation agent** flags that the new endpoints are undocumented in the API docs (MINOR).
+
+**Step 3: TRUST 5 validation.** The skill applies the validation framework: Truthfulness (code does what it claims -- mostly, but the webhook handler does not actually verify signatures), Relevance (changes are appropriate for the feature), Usability (code is readable but error handling is inconsistent), Safety (two CRITICAL security issues), Timeliness (follows current Stripe API patterns).
+
+**Step 4: Prioritized action plan.** The skill produces a prioritized list:
+1. **CRITICAL**: Add Stripe webhook signature verification (security agent finding + human reviewer #3 concern = high confidence)
+2. **CRITICAL**: Parameterize the order query to prevent SQL injection (security agent + 2 human reviewers)
+3. **MAJOR**: Add rate limiting to payment endpoint (human consensus + security best practice)
+4. **MAJOR**: Add database index on customer_id + created_at (performance agent)
+5. **MAJOR**: Add edge case tests for expired cards, duplicate payments, partial refunds (test agent)
+6. **MINOR**: Standardize error handling across all new handlers (style agent)
+7. **MINOR**: Add API documentation for new endpoints (documentation agent)
+
+**Step 5: Fix verification.** After the developer addresses findings, you ask: "Review the fixes for the 2 CRITICAL and 3 MAJOR issues." The skill verifies that the SQL injection fix uses parameterized queries correctly, the webhook verification calls `stripe.webhooks.constructEvent()` with the correct signing secret, and the rate limiter is configured appropriately.
+
+**Gotchas discovered:** The initial webhook signature verification fix used the wrong Stripe signing secret (test key instead of production key). The security agent caught this in the fix review because it cross-referenced the environment variable name against the Stripe documentation pattern.
+
+## Usage Scenarios
+
+### Scenario 1: Pre-release security audit
+
+**Context:** Your compliance team requires a security review before any user-facing feature launches. The authentication module was last reviewed 6 months ago and has had 40 commits since.
+
+**You say:** "Security audit src/auth/ and src/middleware/auth.py. Check for JWT validation issues, password storage, session management, and OWASP Top 10 patterns."
+
+**The skill provides:**
+- CRITICAL/MAJOR findings with file:line references and exploitation scenarios
+- JWT-specific checks: algorithm confusion, missing expiry validation, weak signing keys
+- Password storage verification: bcrypt/argon2 usage, salt handling
+- Session fixation and CSRF checks in middleware
+- OWASP Top 10 coverage report
+
+**You end up with:** A security report with evidence-based findings the compliance team can audit, each with severity, exploitation risk, and specific fix code.
+
+### Scenario 2: Onboarding code quality assessment
+
+**Context:** A new developer joined the team and submitted their first PR. You want to give thorough, constructive feedback covering all quality dimensions without overwhelming them.
+
+**You say:** "Review PR #234 from a new team member. Give comprehensive feedback but calibrate for onboarding -- emphasize learning over nitpicking. Focus on patterns they should adopt."
+
+**The skill provides:**
+- Findings organized as learning opportunities rather than defects
+- Best practice suggestions with links to team conventions
+- Pattern-level feedback (not just line-level fixes)
+- Positive callouts where the code follows good patterns
+
+**You end up with:** A review that teaches rather than criticizes, with clear patterns the developer can apply to future work.
+
+### Scenario 3: Performance-focused review of a hot path
+
+**Context:** Your API endpoint handling search queries is slow. The PR claims to optimize it by adding caching and query restructuring.
+
+**You say:** "Review this performance optimization PR for our search endpoint. Verify the caching strategy is correct and the query changes actually improve performance. Check for race conditions in the cache layer."
+
+**The skill provides:**
+- Cache invalidation analysis: is the TTL appropriate, are cache keys correct, what about stampede protection?
+- Query optimization verification: does the new query use indexes, are joins efficient?
+- Race condition analysis in concurrent cache access
+- Before/after performance characteristic comparison
+- Missing edge cases: cache miss thundering herd, stale cache serving
+
+**You end up with:** Verification that the optimization is sound or specific issues to fix before merge, with performance implications quantified.
+
+---
+
+## Decision Logic
+
+**How does the multi-agent swarm work?**
+
+Five specialized agents run in parallel, each focused on one quality dimension. The security reviewer looks for vulnerabilities, the performance analyst identifies bottlenecks, the style reviewer checks patterns and readability, the test specialist assesses coverage, and the documentation reviewer checks inline and API docs. Results are consolidated with deduplication (same issue found by multiple agents counts once with higher confidence).
+
+**When does a finding meet the evidence threshold?**
+
+Every finding requires: (1) a code location (file:line), (2) an evidence type (DIRECT observation, STYLE_RULE violation, or BEST_PRACTICE deviation), (3) a severity level, and (4) a confidence score. Findings require 2+ confirming signals before being flagged -- a single ambiguous indicator is marked "needs manual review" instead of reported as a violation.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| False positives overwhelming developers | More than 5% of findings are not genuine issues | Raise confidence threshold; require 2+ confirming signals; tune security rules |
+| Missing context for PR analysis | Review misses business logic issues because it only sees the diff | Provide broader context: describe the feature, link to the spec, identify the hot path |
+| Stale review rules | Findings reference outdated patterns or deprecated APIs | Update reference files; the skill uses `best-practices.md` which should track current standards |
+| Over-reliance on automated review | Human reviewers defer to the tool and stop thinking critically | Use the tool to augment human review, not replace it; always have a human approve |
+
+## Ideal For
+
+- **Engineering teams with high PR volume** who need consistent, thorough reviews across all quality dimensions without bottlenecking on senior reviewers
+- **Security-conscious teams** who need systematic vulnerability scanning with evidence-based findings, not just linter warnings
+- **Tech leads consolidating feedback** from multiple reviewers into prioritized action plans
+- **Teams with compliance requirements** who need documented, auditable code review evidence with severity and confidence ratings
+
+## Not For
+
+- **Writing new code** -- this skill reviews existing code. For implementation, use language-specific development skills.
+- **Runtime bug diagnosis** -- finding and fixing bugs that manifest at runtime. Use `debugging`.
+- **Setting up test infrastructure** -- configuring test frameworks, fixtures, and CI test stages. Use `testing-framework`.
+
+## Related Plugins
+
+- **testing-framework** -- Complement code review findings with test coverage improvements
+- **debugging** -- Investigate runtime issues that code review identifies as risks
+- **cicd-pipelines** -- Integrate automated code review into CI/CD quality gates
+- **api-design** -- Review API designs before implementing endpoints
+- **git-workflow** -- Branch protection and merge strategies that enforce review requirements
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
