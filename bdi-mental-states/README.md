@@ -6,22 +6,9 @@ Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontolo
 
 ## What Problem Does This Solve
 
-LLM agents that rely purely on prompt context lack structured internal representations of what they believe, want, and intend — making deliberation opaque, reasoning unjustifiable, and coordination across agents fragile. The BDI (Belief-Desire-Intention) architecture provides a formal cognitive model that separates perception from deliberation from action, enabling agents to explain their reasoning chains, maintain temporally-bounded mental states, and interoperate with other agents via established ontologies.
+LLM agents that rely purely on prompt context lack structured internal representations of what they believe, want, and intend. Their deliberation is opaque -- you cannot trace why an agent chose one action over another, verify that its beliefs are grounded in evidence, or determine when a belief expired. When multiple agents need to share mental states, there is no interoperable format for communicating beliefs across platforms.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "How do I give my agent a structured representation of what it believes about the world?" | BDI ontology patterns in RDF/Turtle with Belief, WorldState, and temporal validity constructs |
-| "I need my agent's reasoning to be explainable and traceable" | Justification linking pattern connecting every mental state to explicit evidence instances |
-| "How do I integrate external RDF knowledge graphs into agent reasoning?" | T2B2T (Triples-to-Beliefs-to-Triples) paradigm for bidirectional flow between RDF context and internal mental states |
-| "I want to implement a cognitive agent that forms intentions from beliefs" | Complete Belief → Desire → Intention → Plan → Task chain with RDF examples and SPARQL competency queries |
-| "How do I connect BDI mental states to production rules in SEMAS or JADE?" | Framework integration patterns translating BDI ontology to SEMAS rule notation and JADE agent execution |
-| "My LLM agent needs ontological constraints to prevent hallucinating structured outputs" | Logic Augmented Generation (LAG) integration pattern augmenting LLM prompts with BDI ontology context |
-
-## When NOT to Use This Skill
-
-- multi-agent coordination or agent handoffs -- use [multi-agent-patterns](../multi-agent-patterns/) instead
+The BDI (Belief-Desire-Intention) architecture addresses this by providing a formal cognitive model that separates perception from deliberation from action. Each mental state (belief, desire, intention) is a first-class entity with temporal validity, justification links, and compositional structure. This enables explainable reasoning chains, selective belief updates without replacing entire knowledge structures, and cross-agent communication via standard RDF/SPARQL interfaces. The skill covers the ontology itself, the T2B2T (Triples-to-Beliefs-to-Triples) paradigm for bidirectional RDF integration, and patterns for connecting BDI structures to production rule engines and LLM pipelines.
 
 ## Installation
 
@@ -32,60 +19,59 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install bdi-mental-states@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
-
-## How to Use
-
-**Direct invocation:**
-
-```
-Use the bdi-mental-states skill to ...
-```
-
-**Natural language triggers** -- Claude activates this skill automatically when you mention:
-
-- `bdi`
-- `cognitive-architecture`
-- `rdf`
-- `ontology`
-- `neuro-symbolic`
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention BDI, cognitive architecture, or ontology topics, or you can invoke it explicitly with `Use the bdi-mental-states skill to ...`.
 
 ## What's Inside
 
-- **When to Activate** -- Conditions distinguishing BDI use cases from multi-agent-patterns and memory-systems
-- **Core Concepts** -- Mental Reality Architecture distinguishing endurants (Belief, Desire, Intention) from perdurants (BeliefProcess, DesireProcess, IntentionProcess), with world state grounding and goal-directed planning examples
-- **T2B2T Paradigm** -- Bidirectional RDF-to-beliefs-to-RDF transformation with complete Turtle notation examples for both phases
-- **Notation Selection by Level** -- C4 architecture level mapping (Context/Container/Component/Code) to ArchiMate and UML notations for BDI system documentation
-- **Justification and Explainability** -- Pattern for linking every mental entity to explicit Justification instances enabling traceable reasoning chains
-- **Temporal Dimensions** -- Validity interval modeling for bounded mental states with SPARQL query for time-point mental state retrieval
-- **Compositional Mental Entities** -- Meronymic `hasPart` structures enabling selective belief updates without replacing entire complex beliefs
-- **Integration Patterns** -- Logic Augmented Generation for LLM constraint, SEMAS rule translation, and FIPA ACL cross-platform communication
+This is a single-skill plugin with four reference documents:
 
-## Key Capabilities
+| Component | What It Covers |
+|---|---|
+| **SKILL.md** | Mental Reality Architecture (endurants: Belief, Desire, Intention; perdurants: BeliefProcess, DesireProcess, IntentionProcess), cognitive chain pattern (Belief motivates Desire, Desire fulfilled by Intention, Intention specifies Plan), world state grounding, goal-directed planning with task sequences, T2B2T paradigm (bidirectional RDF-to-beliefs-to-RDF), C4 notation mapping, justification and explainability patterns, temporal validity intervals, compositional mental entities with `hasPart` for selective updates, Logic Augmented Generation integration, SEMAS rule translation, and SPARQL competency queries for validation |
+| **references/bdi-ontology-core.md** | Core ontology class definitions, property hierarchies, existential restrictions, OWL axioms, and alignment with DOLCE upper ontology |
+| **references/rdf-examples.md** | Complete RDF/Turtle examples for all ontology patterns: beliefs, desires, intentions, plans, world states, justifications, temporal constructs, and compositional structures |
+| **references/sparql-competency.md** | Full SPARQL queries for competency questions: what beliefs motivated a desire, which desire an intention fulfills, what process generated a belief, task ordering in plans, active mental states at a time point, and justification chains |
+| **references/framework-integration.md** | Integration patterns for SEMAS (production rules), JADE/JADEX (Java agent frameworks), FIPA ACL (agent communication language), and Logic Augmented Generation (LLM constraint with ontological context) |
 
-- **RDF Processing**
-- **Semantic Reasoning**
-- **Multi-Agent Communication**
-- **Temporal Context**
-- **Explainable AI**
-- **Neuro-Symbolic AI**
+## Usage Scenarios
 
-## Version History
+**1. "I need my agent to explain why it chose a particular action."**
+Use the justification pattern: every mental entity links to a `Justification` instance with explicit evidence. When the agent forms a belief from a notification, the belief references the notification as justification. When a desire motivates an intention, the intention links back through `fulfils` and `isSupportedBy`. Tracing backward from any action through its intention, desire, and belief chain produces a complete explanation grounded in evidence.
 
-- `1.0.4` fix(agent-architecture): add NOT clauses to disambiguate 7 agent plugins (f25da8a)
-- `1.0.3` fix(bdi-mental-states): add standard keywords and expand README to full format (9cb523a)
-- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.0` Initial release (697ea68)
+**2. "How do I represent an agent's beliefs about the world in a way that other systems can query?"**
+Model beliefs as RDF triples using the BDI ontology. Each belief references a `WorldState` (the objective situation) via `refersTo`, has temporal validity via `hasValidity` with start/end times, and can be queried with standard SPARQL. Other systems can ask "what does Agent A believe about the meeting?" by querying for beliefs that refer to the relevant world state.
 
-## Related Skills
+**3. "I want my LLM agent to reason with formal cognitive structures instead of just generating text."**
+Use the Logic Augmented Generation (LAG) pattern: serialize the relevant BDI ontology context as Turtle, prepend it to the LLM prompt, extract RDF triples from the response, and validate them against ontology constraints. This constrains the LLM to produce outputs consistent with the cognitive model rather than hallucinating arbitrary structures.
 
-- **[Agent Evaluation](../agent-evaluation/)** -- Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, ...
-- **[Agent Project Development](../agent-project-development/)** -- Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process...
-- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents...
-- **[Memory Systems](../memory-systems/)** -- Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Cov...
-- **[Multi Agent Patterns](../multi-agent-patterns/)** -- Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, c...
+**4. "My agent has complex beliefs that should be partially updatable."**
+Use compositional mental entities with `hasPart`. A belief about a meeting (`Belief_meeting`) decomposes into `Belief_meeting_time` and `Belief_meeting_location`. When the location changes, a `BeliefProcess` modifies only `Belief_meeting_location` without invalidating the parent belief or the time component. This prevents wholesale belief replacement when only one aspect changes.
+
+**5. "I need agents on different platforms to share their mental states."**
+Use FIPA ACL integration with RDF serialization. The BDI ontology provides a shared vocabulary: agents serialize their beliefs, desires, and intentions as RDF triples using the common ontology namespace. Receiving agents parse these triples into their own mental state representations. The SPARQL competency queries work across any compliant implementation.
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Implementing cognitive agent architectures with formal reasoning
+- Building explainable AI systems where decision chains must be traceable
+- Integrating LLM agents with RDF knowledge graphs or semantic web infrastructure
+- Modeling temporal evolution of agent beliefs and intentions
+- Connecting agents across platforms via shared ontology
+
+**Do NOT use when:**
+- Coordinating multiple agents or designing handoff protocols -- use [multi-agent-patterns](../multi-agent-patterns/) instead
+- Building agent memory frameworks for persistence across sessions -- use [memory-systems](../memory-systems/) instead
+- Building simple agents that do not need formal cognitive structure -- use [agent-project-development](../agent-project-development/) instead
+
+## Related Plugins
+
+- **[Agent Evaluation](../agent-evaluation/)** -- Rubrics and LLM-as-judge for measuring agent quality
+- **[Agent Project Development](../agent-project-development/)** -- Task-model fit, pipeline architecture, cost estimation for LLM projects
+- **[Hosted Agents](../hosted-agents/)** -- Infrastructure patterns for background agents
+- **[Memory Systems](../memory-systems/)** -- Production memory architectures comparing Mem0, Zep/Graphiti, Letta, Cognee, LangMem
+- **[Multi-Agent Patterns](../multi-agent-patterns/)** -- Supervisor, swarm, and hierarchical patterns for multi-agent systems
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
