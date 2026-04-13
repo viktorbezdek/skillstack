@@ -1,27 +1,12 @@
-# Context Compression
-
 > **v1.0.4** | Context Engineering | 5 iterations
 
-Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.
+# Context Compression
+
+Production strategies for compressing LLM context windows without destroying the information agents need most.
 
 ## What Problem Does This Solve
 
-When coding agents run long sessions, naive compression destroys the information they need most — file paths, error messages, and decisions made earlier — forcing expensive re-exploration that costs more tokens than the compression saved. The real optimization target is not tokens-per-request but tokens-per-task: the total cost from start to completion, including re-fetching. This skill provides structured compression strategies that preserve artifact trails and task context across compression cycles.
-
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "My agent keeps forgetting which files it modified" | Anchored iterative summarization with explicit file-tracking sections that survive repeated compression |
-| "How do I compress context without losing critical details?" | Three production-ready compression methods with quality tradeoffs: anchored iterative, opaque, and regenerative |
-| "When should I trigger context compaction?" | Compression trigger strategies — fixed threshold, sliding window, importance-based, and task-boundary — with tradeoffs |
-| "How do I know if my compression is working well?" | Probe-based evaluation framework with four probe types (recall, artifact, continuation, decision) that measures functional quality |
-| "My agent session is approaching the context limit at 70%+" | Three-phase compression workflow for large codebases: research, planning, and implementation phases |
-| "I'm seeing 99%+ compression ratios but quality seems wrong" | Six-dimension evaluation scoring (accuracy, context awareness, artifact trail, completeness, continuity, instruction following) with benchmarks |
-
-## When NOT to Use This Skill
-
-- diagnosing context failures or degradation patterns -- use [context-degradation](../context-degradation/) instead
+When coding agents run long sessions, naive compression destroys the information they need most -- file paths, error messages, and decisions made earlier -- forcing expensive re-exploration that costs more tokens than the compression saved. Most teams optimize for tokens-per-request (how small can I make each call?) when the real optimization target is tokens-per-task (total tokens consumed from start to completion, including re-fetching). This skill provides three production-tested compression strategies -- anchored iterative summarization, opaque compression, and regenerative summaries -- along with probe-based evaluation to measure whether compression actually preserved the information that matters.
 
 ## Installation
 
@@ -34,12 +19,45 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
+## What's Inside
+
+This is a single-skill plugin with one reference document:
+
+| Component | Description |
+|---|---|
+| `skills/context-compression/SKILL.md` | Core skill covering three compression methods, tokens-per-task optimization, artifact trail preservation, structured summary sections, trigger strategies, and the three-phase compression workflow for large codebases |
+| `references/evaluation-framework.md` | Complete evaluation framework: four probe types (recall, artifact, continuation, decision), six-dimension scoring rubrics (accuracy, context awareness, artifact trail, completeness, continuity, instruction following), LLM judge configuration, and benchmark results across 36,000+ messages |
+| `evals/trigger-evals.json` | 13 trigger scenarios validating correct activation and near-miss rejection |
+| `evals/evals.json` | 3 output quality scenarios testing compression guidance, approach review, and greenfield setup |
+
+## Usage Scenarios
+
+**1. Agent keeps forgetting which files it modified after compaction**
+
+Your coding agent compacts context at 80% utilization, but afterward it re-reads files it already modified and proposes changes it already made. Use anchored iterative summarization with explicit `Files Modified` sections that survive repeated compression cycles. The structured sections act as checklists the summarizer must populate, preventing silent information drift.
+
+**2. Choosing the right compression method for a long debugging session**
+
+You have a 100+ message debugging session approaching the context limit. The skill provides a decision matrix: use anchored iterative summarization (98.6% compression, 3.70 quality score) for sessions where file tracking matters, opaque compression (99.3% compression, 3.35 quality) when maximum token savings are needed and re-fetching is cheap, or regenerative summaries (98.7% compression, 3.44 quality) when interpretability is critical.
+
+**3. Measuring whether your compression is actually working**
+
+Traditional metrics like ROUGE or embedding similarity fail for coding agents -- a summary can score high on lexical overlap while missing the one file path the agent needs. Use the probe-based evaluation framework: after compression, ask recall probes ("What was the original error message?"), artifact probes ("Which files have we modified?"), continuation probes ("What should we do next?"), and decision probes ("Why did we choose connection pooling?"). If the agent hallucinates answers, your compression is lossy in ways that matter.
+
+**4. Compressing a 5M+ token codebase into a workable context**
+
+A codebase exceeding the context window needs a three-phase compression workflow: (1) Research Phase -- produce a structured analysis of components and dependencies from architecture diagrams and key interfaces, (2) Planning Phase -- convert research into an implementation specification with function signatures and data flow (a 5M token codebase compresses to ~2,000 words of spec), (3) Implementation Phase -- execute against the spec rather than raw codebase exploration.
+
+**5. Setting up compression triggers that fire at the right time**
+
+The skill covers four trigger strategies with tradeoffs: fixed threshold (70-80% utilization, simple but may compress too early), sliding window (keep last N turns + summary, predictable), importance-based (compress low-relevance sections first, complex but preserves signal), and task-boundary (compress at logical completions, clean summaries but unpredictable timing).
+
 ## How to Use
 
 **Direct invocation:**
 
 ```
-Use the context-compression skill to ...
+Use the context-compression skill to design a compression strategy for my agent
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -49,32 +67,28 @@ Use the context-compression skill to ...
 - `compaction`
 - `token-optimization`
 
-## What's Inside
+## When to Use / When NOT to Use
 
-- **When to Activate** -- Conditions that signal compression is needed: session length, codebase size, agents forgetting file modifications.
-- **Core Concepts** -- Three compression approaches (anchored iterative, opaque, regenerative) with compression ratios and quality score tradeoffs.
-- **Detailed Topics** -- Deep coverage of tokens-per-task optimization, the artifact trail problem, structured summary sections, trigger strategies, probe-based evaluation, and six evaluation dimensions.
-- **Session Intent** -- Template section for capturing the user's goal at the start of each compression summary.
-- **Files Modified** -- Template section for tracking which files were created, changed, or read-only during the session.
-- **Decisions Made** -- Template section for preserving architectural and implementation decisions across compression cycles.
-- **Current State** -- Template section for capturing test status, progress markers, and in-flight work at compression time.
-- **Next Steps** -- Template section for preserving the planned continuation so agents can resume without re-exploration.
+**Use when:**
+- Agent sessions exceed context window limits
+- Designing conversation summarization strategies
+- Debugging cases where agents "forget" what files they modified
+- Building evaluation frameworks for compression quality
+- Codebases exceed context windows (5M+ token systems)
 
-## Version History
+**Do NOT use when:**
+- Diagnosing context failures or degradation patterns -- use [context-degradation](../context-degradation/) instead
+- Optimizing KV-cache, observation masking, or context partitioning -- use [context-optimization](../context-optimization/) instead
+- Learning context theory or fundamentals -- use [context-fundamentals](../context-fundamentals/) instead
+- Offloading context to the file system via scratch pads -- use [filesystem-context](../filesystem-context/) instead
 
-- `1.0.4` fix(context-engineering): optimize descriptions with cross-references and NOT clauses (7881054)
-- `1.0.3` fix(context-compression): add standard keywords and expand README to full format (4005434)
-- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.0` Initial release (697ea68)
+## Related Plugins
 
-## Related Skills
-
-- **[Context Degradation](../context-degradation/)** -- Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distra...
-- **[Context Fundamentals](../context-fundamentals/)** -- Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, pro...
-- **[Context Optimization](../context-optimization/)** -- Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and ...
-- **[Filesystem Context](../filesystem-context/)** -- Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, d...
+- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, clash, and confusion patterns with empirical thresholds by model
+- **[Context Fundamentals](../context-fundamentals/)** -- Foundational theory of context engineering: what context is, how attention works, progressive disclosure, and context budgeting
+- **[Context Optimization](../context-optimization/)** -- Extending effective context capacity: KV-cache optimization, observation masking, context partitioning, and retrieval strategies
+- **[Filesystem Context](../filesystem-context/)** -- Using the file system for context: scratch pads, plan persistence, dynamic skill loading, and sub-agent file workspaces
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
