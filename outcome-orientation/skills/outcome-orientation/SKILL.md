@@ -1,9 +1,11 @@
 ---
 name: outcome-orientation
 description: >-
-  Focus on measurable outcomes using OKRs, results-driven thinking, and the outcome
-  vs output distinction. Use when defining OKRs, outcomes, results, KPIs, success
-  metrics, or goal setting. NOT for prioritizing features (use prioritization).
+  Reframe work around measurable outcomes using OKRs, KPIs, and the outcome-vs-output
+  distinction. Use when the user asks to define success criteria, write OKRs, set KPIs,
+  clarify what "done" means in terms of impact, distinguish outputs from outcomes, or
+  make a goal statement measurable and time-bound. NOT for ranking or scoring features by
+  priority (use prioritization). NOT for systemic feedback-loop analysis (use systems-thinking).
 ---
 
 # Outcome Orientation
