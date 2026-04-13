@@ -6,30 +6,30 @@
 
 ## The Problem
 
-Building a polished frontend means mastering at least five specialist domains simultaneously: CSS styling, accessible component behavior, design token architecture, responsive layout, and visual quality evaluation. Each domain has its own documentation, best practices, and tooling. A developer building a dashboard card needs to know Tailwind utilities for styling, Radix UI primitives for accessible dropdowns, CSS variable architecture for dark mode, WCAG contrast ratios for text readability, and responsive breakpoints for mobile layout -- all for a single component.
+Frontend development requires juggling an extraordinary number of concerns simultaneously: visual design, accessibility, responsive layout, dark mode, design tokens, component architecture, performance optimization, and testing. Each concern has its own best practices, tooling, and failure modes. A developer building a single data table needs to think about WCAG 2.2 contrast ratios, keyboard navigation, responsive breakpoints, Tailwind utility classes, Radix UI primitives, and whether the loading state handles zero results.
 
-The knowledge is scattered across dozens of documentation sites, tutorials, and blog posts. The Tailwind docs explain utilities but not how to structure a design token system. The Radix UI docs explain accessible primitives but not how to style them with Tailwind. The WCAG spec defines contrast requirements but not how to implement them in a component library. The result is that developers spend more time context-switching between docs than writing code, and the gaps between domains produce components that look right but fail accessibility audits, work on desktop but break on mobile, or use hardcoded colors that cannot be themed.
+Without a unified framework, these concerns fragment across separate documentation, blog posts, and tribal knowledge. Teams end up with inconsistent component implementations: one form uses inline styles, another uses CSS modules, a third uses Tailwind with inconsistent spacing tokens. Accessibility is treated as an afterthought -- added after the visual design is complete, at 10x the cost. Design tokens exist in Figma but never make it into code, creating a permanent drift between design and implementation.
 
-Design token pipelines add another layer of complexity. When a designer updates colors in Figma, those changes need to flow through extraction, transformation, and validation before landing in CSS variables -- and the naming conventions must follow a three-tier architecture (primitives, semantics, components) to support dark mode and theming. Without automation, this pipeline is manual, error-prone, and typically abandoned after the first sprint.
+The cost shows up in three ways. First, every new component is built from scratch instead of composed from validated primitives, wasting days of developer time. Second, accessibility audits consistently fail because WCAG compliance was not built into the component architecture from the start. Third, design-to-code handoff is manual and lossy -- designers specify tokens in Figma, developers approximate them in code, and the two drift further apart with every sprint.
 
 ## The Solution
 
-This plugin consolidates expertise from 11 specialized frontend/UI skills into a single reference covering the full Tailwind CSS + Radix UI + shadcn/ui stack. Instead of navigating between documentation sites, Claude has immediate access to utility references, component patterns, accessibility guidelines, design token architecture, responsive patterns, and UI evaluation tooling -- all structured to work together.
+This plugin consolidates 11 specialized frontend skills into a single comprehensive skill covering the complete frontend design stack. It provides a three-pillar architecture (Tailwind CSS for styling, Radix UI for accessible behavior, shadcn/ui for pre-built components) with a decision tree that routes any frontend question to the right approach and reference material.
 
-The three-pillar architecture provides a clear mental model: Tailwind CSS for styling (zero runtime overhead, design tokens for colors/spacing/typography), Radix UI for behavior (WAI-ARIA compliant primitives with keyboard navigation and focus management), and shadcn/ui for complete components (pre-built components combining Tailwind styling with Radix behavior that you own and customize).
+The skill ships with 59 reference files covering every major frontend concern: design tokens (W3C DTCG format), accessibility (WCAG 2.2 guidelines and patterns), responsive layout, Tailwind utilities, CSS variables, shadcn/ui components, Radix UI primitives, Storybook integration, performance optimization, form patterns, data tables, animation, routing, file organization, and testing. It includes 30+ automation scripts for common tasks (component scaffolding, token extraction from Figma, accessibility auditing, UI evaluation, CSS validation) and 5 code templates for design tokens and component generation.
 
-Beyond reference material, the plugin ships 30+ runnable scripts: `extract_tokens.py` pulls design tokens from Figma, `transform_tokens.py` generates CSS/SCSS/TypeScript output, `validate_tokens.py` catches naming violations, `audit_accessibility.sh` runs WCAG compliance checks, `evaluate-ui.ts` scores UI quality with Playwright, and `compare-variations.ts` produces quantitative A/B comparisons of design alternatives. Component templates provide starting points for buttons, inputs, composed components, stories, tests, and TypeScript types.
+The plugin activates when you work on any UI-related task and provides the relevant subset of its knowledge -- not the full 59-reference corpus -- based on what you are building.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Developer context-switches between Tailwind docs, Radix docs, shadcn docs, and WCAG spec to build one component | All five domains consolidated in a single skill with a decision tree routing to the right reference |
-| Dark mode requires manually defining every color twice -- once for light, once for dark | Three-tier token architecture: primitives are immutable, semantic tokens swap, components inherit automatically |
-| Accessibility is checked after the component ships (if at all) | WCAG 2.2 checklist and Radix UI's built-in ARIA guarantees make accessibility a build-time concern |
-| Design token updates from Figma are manual, error-prone, and typically abandoned | Automated pipeline: `extract_tokens.py` -> `transform_tokens.py` -> `validate_tokens.py` |
-| Design decisions are subjective -- "I think version A looks better" | `evaluate-ui.ts` and `compare-variations.ts` produce quantitative quality scores for objective comparison |
-| New components start from scratch every time | Component templates with TypeScript types, Storybook stories, and test files already wired up |
+| Each component built from scratch with inconsistent styling approach (inline, CSS modules, Tailwind) | Three-pillar architecture (Tailwind + Radix + shadcn) with consistent component composition patterns |
+| Accessibility added as afterthought; WCAG audits fail and fixes cost 10x the original work | WCAG 2.2 compliance built into component primitives via Radix UI; accessibility checklist applied from the start |
+| Design tokens exist in Figma but not in code; design and implementation drift apart every sprint | Figma-to-code pipeline: extract tokens with scripts, validate with automation, generate CSS/SCSS/TS output |
+| Dark mode implementation varies per component; some work, some break, some are forgotten | Three-tier token architecture (primitives -> semantics -> components) where only semantic tokens change for dark mode |
+| No systematic way to evaluate UI quality; "it looks fine" is the acceptance criteria | Playwright-based UI evaluation scripts, CSS validation tools, and A/B comparison automation |
+| Component scaffolding is manual; each developer's file structure is different | Automation scripts generate components with consistent structure, types, tests, and Storybook stories |
 
 ## Installation
 
@@ -40,234 +40,341 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install frontend-design@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention frontend design, UI/UX, Tailwind CSS, design tokens, accessibility, or component libraries.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention UI components, design systems, Tailwind, CSS, accessibility, responsive layout, dark mode, shadcn/ui, Radix UI, or design tokens.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Open a Claude Code session in your project
-3. Type: `Build a responsive dashboard card component with dark mode support using shadcn/ui and Tailwind`
-4. Claude produces a complete component with the three-tier CSS variable architecture for light/dark theming, responsive layout with Tailwind breakpoints, and accessible keyboard interaction via Radix primitives
-5. Next, try: `Set up a design token pipeline from our Figma file` to automate the extraction-transformation-validation workflow
+2. Open a Claude Code session in your frontend project
+3. Type: `Build a responsive dashboard card component with shadcn/ui that handles loading, error, and empty states`
+4. Claude produces a complete component using the three-pillar architecture: Tailwind for styling, Radix primitives for accessibility, shadcn/ui Card for the base, with responsive breakpoints and WCAG-compliant contrast
+5. Next, try: `Set up a design token system for our project using the three-tier architecture`
+
+---
+
+## System Overview
+
+```
+User prompt (build component / design tokens / accessibility / responsive layout)
+        |
+        v
++------------------+     +----------------------------------+
+|  frontend-design |---->| Decision tree routes to:          |
+|  skill (SKILL.md)|     | - Component creation workflow     |
++------------------+     | - Styling approach selection      |
+                          | - Design system setup             |
+                          | - Accessibility audit             |
+                          | - UI evaluation/testing           |
+                          | - Performance optimization        |
+                          +----------------------------------+
+                                    |
+            +-----------------------+-----------------------+
+            |                       |                       |
+            v                       v                       v
+    59 Reference Files       30+ Scripts              5 Templates
+    (loaded on demand)       (automation)             (code gen)
+    - Tailwind (4)           - scaffolding            - CSS variables
+    - shadcn/ui (4)          - token extraction       - SCSS variables
+    - Radix UI (1)           - accessibility audit    - TypeScript types
+    - Accessibility (5)      - UI evaluation          - W3C tokens
+    - Design tokens (4)      - CSS validation         - Documentation
+    - Component patterns (6) - Figma integration
+    - Testing (3)            - style analysis
+    - Performance (2)        - component generation
+    - Responsive (3)
+    - Animation (1)
+    - Storybook (2)
+    - Forms/Data tables (2)
+    - ...and more
+```
+
+Single-skill plugin with 59 references, 30+ scripts, 5 templates, and component template assets. References are loaded selectively based on the query topic.
 
 ## What's Inside
 
-Large single-skill plugin with one SKILL.md, 58 reference files, 30+ scripts, component templates, design token templates, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | Count | What It Provides |
+|---|---|---|---|
+| **frontend-design** | Skill | 1 | Three-pillar architecture, decision tree, quick start, best practices |
+| **References** | Reference | 59 | Deep domain knowledge across all frontend concerns |
+| **Scripts** | Script | 30+ | Automation for scaffolding, tokens, accessibility, evaluation, validation |
+| **Templates** | Template | 5 | Code generation templates for tokens and documentation |
+| **Component Templates** | Asset | 6 | Starter templates for components, stories, tests, and types |
+| **Design Tokens** | Asset | 1 | Reference token set (JSON) |
+| **trigger-evals** | Eval | 13 | 8 positive, 5 negative trigger eval cases |
+| **output-evals** | Eval | 3 | Output quality eval cases |
 
-| Domain | References | What It Covers |
-|---|---|---|
-| **Accessibility** | 4 files | WCAG 2.2 guidelines, accessibility checklist, accessible component patterns, audit procedures |
-| **Architecture** | 4 files | Component patterns, composition patterns, file organization, integration patterns |
-| **Design Tokens** | 5 files | CSS variable guide, three-tier token architecture, W3C DTCG spec, Figma extraction, naming conventions |
-| **Tailwind CSS** | 4 files | Utilities reference, responsive patterns, customization guide, common patterns |
-| **shadcn/ui** | 5 files | Component reference, theming, accessibility integration, advanced usage, data tables |
-| **Radix UI** | 1 file | Full primitive reference with ARIA guarantees |
-| **Testing** | 4 files | Testing patterns, Storybook integration, Playwright evaluation, setup guide |
-| **Performance** | 3 files | Core Web Vitals, performance optimization, loading and error states |
-| **Visual Design** | 4 files | Design principles, style guide template, animation patterns, canvas design system |
-| **Other** | 24 files | Form patterns, routing, data fetching, troubleshooting, anti-patterns, complete examples |
+### Component Spotlights
 
-### Scripts
+#### frontend-design (skill)
 
-| Script | Purpose |
-|---|---|
-| `extract_tokens.py` | Extract design tokens from Figma via API |
-| `transform_tokens.py` | Transform tokens into CSS, SCSS, or TypeScript output |
-| `validate_tokens.py` | Validate token naming and structure against conventions |
-| `audit_accessibility.sh` | Run WCAG accessibility audit against your app |
-| `evaluate-ui.ts` | Playwright-based automated UI quality evaluation |
-| `compare-variations.ts` | Quantitative A/B comparison of design variations |
-| `generate_component.sh` | Scaffold new components with templates |
-| `setup_design_system.sh` | Initialize a complete design system from scratch |
-| `scaffold_component.py` | Component scaffolding with types and tests |
-| `shadcn_add.py` | Add shadcn/ui components to a project |
+**What it does:** Activates when you work on UI components, design systems, styling, accessibility, responsive layout, or any visual frontend concern. Routes your request through a decision tree to the appropriate workflow and loads only the relevant references from its 59-file knowledge base.
 
-### frontend-design
+**Input -> Output:** You describe a UI need (component, layout, design system, accessibility fix) -> The skill produces production-ready code using the Tailwind + Radix + shadcn architecture, with WCAG compliance, responsive breakpoints, and proper token usage.
 
-**What it does:** Activates when you ask about building UI components, implementing design systems, styling with Tailwind or CSS, creating accessible interfaces, extracting design tokens from Figma, evaluating UI quality, or working with shadcn/ui and Radix UI. Routes through a decision tree to load only the relevant references from the 58-file library, keeping context lean while providing specialist-depth answers.
+**When to use:**
+- Building UI components with React, Vue, or Next.js
+- Implementing design systems (shadcn/ui, Radix UI, fpkit)
+- Styling with Tailwind CSS, CSS Modules, or CSS-in-JS
+- Creating responsive, mobile-first layouts
+- Implementing dark mode and theme customization
+- Building accessible components (WCAG 2.2 compliance)
+- Generating design tokens from Figma
+- Evaluating and improving UI quality with Playwright
+
+**When NOT to use:**
+- React component logic, hooks, or state management -> use [react-development](../react-development/)
+- Next.js routing, SSR, or server components -> use [nextjs-development](../nextjs-development/)
+- Backend API development -> use [api-design](../api-design/) or [typescript-development](../typescript-development/)
 
 **Try these prompts:**
 
 ```
-Build a settings page with a sidebar navigation, form fields, and a save button -- use shadcn/ui components with dark mode support
+Build a responsive data table component with sorting, pagination, and keyboard navigation using shadcn/ui
 ```
 
 ```
-Our designer just exported new tokens from Figma -- set up the extraction pipeline and validate the naming conventions
+Set up a three-tier design token system for our project -- primitives, semantics, and component tokens with dark mode support
 ```
 
 ```
-Audit this page for WCAG AA compliance -- I need to know every contrast failure, missing ARIA label, and keyboard navigation gap
+Audit this component for WCAG 2.2 AA accessibility compliance. Check contrast, keyboard navigation, and screen reader support.
 ```
 
 ```
-I have two design options for the onboarding flow -- evaluate them objectively and tell me which one is better and why
+Extract design tokens from our Figma file and generate CSS variables, SCSS variables, and TypeScript types
 ```
 
 ```
-Set up a component library from scratch with Tailwind, Radix UI, and shadcn/ui -- include TypeScript types, Storybook stories, and test scaffolding
+Create a form with validation using React Hook Form + Zod + shadcn/ui components, including error states and loading states
 ```
+
+**Key reference categories:**
+
+| Category | References | Topics |
+|---|---|---|
+| Tailwind CSS | 4 | Utilities, responsive patterns, customization, reference |
+| shadcn/ui | 4 | Components, accessibility, theming, reference |
+| Accessibility | 5 | WCAG guidelines, patterns, checklist, Radix guarantees |
+| Design Tokens | 4 | W3C DTCG spec, naming conventions, token architecture |
+| Component Patterns | 6 | Composition, architecture, common patterns, UI canvas |
+| Responsive | 3 | Breakpoints, fluid layouts, responsive patterns |
+| Testing | 3 | Testing patterns, setup, Playwright evaluation |
+| Performance | 2 | Core Web Vitals, optimization strategies |
+| Storybook | 2 | Story patterns, integration |
+| Forms & Data | 2 | Form patterns, data tables |
+| Animation | 1 | Motion patterns and transitions |
+
+#### Scripts (automation tools)
+
+**Component scaffolding:**
+- `scaffold_component.py` / `generate_component.sh` / `generate-component.py` -- Generate component boilerplate with consistent file structure
+- `shadcn_add.py` -- Add shadcn/ui components with proper configuration
+- `init-component.ts` -- TypeScript-based component initialization
+
+**Design tokens:**
+- `extract_tokens.py` -- Extract tokens from Figma files
+- `transform_tokens.py` -- Transform tokens to CSS/SCSS/TS formats
+- `validate_tokens.py` -- Validate token consistency and naming
+- `design_token_generator.py` / `design-token-generator.ts` -- Generate token files
+
+**Quality and validation:**
+- `audit_accessibility.sh` -- Run WCAG accessibility audit
+- `evaluate-ui.ts` -- Evaluate UI quality with Playwright
+- `compare-variations.ts` -- A/B compare UI variations
+- `validate_css_vars.py` -- Validate CSS variable usage
+- `validate_consistency.py` -- Check design consistency
+
+**Analysis and suggestions:**
+- `analyze_components.py` / `analyze_styles.py` -- Analyze existing components and styles
+- `suggest_improvements.py` / `suggest_reuse.py` -- Suggest improvements and reuse opportunities
+- `recommend_approach.py` -- Recommend the right styling approach
+
+#### Templates (code generation)
+
+| Template | Format | Purpose |
+|---|---|---|
+| `css-variables.template.css` | CSS | CSS custom properties template |
+| `scss-variables.template.scss` | SCSS | SCSS variables template |
+| `typescript-types.template.ts` | TypeScript | Token type definitions |
+| `w3c-tokens.template.json` | JSON | W3C DTCG token format |
+| `documentation.template.md` | Markdown | Component documentation |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Make a button" | "Build a Button component with primary, secondary, and ghost variants using shadcn/ui with proper ARIA labels" |
+| "Style my page" | "Apply responsive layout to this dashboard: 3-column grid on desktop, single column on mobile, with consistent spacing tokens" |
+| "Fix accessibility" | "Audit this Dialog component for WCAG 2.2 AA: check focus trapping, keyboard navigation, screen reader announcements, and color contrast" |
+| "Set up design system" | "Initialize a three-tier design token system with primitives (colors, spacing), semantic tokens (background, foreground), and component tokens (button-height, card-padding)" |
+| "Make it look good" | "This card component needs visual polish: add hover elevation transition, consistent border-radius from tokens, and proper loading/error/empty states" |
+
+### Structured Prompt Templates
+
+**For component creation:**
+```
+Build a [component name] component using [shadcn/ui / Radix / custom]. Requirements: [variants, states, interactions]. It should handle: [loading state / error state / empty state / responsive behavior]. Accessibility: [specific WCAG requirements].
+```
+
+**For design token setup:**
+```
+Set up a design token system for [project]. Token source: [Figma / manual / existing CSS]. Output formats needed: [CSS variables / SCSS / TypeScript types]. Include: [dark mode / high contrast / brand themes].
+```
+
+**For accessibility audit:**
+```
+Audit [component/page] for WCAG 2.2 [AA/AAA] compliance. Check: [contrast ratios / keyboard navigation / focus indicators / screen reader labels / ARIA attributes]. Current framework: [React + Tailwind / Vue / etc.].
+```
+
+### Prompt Anti-Patterns
+
+- **Skipping the framework context:** "Build a modal" without specifying React, Vue, or vanilla -- the skill needs to know the framework to select the right component library and patterns.
+- **Asking for visual design without constraints:** "Make it beautiful" -- beauty is subjective. Specify design tokens, brand guidelines, or reference designs.
+- **Requesting React logic instead of styling:** "Implement the state management for this form" -- this skill handles visual design and accessibility, not component logic. Use [react-development](../react-development/) for hooks and state.
 
 ## Real-World Walkthrough
 
-You are building the admin dashboard for a SaaS analytics product. The dashboard needs a data table with sorting, filtering, and pagination; a sidebar navigation with collapsible sections; a dark/light theme toggle; and WCAG AA compliance because your enterprise customers require accessibility. Your design team has a Figma file with the color palette, typography scale, and spacing values.
+You are building a SaaS analytics dashboard. The designer has handed over Figma mockups with a custom color palette, specific spacing values, and a component library that includes cards, charts, data tables, and a sidebar navigation. Your job is to implement this in React with Tailwind CSS, ensuring WCAG AA accessibility and responsive behavior down to tablet.
 
-You start by asking Claude: **"Set up the design system foundation for our admin dashboard -- we have a Figma file with tokens and need Tailwind + shadcn/ui + dark mode."**
+**Step 1: Token extraction.** You start by asking Claude: **"Extract the design tokens from our Figma file and set up a three-tier token system for this project."**
 
-Claude activates the frontend-design skill and begins with the **design token pipeline**. It walks you through running `extract_tokens.py --file-key YOUR_FIGMA_KEY` to pull the raw tokens from Figma, `transform_tokens.py tokens.json --format css` to generate CSS variables, and `validate_tokens.py tokens.json` to catch any naming violations. The output is a three-tier CSS variable architecture:
+Claude activates the frontend-design skill and loads the design token references. It guides you through the extraction pipeline: run `extract_tokens.py` with your Figma file key to pull raw tokens, then `transform_tokens.py` to generate CSS custom properties, SCSS variables, and TypeScript type definitions. The three-tier architecture is set up:
 
 ```css
 :root {
-  /* Tier 1: Primitives (from Figma, immutable) */
-  --gray-50: 250 250 250;
-  --gray-900: 24 24 27;
+  /* Tier 1: Primitives (immutable) */
   --blue-500: oklch(0.55 0.22 264);
-
-  /* Tier 2: Semantic (theme-aware) */
+  --gray-50: 250 250 250;
+  
+  /* Tier 2: Semantics (theme-aware) */
   --background: var(--gray-50);
-  --foreground: var(--gray-900);
   --primary: var(--blue-500);
-
-  /* Tier 3: Component */
+  
+  /* Tier 3: Components */
   --card-padding: 1.5rem;
-  --table-row-height: 3rem;
+  --sidebar-width: 16rem;
 }
-
 .dark {
   --background: var(--gray-900);
-  --foreground: var(--gray-50);
 }
 ```
 
-The key insight: only Tier 2 (semantic) tokens change between themes. Primitives are immutable color values; component tokens reference semantics. When the designer adds a new theme, only the semantic layer changes.
+**Step 2: Component scaffolding.** You then ask: **"Build a responsive dashboard card component that shows a metric with a trend indicator, handles loading and error states, and follows our token system."**
 
-Next, you ask: **"Build the data table component with sorting, filtering, and pagination."**
+Claude produces a Card component using shadcn/ui as the base, Tailwind for styling with your custom tokens, and proper loading/error states. The component is responsive (full-width on mobile, fits a 3-column grid on desktop) and includes ARIA labels for the trend indicator (so screen readers announce "Revenue: $42,000, up 12% from last month").
 
-Claude loads the `data-tables.md` and `shadcn-components.md` references. It produces a complete `DataTable` component using shadcn/ui's Table primitives with TanStack Table for headless sorting and filtering logic. The component uses Tailwind utilities for styling, Radix UI's built-in keyboard navigation (arrow keys move between cells, Enter activates sort), and the semantic tokens from your design system. The pagination component uses `Button` variants with proper `aria-label` attributes ("Go to page 2", "Go to next page").
+**Step 3: Data table with accessibility.** Next: **"Build a sortable, paginated data table for user analytics. It needs keyboard navigation and should announce sort changes to screen readers."**
 
-You then ask: **"Now build the sidebar navigation with collapsible sections."**
+Claude loads the data tables and accessibility references. It produces a table using Radix UI primitives for keyboard navigation (arrow keys to move between cells, Enter to sort) with `aria-sort` attributes that update dynamically. Pagination is keyboard-accessible with proper focus management when the page changes.
 
-Claude loads the `composition-patterns.md` and `accessibility-patterns.md` references. It produces a `Sidebar` component using Radix UI's Collapsible primitive for the expandable sections. Each section has a trigger button with `aria-expanded`, the content panel uses `aria-hidden`, and keyboard users can Tab through the navigation items and use Space/Enter to expand sections. The sidebar is responsive -- on mobile it becomes a slide-out drawer using Radix UI's Dialog primitive, triggered by a hamburger menu.
+**Step 4: Accessibility audit.** You run: **"Audit the entire dashboard for WCAG 2.2 AA compliance."**
 
-With the components built, you ask: **"Run an accessibility audit on the dashboard."**
+Claude walks through the accessibility checklist: contrast ratios on all text (your gray-on-white body text is 4.2:1 -- fails AA for normal text, needs to darken to 4.5:1), keyboard navigation flow (sidebar -> cards -> table with logical tab order), focus indicators (visible on all interactive elements), and screen reader experience (all charts have alt text or aria-described-by fallbacks).
 
-Claude references the accessibility checklist and walks through each requirement: semantic HTML (the sidebar uses `<nav>`, the main content uses `<main>`, the table uses `<table>` with proper `<thead>` and `<tbody>`), keyboard accessibility (all interactive elements are reachable via Tab, sort headers respond to Enter), ARIA attributes (the collapsible sections have `aria-expanded`, the table has `aria-sort` on sortable columns), contrast ratios (the semantic tokens are validated against WCAG AA 4.5:1 for text), and focus indicators (visible focus rings on all interactive elements).
+**Step 5: Responsive verification.** Finally: **"Verify the responsive behavior: 3-column card grid on desktop, 2-column on tablet, single column on mobile. Sidebar collapses to a hamburger menu below 768px."**
 
-The audit catches two issues. First, the filter input is missing an `aria-label` -- it has a visual placeholder but no accessible name for screen readers. Second, the pagination's "..." ellipsis element is read by screen readers as "dot dot dot" instead of being hidden with `aria-hidden="true"`. Claude fixes both inline.
+Claude produces the responsive Tailwind classes (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`) and the sidebar collapse logic using a Radix Sheet component for the mobile menu, with proper focus trapping and escape-to-close behavior.
 
-Finally, you ask: **"Compare the current dashboard layout with an alternative that uses a top navigation instead of a sidebar."**
-
-Claude references the `playwright-evaluation.md` and produces instructions for using `compare-variations.ts`. The script captures screenshots of both layouts at three breakpoints (mobile, tablet, desktop), measures visual hierarchy scores, counts the number of clicks to reach key actions, and produces a quantitative comparison. The sidebar layout scores higher on desktop (more visible navigation items, fewer clicks to sub-pages) while the top navigation scores higher on mobile (more vertical content space). Claude recommends keeping the sidebar with a responsive breakpoint that switches to top navigation on mobile -- a pattern documented in the `RESPONSIVE_PATTERNS.md` reference.
-
-The result: a complete admin dashboard with design tokens extracted from Figma, a three-tier CSS variable architecture supporting dark mode, WCAG AA compliant components, and quantitative data supporting the layout decision -- built in a fraction of the time it would take to piece together guidance from five different documentation sites.
+You now have a design-token-driven dashboard with consistent styling, WCAG AA compliance, responsive behavior, and accessible components -- built on the three-pillar architecture that ensures all future components follow the same patterns.
 
 ## Usage Scenarios
 
-### Scenario 1: Building a component from scratch with accessibility
+### Scenario 1: Setting up a design system from Figma
 
-**Context:** You need a dropdown menu for a user profile icon that includes settings, preferences, and sign-out options.
+**Context:** Your designer has a complete Figma design system with colors, typography, spacing, and component specs. You need to implement it in code as a reusable token system.
 
-**You say:** "Build an accessible dropdown menu for user profile actions using shadcn/ui"
-
-**The skill provides:**
-- Complete component using Radix UI's DropdownMenu primitive with shadcn/ui styling
-- Keyboard navigation (arrow keys, Escape to close, Enter to select)
-- Proper ARIA attributes (role, aria-haspopup, aria-expanded)
-- Tailwind styling with dark mode support via semantic tokens
-
-**You end up with:** A production-ready dropdown menu that passes WCAG AA and works with keyboard, mouse, and screen readers.
-
-### Scenario 2: Setting up a Figma-to-code token pipeline
-
-**Context:** Your design team maintains a Figma file with the brand's color palette, typography scale, and spacing. Every time they update, you manually copy values into CSS.
-
-**You say:** "Automate our design token pipeline from Figma to CSS variables with validation"
+**You say:** "Extract design tokens from our Figma file (key: abc123) and generate a three-tier token system with CSS variables, dark mode support, and TypeScript types."
 
 **The skill provides:**
-- Script chain: `extract_tokens.py` -> `transform_tokens.py` -> `validate_tokens.py`
-- Three-tier token architecture setup (primitives, semantics, components)
-- Naming convention validation rules
-- CI integration guidance for automated token updates
+- Figma extraction pipeline using `extract_tokens.py`
+- Token transformation to CSS, SCSS, and TypeScript using `transform_tokens.py`
+- Three-tier architecture setup (primitives -> semantics -> components)
+- Dark mode configuration where only semantic tokens change
+- Validation script to ensure token consistency
 
-**You end up with:** An automated pipeline where Figma changes flow through extraction, transformation, and validation before landing in your CSS -- with naming violations caught before they merge.
+**You end up with:** A complete design token system that stays synchronized with Figma, generates code in multiple formats, and supports dark mode through semantic token switching.
 
-### Scenario 3: Achieving WCAG AA compliance on an existing UI
+### Scenario 2: Building an accessible form
 
-**Context:** Your enterprise customer requires accessibility compliance and your current UI has never been audited.
+**Context:** You need a registration form with email, password, and date of birth fields. It must be WCAG 2.2 AA compliant, validate in real-time, and show clear error messages.
 
-**You say:** "Audit our settings page for WCAG AA compliance and fix every issue you find"
-
-**The skill provides:**
-- Systematic checklist: semantic HTML, keyboard accessibility, ARIA attributes, contrast ratios, focus indicators, skip links
-- Specific findings with code-level fixes (e.g., "Line 42: input missing aria-label")
-- Radix UI primitives that provide accessibility guarantees out of the box
-- Contrast validation against the 4.5:1 text ratio and 3:1 UI component ratio
-
-**You end up with:** A fully compliant page with each fix documented and the accessibility checklist verified.
-
-### Scenario 4: Evaluating two design alternatives objectively
-
-**Context:** Your team is debating between a card-based layout and a list-based layout for the product catalog page. The discussion is going in circles.
-
-**You say:** "Compare these two layout options with quantitative evaluation -- card grid vs. list view for our product catalog"
+**You say:** "Build a registration form with React Hook Form + Zod + shadcn/ui. Real-time validation, accessible error messages, and proper focus management on validation failure."
 
 **The skill provides:**
-- Playwright-based UI evaluation using `evaluate-ui.ts` for automated quality scoring
-- A/B comparison via `compare-variations.ts` with screenshots at multiple breakpoints
-- Metrics: visual hierarchy, information density, click depth, responsive behavior
-- Recommendation with quantitative backing
+- Form component using shadcn/ui Form primitives with Zod schema validation
+- ARIA-described-by linking each field to its error message
+- Focus management: on submit with errors, focus moves to the first invalid field
+- Loading state for the submit button with disabled state and aria-busy
+- Keyboard-accessible date picker using Radix Popover
 
-**You end up with:** Data-driven layout decision with scores for each option across multiple criteria, ending the subjective debate.
+**You end up with:** A production-ready form that validates correctly, announces errors to screen readers, and manages focus for keyboard users.
 
-### Scenario 5: Scaffolding a component library for a new project
+### Scenario 3: Evaluating and comparing UI variations
 
-**Context:** You are starting a new project and need a complete component library with consistent theming, accessibility, and testing from day one.
+**Context:** You have two versions of a landing page and want to compare their visual quality and accessibility before choosing one.
 
-**You say:** "Set up a complete component library from scratch -- Tailwind, shadcn/ui, design tokens, Storybook, and testing"
+**You say:** "Compare these two landing page variations using the UI evaluation framework. Check visual quality, accessibility, and performance."
 
 **The skill provides:**
-- `setup_design_system.sh` to initialize the full stack
-- Three-tier token architecture with CSS variables for theming
-- Component templates with TypeScript types, Storybook stories, and test files
-- File organization following the architecture reference
-- Quality gates: token validation, accessibility audit, UI evaluation
+- Playwright-based evaluation using `evaluate-ui.ts` for both variations
+- Side-by-side comparison using `compare-variations.ts`
+- Accessibility audit results for both (contrast, keyboard nav, screen reader)
+- Performance metrics (Largest Contentful Paint, Cumulative Layout Shift)
+- Recommendation with specific trade-offs between the two designs
 
-**You end up with:** A ready-to-build component library where every new component starts with types, stories, and tests pre-configured.
+**You end up with:** An evidence-based recommendation for which variation to ship, with specific metrics and identified issues to fix in the chosen version.
+
+---
+
+## Decision Logic
+
+The skill uses a decision tree to route your request to the right workflow:
+
+| You are doing... | Workflow | Key references loaded |
+|---|---|---|
+| Creating a new UI component | Component creation workflow | component-patterns, composition, shadcn-components |
+| Styling existing UI | Styling workflow | tailwind-utilities, css-variables, styling-guide |
+| Setting up a design system | Design system workflow | DESIGN_TOKENS, token-naming-conventions, w3c-dtcg-spec |
+| Accessibility audit/fix | Accessibility workflow | accessibility-guidelines, accessibility-patterns, accessibility_checklist |
+| Evaluating/testing UI | Evaluation workflow | playwright-evaluation, testing-patterns |
+| Performance optimization | Performance workflow | PERFORMANCE_OPTIMIZATION, performance |
+| Responsive layout | Responsive workflow | RESPONSIVE_PATTERNS, tailwind-responsive |
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| No framework specified in prompt | Skill defaults to React + Tailwind; output may not match your stack | Specify the framework: "using Vue 3" or "using Svelte with Tailwind" |
+| Design tokens not set up in the project | Generated components use token references (var(--primary)) that don't resolve | Run the design token setup first, or ask the skill to generate inline fallback values |
+| Figma file key invalid or access denied | Token extraction script fails with API error | Verify the Figma file key and ensure API access token has read permission |
+| WCAG AAA requested but not practical | Skill flags AAA contrast (7:1) as impractical for most UI text | Clarify whether you need AA (4.5:1, standard) or AAA (7:1, enhanced). Most production UIs target AA. |
+| Component too complex for single prompt | A "build entire dashboard" request produces a surface-level implementation | Break into smaller requests: tokens first, then individual components, then composition and layout |
 
 ## Ideal For
 
-- **Frontend developers building with the Tailwind + Radix + shadcn/ui stack** -- the three-pillar architecture and 58 reference files cover every aspect of this stack in one place
-- **Teams that need WCAG AA compliance** -- accessibility checklist, Radix UI's built-in ARIA guarantees, and the audit script catch issues at build time, not in a compliance review
-- **Design system engineers maintaining token pipelines** -- the Figma extraction scripts and three-tier token architecture automate what most teams do manually
-- **Tech leads evaluating UI quality objectively** -- Playwright-based evaluation and A/B comparison scripts replace subjective design debates with quantitative data
-- **Developers starting new frontend projects** -- scaffolding scripts and component templates get you to a production-quality foundation in minutes
+- **Frontend developers** building React/Next.js applications who want consistent, accessible component architecture
+- **Design system teams** establishing or maintaining a token-based design system with Figma-to-code automation
+- **Accessibility-focused teams** who need WCAG 2.2 compliance built into the component layer, not bolted on after
+- **Full-stack developers** who need to build quality UI without deep frontend specialization -- the three-pillar architecture provides guardrails
+- **Teams using shadcn/ui** who want to go beyond copy-paste and understand the composition patterns that make shadcn components extensible
 
 ## Not For
 
-- **React component logic, hooks, or state management** -- this plugin covers styling and visual design, not React internals. Use [react-development](../react-development/) for hooks, context, reducers, and component lifecycle
-- **Next.js routing, SSR, or server components** -- use [nextjs-development](../nextjs-development/) for App Router, Server Components, and Next.js framework patterns
-- **Backend API design** -- use [api-design](../api-design/) for REST, GraphQL, and gRPC patterns
-
-## How It Works Under the Hood
-
-The plugin consolidates expertise from 11 specialized frontend/UI skills into a single SKILL.md with a decision tree that routes queries to the appropriate references. The decision tree has five branches:
-
-1. **Creating new UI components** -- routes to component patterns, shadcn/ui references, and scaffolding scripts
-2. **Styling existing UI** -- routes to Tailwind utilities, CSS variables, and theming references
-3. **Design system work** -- routes to design token references and extraction/transformation scripts
-4. **Accessibility concerns** -- routes to WCAG guidelines, accessibility patterns, and audit scripts
-5. **Evaluating/testing UI** -- routes to Playwright evaluation scripts and comparison tooling
-
-The 58 reference files are loaded progressively -- Claude reads only the references relevant to the current query. A question about building a dropdown loads `shadcn-components.md` and `accessibility-patterns.md` but not `DESIGN_TOKENS.md` or `performance.md`. This keeps context lean while providing specialist depth on demand.
-
-The 30+ scripts provide automation for tasks that would otherwise be manual: Figma token extraction, CSS validation, accessibility auditing, UI quality scoring, component scaffolding, and design system initialization.
+- **React component logic and state management** -- hooks, context, reducers, and data flow. Use [react-development](../react-development/)
+- **Next.js routing, SSR, and server components** -- App Router, middleware, data fetching. Use [nextjs-development](../nextjs-development/)
+- **Backend API development** -- even if the API serves a frontend. Use [api-design](../api-design/) or [typescript-development](../typescript-development/)
 
 ## Related Plugins
 
-- **[React Development](../react-development/)** -- Hooks, state management, and React component architecture -- pairs with this plugin (design the UI here, implement the logic there)
-- **[Next.js Development](../nextjs-development/)** -- App Router, Server Components, SSR, and Next.js framework patterns
-- **[TypeScript Development](../typescript-development/)** -- Type system patterns, generics, and TypeScript best practices for type-safe components
-- **[API Design](../api-design/)** -- REST, GraphQL, and gRPC API design for the backend that feeds your frontend
+- **[React Development](../react-development/)** -- Component logic, hooks, state management, and React patterns
+- **[Next.js Development](../nextjs-development/)** -- App Router, SSR, server components, and Next.js-specific patterns
+- **[TypeScript Development](../typescript-development/)** -- Type system patterns, generics, and TypeScript tooling
+- **[Consistency Standards](../consistency-standards/)** -- Naming conventions and style guides for uniform component naming
+- **[Testing Framework](../testing-framework/)** -- Test infrastructure for component testing beyond the UI evaluation scripts included here
 
 ---
 
