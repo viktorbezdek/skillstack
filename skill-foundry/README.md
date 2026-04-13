@@ -1,8 +1,9 @@
-# Skill Creator
+# Skill Foundry
 
-> **v1.1.19** | Development | 21 iterations
+> **v2.0.0** | Development | 21 iterations
 
-> Create high-quality Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure architecture, and anti-pattern prevention.
+> Advanced skill engineering framework for Claude Code -- philosophy-first design, evidence-based prompting, progressive disclosure architecture, anti-pattern prevention, shibboleths, eval-driven iteration, and enterprise-grade workflows.
+> Single skill + 59 references + 26 scripts + 23 templates + 13 example skills
 
 ## The Problem
 
@@ -14,11 +15,11 @@ The result is a skill ecosystem where most skills are either over-engineered (an
 
 ## The Solution
 
-This plugin provides a complete skill creation framework built on four pillars: Philosophy Before Procedure (establish "how to think" before "what to do"), Anti-Patterns as Guidance (what NOT to do is as important as what to do), Progressive Disclosure (core instructions in SKILL.md under 500 lines, details in references), and Shibboleths (encode the deep expert knowledge that separates novices from experts).
+This plugin provides a complete skill engineering framework built on four pillars: Philosophy Before Procedure (establish "how to think" before "what to do"), Anti-Patterns as Guidance (what NOT to do is as important as what to do), Progressive Disclosure (core instructions in SKILL.md under 500 lines, details in references), and Shibboleths (encode the deep expert knowledge that separates novices from experts).
 
 The skill offers two tracks based on complexity. The Minimal Workflow gets a simple skill from idea to working state in six steps: define scope, initialize with `init_skill.py`, write the description with keywords and NOT clauses, add anti-patterns, test activation, and validate. The Full Workflow uses an 8-phase methodology (Schema Definition through Metrics Tracking) for production-grade skills that need rigorous I/O contracts, adversarial testing, and enterprise validation.
 
-Beyond the methodology, the plugin ships with 26 utility scripts (initialization, validation, analysis, documentation extraction, packaging), 55 reference files covering every aspect of skill design, 23 templates for SKILL.md files, helper scripts, and configuration, and 10 example skills showing the transformation from basic to effective.
+Beyond the methodology, the plugin ships with 26 utility scripts (initialization, validation, analysis, documentation extraction, packaging), 59 reference files covering every aspect of skill design, 23 templates for SKILL.md files, helper scripts, and configuration, and 13 example skills showing the transformation from basic to effective. This is the full production toolkit -- distinct from Anthropic's bundled skill-creator.
 
 ## Before vs After
 
@@ -37,7 +38,7 @@ Add the SkillStack marketplace, then install this plugin:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
-/plugin install skill-creator@skillstack
+/plugin install skill-foundry@skillstack
 ```
 
 ### Verify installation
@@ -58,19 +59,108 @@ The skill should activate and guide you through scope definition, description en
 4. It **generates the skill structure** with `init_skill.py`, writes a description with keywords and NOT clause, and produces the SKILL.md with philosophy, anti-patterns, and decision trees
 5. **Validate and iterate**: `python scripts/quick_validate.py <path>` checks structure and references, `python scripts/analyze_skill.py <path>` scores quality 0-100
 
+---
+
+## System Overview
+
+```
+User wants to create / review / improve a skill
+    │
+    ▼
+┌───────────────────────────────────────────────────────────┐
+│                 skill-foundry (skill)                       │
+│                                                             │
+│  Four Pillars:                                              │
+│  1. Philosophy Before Procedure                             │
+│  2. Anti-Patterns as Guidance                               │
+│  3. Progressive Disclosure (<500 lines)                     │
+│  4. Shibboleths (expert knowledge encoding)                 │
+│                                                             │
+│  Two Tracks:                                                │
+│  ├── Minimal (6 steps) ─── Simple skills                   │
+│  │   Scope → Init → Description → Anti-patterns →          │
+│  │   Test activation → Validate                             │
+│  │                                                          │
+│  └── Full (8 phases) ──── Production skills                │
+│      Schema → Cognitive Frame → Intent Archaeology →        │
+│      Use Cases → Architecture → Metadata →                  │
+│      Instruction Crafting → Validation → Metrics            │
+│                                                             │
+│  ┌────────────────────────────────────────────────────────┐ │
+│  │           59 Reference Files (on-demand)                │ │
+│  │                                                         │ │
+│  │  Core: skill-foundry (8-phase), skill_creation,         │ │
+│  │        progressive_disclosure, core_principles          │ │
+│  │  Quality: anti-patterns, shibboleths, validation,       │ │
+│  │           best_practices, scoring-rubric                │ │
+│  │  Advanced: evidence-based-prompting, composability,     │ │
+│  │            variation-patterns, output-patterns           │ │
+│  │  Enterprise: skill-factory-workflow, audit-protocol,    │ │
+│  │              enterprise-checklist, migration-guide       │ │
+│  │  Agents: agent-creator, agent-patterns                  │ │
+│  └────────────────────────────────────────────────────────┘ │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐  │
+│  │  26 Scripts   │  │ 23 Templates │  │  13 Examples      │  │
+│  │  init, valid- │  │ SKILL.md,    │  │  document skills, │  │
+│  │  ate, analyze,│  │ scripts,     │  │  algorithmic art, │  │
+│  │  test, pack-  │  │ configs,     │  │  before/after,    │  │
+│  │  age, extract,│  │ metrics,     │  │  annotated,       │  │
+│  │  upgrade      │  │ adversarial  │  │  good-skills      │  │
+│  └──────────────┘  └──────────────┘  └──────────────────┘  │
+└───────────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with an extensive supporting ecosystem of scripts, references, templates, and examples.
-
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Core methodology -- four pillars, decision trees, description engineering, anti-pattern format, quality heuristics, review checklist |
-| 26 utility scripts | Initialization, validation, analysis, documentation extraction, packaging, agent generation |
-| 55 reference files | Deep guidance on every aspect of skill design |
-| 23 templates | SKILL.md starters, script boilerplate, configuration, metrics tracking, adversarial testing |
-| 10 example skills | From basic to production-grade, with before/after transformations |
+| Component | Type | Purpose |
+|---|---|---|
+| `skill-foundry` | skill | Core methodology: four pillars, description engineering, two workflow tracks, anti-pattern format, quality heuristics, review checklist |
+| 59 reference files | reference | Deep guidance on methodology, anti-patterns, quality, composability, enterprise workflows, agent patterns |
+| 26 utility scripts | script | Initialization, validation, analysis, documentation extraction, packaging, activation testing |
+| 23 templates | template | SKILL.md starters, script boilerplate, configuration, metrics tracking, adversarial testing, skeleton projects |
+| 13 example skills | example | Document skills (PDF/DOCX/PPTX/XLSX), algorithmic art, internal comms, before/after transformations, annotated analysis |
+| 6 flowchart templates | asset | Decision tree, approval workflow, parallel execution, system architecture swimlane, onboarding |
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
+
+### Component Spotlights
+
+#### skill-foundry (skill)
+
+**What it does:** Activates when you want to create, review, improve, or debug Claude Code skills. Guides you through philosophy-first design, description engineering for correct activation, anti-pattern encoding, progressive disclosure architecture, and validation. Provides both a minimal workflow (6 steps for simple skills) and a full 8-phase methodology for production-grade skills.
+
+**Input -> Output:** A description of the expertise you want to encode (or an existing skill to review) -> A complete skill with SKILL.md, description, anti-patterns, decision trees, references, scripts, and validation results.
+
+**When to use:** Creating new skills from scratch or from documentation. Reviewing or auditing existing skills for quality. Improving skill activation rates and precision. Encoding domain expertise and shibboleths. Building agent-powered skill workflows. Debugging why skills do not activate correctly.
+
+**When NOT to use:** General prompt engineering (use prompt-engineering). Building Claude Code plugins as complete packages (use plugin-dev). Agent runtime and multi-agent orchestration (use multi-agent-patterns). Simple script writing that does not need skill abstraction.
+
+**Try these prompts:**
+
+```
+Create a Claude Code skill for Terraform infrastructure management -- I want it to encode our team's best practices
+```
+
+```
+Review this skill I wrote -- it's supposed to activate for Docker questions but it fires for every container-related query
+```
+
+```
+This skill works but the output is too generic -- how do I encode expert-level knowledge and domain shibboleths?
+```
+
+```
+I have API documentation at this URL -- turn it into a Claude Code skill that helps developers use this API correctly
+```
+
+```
+My SKILL.md is 900 lines -- help me refactor it with progressive disclosure into a lean core with reference files
+```
+
+```
+Score this skill on quality and tell me what to improve to get above 70/100
+```
 
 **Key scripts:**
 
@@ -103,40 +193,64 @@ This is a single-skill plugin with an extensive supporting ecosystem of scripts,
 | `skill-factory-workflow.md` | Enterprise-scale skill production |
 | `SKILL-AUDIT-PROTOCOL.md` | Audit methodology for existing skills |
 | `agent-creator.md` | Creating agent-powered skill workflows |
+| `scoring-rubric.md` | Quality scoring criteria and thresholds |
 
-### skill-creator
+---
 
-**What it does:** Activates when you want to create, review, improve, or debug Claude Code skills. Guides you through philosophy-first design, description engineering for correct activation, anti-pattern encoding, progressive disclosure architecture, and validation. Provides both a minimal workflow (6 steps for simple skills) and a full 8-phase methodology for production-grade skills.
+## Prompt Patterns
 
-**Try these prompts:**
+### Good Prompts vs Bad Prompts
 
-```
-Create a Claude Code skill for Terraform infrastructure management -- I want it to encode our team's best practices
-```
+| Bad (vague, misses the skill's depth) | Good (specific, leverages the full framework) |
+|---|---|
+| "Help me make a skill" | "Create a skill for PostgreSQL query optimization -- I want it to encode index selection heuristics and common N+1 anti-patterns for Django ORM" |
+| "My skill doesn't work" | "My container skill triggers for basic docker commands when it should only fire for Dockerfile optimization and multi-stage builds -- fix the activation" |
+| "Write a SKILL.md" | "My SKILL.md is 900 lines and quality has dropped -- refactor it with progressive disclosure into a lean core with reference files" |
+| "Make it better" | "This skill scores 45/100 on analyze_skill.py -- the anti-patterns are missing and there's no philosophy section. Help me get above 70." |
+| "Create a skill from docs" | "I have API documentation at docs.internal.com/api -- extract the authentication patterns, error codes, and common pitfalls and turn them into a skill" |
 
-```
-Review this skill I wrote -- it's supposed to activate for Docker questions but it fires for every container-related query
-```
+### Structured Prompt Templates
 
+**For creating a new skill:**
 ```
-This skill works but the output is too generic -- how do I encode expert-level knowledge and domain shibboleths?
-```
-
-```
-I have API documentation at this URL -- turn it into a Claude Code skill that helps developers use this API correctly
-```
-
-```
-My SKILL.md is 900 lines -- help me refactor it with progressive disclosure into a lean core with reference files
+Create a Claude Code skill for [domain expertise]. The skill should encode
+[specific knowledge: patterns, anti-patterns, decision trees]. Target users
+are [who]. It should NOT handle [exclusions]. Top mistakes to prevent:
+[list 2-3 common mistakes].
 ```
 
+**For improving activation precision:**
 ```
-Score this skill on quality and tell me what to improve to get above 70/100
+My skill [name] triggers [too broadly / too narrowly]. It should activate for
+[target queries] but currently [what happens instead]. Here's the current
+description: [paste]. Fix the activation with proper keywords and NOT clauses.
 ```
+
+**For refactoring an oversized skill:**
+```
+My SKILL.md is [N] lines. Help me split it using progressive disclosure.
+Keep [what should stay in core: decision trees, anti-patterns, philosophy]
+in SKILL.md and move [what should become references: detailed patterns,
+examples, deep dives] to reference files.
+```
+
+**For enterprise skill creation:**
+```
+We need to create [N] skills for our [team/org]. Set up a factory workflow
+with quality gates. Minimum score: [threshold]. Each skill needs
+[requirements: peer review, activation testing, metrics tracking].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking to "create a skill" without specifying the expertise:** The skill needs to know what domain knowledge you want to encode, what mistakes you want to prevent, and who the target users are. Without this, it produces a generic skeleton.
+- **Treating skill creation as template filling:** Saying "fill in the SKILL.md template" misses the point. The skill's value is the philosophy-first design process -- scope definition, description engineering, anti-pattern extraction, shibboleth encoding. The template is the output, not the process.
+- **Ignoring the NOT clause in descriptions:** Asking to "add more trigger keywords" without also defining exclusions leads to broad activation. The NOT clause is as important as the keywords for precision.
+- **Requesting skills for one-time tasks:** If the expertise is needed once and will not repeat, just do the task directly. Skills are for encoding knowledge that benefits from repeated application across projects.
 
 ## Real-World Walkthrough
 
-You are a senior DevOps engineer who has spent five years managing Kubernetes clusters. Your team keeps making the same mistakes: overly permissive RBAC roles, missing resource limits, pods running as root, and Helm charts with hardcoded values. You want to encode this expertise into a Claude Code skill so the entire team benefits from it every time they work with Kubernetes manifests.
+You are a senior DevOps engineer who has spent five years managing Kubernetes clusters. Your team keeps making the same mistakes: overly permissive RBAC roles, missing resource limits, pods running as root, and Helm charts with hardcoded values. You want to encode this expertise into a Claude Code skill so the entire team benefits every time they work with Kubernetes manifests.
 
 You open Claude Code and say:
 
@@ -148,65 +262,17 @@ The skill activates and starts with **scope definition**. It asks three focused 
 
 You answer: Kubernetes 1.28+, NOT for cluster setup or CNI configuration, top mistakes are running as root, missing resource limits, and overly broad RBAC.
 
-The skill runs `python scripts/init_skill.py kubernetes-security --path ./skills/` to create the directory structure:
+The skill runs `python scripts/init_skill.py kubernetes-security --path ./skills/` to create the directory structure. Next comes **description engineering**. The skill applies the formula: [What] [Use for] [Keywords] NOT for [Exclusions]. It produces a description with specific trigger keywords (`kubectl`, `helm`, `pod`, `deployment`, `RBAC`) and clear exclusions, explaining why this matters: the description is the activation trigger, and vague descriptions cause either false activations (wasting tokens) or missed activations (skill never fires).
 
-```
-kubernetes-security/
-├── SKILL.md
-├── references/
-├── scripts/
-└── templates/
-```
+Now the skill guides you through **philosophy before procedure**. Instead of starting with "Step 1: Add resource limits", it helps you write a philosophy section establishing "Defense in Depth" as the mental framework: each security layer assumes the layers above it have failed. This guides the model's judgment in situations the explicit rules do not cover.
 
-Next comes **description engineering**. The skill applies the formula: [What] [Use for] [Keywords] NOT for [Exclusions]. It produces:
+The skill then helps you **encode anti-patterns** -- the mistakes you listed. Each anti-pattern follows the format: What it looks like / Why it's wrong / What to do instead / How to detect. For example, "Root Runner": no `securityContext` in pod spec leads to container escape + root = full node access. Fix: `runAsNonRoot: true` with specific UID. This format teaches the model to catch these patterns proactively.
 
-```yaml
-description: >-
-  Kubernetes security and resource management best practices. Use when writing
-  K8s manifests, YAML configs, Helm charts, RBAC roles, Pod security policies,
-  or reviewing Kubernetes deployments. Activate on "kubectl", "helm", "pod",
-  "deployment", "RBAC". NOT for cluster provisioning (use infrastructure skills),
-  NOT for CNI or service mesh configuration.
-```
-
-The description includes specific trigger keywords (`kubectl`, `helm`, `pod`, `deployment`, `RBAC`) and clear exclusions. The skill explains why this matters: the description is the activation trigger, and vague descriptions cause either false activations (wasting tokens) or missed activations (skill never fires).
-
-Now the skill guides you through **philosophy before procedure**. Instead of starting with "Step 1: Add resource limits", it helps you write a philosophy section:
-
-```markdown
-## Philosophy: Defense in Depth
-
-Kubernetes security is not a checklist -- it is layered defense where each
-layer assumes the layers above it have failed. A pod with proper resource
-limits still needs restricted RBAC. A namespace with network policies still
-needs pod security standards. If you are asking "do I really need this
-layer?", the answer is yes.
-```
-
-This mental framework guides the model's judgment in situations the explicit rules do not cover.
-
-The skill then helps you **encode anti-patterns** -- the mistakes you listed:
-
-```markdown
-### Anti-Pattern: Root Runner
-**What it looks like**: No `securityContext` in pod spec, or `runAsUser: 0`
-**Why it's wrong**: Container escape + root = full node access
-**What to do instead**: `runAsNonRoot: true` + specific UID in securityContext
-**How to detect**: grep for `runAsUser: 0` or missing securityContext
-```
-
-Each anti-pattern includes recognition criteria, the fundamental reason it is wrong (not just "it's insecure"), the correct alternative, and a detection method. This format teaches the model to catch these patterns proactively.
-
-You add a **validation script** (`scripts/check_manifest.py`) that scans Kubernetes YAML files for the anti-patterns and produces a report. The skill references this script explicitly: "Run `python scripts/check_manifest.py <manifest.yaml>` to validate against security patterns."
-
-After writing the core SKILL.md at 380 lines, you run validation:
+You add a **validation script** and connect it from SKILL.md. After writing the core at 380 lines, you run validation:
 
 ```bash
 python scripts/quick_validate.py ./skills/kubernetes-security/
-# ✅ Structure valid
-# ✅ All references exist
-# ✅ Description has keywords and NOT clause
-# ✅ Under 500 lines
+# Structure valid, all references exist, description has keywords and NOT clause, under 500 lines
 ```
 
 Then quality analysis:
@@ -214,22 +280,19 @@ Then quality analysis:
 ```bash
 python scripts/analyze_skill.py ./skills/kubernetes-security/
 # Score: 78/100
-# ✅ Philosophy section present
-# ✅ Anti-patterns with detection criteria
-# ✅ Decision trees for common choices
-# ⚠️ Missing temporal knowledge (what changed between K8s versions)
-# ⚠️ No variation guidance for different environments (dev vs prod)
+# Philosophy section present, anti-patterns with detection criteria, decision trees
+# Missing: temporal knowledge (what changed between K8s versions), variation guidance
 ```
 
-Based on the feedback, you add a temporal section ("Pre-1.25: PodSecurityPolicy, 1.25+: Pod Security Admission") and variation guidance ("Dev clusters: warn mode, Staging: enforce mode with exceptions, Production: enforce strict"). The score rises to 85/100.
+Based on the feedback, you add a temporal section ("Pre-1.25: PodSecurityPolicy, 1.25+: Pod Security Admission") and variation guidance ("Dev: warn mode, Staging: enforce with exceptions, Production: enforce strict"). The score rises to 85/100.
 
-The final skill has a clear philosophy, five encoded anti-patterns, a decision tree for RBAC scope selection, a validation script, and progressive disclosure with two reference files for Helm chart patterns and RBAC templates. It activates correctly for Kubernetes security questions and stays silent for cluster provisioning and networking.
+The final skill has a clear philosophy, five encoded anti-patterns, a decision tree for RBAC scope selection, a validation script, and progressive disclosure with two reference files. It activates correctly for Kubernetes security questions and stays silent for cluster provisioning and networking.
 
 ## Usage Scenarios
 
 ### Scenario 1: Creating a skill from API documentation
 
-**Context:** Your team uses a complex internal API with 40+ endpoints. New developers keep making the same mistakes: wrong authentication headers, missing pagination parameters, and incorrect error handling.
+**Context:** Your team uses a complex internal API with 40+ endpoints. New developers keep making the same authentication and pagination mistakes.
 
 **You say:** `I have our API documentation at docs.internal.com/api -- turn it into a skill that helps developers use the API correctly`
 
@@ -264,14 +327,14 @@ The final skill has a clear philosophy, five encoded anti-patterns, a decision t
 **The skill provides:**
 - Progressive disclosure analysis: which content is core (needed every time) and which is reference (needed sometimes)
 - Refactoring plan: keep decision trees and anti-patterns in SKILL.md, move detailed patterns to reference files
-- Explicit triggers in SKILL.md for each reference file ("See `references/indexing-patterns.md` for index design")
+- Explicit triggers in SKILL.md for each reference file
 - Validation that all references are connected and no orphaned sections exist
 
 **You end up with:** A 400-line SKILL.md with focused core content and 4-5 reference files loaded on demand, improving both activation precision and output quality.
 
 ### Scenario 4: Enterprise skill factory workflow
 
-**Context:** Your organization wants to create 15 skills encoding team expertise across infrastructure, security, and development. You need a repeatable, quality-controlled process.
+**Context:** Your organization wants to create 15 skills encoding team expertise across infrastructure, security, and development.
 
 **You say:** `We need to create 15 skills for our engineering org -- set up a factory workflow with quality gates`
 
@@ -283,31 +346,47 @@ The final skill has a clear philosophy, five encoded anti-patterns, a decision t
 
 **You end up with:** A repeatable process where each skill goes through scope definition, creation, validation (score >= 70), peer audit, and metrics tracking before deployment.
 
+---
+
+## Decision Logic
+
+**When should I create a new skill vs extend an existing one?**
+
+Create a new skill when: you have domain expertise not covered by existing skills, a pattern repeats across 3+ projects, or you have anti-patterns you want to prevent proactively. Extend an existing skill when: the expertise fits within an existing skill's scope and adding it would not push SKILL.md over 500 lines. Do not create a skill for one-time tasks -- just do the task directly.
+
+**When should I use the Minimal vs Full workflow?**
+
+The Minimal Workflow (6 steps) is for skills with clear scope, simple I/O, and internal use. The Full Workflow (8 phases) is for production-grade skills that will be shared across teams, need adversarial testing, or require strict I/O contracts. If you are not sure, start with Minimal and upgrade to Full when the skill proves its value.
+
+**Skill vs Subagent vs MCP -- which extension type?**
+
+- **Skill**: Domain expertise, decision trees, anti-patterns. No runtime state needed. The model reads instructions and applies them.
+- **Subagent**: Multi-step workflows needing tool orchestration, parallel execution, or complex state management.
+- **MCP**: External API connections, authentication, stateful sessions, or real-time data access.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Skill activates for everything in its domain | Description is too vague -- "Helps with Python" triggers on every `.py` file | Rewrite description with the formula: [What] [Use for] [Specific keywords] NOT for [Exclusions]. Test with `test_activation.py` against target and non-target queries. |
+| Skill never activates when it should | Description is too narrow or uses jargon the model does not recognize as triggers | Add natural language trigger phrases alongside technical terms. Include "Use when..." clauses with common ways users describe the need. |
+| Output is rigid and templated despite good design | SKILL.md is procedure-heavy with no philosophy section and no variation guidance | Add a philosophy section establishing the mental framework. Add variation guidance: "Outputs should vary based on [context dimension 1], [context dimension 2]." |
+| Referenced files do not exist -- silent failures | Skill was edited but references were not updated, or files were moved without updating SKILL.md | Run `check_self_contained.py` to identify broken references. Fix by either creating the missing files or removing the references. |
+| Quality score is low despite comprehensive content | Content is thorough but lacks structure: no anti-patterns, no decision trees, no progressive disclosure | Focus on the four pillars: add philosophy section, extract anti-patterns with the standard format, add decision trees for key choices, split content exceeding 500 lines into references. |
+
 ## Ideal For
 
 - **Engineers encoding team expertise into reusable skills** -- the philosophy-first approach produces skills that adapt to context rather than outputting rigid templates
 - **Skill authors who want activation precision** -- description engineering with the [What] [Use for] [Keywords] NOT for [Exclusions] formula eliminates false activations
 - **Teams building skill libraries at scale** -- the enterprise factory workflow, quality scoring, and audit protocol ensure consistent quality across dozens of skills
 - **Anyone improving an existing skill** -- `analyze_skill.py` produces a score with specific improvement suggestions, and `upgrade_skill.py` generates code changes
+- **Documentation-to-skill converters** -- `doc_extractor.py` and `doc_analyzer.py` transform API docs, tool references, and internal wikis into structured skills
 
 ## Not For
 
 - **General prompt engineering** -- use [prompt-engineering](../prompt-engineering/) for optimizing prompts that are not Claude Code skills
 - **Building Claude Code plugins** -- use [plugin-dev](https://github.com/viktorbezdek/skillstack/tree/main/plugin-dev) for plugin architecture, composition, and validation; this skill focuses on the SKILL.md component
 - **Agent runtime and orchestration** -- use [multi-agent-patterns](../multi-agent-patterns/) for designing multi-agent systems; this skill creates individual skills, not agent architectures
-
-## How It Works Under the Hood
-
-The plugin is a single skill with an extensive supporting ecosystem. The SKILL.md body (500 lines) contains the complete creation methodology: the four pillars (Philosophy, Anti-Patterns, Progressive Disclosure, Shibboleths), both workflow tracks (Minimal and Full), description engineering formula, anti-pattern format, quality heuristics, and review checklist. This is enough to create effective skills without loading any references.
-
-When deeper guidance is needed, 55 reference files provide specialized content organized into four categories:
-
-- **Core methodology (4 files):** skill-foundry (8-phase), skill creation workflow, progressive disclosure, core principles
-- **Anti-patterns and quality (6 files):** comprehensive anti-pattern catalogs, best practices checklists, shibboleths, validation
-- **Advanced techniques (5 files):** evidence-based prompting, composability, variation patterns, output patterns, prompting principles
-- **Enterprise and workflows (5 files):** factory workflows, audit protocols, enterprise checklists, step-by-step guides
-
-Twenty-six utility scripts handle every operational aspect: initialization (`init_skill.py`), structural validation (`validate_skill.py`, `check_self_contained.py`), quality analysis (`analyze_skill.py`), activation testing (`test_activation.py`), documentation extraction (`doc_extractor.py`, `doc_analyzer.py`), and packaging (`package_skill.py`). Twenty-three templates provide starting points for SKILL.md files, helper scripts, configuration, metrics tracking, and adversarial testing protocols.
 
 ## Related Plugins
 
