@@ -2,236 +2,292 @@
 
 # Creative Problem Solving
 
-> Break through mental blocks and find high-leverage solutions using lateral thinking, first principles reasoning, game theory, and strategic reframing.
+> Break through mental blocks and find high-leverage solutions using lateral thinking, first principles reasoning, game theory, SCAMPER, and strategic reframing -- when conventional approaches have failed or the problem demands unconventional thinking.
+> Single skill + 5 reference documents | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-When teams face complex problems, they converge too fast. Someone proposes the obvious solution in the first five minutes, the room nods, and implementation begins -- only to discover weeks later that they were solving the wrong problem, or that a far simpler approach existed if they had questioned the assumptions. The cost is not just the wasted engineering time but the opportunity cost of the better solution they never considered.
+Most problem-solving follows a narrow pattern: identify the problem, brainstorm variations of familiar solutions, pick the least bad option. This works for routine problems. For complex, ambiguous, or stuck problems -- where the obvious approaches have already failed or the solution space is much larger than what conventional thinking explores -- this pattern produces mediocre results. Teams waste weeks iterating on variations of the same failing approach instead of stepping back to see the problem differently.
 
-This happens because the standard approach to problem-solving is linear: understand the problem as stated, brainstorm solutions within existing constraints, pick the most familiar one, and execute. No one challenges whether the constraints are real or assumed. No one reframes the problem from a different stakeholder's perspective. No one asks what would make the problem disappear entirely rather than what would address the symptoms. And no one applies structured analytical frameworks like game theory or expected value calculations to evaluate whether the chosen solution is actually optimal or just comfortable.
+The deeper failure is invisible constraints. Every problem comes wrapped in assumptions that limit the solution space: "we have to use this technology," "the budget is fixed," "customers want feature X." Some of these constraints are real. Many are ghost constraints -- legacy assumptions baked into the current approach that no longer apply. Without a systematic way to surface and challenge assumptions, teams optimize within an artificially narrow space and miss the high-leverage solutions outside it.
 
-The result is systematic mediocrity. Teams pick safe, conventional solutions that feel productive but miss the high-leverage opportunities that come from questioning the problem itself. They build elaborate solutions to problems that could be eliminated. They optimize local metrics while ignoring systemic dynamics. And when they do need genuinely creative solutions -- competing against a larger opponent, breaking into a new market, resolving a deadlock between stakeholders -- they have no structured process for generating or evaluating unconventional ideas.
+Strategic thinking compounds the problem. Most teams solve problems in isolation when the real dynamics are interactive -- competitors react, stakeholders have misaligned incentives, second-order effects create feedback loops. Without frameworks like game theory, systems thinking, and probabilistic reasoning, solutions that look optimal in isolation fail when they encounter the real world's strategic complexity.
 
 ## The Solution
 
-This plugin provides a five-step creative problem-solving methodology backed by five reference libraries covering lateral thinking, strategic frameworks, reframing techniques, ideation methods, and decision-making tools. Instead of jumping from problem to solution, it walks you through deep understanding (extracting the real problem from the stated problem), strategic reframing (viewing from multiple angles before solving), broad generation (exploring the full solution space), rigorous analysis (applying game theory, probabilistic reasoning, and system dynamics), and optimal recommendation (synthesized, actionable, with escape routes).
+This plugin provides a five-step creative problem-solving process backed by five comprehensive reference documents covering lateral thinking, strategic frameworks, reframing techniques, ideation techniques, and decision frameworks. The process moves from deep understanding (extracting the real problem beneath the stated one) through strategic reframing (viewing from multiple angles), solution generation (using specific creativity techniques matched to the problem type), rigorous analysis (game theory, Bayesian reasoning, systems dynamics), to optimal recommendation (with decision criteria and implementation steps).
 
-Each step draws on specific techniques. The generation phase uses lateral thinking (random entry, provocation, assumption escape), SCAMPER (Substitute, Combine, Adapt, Modify, Put to other use, Eliminate, Reverse), and cross-domain transfer. The analysis phase applies game theory (Nash equilibrium, incentive alignment, backward induction), first principles reasoning (fundamental truths over conventions), and systems thinking (feedback loops, leverage points, second-order effects). The decision phase uses expected value calculations, Pareto optimization, real options analysis, and the reversibility test.
-
-The result is not just more creative solutions but better-analyzed ones. You get unconventional ideas with rigorous evaluation, not brainstorming hand-waves.
+The skill selects techniques based on problem type: lateral thinking for mental blocks, SCAMPER and morphological analysis for systematic exploration, game theory and first principles for strategic innovation, and multi-criteria analysis for decision-making under uncertainty. It challenges assumptions explicitly, identifies hidden constraints, and grounds recommendations in probabilistic reasoning rather than gut feel.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Converge on the obvious solution in five minutes without questioning assumptions | Systematically challenge every assumption and identify which constraints are real vs assumed |
-| Solve the stated problem without asking whether it is the right problem | Strategic reframing reveals the underlying goal, often leading to simpler or more impactful solutions |
-| Brainstorm within existing mental models, producing familiar variations | Lateral thinking, SCAMPER, and cross-domain transfer generate genuinely novel options |
-| Pick solutions based on comfort and familiarity | Game theory, expected value, and decision frameworks evaluate options rigorously |
-| Miss systemic dynamics and second-order effects | Systems thinking identifies feedback loops, leverage points, and unintended consequences |
-| No structured process when creative thinking is actually needed | Five-step methodology with reference libraries for each phase |
+| Brainstorm variations of familiar solutions; miss unconventional high-leverage options | Systematic lateral thinking and SCAMPER explore a much wider solution space across domains |
+| Hidden assumptions narrow the solution space invisibly | Explicit assumption challenging surfaces ghost constraints and opens new options |
+| Solutions analyzed in isolation; fail when competitors or stakeholders react | Game theory maps incentives, Nash equilibria, and strategic interactions before committing |
+| Decisions based on "best case" thinking without probabilistic grounding | Bayesian reasoning, expected value calculation, and tail risk analysis ground every recommendation |
+| Problem taken at face value without questioning whether it is the right problem | Strategic reframing at multiple levels (abstraction shifts, perspective rotation, constraint manipulation, inversion) |
+| Second-order effects and feedback loops discovered only after implementation | Systems thinking identifies reinforcing loops, balancing loops, and leverage points during analysis |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install creative-problem-solving@skillstack
 ```
 
+### Prerequisites
+
+No additional dependencies. Pairs powerfully with `critical-intuition` (analyzing and critiquing the solutions this skill generates), `systems-thinking` (deeper systems dynamics), and `prioritization` (ranking generated solutions).
+
 ### Verify installation
 
 After installing, test with:
 
 ```
-Help me think outside the box about our user onboarding -- we've been iterating on the same flow for months and conversion hasn't improved
+We've been trying to reduce customer churn for 6 months. Nothing is working. Help me think about this problem differently.
 ```
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Describe a problem you are stuck on: `We need to reduce our CI pipeline from 45 minutes to under 10 but we've already optimized every step`
-3. The skill challenges your assumptions (do you need to run everything sequentially? is every step necessary?) and reframes the problem (what if the goal is not a faster pipeline but faster feedback?)
-4. It generates solutions across multiple domains: parallelization, speculative execution, incremental testing, test impact analysis, or eliminating the need for some tests entirely
-5. Each solution is evaluated with expected impact, implementation cost, reversibility, and risk
+2. Ask: `"We're stuck on how to compete with a larger competitor. What are unconventional approaches we haven't considered?"`
+3. The skill activates and walks you through assumption challenging, strategic reframing, and game theory analysis
+4. Follow up with: `"What's the expected value of the top 3 approaches? What are the tail risks?"`
+5. The skill provides probabilistic assessment with decision criteria for choosing between options
+
+---
+
+## System Overview
+
+```
+creative-problem-solving (plugin)
+└── creative-problem-solving (skill)
+    ├── 5-step process
+    │   ├── Step 1: Deep Understanding (extract real problem)
+    │   ├── Step 2: Strategic Reframing (multiple lenses)
+    │   ├── Step 3: Solution Generation (creativity techniques)
+    │   ├── Step 4: Solution Analysis (strategic frameworks)
+    │   └── Step 5: Decision & Recommendation (optimal synthesis)
+    └── references/
+        ├── lateral-thinking.md (random entry, provocation, escape)
+        ├── strategic-frameworks.md (game theory, first principles, systems thinking)
+        ├── reframing-techniques.md (meta-level shifts, perspective rotation)
+        ├── ideation-techniques.md (SCAMPER, morphological analysis, TRIZ)
+        └── decision-frameworks.md (multi-criteria analysis, optimization, risk)
+```
 
 ## What's Inside
 
-| Component | Description |
-|---|---|
-| `creative-problem-solving` skill | Core skill with the five-step methodology: deep understanding, strategic reframing, solution generation, solution analysis, and decision/recommendation |
-| 5 reference libraries | Lateral thinking, strategic frameworks, reframing techniques, ideation techniques, and decision-making frameworks |
-| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
-| 3 output eval cases | Tests creative generation, strategic analysis, and recommendation quality |
+| Component | Type | Description |
+|---|---|---|
+| `creative-problem-solving` | Skill | Five-step process from problem understanding to optimal recommendation |
+| `lateral-thinking.md` | Reference | Random entry, provocation, challenge assumptions, concept fan, movement |
+| `strategic-frameworks.md` | Reference | Game theory (Nash equilibrium, incentives), first principles, systems thinking |
+| `reframing-techniques.md` | Reference | Meta-level shifts, perspective rotation, context changes, constraint manipulation |
+| `ideation-techniques.md` | Reference | SCAMPER, morphological analysis, analogical thinking, TRIZ principles |
+| `decision-frameworks.md` | Reference | Multi-criteria analysis, weighted scoring, optimization, risk analysis, bias mitigation |
+| Trigger evals | Test suite | 13 trigger evaluation cases |
+| Output evals | Test suite | 3 output quality evaluation cases |
 
-### creative-problem-solving
+### Component Spotlights
 
-**What it does:** Activates when you need creative solutions, unconventional approaches, strategic analysis, or help breaking through mental blocks. Walks you through a structured process from problem understanding through reframing, generation, analysis, and recommendation -- applying lateral thinking, game theory, first principles, and systems thinking as appropriate to your specific problem.
+#### creative-problem-solving (skill)
+
+**What it does:** Activates when users need breakthrough solutions to complex or stuck problems. Follows a five-step process: understand the real problem, reframe strategically, generate diverse solutions using matched creativity techniques, analyze rigorously with strategic frameworks, and synthesize into optimal recommendations with probabilistic grounding.
+
+**Input -> Output:** A problem description (stuck project, competitive challenge, resource constraint, organizational issue) -> Reframed problem statement, 5-10 unconventional solution approaches with strategic analysis, probabilistic assessment, and a primary recommendation with implementation steps.
+
+**When to use:**
+- Conventional approaches have failed and you need fresh thinking
+- Complex problems requiring creative or out-of-the-box solutions
+- Strategic decisions involving competitors, stakeholders, or incentive dynamics
+- Breaking through mental blocks on a project or initiative
+- First-principles analysis of whether the problem itself is the right one to solve
+
+**When NOT to use:**
+- Analyzing or critiquing existing ideas (use `critical-intuition`)
+- Detecting bias in evidence or proposals (use `critical-intuition`)
+- Pattern recognition in data or behavior (use `critical-intuition`)
 
 **Try these prompts:**
 
 ```
-Help me think outside the box -- we need to compete with a company that has 10x our engineering team and budget
+We've been stuck for 3 months trying to reduce page load time below 2 seconds. We've tried CDN, lazy loading, and image optimization. What are we missing?
 ```
 
 ```
-I'm stuck on a technical architecture decision between microservices and a modular monolith -- apply first principles to help me see past the hype
+Our startup has 5 engineers competing against a company with 500. What's our best asymmetric strategy?
 ```
 
 ```
-Use game theory to analyze our pricing strategy -- we're in a market with two dominant competitors and we keep getting into price wars
+We need to cut cloud costs by 40% without degrading user experience. Help me think about this with first principles.
 ```
 
 ```
-Reframe this problem for me: our support team is overwhelmed with tickets and we can't hire fast enough to keep up
-```
-
-```
-I need creative solutions for reducing our cloud costs by 40% without degrading performance -- we've already done the obvious optimizations
+Two teams disagree on the architecture direction. Use game theory to analyze the incentives and find a stable outcome.
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `lateral-thinking.md` | Random entry, provocation, challenge assumptions, concept fan, movement techniques |
-| `strategic-frameworks.md` | Game theory analysis, first principles reasoning, systems thinking, constraint analysis |
-| `reframing-techniques.md` | Meta-level shifts, perspective rotation, context changes, constraint manipulation |
-| `ideation-techniques.md` | SCAMPER, morphological analysis, analogical thinking, TRIZ innovation principles |
-| `decision-frameworks.md` | Multi-criteria analysis, optimization methods, risk analysis, bias mitigation |
-
-## Real-World Walkthrough
-
-You are the tech lead at a mid-stage startup. Your team has been trying to reduce page load time from 4.2 seconds to under 2 seconds for three months. You have already optimized images, added lazy loading, implemented code splitting, and moved to a CDN. The load time dropped to 3.1 seconds but has plateaued. The CEO is pushing hard because conversion drops 7% for every additional second of load time.
-
-You open Claude Code feeling stuck:
-
-```
-We've been trying to get our page load time under 2 seconds for months. We've already done image optimization, lazy loading, code splitting, and CDN. We're at 3.1 seconds and stuck. The CEO wants 2 seconds. I need creative solutions because the obvious ones are exhausted.
-```
-
-The creative-problem-solving skill activates and starts with deep understanding. Before generating solutions, it challenges your framing:
-
-**What is the real problem?** You stated "reduce load time to under 2 seconds." But the underlying goal is conversion improvement. The CEO cares about load time because of its impact on conversion, not as a metric in itself.
-
-**Challenge assumptions:** The skill asks you to list what you assume is true. You say: "We need to make the page load faster." It identifies this as a constraining assumption. What if the goal is not faster loading but the perception of faster loading? What if meaningful content appears in 1.5 seconds even though full page load takes 3.1 seconds?
-
-This reframe opens new solution territory. The skill generates ideas across three categories:
-
-**Perception-based solutions** (from the reframe): Progressive rendering to show above-the-fold content in under 1 second. Skeleton screens that give the impression of instant loading. Optimistic UI updates that show expected content before data arrives. These do not change actual load time but change the user's experience of it.
-
-**Elimination-based solutions** (from first principles): What is loading that does not need to load? The skill walks through analyzing your page: analytics scripts, A/B testing frameworks, chat widgets, social proof notifications. These add 800ms of load time but are invisible to the user for the first 10 seconds. Deferring them entirely changes nothing about the user experience but drops your perceived load time to 2.3 seconds.
-
-**Inversion-based solutions** (from lateral thinking): Instead of making the page load faster, make less page load. The skill asks what percentage of visitors actually scroll below the fold on their first visit. Your analytics show 23%. So 77% of visitors see only the top of the page. A radically different architecture loads only the visible viewport initially, then loads the rest on scroll intent. This is different from lazy loading (which still loads the page structure) -- this is genuinely not loading 70% of the page for 77% of visitors.
-
-**Game theory analysis:** The skill examines your competitive landscape. Your two main competitors load in 2.8 and 3.5 seconds. Getting to 2 seconds would be a differentiator. But getting perceived load time to under 1 second would be a dramatic differentiator -- and it is achievable through the perception-based solutions without the engineering effort of shaving another 1.1 seconds off actual load time.
-
-**Expected value comparison:**
-- Option A (keep optimizing actual load time): High engineering effort, uncertain outcome, 3-6 months. Expected improvement: 0.3-0.5 seconds.
-- Option B (perception optimization): Low-medium effort, well-understood techniques, 2-4 weeks. Expected perceived improvement: 1.5-2.0 seconds.
-- Option C (eliminate unnecessary loading): Low effort, immediate. Expected improvement: 0.5-0.8 seconds.
-
-The skill recommends combining Options B and C first (4 weeks, low risk, high impact) and measuring the conversion effect before investing in further actual load time optimization. The reversibility test confirms both options are two-way doors -- easy to roll back if they do not improve conversion.
-
-You implement the combined approach. Above-the-fold content renders in 0.9 seconds with skeleton screens. Deferred scripts save 0.8 seconds. The full page still loads in 2.3 seconds but users perceive sub-second performance. Conversion improves 12% -- exceeding what the 2-second target would have delivered.
-
-The CEO is happy. And your team learned that the problem was never "make the page load in 2 seconds" -- it was "make users feel like the page loads instantly."
-
-## Usage Scenarios
-
-### Scenario 1: Competing with a larger, better-funded competitor
-
-**Context:** You run a 15-person startup competing against a 500-person company with 20x your budget. They can outspend you on features, marketing, and engineering. You need a strategy that does not require matching their resources.
-
-**You say:** `How can we compete with a competitor that has 20x our engineering budget? We can't match them feature for feature.`
-
-**The skill provides:**
-- Reframe: from "how to match resources" to "how to win differently"
-- Game theory analysis: where are they committed and unable to pivot? What can a small team do that a large one cannot?
-- First principles: what do customers value that scale actively prevents (speed, personal attention, willingness to customize)?
-- Strategic options: niche domination, speed of iteration, relationship depth, constraint-based innovation
-
-**You end up with:** An asymmetric competitive strategy that exploits your advantages rather than trying to overcome your disadvantages.
-
-### Scenario 2: Breaking a technical deadlock
-
-**Context:** Your team has been debating microservices vs monolith for weeks. Both sides have valid arguments. No consensus is forming and the debate is blocking progress.
-
-**You say:** `We're deadlocked on microservices vs monolith -- the debate has been going on for weeks and both sides have good points. Help me break through this.`
-
-**The skill provides:**
-- Challenge assumptions: does the choice have to be binary? Is this a one-way door?
-- First principles: what is the actual problem -- deployment independence, team autonomy, scaling, or something else?
-- Reversibility test: which choice is easier to reverse? Start with the more reversible option.
-- Second-order effects: what organizational changes does each choice force?
-
-**You end up with:** A reframed decision that dissolves the deadlock -- often by revealing that the real question is not architectural but organizational.
-
-### Scenario 3: Finding cost savings beyond the obvious
-
-**Context:** You have been asked to cut cloud costs by 40% but your team has already implemented reserved instances, right-sized VMs, and shut down unused resources. The obvious optimizations are done.
-
-**You say:** `I need to cut another 40% from our cloud bill and we've already done the obvious stuff -- reserved instances, right-sizing, cleanup. I need creative ideas.`
-
-**The skill provides:**
-- Inversion: what if the workload did not need to run on cloud at all? (dedicated hardware for stable base load)
-- Cross-domain transfer: how do fintech companies handle compute-heavy intermittent workloads? (spot instances with checkpointing)
-- Systems thinking: which cost drivers create feedback loops? (more data stored = more compute to process = more data generated)
-- SCAMPER: Eliminate (which services produce no value?), Combine (can multiple low-usage services share infrastructure?), Reverse (prepay for lower unit costs)
-
-**You end up with:** A portfolio of non-obvious cost reduction strategies, each evaluated for expected savings, implementation effort, and risk.
-
-### Scenario 4: Resolving stakeholder misalignment
-
-**Context:** Product wants to ship a feature fast, engineering wants to build it properly, design wants to nail the UX, and leadership wants to hit a quarterly target. Everyone has different success criteria and the project is stalled.
-
-**You say:** `Product, engineering, design, and leadership all want different things from this project -- how do I align them without someone losing?`
-
-**The skill provides:**
-- Game theory: map each stakeholder's incentives and identify where they naturally align vs conflict
-- Perspective rotation: view the project from each stakeholder's success criteria
-- Positive-sum analysis: identify solutions that partially satisfy all parties rather than fully satisfying one
-- Second-order effects: what happens to each stakeholder's relationship if they "win" vs if they compromise?
-
-**You end up with:** A phased approach that sequences deliverables to hit the quarterly target (leadership), with proper UX for the first phase (design), clean architecture for extensibility (engineering), and a fast initial launch (product).
-
-## Ideal For
-
-- **Tech leads and architects** facing decisions where the obvious answer feels wrong but alternatives are unclear
-- **Founders and product leaders** who need competitive strategies that do not require matching larger competitors' resources
-- **Anyone stuck on a problem** for more than a week where incremental optimization has stopped producing results
-- **Strategic planners** who need to analyze multi-party dynamics, incentive structures, and second-order effects
-- **Teams in deadlock** where multiple valid perspectives have created an impasse that linear discussion cannot resolve
-
-## Not For
-
-- **Analyzing or critiquing existing ideas** with bias detection and evidence evaluation -- use [critical-intuition](../critical-intuition/) instead
-- **Systematic risk assessment** with probability matrices and mitigation planning -- use [risk-management](../risk-management/) instead
-- **Prioritizing a backlog** or deciding what to build next -- use [prioritization](../prioritization/) instead
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with five reference libraries providing deep technique coverage.
-
-The **core skill** (`SKILL.md`) defines the five-step methodology: deep understanding (extract the real problem, challenge assumptions, classify the problem type), strategic reframing (abstraction shifts, perspective rotation, constraint manipulation, inversion), solution generation (lateral thinking, SCAMPER, cross-domain transfer, game theory, first principles, systems thinking), solution analysis (probabilistic assessment, game theory validation, system dynamics), and decision/recommendation (expected value, Pareto optimization, real options, reversibility test).
-
-The five **reference libraries** provide technique depth on demand:
-- **Lateral thinking** -- random entry, provocation, assumption challenge, concept fan, and movement techniques for breaking mental blocks
-- **Strategic frameworks** -- game theory analysis (Nash equilibrium, incentive alignment, backward induction), first principles reasoning, systems thinking (feedback loops, leverage points), and constraint analysis
-- **Reframing techniques** -- meta-level shifts, perspective rotation, context changes, and constraint manipulation for viewing problems from new angles
-- **Ideation techniques** -- SCAMPER methodology, morphological analysis, analogical thinking, and TRIZ innovation principles for systematic idea generation
-- **Decision frameworks** -- multi-criteria analysis, optimization methods, risk analysis, and cognitive bias mitigation for rigorous solution evaluation
-
-The skill explicitly routes to critical-intuition when the user needs analysis or critique of existing ideas rather than generation of new ones.
-
-## Related Plugins
-
-- **[Critical Intuition](../critical-intuition/)** -- Analyze and critique existing ideas through pattern recognition, bias detection, and evidence evaluation
-- **[Prioritization](../prioritization/)** -- Apply RICE, MoSCoW, ICE, and effort-impact matrices for decision-making on what to build
-- **[Risk Management](../risk-management/)** -- Systematic risk assessment with probability matrices, mitigation strategies, and monitoring
-- **[Systems Thinking](../systems-thinking/)** -- Analyze complex problems through feedback loops, leverage points, and system dynamics
+| `lateral-thinking.md` | Random entry, provocation, escape assumptions, concept fan for breaking mental blocks |
+| `strategic-frameworks.md` | Game theory, first principles, systems thinking, constraints analysis for strategic decisions |
+| `reframing-techniques.md` | Abstraction shifts, perspective rotation, constraint manipulation, inversion for seeing problems differently |
+| `ideation-techniques.md` | SCAMPER, morphological analysis, analogical thinking, TRIZ for systematic solution generation |
+| `decision-frameworks.md` | Multi-criteria analysis, expected value, Pareto optimization, bias mitigation for choosing between options |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "Give me ideas" | "We've tried X, Y, and Z to reduce churn. None worked. What unconventional approaches are we missing?" |
+| "Help me think" | "Use first principles to analyze whether we even need a database for this -- what are the fundamental requirements?" |
+| "What should we do?" | "Two teams want different architectures. Use game theory to map the incentives and find a Nash equilibrium." |
+| "Be creative" | "Apply SCAMPER to our onboarding flow. What happens if we eliminate the signup form entirely?" |
+
+### Structured Prompt Templates
+
+**For stuck problems:**
+```
+We've been trying to solve [problem] for [duration]. Approaches we've tried: [list]. They failed because [reasons]. Help me reframe this problem and find approaches outside our current thinking.
+```
+
+**For competitive strategy:**
+```
+We compete with [competitor type] who has [advantages]. Our strengths are [list]. What asymmetric strategies exploit their constraints?
+```
+
+**For first-principles analysis:**
+```
+We assume we need [thing] because [reason]. Challenge this assumption from first principles. What are the fundamental requirements, and what becomes possible if we remove [assumed constraint]?
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for analysis of existing ideas:** "Critique this proposal" is analysis, not generation. Use `critical-intuition` for critiquing and this skill for generating alternatives.
+- **Requesting a single "best" answer:** Creative problem-solving generates diverse options with trade-offs. Asking for "the answer" short-circuits the process. Ask for "approaches with trade-offs."
+- **Not sharing what has already been tried:** Without knowing what failed, the skill may regenerate solutions you already rejected. Always share prior approaches and why they did not work.
+
+## Real-World Walkthrough
+
+**Starting situation:** You lead engineering at a B2B SaaS company. Your largest customer (30% of revenue) has threatened to leave because your API response times are too slow for their real-time trading system. Your team has spent 3 months optimizing -- database indices, caching layers, CDN, connection pooling -- and gotten response times from 800ms to 350ms. The customer needs under 100ms. Your CTO says it is physically impossible with your current architecture.
+
+**Step 1: Extract the real problem.** You ask: "Our biggest customer needs sub-100ms API responses. We've optimized from 800ms to 350ms but our CTO says we can't go further. Help me think about this differently."
+
+The skill starts by separating the stated problem ("make API faster") from the underlying need. The customer is building a real-time trading system. They do not actually need your API to be fast -- they need data to arrive in time for trading decisions. This reframing opens an entirely different solution space.
+
+**Step 2: Challenge assumptions.** The skill identifies three ghost constraints: (1) the assumption that the customer must call your API synchronously, (2) the assumption that you must serve from your existing infrastructure, (3) the assumption that you need to send complete responses. Each assumption, when questioned, reveals new approaches.
+
+**Step 3: Generate solutions across domains.** Using lateral thinking (random entry from financial markets), the skill draws an analogy to market data feeds: exchanges do not wait for clients to request prices -- they push updates. This generates a push-based architecture using WebSockets or server-sent events. Using SCAMPER (Eliminate: eliminate the request-response cycle entirely; Reverse: instead of the customer pulling data, push data before they need it), more variations emerge: pre-computed results pushed on a schedule, edge-deployed computation nodes closer to the customer's infrastructure, a shared-nothing data partition dedicated to this customer.
+
+**Step 4: Analyze with game theory and systems thinking.** Game theory analysis reveals that accommodating this one customer's architecture needs creates a strategic commitment: you become the only vendor who can serve real-time trading, creating a moat. Systems thinking identifies a reinforcing loop: faster service attracts more trading customers, which justifies more investment in real-time infrastructure, which attracts more customers. First principles analysis shows that sub-100ms is achievable with edge deployment (data physically closer = less latency) even without algorithmic changes.
+
+**Step 5: Synthesize recommendation.** The skill produces a ranked recommendation: (1) Push architecture with WebSocket streaming (eliminates the latency problem entirely, estimated 3 weeks), (2) Edge-deployed data partition for this customer (reduces latency to ~50ms, estimated 6 weeks), (3) Shared-nothing architecture for real-time customers (strategic platform investment, 3 months). Decision criteria: if the customer can accept a push model, option 1 is fastest and cheapest. If they require request-response, option 2 is the bridge.
+
+**Gotchas discovered:** The CTO was right that the current architecture could not reach 100ms -- but the constraint was the request-response model, not the technology. Reframing "make the API faster" to "get data to the customer in time" changed the problem from impossible to straightforward.
+
+## Usage Scenarios
+
+### Scenario 1: Breaking through a technical dead end
+
+**Context:** Your team has spent a month trying to make a batch processing pipeline faster and has exhausted all conventional optimization approaches.
+
+**You say:** "We've tried parallelization, caching, algorithmic optimization, and hardware upgrades for our batch pipeline. It's still too slow. What are we missing?"
+
+**The skill provides:**
+- Assumption challenging: must it be batch? What if it were streaming?
+- First principles: what's the theoretical minimum time for this computation?
+- Cross-domain analogy from game engines (spatial partitioning) to data processing
+- SCAMPER analysis: eliminate (which processing steps are unnecessary?), reverse (process output-first)
+
+**You end up with:** 3-5 unconventional approaches that reframe the problem rather than optimizing within the current paradigm.
+
+### Scenario 2: Competitive strategy with resource disadvantage
+
+**Context:** You are a 10-person startup competing with a well-funded company with 200 engineers in the same space.
+
+**You say:** "We have 10 engineers vs their 200. We can't outbuild them. What's our asymmetric strategy?"
+
+**The skill provides:**
+- Game theory analysis of where the competitor is committed and cannot pivot
+- First principles on what customers actually value that scale prevents (speed, personal attention, flexibility)
+- Inversion: what would guarantee failure? (Trying to match features) What's the opposite? (Dominate a niche)
+- Strategic commitment analysis: which moves create irreversible advantages?
+
+**You end up with:** A strategic direction that exploits the competitor's structural disadvantages rather than competing on their strengths.
+
+### Scenario 3: Organizational incentive misalignment
+
+**Context:** Two engineering teams are blocking each other on a shared service. Each team optimizes for their own metrics, creating a prisoner's dilemma.
+
+**You say:** "Teams A and B both need the shared payment service but they keep breaking each other's integrations. How do I fix this with game theory?"
+
+**The skill provides:**
+- Nash equilibrium analysis showing why the current state is stable but suboptimal
+- Incentive restructuring options (shared metrics, joint ownership, API contract)
+- Repeated-game dynamics: how reputation and cooperation evolve over repeated interactions
+- Mechanism design: change the game, not the players
+
+**You end up with:** A concrete incentive restructuring plan that makes cooperation the dominant strategy for both teams.
+
+---
+
+## Decision Logic
+
+**When does creative-problem-solving activate vs. critical-intuition?**
+
+These two skills are complementary opposites:
+- **creative-problem-solving:** Generating new ideas, finding unconventional solutions, breaking through blocks, exploring solution spaces. Forward-looking, divergent.
+- **critical-intuition:** Analyzing existing ideas, detecting bias, evaluating evidence, finding hidden problems. Backward-looking, convergent.
+
+If the user needs new solutions -> creative-problem-solving. If the user needs to evaluate existing ideas -> critical-intuition. Often used in sequence: generate with creative-problem-solving, then critique with critical-intuition.
+
+**Which creativity technique does the skill select?**
+
+Based on problem type:
+- Mental block or stuck thinking -> Lateral thinking (random entry, provocation, escape)
+- Systematic exploration needed -> SCAMPER, morphological analysis
+- Strategic or competitive problem -> Game theory, first principles
+- Decision between options -> Multi-criteria analysis, expected value
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Creative solutions are impractical | Generated ideas are inspiring but have no implementation path | Ensure Step 4 (analysis) and Step 5 (recommendation) are not skipped; every idea needs feasibility assessment |
+| Problem was not properly understood before generating solutions | Solutions address the stated problem but not the real underlying need | Return to Step 1; spend more time extracting the real problem with "What is the underlying goal?" and "What happens if we do nothing?" |
+| Game theory analysis is too abstract | Strategic recommendations do not map to concrete actions | Ground game theory in specific actors, specific moves, specific payoffs; name the people and teams involved |
+
+## Ideal For
+
+- **Engineering leaders** facing complex technical or organizational problems where conventional approaches have failed and fresh thinking is needed
+- **Product managers** evaluating strategic directions who need to analyze competitive dynamics, customer incentives, and market positioning with game theory
+- **Startup founders** competing against better-resourced competitors who need asymmetric strategies that exploit structural advantages
+- **Technical architects** stuck on design decisions who need first-principles analysis to escape assumption-driven dead ends
+
+## Not For
+
+- **Analyzing or critiquing existing proposals** -- if you have a plan and want it stress-tested, use `critical-intuition`
+- **Detecting bias or hidden patterns in data** -- if you need to evaluate evidence quality or find what's missing, use `critical-intuition`
+- **Prioritizing a known list of options** -- if you already have options and need to rank them, use `prioritization`
+
+## Related Plugins
+
+- **critical-intuition** -- The analytical counterpart: critique and evaluate what creative-problem-solving generates
+- **systems-thinking** -- Deeper systems dynamics (feedback loops, leverage points) for complex adaptive problems
+- **prioritization** -- RICE, MoSCoW, ICE scoring for ranking generated solutions
+- **risk-management** -- Systematic risk assessment for evaluating the riskier creative solutions
+- **outcome-orientation** -- Define measurable success criteria for creative solutions using OKRs
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
