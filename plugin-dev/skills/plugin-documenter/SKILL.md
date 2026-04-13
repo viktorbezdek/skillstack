@@ -51,26 +51,50 @@ Write detailed docs for the cloud-finops plugin
 
 ### Step 1 — Fetch and inventory
 
-Fetch every file that belongs to the plugin. For GitHub URLs, use web-fetch or git clone. For local paths, read directly.
+Inventory all plugin files. For GitHub URLs, use web-fetch or git clone. For local paths, use glob/ls.
 
-**Files to collect:**
+**Do NOT read every file yet.** Step 1 is inventory only — listing paths and sizes. Deep reads happen selectively in later steps to control token usage.
 
-| File | Required | Purpose |
+**Files to inventory:**
+
+| File | Required | Read depth |
 |---|---|---|
-| `.claude-plugin/plugin.json` | Yes | Manifest — name, version, description, author |
-| `README.md` | Yes | Existing documentation (may be sparse or outdated) |
-| `skills/*/SKILL.md` | Yes | Each skill's frontmatter + body |
-| `skills/*/references/*.md` | If present | Deep reference content per skill |
-| `skills/*/evals/*.json` | If present | What the skill is tested against |
-| `hooks/hooks.json` | If present | Hook configuration |
-| `hooks/scripts/*.sh` | If present | Hook implementations |
-| `.mcp.json` | If present | MCP server configuration |
-| `agents/*.md` | If present | Subagent definitions |
-| `commands/*.md` | If present | Slash command definitions |
-| `scripts/*.py` or `scripts/*.sh` | If present | Runnable tooling |
-| `CHANGELOG.md` | If present | Version history |
+| `.claude-plugin/plugin.json` | Yes | Full (small) |
+| `README.md` | Yes | Full |
+| `CHANGELOG.md` | If present | Full (version history) |
+| `skills/*/SKILL.md` | Yes | Full — frontmatter + body |
+| `skills/*/references/*.md` | If present | **Title + first blockquote only** (see token strategy below) |
+| `skills/*/evals/trigger-evals.json` | If present | Count cases only (`jq length`) |
+| `skills/*/evals/evals.json` | If present | Count cases only |
+| `skills/*/templates/` | If present | List filenames — document as shipped templates |
+| `skills/*/examples/` | If present | List filenames — document as bundled examples |
+| `skills/*/scripts/` | If present | List filenames — skill-private tooling |
+| `skills/*/fixtures/` | If present | List filenames — test fixtures |
+| `hooks/hooks.json` | If present | Full (small) |
+| `hooks/scripts/*.sh` | If present | First 5 lines of each (shebang + purpose comment) |
+| `.mcp.json` | If present | Full (small) |
+| `agents/*.md` | If present | Frontmatter only |
+| `commands/*.md` | If present | First 10 lines |
+| `scripts/*.py` or `scripts/*.sh` | If present | First 10 lines (docstring/usage) + `--help` if available |
 
-**Output:** a file inventory table with path, type, and size for each file.
+**Output:** a file inventory table with path, type, line count, and read-depth note.
+
+### Token efficiency strategy
+
+Plugins vary wildly in size — from 3 files (single-skill) to 30+ files (cloud-finops has 27 reference files alone). Reading everything into context wastes tokens and degrades output quality.
+
+**The rule: read structure first, content on demand.**
+
+1. **Always read fully:** plugin.json, SKILL.md files, hooks.json, .mcp.json, CHANGELOG.md — these are small and essential.
+2. **Read selectively:** reference files — read only the title (first `#` heading) and the opening blockquote (the scope statement). This gives you enough to summarize what each reference covers without burning 200+ lines of context per file.
+3. **Read on demand:** if a specific reference is needed for a scenario (e.g. you need the AWS-specific content from `finops-aws.md` to write an AWS cost scenario), read just that one file.
+4. **Never read:** test fixtures, example skill bodies (list filenames only), large script implementations (read docstring/usage only).
+5. **Count, don't read:** eval files — report "8 positive + 5 negative trigger cases, 3 output cases" without reading the actual queries.
+
+**For a plugin with N reference files, total reads should be:**
+- N=0-5: read all references fully (small plugin)
+- N=6-15: read titles + blockquotes, deep-read 2-3 most important
+- N=16+: read titles only, deep-read on demand for scenarios
 
 ### Step 2 — Analyze architecture
 
@@ -217,6 +241,19 @@ By default, the documentation is written as a replacement for the plugin's `READ
 
 Focus on **when it activates** and **what methodology it provides**. The trigger phrases from frontmatter tell you the "when". The SKILL.md body tells you the "what". Don't document the frontmatter — document the behavior.
 
+### References (progressive disclosure)
+
+References are the depth behind the SKILL.md body. Document them as a **summary table** — one row per file, with the topic and what a user would learn from it. Do NOT reproduce reference content in the README. The point is to tell users "this depth exists" so they know the skill is not surface-level.
+
+Example for a plugin with 20 references:
+```markdown
+| Reference | Topic |
+|---|---|
+| `finops-aws.md` | AWS-specific cost optimization strategies |
+| `finops-kubernetes.md` | Kubernetes cluster right-sizing |
+| ... | ... |
+```
+
 ### Hooks
 
 Focus on **what events they handle** and **what they prevent or automate**. Read `hooks.json` for the event/matcher pairs and the hook scripts for the logic. Common patterns: guardrails (PreToolUse blocks), automation (PostToolUse formats), context injection (SessionStart adds info).
@@ -227,7 +264,15 @@ Focus on **what tools they expose** and **what external systems they connect to*
 
 ### Scripts
 
-Focus on **CLI usage** and **what they produce**. Show the command, the flags, and example output.
+Focus on **CLI usage** and **what they produce**. Show the command, the flags, and example output. Read only the docstring or `--help` output, not the full implementation.
+
+### Templates and examples
+
+List them with a one-line description each. Templates are starting points for users; examples are demonstrations. Both are important to mention but don't need deep documentation — the files themselves are the docs.
+
+### Fixtures and test data
+
+Mention their existence ("includes N test fixtures for the eval harness") but do not document individual fixture files. They are implementation details, not user-facing.
 
 ---
 
