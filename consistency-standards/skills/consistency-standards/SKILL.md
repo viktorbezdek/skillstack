@@ -1,9 +1,13 @@
 ---
 name: consistency-standards
 description: >-
-  Establish and maintain uniform naming conventions, taxonomy standards, style guides,
-  and content reuse patterns across documentation and code. Use when working with naming
-  conventions, style guides, taxonomy, terminology, content reuse, or consistency audits.
+  Establish and enforce uniform naming conventions, taxonomy standards, style guides, and
+  content reuse patterns across a project. Use when the user asks to audit for consistency,
+  standardize naming, create a style guide, align terminology across docs, eliminate drift,
+  or define reuse patterns across content or code. NOT for formal knowledge graphs or semantic
+  ontologies (use ontology-design). NOT for CMS content types or editorial workflows
+  (use content-modelling). NOT for language-specific code conventions (use typescript-development
+  or python-development).
 ---
 
 # Consistency Standards
