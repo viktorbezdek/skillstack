@@ -6,22 +6,7 @@ Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan
 
 ## What Problem Does This Solve
 
-LLM agents operating on long-horizon tasks accumulate tool outputs, plans, and intermediate results in their context window until it fills up and performance degrades. The usual workarounds — summarisation and truncation — lose information. This skill addresses that constraint by treating the filesystem as an unlimited external memory layer: large outputs are written to files and referenced by pointer, plans are persisted and re-read on each turn, and sub-agents share state through a shared workspace rather than message chains.
-
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "Our agent's context window fills up with tool outputs" | Scratch pad pattern — write large tool outputs to files above a token threshold, return a summary + file reference |
-| "The agent loses track of its plan halfway through a long task" | Plan persistence pattern with YAML schema for objective, steps, and statuses that the agent re-reads each turn |
-| "Sub-agents are duplicating work because they can't share state" | Sub-agent workspace pattern with per-agent file directories that the coordinator reads directly |
-| "We have dozens of skills but can't load them all into the system prompt" | Dynamic skill loading pattern — store skills as files, include only names and descriptions statically, load on demand |
-| "Terminal output from long-running builds is swamping the context" | Terminal persistence pattern — sync stdout to dated files, agents grep for error patterns rather than loading full logs |
-| "How do I keep agent token usage under control across sessions?" | Token accounting guidance and file organisation conventions for scratch, memory, skills, and agent workspaces |
-
-## When NOT to Use This Skill
-
-- in-context optimization like KV-cache or observation masking -- use [context-optimization](../context-optimization/) instead
+LLM agents operating on long-horizon tasks accumulate tool outputs, plans, and intermediate results in their context window until it fills up and performance degrades. The usual workarounds -- summarisation and truncation -- lose information. This skill treats the filesystem as an unlimited external memory layer: large outputs are written to files and referenced by pointer, plans are persisted and re-read on each turn, and sub-agents share state through a shared workspace rather than message chains. The core insight is that files enable dynamic context discovery -- agents pull relevant context on demand rather than carrying everything in the window.
 
 ## Installation
 
@@ -34,47 +19,60 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
+## What's Inside
+
+Single-skill plugin with one SKILL.md and one reference file:
+
+| Component | What It Provides |
+|---|---|
+| **Scratch Pad Pattern** | Write large tool outputs (above a 2000-token threshold) to files, return a summary + file reference, then use grep or targeted reads for retrieval |
+| **Plan Persistence** | YAML schema for objective, steps, and status that the agent re-reads each turn -- "manipulating attention through recitation" |
+| **Sub-Agent Workspaces** | Per-agent file directories so a coordinator can read results directly instead of routing through message chains |
+| **Dynamic Skill Loading** | Store skills as files, include only names and descriptions statically, load full content on demand -- scales to dozens of skills without context bloat |
+| **Terminal Log Persistence** | Sync stdout to dated files so agents can grep for error patterns rather than loading full build logs |
+| **Self-Modification** | Agents write learned preferences and patterns to files, evolving their own behavior across sessions |
+| **`implementation-patterns.md`** | Reference file with worked examples showing before/after token counts, recommended directory structure, and ten implementation rules |
+
 ## How to Use
 
 **Direct invocation:**
 
 ```
-Use the filesystem-context skill to ...
+Use the filesystem-context skill to design a scratch pad system for our agent's tool outputs
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
 
-- `filesystem`
-- `context-management`
-- `scratch-pad`
-- `dynamic-loading`
+`filesystem` · `context-management` · `scratch-pad` · `dynamic-loading`
 
-## What's Inside
+## Usage Scenarios
 
-- **When to Activate** -- Decision criteria for when filesystem patterns are appropriate versus when to stay in-context.
-- **Core Concepts** -- Explanation of the four ways context engineering fails and how filesystem-based dynamic discovery addresses each one.
-- **Detailed Topics** -- Six implementation patterns: scratch pad, plan persistence, sub-agent communication, dynamic skill loading, terminal/log persistence, and self-modification through learned preferences.
-- **Practical Guidance** -- Threshold guidance (2000-token rule), recommended directory structure for scratch/memory/skills/agents, and token accounting approach.
-- **Examples** -- Three worked examples showing before/after token counts for tool output offloading, dynamic skill loading, and chat history as file reference.
-- **Guidelines** -- Ten numbered rules for effective filesystem context engineering, from output threshold to cleanup for scratch files.
-- **Integration** -- How this skill connects to context-optimization, memory-systems, multi-agent-patterns, context-compression, and tool-design.
-- **References** -- Links to internal implementation patterns and related external resources (LangChain, Cursor, Anthropic).
+**1. Reducing token bloat from web search results.** Your agent calls a web search tool that returns 10,000+ tokens of raw content per query. Use the scratch pad pattern to write the full results to a file, return a 200-token summary to the context, and then use grep to extract only the relevant paragraphs when the agent needs specific details.
 
-## Version History
+**2. Keeping a long-running refactoring task on track.** A multi-step refactoring task takes 30+ turns and the agent keeps losing track of which files have been updated. Use plan persistence to write a YAML plan file with each step's status, re-reading it at the start of every turn so the agent always knows exactly where it left off.
 
-- `1.0.4` fix(context-engineering): optimize descriptions with cross-references and NOT clauses (7881054)
-- `1.0.3` fix(filesystem-context): add standard keywords and expand README to full format (994c529)
-- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.0` Initial release (697ea68)
+**3. Coordinating parallel sub-agents.** You have three sub-agents working on different parts of a feature (frontend, backend, database migration). Instead of passing results through message chains, each agent writes its output to a designated directory and the coordinator reads the files directly -- eliminating information loss from summarisation.
 
-## Related Skills
+**4. Scaling from 5 skills to 50 without degrading performance.** Your agent has accumulated 50 skills but loading all of them into the system prompt wastes tokens and confuses the model. Use dynamic skill loading to include only a one-line index of each skill name and description, then load the full SKILL.md on demand when a query matches.
 
-- **[Context Compression](../context-compression/)** -- Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-...
-- **[Context Degradation](../context-degradation/)** -- Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distra...
-- **[Context Fundamentals](../context-fundamentals/)** -- Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, pro...
-- **[Context Optimization](../context-optimization/)** -- Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and ...
+**5. Debugging a CI failure from agent context.** A build that ran for 8 minutes produced 50,000 lines of output. Instead of dumping that into context, use terminal persistence to write the output to a dated log file and have the agent grep for "ERROR", "FAILED", or stack trace patterns to extract only the relevant lines.
+
+## When to Use / When NOT to Use
+
+**Use when:** Tool outputs are bloating the context window, agents need to persist state across long trajectories, sub-agents must share information, you need to scale the number of skills without degrading performance, or terminal output needs to be accessible without overwhelming the context.
+
+**Do NOT use for:**
+- **In-context optimization** (KV-cache, observation masking) -- use [context-optimization](../context-optimization/)
+- **Summarisation or compression techniques** -- use [context-compression](../context-compression/)
+- **Understanding context theory or fundamentals** -- use [context-fundamentals](../context-fundamentals/)
+
+## Related Plugins in SkillStack
+
+- **[Context Compression](../context-compression/)** -- Anchored iterative summarization, opaque compression, tokens-per-task optimization
+- **[Context Degradation](../context-degradation/)** -- Recognizing and mitigating context failures: lost-in-middle, poisoning, distraction
+- **[Context Fundamentals](../context-fundamentals/)** -- Foundational theory of context engineering for AI agent systems
+- **[Context Optimization](../context-optimization/)** -- Extending effective context capacity through compaction, KV-cache, and retrieval strategies
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
