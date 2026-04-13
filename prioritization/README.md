@@ -2,277 +2,312 @@
 
 > **v1.0.10** | Strategic Thinking | 11 iterations
 
-> Apply prioritization frameworks -- RICE, MoSCoW, ICE scoring, and effort-impact matrices -- to make defensible decisions about what to build next instead of letting the loudest voice win.
+---
 
 ## The Problem
 
-Every product team has more ideas than capacity. The backlog grows faster than the team can ship, and without a systematic way to rank items, prioritization defaults to one of four anti-patterns: HiPPO (the highest-paid person's opinion wins), recency bias (the latest request jumps to the top), squeaky wheel (the loudest customer gets their feature), or sunk cost (we already invested in this, so we must finish it).
+Every team has more ideas than capacity. The backlog grows faster than the team can ship, and without a principled way to decide what comes first, prioritization degrades into politics. The highest-paid person's opinion (HiPPO) wins. The loudest customer gets their feature next. The most recent request displaces work that has been planned for weeks. Last quarter's half-finished initiative gets continued because of sunk cost, not because it is still the best use of time.
 
-These anti-patterns are not obvious in the moment. The VP asks for a feature in a meeting and it goes to the top of the sprint. A large customer threatens to churn and their request becomes urgent. Last quarter's half-finished project keeps getting prioritized because "we already built half of it." Each decision feels reasonable in isolation, but over a quarter the backlog becomes a random collection of pet projects, customer appeasements, and legacy commitments -- with no connection to the outcomes that actually matter.
+The consequences are expensive. Teams work on medium-impact features while high-impact ones wait. Quick wins that could be shipped in a day sit in the backlog behind multi-month projects. Engineering capacity is consumed by features that reach few users while features that would affect thousands are deprioritized because nobody scored them. When stakeholders ask "why are we building this and not that?", the answer is narrative ("the customer asked for it") rather than analytical ("it scores 3x higher on reach, impact, and confidence").
 
-The consequence is not just wasted engineering time. It is opportunity cost: every hour spent on a low-impact item is an hour not spent on the high-impact item that would have moved the needle. Teams that cannot prioritize systematically ship constantly but accomplish little, and struggle to explain to leadership why a year of work produced incremental improvements instead of the step-change the business needed.
+Most teams know about RICE, MoSCoW, and ICE but do not apply them consistently. They run a scoring exercise once, then abandon it when the next urgent request arrives. The frameworks feel heavyweight because nobody standardized the scales, documented the rationale, or made scoring a repeatable process. Without embedded frameworks that integrate into decision-making cadence, prioritization remains an occasional ritual rather than a continuous discipline.
 
 ## The Solution
 
-This plugin provides four complementary prioritization frameworks, each suited to different decision contexts. RICE scoring (Reach x Impact x Confidence / Effort) gives you a single numeric score that makes items directly comparable. MoSCoW (Must/Should/Could/Won't) categorizes items by necessity for a specific release. ICE scoring (Impact + Confidence + Ease / 3) offers a lightweight alternative when RICE feels too heavy. The effort-impact matrix provides a visual quadrant model (quick wins, big bets, fill-ins, money pits) for fast triage.
+The Prioritization plugin gives Claude expertise in four prioritization frameworks -- RICE scoring, MoSCoW categorization, ICE scoring, and the Effort-Impact matrix -- with standardized scales, scoring templates, and decision logic. It transforms ad hoc prioritization into a repeatable, defensible process.
 
-You get detailed scoring scales for each framework (not just the formula but what "Impact: 3" actually means), a reusable prioritization template with scoring and rationale documentation, the explicit priority order (Quick Wins first, then Big Bets, then Fill-Ins, avoid Money Pits), and an anti-pattern catalog that names the biases so the team can recognize and resist them. The skill does not just rank items -- it produces documented decisions with transparent reasoning that survives stakeholder scrutiny.
+The plugin provides a single focused skill that activates when you need to rank features, score initiatives, categorize requirements, or create effort-impact matrices. It includes the RICE formula (Reach x Impact x Confidence / Effort) with calibrated scales, MoSCoW with the 60% effort rule for Must-haves, ICE with averaged scoring, the Effort-Impact quadrant matrix (Quick Wins -> Big Bets -> Fill Ins -> avoid Money Pits), a prioritization template with decision rationale, and anti-pattern detection for HiPPO, recency bias, squeaky wheel, and sunk cost fallacies.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Backlog ordered by who asked loudest | RICE/ICE scores make items directly comparable with transparent math |
-| "Everything is a priority" -- no way to say no | MoSCoW categories with the 60% rule: Musts cannot exceed 60% of capacity |
-| Effort estimated but impact never quantified | Impact scored on a defined scale (0.25 to 3) with explicit evidence requirements |
-| Sunk cost keeps half-finished projects alive | Each item scored fresh -- prior investment is not a factor in RICE |
-| Decisions made in meetings, reasoning lost by next week | Prioritization template documents score, rationale, and decision for each item |
-| Quick wins and big bets treated the same way | Effort-impact matrix separates them into four quadrants with distinct strategies |
+| HiPPO decides: the VP's pet feature wins regardless of impact | RICE scoring with documented reach, impact, confidence, and effort -- decisions are analytical, not political |
+| All requirements feel equally important -- no way to distinguish "must have" from "nice to have" | MoSCoW categorization with the 60% rule: Must-haves cannot exceed 60% of total effort |
+| Quick wins languish in the backlog behind multi-month projects | Effort-Impact matrix surfaces Quick Wins (high impact, low effort) for immediate action |
+| No standardized scoring -- every conversation reinvents the evaluation criteria | Calibrated scales: RICE impact 0.25-3, ICE 1-10, MoSCoW with explicit definitions |
+| Sunk cost keeps zombie projects alive: "we already invested 3 months" | Anti-pattern detection flags sunk cost reasoning and redirects to forward-looking impact assessment |
+| Stakeholders cannot explain why feature A was prioritized over feature B | Prioritization template with scored rationale: reach, impact, confidence, effort, and decision narrative |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install prioritization@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention relevant topics.
+### Prerequisites
+
+None. For defining the outcomes that prioritization serves, also install `outcome-orientation`. For defining the personas whose needs inform impact scoring, also install `persona-definition`.
+
+### Verify installation
+
+After installing, test with:
+
+```
+I have 8 feature requests and capacity for 3 this quarter. Help me score and prioritize them using RICE.
+```
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Bring a prioritization problem:
-   ```
-   I have 15 feature requests in my backlog and need to pick 5 for next quarter. Help me RICE score them.
-   ```
-3. The skill walks you through scoring each item on Reach, Impact, Confidence, and Effort, producing a ranked list.
-4. Challenge the ranking:
-   ```
-   The CEO wants feature X at the top but it scored low on RICE. How do I handle this?
-   ```
-5. Get a framework for having the conversation: either the scoring inputs are wrong (update them with evidence) or the item genuinely is not the highest priority (defend the data).
+1. Install the plugin using the commands above
+2. Ask: `Prioritize our backlog: search improvements, onboarding redesign, API v2, mobile push notifications, SSO integration. We have 2 engineers for 3 months.`
+3. The skill scores each item using RICE and places them on an effort-impact matrix
+4. You receive a ranked list with scores, rationale, and a recommended order of execution
+5. Next, try: `Our PM insists we build the CEO's pet feature next -- help me use data to push back constructively`
+
+---
+
+## System Overview
+
+```
+prioritization/
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+└── skills/
+    └── prioritization/
+        ├── SKILL.md         # Core skill (RICE, MoSCoW, ICE, Effort-Impact, templates, anti-patterns)
+        └── evals/
+            ├── trigger-evals.json   # 13 trigger evaluation cases
+            └── evals.json           # 3 output evaluation cases
+```
+
+A single skill with no additional references. The SKILL.md contains the complete prioritization framework: four frameworks (RICE, MoSCoW, ICE, Effort-Impact), calibrated scales, the prioritization template, and anti-pattern detection.
 
 ## What's Inside
 
-Compact single-skill plugin focused on prioritization frameworks and decision-making.
+| Component | Type | Purpose |
+|---|---|---|
+| `prioritization` | Skill | RICE scoring, MoSCoW categorization, ICE scoring, Effort-Impact matrix, prioritization template, anti-patterns |
 
-| Component | Description |
-|---|---|
-| **SKILL.md** | Core skill covering RICE scoring with impact scale, MoSCoW method with capacity rule, ICE scoring, effort-impact matrix with quadrant strategies, prioritization template, and anti-patterns |
-| **evals/** | 13 trigger evaluation cases + 3 output quality evaluation cases |
+### Component Spotlight
 
-### prioritization
+#### prioritization (skill)
 
-**What it does:** Activates when you need to prioritize features, rank backlog items, score initiatives, or make decisions about what to build next. It provides four frameworks (RICE, MoSCoW, ICE, effort-impact matrix) with scoring scales, templates, and anti-pattern detection.
+**What it does:** Activates when you need to rank, score, or categorize work items for decision-making. Provides four frameworks with calibrated scales, a scoring template with decision rationale, and anti-pattern detection for common prioritization failures.
+
+**Input -> Output:** A list of features, initiatives, or requirements with context -> Scored and ranked items with framework-appropriate analysis, effort-impact placement, and recommended execution order with rationale.
+
+**When to use:**
+- Scoring features or initiatives to decide quarterly priorities
+- Categorizing requirements as Must/Should/Could/Won't for a release
+- Creating effort-impact matrices for sprint planning
+- Defending prioritization decisions to stakeholders with data
+- Auditing existing prioritization for bias (HiPPO, recency, squeaky wheel)
+
+**When NOT to use:**
+- Defining OKRs or success metrics (use `outcome-orientation`)
+- Assessing project risks (use `risk-management`)
+- Detailed project estimation and task breakdown (use a project management tool)
+- Stakeholder analysis for whose input to weight in scoring (use `persona-mapping`)
 
 **Try these prompts:**
 
 ```
-RICE score these 8 feature requests for our Q3 planning
+Score these 6 features using RICE: real-time notifications, bulk data export, SSO integration, advanced search, API rate limiting, onboarding wizard
 ```
 
 ```
-We need to cut scope for the v2 launch -- help me apply MoSCoW to decide what stays and what goes
+Categorize our release requirements using MoSCoW -- we have 15 items and 60% of capacity is already committed to must-haves
 ```
 
 ```
-Quick comparison: should we build the notification system or the analytics dashboard first? Use effort-impact.
+Create an effort-impact matrix for our sprint backlog -- I need to identify the quick wins we should do first
 ```
 
 ```
-My backlog has 30 items and I don't know where to start. What prioritization framework should I use?
+Our backlog prioritization is driven by whoever complains loudest. Help me introduce a RICE scoring process the team will actually follow.
 ```
 
 ```
-The sales team keeps pushing customer requests to the top of the backlog. How do I push back with data?
+Is ICE or RICE better for a small startup with limited data on reach and confidence? We need something lightweight.
 ```
-
-```
-Score this initiative: we want to rebuild the search feature. It could affect 50K users but will take 3 months.
-```
-
-## Real-World Walkthrough
-
-You are the product manager for a B2B SaaS platform with 2,000 paying customers. The engineering team has capacity for roughly 5 person-months of work next quarter. You have 12 feature requests from customers, sales, support, and leadership. Everyone thinks their request is the most important. Last quarter, the team built whatever the CEO mentioned in all-hands, and the product metrics did not move. This quarter, you are going to use data.
-
-**Step 1: Choose the right framework.**
-
-You start by asking which framework fits:
-
-```
-I need to prioritize 12 features for next quarter. I have customer reach data, impact estimates, and engineering sizing. Which framework should I use?
-```
-
-The skill recommends RICE because you have the data to support all four dimensions: Reach (customer count from your CRM), Impact (estimated effect on retention), Confidence (how sure you are about the impact estimate), and Effort (engineering person-months from the sizing). ICE would work for a quicker pass, but with 12 items and a quarterly commitment, RICE's rigor is worth the extra time.
-
-**Step 2: Score the items.**
-
-You list your top contenders and the skill walks you through scoring. Here are three of the twelve:
-
-**Bulk import tool:**
-```
-Reach: 800 customers/quarter (40% of base uses spreadsheet imports)
-Impact: 2 (High -- eliminates #1 support ticket category)
-Confidence: 90% (clear customer demand, support data backs it)
-Effort: 1.5 person-months
-Score: (800 x 2 x 0.9) / 1.5 = 960
-```
-
-**AI-powered search:**
-```
-Reach: 2000 customers/quarter (everyone uses search)
-Impact: 1 (Medium -- improves experience but search works today)
-Confidence: 50% (unproven -- will users actually use AI search?)
-Effort: 3 person-months
-Score: (2000 x 1 x 0.5) / 3 = 333
-```
-
-**White-label branding (CEO's request):**
-```
-Reach: 50 customers/quarter (only enterprise tier)
-Impact: 2 (High for those customers -- required for procurement)
-Confidence: 80% (3 enterprise prospects said this is a blocker)
-Effort: 2 person-months
-Score: (50 x 2 x 0.8) / 2 = 40
-```
-
-**Step 3: Interpret the results.**
-
-The RICE scores tell a clear story: the bulk import tool (960) has 28x the score of white-label branding (40). The CEO's pet feature is not bad -- it genuinely unblocks enterprise deals -- but it affects 50 customers while the import tool affects 800. The skill helps you frame this: white-label branding is a strategic investment in the enterprise segment, but it should not displace features that serve 16x more users unless the revenue from those 50 enterprise customers justifies it.
-
-You ask:
-
-```
-The CEO wants white-label branding but it scored 40 vs 960 for bulk import. How do I present this?
-```
-
-The skill provides the framework for the conversation: present the RICE scores transparently, acknowledge the strategic value of enterprise features, and propose that white-label branding is included as a big bet with a longer timeline rather than displacing the quick win that serves the broader base.
-
-**Step 4: Apply MoSCoW for scope management.**
-
-With RICE ranking in hand, you apply MoSCoW to map items to your 5 person-month capacity:
-
-```
-Apply MoSCoW to my RICE-ranked list. I have 5 person-months of capacity.
-```
-
-- **Must (60% max = 3 PM):** Bulk import tool (1.5 PM), API rate limiting fix (1 PM) -- the two highest-RICE items that are critical for retention
-- **Should (remaining capacity):** Dashboard redesign (1.5 PM) -- high RICE score, important but the old dashboard works
-- **Could (if time permits):** AI search, white-label branding -- valuable but do not fit in capacity
-- **Won't (not this quarter):** 7 remaining items explicitly deferred with documented reasoning
-
-The 60% rule keeps Musts from consuming all capacity, leaving room for the Should items that keep the product improving.
-
-**Step 5: Visualize with the effort-impact matrix.**
-
-For the leadership presentation, you plot all 12 items on the effort-impact matrix:
-
-- **Quick Wins (high impact, low effort):** Bulk import tool, API rate limiting fix
-- **Big Bets (high impact, high effort):** Dashboard redesign, AI search
-- **Fill-Ins (low impact, low effort):** CSV export improvements, notification preferences
-- **Money Pits (low impact, high effort):** White-label branding (for the current user base), legacy API v1 rewrite
-
-This visual makes the priority order intuitive: Quick Wins first, then Big Bets if the evidence supports them, Fill-Ins as time allows, and Money Pits avoided unless strategic context (enterprise revenue) justifies them.
-
-The result: a prioritized quarterly plan backed by RICE scores, scoped with MoSCoW, and visualized on an effort-impact matrix. Every decision is documented with reasoning. When the CEO asks about white-label branding, you have the data: it scores 40 vs 960 for the top item, serving 50 customers vs 800. The conversation shifts from "I want this" to "is the enterprise revenue worth displacing features that serve 16x more users?" -- which is the right conversation to have.
-
-## Usage Scenarios
-
-### Scenario 1: Quarterly planning with RICE
-
-**Context:** You are a PM preparing for quarterly planning with 20 candidate features and capacity for 6.
-
-**You say:** "RICE score these 20 features for Q3 planning. I have user reach data from analytics and effort estimates from engineering."
-
-**The skill provides:**
-- RICE scoring template for each feature with Reach, Impact, Confidence, and Effort
-- Impact scale calibration: what "Massive" vs "Medium" vs "Minimal" means for your product
-- Ranked list with scores that make trade-offs transparent
-- Confidence-based grouping: high-confidence items to commit, low-confidence items to validate first
-
-**You end up with:** A ranked feature list with documented scores and rationale, ready for the planning meeting.
-
-### Scenario 2: Scope cutting for a release
-
-**Context:** Your v2 launch is three weeks behind schedule. You need to cut 40% of the scope to hit the deadline.
-
-**You say:** "We need to cut scope for the v2 launch. Here are the 15 features in the release -- help me apply MoSCoW to decide what ships and what gets deferred."
-
-**The skill provides:**
-- MoSCoW categorization with the 60% rule for Musts
-- Clear criteria: Must = users cannot use the product without it, Should = users will complain, Could = nice to have
-- Explicit Won't list with reasoning (not just "cut" -- documented deferral)
-- Risk assessment: which Should items become Musts if deferred too long
-
-**You end up with:** A release scope that ships on time with all Musts included, a documented Won't list for post-launch, and stakeholder confidence that the cuts were deliberate.
-
-### Scenario 3: Defending priorities against HiPPO
-
-**Context:** An executive keeps adding features to the roadmap mid-quarter. Your team never finishes what they started.
-
-**You say:** "My CEO keeps adding features mid-sprint. How do I use prioritization data to push back without getting fired?"
-
-**The skill provides:**
-- RICE scoring comparison: new request vs current sprint items
-- Framework for the conversation: "here's how this scores relative to what we're building"
-- Capacity impact analysis: what gets displaced if the new item is added
-- Anti-pattern naming: HiPPO is a recognized bias, not just "the boss wants it"
-
-**You end up with:** A data-backed response to executive interruptions that shifts the conversation from authority to evidence.
-
-### Scenario 4: Quick triage with effort-impact
-
-**Context:** You have a brainstorming session output of 30 ideas and need to sort them into actionable categories in 30 minutes.
-
-**You say:** "We brainstormed 30 ideas. I need to quickly sort them into quick wins, big bets, and things to skip. Use the effort-impact matrix."
-
-**The skill provides:**
-- Effort-impact placement for each idea (quick estimate, not detailed sizing)
-- Four quadrant categories with priority order: Quick Wins > Big Bets > Fill-Ins > skip Money Pits
-- Top 5-10 items to investigate further with RICE scoring
-- Items to explicitly kill (money pits) with reasoning
-
-**You end up with:** A triaged idea list with clear next steps: build the quick wins, investigate the big bets, defer the fill-ins, and kill the money pits.
-
-## Ideal For
-
-- **Product managers doing quarterly planning** -- RICE scoring makes trade-offs transparent and decisions defensible
-- **Teams cutting scope for a release** -- MoSCoW with the 60% rule ensures the most critical items ship
-- **Anyone who needs to say no to feature requests** -- scoring frameworks shift conversations from opinions to evidence
-- **Leaders triaging large lists of ideas** -- the effort-impact matrix sorts 30 items in 30 minutes
-- **Teams suffering from HiPPO or squeaky-wheel prioritization** -- named anti-patterns make biases visible and resistible
-
-## Not For
-
-- **Defining OKRs or success metrics** -- use [outcome-orientation](../outcome-orientation/) for outcomes, key results, and leading/lagging indicators
-- **Stakeholder management and influence mapping** -- use [persona-mapping](../persona-mapping/) for Power-Interest matrices and RACI charts
-- **Risk assessment for specific initiatives** -- use [risk-management](../risk-management/) for risk identification and mitigation planning
-
-## How It Works Under the Hood
-
-The skill is a compact, focused knowledge base covering four prioritization frameworks. The SKILL.md provides: RICE scoring with a detailed impact scale (0.25 to 3) and formula, MoSCoW categorization with the 60% capacity rule, ICE scoring as a lightweight RICE alternative, the effort-impact matrix with four quadrants and priority order, a reusable prioritization template with scoring and decision documentation, and an anti-pattern catalog (HiPPO, recency bias, squeaky wheel, sunk cost).
-
-There are no additional reference files -- the skill is deliberately compact so it loads fully into context and delivers immediate, actionable prioritization guidance.
-
-The evaluation suite (13 trigger cases, 3 output quality cases) ensures the skill activates reliably on prioritization and backlog ranking queries.
-
-## Related Plugins
-
-- **[Outcome Orientation](../outcome-orientation/)** -- Define the outcomes that prioritized features should drive
-- **[Risk Management](../risk-management/)** -- Assess risks for prioritized initiatives
-- **[Persona Mapping](../persona-mapping/)** -- Map stakeholder interests that influence prioritization
-- **[Systems Thinking](../systems-thinking/)** -- Understand the systemic effects of prioritization choices
-
-## Version History
-
-- `1.0.10` fix(design+docs): regenerate READMEs for design and documentation plugins
-- `1.0.9` fix: add standard keywords and expand READMEs to full format
-- `1.0.8` fix: change author field from string to object in all plugin.json files
-- `1.0.7` fix: rename all claude-skills references to skillstack
-- `1.0.0` Initial release
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Help me prioritize" | "Score these 5 features using RICE. Reach data: [estimates]. I need a ranked list with rationale for the top 3." |
+| "What should we build?" | "We have capacity for 3 features this quarter. Here are 8 options with rough effort estimates. Help me pick using effort-impact analysis." |
+| "Is this important?" | "Compare SSO integration (reaches 200 enterprise users, 2 months effort) vs search improvements (reaches 5000 users, 1 month effort) using RICE." |
+| "Prioritize my backlog" | "Apply MoSCoW to these 12 requirements for our v2 release. Budget constraint: Must-haves cannot exceed 60% of the 4-month timeline." |
+
+### Structured Prompt Templates
+
+**For RICE scoring:**
+```
+Score these features using RICE: [list features]. For each, provide your best estimate of: Reach (users affected per quarter), Impact (0.25-3 scale), Confidence (50-100%). I'll provide effort estimates: [list efforts in person-months].
+```
+
+**For MoSCoW categorization:**
+```
+Categorize these requirements for [release/project]: [list requirements]. Total capacity: [person-months]. Constraint: Must-haves <= 60% of capacity. Context: [business priorities, user feedback, competitive pressure].
+```
+
+**For effort-impact matrix:**
+```
+Place these items on an effort-impact matrix: [list items with rough effort and impact descriptions]. Identify: quick wins (do first), big bets (plan carefully), fill-ins (if time permits), money pits (avoid).
+```
+
+### Prompt Anti-Patterns
+
+- **Providing features without context** -- "prioritize A, B, C" without reach, impact, or effort data forces the skill to guess; provide whatever data you have, even rough estimates
+- **Asking the skill to decide without scoring** -- "should we build search or SSO?" is a decision question; provide the data and let the framework score them, then you decide
+- **Using RICE when you have no reach data** -- if you cannot estimate reach, use ICE (which averages three subjective scores) instead of RICE
+- **Ignoring the 60% rule for MoSCoW** -- marking everything as "Must" defeats the purpose; the skill enforces the constraint that Must-haves cannot exceed 60% of capacity
+
+## Real-World Walkthrough
+
+**Starting situation:** You are a product manager at a B2B SaaS company. The Q3 planning session is next week. You have 12 feature requests from customers, sales, engineering, and executive leadership. The engineering team has 3 engineers for 3 months (9 person-months of capacity). Everyone thinks their feature should be next, and the previous quarter's priorities were set by the CEO's intuition. You need a defensible, data-driven ranking.
+
+**Step 1: Gathering scoring data.** You ask: "I need to prioritize 12 features for Q3 using RICE. Here they are with my best effort estimates. Help me score them."
+
+You provide the list:
+1. Advanced search (2 PM), 2. Onboarding redesign (3 PM), 3. API v2 (4 PM), 4. SSO integration (2 PM), 5. Mobile push notifications (1.5 PM), 6. Bulk data export (1 PM), 7. Custom dashboards (3 PM), 8. Audit logging (1.5 PM), 9. Slack integration (1 PM), 10. PDF reports (0.5 PM), 11. Dark mode (0.5 PM), 12. AI-powered insights (5 PM)
+
+The skill prompts you for reach and impact estimates per feature. You provide rough numbers based on customer requests, usage data, and sales feedback.
+
+**Step 2: RICE scoring.** The skill calculates RICE for each feature. Results (simplified):
+
+| Feature | Reach | Impact | Confidence | Effort | RICE Score |
+|---|---|---|---|---|---|
+| Bulk data export | 3000 | 2 | 90% | 1 | 5400 |
+| Advanced search | 5000 | 2 | 80% | 2 | 4000 |
+| PDF reports | 2000 | 1 | 90% | 0.5 | 3600 |
+| Onboarding redesign | 1000 | 3 | 70% | 3 | 700 |
+| SSO integration | 200 | 3 | 90% | 2 | 270 |
+| ... | ... | ... | ... | ... | ... |
+
+Bulk data export scores highest -- high reach (most users need it), straightforward (high confidence), low effort. Advanced search is second. PDF reports is a quick win. AI-powered insights scores low despite excitement because confidence is 50% and effort is 5 PM.
+
+**Step 3: Effort-Impact matrix.** The skill plots the 12 features on the quadrant matrix:
+- **Quick Wins (high impact, low effort):** Bulk data export, PDF reports, Slack integration
+- **Big Bets (high impact, high effort):** Advanced search, Onboarding redesign, API v2
+- **Fill-Ins (low impact, low effort):** Dark mode, Mobile push notifications
+- **Money Pits (low impact, high effort):** AI-powered insights, Custom dashboards
+
+The skill recommends: execute Quick Wins first (they fit in ~2.5 PM and deliver immediate value), then invest remaining capacity in the top Big Bet (Advanced search at 2 PM). Total: 4.5 PM of the 9 PM capacity used on the highest-impact items.
+
+**Step 4: MoSCoW for the quarter.** The skill categorizes using the 60% rule (5.4 PM for Must-haves):
+- **Must:** Bulk data export (1 PM), Advanced search (2 PM), PDF reports (0.5 PM) = 3.5 PM (39% of capacity)
+- **Should:** Onboarding redesign (3 PM), SSO integration (2 PM)
+- **Could:** Slack integration (1 PM), Audit logging (1.5 PM)
+- **Won't (this quarter):** AI insights, Custom dashboards, Dark mode, Mobile push
+
+Remaining capacity (5.5 PM) goes to Should items, fitting the onboarding redesign (3 PM) and SSO integration (2 PM) for a total of 8.5 PM committed.
+
+**Step 5: Anti-pattern audit.** The skill checks for bias:
+- HiPPO: AI-powered insights was the CEO's pet project but scores lowest on RICE. The data provides a constructive way to defer it: "High potential but low confidence -- let's run a prototype next quarter to increase confidence before committing 5 PM."
+- Recency bias: Slack integration was requested last week and nearly displaced the long-planned search improvement. RICE scoring shows search scores 4x higher.
+- Sunk cost: Custom dashboards had 1 PM invested in Q2 prototyping. The skill flags that prior investment does not change the forward-looking RICE score -- it is still a Money Pit.
+
+**Step 6: Stakeholder communication.** The skill generates a prioritization template for each feature showing the RICE score, quadrant placement, and decision rationale. This document replaces "the PM decided" with "here's the scoring and data."
+
+**Final outcome:** A Q3 roadmap with 5 features prioritized by RICE scoring and effort-impact analysis, anti-pattern audit removing three bias-driven items, and a stakeholder-ready document with scored rationale for every decision. Planning session goes from 3 hours of debate to 45 minutes of review.
+
+**Gotchas discovered:** The skill flagged that SSO integration has low RICE reach (200 enterprise users) but might be a strategic requirement (enterprise sales depends on it). RICE alone does not capture strategic value -- the skill suggested using MoSCoW to override the RICE ranking for strategic items, with explicit documentation of the override reason.
+
+## Usage Scenarios
+
+### Scenario 1: Sprint planning with quick wins
+
+**Context:** Your sprint has 10 candidate items and capacity for 5. You need to identify the quick wins that deliver the most value with the least effort.
+
+**You say:** "Place these 10 items on an effort-impact matrix for our 2-week sprint. I want to start with quick wins."
+
+**The skill provides:**
+- Effort-Impact quadrant placement for all 10 items
+- Quick Wins highlighted for immediate execution
+- Big Bets flagged for future sprint planning (not this sprint)
+- Money Pits flagged to remove from the backlog entirely
+- Recommended sprint composition: 3 Quick Wins + 1 Big Bet (if capacity permits)
+
+**You end up with:** A sprint loaded with high-impact, low-effort items instead of the default "continue whatever was started last sprint."
+
+### Scenario 2: Choosing between RICE and ICE
+
+**Context:** You are at an early-stage startup with 50 users. You have no reliable reach data and only rough intuition about impact. RICE feels too data-heavy.
+
+**You say:** "We're a 50-user startup with limited data. Is RICE or ICE better for us? We need something we'll actually use weekly."
+
+**The skill provides:**
+- Recommendation: ICE for now. It uses three subjective 1-10 scores (Impact, Confidence, Ease) averaged together -- no reach data needed.
+- Transition plan: switch to RICE when you have 500+ users and usage analytics that can estimate reach per feature
+- ICE scoring template for the 8 features in your backlog
+- Warning: ICE is more susceptible to bias (all scores are subjective); mitigate by having 3 team members score independently and average
+
+**You end up with:** A lightweight prioritization framework you can run in 15 minutes at the start of each week, with a clear upgrade path to RICE as data matures.
+
+### Scenario 3: Defending against HiPPO
+
+**Context:** The VP of Sales wants to build a custom reporting feature for one large prospect. Your RICE analysis shows it scores low (reach: 1 customer, effort: 3 months). You need a constructive way to push back.
+
+**You say:** "The VP wants us to build custom reporting for one prospect. RICE score is low but they're pushing hard. How do I constructively push back?"
+
+**The skill provides:**
+- RICE comparison: custom reporting (score: 45) vs the top-scored alternative (score: 5400) -- 120x difference
+- Reframe: "Is this a product feature or a sales concession? If it's a sales concession, fund it from the sales budget, not engineering capacity."
+- Compromise option: build a lightweight export feature (1 week) that addresses 80% of the prospect's need at 10% of the custom reporting cost
+- Anti-pattern label: this is HiPPO + squeaky wheel combined; provide the data and let the framework make the case
+
+**You end up with:** A data-backed pushback with a compromise option, so the conversation shifts from "my opinion vs your opinion" to "here are the scores and tradeoffs."
+
+---
+
+## Decision Logic
+
+**When to use which framework?**
+
+- **RICE** -- when you have data on reach (users affected) and need quantitative rigor. Best for quarterly planning at scale (100+ users). Most defensible with stakeholders because it separates reach from impact from confidence.
+- **ICE** -- when you lack reach data or need a lightweight framework for weekly decisions. Best for early-stage startups or small teams. More subjective but faster.
+- **MoSCoW** -- when you need to categorize requirements for a specific release with a capacity constraint. Best for release planning and scope management. The 60% rule prevents scope creep.
+- **Effort-Impact matrix** -- when you need a quick visual sort for sprint-level decisions. Best for sprint planning and identifying quick wins vs money pits.
+
+Use RICE or ICE for quarterly prioritization, MoSCoW for release scoping, and Effort-Impact for sprint-level decisions. They complement, not replace, each other.
+
+**When this skill vs outcome-orientation?**
+
+Use `outcome-orientation` to define WHAT outcomes to measure. Use `prioritization` to decide WHICH features or initiatives to pursue to achieve those outcomes. Outcomes first, then prioritization.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| HiPPO override | Executive insists on a feature despite low scores; team builds it, displacing higher-impact work | Present RICE comparison data; offer compromise options; if overridden, document the override reason explicitly |
+| Recency bias | Most recent customer request jumps to top of backlog; long-planned high-impact work keeps getting displaced | Score every request before adding to backlog; compare new request RICE score against current top items |
+| All Must-haves | MoSCoW has 15 "Must" items exceeding capacity | Enforce the 60% rule; force-rank within Must and demote the lowest to Should |
+| Confidence inflation | Team scores 90% confidence on everything, eliminating confidence as a differentiator | Calibrate: 90% = strong evidence (customer data, A/B test), 70% = reasonable belief, 50% = intuition only |
+| Sunk cost continuation | Ongoing project continues because "we already invested 3 months" | Re-score with RICE looking only at remaining effort and remaining impact; past investment is irrelevant |
+| RICE without data | Team guesses all RICE values, producing meaningless scores | Switch to ICE (designed for subjective scoring) or invest in usage analytics before RICE |
+
+## Ideal For
+
+- **Product managers** making quarterly roadmap decisions who need defensible, data-driven prioritization instead of opinion-driven debates
+- **Engineering leads** managing sprint backlogs who want to identify quick wins and avoid money pits
+- **Founders** at early-stage startups who need a lightweight framework (ICE) for weekly prioritization decisions
+- **Program managers** scoping releases using MoSCoW with the 60% capacity rule to prevent scope creep
+- **Anyone** who needs to push back constructively against HiPPO, recency bias, or squeaky wheel prioritization
+
+## Not For
+
+- **Defining success metrics** -- what outcomes to measure uses `outcome-orientation`, not prioritization
+- **Risk assessment** -- evaluating what could go wrong with prioritized work uses `risk-management`
+- **Stakeholder analysis** -- determining whose input to weight in scoring uses `persona-mapping`
+
+## Related Plugins
+
+- **outcome-orientation** -- defining the outcomes that prioritization serves (outcomes first, then prioritize)
+- **persona-definition** -- understanding whose needs inform impact scoring
+- **persona-mapping** -- stakeholder dynamics that influence which priorities get executive support
+- **risk-management** -- assessing risks to prioritized initiatives
+- **systems-thinking** -- understanding second-order effects of prioritization decisions
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
