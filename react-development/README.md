@@ -3,6 +3,7 @@
 > **v1.1.20** | Development | 22 iterations
 
 > Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture patterns.
+> Single skill combining 7 domains + 30 references + 12 scripts + 7 templates + 3 examples
 
 ## The Problem
 
@@ -28,7 +29,7 @@ For hooks specifically, the skill enforces a core principle: "The best hook is t
 | Derived values stored in useState+useEffect -- extra re-renders and stale data bugs | Derived values computed during render -- no effects, no stale data, fewer re-renders |
 | Component library built from scratch or adopted without a variant system | shadcn/ui with CVA variants provides systematic theming, sizing, and customization |
 | Hooks dependency arrays guessed at -- ESLint warnings suppressed | Dependency array rules enforced: include all reactive values, use functional updates, never suppress warnings |
-| No way to audit React code quality across a codebase | Bulletproof React auditor scores components against documented best practices |
+| No way to audit React code quality across a codebase | Bulletproof React auditor scores components against documented best practices with severity ratings |
 | useMemo/useCallback applied everywhere "just in case" | Memoization applied only when justified: expensive computation, memoized child props, or dependency array values |
 
 ## Installation
@@ -58,57 +59,85 @@ The skill should activate and identify this as a derived state anti-pattern, sho
 4. As you build, **ask about specific patterns**: `How should I handle optimistic updates with React Query?` or `Create a Button component with size and variant props using shadcn/ui patterns`
 5. When ready for review, say: `Audit this component for React best practices` to get a Bulletproof React quality assessment
 
+---
+
+## System Overview
+
+```
+User works with React / Next.js / JSX / TSX / hooks
+    │
+    ▼
+┌──────────────────────────────────────────────────────────┐
+│             react-development (skill)                      │
+│                                                            │
+│  Decision Tree:                                            │
+│  ├── Full-stack Next.js app? ──── 5-Layer Architecture     │
+│  ├── Component library?                                    │
+│  │   ├── shadcn/ui? ──── CVA Variants + Radix Primitives  │
+│  │   └── fpkit? ──── @fpkit/acss Composition Patterns      │
+│  ├── Hooks optimization? ──── Anti-pattern Detection       │
+│  └── Code quality audit? ──── Bulletproof React Auditor    │
+│                                                            │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │            30 Reference Files (on-demand)              │ │
+│  │                                                        │ │
+│  │  Next.js (8):  architecture, components, hooks,        │ │
+│  │                services, database, pages, TypeScript,   │ │
+│  │                permissions                              │ │
+│  │  shadcn/ui (4): forms, data tables, animations,        │ │
+│  │                  testing setup                          │ │
+│  │  fpkit (10):   builder (6) + dev (4) -- composition,   │ │
+│  │                testing, accessibility, CSS vars,        │ │
+│  │                Storybook                                │ │
+│  │  Hooks (3):    dependency arrays, unnecessary hooks,    │ │
+│  │                custom hook patterns                     │ │
+│  │  Bulletproof (2): audit criteria, severity matrix       │ │
+│  │  Extended (1): combined patterns reference              │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                            │
+│  ┌────────────────┐  ┌────────────┐  ┌────────────────┐   │
+│  │  12 Scripts     │  │ 7 Templates│  │  3 Examples    │   │
+│  │  scaffolding,   │  │ component, │  │  audit report, │   │
+│  │  CSS validation,│  │ stories,   │  │  hooks good +  │   │
+│  │  hooks analysis,│  │ tests,     │  │  bad patterns  │   │
+│  │  audit engine,  │  │ types,     │  │                │   │
+│  │  Tailwind setup │  │ SCSS       │  │                │   │
+│  └────────────────┘  └────────────┘  └────────────────┘   │
+└──────────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin combining seven specialized React development domains, backed by 30 reference files and 12 utility scripts.
-
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Core methodology -- decision tree, 5-layer architecture, shadcn/ui CVA patterns, hooks anti-patterns, best practices |
-| 30 reference files | Deep guidance on Next.js patterns, shadcn/ui, fpkit, hooks optimization, Bulletproof React auditing |
-| 12 utility scripts | Component scaffolding, CSS variable validation, hooks analysis, audit engine |
+| Component | Type | Purpose |
+|---|---|---|
+| `react-development` | skill | Decision tree routing to 7 domains: Next.js architecture, shadcn/ui, fpkit, Bulletproof auditing, hooks optimization |
+| 8 Next.js references | reference | Architecture, components, hooks, services, database, pages, TypeScript, permissions |
+| 4 shadcn/ui references | reference | Form patterns, data tables, animations, testing setup |
+| 10 fpkit references | reference | Library building (6) + library consuming (4): composition, testing, accessibility, CSS variables, Storybook |
+| 3 hooks references | reference | Dependency arrays, unnecessary hooks, custom hook patterns |
+| 2 Bulletproof references | reference | Audit criteria and severity classification matrix |
+| `extended-patterns.md` | reference | Combined reference for fpkit development, Bulletproof auditing, and detailed hooks analysis |
+| `audit_engine.py` + 10 analyzers | script | Bulletproof React audit engine with analyzers for architecture, state, performance, security, testing, styling, errors, APIs, standards |
+| `shadcn-generate-component.py` | script | Scaffold new shadcn-style components with CVA variants |
+| `shadcn-setup-tailwind.py` | script | Generate Tailwind config with shadcn defaults |
+| `hooks-analyze-hooks-usage.mjs` | script | Static analysis of hooks usage patterns across a codebase |
+| fpkit builder scripts (5) | script | Scaffold components, validate CSS variables, analyze components, recommend approaches, suggest reuse |
+| 7 component templates | template | Base component, composed component, extended component, test, stories, types, SCSS |
+| 3 example files | example | Sample audit report, hooks good patterns, hooks anti-patterns |
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-**Key references:**
+### Component Spotlights
 
-| Reference | Topic |
-|---|---|
-| `nextjs-architecture-patterns.md` | 5-layer architecture, module boundaries, data flow |
-| `nextjs-component-patterns.md` | Server/Client component patterns, composition |
-| `nextjs-hooks-patterns.md` | React Query integration, custom hooks for Next.js |
-| `nextjs-service-patterns.md` | Server-side service layer with Supabase |
-| `nextjs-database-patterns.md` | Database access patterns, migrations, row-level security |
-| `nextjs-page-patterns.md` | Page layouts, loading states, error boundaries |
-| `nextjs-typescript-patterns.md` | TypeScript patterns specific to Next.js + React |
-| `nextjs-permission-patterns.md` | Auth and permission patterns with Supabase |
-| `shadcn-form-patterns.md` | Form components with React Hook Form + Zod validation |
-| `shadcn-data-tables.md` | Data table patterns with sorting, filtering, pagination |
-| `shadcn-animation-patterns.md` | Animation patterns with Framer Motion + shadcn |
-| `shadcn-testing-setup.md` | Testing setup for shadcn/ui components |
-| `hooks-dependency-array.md` | Dependency array rules, common mistakes, solutions |
-| `hooks-unnecessary-hooks.md` | Anti-patterns -- hooks you should not write |
-| `hooks-custom-hooks.md` | Custom hook composition, testing, and reuse |
-| `bulletproof-audit_criteria.md` | Audit scoring criteria and quality thresholds |
-| `bulletproof-severity_matrix.md` | Issue severity classification for audits |
-| `fpkit-builder-*` | fpkit component library patterns (composition, testing, accessibility, CSS variables, Storybook) |
-| `fpkit-dev-*` | fpkit consumer patterns (architecture, composition, accessibility, testing, CSS variables, Storybook) |
-| `extended-patterns.md` | Combined reference with fpkit development, Bulletproof auditing, and detailed hooks analysis |
-
-**Key scripts:**
-
-| Script | Purpose |
-|---|---|
-| `shadcn-generate-component.py` | Scaffold new shadcn-style components with CVA variants |
-| `shadcn-setup-tailwind.py` | Generate Tailwind config with shadcn defaults |
-| `audit_engine.py` | Bulletproof React code quality audit engine |
-| `hooks-analyze-hooks-usage.mjs` | Static analysis of hooks usage patterns |
-| `fpkit-builder-scaffold_component.py` | Scaffold fpkit library components |
-| `fpkit-builder-validate_css_vars.py` | Validate CSS variable naming and usage |
-
-### react-development
+#### react-development (skill)
 
 **What it does:** Activates when you work with React components, hooks (useState, useEffect, useReducer, useContext), JSX/TSX files, component architecture, or state management. Routes you to the right pattern based on what you are building -- full-stack Next.js apps, component libraries, or hooks optimization.
+
+**Input -> Output:** A React development question or task -> Concrete code patterns following the appropriate architecture (5-layer, CVA variants, or optimized hooks), plus quality assessment when requested.
+
+**When to use:** Building React applications with Next.js App Router. Creating reusable component libraries with shadcn/ui or fpkit. Optimizing hooks usage and eliminating anti-patterns. Auditing React codebase quality against Bulletproof React standards.
+
+**When NOT to use:** Next.js routing, SSR, and server components at the framework level (use nextjs-development). CSS design systems, Tailwind utilities, and accessibility patterns (use frontend-design). Backend API development (use api-design or typescript-development).
 
 **Try these prompts:**
 
@@ -135,6 +164,98 @@ How do I handle optimistic updates with React Query when the user edits a table 
 ```
 My useEffect has 8 items in its dependency array and fires too often -- help me refactor this
 ```
+
+**Key references:**
+
+| Reference | Topic |
+|---|---|
+| `nextjs-architecture-patterns.md` | 5-layer architecture, module boundaries, data flow |
+| `nextjs-component-patterns.md` | Server/Client component patterns, composition |
+| `nextjs-hooks-patterns.md` | React Query integration, custom hooks for Next.js |
+| `nextjs-service-patterns.md` | Server-side service layer with Supabase |
+| `nextjs-database-patterns.md` | Database access patterns, migrations, row-level security |
+| `nextjs-page-patterns.md` | Page layouts, loading states, error boundaries |
+| `nextjs-typescript-patterns.md` | TypeScript patterns specific to Next.js + React |
+| `nextjs-permission-patterns.md` | Auth and permission patterns with Supabase |
+| `shadcn-form-patterns.md` | Form components with React Hook Form + Zod validation |
+| `shadcn-data-tables.md` | Data table patterns with sorting, filtering, pagination |
+| `shadcn-animation-patterns.md` | Animation patterns with Framer Motion + shadcn |
+| `shadcn-testing-setup.md` | Testing setup for shadcn/ui components |
+| `hooks-dependency-array.md` | Dependency array rules, common mistakes, solutions |
+| `hooks-unnecessary-hooks.md` | Anti-patterns -- hooks you should not write |
+| `hooks-custom-hooks.md` | Custom hook composition, testing, and reuse |
+| `bulletproof-audit_criteria.md` | Audit scoring criteria and quality thresholds |
+| `bulletproof-severity_matrix.md` | Issue severity classification for audits |
+
+#### audit_engine.py (script)
+
+**CLI:** `python scripts/audit_engine.py --path src/`
+**What it produces:** A severity-rated audit report covering component architecture, state management, performance patterns, security practices, testing strategy, styling patterns, error handling, API layer design, and standards compliance. Uses 10 specialized analyzer modules.
+**Typical workflow:** Run before a code review or release to get an objective quality assessment with specific file/line references and recommended fixes.
+
+#### shadcn-generate-component.py (script)
+
+**CLI:** `python scripts/shadcn-generate-component.py ComponentName`
+**What it produces:** A complete component scaffold: base component with CVA variants, TypeScript types, test file, Storybook story, and SCSS module -- following the 7 template files.
+**Typical workflow:** When adding a new component to a shadcn-based library, run this to get a consistent starting point with all required files.
+
+#### hooks-analyze-hooks-usage.mjs (script)
+
+**CLI:** `node scripts/hooks-analyze-hooks-usage.mjs src/`
+**What it produces:** A report of hooks usage patterns across the codebase, flagging derived state anti-patterns, unnecessary effects, oversized dependency arrays, and premature memoization.
+**Typical workflow:** Run on an existing codebase to find the highest-impact hooks refactoring opportunities.
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, underuses the skill) | Good (specific, gets expert guidance) |
+|---|---|
+| "Help me with React" | "Set up a Next.js 15 project with 5-layer architecture, Supabase auth, and React Query for a task management dashboard" |
+| "My component is slow" | "This component re-renders on every parent render even though its props haven't changed -- it has 8 dependency array items in useEffect" |
+| "Make a button component" | "Create a Button with shadcn/ui patterns -- default, secondary, outline, ghost variants in sm/md/lg sizes with disabled and loading states" |
+| "Review my code" | "Audit this 400-line UserDashboard component for Bulletproof React violations -- I suspect it mixes data fetching with UI rendering" |
+| "How do hooks work" | "I'm using useState + useEffect to filter a list whenever a search input changes -- is there a simpler pattern?" |
+
+### Structured Prompt Templates
+
+**For Next.js project architecture:**
+```
+I'm building a [app type: SaaS dashboard / e-commerce / admin panel] with Next.js 15
+and [backend: Supabase / Prisma / external API]. The main features are [list 2-3].
+Help me set up the 5-layer architecture with the right data flow.
+```
+
+**For component creation:**
+```
+Create a [ComponentName] component with shadcn/ui patterns.
+Variants: [list variants like default, secondary, outline].
+Sizes: [sm, md, lg]. States: [disabled, loading, error].
+It needs to be accessible and work with [form library / data table / dialog].
+```
+
+**For hooks refactoring:**
+```
+This component uses [describe the hook pattern: useState + useEffect to sync X,
+useMemo on every render, etc.]. It causes [problem: too many re-renders,
+stale data, dependency array warnings]. Show me the correct pattern.
+```
+
+**For code quality audit:**
+```
+Run a Bulletproof React audit on [path: src/components/ or specific file].
+Focus on [concern: component size, state management, layer violations, testing gaps].
+Give me a severity-rated report with specific fixes.
+```
+
+### Prompt Anti-Patterns
+
+- **Asking about "React" without specifying the context:** Are you building a Next.js app, a component library, or optimizing existing code? The skill routes to entirely different patterns based on the answer. Say what you are building.
+- **Describing symptoms instead of showing code:** "My app is slow" gives the skill nothing to diagnose. Instead, describe the specific behavior: "This list component re-renders 200 items every time the parent state changes." Better yet, paste the component code.
+- **Asking for hooks advice without showing the dependency array:** The most common hooks problems are dependency-array-shaped. When asking about effects that fire too often or state that goes stale, show the useEffect/useMemo call with its dependency array so the skill can diagnose the specific issue.
+- **Requesting shadcn/ui components without specifying variants and states:** Saying "make a button" gets you a basic component. Saying "make a button with 4 variants, 3 sizes, disabled and loading states, and an icon slot" gets you a production-ready component with CVA definitions, proper TypeScript props, and accessibility attributes.
 
 ## Real-World Walkthrough
 
@@ -248,6 +369,42 @@ The final dashboard has clean separation: services handle data access, hooks man
 
 **You end up with:** A structured audit report that can be converted into tech debt tickets, prioritized by severity.
 
+---
+
+## Decision Logic
+
+**How does the skill decide which domain to use?**
+
+The skill examines your request and routes to the appropriate React domain:
+- Working with Next.js App Router, data fetching, or project structure -> **Next.js 5-Layer Architecture** with server services, client hooks, and typed data flow
+- Creating or modifying React components with variants and theming -> **shadcn/ui Patterns** with CVA, Radix primitives, and CSS variables
+- Building library components for @fpkit/acss -> **fpkit Patterns** with composition, accessibility, and Storybook integration
+- Questions about useState, useEffect, useMemo, or dependency arrays -> **Hooks Best Practices** with anti-pattern detection and correct alternatives
+- Requesting code review or quality assessment -> **Bulletproof React Auditor** with severity-rated findings
+
+**When does the skill load references?**
+
+The SKILL.md body contains the decision tree, core architecture patterns, CVA variant syntax, and hooks anti-patterns. References load on demand:
+- Next.js architecture question -> the relevant `nextjs-*.md` file (architecture, components, services, etc.)
+- shadcn/ui component question -> the relevant `shadcn-*.md` file (forms, data tables, animations, testing)
+- fpkit question -> the relevant `fpkit-builder-*.md` or `fpkit-dev-*.md` file
+- Hooks deep-dive -> `hooks-dependency-array.md`, `hooks-unnecessary-hooks.md`, or `hooks-custom-hooks.md`
+- Audit request -> `bulletproof-audit_criteria.md` and `bulletproof-severity_matrix.md`
+
+**How does memoization guidance work?**
+
+The skill recommends memoization (useMemo/useCallback) only when three conditions are met: (1) the computation is genuinely expensive (O(n log n) or worse), (2) the value is passed as a prop to a memoized child component, or (3) the value is used in a dependency array of another hook. If none of these apply, the skill recommends computing the value during render.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Component mixes server and client concerns | "use client" directive at the top of a component that also calls server-only APIs (Supabase server client, fs, etc.) | Split into a server component (data fetching) and a client component (interactivity). The skill shows the composition pattern where the server component passes data as props to the client component. |
+| Hooks anti-pattern produces stale closures | State values inside useEffect or event handlers are stale -- they show the value from when the closure was created, not the current value | Use functional updates (`setCount(c => c + 1)` instead of `setCount(count + 1)`) or useRef for values that should not trigger re-renders but need current values in callbacks. |
+| CVA variants become unmanageable | A component has 6+ variant axes and the combinations produce confusing CSS classes | Decompose the component into smaller, single-responsibility components. A "Card" with variants for size, color, border, shadow, padding, and alignment is really 3 separate concerns that should be composed, not configured. |
+| Bulletproof audit produces false positives | The auditor flags patterns that are intentional in your codebase (e.g., a god component that serves as a page layout root) | Use the severity matrix to triage findings. "Suggestion" severity items may be intentional trade-offs. The skill supports annotation comments to mark intentional exceptions. |
+| React Query cache and Supabase Realtime conflict | Optimistic updates via React Query get overwritten by Realtime subscription events, causing UI flicker | Coordinate by using Realtime events to invalidate the React Query cache rather than directly updating state. The skill shows the pattern in the Next.js hooks reference. |
+
 ## Ideal For
 
 - **Teams building full-stack Next.js applications** -- the 5-layer architecture prevents the common "everything in page components" trap and provides clear boundaries between server and client code
@@ -257,21 +414,9 @@ The final dashboard has clean separation: services handle data access, hooks man
 
 ## Not For
 
-- **Next.js routing, SSR, and server components** -- use [nextjs-development](../nextjs-development/) for App Router-specific patterns, middleware, caching, and data fetching strategies
+- **Next.js routing, SSR, and server components at the framework level** -- use [nextjs-development](../nextjs-development/) for App Router-specific patterns, middleware, caching, and data fetching strategies
 - **CSS design systems, Tailwind utilities, and accessibility patterns** -- use [frontend-design](../frontend-design/) for visual design systems, CSS architecture, and WCAG compliance
 - **Backend API development** -- use [api-design](../api-design/) for REST/GraphQL API patterns and [typescript-development](../typescript-development/) for Node.js server code
-
-## How It Works Under the Hood
-
-The plugin is a single skill that combines expertise from seven React development domains. The SKILL.md body provides the decision tree, core architecture patterns, and hooks best practices -- enough for most React development tasks. When deeper guidance is needed, 30 reference files provide specialized content:
-
-- **Next.js references (8 files):** Architecture, components, hooks, services, database, pages, TypeScript, and permissions -- all specific to Next.js App Router with Supabase
-- **shadcn/ui references (4 files):** Form patterns, data tables, animations, and testing setup for shadcn-based component libraries
-- **fpkit references (10 files):** Split between library building (builder) and library consuming (dev) -- composition, testing, accessibility, CSS variables, and Storybook
-- **Hooks references (3 files):** Dependency arrays, unnecessary hooks, and custom hook patterns
-- **Bulletproof React references (2 files):** Audit criteria and severity matrix
-
-Twelve utility scripts support automated workflows: component scaffolding, CSS variable validation, hooks usage analysis, Tailwind config generation, and the Bulletproof React audit engine. These scripts run locally and produce actionable output without external dependencies.
 
 ## Related Plugins
 
