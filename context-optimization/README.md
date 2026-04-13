@@ -3,223 +3,293 @@
 # Context Optimization
 
 > Double or triple your agent's effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning -- without switching to a larger model.
+> Single skill + 1 reference document | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-Agent developers hit context limits and reach for a bigger model. They upgrade from 128K to 200K to 1M-token windows, paying exponentially more per request, and discover that the agent's performance is no better -- or worse. The problem was never the window size. The problem is that 80% of their context is noise: verbose tool outputs that have already served their purpose, accumulated message history from resolved sub-tasks, and retrieved documents that are no longer relevant to the current step.
+AI agent systems hit context limits long before their context windows technically fill up. An agent with a 200K-token window starts degrading at 80K tokens. Tool outputs silently consume 80%+ of the available space. Repeated prompts with identical prefixes waste computation that could be cached. The result: agents that could handle 3x more complex tasks if their context were managed efficiently.
 
-Tool outputs alone can consume 83.9% of total context in typical agent trajectories. A single `git diff` output from 15 turns ago is still sitting in context, consuming attention budget, even though the agent already processed it and moved on. Every API response, every file read, every search result accumulates without any eviction strategy. By turn 30, the agent is spending most of its attention budget on stale data.
+Most teams respond to context limits by upgrading to larger-window models -- a solution that costs more, often degrades quality (larger windows have their own failure modes), and does not address the fundamental efficiency problem. A 200K-token window used at 30% efficiency gives you 60K tokens of effective capacity. The same window used at 80% efficiency gives you 160K tokens. Optimization yields more effective capacity than model upgrades at a fraction of the cost.
 
-Meanwhile, costs scale non-linearly with context length. Processing 400K tokens is not twice as expensive as 200K -- it is significantly more in both compute time and API cost. Teams running agents at scale watch their bills climb while their agents degrade. They have no framework for deciding what to optimize, when to trigger optimization, or how to measure whether their optimization preserved the information the agent needs.
+The specific waste patterns are well-understood but poorly addressed. Tool outputs from completed tasks linger in context consuming attention budget. Identical system prompts and tool definitions are recomputed from scratch on every request despite being unchanged. Growing message history is carried in full when most of it could be summarized. Monolithic contexts force a single agent to juggle multiple concerns when partitioned sub-agents would each operate in a clean, focused window.
 
 ## The Solution
 
-This plugin provides four optimization strategies that extend effective context capacity without requiring larger models. Compaction summarizes context near limits and reinitializes with high-fidelity summaries, achieving 50-70% token reduction with less than 5% quality degradation. Observation masking replaces verbose tool outputs with compact references, recovering 60-80% of the tokens that tool outputs consume. KV-cache optimization reorders context elements to maximize cache hits, cutting cost and latency for requests with shared prefixes. Context partitioning splits work across sub-agents with isolated contexts, preventing any single context from growing large enough to degrade.
+This plugin provides four production-tested optimization techniques -- compaction (summarizing context near limits), observation masking (replacing verbose tool outputs with compact references), KV-cache optimization (reusing cached computations for stable prefixes), and context partitioning (splitting work across isolated sub-agent contexts). Each technique targets a different source of waste, and they compose: applying all four can double or triple effective context capacity without changing models.
 
-The skill provides a decision framework for choosing which strategy to apply based on what is consuming your context: tool outputs dominating means observation masking, retrieved documents dominating means summarization or partitioning, message history dominating means compaction. For most production agents, the answer is a combination of strategies applied at measured trigger points.
-
-You also get budget management guidance: how to allocate tokens across categories (system prompt, tool definitions, retrieved docs, message history, buffer), when to trigger optimization (70-80% utilization), and how to monitor effectiveness over time. The goal is not maximum compression but optimal signal-to-noise ratio.
+The skill includes a decision framework for selecting which technique to apply based on context composition (which component dominates usage), trigger-based optimization (monitoring signals that indicate when to optimize), and performance benchmarks (compaction achieves 50-70% reduction, masking achieves 60-80% reduction on masked observations, cache optimization achieves 70%+ hit rates for stable workloads).
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Tool outputs from 15 turns ago consume 80%+ of context with zero current value | Observation masking replaces stale outputs with compact references, recovering 60-80% of those tokens |
-| Upgrade to larger models hoping more context fixes quality, paying exponentially more | Optimize existing context to double or triple effective capacity on the same model |
-| No eviction strategy -- everything accumulates until the window fills | Compaction triggers at 70-80% utilization, summarizing low-value content while preserving critical information |
-| Every request recomputes the full context from scratch, wasting cost and latency | KV-cache optimization reorders context for maximum cache hits on stable prefixes |
-| Single-context agents grind to a halt on complex multi-step tasks | Context partitioning splits work across sub-agents with clean, focused contexts |
-| No framework for deciding what to optimize or when | Decision matrix maps context composition to the right optimization strategy |
+| Tool outputs from 20 turns ago still consume context despite being irrelevant | Observation masking replaces completed tool outputs with compact references (60-80% reduction) |
+| Every API request recomputes the system prompt and tool definitions from scratch | KV-cache optimization reuses cached computations for stable prefixes (70%+ cache hit rate) |
+| Context hits limits; response is to upgrade to a more expensive model | Compaction and masking double effective capacity on the existing model at no additional cost |
+| Single agent juggles 5 different tasks in one growing context | Context partitioning isolates tasks in sub-agent windows, each operating in clean focused context |
+| No framework for deciding when to optimize or which technique to apply | Trigger-based optimization monitors utilization and applies techniques based on context composition |
+| Context optimization is ad hoc -- each developer invents their own approach | Systematic framework: measure, diagnose what dominates, apply the matching technique, verify improvement |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the SkillStack marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install context-optimization@skillstack
 ```
 
+### Prerequisites
+
+No additional dependencies. Works best after installing `context-fundamentals` (understand the mechanics being optimized) and alongside `context-compression` (specific summarization strategies) and `context-degradation` (understanding when optimization is needed).
+
 ### Verify installation
 
 After installing, test with:
 
 ```
-My agent's context fills up with tool outputs after 20 turns and quality drops -- how do I optimize this without losing important information?
+My agent's context is hitting 80% utilization and quality is dropping. What optimization techniques should I apply to extend its effective capacity?
 ```
 
 ## Quick Start
 
 1. Install the plugin using the commands above
-2. Describe your context problem: `My agent runs out of context on complex tasks -- tool outputs and old messages fill the window before the task is done`
-3. The skill diagnoses what is consuming your context and recommends the right optimization strategy (compaction, masking, caching, or partitioning)
-4. Implement the recommended approach -- start with observation masking for tool-heavy agents or compaction for message-heavy conversations
-5. Set up monitoring: track token utilization per category and measure quality before and after optimization
+2. Ask: `"My agent uses 120K of its 200K token window. Tool outputs dominate. How do I optimize?"`
+3. The skill identifies observation masking as the primary technique and walks you through implementation
+4. Follow up with: `"How do I set up KV-cache optimization for the stable parts of my prompt?"`
+5. The skill provides cache-friendly prompt ordering and design patterns
+
+---
+
+## System Overview
+
+```
+context-optimization (plugin)
+└── context-optimization (skill)
+    ├── Four optimization techniques
+    │   ├── Compaction (summarize near limits, 50-70% reduction)
+    │   ├── Observation masking (replace tool outputs, 60-80% reduction)
+    │   ├── KV-cache optimization (reuse stable prefixes, 70%+ hit rate)
+    │   └── Context partitioning (isolate in sub-agent windows)
+    ├── Budget management & trigger-based optimization
+    ├── Optimization decision framework
+    └── references/
+        └── optimization_techniques.md (detailed technical strategies)
+```
 
 ## What's Inside
 
-| Component | Description |
-|---|---|
-| `context-optimization` skill | Core skill covering compaction strategies, observation masking, KV-cache optimization, context partitioning, budget management, and the optimization decision framework |
-| `optimization_techniques.md` reference | Technical reference with detailed compaction approaches, token budget allocation strategies, and implementation patterns |
-| 13 trigger eval cases | Validates correct skill activation and near-miss rejection |
-| 3 output eval cases | Tests optimization guidance, strategy selection, and implementation planning |
+| Component | Type | Description |
+|---|---|---|
+| `context-optimization` | Skill | Four optimization techniques, decision framework, budget management |
+| `optimization_techniques.md` | Reference | Detailed compaction strategies, masking implementation, cache patterns, partitioning architectures |
+| Trigger evals | Test suite | 13 trigger evaluation cases |
+| Output evals | Test suite | 3 output quality evaluation cases |
 
-### context-optimization
+### Component Spotlights
 
-**What it does:** Activates when your agent hits context limits, when you need to reduce token costs or latency for long conversations, when tool outputs dominate your context usage, or when you are building production agent systems that must handle extended sessions reliably. Provides four optimization strategies with a decision framework for choosing and combining them.
+#### context-optimization (skill)
+
+**What it does:** Activates when users need to extend effective context capacity. Provides four optimization techniques with a decision framework for selecting which to apply based on what component dominates context usage, trigger-based monitoring for when to optimize, and performance benchmarks for each technique.
+
+**Input -> Output:** Description of context capacity problems (what fills the window, when quality drops, cost pressures) -> Specific optimization strategy combining the right techniques for your context composition, with implementation guidance and expected improvements.
+
+**When to use:**
+- Context limits constrain task complexity
+- Optimizing for cost reduction (fewer tokens = lower costs)
+- Reducing latency for long conversations
+- Implementing long-running agent systems
+- Needing to handle larger documents or conversations
+
+**When NOT to use:**
+- Reducing content via summarization specifically (use `context-compression`)
+- Diagnosing context failures (use `context-degradation`)
+- Learning context theory (use `context-fundamentals`)
+- File-based context patterns (use `filesystem-context`)
 
 **Try these prompts:**
 
 ```
-My agent's tool outputs consume most of the context window -- how do I implement observation masking without losing the information I might need later?
+My agent's context is 80% tool outputs from completed tasks. How do I free up space without losing access to that information?
 ```
 
 ```
-I need to optimize my agent for cost -- conversations are averaging 100K tokens and my API bill is growing fast. What's the highest-impact optimization?
+I'm paying too much for LLM tokens. My system prompt and tool definitions are identical across requests but get recomputed every time. How do I optimize for caching?
 ```
 
 ```
-How do I set up KV-cache optimization for my agent? I want to reduce latency on the system prompt and tool definitions that stay the same across requests
+My agent handles customer issues but quality drops when it juggles multiple sub-tasks. Should I partition into sub-agents?
 ```
 
 ```
-My agent handles complex multi-step tasks that exceed context limits -- should I use compaction or split the work across sub-agents?
-```
-
-```
-Design a context budget for my production agent: 200K window, system prompt is 8K tokens, 15 tools, and conversations typically run 50+ messages
+What's the right trigger point for context optimization? I don't want to optimize too early or too late.
 ```
 
 **Key references:**
 
 | Reference | Topic |
 |---|---|
-| `optimization_techniques.md` | Detailed compaction approaches (summary-based, selective), token budget allocation strategies, implementation patterns for each optimization technique |
-
-## Real-World Walkthrough
-
-You are running a coding agent that helps developers with feature implementation. The agent reads source files, runs tests, modifies code, and iterates until the feature works. A typical task involves 40-60 tool calls: file reads, grep searches, test runs, and code edits. By turn 30, the agent's context is at 85% capacity and quality is noticeably degraded -- it re-reads files it already examined and forgets test results from 10 turns ago.
-
-You open Claude Code to fix this:
-
-```
-My coding agent hits 85% context utilization by turn 30 and quality drops -- it re-reads files and forgets test results. Help me optimize the context usage.
-```
-
-The context-optimization skill activates and starts with diagnosis. It asks you to profile what is consuming your context. You check and find: system prompt takes 4K tokens (3%), tool definitions take 6K tokens (5%), and the remaining 92% is message history dominated by tool outputs -- file contents, test output, grep results.
-
-The skill identifies observation masking as the highest-impact first step. Those file reads from turn 5 are still consuming 3K tokens each in context even though the agent processed them and moved on. Test output from turn 8 is still consuming 5K tokens even though the agent already analyzed the failures. The skill walks you through implementing a masking strategy:
-
-**Never mask:** outputs from the current and previous turn, outputs the agent is actively reasoning about, test results from the most recent test run.
-
-**Consider masking after 3 turns:** file reads where the key findings have been captured in the agent's response, grep results that have been synthesized into a decision.
-
-**Always mask:** repeated file reads (the agent re-read the same file), boilerplate test output (full stack traces when only the failure message matters), verbose command output that has been summarized.
-
-You implement masking with a simple reference system. When a tool output is masked, it is replaced with a compact reference: `[Obs:ref-12 elided. Key: auth.controller.ts -- 142 lines, JWT validation logic in handleLogin()]`. The full output is stored externally and can be re-loaded if the agent needs it.
-
-After implementing masking, your average context at turn 30 drops from 85% to 35%. The agent stops re-reading files because the compact references remind it what each file contained. Quality improvement is immediate and measurable.
-
-Next, you tackle compaction for the remaining message history. The skill recommends trigger-based compaction at 70% utilization rather than aggressive early compression. When the trigger fires, the compaction process summarizes old conversational turns (preserving decisions and task state) while leaving recent turns untouched. You implement compaction that summarizes messages older than 10 turns into a structured summary with sections for decisions made, files modified, test status, and current approach.
-
-Finally, you optimize for KV-cache by reordering your context elements. You place the system prompt and tool definitions first (stable across requests), followed by any reusable templates, then the unique conversation content. This reordering achieves a 72% cache hit rate on the prefix, reducing latency by 40% on each request.
-
-The combined effect: your agent now handles 80+ turn sessions without degradation. Token usage per session dropped 55%, translating directly to cost savings. Latency per request dropped 40% from cache optimization. And crucially, the agent's quality at turn 60 is indistinguishable from its quality at turn 10, because the context is clean and focused rather than bloated with stale outputs.
-
-You did not upgrade the model. You did not increase the context window. You made better use of the capacity you already had.
-
-## Usage Scenarios
-
-### Scenario 1: Tool-output-heavy agent running out of context
-
-**Context:** Your agent makes 50+ tool calls per task, and file reads and test outputs consume the entire context window by mid-task. The agent starts repeating work because it has lost track of what it already did.
-
-**You say:** `My agent makes tons of tool calls and the outputs fill up context by turn 30 -- it starts re-reading files it already looked at. How do I fix this?`
-
-**The skill provides:**
-- Observation masking strategy: which outputs to mask, when to mask them, and what reference format to use
-- Masking priority rules: never mask current-turn outputs, consider masking after 3 turns, always mask repeated outputs
-- Reference system design for storing and retrieving masked observations
-- Expected impact: 60-80% reduction in observation token usage
-
-**You end up with:** An observation masking implementation that recovers most of your context budget from stale tool outputs while preserving the information the agent needs.
-
-### Scenario 2: Reducing API costs for long conversations
-
-**Context:** Your production agent handles customer support conversations that average 100K tokens. API costs are growing faster than revenue and you need to optimize without degrading quality.
-
-**You say:** `My agent conversations average 100K tokens and costs are too high -- what's the most impactful optimization to reduce token usage?`
-
-**The skill provides:**
-- Context composition profiling to identify where tokens are being consumed
-- Optimization decision framework: tool outputs dominating = masking, message history dominating = compaction, retrieved docs dominating = summarization
-- KV-cache optimization for reducing per-request computation cost
-- Budget allocation framework with monitoring and trigger points
-- Expected cost reduction targets by strategy
-
-**You end up with:** A prioritized optimization plan targeting the highest-impact changes first, with expected cost savings and quality preservation targets.
-
-### Scenario 3: Partitioning complex tasks across sub-agents
-
-**Context:** Your agent handles complex tasks that require analyzing multiple systems, running tests across services, and synthesizing results. No single context window is large enough to hold all the information.
-
-**You say:** `My agent needs to analyze 5 different microservices for a cross-cutting change -- the context can't hold all the code and test results at once. Should I partition?`
-
-**The skill provides:**
-- Context partitioning strategy: split each service analysis into a sub-agent with isolated context
-- Coordinator pattern: a parent agent manages sub-agents and aggregates results
-- Result aggregation approach: validate completions, merge compatible results, summarize if too large
-- Comparison with alternatives: partitioning vs compaction, when each is appropriate
-
-**You end up with:** A multi-agent architecture where each service gets analyzed in a clean, focused context, with results aggregated by a coordinator.
-
-### Scenario 4: Designing cache-friendly prompt architecture
-
-**Context:** You are building an agent platform serving thousands of concurrent sessions. You want to minimize latency and compute costs through KV-cache optimization.
-
-**You say:** `I'm building an agent platform -- how do I design the prompt architecture for maximum KV-cache hits across sessions?`
-
-**The skill provides:**
-- Cache-friendly ordering: stable elements first (system prompt, tool definitions), reusable elements next, unique content last
-- Cache stability guidelines: avoid timestamps and dynamic content in cached prefix, use consistent formatting
-- Expected cache hit rates: 70%+ for stable workloads with proper ordering
-- Hash-based block matching explanation and how to maximize prefix sharing
-
-**You end up with:** A prompt architecture that achieves high cache hit rates, reducing both latency and compute costs across your platform.
-
-## Ideal For
-
-- **Agent developers hitting context limits** on complex tasks -- the four strategies extend effective capacity without model upgrades
-- **Teams optimizing API costs** at scale -- observation masking and caching directly reduce token consumption and compute time
-- **Platform engineers** building agent infrastructure that serves many concurrent sessions with cache optimization
-- **Anyone building long-running agents** (50+ turns) where accumulated context degrades performance
-- **Architects designing multi-agent systems** who need to understand when and how to partition context across sub-agents
-
-## Not For
-
-- **Reducing context via summarization strategies** (anchored iterative summarization, structured summaries) -- use [context-compression](../context-compression/) instead
-- **Diagnosing why context is failing** (lost-in-middle, poisoning, distraction) -- use [context-degradation](../context-degradation/) instead
-- **Learning foundational context theory** (what context is, how attention works) -- use [context-fundamentals](../context-fundamentals/) instead
-- **File-system-based context patterns** (scratch pads, plan persistence) -- use [filesystem-context](../filesystem-context/) instead
-
-## How It Works Under the Hood
-
-The plugin is a single-skill architecture with one technical reference document.
-
-The **core skill** (`SKILL.md`) covers four optimization strategies in depth: compaction (summary-based context reinitializaton, priority rules for what to compress, effectiveness targets), observation masking (the observation problem, masking strategy selection with never/consider/always rules, reference system design), KV-cache optimization (prefix caching mechanics, hash-based block matching, cache-friendly prompt ordering, stability guidelines), and context partitioning (sub-agent isolation, coordinator patterns, result aggregation). It provides a decision framework for choosing strategies based on context composition, budget management guidance, and trigger-based optimization patterns.
-
-The **optimization techniques reference** (`optimization_techniques.md`) provides the depth layer with detailed compaction approaches (summary-based vs selective), token budget allocation strategies for different agent types, and implementation patterns for each technique. This reference activates when you need to implement a specific optimization rather than understand the strategy landscape.
-
-The skill builds on context-fundamentals (understanding context anatomy and attention mechanics) and context-degradation (knowing when optimization is needed). It routes to context-compression for summarization-specific strategies and filesystem-context for file-based offloading patterns.
-
-## Related Plugins
-
-- **[Context Compression](../context-compression/)** -- Summarization strategies: anchored iterative summarization, opaque compression, and probe-based evaluation
-- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, clash, and confusion patterns
-- **[Context Fundamentals](../context-fundamentals/)** -- Foundational theory: what context is, how attention works, progressive disclosure, and budgeting
-- **[Filesystem Context](../filesystem-context/)** -- File-system-based context: scratch pads, plan persistence, and sub-agent file workspaces
+| `optimization_techniques.md` | Detailed compaction strategies, observation masking implementation, KV-cache patterns, partitioning architecture, result aggregation |
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate) | Good (specific, activates reliably) |
+|---|---|
+| "Make context faster" | "My agent's context is 80% tool outputs. How do I apply observation masking to free up capacity?" |
+| "Optimize my agent" | "I want to implement KV-cache optimization for my system prompt and tool definitions. How should I order context elements?" |
+| "Use bigger context" | "My 200K window fills up too fast. What combination of compaction and masking would double effective capacity?" |
+| "Context is expensive" | "How do I partition a multi-task agent into sub-agents so each operates in a clean context? What's the result aggregation pattern?" |
+
+### Structured Prompt Templates
+
+**For diagnosing context composition:**
+```
+My agent uses [N tokens] of its [M token] window. Breakdown: system prompt [X], tool definitions [Y], retrieved docs [Z], message history [W], tool outputs [V]. What optimization techniques should I apply and in what order?
+```
+
+**For implementing a specific technique:**
+```
+I need to implement [observation masking / KV-cache optimization / compaction / partitioning] for my [agent type]. My constraint is [cost / latency / complexity]. Walk me through the implementation.
+```
+
+**For trigger-based optimization:**
+```
+At what utilization percentage should I trigger [optimization technique]? My agent runs [workload type] and quality matters more than [cost / speed].
+```
+
+### Prompt Anti-Patterns
+
+- **Requesting optimization without measurement:** "My agent is slow" does not give the skill enough to work with. Measure context utilization and identify which component dominates before optimizing.
+- **Applying all techniques at once:** Each technique has overhead and trade-offs. The skill recommends based on context composition -- let it guide the selection rather than requesting everything.
+- **Optimizing prematurely:** If your agent uses 30% of its context window and quality is fine, optimization adds complexity without benefit. Wait until utilization creates actual pressure.
+
+## Real-World Walkthrough
+
+**Starting situation:** You are running a production coding agent that helps developers with code review and refactoring tasks. The agent uses Claude Sonnet 4.5 with a 200K-token context window. As code review sessions extend to 30+ files, the context fills up and quality drops. Your monitoring shows context reaching 85% utilization with the following breakdown: system prompt (3%), tool definitions (5%), code files (25%), message history (15%), and tool outputs from earlier reviews (52%).
+
+**Step 1: Diagnose context composition.** You ask: "My agent's context is 85% full. Tool outputs from earlier file reviews are 52% of usage. Code files are 25%. How do I optimize?"
+
+The skill immediately identifies the primary waste: tool outputs from completed reviews. When the agent reviewed file #3 twenty turns ago, the full diff output, analysis, and suggestions are still in context despite being irrelevant to the current file. This is the textbook case for observation masking.
+
+**Step 2: Implement observation masking.** The skill provides the masking strategy: for tool outputs older than 3 turns, replace the full content with a compact reference -- the file name, key findings (2-3 bullet points), and a reference ID to retrieve the full output if needed. Never mask observations from the most recent turn, observations critical to the current task, or observations being actively referenced in reasoning.
+
+You implement this and measure: tool output share drops from 52% to 15%. Total context utilization drops from 85% to 48%. The agent can now review 2-3x as many files in a single session.
+
+**Step 3: Optimize for KV-cache.** You notice that your system prompt and 15 tool definitions (8% combined) are identical across every request. You ask: "How do I optimize the stable parts of my context for KV-cache?"
+
+The skill walks you through cache-friendly ordering: place stable elements first (system prompt, then tool definitions), then frequently reused elements (common code patterns, project conventions), then unique elements last (specific file under review, current conversation). Avoid dynamic content like timestamps early in context -- they invalidate cache for everything after them. You restructure and measure: cache hit rate goes from near-zero to 72%, reducing latency and cost for the prefix computation.
+
+**Step 4: Add compaction for long sessions.** Some sessions still extend to 50+ turns with message history growing. You ask: "How should I compact message history when it grows beyond my budget allocation?"
+
+The skill recommends monitoring message history against a 50K-token budget. When history exceeds 80% of budget (40K tokens), trigger compaction: summarize turns older than the last 10 into a structured summary preserving key decisions, reviewed files, and outstanding issues. Replace the old turns with the summary. This keeps message history within budget while preserving essential continuity.
+
+**Step 5: Evaluate partitioning.** You mention that some sessions involve both code review and refactoring tasks. You ask: "Should I partition code review and refactoring into separate sub-agents?"
+
+The skill walks through the trade-off. Partitioning gives each sub-agent a clean context focused on its specific task -- the review agent only carries review-related context, the refactoring agent only carries refactoring context. But it adds coordination overhead: the coordinator must manage sub-agent results and maintain overall task state. For your case (two clearly separable task types that rarely need shared context), partitioning is recommended. For tightly coupled tasks where shared context is critical, the overhead outweighs the benefit.
+
+**Step 6: Measure combined improvement.** After applying masking, cache optimization, and compaction: effective capacity increased from 85% utilization with quality degradation to 45% utilization with full quality. The agent handles 3x more files per session. Cost per session dropped 40% from cache optimization alone.
+
+**Gotchas discovered:** The most important lesson was the order of operations. Apply observation masking first (biggest impact, lowest risk), then cache optimization (free performance), then compaction (moderate complexity), then partitioning (highest complexity, only when needed). Starting with partitioning would have been over-engineering.
+
+## Usage Scenarios
+
+### Scenario 1: Tool-output-dominated context
+
+**Context:** Your agent's context is 70% tool outputs from grep, file reads, and command execution. Most are from tasks already completed.
+
+**You say:** "My agent's context is dominated by tool outputs from completed tasks. How do I free up that space?"
+
+**The skill provides:**
+- Observation masking strategy with rules for what to mask vs. preserve
+- Compact reference format for masked observations
+- Re-retrieval pattern for when masked content is needed again
+- Expected 60-80% reduction in tool output token usage
+
+**You end up with:** An observation masking system that recovers 40-60% of your context window.
+
+### Scenario 2: High-cost production deployment
+
+**Context:** You are running an agent system at scale and LLM costs are a major concern. Most requests share the same system prompt and tools.
+
+**You say:** "I'm spending too much on LLM tokens. My system prompt and 20 tool definitions are identical across all requests. How do I optimize for caching?"
+
+**The skill provides:**
+- Cache-friendly prompt ordering (stable first, dynamic last)
+- Guidelines for avoiding cache invalidation (no timestamps, consistent formatting)
+- Expected 70%+ cache hit rate for stable workloads
+- Cost reduction estimates
+
+**You end up with:** A restructured prompt design that cuts prefix computation costs significantly.
+
+### Scenario 3: Multi-task agent losing coherence
+
+**Context:** Your agent handles both customer data analysis and report generation in one session. Quality drops when both tasks are active.
+
+**You say:** "My agent does data analysis and report generation. It gets confused when both tasks are active in one session. Should I split into sub-agents?"
+
+**The skill provides:**
+- Context partitioning architecture with coordinator and sub-agents
+- Result aggregation patterns for merging sub-agent outputs
+- Analysis of when partitioning helps vs. adds unnecessary complexity
+- Clean-context benefits: each sub-agent gets a focused window
+
+**You end up with:** A sub-agent architecture where analysis and reporting each operate in clean, task-specific contexts.
+
+---
+
+## Decision Logic
+
+**Which optimization technique should I apply?**
+
+The skill selects based on what dominates context:
+- Tool outputs dominate (50%+) -> Observation masking first
+- Stable prefix repeated across requests -> KV-cache optimization
+- Message history grows unbounded -> Compaction with structured summaries
+- Multiple unrelated tasks in one context -> Partitioning into sub-agents
+- Multiple components contribute -> Combine techniques in order: masking -> caching -> compaction -> partitioning
+
+**When should I trigger optimization?**
+
+Monitor these signals:
+- Token utilization above 70%: start with masking
+- Token utilization above 80%: apply compaction
+- Quality degradation visible: apply whatever reduces the dominant component
+- Performance drops with conversation length: likely needs partitioning
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Over-aggressive observation masking | Agent cannot reference earlier tool outputs when needed; quality drops on follow-up questions | Adjust masking rules: never mask outputs from the last 3 turns; implement re-retrieval for masked content |
+| Cache invalidation from dynamic content | KV-cache hit rate drops to near-zero; costs do not decrease as expected | Audit prompt for dynamic elements (timestamps, random IDs, variable-order tools); move all dynamic content after stable prefix |
+| Compaction destroys essential history | Agent loses track of decisions and context after compaction | Switch from aggressive compaction to structured summaries with explicit sections for decisions, files, and state |
+| Premature partitioning | Sub-agent coordination overhead exceeds savings from context isolation | Partitioning is the last technique to apply; verify that masking and compaction are insufficient first |
+
+## Ideal For
+
+- **Agent platform teams** managing production systems that need to handle longer sessions without upgrading to more expensive models
+- **Cost-conscious AI teams** who need to reduce per-request and per-session token costs through caching and context efficiency
+- **Engineers building multi-step agents** whose tool outputs accumulate and degrade quality over extended interactions
+- **Architects designing multi-agent systems** who need partitioning strategies for isolating task-specific contexts
+
+## Not For
+
+- **Reducing content through summarization** -- if you specifically need compression strategies (anchored iterative, opaque, regenerative), use `context-compression`
+- **Diagnosing why context is failing** -- if you see degradation but do not know the cause, use `context-degradation` to identify the pattern first
+- **Learning context basics** -- if you do not understand context components or attention mechanics, start with `context-fundamentals`
+
+## Related Plugins
+
+- **context-fundamentals** -- Foundational theory this skill builds on; understand the mechanics before optimizing them
+- **context-degradation** -- Understand the failure patterns that optimization prevents
+- **context-compression** -- Specific summarization strategies (one optimization technique explored in depth)
+- **multi-agent-patterns** -- Context partitioning as part of broader multi-agent architecture
+- **memory-systems** -- External memory as an optimization technique for offloading context
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
