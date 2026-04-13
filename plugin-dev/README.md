@@ -1,8 +1,7 @@
 # Plugin Dev
 
-> **v1.1.0** | Development | End-to-end Claude Code plugin authoring toolkit
-
-> Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
+> **v1.1.0** | Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
+> 8 skills + 4 scripts + 18 references | 109 trigger evals + 24 output evals (133 total)
 
 ## The Problem
 
@@ -66,22 +65,55 @@ I want to build a Claude Code plugin that enforces our team's coding standards -
 4. If greenlit, ask: `Design the plugin structure -- should this be a skill, a hook, or both?`
 5. `plugin-architecture` provides the component decomposition, then follow the lifecycle through composition, validation, and evaluation
 
-## What's Inside
+---
 
-This is a **multi-skill plugin** with 8 independently-activating skills, 4 runnable scripts, 18 reference documents, and 133 eval cases.
+## System Overview
+
+```
+Plugin Development Lifecycle
+============================
+
+  1. Ideation          2. Research          3. Architecture
+  plugin-ideation      plugin-research      plugin-architecture
+  7-criteria check     marketplace survey   5 extension types
+  7 anti-patterns      18+ Anthropic URLs   decision matrix
+       |                    |                    |
+       v                    v                    v
+  Worth building? -----> Already exists? ----> Component types decided
+       |                                         |
+       v                                         v
+  4. Scaffolding       5. Composition       6. Hooks
+  scaffold_plugin.py   plugin-composition   plugin-hooks
+  generates skeleton   directory layout     24+ events
+                       path substitution    exit code semantics
+                       hook merge rules     14 anti-patterns
+       |                    |                    |
+       v                    v                    v
+  7. Validation        8. Evaluation        9. Documentation
+  validate_plugin.py   plugin-evaluation    plugin-documenter
+  plugin-validation    run_eval.py          README generation
+  structural checks    trigger + output     from source files
+       |                    |                    |
+       v                    v                    v
+  Structure correct    Activation measured   README published
+```
+
+The eight skills activate independently based on what phase you are in. You do not need to follow the lifecycle sequentially -- jump to `plugin-hooks` if you just need to write a hook, or `plugin-evaluation` if you need to measure activation rate for an existing skill.
+
+## What's Inside
 
 ### 8 Skills
 
-| Skill | What it does |
-|---|---|
-| `plugin-ideation` | Problem-first framing with 7-criteria checklist and 7 ideation anti-patterns. Kills bad ideas before you write code. |
-| `plugin-research` | Marketplace survey methodology with 18+ authoritative Anthropic URLs and a build-vs-fork-vs-contribute-vs-skip decision tree. |
-| `plugin-architecture` | Decision matrix for choosing between 5 extension types (skill, hook, MCP server, subagent, slash command). Plugin.json schema reference and 10 real-plugin examples. |
-| `plugin-hooks` | Authoritative guide to all 24+ hook events, 4 handler types (command, http, prompt, agent), matcher syntax, exit code semantics, and 14 documented anti-patterns. |
-| `plugin-composition` | Canonical directory layout, path substitution variables, namespacing rules, hook merge semantics, and MCP auto-start lifecycle for multi-component plugins. |
-| `plugin-validation` | Structural validator covering plugin.json schema, SKILL.md frontmatter rules, dead reference detection, and multi-skill plugin walk. |
-| `plugin-evaluation` | Two eval formats (trigger-evals.json + evals.json), grader/analyzer/comparator pattern, quality criteria for eval queries, and iteration methodology. |
-| `plugin-documenter` | Fetches all plugin files (GitHub URL or local path), analyzes architecture, generates comprehensive README with problem statement, scenarios, and component breakdown. |
+| Skill | Trigger evals | Output evals | References | What it does |
+|---|---|---|---|---|
+| `plugin-ideation` | 13 | 3 | 2 | Problem-first framing with 7-criteria checklist and 7 ideation anti-patterns |
+| `plugin-research` | 13 | 3 | 2 | Marketplace survey, 18+ authoritative URLs, build-vs-fork decision tree |
+| `plugin-architecture` | 13 | 3 | 3 | Decision matrix for 5 extension types, plugin.json schema, 10 real examples |
+| `plugin-hooks` | 16 | 3 | 4 | 24+ hook events, 4 handler types, exit code semantics, 14 anti-patterns |
+| `plugin-composition` | 13 | 3 | 2 | Directory layout, path substitution variables, hook merge, MCP lifecycle |
+| `plugin-validation` | 13 | 3 | 2 | Plugin.json schema, SKILL.md frontmatter, dead reference detection |
+| `plugin-evaluation` | 14 | 3 | 3 | Trigger + output eval formats, grader pattern, iteration methodology |
+| `plugin-documenter` | 14 | 3 | 0 | Fetches all plugin files, analyzes architecture, generates comprehensive README |
 
 ### 4 Runnable Scripts
 
@@ -94,21 +126,16 @@ All at `plugin-dev/scripts/`. 48 pytest cases cover all four scripts.
 | `run_eval.py` | `--plugin-dir --skill [--mode trigger\|output] [--offline]` | Eval harness with offline smoke mode (structural checks without API key) and live mode for measuring activation rate. |
 | `test_hook.sh` | `SCRIPT_PATH EVENT_JSON --expect-exit N` | Mock-stdin hook tester. Tests hook scripts with canned JSON, asserts exit code, stdout, stderr, and timeout. |
 
-### Reference Documents
+### Component Spotlights
 
-| Skill | References | Topic |
-|---|---|---|
-| `plugin-architecture` | 3 | Component decision matrix, manifest schema reference, 10 real-plugin examples |
-| `plugin-composition` | 2 | Directory layout reference, path substitution patterns |
-| `plugin-hooks` | 4 | Hook event reference (24+ events), handler types, anti-patterns, testing patterns |
-| `plugin-evaluation` | 3 | Eval file formats, quality criteria, iteration methodology |
-| `plugin-ideation` | 2 | Problem-worthy checklist, ideation anti-patterns |
-| `plugin-research` | 2 | Authoritative sources list, build-vs-fork decision tree |
-| `plugin-validation` | 2 | Frontmatter rules, validation checklist |
+#### plugin-ideation (skill)
 
-### plugin-ideation
+**What it does:** Evaluates whether a plugin idea is worth building before you write any code. Applies a 7-criteria problem-worthy checklist (repeatable pain, within plugin scope, not already solved, real friction, clear user, measurable outcome, sustainable maintenance) and catches 7 ideation anti-patterns.
 
-**What it does:** Evaluates whether a plugin idea is worth building. Applies the 7-criteria problem-worthy checklist (repeatable pain, within plugin scope, not already solved, real friction, clear user, measurable outcome, sustainable maintenance) and catches 7 ideation anti-patterns (scope creep, engineering exercise, one-off task, already solved, too broad, too narrow, no user).
+**Input -> Output:** You describe a plugin idea -> You get a scored evaluation with a build/redirect/kill recommendation plus reasoning.
+
+**When to use:** You have an idea for a Claude Code plugin and want to know if it is worth pursuing.
+**When NOT to use:** You already have a validated idea and need to start building -> use `plugin-architecture`.
 
 **Try these prompts:**
 
@@ -128,53 +155,14 @@ We keep doing the same API design review manually -- should this be a plugin or 
 What kinds of repeatable workflow pain points make good plugin ideas?
 ```
 
-### plugin-research
+#### plugin-hooks (skill)
 
-**What it does:** Validates a plugin idea against the existing ecosystem before you write code. Surveys the Claude Code plugin marketplace, checks authoritative Anthropic documentation (18+ canonical URLs), discovers community patterns, and applies the build-vs-fork-vs-contribute-vs-skip decision tree.
+**What it does:** The authoritative guide to Claude Code hooks. Covers all 24+ hook events, 4 handler types (command, http, prompt, agent), matcher syntax, exit code semantics, and 14 documented anti-patterns.
 
-**Try these prompts:**
+**Input -> Output:** You describe what you want a hook to do -> You get the correct event, matcher, handler type, exit code contract, and working script with test instructions.
 
-```
-Is there already a Claude Code plugin for automated code review? I don't want to build something that exists
-```
-
-```
-Research what's available for TypeScript development plugins -- I want to know what's already built vs what's missing
-```
-
-```
-I found a plugin that does 70% of what I need -- should I fork it, contribute to it, or build my own?
-```
-
-```
-Where are the authoritative Anthropic docs on plugin hooks and SKILL.md format?
-```
-
-### plugin-architecture
-
-**What it does:** Decides which Claude Code extension types to use for each capability in your plugin and designs the plugin.json manifest around that decision. Provides the five extension types (skill, hook, MCP server, subagent, slash command), the decision matrix for choosing between them, plugin.json schema reference, and 10 worked examples from real plugins.
-
-**Try these prompts:**
-
-```
-Design the plugin structure for a code quality enforcer -- it needs to block dangerous commands and provide review guidance
-```
-
-```
-Should this capability be a skill, a hook, or an MCP server? It needs to intercept file writes and add license headers.
-```
-
-```
-I'm building a multi-component plugin with skills, hooks, and an MCP server -- help me design the architecture
-```
-
-```
-Show me examples of real plugins and how they decomposed their capabilities into skills vs hooks vs MCP
-```
-
-### plugin-hooks
-
-**What it does:** The authoritative guide to Claude Code hooks. Covers all 24+ hook events (PreToolUse, PostToolUse, SessionStart, Stop, Notification, FileChanged, and more), 4 handler types (command, http, prompt, agent), matcher syntax (exact, OR-list, regex), exit code semantics (exit 1 does NOT block -- only exit 2 blocks), JSON output schema, and 14 documented anti-patterns.
+**When to use:** Writing, debugging, or understanding any hook in a Claude Code plugin.
+**When NOT to use:** Building a complete plugin that also needs skills and MCP -> start with `plugin-architecture`, then come here for the hook-specific parts.
 
 **Try these prompts:**
 
@@ -194,53 +182,14 @@ What hook events are available in Claude Code? I need to run something after eve
 Show me the anti-patterns for hook development -- I want to avoid common mistakes
 ```
 
-### plugin-composition
+#### plugin-evaluation (skill)
 
-**What it does:** Teaches how to integrate multiple components inside a single plugin. Covers the canonical directory layout, path substitution variables (`${CLAUDE_PLUGIN_ROOT}` for install dir, `${CLAUDE_PLUGIN_DATA}` for persistent state, `${CLAUDE_PROJECT_DIR}` for user's project, `${CLAUDE_ENV_FILE}` for secrets), the bin/ shared-scripts pattern, namespacing rules, hook merge semantics, and MCP auto-start lifecycle.
+**What it does:** Measures whether a plugin actually works by running trigger evals (does the model select the skill?) and output evals (does it produce correct results?). Teaches eval file formats, grader/analyzer/comparator patterns, quality criteria, and iteration methodology.
 
-**Try these prompts:**
+**Input -> Output:** You describe activation problems or need eval authoring guidance -> You get eval file structure, diverse test queries, and a methodology for iterating on your SKILL.md description to improve activation rate.
 
-```
-How do I structure a plugin that has three skills, two hooks, and an MCP server?
-```
-
-```
-My hook script can't find a file that's in the plugin directory -- I think my path reference is wrong
-```
-
-```
-What's the difference between CLAUDE_PLUGIN_ROOT and CLAUDE_PLUGIN_DATA? When do I use each?
-```
-
-```
-Two plugins install hooks for the same event -- which one wins? How does merge work?
-```
-
-### plugin-validation
-
-**What it does:** Validates the structural correctness of a plugin before shipping. Checks plugin.json schema (required fields, valid values), SKILL.md YAML frontmatter (format, name consistency), reference cross-references (do referenced files exist?), and multi-skill directory conventions. Use `validate_plugin.py` for automated checks or the skill for interpreting errors and fixing issues.
-
-**Try these prompts:**
-
-```
-Validate my plugin before I publish -- run all structural checks
-```
-
-```
-My plugin won't load after installation -- help me debug the structure
-```
-
-```
-What are the SKILL.md frontmatter rules? I keep getting activation failures and I think my description is malformed.
-```
-
-```
-Set up CI to validate our plugin structure on every PR
-```
-
-### plugin-evaluation
-
-**What it does:** Measures whether a plugin actually works by running trigger evals (does the model select the skill for a given query?) and output evals (does it produce the correct result?). Teaches two eval file formats (trigger-evals.json and evals.json), the grader/analyzer/comparator pattern, quality criteria for eval queries, and the iteration methodology for improving activation rate.
+**When to use:** After shipping a skill, when activation is unreliable, or when building a new skill and wanting to test before publishing.
+**When NOT to use:** Testing hook behavior (exit codes, JSON output) -> use `test_hook.sh`.
 
 **Try these prompts:**
 
@@ -253,16 +202,21 @@ Write trigger evals for my API design skill -- I need positive and negative test
 ```
 
 ```
-Walk me through the eval iteration process: my skill fails for 30% of queries and I don't know what to change
+Walk me through the eval iteration process: my skill fails for 30% of queries
 ```
 
 ```
-What makes a good eval query? My tests all pass but users report the skill doesn't activate for their prompts.
+What makes a good eval query? My tests pass but users report the skill doesn't activate.
 ```
 
-### plugin-documenter
+#### plugin-documenter (skill)
 
-**What it does:** Generates comprehensive documentation for any Claude Code plugin. Takes a GitHub URL or local path, fetches all plugin files (SKILL.md, plugin.json, hooks, references, scripts, examples, evals), analyzes the architecture, and produces a complete README with problem statement, installation instructions, component breakdown, realistic usage scenarios, and cross-references.
+**What it does:** Generates comprehensive documentation for any Claude Code plugin. Takes a GitHub URL or local path, inventories all plugin files, analyzes architecture, and produces a complete README following a 4-layer documentation model (Awareness, Mental Model, Execution, Mastery).
+
+**Input -> Output:** You provide a plugin URL or path -> You get a comprehensive README with problem statement, installation, component breakdown, usage scenarios, and cross-references.
+
+**When to use:** Documenting any Claude Code plugin -- yours or someone else's.
+**When NOT to use:** Building a plugin (use `plugin-architecture` + `plugin-composition`), validating structure (use `plugin-validation`).
 
 **Try these prompts:**
 
@@ -275,132 +229,322 @@ Write a comprehensive README for the cloud-finops plugin in this repository
 ```
 
 ```
-Generate documentation for the plugin at ./workflow-automation -- I need installation, usage scenarios, and architecture overview
+Generate documentation for the plugin at ./workflow-automation
 ```
 
 ```
 Explain how the plugin-dev plugin works -- generate a tutorial-style walkthrough
 ```
 
+#### plugin-architecture (skill)
+
+**What it does:** Decides which Claude Code extension types to use for each capability. Provides the decision matrix for 5 types (skill, hook, MCP server, subagent, slash command), plugin.json schema reference, and 10 worked examples from real plugins.
+
+**Input -> Output:** You describe capabilities your plugin needs -> You get a component decomposition mapping each capability to the appropriate extension type.
+
+**Try these prompts:**
+
+```
+Design the plugin structure for a code quality enforcer -- it needs to block dangerous commands and provide review guidance
+```
+
+```
+Should this capability be a skill, a hook, or an MCP server? It needs to intercept file writes and add license headers.
+```
+
+```
+I'm building a multi-component plugin with skills, hooks, and an MCP server -- help me design the architecture
+```
+
+```
+Show me examples of real plugins and how they decomposed their capabilities
+```
+
+#### plugin-composition (skill)
+
+**What it does:** Teaches how to integrate multiple components inside a single plugin. Covers canonical directory layout, path substitution variables, namespacing rules, hook merge semantics, and MCP auto-start lifecycle.
+
+**Input -> Output:** You describe a multi-component plugin -> You get the directory structure, path variable usage, and wiring instructions.
+
+**Try these prompts:**
+
+```
+How do I structure a plugin that has three skills, two hooks, and an MCP server?
+```
+
+```
+My hook script can't find a file that's in the plugin directory -- I think my path reference is wrong
+```
+
+```
+What's the difference between CLAUDE_PLUGIN_ROOT and CLAUDE_PLUGIN_DATA?
+```
+
+```
+Two plugins install hooks for the same event -- which one wins?
+```
+
+#### plugin-research (skill)
+
+**What it does:** Validates a plugin idea against the ecosystem before you write code. Surveys the marketplace, checks 18+ authoritative Anthropic URLs, and applies the build-vs-fork-vs-contribute-vs-skip decision tree.
+
+**Try these prompts:**
+
+```
+Is there already a Claude Code plugin for automated code review?
+```
+
+```
+Research what's available for TypeScript development plugins
+```
+
+```
+I found a plugin that does 70% of what I need -- should I fork it or build my own?
+```
+
+```
+Where are the authoritative Anthropic docs on plugin hooks and SKILL.md format?
+```
+
+#### plugin-validation (skill)
+
+**What it does:** Validates structural correctness before shipping. Checks plugin.json schema, SKILL.md frontmatter, reference cross-references, and multi-skill directory conventions.
+
+**Try these prompts:**
+
+```
+Validate my plugin before I publish -- run all structural checks
+```
+
+```
+My plugin won't load after installation -- help me debug the structure
+```
+
+```
+What are the SKILL.md frontmatter rules? I keep getting activation failures.
+```
+
+```
+Set up CI to validate our plugin structure on every PR
+```
+
+#### scaffold_plugin.py (script)
+
+**CLI:** `python scripts/scaffold_plugin.py --name my-plugin --skills skill-a skill-b --hooks --author "Name"`
+**What it produces:** A complete plugin directory with `plugin.json`, `SKILL.md` per skill, `hooks/hooks.json` (if `--hooks`), `.mcp.json` (if `--mcp`), and eval templates.
+**Typical workflow:** Run once at the start of a new plugin project, then customize the generated files.
+
+#### validate_plugin.py (script)
+
+**CLI:** `python scripts/validate_plugin.py --plugin-dir ./my-plugin [--strict] [--json]`
+**What it produces:** Validation report with errors, warnings, and pass/fail status. Exit codes: 0=clean, 1=errors, 2=crash, 3=strict warnings.
+**Typical workflow:** Run after any structural change and in CI on every PR.
+
+#### run_eval.py (script)
+
+**CLI:** `python scripts/run_eval.py --plugin-dir ./my-plugin --skill my-skill [--mode trigger] [--offline]`
+**What it produces:** Activation rate report (e.g., "8/10 positive triggers activated, 0/5 negative triggers activated"). Offline mode validates eval file structure without API calls.
+**Typical workflow:** Run after writing or editing evals, and after modifying SKILL.md descriptions.
+
+#### test_hook.sh (script)
+
+**CLI:** `bash scripts/test_hook.sh hooks/scripts/my-hook.sh event.json --expect-exit 2`
+**What it produces:** Pass/fail assertion on exit code, stdout content, and stderr content. Tests hooks offline with synthetic JSON input.
+**Typical workflow:** Run after writing or modifying any hook script.
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, may not activate) | Good (specific, activates reliably) |
+|---|---|
+| "Help me build a plugin" | "I want to build a plugin that enforces Python coding standards -- is this worth building?" |
+| "Fix my hook" | "My PreToolUse hook returns exit code 1 but the command still executes -- what's wrong?" |
+| "Plugin doesn't work" | "My skill activates for me but not for my teammates -- how do I measure and fix activation rate?" |
+| "How do plugins work?" | "What hook events are available? I need to run something after every file edit." |
+| "Make docs for my plugin" | "Generate documentation for the plugin at ./my-plugin -- I need installation, scenarios, and architecture" |
+
+### Structured Prompt Templates
+
+**For ideation:**
+```
+I want to build a Claude Code plugin that [what it does]. My team of [N] developers hits this problem [frequency]. Is this worth building as a plugin, or should it be a [CLAUDE.md entry / hook / MCP server]?
+```
+
+**For architecture:**
+```
+Design the plugin structure for [what it does]. It needs to [capability 1, e.g., provide guidance], [capability 2, e.g., block dangerous commands], and [capability 3, e.g., connect to an external API]. Which component types should I use?
+```
+
+**For hook debugging:**
+```
+My [event type] hook is supposed to [expected behavior] but instead [actual behavior]. Here's the script: [paste script or describe]. What's wrong?
+```
+
+**For eval authoring:**
+```
+Write trigger evals for my [skill name] skill. It should activate for [types of queries] and NOT activate for [near-miss queries]. I need [N] positive and [N] negative test cases.
+```
+
+**For documentation generation:**
+```
+Generate documentation for the plugin at [path or GitHub URL]. I need [full README / just the architecture section / usage scenarios].
+```
+
+### Prompt Anti-Patterns
+
+- **Skipping ideation and jumping to implementation:** Asking "scaffold a plugin for X" without first evaluating whether X is worth building as a plugin. The 7-criteria checklist prevents wasted effort.
+- **Asking about MCP server implementation:** This skill handles plugin architecture (which extension type to use) and plugin composition (how to wire components together). For MCP server implementation (FastMCP, TypeScript SDK, protocol details), use the mcp-server plugin.
+- **Testing hooks manually in live sessions instead of offline:** Use `test_hook.sh` with synthetic input first. Testing hooks in a live Claude Code session is slow and gives poor error diagnostics.
+- **Writing evals that only match your own phrasing:** Trigger evals need diversity -- different phrasings, different contexts, different levels of specificity. If all your eval queries sound like you wrote them, they will not catch activation gaps for other users.
+
 ## Real-World Walkthrough
 
-You are a platform engineer at a company with 40 developers using Claude Code. Your team has a recurring problem: developers write API endpoints without consistent error handling, and every code review catches the same issues. You decide to build a Claude Code plugin that provides API design guidance and catches common mistakes.
+You are a platform engineer at a company with 40 developers using Claude Code. Your team has a recurring problem: developers write API endpoints without consistent error handling, and every code review catches the same issues. You decide to build a Claude Code plugin.
 
-**Phase 1: Ideation**
-
-You start by testing the idea:
+**Step 1 -- Ideation.** You ask:
 
 ```
-I want to build a plugin that provides API design guidance and catches inconsistent error handling across our endpoints. Is this worth building as a plugin?
+I want to build a plugin that provides API design guidance and catches inconsistent error handling. Is this worth building?
 ```
 
-The `plugin-ideation` skill runs the 7-criteria checklist. Your idea scores well on most criteria: repeatable pain (every API endpoint), clear user (your 40 developers), measurable outcome (consistent error handling across endpoints). But it flags one concern: "Is this a CLAUDE.md entry or a plugin?" Your pain is company-specific, so a project-level CLAUDE.md rule might be sufficient. The skill distinguishes: if the guidance is static (always apply the same rules), a CLAUDE.md entry works. If the guidance is dynamic (analyze the endpoint structure and provide context-specific recommendations), a plugin is warranted. Your case involves structural analysis, so the plugin path is confirmed.
+The `plugin-ideation` skill runs the 7-criteria checklist. Your idea scores well: repeatable pain (every API endpoint), clear user (40 developers), measurable outcome (consistent error handling). One concern: "Is this a CLAUDE.md entry or a plugin?" Static rules can go in CLAUDE.md. Dynamic analysis (inspect endpoint structure, provide context-specific recommendations) warrants a plugin. Your case involves structural analysis -- plugin confirmed.
 
-**Phase 2: Research**
+**Step 2 -- Research.** You ask:
 
 ```
 Is there already a Claude Code plugin for API design guidance?
 ```
 
-The `plugin-research` skill surveys the marketplace and finds the existing `api-design` plugin in SkillStack. It covers REST, GraphQL, and gRPC patterns. You review it and find it provides general API design guidance but not your company's specific error handling conventions. The build-vs-fork decision tree recommends: install `api-design` for general patterns, build a separate plugin for your company-specific rules, and have them complement each other rather than compete.
+`plugin-research` finds the existing `api-design` plugin. It covers general REST, GraphQL, and gRPC patterns but not your company-specific conventions. The build-vs-fork tree recommends: install `api-design` for general patterns, build a separate plugin for your company-specific rules.
 
-**Phase 3: Architecture**
-
-```
-Design the plugin structure -- I need it to provide guidance through conversation AND block endpoints that don't have error handling
-```
-
-The `plugin-architecture` skill maps your requirements to component types. The guidance part is a skill (activates from natural language, provides methodology and patterns). The blocking part is a hook (PreToolUse on file writes, checks for error handling patterns, exit code 2 to block writes that miss error handling). The skill recommends a two-component plugin: one skill for API design guidance, one hook for enforcement.
-
-**Phase 4: Composition and Hooks**
+**Step 3 -- Architecture.** You ask:
 
 ```
-How do I structure a plugin with one skill and one hook? And how do I write the hook to block file writes?
+Design the plugin structure -- I need guidance through conversation AND blocking of endpoints without error handling
 ```
 
-The `plugin-composition` skill provides the directory layout. The `plugin-hooks` skill walks you through writing the PreToolUse hook: match on `Write` and `Edit` tool calls, check if the file is in the `src/api/` directory, inspect the content for error handling patterns, and return exit code 2 with a description if error handling is missing. The skill explicitly warns about the exit code 1 trap: using exit 1 for "failure" is wrong -- it logs the event but does not block. Only exit 2 blocks.
+`plugin-architecture` maps requirements to types: guidance = skill (activates from natural language). Blocking = hook (PreToolUse on file writes, exit code 2 to block). Two-component plugin.
 
-**Phase 5: Scaffolding and Validation**
+**Step 4 -- Scaffolding and Composition.** You run `scaffold_plugin.py --name api-standards --skills api-guidance --hooks`. The `plugin-composition` skill explains the directory layout and how to reference the hook script using `${CLAUDE_PLUGIN_ROOT}`.
 
-You run `scaffold_plugin.py --name api-standards --skills api-guidance --hooks pre-write-check` to generate the skeleton. You write the SKILL.md and hook script. Then you run `validate_plugin.py --plugin-dir ./api-standards --strict` to catch structural issues. The validator flags that your SKILL.md description is missing NOT-for clauses, and that one reference path does not resolve. You fix both.
-
-**Phase 6: Evaluation**
+**Step 5 -- Hook authoring.** You ask:
 
 ```
-Write trigger evals for my api-guidance skill -- I need to test whether Claude activates it for the right queries
+Write a PreToolUse hook that blocks Write and Edit calls to src/api/ files that don't include error handling
 ```
 
-The `plugin-evaluation` skill helps you write 10 positive queries (variations of "help me design this API endpoint", "review my error handling", "what's the right status code for...") and 5 negative queries (near-misses that should NOT trigger the skill, like "help me set up the database" or "write unit tests for my API"). You run `run_eval.py --offline` to validate the eval file structure, then `run_eval.py` with your API key to measure activation rate. The skill activates for 8/10 positive queries. The `plugin-evaluation` skill's iteration methodology shows you how to edit the SKILL.md description to catch the two misses without breaking the existing 8.
+`plugin-hooks` provides the hook script with the correct exit code contract. It explicitly warns: exit 1 does NOT block -- only exit 2 blocks. You test with `test_hook.sh` using synthetic JSON before deploying.
 
-**Phase 7: Documentation**
+**Step 6 -- Validation.** You run `validate_plugin.py --plugin-dir ./api-standards --strict`. The validator flags a missing NOT-for clause in SKILL.md and a dead reference path. You fix both.
+
+**Step 7 -- Evaluation.** You ask:
+
+```
+Write trigger evals for my api-guidance skill
+```
+
+`plugin-evaluation` helps you write 10 positive and 5 negative queries. You run `run_eval.py` -- the skill activates for 8/10. The iteration methodology shows how to edit the SKILL.md description to catch the 2 misses.
+
+**Step 8 -- Documentation.** You ask:
 
 ```
 Generate documentation for the plugin at ./api-standards
 ```
 
-The `plugin-documenter` skill reads all files and generates a comprehensive README with problem statement, installation instructions, skill and hook documentation, usage scenarios, and cross-references to the complementary `api-design` plugin.
+`plugin-documenter` reads all files and generates a comprehensive README. Total time from idea to documented, evaluated plugin: one day.
 
-The total process from idea to documented, evaluated plugin takes one day. Without the toolkit, the same process would take a week of reverse-engineering hook mechanics, guessing at frontmatter format, and never testing activation rate.
+**Gotchas discovered:** The exit code 1 vs 2 distinction is the single most common hook authoring mistake. Testing with `test_hook.sh` before deploying catches it every time.
 
 ## Usage Scenarios
 
 ### Scenario 1: Starting a new plugin from scratch
 
-**Context:** You have an idea for a plugin and want to go from zero to shipped with confidence that the structure is correct and the skill activates reliably.
+**Context:** You have an idea for a plugin and want to go from zero to shipped with confidence.
 
 **You say:** `I want to build a plugin that helps developers write better commit messages. Walk me through the whole process.`
 
 **The skill provides:**
-- Ideation: 7-criteria evaluation of the idea
-- Research: marketplace survey for existing commit message plugins
-- Architecture: skill vs hook decision (likely both -- a skill for guidance and a hook for enforcement)
-- Composition: directory layout and path wiring
-- Validation: automated structural checks
-- Evaluation: trigger eval authoring and activation rate measurement
+- Ideation evaluation, marketplace research, architecture decomposition, scaffolding, composition guidance, validation, eval authoring, and documentation generation -- the full lifecycle
 
-**You end up with:** A validated, evaluated plugin with a comprehensive README, ready to publish.
+**You end up with:** A validated, evaluated plugin with a comprehensive README.
 
 ### Scenario 2: Debugging a hook that does not block
 
-**Context:** You wrote a PreToolUse hook to prevent `git push --force` but it is not blocking the command. The hook script runs and prints an error, but the push goes through.
+**Context:** Your PreToolUse hook runs but does not prevent the command from executing.
 
-**You say:** `My PreToolUse hook is supposed to block git push --force but it doesn't work -- the hook runs but the command still executes`
-
-**The skill provides:**
-- Immediate diagnosis: you are likely using exit code 1 (does NOT block) instead of exit code 2 (blocks)
-- Complete exit code reference: 0 = allow, 1 = log error but allow, 2 = block with message
-- The JSON output schema for returning a descriptive block message
-- `test_hook.sh` for testing the fixed hook offline
-
-**You end up with:** A working blocking hook with offline test coverage and understanding of the exit code contract.
-
-### Scenario 3: Improving activation rate for a shipped skill
-
-**Context:** Your plugin is installed and works great when you test it, but your teammates report that Claude "ignores" the skill for their queries. You suspect the SKILL.md description does not match how they phrase requests.
-
-**You say:** `My skill works for me but my team says Claude doesn't activate it. How do I measure and fix activation rate?`
+**You say:** `My PreToolUse hook is supposed to block git push --force but the push goes through`
 
 **The skill provides:**
-- Trigger eval authoring: how to write diverse positive queries (different phrasings, different contexts) and negative near-miss queries
-- `run_eval.py` for measuring activation rate quantitatively
-- Iteration methodology: categorize failures, edit the SKILL.md description (usually the trigger phrases in the description frontmatter), re-run evals
-- Quality criteria for eval queries: realistic (how real users phrase it), varied (different angles), near-miss negatives (similar but should NOT trigger)
+- Immediate diagnosis: exit code 1 vs 2
+- Complete exit code reference and JSON output schema
+- `test_hook.sh` for offline testing
 
-**You end up with:** A SKILL.md description that activates reliably for diverse user phrasings, backed by eval data.
+**You end up with:** A working blocking hook with test coverage.
 
-### Scenario 4: Documenting a plugin you found
+### Scenario 3: Improving activation rate
 
-**Context:** You found a Claude Code plugin on GitHub that looks useful but the README is sparse. You want to understand what it does before installing it.
+**Context:** Your plugin works when you test it but teammates report Claude "ignores" it.
 
-**You say:** `Document the plugin at https://github.com/user/repo/tree/main/their-plugin -- I want to understand the architecture and use cases before installing`
+**You say:** `My skill works for me but my team says Claude doesn't activate it`
 
 **The skill provides:**
-- Architecture analysis: component inventory, skill count, hook events, MCP tools, references
-- Problem statement: what the plugin solves, synthesized from all skill descriptions
-- Usage scenarios: realistic prompts derived from skill descriptions and eval queries
-- Installation instructions with verification step
+- Trigger eval authoring with diverse phrasings
+- `run_eval.py` for quantitative measurement
+- Iteration methodology for improving SKILL.md description
 
-**You end up with:** A comprehensive README that tells you exactly what the plugin does, how to use it, and whether it fits your needs.
+**You end up with:** A SKILL.md description that activates reliably for diverse user phrasings.
+
+---
+
+## Decision Logic
+
+**Which skill handles which phase?**
+
+| Phase | Skill | Decision |
+|---|---|---|
+| "Should I build this?" | `plugin-ideation` | 7-criteria checklist -> build/redirect/kill |
+| "Does this exist already?" | `plugin-research` | Marketplace survey -> build/fork/contribute/skip |
+| "What component types?" | `plugin-architecture` | Decision matrix -> skill/hook/MCP/subagent/command |
+| "How do I wire components?" | `plugin-composition` | Directory layout + path variables |
+| "How do hooks work?" | `plugin-hooks` | Event reference + exit codes + anti-patterns |
+| "Is my structure correct?" | `plugin-validation` | Automated checks + frontmatter rules |
+| "Does it activate?" | `plugin-evaluation` | Trigger evals + iteration methodology |
+| "How do I document it?" | `plugin-documenter` | Source analysis -> comprehensive README |
+
+**When to use a script vs a skill?**
+
+Scripts automate mechanical checks. Skills provide decision guidance. Use `validate_plugin.py` to check structure automatically, then use `plugin-validation` the skill to understand and fix the errors. Use `run_eval.py` to measure activation rate, then use `plugin-evaluation` the skill to iterate on the SKILL.md description based on failures.
+
+**Typical lifecycle flows:**
+
+New plugin from scratch: ideation -> research -> architecture -> scaffold -> composition -> hooks -> validate -> evaluate -> document
+
+Hook-only authoring: hooks -> composition -> test_hook.sh -> validate
+
+Existing plugin improvement: evaluation (measure) -> iterate SKILL.md -> evaluate (re-measure) -> document
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Hook uses exit code 1 expecting it to block | Hook script runs, log shows execution, but the tool call proceeds anyway | Change to exit code 2. Exit 1 = log error but allow. Exit 2 = block with message. Test with `test_hook.sh --expect-exit 2`. |
+| Skill activates for author but not for users | Author tests pass, but team reports "Claude ignores the plugin" | Write diverse trigger evals with different phrasings, not just how you would ask. Run `run_eval.py` to measure. Iterate on the SKILL.md description to broaden trigger coverage. |
+| Plugin structure passes local validation but fails on install | `validate_plugin.py` reports clean but plugin does not load in Claude Code | Run with `--strict` flag. Check that skill directory names match the `name` field in SKILL.md frontmatter. Verify `plugin.json` version field is a valid semver string. |
+| Path substitution variable does not resolve at runtime | Hook or MCP config references a file path that works in development but 404s after installation | Use `${CLAUDE_PLUGIN_ROOT}` for files shipped with the plugin, `${CLAUDE_PLUGIN_DATA}` for persistent state created at runtime. Never hardcode absolute paths. |
+| Plugin idea passes ideation but nobody uses it | Plugin is structurally correct, activates in evals, but real usage is zero | Re-run ideation with the "clear user" criterion. Is the pain repeatable enough? Is the plugin discoverable? Consider that CLAUDE.md entries are simpler and project-scoped -- a plugin only wins if the guidance needs to be dynamic or shared across projects. |
+
+## Running Tests
+
+```bash
+cd plugin-dev/scripts
+pip install pytest pyyaml
+pytest tests/ -v
+```
+
+48 pytest cases covering all four scripts plus a validator-drift contract test.
 
 ## Typical Flows
 
@@ -425,16 +569,6 @@ The total process from idea to documented, evaluated plugin takes one day. Witho
 4. validate_plugin.py   -> confirm nothing broke
 ```
 
-## Running Tests
-
-```bash
-cd plugin-dev/scripts
-pip install pytest pyyaml
-pytest tests/ -v
-```
-
-48 pytest cases covering all four scripts plus a validator-drift contract test.
-
 ## Ideal For
 
 - **Teams building their first Claude Code plugin** -- the lifecycle flow prevents the guesswork and reverse-engineering that wastes the first week
@@ -445,17 +579,18 @@ pytest tests/ -v
 
 ## Not For
 
-- **Writing a single SKILL.md in depth** -- use Anthropic's bundled `skill-creator` or SkillStack's more advanced `skill-foundry` for deep single-skill authoring with progressive disclosure
+- **Writing a single SKILL.md in depth** -- use Anthropic's bundled `skill-creator` or SkillStack's more advanced skill engineering for deep single-skill authoring
 - **Building an MCP server** -- use [mcp-server](../mcp-server/) for FastMCP, TypeScript SDK, and MCP evaluation patterns
 - **Designing a complete end-to-end workflow skill** -- use [skillstack-workflows](../skillstack-workflows/) `write-your-own-skill` for workflow composition
 - **Quick one-off automation** -- plugins are for repeatable work; use a CLAUDE.md entry for project-specific rules
 
 ## Related Plugins
 
-- **[Skill Forge](../skill-foundry/)** -- Advanced skill engineering framework (8-phase methodology, 59 references, 20+ scripts) with progressive disclosure (Anthropic bundled)
 - **[MCP Server](../mcp-server/)** -- MCP server authoring with FastMCP, TypeScript SDK, and evaluation patterns
 - **[SkillStack Workflows](../skillstack-workflows/)** -- 18 composed workflows including `build-a-plugin` and `write-your-own-skill`
+- **[Tool Design](../tool-design/)** -- Design the tools that MCP servers expose, complementing the plugin structure this skill teaches
+- **[Agent Evaluation](../agent-evaluation/)** -- Broader agent evaluation frameworks that build on the trigger eval methodology here
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) — production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
