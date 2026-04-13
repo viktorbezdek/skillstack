@@ -3,14 +3,15 @@
 > **v1.1.15** | Development | 17 iterations
 
 > Systematic prompt optimization for LLMs -- turn vague instructions into precision-engineered prompts that produce reliable, high-quality outputs across Claude, GPT-4, and Gemini.
+> Single skill + 4 references + 3 scripts
 
 ## The Problem
 
-Most prompts fail not because the model is incapable, but because the instructions are ambiguous, the context is missing, and the output format is left to chance. Teams burn hours on trial-and-error iteration: tweaking a word here, adding a sentence there, running the prompt again, and hoping for better results. Without a systematic method, prompt development looks like this:
+Most prompts fail not because the model is incapable, but because the instructions are ambiguous, the context is missing, and the output format is left to chance. Teams burn hours on trial-and-error iteration: tweaking a word here, adding a sentence there, running the prompt again, and hoping for better results. Without a systematic method, prompt development is pure guesswork with expensive compute behind it.
 
-Someone finds a prompt that "worked" in a blog post and copies it verbatim. It produces decent results for one input but falls apart on the next three. They add more instructions, making the prompt longer but not better. They try adding "Be concise" and "Be thorough" in the same prompt without noticing the contradiction. When they finally get something acceptable, they cannot explain why it works, so the next team member starts from scratch.
+Someone finds a prompt that "worked" in a blog post and copies it verbatim. It produces decent results for one input but falls apart on the next three. They add more instructions, making the prompt longer but not better. They try adding "Be concise" and "Be thorough" in the same prompt without noticing the contradiction. When they finally get something acceptable, they cannot explain why it works, so the next team member starts from scratch. Multiply this across a team of five, each independently discovering the same dead ends, and you have weeks of cumulative waste.
 
-The problem gets worse across platforms. A prompt tuned for Claude's XML-tag conventions produces garbled output on GPT-4. A GPT-4 prompt that relies on "You MUST" directives feels over-constrained on Claude. Cross-platform prompt migration is treated as an art rather than an engineering discipline, which means every platform switch restarts the iteration cycle from zero.
+The problem compounds across platforms. A prompt tuned for Claude's XML-tag conventions produces garbled output on GPT-4. A GPT-4 prompt that relies on "You MUST" directives feels over-constrained on Claude. Cross-platform prompt migration is treated as an art rather than an engineering discipline, which means every platform switch restarts the iteration cycle from zero. There is no shared vocabulary for what makes a prompt good, no rubric to score one version against another, and no systematic process for closing the gap between "sometimes works" and "reliably delivers."
 
 ## The Solution
 
@@ -18,7 +19,7 @@ This plugin provides a structured 4-D methodology -- Deconstruct, Diagnose, Deve
 
 The skill operates in four modes depending on your situation: Optimize mode for fixing existing prompts, Interactive Design mode for creating new prompts from scratch, Evaluate mode for scoring and testing prompt quality, and an educational mode for learning the underlying techniques. Each mode follows the same 4-D framework but adjusts depth based on complexity -- simple tasks get a streamlined pass, complex tasks get strategic questions and multi-stage decomposition.
 
-Platform-specific optimization is built in. The skill knows that Claude excels with XML tags and intent-first design, that GPT-4 responds to system/user message separation and explicit directives, and that Gemini works best with multimodal prompts and clear section demarcation. When you migrate a prompt between platforms, it translates the structural patterns rather than just changing words.
+Platform-specific optimization is built in. The skill knows that Claude excels with XML tags and intent-first design, that GPT-4 responds to system/user message separation and explicit directives, and that Gemini works best with multimodal prompts and clear section demarcation. When you migrate a prompt between platforms, it translates the structural patterns rather than just changing words. Three utility scripts support the workflow: structural analysis, version diffing, and format normalization.
 
 ## Before vs After
 
@@ -58,26 +59,71 @@ The skill should activate automatically and run a diagnosis of the prompt across
 4. It **applies targeted techniques** (Role Assignment, Few-Shot, Output Specification, etc.) and delivers an optimized version with a brief explanation of what changed
 5. **Iterate** by saying: `Can you make the output format stricter?` or `Add chain-of-thought reasoning to this`
 
+---
+
+## System Overview
+
+```
+User Request
+    │
+    ├── Has existing prompt? ──────────── OPTIMIZE MODE
+    │                                       │
+    ├── Needs new prompt?                   │
+    │   ├── Simple task ──── AUTO DESIGN    │
+    │   └── Complex task ── INTERACTIVE     │
+    │                        DESIGN         │
+    ├── Quality assessment? ── EVALUATE     │
+    │                          MODE         │
+    └── Learning request? ──── EDUCATE      │
+                               MODE         │
+                                            ▼
+                                    ┌───────────────┐
+                                    │ 4-D Framework  │
+                                    │  Deconstruct   │
+                                    │  Diagnose      │
+                                    │  Develop  ◄────┼── TECHNIQUES.md
+                                    │  Deliver       │     (technique catalog)
+                                    └───────┬───────┘
+                                            │
+                          ┌─────────────────┼─────────────────┐
+                          │                 │                   │
+                   EVALUATION.md      PLATFORMS.md        TEMPLATES.md
+                   (scoring rubrics)  (Claude/GPT/Gemini) (starter prompts)
+                          │                 │                   │
+                          ▼                 ▼                   ▼
+                   ┌──────────────────────────────────────────────┐
+                   │              Utility Scripts                  │
+                   │  analyze_structure.py  diff_prompts.py       │
+                   │  format_prompt.py                            │
+                   └──────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with a rich reference layer and three utility scripts.
-
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Core 4-D methodology, decision flow, three optimization patterns (Role+Context+Task+Format, Few-Shot+CoT, Multi-Stage Pipeline), evaluation framework, anti-patterns, and platform notes |
-| `references/TECHNIQUES.md` | Full catalog of prompting techniques with detailed examples -- Role Assignment, Context Layering, Chain-of-Thought, Few-Shot, Task Decomposition, Constraints, Output Specification |
-| `references/EVALUATION.md` | Comprehensive evaluation methodology -- performance metrics (accuracy, relevance, completeness, consistency), quality metrics, and systematic testing procedures |
-| `references/TEMPLATES.md` | Battle-tested prompt templates for Analysis & Research, Creative Content, Technical Tasks, Business & Strategy, Education & Training, Data Processing, and Decision Support |
-| `references/PLATFORMS.md` | Platform-specific optimization for ChatGPT/GPT-4, Claude, and Gemini with structural preferences, special features, and concrete examples |
-| `scripts/analyze_structure.py` | Static analysis of prompt structure -- detects presence of role, context, task, format, and examples sections |
-| `scripts/diff_prompts.py` | Side-by-side structural diff of two prompt versions for tracking iterations during refinement |
-| `scripts/format_prompt.py` | Normalizes prompt formatting into consistent structure (XML, Markdown, or plain style) |
+| Component | Type | Purpose |
+|---|---|---|
+| `prompt-engineering` | skill | Core 4-D methodology with four operating modes, three optimization patterns, evaluation framework, and platform notes |
+| `TECHNIQUES.md` | reference | Full catalog of prompting techniques with detailed examples |
+| `EVALUATION.md` | reference | Comprehensive evaluation methodology, scoring rubrics, and A/B testing process |
+| `TEMPLATES.md` | reference | Battle-tested prompt templates across seven domains |
+| `PLATFORMS.md` | reference | Platform-specific optimization for Claude, GPT-4, and Gemini |
+| `analyze_structure.py` | script | Static analysis of prompt structure -- detects role, context, task, format, and examples sections |
+| `diff_prompts.py` | script | Side-by-side structural diff of two prompt versions for tracking iterations |
+| `format_prompt.py` | script | Normalizes prompt formatting into consistent structure (XML, Markdown, or plain) |
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-### prompt-engineering
+### Component Spotlights
 
-**What it does:** Activates when you need to design, optimize, evaluate, or learn about prompts for any LLM platform. The skill automatically selects the right mode -- Optimize for fixing existing prompts, Interactive Design for building new ones, Evaluate for scoring quality, or Educate for learning techniques. It applies the 4-D framework (Deconstruct, Diagnose, Develop, Deliver) to every task.
+#### prompt-engineering (skill)
+
+**What it does:** Activates when you need to design, optimize, evaluate, or learn about prompts for any LLM platform. The skill automatically selects the right mode -- Optimize for fixing existing prompts, Interactive Design for building new ones, Evaluate for scoring quality, or Educate for learning techniques. Every task flows through the 4-D framework (Deconstruct, Diagnose, Develop, Deliver).
+
+**Input -> Output:** A prompt (or a description of what you need) -> An optimized prompt with explanation, quality scores, technique rationale, and platform-specific advice.
+
+**When to use:** You have a prompt that produces inconsistent results. You need to build a new prompt from scratch. You want to compare two prompt versions. You need to migrate a prompt between LLM platforms. You want to learn which prompting techniques apply to your situation.
+
+**When NOT to use:** Building MCP servers or Claude Code plugins (use mcp-server or skill-creator). Creating few-shot examples from scratch (use Example Design). Generating the actual content a prompt would produce (this skill optimizes the prompt, not the output).
 
 **Try these prompts:**
 
@@ -109,10 +155,87 @@ Compare these two prompt versions and tell me which one is better for generating
 
 | Reference | Topic |
 |---|---|
-| `TECHNIQUES.md` | Complete prompting technique catalog with examples for each technique |
-| `EVALUATION.md` | Systematic evaluation methodology, scoring rubrics, and A/B testing process |
-| `TEMPLATES.md` | Ready-to-use prompt templates across seven domains |
-| `PLATFORMS.md` | Platform-specific optimization guides for Claude, GPT-4, and Gemini |
+| `TECHNIQUES.md` | Complete prompting technique catalog -- Role Assignment, Context Layering, Chain-of-Thought, Few-Shot, Task Decomposition, Constraints, Output Specification |
+| `EVALUATION.md` | Systematic evaluation methodology -- performance metrics, quality metrics, A/B testing, LLM-as-Judge scoring |
+| `TEMPLATES.md` | Ready-to-use prompt templates for Analysis & Research, Creative Content, Technical Tasks, Business & Strategy, Education & Training, Data Processing, Decision Support |
+| `PLATFORMS.md` | Platform-specific optimization guides for ChatGPT/GPT-4, Claude, and Gemini with structural preferences and concrete examples |
+
+#### analyze_structure.py (script)
+
+**CLI:** `python scripts/analyze_structure.py < prompt.txt`
+**What it produces:** A structural analysis report showing which prompt components are present (role, context, task, format, examples) and which are missing.
+**Typical workflow:** Run before optimization to baseline the prompt's structure, then run after to verify improvements.
+
+#### diff_prompts.py (script)
+
+**CLI:** `python scripts/diff_prompts.py prompt_v1.txt prompt_v2.txt`
+**What it produces:** A side-by-side structural diff showing what changed between two prompt versions -- useful for tracking iteration progress.
+**Typical workflow:** After the skill produces an optimized version, diff it against the original to confirm changes are targeted and intentional.
+
+#### format_prompt.py (script)
+
+**CLI:** `python scripts/format_prompt.py --style xml < prompt.txt`
+**What it produces:** A reformatted prompt normalized to consistent structure (XML, Markdown, or plain style).
+**Typical workflow:** When adopting a team-wide prompt style convention or preparing prompts for a specific platform.
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't produce consistent results) | Good (specific, produces reliable output) |
+|---|---|
+| "Write a blog post about AI" | "Write a 1200-word blog post for technical PMs explaining how RAG pipelines reduce hallucination in customer-facing chatbots. Include 3 concrete examples and a comparison table." |
+| "Summarize this document" | "Summarize this quarterly report in 3 bullet points: key metric changes, biggest risk, and recommended action. Use the format: Metric: [change]. Risk: [description]. Action: [recommendation]." |
+| "Help me with this code" | "Review this Python function for edge cases in the date parsing logic. Focus on timezone handling and leap year boundaries. Output a table: Edge Case / Current Behavior / Fix." |
+| "Be a helpful assistant" | "You are a senior DevOps engineer with 10 years of Kubernetes experience. Diagnose this pod crash loop using the logs below. Structure your response as: Root Cause, Evidence, Fix, Prevention." |
+| "Analyze the data" | "Analyze these 500 NPS responses. Stage 1: categorize by theme. Stage 2: score sentiment per theme (-5 to +5). Stage 3: rank themes by urgency with one recommended action each." |
+
+### Structured Prompt Templates
+
+**For optimizing an existing prompt:**
+```
+This prompt gives [describe the problem -- inconsistent results, wrong format, misses key points]:
+
+[paste your prompt]
+
+Help me fix it. The output should be [describe what good output looks like].
+```
+
+**For building a new prompt from scratch:**
+```
+I need a prompt for [task description]. The audience is [who will see the output].
+The output should be structured as [format]. The key constraints are [list 2-3].
+```
+
+**For cross-platform migration:**
+```
+I have this [Claude/GPT-4/Gemini] prompt that works well:
+
+[paste prompt]
+
+I need it to work on [target platform] without losing quality. What structural
+changes are needed?
+```
+
+**For A/B testing prompt versions:**
+```
+I have two prompts for [same task]. Help me test which one produces better results.
+
+Version A: [paste]
+Version B: [paste]
+
+Test criteria: [accuracy, tone, completeness, format consistency -- pick what matters]
+```
+
+### Prompt Anti-Patterns
+
+- **The kitchen sink prompt:** Adding every possible instruction to a prompt without prioritizing. The model drowns in contradictory or irrelevant directives and produces mediocre output on everything instead of excellent output on what matters. Fix: identify the 3 most important requirements and cut the rest.
+- **The copycat prompt:** Grabbing a prompt from a blog post or ChatGPT gallery without understanding why it works. When your use case differs even slightly, the prompt fails and you cannot debug it because you never understood the design. Fix: use the 4-D framework to analyze why a template works before adapting it.
+- **The platform-blind prompt:** Writing a prompt that works on one LLM and assuming it transfers. Claude's XML tags confuse GPT-4; GPT-4's "You MUST" directives over-constrain Claude; neither format works well on Gemini. Fix: use the platform-specific translation guide to convert structural patterns.
+- **The format-free prompt:** Never specifying output structure and hoping the model guesses correctly. Each run produces a different format, making downstream processing impossible. Fix: add an explicit Output Specification section with headers, structure, and length requirements.
+- **The contradiction prompt:** Including "Be concise" and "Be thorough" in the same prompt, or asking for "creative" output with "strict formatting." The model cannot satisfy both and produces inconsistent results as it oscillates between the contradictory instructions. Fix: resolve trade-offs explicitly ("Prioritize completeness over brevity" or "Be thorough on methodology, concise on examples").
 
 ## Real-World Walkthrough
 
@@ -126,12 +249,12 @@ This code review prompt gives inconsistent results. Some reviews are great, othe
 
 You paste the prompt. The skill enters **Optimize mode** and begins with the **Deconstruct** phase. It identifies that the actual goal is a structured, repeatable code review that catches bugs, security issues, and maintainability problems. The unstated assumptions include: the reviewer should prioritize by severity, the output should be scannable by busy engineers, and the review should cover both line-level issues and architectural concerns.
 
-The **Diagnose** phase scores the prompt:
+The **Diagnose** phase scores the prompt across five dimensions:
 - **Clarity:** 2/5 -- "find bugs" is vague; what counts as a bug? Logic errors? Performance issues? Type mismatches?
 - **Specificity:** 1/5 -- no output format defined, no severity levels, no categories
-- **Structure:** 2/5 -- everything crammed into one sentence
+- **Structure:** 2/5 -- everything crammed into one sentence with no logical organization
 - **Completeness:** 2/5 -- no role, no context about the codebase or language, no examples of good reviews
-- **Efficiency:** 3/5 -- at least it's short, though brevity isn't helping here
+- **Efficiency:** 3/5 -- at least it is short, though brevity is not helping here
 
 The skill moves to the **Develop** phase and selects techniques based on the diagnosis. It applies **Role Assignment** to give the model a specific identity ("Senior software engineer with 10+ years of experience conducting code reviews at FAANG companies"). It uses **Context Layering** to structure background information (language, framework, team standards). It applies **Output Specification** to define a consistent format with severity levels (Critical, Warning, Suggestion), categories (Bug, Security, Performance, Maintainability), and a summary section. Finally, it adds a **Few-Shot Example** showing one well-formatted review finding so the model knows exactly what each entry should look like.
 
@@ -153,7 +276,7 @@ After two iterations, you have a production-ready code review prompt that produc
 I need this to work on GPT-4 too -- my team uses both Claude and ChatGPT
 ```
 
-The skill references the platform-specific guide and translates the Claude-optimized XML tags into GPT-4's preferred system/user message separation pattern, adjusting directive language from intent-based ("focus on security-critical findings first") to explicit ("You MUST categorize every finding by severity before presenting it").
+The skill references the platform-specific guide and translates the Claude-optimized XML tags into GPT-4's preferred system/user message separation pattern, adjusting directive language from intent-based ("focus on security-critical findings first") to explicit ("You MUST categorize every finding by severity before presenting it"). You now have two platform-native prompts that produce equivalent results.
 
 ## Usage Scenarios
 
@@ -210,33 +333,67 @@ The skill references the platform-specific guide and translates the Claude-optim
 
 **You end up with:** Three GPT-4-compatible prompts that preserve the original behavior using platform-native conventions, plus notes on where behavior may differ.
 
+### Scenario 5: Teaching a team prompt engineering fundamentals
+
+**Context:** Your engineering team is starting to build LLM-powered features but nobody has formal prompt engineering knowledge. You need to bring everyone up to speed quickly.
+
+**You say:** `Teach me the most important prompt engineering techniques. I'm building LLM features and my team needs to understand how to write good prompts.`
+
+**The skill provides:**
+- Educate mode walkthrough of the core techniques: Role Assignment, Context Layering, Chain-of-Thought, Few-Shot, Output Specification
+- Concrete before/after examples for each technique showing the difference between a naive prompt and an optimized one
+- The 4-D framework explained as a repeatable process anyone can follow
+
+**You end up with:** A working mental model of prompt engineering that your team can apply immediately, plus the technique catalog as an ongoing reference.
+
+---
+
+## Decision Logic
+
+**How does the skill choose which mode to use?**
+
+The skill examines your request and routes to the appropriate mode:
+- If you paste an existing prompt and describe a problem with it, **Optimize mode** activates. The 4-D framework diagnoses the prompt and applies targeted fixes.
+- If you describe what you need without an existing prompt, the skill checks complexity. Simple, well-defined tasks go to **Auto Design** (the skill builds the prompt directly). Complex or ambiguous tasks go to **Interactive Design** (the skill asks 2-3 strategic questions first).
+- If you explicitly ask to evaluate, score, test, or compare prompts, **Evaluate mode** activates with scoring rubrics and A/B testing.
+- If you ask to learn or understand techniques, **Educate mode** activates with explanations and examples.
+
+**When does the skill load references?**
+
+The SKILL.md body contains the complete 4-D methodology, three optimization patterns, a quick evaluation framework, and platform notes -- enough for 80% of tasks. References load on demand:
+- **TECHNIQUES.md** loads when the Develop phase needs detailed technique examples beyond the SKILL.md body
+- **EVALUATION.md** loads when you request systematic testing or A/B comparisons
+- **TEMPLATES.md** loads when you need a starting-point prompt for a common use case
+- **PLATFORMS.md** loads when cross-platform optimization is needed
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Prompt is too vague to diagnose | The skill cannot identify a specific weakness because the prompt has no clear goal | Provide context: what the prompt is for, who sees the output, and what "good" looks like. The skill will ask clarifying questions in Interactive Design mode. |
+| Platform-specific features have no equivalent | A Claude feature (e.g., extended thinking) has no direct GPT-4 equivalent and the translated prompt loses capability | The skill will flag features with no equivalent and suggest workaround patterns. Accept that some cross-platform translations involve trade-offs. |
+| Over-optimized prompt is too rigid | After multiple optimization rounds, the prompt is so constrained that it cannot handle input variations | Reduce constraints to the 3-5 most important ones. Use the Diagnose phase's Efficiency dimension to identify tokens that are not earning their keep. |
+| Few-shot examples bias the output | The examples are so specific that the model mimics them literally instead of generalizing the pattern | Diversify examples: use 3 examples that vary in content, length, and structure while sharing the same format pattern. The skill's technique guidance covers this. |
+| Conflicting requirements produce oscillating output | The prompt asks for contradictory things (concise + thorough, creative + structured) and each run picks a different interpretation | The Diagnose phase catches contradictions. Resolve by making one requirement primary and the other secondary, or by splitting into stages. |
+
 ## Ideal For
 
 - **Engineers building LLM-powered features** -- the systematic methodology prevents the trial-and-error spiral that wastes days of development time
 - **Product managers writing prompts for AI assistants** -- Interactive Design mode asks the right strategic questions and produces production-ready prompts without requiring prompt engineering expertise
 - **Teams maintaining prompts across multiple LLM platforms** -- platform-specific translation guides eliminate the "works on Claude, breaks on GPT-4" problem
 - **Anyone evaluating prompt quality** -- the five-dimension scoring framework and A/B testing process replace gut feeling with measurable metrics
+- **Technical writers and content teams** -- the template library and Output Specification technique produce consistent, structured content at scale
 
 ## Not For
 
-- **Building MCP servers or Claude Code plugins** -- use [mcp-server](../mcp-server/) for MCP development and [skill-foundry](../skill-foundry/) for skill authoring
-- **Creating few-shot examples from scratch** -- use [Example Design](../example-design/) for systematic example creation; this skill will reference it when Few-Shot technique is selected
+- **Building MCP servers or Claude Code plugins** -- use [mcp-server](../mcp-server/) for MCP development and [skill-creator](../skill-creator/) for skill authoring
+- **Creating few-shot examples from scratch** -- use [Example Design](../example-design/) for systematic example creation; this skill will reference it when the Few-Shot technique is selected
 - **Generating creative content directly** -- this skill optimizes the prompt, not the content itself. Use [Creative Problem Solving](../creative-problem-solving/) for ideation workflows
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through four reference files. The SKILL.md body contains the complete 4-D methodology, three optimization patterns, a quick evaluation framework, and platform notes -- enough for 80% of prompt optimization tasks. When deeper guidance is needed, the skill loads references on demand:
-
-- **TECHNIQUES.md** is loaded when the Develop phase needs detailed technique examples beyond what the SKILL.md body provides
-- **EVALUATION.md** is loaded when the user requests systematic testing or A/B comparisons
-- **TEMPLATES.md** is loaded when the user needs a starting-point prompt for a common use case
-- **PLATFORMS.md** is loaded when cross-platform optimization is needed
-
-Three Python utility scripts support the workflow: `analyze_structure.py` for static analysis of prompt components, `diff_prompts.py` for tracking structural changes between prompt versions, and `format_prompt.py` for normalizing prompt formatting across XML, Markdown, and plain styles.
+- **Fine-tuning or training models** -- prompt engineering operates at inference time. For training-time optimization, you need different tools entirely.
 
 ## Related Plugins
 
-- **[Skill Creator](../skill-foundry/)** -- Create Claude Code skills with philosophy-first design and progressive disclosure architecture
+- **[Skill Creator](../skill-creator/)** -- Create Claude Code skills with philosophy-first design and progressive disclosure architecture
 - **[Outcome Orientation](../outcome-orientation/)** -- Define measurable outcomes to evaluate whether your prompt changes actually improve results
 - **[Example Design](../example-design/)** -- Design effective few-shot examples for prompts that need input/output demonstrations
 - **[Creative Problem Solving](../creative-problem-solving/)** -- Generate breakthrough approaches when standard prompting techniques are not producing the results you need
