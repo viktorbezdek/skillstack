@@ -1,10 +1,12 @@
 ---
 name: api-design
 description: >-
-  Design production-grade APIs across REST, GraphQL, gRPC, and Python library architectures.
-  Use when working with API endpoints, REST resources, GraphQL schemas, gRPC services,
-  OpenAPI/Swagger specs, FastAPI, Pydantic models, OAuth/JWT authentication, pagination,
-  or rate limiting. NOT for building MCP servers (use mcp-server).
+  Design production-grade REST, GraphQL, gRPC, and Python library APIs with correct
+  schemas, error contracts, auth, and versioning. Use when the user asks to design an
+  API, define endpoints, create an OpenAPI/Swagger spec, design a GraphQL schema, build
+  a gRPC service, model request/response with Pydantic, add pagination, or review API
+  contracts. NOT for building MCP server tools (use mcp-server). NOT for Node.js/Express
+  API routes or backend patterns (use backend-patterns or typescript-development).
 ---
 
 # API Design
