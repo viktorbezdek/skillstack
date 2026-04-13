@@ -2,257 +2,289 @@
 
 > **v1.0.10** | Design & UX | 11 iterations
 
-> Create research-backed user personas with demographics, goals, pain points, behaviors, and empathy maps that drive real product decisions instead of collecting dust in a slide deck.
+---
 
 ## The Problem
 
-Most product teams design for a vague idea of "the user." When pressed, different team members imagine different people -- the engineer pictures a power user comfortable with CLIs, the designer imagines a non-technical manager, the PM thinks about the buyer who is not even the end user. Without explicit personas, every design discussion becomes a proxy war between these unspoken assumptions.
+Products built for "everyone" satisfy no one. Without defined user personas, teams make design decisions based on assumptions, internal preferences, and whoever is loudest in the room. The developer builds for developers. The designer builds for designers. The PM builds for the CEO. Each stakeholder imagines a different user, and the product reflects this fragmentation -- inconsistent complexity levels, conflicting feature priorities, and documentation that speaks to no one specifically.
 
-Teams that do create personas often make them wrong. They build aspirational personas -- the user they wish they had, not the one they actually have. They load personas with demographics (age 32, lives in San Francisco, owns a dog) while leaving out the parts that actually drive product decisions: goals, pain points, behaviors, and context. They create 12 personas because every stakeholder wants their favorite user type represented, diluting the focus until the personas are too numerous to remember and too generic to be useful.
+The consequences are measurable. Onboarding flows assume expert knowledge because the team forgot about beginners. Features accumulate without a clear mental model of who needs them and why. Marketing messages try to appeal to everyone and resonate with no one. Customer support handles the same confusion repeatedly because the product was designed for an imaginary user who does not match any real customer segment.
 
-The result is a set of persona documents that nobody references after the initial workshop. Design decisions revert to "I think the user would..." based on individual intuition. Features ship without a clear answer to "which persona does this serve?" and "what pain point does it address?" The personas become artifacts of the process, not tools that shape it.
+Most teams that attempt persona work either skip it entirely ("we know our users") or produce unusable artifacts. Demographic-only personas ("Sarah, 32, marketing manager") provide no actionable guidance because they describe who the user is but not what they need, what frustrates them, or how they make decisions. Aspirational personas describe the users the team wishes they had rather than the users they actually serve. Teams create 12 personas and use none of them because the set is too large to remember and too vague to apply.
 
 ## The Solution
 
-This plugin provides a structured methodology for creating personas that actually influence decisions. It starts with three persona types (proto-persona for quick alignment, lean persona for agile/MVP work, full persona for strategic decisions) so you invest the right amount of effort for your stage. Each persona captures the five components that matter: demographics, goals, pain points, behaviors, and context.
+The Persona Definition plugin gives Claude expertise in creating research-backed user personas that drive product, design, and documentation decisions. It covers three persona types matched to project stage (proto-persona for quick alignment, lean persona for agile MVPs, full persona for strategic decisions), five core components (demographics, goals, pain points, behaviors, context), empathy mapping, and a structured persona template.
 
-You get an empathy map framework (Says/Thinks/Does/Feels) for getting beneath surface-level demographics, a reusable persona template that captures goals, pain points, and documentation needs, and an anti-pattern catalog that catches the most common mistakes -- aspirational personas, too many personas, demographic-only personas, and static personas that are never updated. The skill limits you to 3-5 personas and pushes you to define goals and behaviors first, demographics second.
+The plugin provides a single focused skill that activates when you need to define target users, create customer archetypes, or build empathy maps. It enforces the critical distinctions that make personas useful: goals over demographics, pain points over features, behaviors over assumptions, and a manageable set (3-5) over an exhaustive catalog.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| "The user" is a different person in every team member's head | 3-5 explicit personas that the whole team references by name |
-| Personas are demographics-only (age, location, job title) | Full persona with goals, pain points, behaviors, context, and empathy map |
-| 12 personas that nobody remembers or uses | Constrained to 3-5 personas that are specific enough to drive decisions |
-| Aspirational personas describe users you wish you had | Research-backed personas describe users you actually have |
-| Persona documents created once and never updated | Living personas with update triggers and validation patterns |
-| Features ship without clarity on which user they serve | Every design decision traceable to a specific persona and pain point |
+| Design decisions based on whoever is loudest in the room | Decisions anchored to defined personas with documented goals and pain points |
+| Personas are demographic-only: "Sarah, 32, marketing manager" with no actionable guidance | Five-component personas: demographics, goals, pain points, behaviors, and context |
+| 12 personas created, none used -- too many to remember | 3-5 focused personas matched to actual user segments with clear differentiation |
+| Aspirational personas describe wished-for users, not actual ones | Research-backed personas grounded in real user behavior and evidence |
+| No empathy mapping -- team cannot articulate what users think vs feel vs do | Structured empathy map: Says, Thinks, Does, Feels quadrants per persona |
+| Personas created once and never updated as the product and user base evolve | Anti-pattern awareness: static personas flagged as a known failure mode |
 
 ## Installation
 
-Add the SkillStack marketplace, then install this plugin:
+Add the marketplace and install:
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
 /plugin install persona-definition@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention relevant topics.
+### Prerequisites
+
+None. For mapping personas across stakeholder landscapes, also install `persona-mapping`. For designing journeys for defined personas, also install `user-journey-design`.
+
+### Verify installation
+
+After installing, test with:
+
+```
+Create personas for a developer documentation platform used by junior developers, senior architects, and DevOps engineers
+```
 
 ## Quick Start
 
-1. Install the plugin using the commands above.
-2. Describe the product and its users:
-   ```
-   Create user personas for a developer documentation platform -- our users range from junior developers learning their first framework to senior architects evaluating tools
-   ```
-3. The skill produces 3-4 distinct personas with goals, pain points, behaviors, and documentation preferences.
-4. Deep-dive into a specific persona:
-   ```
-   Build an empathy map for the junior developer persona -- what do they say, think, do, and feel when trying to learn a new API?
-   ```
-5. Get a four-quadrant empathy map that reveals motivations and frustrations beneath the surface-level description.
+1. Install the plugin using the commands above
+2. Ask: `I need to define the target users for our new API management product -- we serve individual developers and enterprise platform teams`
+3. The skill creates differentiated personas for each user segment with goals, pain points, and behaviors
+4. You receive structured persona documents with empathy maps and documentation needs
+5. Next, try: `Our onboarding flow assumes expert knowledge -- help me create a beginner persona so we can redesign it`
+
+---
+
+## System Overview
+
+```
+persona-definition/
+├── .claude-plugin/
+│   └── plugin.json            # Plugin manifest
+└── skills/
+    └── persona-definition/
+        ├── SKILL.md           # Core skill (persona types, components, empathy map, templates, anti-patterns)
+        └── evals/
+            ├── trigger-evals.json   # 13 trigger evaluation cases
+            └── evals.json           # 3 output evaluation cases
+```
+
+A single skill with no additional references. The SKILL.md contains the complete persona definition framework: three persona types, five core components, empathy map structure, the persona template, and anti-patterns.
 
 ## What's Inside
 
-Compact single-skill plugin focused on user persona creation and audience definition.
+| Component | Type | Purpose |
+|---|---|---|
+| `persona-definition` | Skill | Persona types, core components, empathy mapping, persona template, anti-pattern detection |
 
-| Component | Description |
-|---|---|
-| **SKILL.md** | Core skill covering persona types (proto, lean, full), five core components, empathy map framework, persona template, and anti-patterns |
-| **evals/** | 13 trigger evaluation cases + 3 output quality evaluation cases |
+### Component Spotlight
 
-### persona-definition
+#### persona-definition (skill)
 
-**What it does:** Activates when you need to create user personas, define target audiences, build customer archetypes, or understand user goals and pain points. It provides a structured methodology for creating personas at three levels of detail, with empathy maps for deeper behavioral insight and anti-pattern detection to prevent common mistakes.
+**What it does:** Activates when you need to create user personas, define target audiences, or build empathy maps. Provides three persona types matched to project stage, five core components for each persona, the empathy map framework (Says/Thinks/Does/Feels), a structured template, and anti-pattern detection.
+
+**Input -> Output:** A description of your product and user segments -> Structured personas with demographics, goals, pain points, behaviors, context, and empathy maps, sized appropriately (proto, lean, or full).
+
+**When to use:**
+- Defining target users for a new product or feature
+- Creating customer archetypes for marketing and positioning
+- Building empathy maps to understand user motivations
+- Reviewing existing personas that feel stale or unusable
+- Aligning a team around who they are building for
+
+**When NOT to use:**
+- Mapping stakeholders across an organization with influence and power analysis (use `persona-mapping`)
+- Designing user journeys and touchpoints (use `user-journey-design`)
+- Writing user-facing copy and microcopy (use `ux-writing`)
+- Prioritizing which persona to serve first (use `prioritization`)
 
 **Try these prompts:**
 
 ```
-Create user personas for a B2B project management tool -- our customers are mid-size agencies with PMs, designers, and developers
+Create personas for a project management tool used by freelancers, small agency teams, and enterprise PMOs
 ```
 
 ```
-I need a quick proto-persona for our MVP -- we're building a budgeting app for freelancers
+Build an empathy map for a first-time user of our developer CLI tool -- they just installed it and don't know where to start
 ```
 
 ```
-Build an empathy map for a first-time user of our CLI tool who comes from a GUI background
+Our current personas are just demographics (name, age, job title). Help me add goals, pain points, and behaviors to make them actionable.
 ```
 
 ```
-Review our existing personas -- I think they're too aspirational and don't match our actual users
+I need a quick proto-persona for a hackathon project -- we're building a meeting summarizer for remote teams
 ```
 
 ```
-We have 8 personas and nobody can remember them. Help me consolidate to a manageable set.
+Review our 8 personas -- we suspect there's overlap and the set is too large to be useful
 ```
-
-```
-What persona components am I missing? I have demographics and job titles but the personas feel shallow.
-```
-
-## Real-World Walkthrough
-
-You are the product lead for a developer tools company launching a new API testing platform. The platform targets developers who currently use Postman, curl, or custom scripts to test APIs. You need personas to guide the product roadmap, documentation strategy, and onboarding flow.
-
-**Step 1: Choose the right persona type.**
-
-You are past the MVP stage and making strategic decisions about the product direction. You ask:
-
-```
-We're building an API testing platform competing with Postman. We need personas to guide our product roadmap and docs strategy. We have 2,000 beta users and survey data. What persona type should I use?
-```
-
-The skill recommends full personas because you have real user data and are making strategic decisions. Proto-personas would be too shallow for roadmap planning. Lean personas would work for a single sprint's worth of decisions, but you need personas that last across quarters.
-
-**Step 2: Define the persona set.**
-
-Based on your description of the user base, the skill produces three personas:
-
-**Alex, the API-First Developer** (Tech Savvy: 5/5)
-- Role: Backend developer at a startup
-- Primary goal: Test APIs as part of the development workflow, not as a separate step
-- Pain point: Switching between IDE and Postman breaks flow; wants everything in the terminal
-- Behavior: Prefers CLI tools, automates everything, writes tests before manual checking
-- Context: Uses VS Code, works in TypeScript/Python, deploys multiple times per day
-
-**Maya, the QA Engineer** (Tech Savvy: 3/5)
-- Role: QA lead at a mid-size company
-- Primary goal: Create comprehensive test suites for API contracts that run in CI
-- Pain point: Postman collections are hard to version control and share with the team
-- Behavior: Methodical, documents every test case, needs to report results to stakeholders
-- Context: Works across multiple projects, needs to hand off tests to other QA team members
-
-**Jordan, the Technical Lead** (Tech Savvy: 4/5)
-- Role: Engineering manager evaluating tools for the team
-- Primary goal: Standardize API testing across 5 backend teams
-- Pain point: Every team uses different tools; no consistency in how APIs are tested
-- Behavior: Decision-maker, evaluates tools on team adoption and maintainability, not just features
-- Context: Manages 20+ developers, needs pricing transparency, cares about onboarding time
-
-The skill keeps it to three personas and ensures each represents a distinct decision-making pattern, not just a different job title.
-
-**Step 3: Build empathy maps.**
-
-You want to understand Alex more deeply to design the CLI experience. You ask:
-
-```
-Build an empathy map for Alex, the API-first developer
-```
-
-The skill produces the four-quadrant empathy map:
-
-| SAYS | THINKS |
-|------|--------|
-| "I just want to test this endpoint real quick" | "Why do I need a GUI for something curl can do?" |
-| "Can I run this from my CI pipeline?" | "If I have to leave my terminal, I'll just use curl" |
-
-| DOES | FEELS |
-|------|-------|
-| Writes bash scripts to test APIs | Frustrated by context-switching between IDE and GUI tools |
-| Avoids tools that require mouse interaction | Proud of automated workflows; annoyed by manual steps |
-
-This reveals that Alex's adoption hinges on terminal integration, not on feature parity with Postman. The onboarding flow for Alex should start with a CLI command, not a web dashboard.
-
-**Step 4: Validate against anti-patterns.**
-
-You run the personas through the anti-pattern checklist:
-
-```
-Check these three personas for anti-patterns. Are they aspirational? Too demographic-focused? Am I missing anything?
-```
-
-The skill catches one issue: Jordan's persona has solid demographics and goals but weak behavioral detail. What does Jordan actually do when evaluating a tool? The fix: add the evaluation behavior -- Jordan installs the tool, tries the onboarding in under 15 minutes, checks documentation quality, and asks two team members to try it independently. This behavioral detail directly informs the onboarding design: the first 15 minutes must demonstrate value to Jordan, or the deal is lost.
-
-**Step 5: Connect personas to product decisions.**
-
-With personas defined, you start making decisions. The documentation strategy now maps directly to personas: Alex gets a CLI quickstart guide (5 minutes to first API call from terminal), Maya gets a test suite tutorial (building a comprehensive collection), Jordan gets an evaluation guide (team rollout plan with ROI). The onboarding flow splits by persona: CLI-first path for Alex, guided wizard for Maya, team admin setup for Jordan.
-
-The result: three research-backed personas that the entire team references by name. Feature prioritization debates shift from "I think the user wants..." to "This serves Alex's workflow, but what about Maya?" Documentation covers all three learning styles and use cases. The personas are not artifacts from a workshop -- they are active tools that shape every product decision.
-
-## Usage Scenarios
-
-### Scenario 1: Creating personas for a new product
-
-**Context:** You are launching a fitness app and need to understand your target users before designing the first features.
-
-**You say:** "Create user personas for a fitness tracking app targeting people who want to start exercising but find existing apps intimidating."
-
-**The skill provides:**
-- 3-4 personas spanning the motivation spectrum (health anxiety, social accountability, habit formation)
-- Goals and pain points specific to fitness beginners (not gym regulars)
-- Behavioral patterns: when they exercise, what triggers quitting, what keeps them going
-- Anti-pattern check: ensures personas are not aspirational athletes
-
-**You end up with:** Personas that represent your actual target users (beginners), not the users you wish you had (fitness enthusiasts), directly informing a beginner-friendly feature set.
-
-### Scenario 2: Consolidating too many personas
-
-**Context:** Over two years, your team accumulated 9 personas. Nobody remembers them and they contradict each other in feature prioritization.
-
-**You say:** "We have 9 personas and they're not useful anymore. Help me consolidate to 3-4 that cover our actual user base."
-
-**The skill provides:**
-- Analysis of overlap between existing personas (which ones share goals and behaviors?)
-- Consolidation strategy: merge similar personas, retire edge cases
-- Validation criteria for the reduced set: does each persona represent a distinct decision-making pattern?
-- Migration plan for existing documents that reference old persona names
-
-**You end up with:** 3-4 consolidated personas that cover the full user base, are distinct enough to drive different design decisions, and are memorable enough that the team actually uses them.
-
-### Scenario 3: Making shallow personas actionable
-
-**Context:** Your personas are just demographics and job titles. They do not drive any product decisions.
-
-**You say:** "Our personas have name, age, job title, and a generic quote. They feel useless. How do I make them drive actual product decisions?"
-
-**The skill provides:**
-- Gap analysis: what is missing (goals, pain points, behaviors, context)
-- Empathy map exercise for each persona to uncover Says/Thinks/Does/Feels
-- Goal hierarchy: primary goals, secondary goals, experience goals, prevention goals
-- Decision test: for each persona, one product decision that would be different because of this persona
-
-**You end up with:** Enriched personas with behavioral depth, plus a concrete example of how each persona changes a specific product decision.
-
-## Ideal For
-
-- **Product managers starting a new product** -- personas built before features prevent designing for imaginary users
-- **UX designers planning research and usability tests** -- personas define who to recruit and what scenarios to test
-- **Documentation teams tailoring content** -- persona documentation needs (format, detail level, learning style) directly shape the docs strategy
-- **Teams with too many or too shallow personas** -- consolidation and enrichment patterns make existing personas useful again
-- **Founders validating product-market fit** -- proto-personas test assumptions about who the user is before investing in full research
-
-## Not For
-
-- **Mapping stakeholders across organizations** -- use [persona-mapping](../persona-mapping/) for Power-Interest matrices, RACI charts, and influence analysis
-- **Designing user journeys and touchpoint maps** -- use [user-journey-design](../user-journey-design/) for mapping the end-to-end experience
-- **Defining OKRs and success metrics** -- use [outcome-orientation](../outcome-orientation/) for connecting user outcomes to business goals
-
-## How It Works Under the Hood
-
-The skill is a compact, focused knowledge base covering the core discipline of user persona design. The SKILL.md provides the complete framework: three persona types (proto, lean, full) with detail levels, five core components (demographics, goals, pain points, behaviors, context), the empathy map framework (Says/Thinks/Does/Feels), a reusable persona template with goals, pain points, and documentation needs, and an anti-pattern catalog (aspirational personas, too many personas, demographic-only, static personas).
-
-There are no additional reference files -- the skill is deliberately compact so it loads fully into context and delivers immediate, actionable persona design guidance.
-
-The evaluation suite (13 trigger cases, 3 output quality cases) ensures the skill activates reliably on persona and audience definition queries.
-
-## Related Plugins
-
-- **[Persona Mapping](../persona-mapping/)** -- Maps stakeholders across organizations with Power-Interest matrices and RACI charts
-- **[User Journey Design](../user-journey-design/)** -- Maps the end-to-end journey for each persona across touchpoints
-- **[Outcome Orientation](../outcome-orientation/)** -- Connects persona goals to measurable business outcomes
-- **[UX Writing](../ux-writing/)** -- Crafts microcopy tailored to each persona's language and comprehension level
-
-## Version History
-
-- `1.0.10` fix(design+docs): regenerate READMEs for design and documentation plugins
-- `1.0.9` fix: add standard keywords and expand READMEs to full format
-- `1.0.8` fix: change author field from string to object in all plugin.json files
-- `1.0.7` fix: rename all claude-skills references to skillstack
-- `1.0.0` Initial release
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "I need users" | "Create 3 personas for a B2B analytics dashboard used by data analysts, engineering managers, and C-suite executives" |
+| "Who is our target audience?" | "Define the target user for a code review tool -- primarily senior engineers at mid-size startups, but also used by junior developers" |
+| "Make me a persona" | "Build a full persona for a DevOps engineer who evaluates and adopts monitoring tools for their team" |
+| "Help with empathy mapping" | "Create an empathy map for a non-technical product manager who uses our API documentation to understand integrations" |
+
+### Structured Prompt Templates
+
+**For new persona creation:**
+```
+Create [proto/lean/full] personas for [product type]. User segments: [segment 1, segment 2, segment 3]. Each persona needs: goals (what they want to achieve), pain points (what blocks them), and behaviors (how they work today). Product context: [what the product does].
+```
+
+**For empathy mapping:**
+```
+Build an empathy map for [persona type] using [product]. They are trying to [task]. Their experience level with [domain] is [beginner/intermediate/expert]. Focus on the gap between what they say they want and what they actually do.
+```
+
+**For persona review:**
+```
+Review these personas: [list or paste existing personas]. Check for: overlap between personas, missing goals/pain points, demographic-only definition, aspirational bias. Recommend consolidation or enhancement.
+```
+
+### Prompt Anti-Patterns
+
+- **Describing features instead of users** -- "I need a persona for someone who uses our dashboard filters" describes a feature, not a user; describe the person's role, goals, and context instead
+- **Requesting only demographics** -- age, job title, and location are insufficient; always ask for goals, pain points, and behaviors
+- **Creating too many personas** -- 3-5 is the practical maximum; more than 5 means segments overlap or are too granular
+- **Building aspirational personas** -- describe users as they ARE, not as you wish they were; if you want expert users but serve beginners, the persona should reflect beginners
+
+## Real-World Walkthrough
+
+**Starting situation:** You are building a cloud cost optimization platform. The sales team says "our users are DevOps engineers," but the product team suspects there are multiple distinct user types with different needs. Support tickets show confusion from both technical and non-technical users, and the onboarding flow assumes deep cloud infrastructure knowledge.
+
+**Step 1: Identifying segments.** You ask: "Help me define personas for a cloud cost optimization platform. Sales says 'DevOps engineers' but support tickets show both deeply technical and non-technical users struggling."
+
+The skill identifies three likely segments from the description: (1) the DevOps/platform engineer who implements and operates the tool, (2) the engineering manager who uses reports to make staffing and architecture decisions, and (3) the finance/FinOps analyst who needs cost data without infrastructure knowledge. These are differentiated by goals, technical depth, and decision authority.
+
+**Step 2: Building the first persona.** The skill creates a full persona for the platform engineer:
+
+"Alex, Platform Engineer" -- Tech Savvy: 5/5 -- Primary goal: reduce cloud spend without sacrificing reliability or development velocity. Pain points: cost dashboards show raw data but no actionable recommendations, alerts fire too late (after the bill is generated), and implementing changes requires understanding 3 different cloud provider consoles. Behaviors: checks costs weekly, responds to alerts reactively, prefers CLI and API access over dashboards, evaluates tools by trying free tiers before involving procurement.
+
+**Step 3: Empathy mapping.** The skill constructs the empathy map for Alex:
+- Says: "I need to cut our cloud bill by 20% this quarter"
+- Thinks: "If I resize these instances I might break the deployment pipeline -- is it worth the risk?"
+- Does: Checks spot instance pricing manually, creates spreadsheets to track savings, avoids changes before release cycles
+- Feels: Pressure from management to cut costs, anxiety about causing outages, frustration that cost tools don't understand their deployment patterns
+
+The gap between Says and Does is revealing: Alex says they want to cut costs but avoids making changes due to reliability anxiety. The product needs to address the risk-of-change fear, not just show cost data.
+
+**Step 4: Second persona -- the manager.** "Jordan, Engineering Manager" -- Tech Savvy: 3/5 -- Primary goal: understand where money is going and justify infrastructure decisions to leadership. Pain points: cost reports are too granular (instance-level) when they need team-level and service-level views, cannot correlate cost increases with specific product decisions, reports need manual export for executive presentations. Behaviors: reviews costs monthly, delegates implementation to platform team, makes decisions based on trends not real-time data.
+
+**Step 5: Third persona -- the FinOps analyst.** "Morgan, FinOps Analyst" -- Tech Savvy: 2/5 -- Primary goal: allocate cloud costs to business units and forecast monthly spend. Pain points: tagging is inconsistent so cost allocation is manual, no understanding of what a "t3.xlarge" is or why it costs what it does, needs to produce reports for finance that translate technical resources into business cost centers. Behaviors: works in spreadsheets, requests data from engineering rather than self-serving, evaluates tools by reporting capabilities.
+
+**Step 6: Anti-pattern review.** The skill checks the persona set:
+- Not aspirational? Confirmed -- each persona reflects real segments observed in support tickets
+- 3-5 personas? Yes -- 3 personas with clear differentiation
+- More than demographics? Yes -- each has goals, pain points, behaviors, and context
+- Static risk? Flagged -- these should be updated quarterly as the product evolves and user base shifts
+
+**Final outcome:** Three differentiated personas with empathy maps, covering the technical implementer, the management decision-maker, and the non-technical analyst. Each persona provides clear guidance for feature prioritization (Alex needs CLI/API, Jordan needs team-level views, Morgan needs business-unit reports), onboarding design (three different paths by technical depth), and documentation strategy (three different content levels).
+
+**Gotchas discovered:** The empathy map revealed that the platform engineer's core blocker is reliability anxiety, not lack of cost data. This insight redirects product strategy from "better dashboards" to "safe, reversible cost optimization with rollback."
+
+## Usage Scenarios
+
+### Scenario 1: Quick alignment for a hackathon project
+
+**Context:** You have 48 hours to build a meeting summarizer for remote teams. You need a proto-persona to align the team quickly without extensive research.
+
+**You say:** "I need a quick proto-persona for a meeting summarizer product -- our target is remote team leads who have too many meetings."
+
+**The skill provides:**
+- Proto-persona (low detail, high speed): "Taylor, Remote Team Lead" -- 10+ meetings/week, primary goal is to stop attending meetings just for the notes, pain point is missing action items from meetings they skip
+- Key behavioral insight: Taylor forwards meeting recordings to junior team members and asks for summaries -- they're already working around the problem manually
+- Documentation preference: bullet-point summaries with action items highlighted, not transcripts
+
+**You end up with:** An aligned team vision in 5 minutes -- everyone knows who Taylor is and what Taylor needs.
+
+### Scenario 2: Making existing personas actionable
+
+**Context:** Your team has 6 personas that are just demographic profiles: name, age, job title, company size. Nobody uses them because they don't inform any decisions.
+
+**You say:** "Enhance these demographic-only personas with goals, pain points, and behaviors. Here are the 6: [names and titles]."
+
+**The skill provides:**
+- Review finding: 2 of the 6 personas overlap significantly (same goals, same pain points, different demographics)
+- Recommendation: consolidate to 4 personas
+- For each: added primary and secondary goals, 3 specific pain points, key behaviors, and documentation needs
+- Empathy maps highlighting the gap between what each persona says vs does
+
+**You end up with:** 4 actionable personas with clear decision-guiding content, down from 6 demographic-only profiles nobody used.
+
+### Scenario 3: Designing for a persona you forgot
+
+**Context:** Your product's onboarding has a 30% completion rate. You realize the onboarding was designed for expert users, but most signups are beginners trying the product for the first time.
+
+**You say:** "Our onboarding assumes expertise but most new signups are beginners. Help me create a beginner persona so we can redesign the flow."
+
+**The skill provides:**
+- Beginner persona: "Sam, Curious Evaluator" -- Tech Savvy: 2/5 -- heard about the product from a colleague, has no domain expertise, evaluating against 3 competitors
+- Pain points: onboarding uses jargon without explanation, first-value takes 20 minutes (competitors show value in 3), cannot tell if the product is "for people like me"
+- Key behavior: abandons at step 3 (configuration), never reaches the core feature
+- Empathy map: Says "this looks powerful" / Thinks "I don't even know where to start" / Does clicks the first button and gets lost / Feels overwhelmed and considers switching to competitor
+
+**You end up with:** A beginner persona that explains the 30% completion rate and provides specific guidance for redesigning the onboarding flow.
+
+---
+
+## Decision Logic
+
+**Which persona type to use?**
+
+- **Proto-persona** (low detail) -- when you need quick team alignment without research investment. Hackathons, early-stage startups, initial brainstorming. Replace with lean/full personas when real data becomes available.
+- **Lean persona** (medium detail) -- when you are building an MVP or running an agile process that needs actionable personas without exhaustive research. Startups, small teams, rapid iteration.
+- **Full persona** (high detail) -- when making strategic decisions: product positioning, major redesigns, enterprise sales strategy, multi-year roadmaps. Requires real user research data.
+
+**How many personas?**
+
+3-5 for most products. Fewer than 3 usually means you have not differentiated your segments. More than 5 usually means segments overlap and should be consolidated. Test: if two personas would make the same decision in every product scenario, they are the same persona.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Aspirational personas | Personas describe expert power users but product serves mostly beginners | Rebuild from actual user data: support tickets, usage analytics, interview transcripts |
+| Too many personas | 8+ personas, team cannot remember or apply them | Consolidate by merging personas with the same goals/pain points; target 3-5 |
+| Demographic-only | Persona has name, age, title but no goals, pain points, or behaviors | Add the five core components: demographics, goals, pain points, behaviors, context |
+| Static personas | Personas created 2 years ago, never updated as product and users evolved | Schedule quarterly reviews; update when user segments shift or new segments emerge |
+| No differentiation | All personas want the same thing, experience the same pain points | Reevaluate segmentation criteria; differentiate by goals and constraints, not just job title |
+
+## Ideal For
+
+- **Product managers** defining target users to guide feature prioritization and roadmap decisions
+- **Designers** building empathy maps and user understanding before designing interfaces
+- **Marketing teams** creating customer archetypes for positioning, messaging, and content strategy
+- **Founders** aligning the team around who the product serves in early-stage development
+- **Documentation teams** understanding audience technical levels to calibrate content depth
+
+## Not For
+
+- **Stakeholder mapping across organizations** -- influence analysis, RACI charts, and power-interest matrices use `persona-mapping`
+- **User journey mapping** -- designing touchpoints and experience flows for defined personas uses `user-journey-design`
+- **UX copy and microcopy** -- writing persona-appropriate interface text uses `ux-writing`
+
+## Related Plugins
+
+- **persona-mapping** -- mapping personas and stakeholders across organizational power structures
+- **user-journey-design** -- designing experience journeys for defined personas
+- **ux-writing** -- writing interface text calibrated to persona technical level
+- **outcome-orientation** -- defining outcomes that matter to each persona
+- **prioritization** -- deciding which persona's needs to address first
+
+---
+
+*SkillStack plugin by [Viktor Bezdek](https://github.com/viktorbezdek) -- licensed under MIT.*
