@@ -6,22 +6,9 @@ Automate development workflows end-to-end including CI/CD pipelines, multi-agent
 
 ## What Problem Does This Solve
 
-Modern software delivery involves a web of interdependent processes — parallel feature branches, multi-agent task pipelines, versioned releases, scientific computation jobs — that are easy to start manually but painful to scale and reproduce. Ad-hoc automation accumulates as one-off scripts that break when contributors change, releases require human memory to execute correctly, and complex workflows get blocked on a single bottleneck. This skill provides structured patterns and tooling for orchestrating all of these: from git worktree management and multi-agent coordination to semantic release automation and FABER state machine workflows.
+Modern software delivery involves a web of interdependent processes -- parallel feature branches, multi-agent task pipelines, versioned releases, scientific computation jobs -- that are easy to start manually but painful to scale and reproduce. Ad-hoc automation accumulates as one-off scripts that break when contributors change, releases require human memory to execute correctly, and complex workflows get blocked on a single bottleneck. Teams end up with tribal knowledge about how to release, how to coordinate parallel work, and how to recover when automated pipelines fail.
 
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "Automate my versioning and changelog so releases don't require manual steps" | Semantic Release setup with conventional commits, local-first release workflow, and version bump rules (feat/fix/BREAKING CHANGE) |
-| "I need to run multiple agents in parallel with dependencies between stages" | WorkflowEngine patterns for multi-agent coordination with stage dependencies, error recovery, and performance monitoring |
-| "We're doing parallel feature development and branches keep colliding" | Git worktree creation scripts following GitFlow conventions (feature/, fix/, hotfix/) with list and cleanup utilities |
-| "My Python computation jobs need caching and parallel execution" | Scientific workflow tool selection guide: joblib for simple caching, Parsl for HPC clusters, Prefect for complex DAGs |
-| "Set up automated code review that enforces our quality standards" | TRUST 5 framework (Test-first, Readable, Unified, Secured, Trackable) implemented via AutomatedCodeReviewer with configurable thresholds |
-| "Coordinate a TDD cycle, debugging, and review as a single automated workflow" | TDDManager, AIDebugger, and AutomatedCodeReviewer modules that chain together as a development workflow pipeline |
-
-## When NOT to Use This Skill
-
-- CI/CD pipeline configuration or YAML -- use [cicd-pipelines](../cicd-pipelines/) instead
+This skill provides structured patterns and tooling for all of these: from git worktree management and multi-agent coordination to semantic release automation, FABER state machine workflows, and scientific computation tool selection. It is the largest skill in SkillStack by component count -- 6 modules, 11 reference docs, 30+ FABER scripts, CI/CD templates for both GitHub Actions and GitLab CI, 6 scientific workflow subskills, and example code for enterprise testing and browser automation.
 
 ## Installation
 
@@ -34,12 +21,10 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
-## How to Use
-
 **Direct invocation:**
 
 ```
-Use the workflow-automation skill to ...
+Use the workflow-automation skill to set up semantic release for my project
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -51,42 +36,69 @@ Use the workflow-automation skill to ...
 
 ## What's Inside
 
-- **When to Use This Skill** -- Eight use case categories with specific examples for when to activate this skill vs. related ones.
-- **Quick Decision Guide** -- Decision tree for routing to the right capability: CI/CD pipelines, git worktrees, scientific computation, multi-agent coordination, TDD/debug/review cycles, or release automation.
-- **Core Capabilities** -- Detailed module breakdowns for all seven capabilities: CI/CD pipelines, git worktree management, scientific workflow tool selection, multi-agent orchestration, TDD/debug/review automation, semantic release, and FABER state management.
-- **Quality Metrics** -- Threshold table for test coverage (>=85%), TRUST Score (>=0.85), critical issue count, performance regression limit, and API response time targets.
-- **Best Practices** -- Concise rules for CI/CD pipeline design, git workflow hygiene, development workflow discipline, and release automation conventions.
-- **Resources Directory Structure** -- Annotated directory tree of all modules, references, scripts, subskills, templates, and examples included in the skill.
+This is a **single-skill plugin** with an unusually large supporting structure: modules, references, scripts, subskills, templates, examples, and docs.
 
-## Key Capabilities
+### Core Capabilities
 
-- **CI/CD Pipelines**
-- **Git Workflows**
-- **Scientific Workflows**
-- **Multi-Agent Orchestration**
-- **TDD/Development Cycles**
-- **Code Review Automation**
+| Capability | Key resources | What it covers |
+|---|---|---|
+| CI/CD Pipelines | `references/cicd/`, `templates/github-actions/`, `templates/gitlab-ci/` | Pipeline design patterns, DevSecOps scanning (SAST, DAST, SCA), deployment strategies (blue-green, canary, rolling), troubleshooting |
+| Git Worktree Management | `scripts/git/` | Worktree creation/listing/cleanup following GitFlow conventions (feature/, fix/, hotfix/) |
+| Scientific Workflows | `subskills/` (joblib, Prefect, Parsl, Covalent, FireWorks, quacc) | Tool selection from simple joblib caching to HPC cluster orchestration with Parsl to complex DAGs with Prefect |
+| Multi-Agent Orchestration | `references/alfred-workflow-reference.md` | WorkflowEngine patterns for coordinating multiple agents with stage dependencies, error recovery, and performance monitoring |
+| TDD/Debug/Review | `modules/` (tdd-context7, ai-debugging, automated-code-review, smart-refactoring, performance-optimization) | TDDManager, AIDebugger, and AutomatedCodeReviewer with TRUST 5 framework (Test-first, Readable, Unified, Secured, Trackable) |
+| Semantic Release | `references/semantic-release/`, `scripts/release/` | Local-first release workflow, conventional commits, version bump rules, monorepo support, PyPI publishing, troubleshooting |
+| FABER State Management | `scripts/faber/` | 30+ shell scripts for state machine workflows: init, read, write, validate, lock, hook, phase, and audit operations |
 
-## Version History
+### Component Inventory
 
-- `1.1.21` fix(devops): disambiguate cicd-pipelines vs workflow-automation vs docker-containerization (c60a8d7)
-- `1.1.20` fix: update plugin count and normalize footer in 31 original plugin READMEs (3ea7c00)
-- `1.1.19` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.1.18` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.1.17` refactor: remove old file locations after plugin restructure (a26a802)
-- `1.1.16` docs: update README and install commands to marketplace format (af9e39c)
-- `1.1.15` refactor: restructure all 34 skills into proper Claude Code plugin format (7922579)
-- `1.1.14` refactor: make each skill an independent plugin with own plugin.json (6de4313)
-- `1.1.13` revert: restore faber/ subdirectory for FABER framework scripts (65a131e)
-- `1.1.12` fix: resolve broken links, flatten faber scripts, add validate-patterns.py (4647f46)
+| Type | Count | Examples |
+|---|---|---|
+| Modules | 6 | TDD, AI debugging, code review, refactoring, performance optimization |
+| Reference docs | 11+ | CI/CD best practices, GitFlow conventions, semantic release guides, Playwright patterns |
+| Scripts | 40+ | FABER state machine (30), git worktrees (3), release automation (4), workflow utilities (3) |
+| Subskills | 6 | joblib, Prefect, Parsl, Covalent, FireWorks, quacc |
+| CI/CD templates | 10 | GitHub Actions + GitLab CI for Node, Python, Go, Docker, security scanning |
+| Examples | 5 | AI-powered testing, enterprise testing workflow, browser automation, console logging |
 
-## Related Skills
+## Usage Scenarios
 
-- **[Cicd Pipelines](../cicd-pipelines/)** -- Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise ...
-- **[Cloud Finops](../cloud-finops/)** -- Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, cloud billing (AWS, Azure, GCP), comm...
-- **[Docker Containerization](../docker-containerization/)** -- Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration...
-- **[Git Workflow](../git-workflow/)** -- Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file gro...
+**1. "Automate my versioning and changelog so releases don't require manual steps"**
+The semantic release section provides a local-first release workflow using conventional commits (feat/fix/BREAKING CHANGE) with automatic version bumps and changelog generation. Includes setup scripts (`scripts/release/init_project.sh`), multi-account authentication, and monorepo support patterns.
+
+**2. "I need to run multiple agents in parallel with dependencies between stages"**
+The multi-agent orchestration section provides WorkflowEngine patterns where you define agents by domain (spec-builder, tdd-implementer, quality-gate), wire them into stages with `depends_on` declarations, and let the engine handle execution order, error recovery, and performance monitoring.
+
+**3. "We're doing parallel feature development and branches keep colliding"**
+The git worktree scripts create isolated worktrees following GitFlow conventions. `create_worktree.sh feature email-notifications` creates a dedicated branch and working directory, `list_worktrees.sh` shows all active worktrees with status, and `cleanup_worktrees.sh --merged` removes stale ones.
+
+**4. "My Python computation jobs need caching and parallel execution"**
+The scientific workflow decision tree routes you to the right tool: joblib for simple function caching and 10-100 parallel tasks on a laptop, Parsl for 100+ tasks on HPC clusters, Prefect for complex DAGs with retries and a UI, Covalent for cloud-agnostic deployment, and quacc/FireWorks for materials science workflows.
+
+**5. "Set up automated code review that enforces our quality standards"**
+The TRUST 5 framework (Test-first, Readable, Unified, Secured, Trackable) is implemented via the AutomatedCodeReviewer module with configurable thresholds. Quality metrics target >=85% test coverage, >=0.85 TRUST score, zero critical issues, and API response times under specified limits.
+
+## When to Use / When NOT to Use
+
+**Use when:**
+- Setting up or optimizing development workflow automation (releases, worktrees, task orchestration)
+- Coordinating multi-agent workflows with stage dependencies
+- Choosing between scientific computation tools (joblib vs Prefect vs Parsl)
+- Implementing automated code review with quality gates
+- Automating semantic versioning and changelog generation
+
+**Do NOT use when:**
+- Writing CI/CD pipeline YAML configuration -- use [cicd-pipelines](../cicd-pipelines/) instead
+- Managing Docker containers or writing Dockerfiles -- use [docker-containerization](../docker-containerization/) instead
+- Git branching strategy, commit quality, or conventional commits -- use [git-workflow](../git-workflow/) instead
+
+## Related Plugins in SkillStack
+
+- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline YAML configuration that this skill's templates generate
+- **[Git Workflow](../git-workflow/)** -- Conventional commits and branch management that feed into this skill's release automation
+- **[Docker Containerization](../docker-containerization/)** -- Container builds that are the deployment target for workflows designed here
+- **[Cloud FinOps](../cloud-finops/)** -- Cost monitoring for the infrastructure these workflows run on
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
