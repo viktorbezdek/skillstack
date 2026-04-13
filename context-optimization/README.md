@@ -1,27 +1,12 @@
-# Context Optimization
-
 > **v1.0.4** | Context Engineering | 5 iterations
 
-Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.
+# Context Optimization
+
+Double or triple your effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning -- without switching to a larger model.
 
 ## What Problem Does This Solve
 
-Tool outputs alone can consume 80%+ of a context window in typical agent trajectories, yet much of that content is verbose output that has already served its purpose. Paying full token cost to re-process stale tool results on every turn wastes budget and adds latency. This skill covers four concrete techniques — compaction, observation masking, KV-cache optimization, and context partitioning — that together can double or triple effective context capacity without switching to larger models.
-
-## When to Use This Skill
-
-| You say... | The skill provides... |
-|---|---|
-| "My agent's responses degrade and latency increases as conversations extend" | Compaction strategy: when to trigger (70-80% utilization), what to compress first (tool outputs then old turns), and how to preserve system prompts |
-| "Tool outputs are dominating my context window" | Observation masking: strategy for replacing verbose outputs with compact references, with rules for what to always/never mask |
-| "I'm paying high inference costs on every call even though most context is identical" | KV-cache optimization: prefix-stable prompt ordering (system prompt first, unique content last) to maximize cache hit rates |
-| "I need to handle a task that's too large for a single context window" | Context partitioning: sub-agent isolation pattern that keeps each subtask's context clean, plus result aggregation strategies |
-| "How do I know when to apply which optimization technique?" | Decision framework: what to apply based on which component dominates — tool outputs, retrieved docs, or message history |
-| "What compression ratios and quality tradeoffs should I expect?" | Performance benchmarks: 50-70% reduction for compaction, 60-80% for masking, 70%+ cache hit rate targets for stable workloads |
-
-## When NOT to Use This Skill
-
-- reducing or compressing content via summarization -- use [context-compression](../context-compression/) instead
+Tool outputs alone consume 80%+ of a context window in typical agent trajectories, yet much of that content is verbose output that has already served its purpose. Paying full token cost to re-process stale tool results on every turn wastes budget and adds latency. Meanwhile, identical prefixes (system prompts, tool definitions) get recomputed on every request because prompts are not structured for cache hits. This skill covers four concrete techniques -- compaction, observation masking, KV-cache optimization, and context partitioning -- that together can double or triple effective context capacity. Each technique targets a different source of waste, and the skill provides a decision framework for knowing which one to apply based on what is dominating your context.
 
 ## Installation
 
@@ -34,12 +19,45 @@ Add the SkillStack marketplace, then install this plugin:
 
 Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when you mention the triggers below, or you can invoke it explicitly.
 
+## What's Inside
+
+This is a single-skill plugin with one reference document:
+
+| Component | Description |
+|---|---|
+| `skills/context-optimization/SKILL.md` | Core skill covering four optimization strategies (compaction, observation masking, KV-cache optimization, context partitioning), summary generation by message type, masking selection rules (never/consider/always mask), prefix-stable prompt ordering for cache hits, sub-agent partitioning with result aggregation, budget management with trigger-based optimization, and a decision framework mapping context composition to the right technique |
+| `references/optimization_techniques.md` | Technical reference with Python implementations: selective masking with relevance scoring, compaction threshold configuration (warning at 70%, trigger at 80%, aggressive at 90%), cache-friendly vs. cache-unfriendly prompt design, partition planning for multi-agent decomposition, an OptimizingAgent integration pattern, MemoryAwareOptimizer for memory system integration, performance benchmarks (50-70% compaction reduction, 60-80% masking reduction, 70%+ cache hit rates), monitoring metrics, and common pitfalls (over-aggressive compaction, masking critical observations, ignoring attention distribution) |
+| `evals/trigger-evals.json` | Trigger scenarios validating correct activation and near-miss rejection |
+| `evals/evals.json` | Output quality scenarios testing optimization guidance |
+
+## Usage Scenarios
+
+**1. Tool outputs dominate your context and latency is climbing**
+
+Your agent's context is 85% tool outputs from earlier turns -- file contents, search results, command outputs -- most of which are no longer relevant. Apply observation masking: replace verbose outputs with compact references like `[Obs:ref_42 elided. Key: auth endpoint returns 401]`. The skill provides selection rules: never mask observations critical to the current task or from the most recent turn; always mask repeated outputs, boilerplate, and outputs already summarized in conversation.
+
+**2. Paying high inference costs on every call despite identical prefixes**
+
+Your system prompt and tool definitions are the same across every request, but you are paying full computation cost each time. The skill covers KV-cache optimization: order context for prefix stability (system prompt first, tool definitions second, reused templates third, unique content last). Avoid dynamic content like timestamps in stable prefixes. Target: 70%+ cache hit rate for stable workloads, translating to 50%+ cost reduction and 40%+ latency reduction.
+
+**3. Response quality degrades as conversations extend past 50 turns**
+
+Context is approaching the limit and quality is dropping. Apply compaction: summarize context when utilization exceeds 80%. Priority order for compression: tool outputs (replace with summaries preserving key findings and metrics), old conversation turns (preserve decisions and commitments, remove filler), retrieved documents (summarize if newer versions exist). Never compress the system prompt. Target: 50-70% token reduction with less than 5% quality degradation.
+
+**4. Single task is too large for one context window**
+
+Your task requires processing more information than fits in one context. Use context partitioning: decompose the task across sub-agents with isolated contexts, each focused on its subtask. Sub-agents operate with clean, focused context without carrying accumulated context from other subtasks. Aggregate results by validating all partitions completed, merging compatible results, and summarizing if still too large. This is the most aggressive optimization but often the most effective.
+
+**5. Not sure which optimization to apply first**
+
+The skill provides a decision framework: if tool outputs dominate, apply observation masking first. If retrieved documents dominate, apply summarization or partitioning. If message history dominates, apply compaction with summarization. If multiple components contribute, combine strategies. Always measure before optimizing -- know your current token distribution across context components.
+
 ## How to Use
 
 **Direct invocation:**
 
 ```
-Use the context-optimization skill to ...
+Use the context-optimization skill to reduce my agent's context usage
 ```
 
 **Natural language triggers** -- Claude activates this skill automatically when you mention:
@@ -49,32 +67,29 @@ Use the context-optimization skill to ...
 - `observation-masking`
 - `compaction`
 
-## What's Inside
+## When to Use / When NOT to Use
 
-- **When to Activate** -- Six conditions signaling optimization is needed: context limits, cost reduction goals, latency problems, long-running agents, large documents, and production scale.
-- **Core Concepts** -- Four primary strategies (compaction, observation masking, KV-cache optimization, context partitioning) and the principle that context quality matters more than quantity.
-- **Detailed Topics** -- Deep coverage of compaction implementation and summary generation by message type, observation masking selection rules, KV-cache prefix ordering patterns, sub-agent partitioning, and budget management with trigger-based optimization.
-- **Practical Guidance** -- Decision framework mapping context composition to the right optimization technique, plus performance benchmarks for each strategy.
-- **Examples** -- Code patterns for compaction triggers, observation masking with reference IDs, and cache-friendly context ordering.
-- **Guidelines** -- Eight prioritized rules from measuring before optimizing through graceful degradation for edge cases.
-- **Integration** -- How this skill connects to multi-agent-patterns (partitioning as isolation), evaluation (measuring optimization effectiveness), and memory-systems (offloading context).
-- **References** -- Internal reference to the optimization techniques technical reference and external resources on KV-cache and context window research.
+**Use when:**
+- Context limits constrain task complexity
+- Optimizing for cost reduction (fewer tokens = lower costs)
+- Reducing latency for long conversations
+- Implementing long-running agent systems
+- Handling larger documents or conversations
+- Building production systems at scale
 
-## Version History
+**Do NOT use when:**
+- Reducing or compressing content via summarization techniques -- use [context-compression](../context-compression/) instead
+- Diagnosing context failures or degradation patterns -- use [context-degradation](../context-degradation/) instead
+- Learning context theory or fundamentals -- use [context-fundamentals](../context-fundamentals/) instead
+- Working with file-based context offloading -- use [filesystem-context](../filesystem-context/) instead
 
-- `1.0.4` fix(context-engineering): optimize descriptions with cross-references and NOT clauses (7881054)
-- `1.0.3` fix(context-optimization): add standard keywords and expand README to full format (ed35eb2)
-- `1.0.2` fix: change author field from string to object in all plugin.json files (bcfe7a9)
-- `1.0.1` fix: rename all claude-skills references to skillstack (19ec8c4)
-- `1.0.0` Initial release (697ea68)
+## Related Plugins
 
-## Related Skills
-
-- **[Context Compression](../context-compression/)** -- Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-...
-- **[Context Degradation](../context-degradation/)** -- Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distra...
-- **[Context Fundamentals](../context-fundamentals/)** -- Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, pro...
-- **[Filesystem Context](../filesystem-context/)** -- Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, d...
+- **[Context Compression](../context-compression/)** -- Reducing context size through summarization strategies, anchored iterative summarization, and probe-based evaluation
+- **[Context Degradation](../context-degradation/)** -- Diagnosing context failures: lost-in-middle, poisoning, distraction, clash, and confusion patterns with model-specific thresholds
+- **[Context Fundamentals](../context-fundamentals/)** -- Foundational theory: what context is, how attention works, progressive disclosure, and context budgeting
+- **[Filesystem Context](../filesystem-context/)** -- Using the file system for context: scratch pads, plan persistence, and sub-agent file workspaces
 
 ---
 
-Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- 50 production-grade plugins for Claude Code.
+Part of [SkillStack](https://github.com/viktorbezdek/skillstack) -- production-grade plugins for Claude Code.
