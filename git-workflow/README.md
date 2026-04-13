@@ -6,30 +6,28 @@
 
 ## The Problem
 
-Git histories in real projects tell no story. They are sequences of "fix stuff", "wip", "minor changes", and "update" that make `git log` useless for understanding what happened and why. When release time comes, nobody can produce a changelog because the commit messages contain no structured information. When a production bug surfaces, `git bisect` finds the commit but the message says "refactoring" with no indication of what was refactored or why.
+Git is the most widely used version control system, yet most teams use it poorly. Commit messages are inconsistent ("fix stuff", "wip", "updates"), making changelogs impossible to generate and bisection useless for finding regressions. When a developer has 15 changed files, they dump everything into a single commit instead of grouping logically -- and the resulting commit is un-reviewable and un-revertable. Branch management is ad hoc: some developers use feature branches, others commit to main, and nobody has a consistent naming convention.
 
-The branching situation is equally chaotic. Developers stash uncommitted work to switch branches, lose the stash, and recreate the work. Feature branches live for weeks without cleanup. Naming conventions vary by developer -- `my-feature`, `feature/my-feature`, `feat-my-feature` -- making branch management a manual exercise. And when the team tries to track which user stories have actually shipped, they fall back to manually checking Jira because there is no link between commits and story completion.
+The consequences compound over time. Without conventional commits, changelogs must be written manually -- and they are always incomplete. Without intelligent file grouping, code reviews cover too much surface area and miss bugs in the noise. Without worktree management, developers stash and unstash constantly, losing context and occasionally losing work. Without issue tracking integration, the link between code changes and business requirements lives only in developers' heads, and it leaves with them.
 
-These are not separate problems -- they are symptoms of the same root cause: Git is used as a backup tool (save my work) rather than a communication tool (tell the team what happened). Fixing any one symptom (adopting conventional commits, for example) without addressing the others produces partial improvement: the commit messages are formatted but the branches are still chaotic, the changelog still is not generated, and stories still are not tracked.
+The deeper problem is that each of these concerns (commits, branches, changelogs, versioning, story tracking) is typically addressed by a separate tool or convention, with no integration between them. A commit's type determines the version bump. A branch's pattern determines the commit scope. An issue reference in the commit determines the changelog entry. These relationships exist but are enforced manually, which means they break constantly.
 
 ## The Solution
 
-This plugin unifies four previously separate Git workflows into a single skill with 13 reference files, 13 scripts, and a commit templates asset. The four workflows reinforce each other: conventional commits provide the structured data that changelog generation and semantic versioning consume; branch naming conventions align with worktree management scripts; issue references in commits feed story backlog tracking.
+This plugin unifies five aspects of Git workflow management into a single skill: commit management (conventional commits, quality analysis, intelligent file grouping), branch workflows (GitFlow conventions, worktree operations), issue integration (automatic detection and linking), release management (changelog generation, semantic versioning), and story backlog management (hierarchical story tree with commit-based implementation tracking).
 
-The commit management layer provides conventional commits format (Angular convention), intelligent file grouping that splits a 12-file changeset into atomic commits by scope, quality analysis that flags problems before they enter the history, and slash commands (`/commit`, `/validate`, `/changelog`, `/version`) for quick access. The branch and worktree layer provides GitFlow conventions with naming guidelines and scripts for parallel development without stashing. The release management layer generates grouped changelogs and calculates semantic version bumps from commit history. The story tree layer maintains a SQLite-backed hierarchical backlog that auto-marks stories as implemented based on commit references.
-
-The scripts automate the tedious parts: `analyze-diff.py` reads the staged diff and suggests a commit message, `group-files.py` splits a large changeset into logical groups, `changelog.py` generates a release changelog from commit history, `version.py` determines the next version bump, and `validate.py` enforces commit format in CI.
+The skill ships with 13 automation scripts covering the full workflow: diff analysis and commit suggestion, message validation, intelligent file grouping by scope and type, changelog generation from commit history, semantic version calculation, worktree creation and cleanup, issue synchronization, and tree visualization. It includes 13 reference files covering the full conventional commits specification, commit patterns and anti-patterns, GitFlow conventions, story tree database schema, SQL query patterns, and orchestrator workflow diagrams. A commit templates JSON asset provides structured templates for every commit type.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Commit messages say "fix stuff" and "update" -- `git log` is useless for understanding history | Conventional commits format with type, scope, subject, body, and footer produce a readable, searchable history |
-| 12 staged files become one massive commit that mixes auth changes, API fixes, and test updates | Intelligent file grouping splits the changeset into 3 atomic commits by scope, each reviewable independently |
-| Release notes are written manually by reading the commit log and guessing what changed | `changelog.py` generates grouped markdown with breaking changes, features, and fixes -- ready for GitHub Releases |
-| Developers stash work to switch branches, sometimes losing the stash | Worktree scripts create parallel directories for simultaneous feature work -- no stashing, just `cd` |
-| Version bumps are debated ("is this a minor or a patch?") without clear rules | `version.py` determines the bump automatically: breaking change = major, feat = minor, fix = patch |
-| Story completion is tracked manually in Jira with no connection to actual commits | Story tree auto-marks stories as implemented based on commit references, with ASCII tree visualization |
+| Commit messages are inconsistent ("fix stuff", "updates") making changelogs impossible to generate | Conventional commits enforced with type/scope/subject format, validated by automation scripts |
+| 15 changed files dumped into one commit -- un-reviewable, un-revertable | Intelligent file grouping sorts changes by scope and type into atomic commits |
+| Branch naming is ad hoc; some use feature/, some use feat-, some use nothing | GitFlow conventions with consistent branch types (feature/, fix/, hotfix/, release/) |
+| Changelogs written manually and always incomplete | Changelog auto-generated from conventional commits with breaking changes, features, and fixes |
+| Version bumps are guesswork; someone picks a number | Semantic versioning calculated automatically from commit types (breaking -> major, feat -> minor, fix -> patch) |
+| No connection between code changes and user stories | Story tree database links commits to hierarchical user stories with acceptance criteria |
 
 ## Installation
 
@@ -40,74 +38,117 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install git-workflow@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention git, commits, branches, conventional commits, changelog, worktree, or version bumping.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention git, commits, branches, changelogs, versioning, worktrees, or story management.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
 2. Open a Claude Code session in your project
-3. Stage some changes: `git add -A`
-4. Type: `Write a commit message for my staged changes`
-5. Claude analyzes the diff, groups files by scope if needed, and produces a properly formatted conventional commit with type, scope, imperative subject, body explaining why, and footer linking issues
+3. Type: `Help me write a commit for these staged changes` -- Claude analyzes the diff and suggests properly formatted conventional commits
+4. After a few commits, try: `Generate a changelog for the next release`
+5. Then: `What should the next version be?` -- Claude calculates the semantic version bump from commit history
+
+---
+
+## System Overview
+
+```
+User prompt (commit / branch / changelog / version / story management)
+        |
+        v
++------------------+
+|  git-workflow    |
+|  skill (SKILL.md)|
++------------------+
+        |
+        +---> Part 1: Commit Management
+        |     - Conventional commits format
+        |     - Quality standards
+        |     - Intelligent file grouping
+        |     - Issue integration
+        |
+        +---> Part 2: Branch & Worktree Management
+        |     - GitFlow branch conventions
+        |     - Worktree operations (create/list/cleanup)
+        |
+        +---> Part 3: Release Management
+        |     - Changelog generation
+        |     - Semantic versioning
+        |
+        +---> Part 4: Story Tree Management
+        |     - Hierarchical backlog in SQLite
+        |     - Commit-based implementation tracking
+        |     - Tree visualization
+        |
+        +---> 13 Scripts (automation)
+        |     - analyze-diff, validate, changelog, version
+        |     - group-files, commit-analyzer, issue-tracker
+        |     - create_worktree, list_worktrees, cleanup_worktrees
+        |     - tree-view, init-environment, conventional-commits
+        |
+        +---> 13 References (deep knowledge)
+        |     - Conventional commits spec, commit patterns, examples
+        |     - GitFlow conventions, workflow diagrams
+        |     - Story tree schema, SQL queries, rationales
+        |
+        +---> 1 Asset
+              - commit-templates.json (structured commit templates)
+```
+
+Single-skill plugin with 13 references, 13 scripts, and 1 asset file. The skill covers five distinct workflow areas unified by their shared dependency on Git.
 
 ## What's Inside
 
-Large single-skill plugin with one SKILL.md, 13 reference files, 13 scripts, a commit templates asset, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | What It Provides |
+|---|---|---|
+| **git-workflow** | Skill | Unified Git workflow skill covering commits, branches, releases, and story management |
+| **commit-templates.json** | Asset | Structured templates for all conventional commit types |
+| **13 scripts** | Script | Automation for diff analysis, validation, grouping, changelog, version, worktrees, issues, tree view |
+| **13 references** | Reference | Conventional commits spec, commit patterns, GitFlow, story tree schema, SQL, workflow diagrams |
+| **trigger-evals** | Eval | 13 trigger eval cases (8 positive, 5 negative) |
+| **output-evals** | Eval | 3 output quality eval cases |
 
-| Part | What It Covers |
-|---|---|
-| **Commit Management** | Conventional commits format, type reference (feat/fix/docs/refactor/etc.), subject rules, footer conventions, quality standards |
-| **Intelligent File Grouping** | Algorithms for grouping staged files by scope, type, and relationship to produce atomic commits |
-| **Branch & Worktree Management** | GitFlow branch conventions with naming guidelines, worktree creation/listing/cleanup scripts |
-| **Release Management** | Changelog generation from commit history, semantic version calculation |
-| **Story Tree Management** | SQLite-backed hierarchical backlog with commit-based auto-marking and ASCII tree visualization |
+### Component Spotlights
 
-### Scripts
+#### git-workflow (skill)
 
-| Script | Purpose |
-|---|---|
-| `analyze-diff.py` | Analyze staged diff and suggest commit message |
-| `commit-analyzer.py` | Evaluate commit quality against standards |
-| `conventional-commits.py` | Generate conventional commit messages |
-| `validate.py` | Validate commit message format (type, scope, subject, length) |
-| `group-files.py` | Group staged files by scope for atomic commits |
-| `changelog.py` | Generate grouped markdown changelog from commit history |
-| `version.py` | Calculate next semantic version from commits |
-| `create_worktree.sh` | Create a Git worktree with GitFlow conventions |
-| `list_worktrees.sh` | List active worktrees with status |
-| `cleanup_worktrees.sh` | Clean up merged or stale worktrees |
-| `issue-tracker.py` | Integrate commit references with issue tracking |
-| `tree-view.py` | Render story tree with ASCII visualization |
-| `init-environment.py` | Initialize the Git workflow environment |
+**What it does:** Activates when you work with git commits, branches, changelogs, versioning, worktrees, or story backlogs. Provides conventional commit formatting, intelligent file grouping, GitFlow branch conventions, automated changelog generation, semantic version calculation, and hierarchical story management with a SQLite database.
 
-### git-workflow
+**Input -> Output:** You describe a git operation (writing a commit, creating a branch, generating a changelog, managing stories) -> The skill provides the proper format, automates the analysis, and produces the output using its suite of scripts.
 
-**What it does:** Activates when you ask about Git operations, commit messages, branch management, worktree operations, changelog generation, semantic versioning, or story backlog tracking. Applies conventional commits format, groups files intelligently for atomic commits, manages worktrees for parallel development, generates changelogs and version bumps from commit history, and maintains a story tree that tracks which features have shipped.
+**When to use:**
+- Writing or reviewing commit messages for conventional commits compliance
+- Grouping changed files into logical atomic commits
+- Managing feature branches and worktrees with GitFlow conventions
+- Generating changelogs from commit history
+- Calculating the next semantic version from commit types
+- Managing a hierarchical story backlog linked to code changes
+
+**When NOT to use:**
+- CI/CD pipeline configuration or deployment YAML -> use [cicd-pipelines](../cicd-pipelines/)
+- Workflow orchestration or release automation -> use [workflow-automation](../workflow-automation/)
+- Code review (the content, not the commit format) -> use [code-review](../code-review/)
 
 **Try these prompts:**
 
 ```
-Write a commit message for these staged changes -- I've modified auth, API, and test files
+Help me write a commit for these staged changes -- I have modifications in auth, api, and test files
 ```
 
 ```
-Generate the changelog for our v3.0 release based on commits since v2.5
+Group my 12 changed files into atomic commits by scope and type
 ```
 
 ```
-I need to work on a hotfix while my feature branch has uncommitted changes -- set up a worktree
+Generate a changelog for version 2.0.0 from the commit history since the last release
 ```
 
 ```
-Validate this commit message: "Added new feature for user login"
+Create a feature worktree for the email-notifications feature following GitFlow conventions
 ```
 
 ```
-What should the next version number be based on our recent commits?
-```
-
-```
-Show me the story tree and which stories have been implemented based on recent commits
+Initialize a story tree for our project and generate stories from the recent commit history
 ```
 
 **Key references:**
@@ -115,233 +156,219 @@ Show me the story tree and which stories have been implemented based on recent c
 | Reference | Topic |
 |---|---|
 | `conventional-commits.md` | Full conventional commits specification |
-| `commit-patterns.md` | Real-world commit message patterns and examples |
-| `common-mistakes.md` | Frequent commit message errors and how to fix them |
-| `gitflow-conventions.md` | Branch naming and workflow conventions |
-| `slash-commands.md` | `/commit`, `/validate`, `/changelog`, `/version` command reference |
-| `examples.md` | Worked examples of good and bad commits |
-| `epic-decomposition.md` | Breaking epics into story trees |
-| `schema.sql` | SQLite schema for the story tree database |
-| `sql-queries.md` | Queries for story tree management |
+| `commit-patterns.md` | Commit patterns and anti-patterns |
+| `examples.md` | Commit examples for each type |
+| `slash-commands.md` | Detailed command workflows |
+| `gitflow-conventions.md` | GitFlow branch reference |
+| `schema.sql` | Story tree database schema |
+| `sql-queries.md` | SQL query patterns for story operations |
+| `common-mistakes.md` | Error prevention for story tree |
+| `rationales.md` | Design decisions and rationale |
+| `epic-decomposition.md` | Epic breakdown workflow |
 | `workflow-diagrams.md` | Visual workflow diagrams |
+| `orchestrator-workflow-complete.md` | Full orchestrator target state |
+| `orchestrator-workflow-current.md` | Current orchestrator implementation |
+
+#### Scripts (automation tools)
+
+| Script | What It Does |
+|---|---|
+| `analyze-diff.py` | Analyzes staged changes, suggests commit messages |
+| `validate.py` | Validates commit message against conventional commits format |
+| `group-files.py` | Groups changed files by scope and type for atomic commits |
+| `commit-analyzer.py` | Full commit quality analysis |
+| `conventional-commits.py` | Conventional commits helper |
+| `changelog.py` | Generates changelog from commit history |
+| `version.py` | Calculates next semantic version from commit types |
+| `issue-tracker.py` | Syncs and detects related issues |
+| `create_worktree.sh` | Creates worktree with GitFlow conventions |
+| `list_worktrees.sh` | Lists all worktrees with status |
+| `cleanup_worktrees.sh` | Cleans up merged/stale worktrees |
+| `init-environment.py` | Initializes GitHub workflow environment |
+| `tree-view.py` | ASCII visualization of story tree |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Commit my changes" | "Help me write a conventional commit for these 8 changed files -- group them by scope" |
+| "What version should this be?" | "Calculate the next semantic version based on the commits since v1.3.2" |
+| "Make a changelog" | "Generate a changelog for v2.0.0 covering all commits since v1.5.0, grouped by type" |
+| "Manage my branches" | "Create a feature worktree for user-preferences following GitFlow conventions" |
+| "Help with stories" | "Initialize a story tree and generate user stories from the commits in the last sprint" |
+
+### Structured Prompt Templates
+
+**For commit writing:**
+```
+Help me write [a commit / commits] for [my staged changes / these files: ...]. The changes are in [scope area]. [Link to issue #N if applicable].
+```
+
+**For changelog generation:**
+```
+Generate a changelog for version [version] covering commits since [previous version / date / tag]. Include breaking changes, features, and bug fixes.
+```
+
+**For worktree operations:**
+```
+Create a [feature / fix / hotfix] worktree for [descriptive-name]. [Base branch if not main].
+```
+
+### Prompt Anti-Patterns
+
+- **Dumping all changes in one commit:** "Just commit everything" -- the skill will push back and suggest grouping by scope and type for reviewable, revertable commits.
+- **Vague commit messages:** "Save my work" or "wip" -- the skill enforces conventional commits format with imperative mood, lowercase, and no trailing period.
+- **Asking for CI/CD pipeline setup:** "Set up GitHub Actions for my releases" -- this skill handles the git workflow (commits, branches, changelogs), not the CI/CD pipeline. Use [cicd-pipelines](../cicd-pipelines/) for that.
 
 ## Real-World Walkthrough
 
-You are the tech lead on a team of six building a B2B SaaS platform. It is Wednesday afternoon, the v2.0 release is Friday, and the Git history is a mess. Looking at the last 50 commits, you see: "wip", "fix", "more fixes", "update tests", "refactor stuff", "merge main", "fix lint", "wip again". The PM asks for release notes and you have no idea where to start. Meanwhile, two developers are fighting over stash conflicts and a third cannot figure out which stories from the sprint actually shipped.
+You are midway through a sprint. You have been working on an authentication feature and a related API fix, plus you updated some documentation. Your working tree shows 14 changed files across `src/auth/`, `src/api/`, `tests/`, and `docs/`. You need to commit these properly before your PR review.
 
-You start by asking Claude: **"Help me clean up our Git workflow -- I need conventional commits, a changelog, and story tracking."**
+**Step 1: Intelligent file grouping.** You ask Claude: **"Group my 14 changed files into atomic commits."**
 
-Claude activates the git-workflow skill and begins with **commit standards**. It sets up the conventional commits format for your team: every commit must use the `type(scope): subject` format with imperative mood, no period, lowercase, under 100 characters. It provides the type reference (`feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`, `revert`) and explains the footer conventions (`BREAKING CHANGE:` for breaking changes, `Closes #N` for issue closure, `Refs #N` for references).
+Claude activates the git-workflow skill and runs the grouping analysis. It identifies three logical groups:
 
-To enforce this going forward, Claude shows you how to add `validate.py` to your CI pipeline. The script checks type validity, scope format, subject rules, and footer syntax -- rejecting any commit that violates the format before it reaches `main`. You add it as a pre-commit hook locally and as a CI check for PRs.
+- **Group 1: `feat(auth)` -- 5 files, 245 LOC** -- The new JWT token refresh mechanism (3 implementation files + 2 test files)
+- **Group 2: `fix(api)` -- 4 files, 45 LOC** -- The null pointer fix in user lookup (2 implementation files + 2 test files)
+- **Group 3: `docs` -- 5 files, 120 LOC** -- Updated API documentation for the auth endpoints
 
-Next, you have a problem right now: you have 15 staged files from today's work and you are not sure how to split them into commits. You ask Claude: **"Group these staged files into atomic commits."**
-
-Claude runs the intelligent file grouping analysis. It identifies three logical groups:
-
-```
-Group 1: feat(auth) - 5 files, 245 LOC
-  src/auth/oauth.ts, src/auth/token.ts, src/auth/middleware.ts,
-  src/types/auth.ts, src/config/oauth.ts
-
-Group 2: test(auth) - 4 files, 180 LOC
-  tests/auth/oauth.test.ts, tests/auth/token.test.ts,
-  tests/auth/middleware.test.ts, tests/fixtures/auth.ts
-
-Group 3: fix(api) - 2 files, 35 LOC
-  src/api/users.ts, src/api/middleware.ts
-```
-
-Claude suggests committing each group separately with specific messages:
+**Step 2: Commit message writing.** For each group, Claude suggests a properly formatted conventional commit:
 
 ```
-feat(auth): add OAuth2 login with token refresh
+feat(auth): add JWT token refresh mechanism
 
-Implements OAuth2 authorization code flow with automatic token refresh
-5 minutes before expiration. Supports Google and GitHub providers.
+Implements automatic token refresh 5 minutes before expiration
+to maintain seamless user sessions. Refresh tokens are stored
+in HTTP-only cookies with 30-day expiry.
 
-Closes #89
+Closes #142
 ```
 
-```
-test(auth): add OAuth2 and token refresh test coverage
+The commit has an imperative subject ("add" not "added"), a body explaining *why* (not just *what*), and an issue reference that auto-closes the ticket on merge.
 
-Tests cover the full OAuth2 flow including redirect, callback, token
-storage, refresh timing, and provider-specific error handling.
-```
+**Step 3: Version calculation.** After committing, you ask: **"What should the next version be?"**
 
-```
-fix(api): prevent null pointer in user lookup when email is missing
+Claude analyzes the commits since the last tag (v1.3.2). It finds:
+- 1 `feat` commit (minor bump)
+- 1 `fix` commit (patch bump)
+- 0 breaking changes
 
-The user search endpoint crashed when the email field was null because
-the query builder assumed non-null. Added null check with appropriate
-404 response.
+Result: next version is **v1.4.0** (minor bump from the feature; the fix is included).
 
-Fixes #102
-```
+**Step 4: Changelog generation.** You ask: **"Generate the changelog for v1.4.0."**
 
-Now the two developers fighting over stash conflicts. You ask Claude: **"Set up worktrees so Sarah and Mike can work on their features without stashing."**
-
-Claude walks you through the worktree scripts. Sarah is working on `feature/email-notifications` and needs to fix a bug on `main`:
-
-```bash
-# Create a worktree for the bugfix
-./scripts/create_worktree.sh fix login-timeout
-
-# Directory structure now:
-# project/                          <- main repo (Sarah's feature branch)
-# project-worktrees/fix/login-timeout/  <- bugfix worktree
-```
-
-Sarah can now `cd ../project-worktrees/fix/login-timeout/`, fix the bug, commit with `fix(auth): handle session timeout during OAuth redirect`, push, and `cd` back to her feature branch. No stashing, no conflicts, no lost work. When the bugfix PR is merged, `cleanup_worktrees.sh --merged` removes the worktree directory.
-
-With the commit history now structured, you tackle the release. You ask Claude: **"Generate the v2.0 changelog and determine the version bump."**
-
-Claude runs `version.py --verbose` against the commits since v1.5. The output shows:
-
-```
-Breaking changes: 1 (auth: change token format to JWT)
-Features: 4
-Bug fixes: 7
-Other: 12
-
-Recommended bump: MAJOR (1.5.0 -> 2.0.0)
-Reason: Contains BREAKING CHANGE
-```
-
-Then `changelog.py --version 2.0.0` generates:
+Claude produces:
 
 ```markdown
-## [2.0.0] - 2025-01-18
-
-### BREAKING CHANGES
-- **auth**: change token format to JWT (#78)
+## [1.4.0] - 2026-04-12
 
 ### Features
-- **auth**: add OAuth2 login with token refresh (#89)
-- **api**: add user search endpoint with pagination (#91)
-- **dashboard**: add real-time metrics widget (#95)
-- **notifications**: add email notification system (#97)
+- **auth**: add JWT token refresh mechanism (#142)
 
 ### Bug Fixes
-- **api**: prevent null pointer in user lookup (#102)
-- **auth**: handle session timeout during OAuth redirect (#105)
-...
+- **api**: prevent null pointer in user lookup (#156)
 ```
 
-You paste this directly into the GitHub Release. The PM reads it and asks: "Did the email notification story ship completely?" You ask Claude to show the story tree, and it renders:
+**Step 5: Story tree update.** Finally, you update the story tree: **"Mark the auth refresh story as implemented based on the commit."**
 
-```
-[+] Epic: User Communication (4/4 implemented)
-  [+] Email notifications
-  [+] In-app notifications
-  [+] Notification preferences
-  [+] Delivery status tracking
-```
+Claude updates the SQLite story tree database, linking the `feat(auth)` commit to the corresponding user story and marking it as `implemented`.
 
-All four stories under the User Communication epic show `[+]` (implemented), auto-marked based on the commit references. The PM has their answer without checking Jira.
+You have gone from 14 unsorted changed files to 3 atomic commits, a version bump, a changelog entry, and an updated story tree -- all following consistent conventions.
 
 ## Usage Scenarios
 
-### Scenario 1: Writing a commit for a complex changeset
+### Scenario 1: Writing quality commits for a PR
 
-**Context:** You have 12 staged files spanning authentication, API, and test directories. You are not sure whether this should be one commit or several.
+**Context:** You have 20 changed files and need to create a clean PR with logical, atomic commits.
 
-**You say:** "Write commit messages for my staged changes -- group them if they should be separate commits"
-
-**The skill provides:**
-- Intelligent file grouping analysis splitting the changeset by scope and type
-- A conventional commit message for each group with type, scope, imperative subject, explanatory body, and footer
-- Quality check against commit size guidelines (flagging any group over 500 LOC for further splitting)
-
-**You end up with:** 2-4 atomic commits, each with a properly formatted message that explains what changed and why.
-
-### Scenario 2: Generating a release changelog
-
-**Context:** You are tagging v3.0.0 and need release notes for the GitHub Release page. There are 87 commits since v2.5.0.
-
-**You say:** "Generate the changelog for v3.0 based on commits since v2.5"
+**You say:** "Analyze my staged changes and group them into atomic commits with conventional commit messages"
 
 **The skill provides:**
-- Grouped markdown with breaking changes at the top, followed by features, bug fixes, performance improvements, and other changes
-- Issue references linked for each entry
-- Semantic version validation confirming that 3.0.0 is correct (breaking changes present = major bump)
+- File grouping by scope (auth, api, ui) and type (implementation, tests, docs)
+- Conventional commit message for each group with proper type, scope, subject, body, and footer
+- Issue reference detection from branch name and file paths
+- Size warnings for commits over 200 LOC (suggesting further splitting)
 
-**You end up with:** A formatted changelog ready to paste into GitHub Releases, with every entry linked to the relevant issue or PR.
+**You end up with:** A PR with 3-5 clean, atomic commits that are individually reviewable and revertable.
 
-### Scenario 3: Parallel development with worktrees
+### Scenario 2: Managing parallel feature development with worktrees
 
-**Context:** You are mid-feature on a branch with uncommitted work. A critical production bug needs an immediate fix on `main`.
+**Context:** You need to work on two features simultaneously without stashing and context-switching.
 
-**You say:** "Set up a worktree so I can fix this production bug without touching my feature branch"
-
-**The skill provides:**
-- Worktree creation script with GitFlow naming conventions
-- The parallel directory structure so you can `cd` between feature and bugfix
-- Cleanup instructions for removing the worktree after the fix is merged
-
-**You end up with:** Two separate working directories -- your feature branch untouched, and a fresh checkout of `main` for the hotfix. No stashing, no risk of losing work.
-
-### Scenario 4: Validating commit messages in CI
-
-**Context:** Your team agreed to use conventional commits but compliance is spotty -- developers forget the format under deadline pressure.
-
-**You say:** "Set up commit message validation in our CI pipeline so non-conforming commits are rejected"
+**You say:** "Create feature worktrees for user-preferences and email-notifications"
 
 **The skill provides:**
-- `validate.py` script that checks type validity, scope format, subject rules (imperative mood, no period, lowercase, under 100 chars), and footer syntax
-- Integration instructions for pre-commit hooks and CI pipeline steps
-- Common mistakes reference showing the most frequent violations and their corrections
+- Two worktree directories following GitFlow conventions
+- Proper branch creation from the base branch
+- Directory structure: `project-root-worktrees/feature/user-preferences/`
+- Listing and cleanup commands for when the features are merged
 
-**You end up with:** Automated enforcement that catches format violations before they reach `main`, with clear error messages telling the developer exactly what to fix.
+**You end up with:** Two independent working directories where you can switch by simply `cd`-ing, with no stashing needed.
 
-### Scenario 5: Tracking story completion from commits
+### Scenario 3: Automating release changelog and versioning
 
-**Context:** Your PM asks which user stories from the current sprint have actually shipped, and your team has been inconsistent about updating Jira.
+**Context:** You are preparing a release and need a changelog and version number based on the commit history.
 
-**You say:** "Show me which stories have been implemented based on our recent commits"
+**You say:** "Generate the changelog and next version for a release covering all commits since v2.1.0"
 
 **The skill provides:**
-- Story tree initialization and population from your backlog
-- Commit analysis that matches issue references in commits to story nodes
-- ASCII tree visualization with status symbols showing implemented, in-progress, and planned stories
-- Capacity analysis identifying stories that need further decomposition
+- Semantic version calculation (major if breaking changes, minor if features, patch if fixes only)
+- Formatted changelog with breaking changes, features, bug fixes, and other sections
+- Issue references extracted from commit footers
+- Release notes template ready for the GitHub release page
 
-**You end up with:** A visual story tree showing exactly which stories shipped (based on commit evidence, not manual status updates) and which are still pending.
+**You end up with:** A release changelog and version number that are correct by construction -- no manual counting of features or guessing of versions.
+
+---
+
+## Decision Logic
+
+The skill covers five workflow areas. Claude selects the relevant area based on your request:
+
+| Your request mentions... | Workflow area | Key tools |
+|---|---|---|
+| Commits, commit messages, staged changes | Commit Management | `analyze-diff.py`, `validate.py`, `group-files.py` |
+| Branches, worktrees, feature branches | Branch Management | `create_worktree.sh`, `list_worktrees.sh`, `cleanup_worktrees.sh` |
+| Issues, ticket references, issue linking | Issue Integration | `issue-tracker.py` |
+| Changelog, release notes, version | Release Management | `changelog.py`, `version.py` |
+| Stories, backlog, user stories, story tree | Story Management | SQLite database, `tree-view.py` |
+
+Multiple areas can be combined in a single workflow (e.g., commit -> version -> changelog).
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| No staged changes when running commit analysis | Script reports no changes to analyze | Stage files first with `git add`, then run the commit analysis |
+| Commit message fails validation | Validation script reports format violations (missing type, wrong mood, too long) | The skill suggests the corrected message; common fixes: imperative mood, lowercase, no trailing period |
+| Story tree database not initialized | SQLite queries fail with "no such table" | Run "Initialize story tree" to create the database schema |
+| Changelog has no commits since last tag | Empty changelog generated | Verify the tag name is correct and commits exist between the specified versions |
+| Worktree creation fails on existing branch | Git error: branch already exists | Use an existing worktree or delete the stale branch first |
 
 ## Ideal For
 
-- **Teams adopting conventional commits** -- the format reference, validation script, and CI integration provide a complete adoption path from "we should do this" to "it is enforced automatically"
-- **Release managers generating changelogs** -- the changelog script produces formatted, grouped release notes from commit history, eliminating the manual process
-- **Developers juggling multiple features** -- worktree scripts enable parallel development without stashing, losing work, or context-switching pain
-- **Tech leads tracking delivery** -- the story tree connects Git commits to user stories, providing evidence-based completion tracking
-- **Teams scaling their Git practices** -- the unified workflow ensures commits, branches, releases, and stories work together as a system rather than four separate tools
+- **Teams adopting conventional commits** who need enforcement and automation, not just documentation
+- **Solo developers** who want to maintain professional git hygiene with minimal effort -- the automation scripts handle grouping, formatting, and changelog generation
+- **Release managers** who need changelogs and version numbers derived from code history, not manual tracking
+- **Teams with parallel feature development** who need worktree management with consistent conventions
+- **Product teams** who want to link code changes to user stories automatically through commit analysis
 
 ## Not For
 
-- **CI/CD pipeline configuration** -- this plugin manages the Git workflow that feeds CI/CD, not the pipelines themselves. Use [cicd-pipelines](../cicd-pipelines/) for GitHub Actions, GitLab CI, and Jenkins
-- **Workflow orchestration and release automation** -- use [workflow-automation](../workflow-automation/) for multi-step release processes, parallel task execution, and deployment pipelines
-- **Docker and container workflows** -- use [docker-containerization](../docker-containerization/) for Dockerfiles, multi-stage builds, and Docker Compose
-
-## How It Works Under the Hood
-
-The plugin is a large single-skill architecture with 13 reference files and 13 scripts. The SKILL.md is organized into four parts:
-
-1. **Commit Management** -- conventional commits format, quality standards, intelligent file grouping, issue integration, and slash commands
-2. **Branch & Worktree Management** -- GitFlow conventions, worktree creation/listing/cleanup with shell scripts
-3. **Release Management** -- changelog generation and semantic version calculation with Python scripts
-4. **Story Tree Management** -- SQLite-backed hierarchical backlog using the closure table pattern, with commit-based auto-marking and ASCII tree visualization
-
-The reference files provide depth behind each part: full conventional commits specification, real-world commit patterns, common mistakes, GitFlow conventions, epic decomposition guidance, SQLite schema and queries, and orchestrator workflows. The scripts provide automation: diff analysis, commit validation, file grouping, changelog generation, version calculation, worktree management, issue tracking, and tree visualization.
-
-The four parts reinforce each other: conventional commits produce the structured data that changelog generation consumes; GitFlow branch naming aligns with worktree scripts; issue references in commit footers feed story tree auto-marking.
+- **CI/CD pipeline configuration** -- YAML files, GitHub Actions, deployment automation. Use [cicd-pipelines](../cicd-pipelines/)
+- **Workflow orchestration** -- release automation, multi-stage deployment. Use [workflow-automation](../workflow-automation/)
+- **Code review content** -- reviewing the actual code quality, security, and performance. Use [code-review](../code-review/)
 
 ## Related Plugins
 
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- GitHub Actions, GitLab CI, Jenkins, and infrastructure as code -- consumes the structured commits this plugin produces
-- **[Workflow Automation](../workflow-automation/)** -- Multi-agent orchestration and release automation
-- **[Docker Containerization](../docker-containerization/)** -- Dockerfiles, multi-stage builds, and Docker Compose
-- **[Cloud FinOps](../cloud-finops/)** -- AI cost management, cloud billing, and FinOps practices
+- **[CI/CD Pipelines](../cicd-pipelines/)** -- Configure GitHub Actions, GitLab CI, and deployment pipelines that consume the commits and changelogs this plugin produces
+- **[Workflow Automation](../workflow-automation/)** -- Orchestrate release workflows that use the version calculation and changelog from this plugin
+- **[Code Review](../code-review/)** -- Review the code content that goes into the atomic commits this plugin helps create
+- **[Consistency Standards](../consistency-standards/)** -- Naming conventions for branches, commits, and tags
 
 ---
 
