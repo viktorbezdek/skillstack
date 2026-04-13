@@ -1,10 +1,13 @@
 ---
 name: edge-case-coverage
 description: >-
-  Identify and document boundary conditions, error scenarios, corner cases, and validation
-  requirements. Use when analyzing edge cases, boundary testing, corner cases, error
-  scenarios, validation rules, or defensive programming. NOT for writing tests
-  (use testing-framework or test-driven-development).
+  Identify and document boundary conditions, corner cases, error scenarios, and validation
+  requirements that implementations must handle. Use when the user asks to find edge
+  cases, identify corner cases, specify validation rules, enumerate error scenarios,
+  harden a function against bad inputs, or think through what can go wrong at the
+  boundaries of a system. NOT for writing the actual tests (use testing-framework
+  or test-driven-development). NOT for structured risk registers around project-level
+  risks (use risk-management). NOT for security vulnerability scanning (use code-review).
 ---
 
 # Edge Case Coverage
