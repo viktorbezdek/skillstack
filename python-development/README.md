@@ -3,6 +3,7 @@
 > **v1.1.24** | Development | 26 iterations
 
 > Production-grade Python development guidance covering modern tooling (uv, ruff, mypy, pytest), best practices, library architecture, async patterns, MicroPython, and complete development workflows.
+> Single skill + 29 references + 5 cookbooks + 8 workflows + 3 scripts + 1 template
 
 ## The Problem
 
@@ -18,7 +19,7 @@ This plugin encodes production-grade Python expertise into a skill that activate
 
 The skill covers three tiers of complexity -- Minimal (single-file scripts with PEP 723 inline metadata), Standard (multi-file projects with full toolchain), and Full (PyPI packages with CI/CD pipelines) -- and defaults to Standard because it fits most use cases. It enforces quality gates before any code is considered complete: format with ruff, lint, type-check, and test with >80% coverage.
 
-Beyond the core methodology, 29 reference files provide deep guidance on specific topics: async patterns, exception handling, dependency management, security best practices, performance optimization, packaging for PyPI, MicroPython async patterns for embedded hardware, and more. The skill loads these on demand -- you get the right depth for your specific question without being overwhelmed by irrelevant detail.
+Beyond the core methodology, the plugin ships an extensive knowledge layer: 29 reference files for deep topic-specific guidance, 5 cookbooks with practical recipes, 8 workflow documents for common tasks, utility scripts for code quality checks, and project templates. The skill loads these on demand -- you get the right depth for your specific question without being overwhelmed by irrelevant detail.
 
 ## Before vs After
 
@@ -59,48 +60,82 @@ The skill should activate and walk you through project initialization with a pro
 4. As you develop, **ask for help** naturally: `Add error handling to this HTTP client` or `Write tests for the weather parser`
 5. Before shipping, the skill **enforces quality gates**: `uv run ruff format . && uv run ruff check . && uv run mypy . && uv run pytest --cov`
 
+---
+
+## System Overview
+
+```
+User works with .py / pyproject.toml / uv / pytest
+    │
+    ▼
+┌──────────────────────────────────────────────────────┐
+│              python-development (skill)                │
+│                                                        │
+│  Tier Selection: Minimal | Standard | Full             │
+│  Core: project setup, toolchain, anti-patterns,        │
+│        quality gates (ruff + mypy + pytest)             │
+│                                                        │
+│  ┌────────────┐  ┌────────────┐  ┌────────────┐       │
+│  │ Workflows  │  │ Cookbooks  │  │ Templates  │       │
+│  │ 8 guides   │  │ 5 recipe   │  │ pytest     │       │
+│  │ (Deps,Lint │  │ collections│  │ template   │       │
+│  │  Test,Type │  │ (async,    │  │            │       │
+│  │  Package.. │  │  patterns, │  │            │       │
+│  │            │  │  testing.. │  │            │       │
+│  └────────────┘  └────────────┘  └────────────┘       │
+│                                                        │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │         29 Reference Files (on-demand)           │   │
+│  │                                                   │   │
+│  │  Toolchain:  uv, ruff, mypy, code-quality-tools  │   │
+│  │  Patterns:   async, functional, exception, perf   │   │
+│  │  Arch:       project-structure, architectural     │   │
+│  │              principles, library design           │   │
+│  │  Quality:    testing-methodology, security,       │   │
+│  │              type-hints, conventions-and-style     │   │
+│  │  Packaging:  packaging-distribution, PEP723       │   │
+│  │  Embedded:   micropython_async, presto_hardware,  │   │
+│  │              display_rendering                    │   │
+│  │  Libraries:  common-libraries, modern-modules     │   │
+│  │              (18 module-specific references)       │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                        │
+│  ┌────────────────────┐                                │
+│  │   Scripts           │                                │
+│  │  check-code-quality │                                │
+│  │  setup-project      │                                │
+│  │  + MicroPython      │                                │
+│  │    hardware scripts │                                │
+│  └────────────────────┘                                │
+└──────────────────────────────────────────────────────┘
+```
+
 ## What's Inside
 
-This is a single-skill plugin with an extensive reference layer covering 29 specialized topics.
-
-| Component | Purpose |
-|---|---|
-| `SKILL.md` | Core methodology -- tier selection, project setup, toolchain configuration, anti-patterns, quality gates |
-| `templates/test-template.py` | Standardized pytest test file template with fixtures and parametrization |
-| 29 reference files | Deep guidance on specialized topics (loaded on demand) |
+| Component | Type | Purpose |
+|---|---|---|
+| `python-development` | skill | Core methodology: tier selection, project setup, toolchain config, anti-patterns, quality gates |
+| 29 reference files | references | Deep guidance on async, testing, architecture, security, packaging, embedded, and more |
+| 5 cookbooks | cookbook | Practical recipes: async, design patterns, modern Python, functional patterns, testing |
+| 8 workflows | workflow | Step-by-step guides: Deps, Lint, Package, Project, Script, Test, Type, Workspace |
+| `test-template.py` | template | Standardized pytest file with fixtures and parametrization |
+| `check-code-quality.sh` | script | Runs ruff + mypy + pytest in sequence as a quality gate |
+| `setup-project.sh` | script | Project scaffolding automation |
+| 4 MicroPython scripts | script | Hardware-specific examples: BLE GATT, MQTT, RGB backlight, touch handler |
 
 **Eval coverage:** 13 trigger evaluation cases, 3 output evaluation cases.
 
-**Key references:**
+### Component Spotlights
 
-| Reference | Topic |
-|---|---|
-| `extended-patterns.md` | Detailed code examples, testing patterns, async patterns, itertools/functools |
-| `testing-methodology.md` | Comprehensive pytest methodology -- fixtures, parametrization, coverage |
-| `async-patterns.md` | Async/await patterns, event loops, concurrency with asyncio and httpx |
-| `architectural-principles.md` | Library architecture, API surface design, protocols over inheritance |
-| `type-hints.md` | Modern type annotations, generics, Protocol, TypeVar, overloads |
-| `conventions-and-style.md` | PEP 8, naming conventions, import organization, code structure |
-| `code-quality-tools.md` | Ruff configuration, mypy settings, bandit security scanning |
-| `dependency-management.md` | uv workflows, lockfiles, optional dependencies, version constraints |
-| `exception-handling.md` | Exception hierarchies, CLI error handling with Typer, retry patterns |
-| `performance-optimization.md` | Profiling, caching, generators, C extensions, memory optimization |
-| `security-best-practices.md` | Input validation, secrets management, SQL injection prevention |
-| `packaging-distribution.md` | PyPI publishing, build backends, versioning, `py.typed` markers |
-| `project-structure.md` | `src/` layout, monorepo patterns, configuration files |
-| `pep-standards.md` | Quick reference for key PEPs (723, 695, 604, 585, etc.) |
-| `PEP723.md` | Inline script metadata for single-file scripts |
-| `micropython_async.md` | MicroPython async patterns for RP2350 embedded development |
-| `presto_hardware.md` | Pimoroni Presto hardware reference for embedded projects |
-| `display_rendering.md` | Display rendering on RP2350 hardware |
-| `common-libraries.md` | Curated library recommendations by domain |
-| `functional-reference.md` | Functional programming patterns, itertools, functools |
-| `docstrings-documentation.md` | Docstring standards, Sphinx/MkDocs integration |
-| `uv.md` | Comprehensive uv command reference |
-
-### python-development
+#### python-development (skill)
 
 **What it does:** Activates whenever you work with Python files, pyproject.toml, uv, ruff, mypy, or pytest. Provides expert guidance on project setup, code patterns, testing, async development, library architecture, and the complete modern Python toolchain. Automatically selects the right tier of complexity (Minimal, Standard, or Full) based on your project.
+
+**Input -> Output:** A Python development question or task -> Working code with proper structure, type hints, tests, and toolchain configuration following modern best practices.
+
+**When to use:** Setting up a new Python project. Writing or reviewing Python code. Managing dependencies with uv. Configuring ruff, mypy, or pytest. Building async services. Designing Python libraries. Working with MicroPython on embedded hardware.
+
+**When NOT to use:** TypeScript or JavaScript development (use typescript-development). React component patterns (use react-development). TDD methodology and Red-Green-Refactor workflow (use test-driven-development -- this skill covers pytest patterns but not the full TDD process).
 
 **Try these prompts:**
 
@@ -127,6 +162,105 @@ My Python library needs to be published to PyPI with proper packaging -- walk me
 ```
 Convert this synchronous Flask endpoint to async using FastAPI
 ```
+
+**Key references:**
+
+| Reference | Topic |
+|---|---|
+| `extended-patterns.md` | Detailed code examples, testing patterns, async patterns, itertools/functools |
+| `testing-methodology.md` | Comprehensive pytest methodology -- fixtures, parametrization, coverage |
+| `async-patterns.md` | Async/await patterns, event loops, concurrency with asyncio and httpx |
+| `architectural-principles.md` | Library architecture, API surface design, protocols over inheritance |
+| `type-hints.md` | Modern type annotations, generics, Protocol, TypeVar, overloads |
+| `conventions-and-style.md` | PEP 8, naming conventions, import organization, code structure |
+| `code-quality-tools.md` | Ruff configuration, mypy settings, bandit security scanning |
+| `dependency-management.md` | uv workflows, lockfiles, optional dependencies, version constraints |
+| `exception-handling.md` | Exception hierarchies, CLI error handling with Typer, retry patterns |
+| `performance-optimization.md` | Profiling, caching, generators, C extensions, memory optimization |
+| `security-best-practices.md` | Input validation, secrets management, SQL injection prevention |
+| `packaging-distribution.md` | PyPI publishing, build backends, versioning, `py.typed` markers |
+| `project-structure.md` | `src/` layout, monorepo patterns, configuration files |
+| `pep-standards.md` | Quick reference for key PEPs (723, 695, 604, 585, etc.) |
+| `PEP723.md` | Inline script metadata for single-file scripts |
+| `micropython_async.md` | MicroPython async patterns for RP2350 embedded development |
+| `common-libraries.md` | Curated library recommendations by domain |
+| `functional-reference.md` | Functional programming patterns, itertools, functools |
+| `uv.md` | Comprehensive uv command reference |
+| `modern-modules.md` | 18 modern Python module references (httpx, attrs, pydantic, etc.) |
+
+**Cookbooks:**
+
+| Cookbook | Content |
+|---|---|
+| `async.md` | Async/await recipes and patterns |
+| `design-patterns.md` | Python-idiomatic design pattern implementations |
+| `modern.md` | Modern Python (3.11+) feature recipes |
+| `patterns.md` | Functional programming patterns and idioms |
+| `testing.md` | Testing recipes and fixture patterns |
+
+**Workflows:**
+
+| Workflow | Purpose |
+|---|---|
+| `Deps.md` | Dependency management with uv |
+| `Lint.md` | Linting and formatting with ruff |
+| `Test.md` | Running and configuring pytest |
+| `Type.md` | Type checking with mypy |
+| `Package.md` | Building and publishing packages |
+| `Project.md` | Project initialization and setup |
+| `Script.md` | Single-file script patterns with PEP 723 |
+| `Workspace.md` | Multi-project workspace management |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, underuses the skill) | Good (specific, gets expert guidance) |
+|---|---|
+| "Help me with Python" | "Set up a new Python project with uv, ruff strict linting, and mypy -- I want to build a REST API with FastAPI" |
+| "Write some tests" | "Write parametrized pytest tests for this date parsing function covering timezone edge cases and leap years" |
+| "Fix this code" | "This async function blocks the event loop when calling the external API -- show me the httpx async pattern with rate limiting" |
+| "How do I install packages" | "Migrate this project from pip/requirements.txt to uv with lockfile -- keep the existing version constraints" |
+| "Make a library" | "I want to extract these utility functions into a typed Python library for PyPI -- what project structure and packaging setup do I need?" |
+
+### Structured Prompt Templates
+
+**For new project setup:**
+```
+Create a Python [project type: CLI tool / REST API / library / data pipeline] that [core purpose].
+I need [specific requirements: async, database, CLI flags, etc.].
+Use the standard toolchain (uv + ruff + mypy + pytest).
+```
+
+**For code pattern guidance:**
+```
+I need to [specific task: handle concurrent HTTP requests / implement retry logic /
+validate nested data structures]. Show me the modern Python pattern with
+[specific tools: httpx + asyncio / tenacity / pydantic].
+```
+
+**For modernizing existing code:**
+```
+This project uses [old tools: pip + Black + flake8 / unittest / Python 3.8 patterns].
+Help me migrate to [modern tools: uv + ruff / pytest / Python 3.12+ patterns]
+without breaking existing functionality.
+```
+
+**For testing:**
+```
+Write tests for [module/function name]. The function [brief description of behavior].
+Use pytest fixtures for [setup needs] and parametrize across [input variations].
+Mock [external dependencies].
+```
+
+### Prompt Anti-Patterns
+
+- **Asking for generic Python help without context:** Saying "help me with Python" gives the skill nothing to work with. Instead, describe your specific task, project type, and what tools you are already using. The skill selects the right tier and references based on context.
+- **Requesting code without specifying the quality bar:** Asking "write a function to parse dates" produces code without type hints, tests, or error handling. Instead, say "write a typed function to parse dates with pytest tests covering edge cases" and the skill applies the full quality gate pattern.
+- **Treating this skill as a generic coding assistant:** Asking "explain how async works in general" wastes the skill's deep Python-specific knowledge. Instead, ask "show me the asyncio + httpx pattern for concurrent API calls with per-endpoint rate limiting" and you get production-ready patterns from the async reference.
+- **Ignoring the tier system:** Requesting full CI/CD pipeline setup for a one-off script, or asking for a minimal setup for a PyPI library. Let the skill select the appropriate tier by describing your project's scope, or explicitly say "this is a single-file script" or "this will be published to PyPI."
 
 ## Real-World Walkthrough
 
@@ -258,6 +392,56 @@ The skill references the packaging guide and walks you through adding `[project.
 
 **You end up with:** A working async firmware architecture that handles concurrent hardware tasks without blocking, optimized for RP2350's memory constraints.
 
+### Scenario 5: Writing a PEP 723 single-file script
+
+**Context:** You need a quick data processing script that has dependencies (pandas, httpx) but does not warrant a full project setup. You want it to be self-contained and runnable with `uv run`.
+
+**You say:** `Write a single-file Python script with inline metadata that fetches CSV data from an API and produces a summary report`
+
+**The skill provides:**
+- PEP 723 inline script metadata with `# /// script` block specifying dependencies
+- Self-contained script with httpx for fetching and pandas for processing
+- Proper error handling and output formatting
+- Instructions for running with `uv run script.py` (uv auto-installs dependencies)
+
+**You end up with:** A single `.py` file that anyone can run with `uv run` without installing anything manually -- dependencies are resolved automatically from the inline metadata.
+
+---
+
+## Decision Logic
+
+**How does the skill choose the right tier?**
+
+The skill selects a tier based on project scope:
+- **Minimal** activates for single-file scripts, quick utilities, and one-off data processing. It uses PEP 723 inline metadata and skips project scaffolding.
+- **Standard** is the default for multi-file projects, team development, and anything with tests. It sets up `src/` layout, `pyproject.toml`, and the full uv + ruff + mypy + pytest toolchain.
+- **Full** activates for PyPI-published libraries, production systems requiring CI/CD, and projects needing security scanning (bandit), documentation generation, and release workflows.
+
+**When does the skill load references?**
+
+The SKILL.md body covers project setup, core toolchain, anti-patterns, and quality gates -- the 80% case. References load on demand based on the topic:
+- Async question -> `async-patterns.md` (and `micropython_async.md` for embedded)
+- Testing question -> `testing-methodology.md`
+- Packaging question -> `packaging-distribution.md`
+- Library design -> `architectural-principles.md`
+- Security concern -> `security-best-practices.md`
+- Type system question -> `type-hints.md`
+- Specific library question -> the relevant `modern-modules/*.md` file
+
+**What happens when the user's conventions differ from the defaults?**
+
+The skill respects `user-project-conventions.md` when present, which can override default settings like line length, linting rules, or test directory structure. It adjusts its guidance to match the team's established patterns rather than forcing the opinionated defaults.
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| User has Python 3.8/3.9 and the skill suggests 3.11+ patterns | Code uses `match` statements, `str | int` union syntax, or `tomllib` that do not exist in older Python | Specify your Python version: "I'm stuck on Python 3.9." The skill adjusts patterns to use `Union[str, int]`, if/elif chains, and `tomli` backport. |
+| uv is not installed | Commands like `uv add` and `uv run` fail | The skill provides installation instructions: `curl -LsSf https://astral.sh/uv/install.sh | sh`. For systems where curl is not available, it suggests `pip install uv` as a bootstrap. |
+| MicroPython patterns applied to CPython (or vice versa) | Async code uses `uasyncio` API on CPython or standard `asyncio` features missing in MicroPython | Specify the runtime: "This is MicroPython on RP2350" or "This is CPython 3.12." The skill loads the correct async reference for the target runtime. |
+| mypy strict mode produces too many errors on existing codebase | Hundreds of type errors when enabling `strict = true` on a previously untyped project | Use gradual adoption: start with `--ignore-missing-imports` and `--allow-untyped-defs`, then tighten per-module using `[[tool.mypy.overrides]]` sections. |
+| Library patterns used for application code | Unnecessary Protocol abstractions, over-engineered API surface for an internal tool | Clarify the project type: "This is an internal CLI tool, not a library." The skill drops library-specific patterns and uses simpler direct implementations. |
+
 ## Ideal For
 
 - **Python developers starting new projects** -- the opinionated defaults (uv + ruff + mypy + pytest) eliminate thirty minutes of toolchain decisions and produce a consistent, production-ready setup
@@ -271,21 +455,7 @@ The skill references the packaging guide and walks you through adding `[project.
 - **TypeScript or JavaScript development** -- use [typescript-development](../typescript-development/) for TS/JS projects with Node.js, Bun, or Deno
 - **React component patterns and hooks** -- use [react-development](../react-development/) for React-specific architecture, state management, and component design
 - **Test methodology and TDD workflow** -- use [test-driven-development](../test-driven-development/) for the Red-Green-Refactor cycle; this skill covers pytest patterns but not the full TDD methodology
-
-## How It Works Under the Hood
-
-The plugin is a single skill with progressive disclosure through 29 reference files organized by topic. The SKILL.md body contains the essential methodology: tier selection, project setup, toolchain configuration, anti-patterns, and quality gates. This covers the core 80% of Python development needs.
-
-When you ask about a specific topic -- async patterns, library packaging, exception handling, MicroPython -- the skill loads the relevant reference file on demand. This keeps the initial context lean while providing deep expertise when needed. The reference layer covers:
-
-- **Toolchain:** uv, ruff, mypy configuration and usage
-- **Patterns:** async, functional, exception handling, performance optimization
-- **Architecture:** project structure, library design, API surface, protocols
-- **Quality:** testing methodology, security practices, code quality tools
-- **Packaging:** PyPI publishing, build backends, versioning
-- **Specialized:** MicroPython async, RP2350 hardware, display rendering
-
-A test template (`templates/test-template.py`) provides a standardized starting point for new test files with fixtures, parametrization, and naming conventions.
+- **Django or Flask framework-specific patterns** -- this skill covers Python fundamentals; for framework-specific guidance, dedicated framework plugins provide deeper coverage
 
 ## Related Plugins
 
