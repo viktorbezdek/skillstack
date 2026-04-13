@@ -1,10 +1,13 @@
 ---
 name: user-journey-design
 description: >-
-  Design user journey maps with touchpoints, emotional states, pain points, and
-  opportunities. Use when mapping user journeys, customer journeys, experience maps,
-  touchpoint analysis, or service blueprints. NOT for creating personas
-  (use persona-definition).
+  Map user journeys with touchpoints, emotional states, pain points, and opportunities
+  across the full arc of a user's experience over time. Use when the user asks to map
+  a user journey, create a customer journey map, design a service blueprint, document
+  touchpoints and friction points, or visualize the end-to-end experience of a user
+  across multiple interactions. NOT for static navigation structure or sitemaps
+  (use navigation-design). NOT for creating user personas or archetypes (use
+  persona-definition). NOT for designing research interview flows (use elicitation).
 ---
 
 # User Journey Design
