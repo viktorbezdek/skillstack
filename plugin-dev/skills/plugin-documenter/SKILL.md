@@ -213,41 +213,73 @@ If the plugin is part of a marketplace (like skillstack), use the marketplace in
 
 ### Step 6 — Generate the documentation package
 
-Assemble everything into a structured document:
+Follow this structure. Every section is mandatory unless marked optional.
 
 ```markdown
 # [Plugin Name]
 
 > [One-sentence value proposition — what problem, for whom]
 
-## What Problem Does This Solve
+## The Problem
 
-[Problem statement from Step 3 — 2-3 paragraphs, plain language]
+[2-3 paragraphs describing the pain BEFORE this plugin exists. Be specific
+about what goes wrong, how much time is wasted, what mistakes are made.
+This is not "X is hard" — it's "without this, teams spend 3 hours doing Y
+manually and still get Z wrong 40% of the time."]
+
+## The Solution
+
+[2-3 paragraphs describing what changes WITH this plugin. Concrete outcomes,
+not aspirational claims. "The skill walks you through A, catches B before
+you ship, and produces C as output" — not "comprehensive framework for X."]
+
+## Before vs After
+
+| Without this plugin | With this plugin |
+|---|---|
+| [Specific pain point 1] | [How the plugin solves it] |
+| [Specific pain point 2] | [How the plugin solves it] |
+| [Specific pain point 3] | [How the plugin solves it] |
+| [Specific pain point 4] | [How the plugin solves it] |
 
 ## Installation
 
-[From Step 5]
+[From Step 5 — copy-pasteable commands]
+
+## Quick Start
+
+[The fastest path to seeing value. 3-5 numbered steps:
+1. Install
+2. Type this exact prompt: `[prompt]`
+3. The skill does X
+4. You see Y
+5. Next, try Z]
 
 ## What's Inside
 
-[Architecture overview from Step 2 — component table, relationships]
+[Architecture overview — component table for multi-skill, or feature list
+for single-skill]
 
 ### [Skill 1 Name]
 
-**What it does:** [plain language — when it activates, what methodology it provides]
+**What it does:** [plain language — when it activates, what methodology]
 
 **Try these prompts:**
 
 \```
-[Prompt template 1 — starting fresh]
+[Prompt 1 — starting fresh with a new project]
 \```
 
 \```
-[Prompt template 2 — reviewing existing work]
+[Prompt 2 — reviewing or improving existing work]
 \```
 
 \```
-[Prompt template 3 — specific sub-topic or troubleshooting]
+[Prompt 3 — specific sub-topic or troubleshooting]
+\```
+
+\```
+[Prompt 4 — advanced or edge-case usage]
 \```
 
 **Key references:** [summary table of reference files, if any]
@@ -255,24 +287,60 @@ Assemble everything into a structured document:
 ### [Skill 2 Name]
 [Same structure...]
 
+## Real-World Walkthrough
+
+[ONE detailed end-to-end example showing the plugin in action on a realistic
+project. This is the "Notion Clone example" — a full story from start to
+finish, not just a prompt+response snippet. Include:
+- The starting situation (what the user has)
+- Each step they take (with exact prompts)
+- What the skill produces at each step
+- The final outcome (with concrete metrics if applicable)
+- Any gotchas or tips discovered along the way
+
+Target: 500-1000 words for this section. This is the centerpiece of the doc.]
+
 ## Usage Scenarios
 
-### Scenario 1: [Descriptive title grounded in a real situation]
+### Scenario 1: [Descriptive title]
 
-**Context:** [Where the user is — their project, their problem, their role]
+**Context:** [The user's situation — role, project, problem]
 
-**You say:** "[Exact prompt they would type]"
+**You say:** "[Exact prompt]"
 
-**The skill provides:** [Bullet list of specific outputs from the skill's methodology]
+**The skill provides:** [Bullet list of specific outputs]
 
 **You end up with:** [Concrete deliverable]
 
 ### Scenario 2: [Title]
-[Same structure...]
+[Same structure — aim for 3-5 scenarios total]
+
+## Ideal For
+
+- [User type 1 + why] (e.g., "Teams shipping their first API — the design
+  patterns prevent the mistakes you'd learn from in year 2")
+- [User type 2 + why]
+- [User type 3 + why]
+- [User type 4 + why]
+
+## Not For
+
+- [Anti-use-case 1 + what to use instead]
+- [Anti-use-case 2 + what to use instead]
+- [Anti-use-case 3 + what to use instead]
 
 ## How It Works Under the Hood
 
-[Architecture from Step 2 — how components relate, data flow, progressive disclosure]
+[Architecture — how components relate, progressive disclosure, data flow]
+
+## FAQ (optional, for complex plugins)
+
+**Q: [Common question or skepticism]**
+A: [Direct answer with rationale]
+
+## Related Plugins
+
+[Cross-references to other SkillStack plugins that complement this one]
 
 ## Version History
 
@@ -283,12 +351,16 @@ Assemble everything into a structured document:
 
 Before delivering, verify:
 
-- [ ] Problem statement doesn't use jargon the target audience wouldn't know
+- [ ] "The Problem" section describes real pain, not abstract difficulty
+- [ ] "Before vs After" table has >=4 rows with specific contrasts
+- [ ] "Quick Start" gets the user to value in <=5 steps
 - [ ] Installation instructions are copy-pasteable and correct
-- [ ] Every skill has a "How to Use" section with ≥3 prompt templates
-- [ ] Prompt templates use natural language (not skill invocation syntax)
-- [ ] Prompt templates vary in intent (start fresh, review, troubleshoot, specific sub-topic)
-- [ ] Every skill has at least one realistic scenario with Context/You say/Provides/End up with
+- [ ] Every skill has >=3 prompt templates using natural language
+- [ ] Prompt templates vary in intent (start fresh, review, troubleshoot, advanced)
+- [ ] Real-World Walkthrough is 500+ words with a complete story arc
+- [ ] >=3 usage scenarios with Context/You say/Provides/End up with
+- [ ] "Ideal For" has >=4 entries with specific user types and rationale
+- [ ] "Not For" has >=3 entries with alternatives
 - [ ] Scenarios are grounded in real situations (not "user asks about X")
 - [ ] No frontmatter description was copy-pasted as documentation prose
 - [ ] Component relationships are documented (not just listed)
