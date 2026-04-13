@@ -1,9 +1,13 @@
 ---
 name: risk-management
 description: >-
-  Apply risk assessment frameworks, mitigation strategies, and monitoring practices
-  systematically. Use when performing risk assessment, mitigation planning, building
-  risk registers, contingency planning, or uncertainty management.
+  Systematically assess and mitigate risks using risk registers, probability-impact
+  matrices, mitigation strategies, and contingency plans. Use when the user asks to
+  assess risks, build a risk register, plan for failure modes, evaluate downside
+  scenarios, prepare contingency plans, or quantify uncertainty before a decision
+  or launch. NOT for finding conceptual flaws or blind spots in ideas (use critical-intuition).
+  NOT for security vulnerability auditing in code (use code-review). NOT for identifying
+  boundary conditions in code (use edge-case-coverage).
 ---
 
 # Risk Management
