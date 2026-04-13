@@ -1,10 +1,13 @@
 ---
 name: prompt-engineering
 description: >-
-  Optimize prompts for LLMs through systematic design, evaluation, and iterative
-  refinement. Use when doing prompt engineering, prompt design, prompt optimization,
-  system prompt creation, LLM optimization, or improving prompt templates.
-  NOT for building MCP servers (use mcp-server) or creating skills (use skill-creator).
+  Design, evaluate, and iteratively improve prompts for LLMs — system prompts, few-shot
+  examples, chain-of-thought structures, and instruction templates. Use when the user
+  asks to improve a prompt, write a system prompt, optimize LLM instructions, reduce
+  hallucinations through prompt structure, test prompt variants, or apply prompting
+  techniques (CoT, ReAct, few-shot, structured output). NOT for building MCP tools
+  or server implementation (use mcp-server). NOT for creating Claude Code SKILL.md
+  files (use skill-foundry). NOT for building a full agent (use build-ai-agent workflow).
 ---
 
 # Prompt Engineering Skill
