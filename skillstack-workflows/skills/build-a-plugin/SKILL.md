@@ -24,7 +24,7 @@ Building a Claude Code plugin is more than writing a SKILL.md file. A plugin bun
 - **Single SKILL.md files** — use the `write-your-own-skill` workflow
 - **One-off prompts** — use `prompt-engineering` directly
 - **MCP server development only** — use the `mcp-server` skill directly
-- **Quick prototype not intended for distribution** — write the SKILL.md directly with `skill-forge`
+- **Quick prototype not intended for distribution** — write the SKILL.md directly with `skill-foundry`
 
 ---
 
@@ -37,7 +37,7 @@ Building a Claude Code plugin is more than writing a SKILL.md file. A plugin bun
 /plugin install plugin-architecture@skillstack
 /plugin install plugin-hooks@skillstack
 /plugin install plugin-composition@skillstack
-/plugin install skill-forge@skillstack
+/plugin install skill-foundry@skillstack
 /plugin install plugin-validation@skillstack
 /plugin install plugin-evaluation@skillstack
 ```
@@ -103,7 +103,7 @@ Output: a component map listing every piece, its type, and its responsibility.
 
 Load the skills needed for your specific components:
 
-- **For skills:** load `skill-forge` and follow its conventions for frontmatter, progressive disclosure, and reference files
+- **For skills:** load `skill-foundry` and follow its conventions for frontmatter, progressive disclosure, and reference files
 - **For hooks:** load `plugin-hooks` for the event model, matching patterns, and hook script conventions
 - **For composed plugins:** load `plugin-composition` for the manifest structure, component wiring, and cross-component communication
 

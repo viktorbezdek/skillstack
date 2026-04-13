@@ -2,7 +2,7 @@
 
 > The two JSON files that drive every plugin evaluation: `trigger-evals.json` (does the model pick the skill?) and `evals.json` (does the skill produce correct output?). This reference documents the full schema, gives annotated examples, and cites Anthropic's skill-creator as the source.
 
-Primary source: Anthropic's `skill-creator` bundled skill (`skills/skill-creator/scripts/run_loop.py`, `skills/skill-forge/README.md`).
+Primary source: Anthropic's `skill-creator` bundled skill (`skills/skill-creator/scripts/run_loop.py`, `skills/skill-foundry/README.md`).
 
 ---
 
@@ -165,4 +165,4 @@ Offline mode is for CI and for fast iteration when you're editing eval files. It
 
 ## Provenance
 
-This file format is adapted from Anthropic's skill-creator skill (bundled with Claude Code). Original reference: `skills/skill-creator/scripts/run_loop.py` and `skills/skill-forge/README.md`. See `iteration-methodology.md` for how Anthropic's run loop drives description iteration from eval results.
+This file format is adapted from Anthropic's skill-creator skill (bundled with Claude Code). Original reference: `skills/skill-creator/scripts/run_loop.py` and `skills/skill-foundry/README.md`. See `iteration-methodology.md` for how Anthropic's run loop drives description iteration from eval results.

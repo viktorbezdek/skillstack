@@ -1127,4 +1127,4 @@ When creating or refining skills, ensure:
 
 ---
 
-**Next Steps**: Apply these meta-principles to update all skill creation components (skill-forge, agent-creator, micro-skill-creator, skill-creator-agent, command creation).
+**Next Steps**: Apply these meta-principles to update all skill creation components (skill-foundry, agent-creator, micro-skill-creator, skill-creator-agent, command creation).

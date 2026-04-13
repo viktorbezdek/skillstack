@@ -416,7 +416,7 @@ The 288 eval cases across all 18 workflows test both activation (does the right 
 
 ## Related Plugins
 
-- **[Skill Forge](../skill-forge/)** -- Create the individual skills these workflows reference
+- **[Skill Forge](../skill-foundry/)** -- Create the individual skills these workflows reference
 - **[Plugin Dev](../plugin-dev/)** -- Full plugin authoring toolkit referenced by `build-a-plugin`
 - **[Workflow Automation](../workflow-automation/)** -- Programmatic multi-step orchestration (not playbook-style)
 - All 32+ SkillStack skills referenced by the workflows -- install them for domain depth

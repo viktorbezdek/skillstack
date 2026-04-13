@@ -1,5 +1,5 @@
 ---
-name: skill-forge
+name: skill-foundry
 version: 2.0.0
 description: Advanced skill creation combining deep intent analysis, evidence-based prompting, and systematic skill engineering
 triggers:
@@ -8,7 +8,7 @@ triggers:
   - architect skill system
   - design advanced skill
 orchestration:
-  primary_agent: skill-forge
+  primary_agent: skill-foundry
   support_agents: [intent-analyzer, prompt-architect, agent-creator]
   coordination: sequential
 sop_phases: [analysis, architecture, implementation, validation, optimization, integration, documentation]

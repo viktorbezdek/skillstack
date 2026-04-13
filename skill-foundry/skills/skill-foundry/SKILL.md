@@ -1,5 +1,5 @@
 ---
-name: skill-forge
+name: skill-foundry
 description: >-
   Create high-quality Claude Code skills using philosophy-first design, evidence-based
   prompting, progressive disclosure, and anti-pattern prevention. Use when creating
@@ -94,7 +94,7 @@ Use the 8-phase methodology for complex, shared, or enterprise skills:
 | 7a | Adversarial Testing | Red-team vulnerabilities | 25-40 min |
 | 8 | Metrics Tracking | Track revision gains | 10-15 min |
 
-**See**: `references/skill-forge.md` for detailed phase descriptions.
+**See**: `references/skill-foundry.md` for detailed phase descriptions.
 
 ---
 
@@ -396,7 +396,7 @@ An effective skill should:
 ### Core References
 | Reference | Purpose |
 |-----------|---------|
-| `references/skill-forge.md` | 8-phase methodology |
+| `references/skill-foundry.md` | 8-phase methodology |
 | `references/skill_creation.md` | 6-step workflow |
 | `references/progressive_disclosure.md` | Loading architecture |
 | `references/core_principles.md` | Fundamental principles |

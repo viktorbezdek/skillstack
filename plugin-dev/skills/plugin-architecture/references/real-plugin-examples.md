@@ -183,7 +183,7 @@ security-guardrails/
 
 | Decomposition | Use when | Example |
 |---|---|---|
-| **Single skill** | Pure methodology, one domain | `skill-forge` |
+| **Single skill** | Pure methodology, one domain | `skill-foundry` |
 | **Multi-skill** | Multiple related methodologies | `plugin-dev`, `skillstack-workflows` |
 | **Hook + skill** | Event-triggered action + methodology for the follow-up | `repo-linter`, `security-guardrails` |
 | **MCP + skill** | External system access + methodology around it | `customer-data` |

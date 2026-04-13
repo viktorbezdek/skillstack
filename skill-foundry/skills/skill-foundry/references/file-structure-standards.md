@@ -221,7 +221,7 @@ done
 
 **Step 3: Validate Structure**
 ```bash
-python skill-forge/resources/scripts/validate_skill.py new-skill/
+python skill-foundry/resources/scripts/validate_skill.py new-skill/
 ```
 
 ## Best Practices

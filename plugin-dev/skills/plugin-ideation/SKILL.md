@@ -21,7 +21,7 @@ description: Turns a vague "I want to build a Claude plugin" into a concrete, pr
 
 - **Validating an idea against existing plugins** → `plugin-research` (marketplace survey, build-vs-fork)
 - **Designing the plugin's components** → `plugin-architecture`
-- **Writing the plugin content** → `skill-forge`, `plugin-hooks`, `plugin-composition`
+- **Writing the plugin content** → `skill-foundry`, `plugin-hooks`, `plugin-composition`
 - **Evaluating a shipped plugin** → `plugin-evaluation`
 
 ---
@@ -156,7 +156,7 @@ Once an idea passes the checklist:
 1. **Write the one-sentence problem statement.** "When I [trigger], I want [behavior], so that [outcome]."
 2. **Hand off to `plugin-research`** to confirm nothing already solves it and to gather authoritative references.
 3. **Hand off to `plugin-architecture`** to decide the component decomposition.
-4. **Hand off to `skill-forge` / `plugin-hooks` / `plugin-composition`** to build.
+4. **Hand off to `skill-foundry` / `plugin-hooks` / `plugin-composition`** to build.
 5. **Hand off to `plugin-evaluation`** to measure whether it works.
 6. **Hand off to `plugin-validation`** to ensure it ships valid.
 

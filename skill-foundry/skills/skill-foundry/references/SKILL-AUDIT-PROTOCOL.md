@@ -1,7 +1,7 @@
 # Skill Documentation Audit Protocol v1.0
 
 **Purpose**: Automated audit and improvement of skill documentation completeness.
-**Integrated With**: skill-forge Phase 7a, recursive-improvement meta-loop
+**Integrated With**: skill-foundry Phase 7a, recursive-improvement meta-loop
 **Last Updated**: 2025-12-17
 
 ---
@@ -9,7 +9,7 @@
 ## Overview
 
 This protocol defines how the meta-loop automatically audits and improves skill documentation. It runs:
-1. **During skill creation** (Phase 7a of skill-forge)
+1. **During skill creation** (Phase 7a of skill-foundry)
 2. **Periodically via recursive-improvement** (batch auditing)
 3. **On-demand via `/skill-audit` command**
 
@@ -133,7 +133,7 @@ Use this skill when [When to Use summary]. Avoid [Anti-Pattern summary].
 
 ## Integration Points
 
-### 1. skill-forge Phase 7a (Post-Creation Audit)
+### 1. skill-foundry Phase 7a (Post-Creation Audit)
 After skill creation, automatically:
 1. Run tier compliance check
 2. Generate missing sections using templates
@@ -196,7 +196,7 @@ skill-audit/history:
 ## Enforcement
 
 This protocol is enforced at:
-1. **skill-forge Phase 7a** - All new skills must pass audit
+1. **skill-foundry Phase 7a** - All new skills must pass audit
 2. **recursive-improvement cycle** - Existing skills audited periodically
 3. **CI/CD** - PR validation includes audit check
 4. **pre-commit hook** - Optional local enforcement

@@ -32,7 +32,7 @@ Creating a Claude Code skill looks easy — write a markdown file with some fron
 
 ```
 /plugin marketplace add viktorbezdek/skillstack
-/plugin install skill-forge@skillstack
+/plugin install skill-foundry@skillstack
 /plugin install elicitation@skillstack
 /plugin install example-design@skillstack
 /plugin install consistency-standards@skillstack
@@ -57,7 +57,7 @@ Third principle: **progressive disclosure is non-negotiable.** A skill that dump
 
 ### Phase 1 — starting point (skill-creator)
 
-Load the `skill-forge` skill. It knows the current conventions for well-formed skills and will catch mistakes that would take you weeks to diagnose on your own.
+Load the `skill-foundry` skill. It knows the current conventions for well-formed skills and will catch mistakes that would take you weeks to diagnose on your own.
 
 Use its guidance to answer:
 
@@ -276,7 +276,7 @@ A completed skill produces:
 
 ## Related workflows and skills
 
-- For managing the full plugin bundle (not just one skill), use the skillstack repo's `skill-forge` plugin directly
+- For managing the full plugin bundle (not just one skill), use the skillstack repo's `skill-foundry` plugin directly
 - For presenting your new skill to others, use the `pitch-sprint` workflow
 - For debugging why your skill isn't activating, use the `debug-complex-issue` workflow
 - For the theory behind progressive disclosure and context efficiency, use the `context-fundamentals` and `context-optimization` skills

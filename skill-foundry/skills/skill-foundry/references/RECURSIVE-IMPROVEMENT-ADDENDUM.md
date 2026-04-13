@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Connect **skill-forge** with the **Recursive Self-Improvement System** to enable:
+Connect **skill-foundry** with the **Recursive Self-Improvement System** to enable:
 1. Skill Forge improving itself
 2. Skill Forge being improved by Prompt Forge
 3. Skill Forge applying improvements to other skills
@@ -46,7 +46,7 @@ target_integration:
   benchmarks:
     - "skill-generation-benchmark-v1"
   regressions:
-    - "skill-forge-regression-v1"
+    - "skill-foundry-regression-v1"
 
   improvement_areas:
     phase_structure:
@@ -95,15 +95,15 @@ self_improvement:
   safeguards:
     - "Uses PREVIOUS version to rebuild (not modified)"
     - "Changes must pass skill-generation-benchmark-v1"
-    - "Changes must pass skill-forge-regression-v1"
+    - "Changes must pass skill-foundry-regression-v1"
     - "Previous version archived before apply"
     - "Human gate for breaking changes"
 
   process:
-    1. "skill-auditor analyzes current skill-forge"
+    1. "skill-auditor analyzes current skill-foundry"
     2. "prompt-forge generates improvement proposals"
-    3. "skill-forge (PREVIOUS version) applies proposals"
-    4. "eval-harness tests new skill-forge"
+    3. "skill-foundry (PREVIOUS version) applies proposals"
+    4. "eval-harness tests new skill-foundry"
     5. "If improved: commit. If regressed: reject."
 
   forbidden_changes:
@@ -197,7 +197,7 @@ rebuild_self:
 
   process:
     - step: "Get previous version path"
-      source: ".claude/skills/skill-forge/.archive/SKILL-v{N-1}.md"
+      source: ".claude/skills/skill-foundry/.archive/SKILL-v{N-1}.md"
 
     - step: "Load previous Skill Forge"
       validate: "Archive exists"
@@ -209,10 +209,10 @@ rebuild_self:
       note: "This prevents infinite self-reference"
 
     - step: "Output candidate"
-      output: "skill-forge-v{N+1} candidate"
+      output: "skill-foundry-v{N+1} candidate"
 
   output:
-    candidate_path: ".claude/skills/skill-forge/SKILL-candidate.md"
+    candidate_path: ".claude/skills/skill-foundry/SKILL-candidate.md"
     applied_with_version: "v{N-1}"
 ```
 
@@ -248,7 +248,7 @@ skill_generation_benchmark:
 
 ```yaml
 skill_forge_regression:
-  id: "skill-forge-regression-v1"
+  id: "skill-foundry-regression-v1"
 
   tests:
     - id: "sfr-001"
@@ -280,10 +280,10 @@ skill_forge_regression:
 
 | Namespace | Purpose |
 |-----------|---------|
-| `skill-forge/generations/{id}` | Skills created by Skill Forge |
-| `skill-forge/improvements/{id}` | Improvements applied |
-| `skill-forge/self-rebuilds/{id}` | Self-improvement cycles |
-| `improvement/commits/skill-forge` | Version history |
+| `skill-foundry/generations/{id}` | Skills created by Skill Forge |
+| `skill-foundry/improvements/{id}` | Improvements applied |
+| `skill-foundry/self-rebuilds/{id}` | Self-improvement cycles |
+| `improvement/commits/skill-foundry` | Version history |
 
 ---
 
@@ -310,7 +310,7 @@ skill_forge_regression:
 ## Version Control
 
 ```
-.claude/skills/skill-forge/
+.claude/skills/skill-foundry/
   SKILL.md                           # Current version
   RECURSIVE-IMPROVEMENT-ADDENDUM.md  # This file
   .archive/

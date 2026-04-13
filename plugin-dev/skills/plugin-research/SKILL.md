@@ -21,7 +21,7 @@ description: Validates a plugin idea by surveying the marketplace, reading autho
 
 - **Deciding if the idea is worth pursuing** → `plugin-ideation`
 - **Designing component layout** → `plugin-architecture`
-- **Building the plugin** → `skill-forge`, `plugin-hooks`, `plugin-composition`
+- **Building the plugin** → `skill-foundry`, `plugin-hooks`, `plugin-composition`
 
 ---
 
@@ -160,7 +160,7 @@ If research gives you the green light, hand off to:
 1. **`plugin-architecture`** — decide component decomposition based on your findings
 2. **`plugin-composition`** — layout and integration (if multi-component)
 3. **`plugin-hooks`** — hook authoring (if hooks involved)
-4. **`skill-forge`** — advanced skill authoring (SkillStack)
+4. **`skill-foundry`** — advanced skill authoring (SkillStack)
 5. **`plugin-validation`** — structural checks
 6. **`plugin-evaluation`** — trigger and output evals before shipping
 

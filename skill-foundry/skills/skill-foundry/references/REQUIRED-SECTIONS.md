@@ -191,7 +191,7 @@ This checklist is enforced at:
 2. **Skill Auditor** - Audits existing skills for completeness
 3. **CI/CD** - Automated validation before merge
 
-When skill-forge creates a skill, it MUST generate ALL sections. If time-constrained, generate skeleton sections with TODO markers that can be filled in iteratively.
+When skill-foundry creates a skill, it MUST generate ALL sections. If time-constrained, generate skeleton sections with TODO markers that can be filled in iteratively.
 
 ---
 

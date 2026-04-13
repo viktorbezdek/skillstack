@@ -91,7 +91,7 @@ This is a single-skill plugin with an extensive supporting ecosystem of scripts,
 
 | Reference | Topic |
 |---|---|
-| `skill-forge.md` | Complete 8-phase methodology with detailed phase descriptions |
+| `skill-foundry.md` | Complete 8-phase methodology with detailed phase descriptions |
 | `skill_creation.md` | 6-step skill creation workflow |
 | `progressive_disclosure.md` | Loading architecture and context budget management |
 | `core_principles.md` | Fundamental skill design principles |
@@ -302,7 +302,7 @@ The plugin is a single skill with an extensive supporting ecosystem. The SKILL.m
 
 When deeper guidance is needed, 55 reference files provide specialized content organized into four categories:
 
-- **Core methodology (4 files):** skill-forge (8-phase), skill creation workflow, progressive disclosure, core principles
+- **Core methodology (4 files):** skill-foundry (8-phase), skill creation workflow, progressive disclosure, core principles
 - **Anti-patterns and quality (6 files):** comprehensive anti-pattern catalogs, best practices checklists, shibboleths, validation
 - **Advanced techniques (5 files):** evidence-based prompting, composability, variation patterns, output patterns, prompting principles
 - **Enterprise and workflows (5 files):** factory workflows, audit protocols, enterprise checklists, step-by-step guides

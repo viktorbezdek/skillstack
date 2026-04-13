@@ -909,23 +909,23 @@
       ]
     },
     {
-      "id": "skill-forge",
+      "id": "skill-foundry",
       "name": "Skill Forge",
       "type": "skill",
       "category": "development",
       "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills. Philosophy-first design, evidence-based prompting, progressive disclosure, anti-pattern prevention, eval-driven iteration. Distinct from Anthropic's bundled skill-creator.",
       "repo_id": "viktorbezdek-skillstack",
-      "path_in_repo": "skill-forge/skills/skill-forge",
+      "path_in_repo": "skill-foundry/skills/skill-foundry",
       "version": "2.0.0",
       "tags": [
         "skill",
-        "skill-forge",
+        "skill-foundry",
         "engineering",
         "framework",
         "progressive-disclosure",
         "eval-driven"
       ],
-      "documentation_path": "./skill-forge/README.md",
+      "documentation_path": "./skill-foundry/README.md",
       "status": "active",
       "platforms": [
         "claude-code"

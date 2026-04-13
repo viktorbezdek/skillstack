@@ -1,6 +1,6 @@
 ---
 name: plugin-validation
-description: Validates the structural correctness of Claude Code plugins — plugin.json manifest fields, SKILL.md YAML frontmatter, reference cross-references, skill name-to-directory consistency, and plugin structure conventions. Use when checking whether a plugin is well-formed before shipping, when debugging "plugin won't load" errors, when setting up CI for a plugin repo, or when reviewing a third-party plugin for issues. NOT for functional evaluation (whether skills activate or produce correct output — use plugin-evaluation for that). NOT for single-skill SKILL.md quality review (use skill-forge for that).
+description: Validates the structural correctness of Claude Code plugins — plugin.json manifest fields, SKILL.md YAML frontmatter, reference cross-references, skill name-to-directory consistency, and plugin structure conventions. Use when checking whether a plugin is well-formed before shipping, when debugging "plugin won't load" errors, when setting up CI for a plugin repo, or when reviewing a third-party plugin for issues. NOT for functional evaluation (whether skills activate or produce correct output — use plugin-evaluation for that). NOT for single-skill SKILL.md quality review (use skill-foundry for that).
 ---
 
 # Plugin Validation
@@ -20,7 +20,7 @@ description: Validates the structural correctness of Claude Code plugins — plu
 ## When NOT to use this skill
 
 - Checking whether a skill activates correctly → `plugin-evaluation`
-- Checking whether a skill's instructions are good → `skill-forge`
+- Checking whether a skill's instructions are good → `skill-foundry`
 - Debugging hook behavior → `plugin-hooks`
 
 ---

@@ -1,5 +1,5 @@
 {
-  "name": "skill-forge",
+  "name": "skill-foundry",
   "version": "2.0.0",
   "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills, and progressive disclosure architecture. Distinct from Anthropic's bundled skill-creator — this is the full production toolkit for philosophy-first design, evidence-based prompting, anti-pattern prevention, shibboleths, eval-driven iteration, and enterprise-grade workflows.",
   "author": {
@@ -7,11 +7,11 @@
     "url": "https://github.com/viktorbezdek"
   },
   "license": "MIT",
-  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/skill-forge",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/skill-foundry",
   "keywords": [
     "claude-code",
     "skill",
-    "skill-forge",
+    "skill-foundry",
     "create skill",
     "build skill",
     "design skill",
