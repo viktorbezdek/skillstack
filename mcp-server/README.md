@@ -6,30 +6,28 @@
 
 ## The Problem
 
-Connecting AI agents to external APIs and services requires bridging two fundamentally different worlds. APIs are designed for human developers who read documentation, understand data models, and handle edge cases with conditional logic. AI agents consume tool descriptions from structured metadata, receive inputs as JSON, and make decisions based on natural language descriptions. A direct wrapper around an existing API -- exposing every endpoint as a separate tool with the same parameters -- produces tools that confuse the model, waste context window with verbose descriptions, and return data in formats optimized for machines rather than AI comprehension.
+MCP (Model Context Protocol) is the standard for connecting AI agents to external tools and data sources, but building a quality MCP server is harder than it looks. The protocol specification covers the wire format but not the design decisions that determine whether an agent can actually use the tools effectively. Developers build servers that technically implement the protocol but produce tools with vague descriptions, inconsistent parameter names, missing validation, unhelpful error messages, and no pagination -- resulting in agents that waste turns trying to understand what the tools do and how to call them.
 
-Without a standard protocol, every integration is a custom build. Each developer writes their own tool registration, input validation, error formatting, and transport layer. The result is fragile integrations that break when the API changes, inconsistent tool naming that confuses the model across servers, and security gaps (unsanitized file paths, missing confirmation flags for destructive operations, leaked API keys in tool responses).
+The gap between "MCP server that compiles" and "MCP server that agents use well" is substantial. Tool descriptions need to be optimized for AI comprehension, not human reading. Parameters need constraints that prevent the agent from constructing invalid requests. Error messages need to tell the agent what to do next, not just what went wrong. Output needs to be truncated to fit context windows, paginated for large result sets, and formatted for agent consumption. These requirements are not documented in the MCP spec -- they are learned through trial and error with real agent workloads.
 
-The MCP specification provides the standard protocol, but going from "I read the spec" to "I have a production-grade server" requires knowing which SDK to use, how to design tools for AI consumption (not just API wrapping), how to validate inputs with Pydantic or Zod, how to handle pagination and output truncation, how to test with evaluation harnesses, how to deploy securely, and how to package the result as a Claude Code plugin. This knowledge is scattered across the MCP specification, SDK documentation, community examples, and hard-won production experience.
+For Claude Code plugin developers, the challenge extends further. A plugin is not just an MCP server -- it includes skills (SKILL.md files with frontmatter and methodology), hooks (event-driven scripts), references (progressive disclosure depth), evaluations (trigger and output quality tests), and packaging (plugin.json manifest). Building a well-structured plugin requires knowledge that spans protocol implementation, agent-centric design, and the Claude Code extension system.
 
 ## The Solution
 
-This plugin consolidates everything needed to build production-grade MCP servers into a single skill with 24 reference files. The SKILL.md provides the quick start for both Python (FastMCP with Pydantic validation) and TypeScript (McpServer SDK with Zod schemas), core concepts (tools, resources, prompts, transport types), and best practices for tool design, input/output formatting, validation, and security.
+This plugin provides comprehensive guidance for building MCP servers and Claude Code plugins. It covers the complete development lifecycle: MCP protocol fundamentals (tools, resources, prompts, transports), server implementation in Python (FastMCP) and TypeScript (@modelcontextprotocol/sdk), agent-centric tool design (workflow-oriented tools, AI-optimized descriptions, context-window-aware output), input validation (Pydantic/Zod with constraints), security patterns (path sanitization, destructive operation confirmations), evaluation-driven development (trigger evals and output quality tests), production deployment, and Claude Code plugin packaging.
 
-The 24 reference files provide depth across the full development lifecycle: protocol fundamentals, language-specific implementation guides (Python and TypeScript), SDK patterns and code examples, agent-centric tool design, production deployment checklist, security patterns, evaluation-driven development, Claude Code plugin packaging, and community practices from real-world FastMCP deployments.
-
-The practical outcomes are MCP servers where tools are designed for AI consumption (workflow-oriented, not endpoint wrappers), inputs are validated with type-safe schemas (Pydantic constraints in Python, Zod `.strict()` in TypeScript), outputs are formatted for context window efficiency (character limits, pagination, truncation), security is enforced by default (path validation, confirmation flags, secret management), and the whole thing is testable with evaluation harnesses and deployable as a Claude Code plugin.
+The plugin ships one SKILL.md with the core methodology, 72 reference files organized across protocol basics, language-specific guides, best practices, architecture patterns, Claude Code documentation, Figma integration, and community practices. It includes 8 project templates (MCP servers in Python and TypeScript, Claude Code skills, plugins, and slash commands), 10+ scripts for plugin initialization, validation, packaging, evaluation, and cost calculation, and an asset file with MCP tool definitions. The reference collection includes the complete Claude Code documentation (36 files covering everything from quickstart to advanced configuration) for building plugins that integrate deeply with the Claude Code ecosystem.
 
 ## Before vs After
 
 | Without this plugin | With this plugin |
 |---|---|
-| Each API endpoint becomes a separate MCP tool -- the model sees 30 tools and picks the wrong one | Workflow-oriented tool design consolidates related operations, reducing tool count and improving model accuracy |
-| Tool descriptions copy API documentation verbatim -- verbose, jargon-heavy, optimized for humans | Agent-centric descriptions explain what the tool does in plain language, optimized for model comprehension |
-| Input validation is ad-hoc if present at all -- invalid inputs produce cryptic API errors | Pydantic `Field()` constraints (Python) or Zod `.strict()` schemas (TypeScript) validate inputs before they reach the API |
-| Tool output dumps raw JSON from the API -- 50,000 characters of nested objects filling the context window | Character limits, pagination, and format selection (JSON or Markdown) keep output context-efficient |
-| File path parameters are passed directly to the filesystem -- path traversal vulnerabilities | Path validation against allowed directories, destructive operation confirmation flags, and `readOnlyHint` annotations |
-| Testing means "try it and see if it works" -- no systematic quality verification | Evaluation-driven development with trigger evals (does the model pick the tool?) and output evals (does the tool produce correct results?) |
+| Tool descriptions are human-readable but confusing to agents; agents waste turns guessing what tools do | Agent-centric tool design with descriptions optimized for AI comprehension, including examples and constraints |
+| No input validation; agents construct invalid requests and get cryptic errors | Pydantic/Zod validation with Field constraints that guide agents to valid parameter ranges |
+| Error messages say "invalid input" with no guidance | Actionable error messages that tell the agent exactly what to fix: "fileId required, use search_files to find it" |
+| Large result sets dump everything into context, exceeding window limits | CHARACTER_LIMIT enforcement (25K default) with pagination and truncation indicators |
+| Plugin structure is guessed from examples; missing frontmatter, broken eval format, invalid manifest | Templates and validation scripts enforce correct structure for SKILL.md, plugin.json, evals, and references |
+| No way to test if the agent actually triggers the right skill or produces quality output | Evaluation framework with trigger evals (does the agent pick the right skill?) and output evals (is the response good?) |
 
 ## Installation
 
@@ -40,276 +38,336 @@ Add the SkillStack marketplace, then install this plugin:
 /plugin install mcp-server@skillstack
 ```
 
-Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention MCP, Model Context Protocol, FastMCP, MCP server, MCP tools, or Claude Code plugin development.
+Run the commands above from inside a Claude Code session. After installation, the skill activates automatically when your prompts mention MCP, Model Context Protocol, FastMCP, MCP server, MCP tools, Claude Code plugins, or building agent tools with MCP.
 
 ## Quick Start
 
 1. Install the plugin using the commands above
 2. Open a Claude Code session
-3. Type: `Build an MCP server in Python that exposes my database as searchable tools`
-4. Claude produces a FastMCP server with Pydantic-validated tool definitions, resource endpoints for schema introspection, STDIO transport configuration, and the `.claude/settings.json` entry to connect it
-5. Next, try: `Write evaluation tests for this MCP server` to get trigger evals and output evals for systematic quality verification
+3. Type: `Build an MCP server in Python that exposes a search tool for our product database`
+4. Claude produces a FastMCP server with a properly described search tool, Pydantic validation, pagination, and a CHARACTER_LIMIT for output
+5. Next, try: `Package this as a Claude Code plugin with trigger evaluations`
+
+---
+
+## System Overview
+
+```
+User prompt (build MCP server / create plugin / design tools)
+        |
+        v
++------------------+     +-------------------------------+
+|  mcp-server      |---->| Topic routing                  |
+|  skill (SKILL.md)|     | (language, component, concern) |
++------------------+     +-------------------------------+
+        |                         |
+        v                         v
+  Core concepts:           72 Reference files:
+  - Tools, Resources,      - Protocol basics (3)
+    Prompts                 - Python guide (FastMCP)
+  - STDIO/HTTP/SSE         - TypeScript guide
+    transports              - Best practices (3)
+  - Agent-centric design    - Architecture patterns
+        |                   - Claude Code docs (36)
+        v                   - Figma integration (6)
+  Implementation:           - SDK patterns
+  - Python (FastMCP)        - Community practices
+  - TypeScript (SDK)        - Evaluation guide
+  - Plugin packaging        - Production checklist
+        |                   - ...and more
+        v
+  Automation:             8 Project Templates:
+  - init_plugin.py         - MCP server (Python)
+  - validate_plugin.py     - MCP server (TypeScript)
+  - package_plugin.py      - Claude Code skill
+  - evaluation scripts     - Full plugin
+  - cost-calculator.py     - Slash command
+  - mcp-tools CLI          - Figma tokens
+```
+
+Single-skill plugin with 72 references, 10+ scripts, 8 templates, and 1 asset file. The largest knowledge base in SkillStack, covering the full MCP and Claude Code plugin ecosystem.
 
 ## What's Inside
 
-Large single-skill plugin with one SKILL.md, 24 reference files, 13 trigger eval cases, and 3 output eval cases.
+| Component | Type | Count | What It Provides |
+|---|---|---|---|
+| **mcp-server** | Skill | 1 | Core methodology, language selection, quick starts, best practices |
+| **References** | Reference | 72 | Protocol, implementation guides, best practices, Claude Code docs, Figma integration |
+| **Scripts** | Script | 10+ | Plugin init, validation, packaging, evaluation, cost calculation, MCP client tools |
+| **Templates** | Template | 8 | Project starters for MCP servers, plugins, skills, and commands |
+| **Assets** | Asset | 1 | `tools.json` -- MCP tool definitions reference |
+| **trigger-evals** | Eval | 13 | 8 positive, 5 negative trigger eval cases |
+| **output-evals** | Eval | 3 | Output quality eval cases |
 
-### SKILL.md Structure
+### Component Spotlights
 
-| Section | What It Covers |
-|---|---|
-| **Quick Start** | Minimal working server in Python (FastMCP) and TypeScript (McpServer SDK), language selection guide |
-| **Core Concepts** | Tools, Resources, Prompts component table; STDIO, HTTP, SSE transport selection; MCP configuration format |
-| **Best Practices** | Tool design rules, input/output formatting, validation patterns, security checklist |
+#### mcp-server (skill)
 
-### Reference Files (24 files)
+**What it does:** Activates when you build MCP servers, design agent tools, create Claude Code plugins, or work with the Model Context Protocol. Provides the implementation approach for your chosen language (Python/TypeScript), agent-centric tool design patterns, and the full Claude Code plugin structure.
 
-| Domain | References | What They Cover |
-|---|---|---|
-| **Protocol** | 2 files | MCP specification fundamentals, protocol basics |
-| **Python (FastMCP)** | 5 files | Python implementation guide, FastMCP development guidelines, community practices, example projects, prompts and templates |
-| **TypeScript** | 2 files | TypeScript MCP server implementation, Node SDK patterns |
-| **Tool Design** | 3 files | MCP best practices, agent-centric tool design, SDK patterns and code examples |
-| **Building & Architecture** | 3 files | Building servers guide, architecture patterns, API comparison |
-| **Production** | 2 files | Production deployment checklist, security and caching patterns |
-| **Evaluation** | 1 file | MCP server evaluation guide with trigger and output eval patterns |
-| **Claude Code Integration** | 4 files | Skill guide, slash command guide, plugin development best practices, extended patterns |
-| **Other** | 2 files | Comprehensive development guide, accessing online resources |
+**Input -> Output:** You describe what you want to build (an MCP server, a tool, a plugin) -> The skill produces production-ready code with proper validation, error handling, security, and plugin packaging.
 
-### mcp-server
+**When to use:**
+- Building new MCP servers from scratch (Python or TypeScript)
+- Integrating external APIs or services as MCP tools
+- Creating Claude Code plugins (skills, hooks, references, evals)
+- Designing tools optimized for AI agent consumption
+- Writing evaluations to test MCP server quality
+- Implementing security, caching, or production patterns
 
-**What it does:** Activates when you ask about building MCP servers, creating tools for Claude, integrating external APIs with MCP, configuring MCP servers for Claude Desktop or Claude Code, writing MCP evaluations, implementing security patterns, or packaging MCP servers as Claude Code plugins. Routes to the appropriate reference files based on your language choice (Python or TypeScript) and development stage (building, testing, deploying, packaging).
+**When NOT to use:**
+- Designing tool interfaces or tool consolidation patterns -> use [tool-design](../tool-design/)
+- Prompt engineering or prompt optimization -> use [prompt-engineering](../prompt-engineering/)
+- Agent coordination patterns -> use [multi-agent-patterns](../multi-agent-patterns/)
 
 **Try these prompts:**
 
 ```
-Build an MCP server in Python that wraps our REST API for managing inventory -- I need search, create, update, and delete tools
+Build a FastMCP server that wraps our REST API with tools for search, create, and update operations
 ```
 
 ```
-Convert this existing TypeScript API client into an MCP server with proper Zod validation and tool annotations
+Create a Claude Code plugin with a skill that helps users design database schemas -- include trigger evals and references
 ```
 
 ```
-Review my MCP server's tool descriptions -- are they designed for AI consumption or are they just API doc wrappers?
+Design an MCP tool for file management with proper path validation, destructive operation confirmation, and pagination for directory listings
 ```
 
 ```
-Write a production deployment checklist for our MCP server -- security, caching, monitoring, and error handling
+Convert my existing Python script into an MCP server with proper tool descriptions and Zod/Pydantic validation
 ```
 
 ```
-Package this MCP server as a Claude Code plugin with skills, hooks, and proper plugin.json metadata
+Set up evaluation tests for my MCP server -- I need trigger evals to verify the skill activates correctly and output evals for response quality
 ```
 
+**Key reference categories:**
+
+| Category | Files | Topics |
+|---|---|---|
+| Protocol | 3 | Protocol basics, API comparison, using tools |
+| Language guides | 3 | Python (FastMCP), TypeScript (SDK), SDK patterns |
+| Best practices | 3 | Tool design, MCP-specific, development guidelines |
+| Architecture | 2 | Architecture patterns, building servers |
+| Claude Code docs | 36 | Complete Claude Code documentation (plugins, hooks, skills, settings, deployment) |
+| Figma integration | 6 | Figma MCP tools, token extraction, naming conventions |
+| Production | 2 | Production checklist, evaluation guide |
+| Community | 2 | Community practices, example projects |
+| Prompts/Templates | 2 | Prompt templates, extended patterns |
+
+#### Scripts (automation tools)
+
+| Script | What It Does |
+|---|---|
+| `init_plugin.py` | Initialize a new Claude Code plugin project with correct structure |
+| `validate_plugin.py` | Validate plugin structure, manifest, frontmatter, and eval format |
+| `package_plugin.py` | Package a plugin for distribution |
+| `cost-calculator.py` | Calculate token costs for MCP tool usage |
+| `evaluation/` | Evaluation framework for testing MCP server quality |
+| `mcp-tools/` | CLI for connecting to and testing MCP servers |
+| `figma-tokens/` | Extract, transform, and validate design tokens from Figma |
+| `update_docs.js` | Update documentation from source files |
+
+#### Templates (project starters)
+
+| Template | Language | What It Creates |
+|---|---|---|
+| `mcp-server-python/` | Python | FastMCP server with tools, resources, and tests |
+| `mcp-server-typescript/` | TypeScript | MCP SDK server with Zod validation |
+| `mcp-template-python/` | Python | Minimal MCP server template with test scaffolding |
+| `mcp-template-typescript/` | TypeScript | Minimal MCP server template |
+| `full-plugin/` | -- | Complete Claude Code plugin with skill, references, evals |
+| `skill/` | -- | Standalone skill with references and example script |
+| `slash-command/` | -- | Slash command template for Claude Code |
+| `figma-tokens/` | -- | Design token pipeline templates (CSS, SCSS, TS, JSON) |
+
+---
+
+## Prompt Patterns
+
+### Good Prompts vs Bad Prompts
+
+| Bad (vague, won't activate well) | Good (specific, activates reliably) |
+|---|---|
+| "Build an MCP server" | "Build a FastMCP server in Python that wraps our PostgreSQL database with search, read, and update tools" |
+| "Make a plugin" | "Create a Claude Code plugin with a skill for API design, including 5 trigger evals and 3 references on REST best practices" |
+| "Add validation" | "Add Pydantic validation to my search tool -- query (string, 1-500 chars), limit (int, 1-100, default 10), and format (enum: json/markdown)" |
+| "Fix my MCP server" | "My MCP tool returns 50K tokens for large queries. Add CHARACTER_LIMIT truncation and pagination with cursor-based navigation." |
+| "Make it secure" | "Add path validation to my file_read tool -- restrict to the project directory, reject symlinks outside the sandbox, and require confirmation for destructive operations" |
+
+### Structured Prompt Templates
+
+**For MCP server creation:**
 ```
-How do I test my MCP tools with evaluation harnesses -- trigger evals for activation and output evals for correctness?
+Build an MCP server in [Python/TypeScript]. It should wrap [service/API/database] with tools for [operations]. Transport: [STDIO/HTTP]. Key requirements: [validation, pagination, security, caching].
 ```
+
+**For Claude Code plugin creation:**
+```
+Create a Claude Code plugin for [domain]. The skill should help users [capability]. Include: [number] references covering [topics], trigger evals for [number] positive and [number] negative cases, and output evals for [quality criteria].
+```
+
+**For tool design:**
+```
+Design MCP tools for [domain]. I have these operations: [list]. For each tool: name it with the service prefix convention, write an agent-optimized description, add input validation with constraints, and handle errors with actionable messages.
+```
+
+### Prompt Anti-Patterns
+
+- **Wrapping API endpoints 1:1 as tools:** "Create one tool for each REST endpoint" -- the skill will push back toward workflow-oriented tools that combine multiple endpoints into meaningful agent operations.
+- **Skipping validation:** "Just make it work first, we'll add validation later" -- validation is not optional for MCP tools because agents will construct invalid requests and get stuck in retry loops.
+- **Ignoring output size:** "Return the full database query result" -- the skill enforces CHARACTER_LIMIT (25K default) and will add truncation and pagination automatically.
 
 ## Real-World Walkthrough
 
-You are building an internal developer platform and your team uses a custom issue tracker (not Jira, not GitHub Issues -- a homegrown system with a REST API). Developers currently switch between their IDE and the web UI to create issues, update status, and link commits to tickets. You want to expose the issue tracker to Claude so developers can manage issues without leaving their coding session.
+You are building an MCP server that gives Claude access to your company's project management tool. The tool has a REST API with endpoints for projects, tasks, comments, and users. You want Claude to be able to search tasks, create tasks, update task status, and add comments.
 
-You start by asking Claude: **"Build an MCP server in Python that exposes our issue tracker API as tools for Claude."**
+**Step 1: Language selection.** You ask Claude: **"Build an MCP server for our project management API. We're a Python shop using FastAPI."**
 
-Claude activates the mcp-server skill and immediately addresses the most common mistake: do not create a separate tool for every API endpoint. Your REST API has 15 endpoints (list issues, get issue, create issue, update issue, delete issue, list comments, add comment, list labels, add label, remove label, etc.). Wrapping each as a tool would give Claude 15 tools to choose from -- too many for reliable selection.
-
-Instead, Claude designs **workflow-oriented tools** that consolidate related operations:
+Claude activates the mcp-server skill and selects the Python (FastMCP) path. It produces a server skeleton:
 
 ```python
 from fastmcp import FastMCP
 from pydantic import Field
-from typing import Annotated, Literal
+from typing import Annotated
 
-mcp = FastMCP("issue-tracker")
+mcp = FastMCP("project-manager")
+```
 
+**Step 2: Tool design.** Instead of wrapping each REST endpoint as a separate tool, Claude designs workflow-oriented tools. Rather than `list_tasks` + `get_task` + `list_comments` (three tools for one workflow), it creates:
+
+- `search_tasks` -- Search by query, assignee, status, or project. Returns paginated results with CHARACTER_LIMIT truncation.
+- `manage_task` -- Create or update a task. Uses a `confirm` flag for destructive operations (status changes, deletion).
+- `add_comment` -- Add a comment to a task with the user's identity.
+
+Each tool has an agent-optimized description that includes examples:
+
+```python
 @mcp.tool()
-def search_issues(
-    query: str,
-    status: Annotated[Literal["open", "closed", "all"], Field(description="Filter by status")] = "open",
-    assignee: Annotated[str | None, Field(description="Filter by assignee username")] = None,
-    limit: Annotated[int, Field(ge=1, le=50, description="Max results")] = 10
+def search_tasks(
+    query: Annotated[str, Field(description="Search terms or task ID. Example: 'auth bug' or 'PROJ-142'")],
+    status: Annotated[str | None, Field(description="Filter: open, in_progress, done, blocked")] = None,
+    assignee: Annotated[str | None, Field(description="Email of the assigned user")] = None,
+    limit: Annotated[int, Field(ge=1, le=50, description="Max results")] = 10,
 ) -> dict:
-    """Search issues by text query with optional filters.
-    Returns issue ID, title, status, assignee, and creation date.
-    Use this to find issues before updating or commenting on them."""
-    results = api.search(query=query, status=status, assignee=assignee, limit=limit)
-    return format_results(results, limit)
+    """Search tasks across all projects. Returns title, status, assignee, and last update.
+    Use this to find tasks before calling manage_task or add_comment."""
 ```
 
-The tool description is written for Claude, not for a human reading API docs. It explains what the tool returns and when to use it ("Use this to find issues before updating or commenting"). The `Annotated` types with Pydantic `Field()` constraints ensure inputs are validated before they reach the API -- `limit` must be between 1 and 50, `status` must be one of the three allowed values.
-
-Claude consolidates the 15 API endpoints into 5 tools:
-
-1. **`search_issues`** -- find issues by query, status, assignee (replaces list + get + filter)
-2. **`manage_issue`** -- create, update status, assign, or close an issue (replaces create + update + delete)
-3. **`add_comment`** -- add a comment to an issue (remains separate because it is a distinct workflow step)
-4. **`manage_labels`** -- add or remove labels (replaces add_label + remove_label + list_labels)
-5. **`link_commit`** -- associate a commit hash with an issue (unique workflow action)
-
-Five tools instead of fifteen. Claude picks the right tool far more reliably.
-
-Next, Claude adds **output formatting** for context window efficiency:
+**Step 3: Validation and error handling.** Claude adds Pydantic validation with constraints (limit between 1-50, status must be one of the enum values) and actionable error messages:
 
 ```python
-CHARACTER_LIMIT = 25_000
-
-def format_results(results: list, limit: int) -> dict:
-    formatted = []
-    for issue in results[:limit]:
-        formatted.append(f"#{issue['id']} [{issue['status']}] {issue['title']} (@{issue['assignee']})")
-    output = "\n".join(formatted)
-    if len(output) > CHARACTER_LIMIT:
-        output = output[:CHARACTER_LIMIT] + f"\n... truncated ({len(results)} total results)"
-    return {"results": output, "count": len(results)}
+# Instead of: "Invalid status"
+# Returns: "Invalid status 'pending'. Valid values: open, in_progress, done, blocked"
 ```
 
-The output is a compact string, not a nested JSON object. Each issue is one line with the most relevant fields. If the result exceeds 25,000 characters, it truncates with a count of total results.
+**Step 4: Plugin packaging.** You then ask: **"Package this as a Claude Code plugin."**
 
-Claude then adds **security patterns**. The `manage_issue` tool has a `destructiveHint` annotation because it can delete issues:
+Claude creates the full plugin structure:
+- `.claude-plugin/plugin.json` -- Manifest with name, version, description, keywords
+- `skills/project-manager/SKILL.md` -- Skill with frontmatter trigger description, methodology, when to use/not use
+- `skills/project-manager/references/api-patterns.md` -- Reference for project management API patterns
+- `skills/project-manager/evals/trigger-evals.json` -- 8 positive, 5 negative trigger eval cases
+- `skills/project-manager/evals/evals.json` -- 3 output quality eval cases
 
-```python
-@mcp.tool(annotations={"destructiveHint": True})
-def manage_issue(
-    action: Literal["create", "update", "close", "delete"],
-    issue_id: Annotated[int | None, Field(description="Required for update/close/delete")] = None,
-    # ...
-) -> dict:
-    """Create, update, close, or delete an issue. DELETE is permanent."""
-```
+**Step 5: Evaluation.** Claude runs `validate_plugin.py` to check the structure, verifies the trigger evals cover the activation keywords, and confirms the output evals test for the key quality criteria (correct tool selection, parameter validation, response format).
 
-The `destructiveHint` annotation tells Claude to confirm with the user before calling this tool with `action="delete"`. API keys are stored in environment variables and loaded at server startup, never exposed in tool responses.
-
-Claude also generates the **MCP configuration** for Claude Code:
-
-```json
-{
-  "mcpServers": {
-    "issue-tracker": {
-      "command": "python",
-      "args": ["-m", "issue_tracker_server"],
-      "env": {"TRACKER_API_KEY": "${TRACKER_API_KEY}", "TRACKER_URL": "${TRACKER_URL}"}
-    }
-  }
-}
-```
-
-Finally, Claude writes **evaluation tests** following the evaluation-driven development workflow:
-
-- **Trigger evals**: "Create a bug report for the login page", "What issues are assigned to me?", "Close issue #42" -- verifying that Claude picks the correct tool for each natural language request
-- **Output evals**: Given a specific search query, does the tool return results in the expected format? Does the character limit truncation work correctly? Does the destructive hint trigger user confirmation?
-
-You install the MCP server, add the configuration to `.claude/settings.json`, and test with: "What open issues are assigned to me?" Claude calls `search_issues(query="", status="open", assignee="your-username")` and returns a clean list. You then say "Close issue #342 -- the bug is fixed in the latest commit" and Claude calls `manage_issue(action="close", issue_id=342)` after confirming the destructive action. The entire workflow happens in the coding session without opening the browser.
+You now have a production-ready MCP server wrapped in a Claude Code plugin, with proper tool design, validation, error handling, and evaluation tests.
 
 ## Usage Scenarios
 
-### Scenario 1: Building an MCP server from a REST API
+### Scenario 1: Building an MCP server for a database
 
-**Context:** You have an internal API with 20 endpoints and want Claude to be able to use it as tools.
+**Context:** You have a PostgreSQL database with customer data. You want Claude to be able to search customers, view order history, and generate reports.
 
-**You say:** "Build an MCP server that wraps our inventory API -- I need to search products, manage stock levels, and generate reports"
-
-**The skill provides:**
-- Workflow-oriented tool design that consolidates 20 endpoints into 5-7 tools
-- Pydantic/Zod input validation with proper constraints and descriptions
-- Output formatting with character limits and pagination
-- Security patterns for API key management and destructive operations
-- Claude Code configuration for connecting the server
-
-**You end up with:** A production-ready MCP server with validated tools, efficient output, and secure configuration.
-
-### Scenario 2: Reviewing tool descriptions for AI consumption
-
-**Context:** You built an MCP server but Claude keeps picking the wrong tool. You suspect the descriptions are the problem.
-
-**You say:** "Review my MCP server's tool descriptions -- Claude keeps calling search when it should call list"
+**You say:** "Build a FastMCP server that connects to our PostgreSQL database. Tools for: search customers, get order history, and generate monthly revenue report."
 
 **The skill provides:**
-- Agent-centric description audit: are descriptions written for the model or for human API docs?
-- Naming convention check: `{service}_{action}_{resource}` format
-- Tool consolidation recommendations (too many similar tools confuse the model)
-- Annotation review: `readOnlyHint`, `destructiveHint`, `idempotentHint`
+- FastMCP server with three workflow-oriented tools
+- Pydantic validation for all inputs (search query, customer ID, date ranges)
+- SQL injection prevention through parameterized queries
+- CHARACTER_LIMIT on output with pagination for order history
+- Connection pooling setup for production
 
-**You end up with:** Rewritten descriptions that improve Claude's tool selection accuracy.
+**You end up with:** A production-ready MCP server that Claude can use to query your database safely, with proper validation preventing harmful queries.
 
-### Scenario 3: Adding evaluation testing
+### Scenario 2: Creating a Claude Code plugin for a domain specialty
 
-**Context:** You have a working MCP server but no systematic way to verify it works correctly after changes.
+**Context:** You have deep expertise in GraphQL API design and want to package it as a Claude Code plugin that other developers can install.
 
-**You say:** "Write evaluation tests for my MCP server -- I want to verify both tool selection and output quality"
-
-**The skill provides:**
-- Trigger eval patterns: natural language queries that should activate each tool
-- Output eval patterns: expected response format, truncation behavior, error handling
-- Evaluation-driven development workflow for ongoing quality assurance
-- Integration with CI for automated eval runs
-
-**You end up with:** A test suite that catches regressions in both tool activation and output quality.
-
-### Scenario 4: Packaging as a Claude Code plugin
-
-**Context:** Your MCP server works locally and you want to distribute it to your team as a Claude Code plugin.
-
-**You say:** "Package my MCP server as a Claude Code plugin with proper skills, hooks, and metadata"
+**You say:** "Create a Claude Code plugin for GraphQL API design. It should cover schema design, resolver patterns, error handling, and N+1 query prevention."
 
 **The skill provides:**
-- `plugin.json` manifest with correct fields (name, version, description, author)
-- SKILL.md authoring for the skill that teaches Claude how to use your tools
-- `.claude/settings.json` configuration for the MCP server
-- Hook setup for event-driven behaviors (optional)
-- Evaluation files for plugin quality testing
+- Plugin structure with `plugin.json` manifest
+- SKILL.md with frontmatter triggers for GraphQL-related queries
+- 4 reference files covering each topic with methodology and examples
+- Trigger evals testing activation on GraphQL prompts
+- Output evals testing quality of schema design advice
 
-**You end up with:** A distributable Claude Code plugin that installs with `/plugin install` and activates automatically from natural language.
+**You end up with:** A distributable Claude Code plugin that any developer can install to get GraphQL expertise in their Claude Code sessions.
 
-### Scenario 5: Securing an MCP server for production
+### Scenario 3: Converting an existing script to an MCP server
 
-**Context:** Your MCP server handles sensitive data (customer records, financial transactions) and needs security hardening before production deployment.
+**Context:** You have a Python script that interacts with Jira. You want to make it available to Claude as MCP tools.
 
-**You say:** "Write a security checklist for our MCP server that handles customer data"
+**You say:** "Convert my Jira integration script into an MCP server. The script has functions for: search issues, create issue, transition issue, and add comment."
 
 **The skill provides:**
-- Path validation against allowed directories
-- Destructive operation confirmation flags with `destructiveHint` annotations
-- Secret management via environment variables (never in tool responses)
-- Input sanitization for external identifiers (SQL injection, path traversal)
-- Production deployment checklist covering auth, logging, rate limiting, and monitoring
+- FastMCP wrapper around existing functions with proper type hints
+- Agent-optimized tool descriptions (not just the function docstrings)
+- Input validation added to each function (issue key format, required fields)
+- Configuration for Claude Desktop's `.mcp.json`
+- Error handling that converts Jira API errors into actionable agent messages
 
-**You end up with:** A hardened MCP server with defense-in-depth security and a deployment checklist.
+**You end up with:** An MCP server that exposes your existing Jira integration as agent-ready tools, with minimal code changes to the original script.
+
+---
+
+## Decision Logic
+
+The skill routes your request based on what you are building:
+
+| You are building... | Primary guidance | Key references |
+|---|---|---|
+| MCP server in Python | FastMCP implementation | python-guide, best-practices, protocol-basics |
+| MCP server in TypeScript | SDK implementation | typescript-guide, sdk-patterns, typescript-mcp-server |
+| Claude Code plugin | Plugin structure and packaging | claude-code-docs/plugins, skill_guide, slash_command_guide |
+| Agent-optimized tools | Tool design patterns | best_practices, architecture_patterns, using-tools |
+| Evaluations for a plugin | Eval framework | evaluation-guide, claude-code-docs/plugins-reference |
+| Figma-to-code integration | Token pipeline | figma-integration/* (6 files) |
+
+## Failure Modes & Edge Cases
+
+| Failure | Symptom | Recovery |
+|---|---|---|
+| Tool descriptions too vague for agents | Agent calls the wrong tool or passes wrong parameters | Rewrite descriptions with the agent as the audience: include examples, constraints, and "use this when..." guidance |
+| No CHARACTER_LIMIT on output | Large results flood the agent's context window, degrading subsequent responses | Add `CHARACTER_LIMIT = 25000` with truncation indicator: "Results truncated. Use offset/limit to page through." |
+| Plugin.json manifest invalid | Plugin fails to install with cryptic error | Run `validate_plugin.py` before packaging; check required fields (name, version, description) |
+| Trigger evals too narrow | Skill activates on exact phrases but misses natural language variations | Write evals that cover natural language: "help me build an MCP server" not just "create MCP server" |
+| MCP server crashes on invalid input | Agent retries the same invalid request in a loop | Add validation with Pydantic/Zod that returns the valid range/format in the error message |
 
 ## Ideal For
 
-- **Developers building AI-integrated internal tools** -- the workflow-oriented tool design and agent-centric descriptions produce tools that the model uses reliably, not just tools that exist
-- **Teams standardizing on MCP for agent integrations** -- the protocol fundamentals, SDK patterns, and best practices provide a complete adoption path for both Python and TypeScript
-- **Claude Code plugin authors** -- the plugin packaging references cover the full journey from MCP server to distributable plugin with skills, evals, and metadata
-- **Security-conscious teams exposing tools to AI** -- the security patterns (path validation, confirmation flags, secret management) address the specific risks of AI-callable tools
-- **Quality-focused teams** -- evaluation-driven development with trigger and output evals provides systematic verification that tools work correctly
+- **Backend developers** building MCP servers that connect AI agents to internal tools, databases, and APIs
+- **Plugin authors** creating Claude Code plugins for distribution (skills, references, hooks, evals)
+- **Tool designers** who need to make existing APIs or scripts agent-friendly through proper MCP wrapping
+- **Platform teams** establishing MCP server standards and templates for their organization
+- **Full-stack developers** who need to build both the MCP server and the Claude Code plugin that packages it
 
 ## Not For
 
-- **Designing tool interfaces or consolidation patterns for agents** -- this plugin covers how to build MCP servers, not the theory of tool design for AI agents. Use [tool-design](../tool-design/) for tool description optimization, parameter design, and agent-tool interaction patterns
-- **Prompt engineering or optimization** -- use [prompt-engineering](../prompt-engineering/) for systematic prompt design, evaluation, and refinement
-- **General API design** -- use [api-design](../api-design/) for REST, GraphQL, and gRPC design patterns that are not specific to MCP
-
-## How It Works Under the Hood
-
-The plugin is a large single-skill architecture with 24 reference files organized across the full MCP development lifecycle:
-
-1. **Protocol Layer** -- MCP specification fundamentals, protocol basics, transport types (STDIO, HTTP, SSE)
-2. **Language-Specific Guides** -- Detailed implementation guides for Python (FastMCP with Pydantic) and TypeScript (McpServer SDK with Zod), plus SDK patterns and code examples
-3. **Tool Design** -- Agent-centric tool design principles, naming conventions, description optimization, input/output formatting
-4. **Production** -- Deployment checklist, security patterns, caching, monitoring, error handling
-5. **Evaluation** -- Trigger evals (tool selection accuracy) and output evals (response quality) with CI integration
-6. **Claude Code Integration** -- Skill authoring, slash command development, plugin architecture, plugin best practices
-
-The SKILL.md provides the quick start and best practices summary, while the reference files provide depth on demand. Claude loads only the references relevant to the current query -- a Python quick-start question loads `python-guide.md` and `development-guidelines.md`, while a security question loads `production-checklist.md` and `best-practices.md`.
+- **Designing tool interfaces abstractly** (consolidation patterns, tool naming theory) -- use [tool-design](../tool-design/)
+- **Prompt engineering** for the tools themselves -- use [prompt-engineering](../prompt-engineering/)
+- **Agent coordination** (how multiple agents use MCP tools together) -- use [multi-agent-patterns](../multi-agent-patterns/)
 
 ## Related Plugins
 
-- **[Tool Design](../tool-design/)** -- Agent-centric tool interface design, description optimization, and tool consolidation patterns -- the design theory that this plugin implements
-- **[API Design](../api-design/)** -- REST, GraphQL, and gRPC design patterns for the APIs that MCP servers wrap
-- **[GWS CLI](../gws-cli/)** -- Google Workspace CLI -- an example of a well-designed tool interface for multiple services
-- **[Next.js Development](../nextjs-development/)** -- App Router and Server Components for web frontends that pair with MCP-powered backends
-- **[Debugging](../debugging/)** -- Systematic debugging methodology for troubleshooting MCP server issues
+- **[Tool Design](../tool-design/)** -- Design principles for agent tool interfaces (this plugin implements them for MCP specifically)
+- **[API Design](../api-design/)** -- Design the REST/GraphQL/gRPC APIs that MCP servers wrap
+- **[Testing Framework](../testing-framework/)** -- Test infrastructure for MCP server unit and integration tests
+- **[TypeScript Development](../typescript-development/)** -- TypeScript patterns used in MCP server implementation
+- **[Python Development](../python-development/)** -- Python patterns used in FastMCP server implementation
 
 ---
 
