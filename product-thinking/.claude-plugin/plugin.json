@@ -1,0 +1,33 @@
+{
+  "name": "product-thinking",
+  "version": "1.0.0",
+  "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/product-thinking",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "product-thinking",
+    "problem-definition",
+    "jobs-to-be-done",
+    "JTBD",
+    "user-needs",
+    "value-proposition",
+    "value-proposition-canvas",
+    "VPC",
+    "kano-model",
+    "outcome-oriented",
+    "north-star",
+    "leading-indicators",
+    "lagging-indicators",
+    "trade-off-analysis",
+    "opportunity-cost",
+    "reversibility",
+    "product-management",
+    "product-strategy"
+  ]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "Write a value proposition for our small-team async standup tool.",
+    "should_trigger": true,
+    "note": "Direct VP authoring request."
+  },
+  {
+    "query": "Apply the Value Proposition Canvas to our enterprise segment.",
+    "should_trigger": true,
+    "note": "Direct VPC application."
+  },
+  {
+    "query": "Map pains and gains to the features we're planning.",
+    "should_trigger": true,
+    "note": "Pains/gains mapping is a core VPC element."
+  },
+  {
+    "query": "Is this feature a Kano basic, performance, or delighter?",
+    "should_trigger": true,
+    "note": "Kano classification is explicitly covered."
+  },
+  {
+    "query": "Help me articulate why our product matters to a remote engineering lead.",
+    "should_trigger": true,
+    "note": "VP statement framing for a specific segment."
+  },
+  {
+    "query": "Our value proposition sounds like a slogan. How do I make it specific?",
+    "should_trigger": true,
+    "note": "Anti-pattern (slogan) directly called out in the skill."
+  },
+  {
+    "query": "What are we delivering for the customer that our competitor isn't?",
+    "should_trigger": true,
+    "note": "Differentiator / 'unlike' clause in VP statement."
+  },
+  {
+    "query": "Identify pain relievers and gain creators for this segment.",
+    "should_trigger": true,
+    "note": "Core VPC vocabulary."
+  },
+  {
+    "query": "Write the marketing headline for our landing page.",
+    "should_trigger": false,
+    "note": "NOT-for clause: marketing copy belongs to ux-writing."
+  },
+  {
+    "query": "Help me pitch this value prop to our board next Tuesday.",
+    "should_trigger": false,
+    "note": "NOT-for clause: pitching belongs to storytelling-for-stakeholders."
+  },
+  {
+    "query": "Generate a one-line product tagline.",
+    "should_trigger": false,
+    "note": "Near-miss — taglines are marketing copy, not a VP."
+  },
+  {
+    "query": "What do users actually need from this workflow?",
+    "should_trigger": false,
+    "note": "Near-miss — needs identification belongs to user-needs-identification, upstream of VP."
+  },
+  {
+    "query": "Rank these features by RICE score.",
+    "should_trigger": false,
+    "note": "Near-miss — prioritization scoring belongs to prioritization."
+  }
+]

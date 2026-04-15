@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Build a Value Proposition Canvas for our product: an async standup tool targeting distributed engineering teams across 3+ time zones.",
+    "files": [],
+    "expected_behavior": "Agent activates value-proposition-design and builds both halves of the VPC. Customer profile: jobs (run a productive async standup across time zones), pains (timezone fatigue, attendance gaps, lost context), gains (inclusive participation, shorter decision cycles). Value map: products & services (the tool), pain relievers (threaded updates, timezone-aware scheduling, skim-readable format), gain creators (decision digest, per-person status roll-up). Agent explicitly traces each pain reliever / gain creator to a specific pain or gain on the right side and flags any orphans. Agent notes this is problem-solution fit only; PMF requires customer evidence."
+  },
+  {
+    "query": "Classify these four features for our note-taking app using Kano: (1) fast search, (2) reliable sync, (3) AI-generated summary after each meeting, (4) keyboard shortcuts.",
+    "files": [],
+    "expected_behavior": "Agent activates value-proposition-design and assigns each feature a Kano category with reasoning. Reliable sync — basic (its absence causes churn; its presence produces no pleasure). Fast search — performance or basic depending on content volume (satisfaction scales with speed). Keyboard shortcuts — performance for power users, not basic for new users. AI-generated summary — delighter today, likely to decay to performance as competitors adopt it. Agent warns about Kano decay: today's delighter becomes tomorrow's basic; category assignments need revisiting. Agent may recommend a follow-up survey for empirical category validation."
+  },
+  {
+    "query": "Write a value proposition statement for our product, using the template. Product: developer-sandbox-on-demand. Segment: engineering leads onboarding new hires. Alternative: sharing personal dev environments. Differentiator: one-click provision without giving new hires prod credentials.",
+    "files": [],
+    "expected_behavior": "Agent activates value-proposition-design and produces a VP statement using the For-who-our-provides-and-relieves-unlike-because template. It fills each slot specifically — a named segment, a job/context, the top 1-2 gain creators, the top 1-2 pain relievers, the named alternative, and the differentiator in the 'because' clause. Statement is one or two sentences. Agent explicitly states that the 'because' must be the differentiator (not a restatement of the gain) and that 'unlike other tools' would have been a non-statement. Agent recommends testing the statement by showing it to a member of the segment and asking them to restate it."
+  }
+]

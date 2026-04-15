@@ -1,0 +1,67 @@
+[
+  {
+    "query": "Are we solving the right problem here? The brief says to add notifications.",
+    "should_trigger": true,
+    "note": "Direct problem-framing question against a solution-shaped brief."
+  },
+  {
+    "query": "Help me write a problem statement for this feature request.",
+    "should_trigger": true,
+    "note": "Problem-statement authoring is the core template in the skill."
+  },
+  {
+    "query": "Users are churning in week one. What's the real problem?",
+    "should_trigger": true,
+    "note": "Symptom vs problem separation — churn is a symptom."
+  },
+  {
+    "query": "Frame this as a Job-To-Be-Done, not a feature request.",
+    "should_trigger": true,
+    "note": "JTBD framing is a primary technique in this skill."
+  },
+  {
+    "query": "Use the 5 whys to find the root problem behind this bug report.",
+    "should_trigger": true,
+    "note": "5-whys ladder is explicitly covered."
+  },
+  {
+    "query": "The PM says we need a dashboard. I don't think that's the problem.",
+    "should_trigger": true,
+    "note": "Feature-as-problem anti-pattern — classic trigger."
+  },
+  {
+    "query": "What assumptions are baked into this problem framing?",
+    "should_trigger": true,
+    "note": "Assumptions are a required field in the problem-statement template."
+  },
+  {
+    "query": "I want to separate the symptom from the actual problem before we discuss solutions.",
+    "should_trigger": true,
+    "note": "Direct restatement of the symptom/problem layering."
+  },
+  {
+    "query": "Help me ideate solutions for reducing customer churn.",
+    "should_trigger": false,
+    "note": "NOT-for clause: ideating solutions belongs to creative-problem-solving."
+  },
+  {
+    "query": "Why is this test failing in CI but passing locally?",
+    "should_trigger": false,
+    "note": "NOT-for clause: diagnosing code bugs belongs to debugging, not product problem framing."
+  },
+  {
+    "query": "Rank these 10 feature requests by priority for next quarter.",
+    "should_trigger": false,
+    "note": "NOT-for clause: ranking problems belongs to prioritization."
+  },
+  {
+    "query": "Write OKRs for the growth team this quarter.",
+    "should_trigger": false,
+    "note": "Near-miss — goal-setting belongs to outcome-orientation, not problem framing."
+  },
+  {
+    "query": "What's the value proposition for our new enterprise tier?",
+    "should_trigger": false,
+    "note": "Near-miss — value prop belongs to value-proposition-design."
+  }
+]

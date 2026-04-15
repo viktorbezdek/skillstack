@@ -1,0 +1,67 @@
+[
+  {
+    "query": "What do users really need here? They say they want a dashboard but I'm not sure.",
+    "should_trigger": true,
+    "note": "Classic wants-vs-needs extraction."
+  },
+  {
+    "query": "Separate the functional job from the emotional job for this workflow.",
+    "should_trigger": true,
+    "note": "Three-dimension jobs framework is core to this skill."
+  },
+  {
+    "query": "I think there's a latent need we're missing — how do I surface it?",
+    "should_trigger": true,
+    "note": "Latent need surfacing is explicitly covered."
+  },
+  {
+    "query": "Users keep apologizing for using spreadsheets alongside our product. What does that tell us?",
+    "should_trigger": true,
+    "note": "Workarounds/apologies are latent-need signals named in the skill."
+  },
+  {
+    "query": "How do I move past what users are asking for to what they actually need?",
+    "should_trigger": true,
+    "note": "Wants-vs-needs ladder is the primary technique."
+  },
+  {
+    "query": "What's the social job behind choosing a JetBrains IDE over VS Code?",
+    "should_trigger": true,
+    "note": "Social jobs are explicitly part of the three-dimension framework."
+  },
+  {
+    "query": "Write job statements for our three most common user scenarios.",
+    "should_trigger": true,
+    "note": "Job statement template is included."
+  },
+  {
+    "query": "Help me write a job statement for an engineering manager onboarding a new hire.",
+    "should_trigger": true,
+    "note": "Direct job-statement authoring."
+  },
+  {
+    "query": "Define a persona for our enterprise buyer — demographics, role, company size.",
+    "should_trigger": false,
+    "note": "NOT-for clause: demographics belong to persona-definition."
+  },
+  {
+    "query": "Map the stakeholders for this rollout on a power-interest matrix.",
+    "should_trigger": false,
+    "note": "NOT-for clause: stakeholder mapping belongs to persona-mapping."
+  },
+  {
+    "query": "Write an interview guide for our user research study next week.",
+    "should_trigger": false,
+    "note": "NOT-for clause: interview scripting belongs to elicitation."
+  },
+  {
+    "query": "Help me frame whether we're solving the right problem at all.",
+    "should_trigger": false,
+    "note": "Near-miss — problem framing belongs to problem-definition, upstream of needs."
+  },
+  {
+    "query": "Write the value proposition for this product.",
+    "should_trigger": false,
+    "note": "Near-miss — value prop belongs to value-proposition-design."
+  }
+]

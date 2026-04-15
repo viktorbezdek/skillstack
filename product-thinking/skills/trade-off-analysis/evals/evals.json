@@ -1,0 +1,17 @@
+[
+  {
+    "query": "We're debating whether to add a hard rate limit to our free tier to push users to paid. Help me analyze the trade-offs before we commit.",
+    "files": [],
+    "expected_behavior": "Agent activates trade-off-analysis and lists at least three options including 'do nothing' and 'a smaller version' (e.g., soft limit with upgrade prompt). It classifies each by reversibility (a rate limit rollout is typically a two-way door; changing the pricing model globally is a one-way door — agent distinguishes). It fills a trade-off matrix with specific cost, benefit, confidence, and opportunity cost. It names at least two second-order effects — likely including (a) power users churning to a competitor, (b) support load increasing, (c) word-of-mouth impact from the free tier shrinking. It states a kill condition — what evidence would reverse the decision. It concludes with a recommendation tied to reversibility (test before commit) and confidence."
+  },
+  {
+    "query": "Classify these three decisions as one-way or two-way doors: (1) changing our pricing model from seat-based to usage-based, (2) renaming our product, (3) running a 10% pricing experiment with a feature flag.",
+    "files": [],
+    "expected_behavior": "Agent activates trade-off-analysis and classifies each: (1) pricing model change — one-way door (existing contracts, legal/billing complexity, customer-trust damage if reversed; hard to walk back once rolled out globally). (2) product rename — one-way door (SEO, brand, existing docs, customer muscle memory — reversal is possible but extremely costly). (3) 10% pricing experiment — two-way door (scoped, flag-gated, easy to roll back). Agent recommends decision speed matching reversibility: slow/evidence-driven for one-way doors, fast/test-and-learn for two-way doors. It warns about the common anti-pattern of treating one-way doors with two-way-door speed."
+  },
+  {
+    "query": "Compare three options for our next-quarter bet: (A) redesign onboarding, (B) add an integrations marketplace, (C) do nothing and harden the core product. Use the matrix.",
+    "files": [],
+    "expected_behavior": "Agent activates trade-off-analysis and builds a matrix with rows for direct cost, opportunity cost, benefit (outcome magnitude + confidence), timeline, reversibility, second-order effects, and kills (what else each option blocks). Agent fills each cell with specifics, not adjectives — e.g., engineering weeks, target outcome magnitude, a named foregone alternative. 'Do nothing' is treated as a real option with its own row, not dismissed. Agent applies the short-term vs long-term quadrant and flags any option in the dangerous quadrant (short-term win / long-term cost). It closes with a recommendation, the named decision-maker, and a kill condition for the chosen option."
+  }
+]

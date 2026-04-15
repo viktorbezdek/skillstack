@@ -1,0 +1,17 @@
+[
+  {
+    "query": "The brief says 'users need a dashboard with 12 widgets to monitor their infrastructure'. Help me figure out whether that's actually the problem.",
+    "files": [],
+    "expected_behavior": "Agent activates the problem-definition skill, identifies that the brief is solution-shaped (dashboard + widget count are solutions, not problems), and walks the symptom/problem/solution separation. It applies the 5-whys or JTBD framing to surface the underlying job the dashboard is hired to do (e.g., 'when I start my shift I want to know at a glance whether anything broke overnight'). It produces a problem statement using the template — Who / Context / Job / Gap / Why-now / Assumptions / Not-goals — and flags that the widget count is an implementation detail, not a requirement. Concrete and structured, not abstract advice."
+  },
+  {
+    "query": "Our team is debating two onboarding designs but I don't think we've agreed on what onboarding is supposed to do. Help me define the problem before the solution debate continues.",
+    "files": [],
+    "expected_behavior": "Agent activates problem-definition and refuses to evaluate designs without a defined problem. It asks or structures the problem statement with a specific user segment, the context/trigger (when onboarding happens), the job the user is trying to get done, the current gap, and the why-now. It surfaces at least one assumption the team is betting on and at least one not-goal (adjacent problems explicitly out of scope). It concludes by stating that the two design options can now be evaluated against this problem statement, not in a vacuum."
+  },
+  {
+    "query": "Can you 5-whys this: 'users abandon the signup flow on step 3'?",
+    "files": [],
+    "expected_behavior": "Agent runs the 5-whys ladder with five distinct, progressively deeper questions — not synonyms. Each 'why' surfaces a constraint (technical, organizational, or user-behavioral), not a restatement. Agent stops when it reaches an organizational or structural root cause. Agent explicitly distinguishes the symptom (abandonment on step 3) from the root problem. It warns about common 5-whys failure modes (circular reasoning, stopping too early, personal blame instead of system cause)."
+  }
+]

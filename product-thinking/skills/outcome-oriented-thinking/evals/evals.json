@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Our plan for Q3 is 'ship the new onboarding flow'. Is that an outcome? If not, rewrite it as one with leading and lagging indicators.",
+    "files": [],
+    "expected_behavior": "Agent activates outcome-oriented-thinking and identifies 'ship the onboarding flow' as an output, not an outcome. It runs the 'so what' test at least three times, climbing from output (flow shipped) to outcome (activation rate rises) to impact (retention and revenue effects). It produces a restatement as an outcome, with an explicit lagging indicator (e.g., 'quarterly activation rate rises from X to Y') and at least one leading indicator readable within 1-2 weeks (e.g., 'first-session completion ≥ 40% in week 1'). Agent notes that shipping is the activity, not the success criterion."
+  },
+  {
+    "query": "We're a B2B marketplace matching freelance designers with small businesses. Help me pick a North Star metric.",
+    "files": [],
+    "expected_behavior": "Agent activates outcome-oriented-thinking and proposes a North Star aligned to customer value — likely something like 'successful matches per month' or 'gross merchandise value from repeat clients'. It applies the five North Star criteria (aligned to customer value, actionable, leading revenue, low-effort to measure, understandable). It explicitly rejects vanity metrics (signups, listings posted) and revenue-as-North-Star (lagging). It discusses trade-offs between candidate metrics and recommends one with justification tied to the marketplace's value-creation moment. It warns against composite scores and frequently-moving North Stars."
+  },
+  {
+    "query": "Write a full outcome hypothesis for 'adding a one-click sandbox for new developer-lead evaluators', including the kill clause.",
+    "files": [],
+    "expected_behavior": "Agent activates outcome-oriented-thinking and produces a hypothesis using the skill's template: We-believe-building-X-will-cause-user-behavior-change-for-segment-producing-leading-indicator-and-ultimately-lagging-indicator, plus the 'we will know we are right when' and 'we will kill this bet if' clauses. Segment is explicit (developer leads evaluating). Leading indicator is behavioral and time-bounded (e.g., 'first-session completion ≥ 40% within 4 weeks'). Kill condition is specific and falsifiable (e.g., 'below 20% after 4 weeks'). Agent highlights that the kill clause is the most-skipped line and explains why its absence keeps failing bets alive."
+  }
+]

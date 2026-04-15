@@ -1,0 +1,67 @@
+[
+  {
+    "query": "We're deciding between two onboarding redesigns. What are we trading off?",
+    "should_trigger": true,
+    "note": "Direct trade-off analysis across two options."
+  },
+  {
+    "query": "Is this a one-way door or a two-way door decision?",
+    "should_trigger": true,
+    "note": "Reversibility framework is explicitly covered."
+  },
+  {
+    "query": "What's the opportunity cost of doing feature A this quarter?",
+    "should_trigger": true,
+    "note": "Opportunity cost is a primary dimension."
+  },
+  {
+    "query": "Walk me through the second-order effects of adding a rate limit to the free tier.",
+    "should_trigger": true,
+    "note": "Second-order thinking is a named technique."
+  },
+  {
+    "query": "Build a trade-off matrix for options A, B, and do-nothing.",
+    "should_trigger": true,
+    "note": "Trade-off matrix template is in the skill."
+  },
+  {
+    "query": "Short-term win but long-term cost — how do I decide?",
+    "should_trigger": true,
+    "note": "Short vs long-term matrix is explicit."
+  },
+  {
+    "query": "We're about to commit to a new pricing model. What's the reversibility risk?",
+    "should_trigger": true,
+    "note": "One-way door classic example."
+  },
+  {
+    "query": "Compare three options before we commit — name what each kills.",
+    "should_trigger": true,
+    "note": "The 'Kills' row of the matrix makes opportunity cost concrete."
+  },
+  {
+    "query": "Score these 15 backlog items with RICE and MoSCoW.",
+    "should_trigger": false,
+    "note": "NOT-for clause: scored backlog ranking belongs to prioritization."
+  },
+  {
+    "query": "Quantify the probability of the API migration failing by Q4.",
+    "should_trigger": false,
+    "note": "NOT-for clause: quantified risk belongs to risk-management."
+  },
+  {
+    "query": "Should we enter the European market? Full strategic go/no-go analysis please.",
+    "should_trigger": false,
+    "note": "NOT-for clause: high-stakes strategic bets belong to strategic-decision."
+  },
+  {
+    "query": "Is this an outcome or an output?",
+    "should_trigger": false,
+    "note": "Near-miss — outcome-vs-output belongs to outcome-oriented-thinking."
+  },
+  {
+    "query": "What's the real problem we're solving here?",
+    "should_trigger": false,
+    "note": "Near-miss — problem framing belongs to problem-definition."
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "query": "Is shipping this feature really an outcome, or just an output?",
+    "should_trigger": true,
+    "note": "Output-vs-outcome distinction in a product-bet context."
+  },
+  {
+    "query": "What should our North Star metric be for this product?",
+    "should_trigger": true,
+    "note": "North Star selection is a primary topic."
+  },
+  {
+    "query": "I need a leading indicator for this bet — suggestions?",
+    "should_trigger": true,
+    "note": "Leading vs lagging indicator design."
+  },
+  {
+    "query": "Write the outcome hypothesis for a redesigned onboarding flow.",
+    "should_trigger": true,
+    "note": "Outcome-hypothesis template is explicit."
+  },
+  {
+    "query": "Map the output-outcome-impact chain for the new signup feature.",
+    "should_trigger": true,
+    "note": "Core framework: activity-output-outcome-impact chain."
+  },
+  {
+    "query": "How do we know if this product bet failed before the quarter ends?",
+    "should_trigger": true,
+    "note": "Kill-clause + leading-indicator design."
+  },
+  {
+    "query": "Run the 'so what' test on this deliverable.",
+    "should_trigger": true,
+    "note": "The 'so what' test is explicitly named."
+  },
+  {
+    "query": "Our team is measured on features shipped. How do we shift to outcomes?",
+    "should_trigger": true,
+    "note": "Output-trap diagnosis — core use case."
+  },
+  {
+    "query": "Write OKRs for the engineering team this quarter.",
+    "should_trigger": false,
+    "note": "NOT-for clause: OKR authoring belongs to outcome-orientation."
+  },
+  {
+    "query": "Draw the feedback loops connecting user acquisition to retention.",
+    "should_trigger": false,
+    "note": "NOT-for clause: feedback-loop analysis belongs to systems-thinking."
+  },
+  {
+    "query": "Score these four bets with RICE.",
+    "should_trigger": false,
+    "note": "NOT-for clause: metric scoring belongs to prioritization."
+  },
+  {
+    "query": "What problem are we actually solving here?",
+    "should_trigger": false,
+    "note": "Near-miss — problem framing belongs to problem-definition."
+  },
+  {
+    "query": "One-way door or two-way door?",
+    "should_trigger": false,
+    "note": "Near-miss — reversibility belongs to trade-off-analysis."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "query": "A user said: 'I want real-time notifications for every event in our system'. Help me figure out what they actually need.",
+    "files": [],
+    "expected_behavior": "Agent activates user-needs-identification and runs the wants-vs-needs ladder: mirror the want, ask why, elicit context, elicit outcome, ask about alternatives. It reframes the stated want (real-time notifications) as a possible solution and surfaces the functional job (e.g., 'know when a relevant event happens without having to check'), the emotional job (e.g., 'not feel anxious about missing something'), and potentially a social job. It flags that 'every event' likely hides a need for filtering/relevance, not notification velocity. It produces at least a draft job statement using the template."
+  },
+  {
+    "query": "Our support team sees users frequently pasting output from our product into Excel to do further analysis. What need are we missing?",
+    "files": [],
+    "expected_behavior": "Agent activates user-needs-identification and recognizes the workaround (Excel) as a latent-need signal. It walks through what the Excel use implies: the user needs analysis/manipulation the product does not provide, or the user does not trust the product's built-in analysis. It produces hypotheses about the unmet need — likely functional (analysis capability) and possibly emotional (confidence/control over numbers). It recommends concrete follow-up: watch which Excel operations users perform to pinpoint the specific jobs being done in the workaround."
+  },
+  {
+    "query": "Write full three-dimension job statements (functional, emotional, social) for a new hire doing their first production deployment.",
+    "files": [],
+    "expected_behavior": "Agent activates user-needs-identification and produces a structured job statement with all three dimensions filled in, not just functional. Functional: the deployment itself (context, motivation, outcome). Emotional: what the new hire wants to feel / avoid feeling (e.g., not feel like they're about to break production). Social: how they want to be perceived by the team (e.g., competent, safe to trust with prod access). Statement uses the template from the skill. Agent may also note frequency and current pain to complete the template."
+  }
+]
