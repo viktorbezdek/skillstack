@@ -30,6 +30,33 @@ The skill selects techniques based on problem type: lateral thinking for mental 
 | Problem taken at face value without questioning whether it is the right problem | Strategic reframing at multiple levels (abstraction shifts, perspective rotation, constraint manipulation, inversion) |
 | Second-order effects and feedback loops discovered only after implementation | Systems thinking identifies reinforcing loops, balancing loops, and leverage points during analysis |
 
+## Context to Provide
+
+Creative problem-solving needs to know what has already been tried before it can find what has not been tried. Without that context, it risks regenerating solutions you have already rejected. The more specifically you describe the stuck state, the more precisely the skill can target unconventional alternatives.
+
+**What to include in your prompt:**
+- **What you have already tried** and specifically why each approach failed -- this is the single most important input; it prevents the skill from regenerating rejected solutions
+- **The real constraint** vs. the assumed constraint -- state which constraints are hard (budget, timeline, physical limits) and which you are not sure about
+- **Who the relevant actors are** (competitors, stakeholders, customers, internal teams) -- game theory analysis requires named players with real incentives
+- **The resources and advantages you have** -- asymmetric strategy depends on knowing what you have that the competitor or situation lacks
+- **What "success" looks like** -- helps with expected value calculation and decision criteria
+
+**What makes results better:**
+- Describing the problem history ("we've been trying this for 3 months, here's why each approach failed")
+- Being explicit about which constraints are assumptions vs. verified requirements ("we assume we need X because Y, but we're not sure")
+- Naming the specific people or teams involved in organizational problems -- game theory works with real actors
+- Stating scale and resource context (10-person team, $50K budget, 3-month deadline)
+
+**What makes results worse:**
+- Asking for "the answer" -- creative problem-solving generates diverse options with trade-offs, not a single verdict
+- Asking to critique an existing plan -- use `critical-intuition` for evaluation; this skill generates alternatives
+- Providing no context about what has already failed -- the skill will explore the same solution space your team already explored
+
+**Template prompt:**
+```
+We have been trying to [solve problem] for [duration]. Approaches we've tried: [list each with why it failed]. The constraint we're working within: [describe, noting which constraints are assumptions]. Our resources/advantages: [list]. Stakeholders involved: [who has influence or incentives that matter]. Help me find approaches outside our current thinking.
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -116,19 +143,19 @@ creative-problem-solving (plugin)
 **Try these prompts:**
 
 ```
-We've been stuck for 3 months trying to reduce page load time below 2 seconds. We've tried CDN, lazy loading, and image optimization. What are we missing?
+We've been stuck for 3 months trying to reduce page load time below 2 seconds. We've tried CDN, lazy loading, image optimization, and moving to edge functions. Each got us closer but we're stuck at 2.4 seconds. The constraint is our monolithic backend that can't be decomposed without a 6-month rewrite. What are we missing?
 ```
 
 ```
-Our startup has 5 engineers competing against a company with 500. What's our best asymmetric strategy?
+Our startup has 5 engineers competing in the project management space against a company with 500 engineers and $50M in funding. We can't outbuild them on features. Our advantage is we can ship in days where they take months, and we can offer hands-on customer support. What's our asymmetric strategy?
 ```
 
 ```
-We need to cut cloud costs by 40% without degrading user experience. Help me think about this with first principles.
+We need to cut cloud costs by 40% without degrading user experience. We're on AWS, spending $80K/month, mostly on EC2 (60%) and RDS (30%). We've already done reserved instances. We assumed we need RDS for consistency, but our app is actually read-heavy (90% reads). Help me challenge this assumption from first principles.
 ```
 
 ```
-Two teams disagree on the architecture direction. Use game theory to analyze the incentives and find a stable outcome.
+Teams A and B both maintain our shared payment service. Team A owns the API layer, Team B owns the data model. They keep breaking each other's integrations because each team optimizes for their own quarterly metrics. Use game theory to map why this situation is stable and what incentive change would make cooperation the dominant strategy.
 ```
 
 **Key references:**

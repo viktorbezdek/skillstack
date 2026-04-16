@@ -5,6 +5,44 @@
 > The Red-Green-Refactor methodology for writing failing tests before implementation code -- across Python (pytest), TypeScript (Vitest), Playwright E2E, Emacs Lisp (ERT), and Zod schema validation.
 > Single skill + 12 references + 5 scripts + 4 templates
 
+## Context to Provide
+
+TDD works cycle by cycle, not all at once. Give the skill enough context to write the first meaningful failing test -- and the cycle begins.
+
+**What information to include in your prompt:**
+
+- **Language and testing framework** -- "Python with pytest," "TypeScript with Vitest," "Playwright E2E," or "Emacs Lisp with ERT." This determines which patterns, fixtures, and conventions apply.
+- **The specific behavior to implement** -- not "authentication module" but "a function that validates email format and returns a validation result." Smaller scope = better tests.
+- **Key business rules or edge cases** -- list any rules that are not obvious from the function name. "Discount stacking: percentage discounts apply before fixed discounts." These become test cases.
+- **What already exists** -- if there is existing code, paste the function signature or interface so tests can reference it. If there is existing test infrastructure, describe it (fixtures, helpers, conftest).
+- **Coverage goals if relevant** -- if you are filling gaps ("coverage is at 65%, need 80%"), paste the coverage report output so the skill can identify the highest-impact gaps.
+
+**What makes results better vs worse:**
+
+- Better: name one concrete behavior to test first ("the simplest happy path case"), not the whole feature
+- Better: provide the function signature or type definition even if implementation does not exist yet
+- Better: if refactoring, share the current test output (all green) alongside the code to be refactored
+- Worse: asking to "add tests to the whole module" -- TDD works incrementally, one behavior at a time
+- Worse: providing implementation code without specifying which behavior to test first
+- Worse: skipping the framework -- language-specific patterns matter (pytest fixtures vs Vitest `describe`, async patterns, etc.)
+
+**Template prompt:**
+
+```
+I need to implement [feature/behavior] using TDD in [language] with [framework: pytest / Vitest / Playwright / ERT].
+
+The function/component signature: [paste or describe the interface]
+
+Key behaviors (each will become a test):
+1. [behavior 1 -- this is where we start]
+2. [behavior 2]
+3. [edge case or error condition]
+
+[Optional: existing test infrastructure -- fixtures, helpers, conftest, test database]
+
+Start with the failing test for behavior 1.
+```
+
 ## The Problem
 
 Most developers write code first and tests second -- if they write tests at all. The tests they write are shaped by the implementation they already built, so the tests verify the code does what it does, not what it should do. Edge cases that were not considered during implementation are not considered during testing either. The tests become a rubber stamp rather than a design tool, and the team ships bugs that a test-first approach would have caught.
@@ -150,27 +188,43 @@ User wants to build a feature using TDD
 **Try these prompts:**
 
 ```
-I need to implement a user authentication module -- let's do TDD with pytest
+I need to implement a JWT authentication module in Python using pytest. The module should validate tokens,
+extract claims, and reject expired or tampered tokens. Start with the simplest case: a valid token returns
+the user ID claim. Here is the function signature:
+
+def validate_token(token: str, secret: str) -> dict | None: ...
 ```
 
 ```
-Walk me through red-green-refactor for a React component that filters a product list by category
+Walk me through red-green-refactor for a React ProductList component that filters by category using Vitest.
+The component receives products as a prop (array of {id, name, category}) and a selectedCategory string.
+When selectedCategory is "electronics", only electronics products should render.
 ```
 
 ```
-I want to write Playwright E2E tests using TDD for our checkout flow
+I want to write Playwright E2E tests using TDD for our three-step checkout flow: cart review, shipping
+address, payment. Define the expected UX as tests before I build the UI. The key assertions: cart shows
+correct totals, address validates on blur, payment submits and shows confirmation screen.
 ```
 
 ```
-My test coverage is at 65% -- help me identify the gaps and write tests to get to 80%
+My coverage report shows 65% overall. Here are the uncovered lines from pytest --cov-report=term-missing:
+[paste coverage output]. I need to reach 80%. Identify the highest-impact gaps (business logic and error
+handling first) and write the tests for them.
 ```
 
 ```
-I'm refactoring this payment processor. The tests are green. Walk me through safe refactoring with the test safety net.
+I have a 280-line PaymentProcessor class. All tests pass. I need to extract the retry logic into a separate
+RetryStrategy class. Walk me through safe refactoring: one extraction at a time, full suite after each step,
+no behavior changes. Here is the current implementation: [paste code]
 ```
 
 ```
-Write Vitest tests for this TypeScript utility module following TDD -- start with the failing test
+Write Vitest tests for this TypeScript price calculation utility -- TDD style, start with failing tests.
+Here are the functions to implement:
+- calculateSubtotal(items: CartItem[]): number
+- applyDiscount(subtotal: number, code: DiscountCode): number
+- calculateTax(amount: number, region: string): number
 ```
 
 **Key references:**

@@ -29,6 +29,62 @@ The plugin covers the four core components (classes, properties, relationships, 
 | New team members reverse-engineer the domain model from code | Shareable ontology documents that both engineers and domain experts can read |
 | Taxonomy design is ad hoc -- categories overlap and miss edge cases | MECE principle applied: mutually exclusive categories that collectively cover the domain |
 
+## Context to Provide
+
+Ontology design works best when you bring the domain knowledge and let the skill apply the modeling discipline. The more concrete your entity descriptions, the more precise the class hierarchy and relationship types.
+
+**What information to include in your prompt:**
+- **The domain and its key entities** -- list all the "things" the system tracks (products, users, orders, events, locations) and a one-sentence description of each
+- **Business rules and cardinality constraints** -- which entities can have many-to-many relationships, which have one-to-many, and which are one-to-one; examples: "a user can belong to multiple organizations" or "an order has exactly one shipping address"
+- **The problem you are solving** -- whether you are designing a new system, decomposing an existing god class, creating a taxonomy, or normalizing inconsistent definitions across services
+- **Edge cases that cause problems** -- the cases where your current model breaks down or where your team argues about categorization ("can a user be both a customer and an employee?", "where does a subscription product differ from a one-time purchase product?")
+
+**What makes results better:**
+- Listing the actual properties of your existing classes (all 40 of them if it is a god class) -- the skill sorts them into cohesive groups by responsibility
+- Describing the ambiguous cases where the same concept means different things in different parts of the system ("User in billing vs User in auth")
+- Specifying what queries or operations the model must support ("the system must answer: who are all the users in organization X?", "find all orders that contain product Y")
+- Mentioning the downstream implementation target (relational DB schema, document store, knowledge graph, API resource model) so the ontology is designed with the right constraints
+
+**What makes results worse:**
+- Describing the UI or database schema instead of the domain model -- "I need a table with columns name, email, address" is a schema; describe the entities and their relationships instead
+- Asking the skill to design a schema without first validating the ontology -- conceptual modeling before physical modeling prevents months of schema refactoring
+- Omitting cardinality -- "User has Projects" without "one user has many projects, a project has exactly one owner" leaves the most important design decision implicit
+
+**Template prompt -- new domain model:**
+```
+Design an ontology for [domain].
+
+Key entities (list all, with one-sentence description each):
+- [Entity A]: [what it represents]
+- [Entity B]: [what it represents]
+
+Key relationships I know about:
+- [Entity A] [relationship to] [Entity B]: [cardinality -- one-to-many, many-to-many, etc.]
+
+Business rules / constraints:
+- [Rule 1: e.g., "a user can belong to multiple organizations but has one primary org"]
+- [Rule 2]
+
+Edge cases to handle:
+- [Ambiguous case: e.g., "users can be both customers and employees"]
+
+Queries the model must support:
+- [Query 1: e.g., "find all orders for customer X in the last 30 days"]
+```
+
+**Template prompt -- god class decomposition:**
+```
+Decompose my [class name] class. It has these [N] properties:
+[list all properties with their types]
+
+The class is used for these operations:
+- [Operation 1: e.g., "display user profile in the UI"]
+- [Operation 2: e.g., "calculate billing for the subscription"]
+- [Operation 3: e.g., "check auth permissions"]
+
+My concern: [what breaks or feels wrong about it -- too many reasons to change, slow queries because of unrelated fields, etc.]
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -106,23 +162,23 @@ A single skill with no additional references. The SKILL.md contains the complete
 **Try these prompts:**
 
 ```
-Design the domain model for a healthcare system with patients, providers, appointments, prescriptions, and insurance claims
+Design the domain model for a healthcare system. Key entities: Patient (person receiving care), Provider (doctor, nurse, or specialist), Appointment (scheduled visit), Prescription (medication order), InsuranceClaim (payment request to insurer), Facility (hospital or clinic). Key constraints: a patient can have many providers; a prescription belongs to one patient and is written by one provider; an insurance claim covers one appointment and is filed by one patient. The system must answer: "all upcoming appointments for patient X" and "all prescriptions written by provider Y in the last 90 days."
 ```
 
 ```
-My User class has 30 properties including billing info, preferences, auth tokens, and team membership -- help me decompose it
+My User class has 30 properties. Please decompose it. Properties include: id, email, passwordHash, authToken, refreshToken, tokenExpiry, firstName, lastName, avatarUrl, bio, preferredLanguage, timezone, notificationPrefs (JSON), stripeCustomerId, subscriptionTier, subscriptionExpiry, billingAddress (JSON), organizationId, organizationRole, teamIds (array), lastLoginAt, loginCount, isEmailVerified, mfaEnabled, mfaSecret, createdAt, updatedAt, deletedAt, adminNotes, featureFlags (JSON).
 ```
 
 ```
-Create a product taxonomy for an electronics retailer that covers laptops, phones, accessories, and services without overlap
+Create a MECE product taxonomy for an electronics retailer. Products include: MacBook Pro, iPhone 15, AirPods Pro, AppleCare+ for MacBook, iCloud+ subscription, USB-C cable, MagSafe adapter, and in-store repair service. Current categories overlap: AirPods appears under both "Audio" and "iPhone Accessories." Design a taxonomy where each product has exactly one home, with no gaps or overlaps. Max 3 levels deep.
 ```
 
 ```
-What relationship type should I use between Organization and Employee? Is it has-a, is-a, or something else?
+What relationship type and cardinality connects Organization and Employee? Constraints: an employee belongs to exactly one organization; an organization has many employees; an employee can hold multiple roles within the organization (engineer and team lead simultaneously). The organization existed before any employees and can exist with zero employees. Which pattern handles the multiple-roles case -- inheritance, composition, or a junction entity?
 ```
 
 ```
-Review this class hierarchy: Vehicle > Car > ElectricCar, Vehicle > Truck, Vehicle > Bicycle -- is this well-structured?
+Review this class hierarchy and tell me if it is well-structured: Vehicle (abstract) > Car, Truck, Bicycle, Motorcycle. Car > ElectricCar, HybridCar, GasCar. Bicycle > ElectricBicycle, ManualBicycle. The system needs to track: fuel efficiency for gas/hybrid/electric cars, motor wattage for electric vehicles (including ElectricBicycle), and cargo capacity for trucks and cargo bicycles. ElectricBicycle needs both the Bicycle and ElectricVehicle properties. Is the hierarchy correct, or is there a diamond inheritance problem?
 ```
 
 ---

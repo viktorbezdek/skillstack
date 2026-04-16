@@ -31,6 +31,41 @@ The plugin ships one SKILL.md with all patterns, one reference file with detaile
 | Complex tasks require one agent doing everything sequentially | Self-spawning agents: an agent can create sub-sessions for parallel research or split large PRs into smaller ones |
 | No visibility into whether agent work produces value | Metrics infrastructure: track sessions-to-merged-PRs as the primary success metric |
 
+## Context to Provide
+
+Hosted agent infrastructure design is highly dependent on your repository characteristics, scale targets, and team distribution model. Provide specifics so the skill can size recommendations correctly.
+
+**What information to include in your prompt:**
+- **Repository profile** -- number of repos, largest repo size (file count and disk size), typical dependency installation time, and cold build time for the largest repo
+- **Scale targets** -- expected concurrent sessions at launch and at steady state; whether usage is bursty (morning spikes) or steady
+- **Session startup target** -- the latency budget for "user triggers agent" to "agent ready for first prompt" (3s, 10s, 30s)
+- **Team profile** -- engineers only or non-engineers too; distributed across time zones (affects warm pool sizing); use of existing tools like Slack, VS Code, or a web portal
+- **Coordination needs** -- whether you need multiplayer (multiple users on the same session), self-spawning (agent creates sub-agents), or both
+- **Cloud provider and existing infrastructure** -- AWS, GCP, Azure; whether you have container infrastructure (EKS, Cloud Run) or are starting fresh
+
+**What makes results better:**
+- Sharing the actual cold build time from a fresh environment (not cached) -- this is the number the image pre-building strategy is designed around
+- Specifying whether repositories are public or private and whether agents need repo credentials injected at session start
+- Describing the failure mode you are most worried about (stale code, warm pool exhaustion, wrong repo classification) so the skill prioritizes mitigations
+- Mentioning your metrics requirements (audit trails, PR merge rate tracking, session attribution)
+
+**What makes results worse:**
+- Asking for full implementation code before the architecture is settled -- design the infrastructure pattern first, then ask for implementation
+- Conflating hosted agent infrastructure (this plugin) with multi-agent coordination patterns (use `multi-agent-patterns`) or agent memory (use `memory-systems`)
+- Specifying only the happy path without constraints -- the most important design decisions come from the failure modes
+
+**Template prompt:**
+```
+Design [sandbox infrastructure / warm pools / Slack bot / multiplayer / self-spawning] for a hosted coding agent.
+
+Repositories: [N repos], largest is [size] with [dependency install time] and [cold build time].
+Concurrency target: [N] simultaneous sessions at peak.
+Session startup target: under [N] seconds.
+Users: [engineers only / mixed -- N total users across M time zones].
+Existing infrastructure: [AWS EKS / GCP Cloud Run / bare VMs / starting fresh].
+Most critical failure mode to prevent: [stale code / wrong repo / cold start spike / attribution errors].
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -121,23 +156,23 @@ Single-skill plugin with one reference file for detailed implementation patterns
 **Try these prompts:**
 
 ```
-Design the sandbox infrastructure for a hosted coding agent that works on our 50K-file monorepo
+Design the sandbox infrastructure for a hosted coding agent. We have a monorepo with 50,000 files. Cold dependency install takes 8 minutes, initial build takes 12 minutes. We need sessions to start in under 10 seconds. Expected peak: 20 concurrent sessions. Cloud: AWS EKS.
 ```
 
 ```
-How should I implement warm pools so agent sessions start in under 5 seconds?
+We have warm pools running but session startup is still 8-12 seconds. The CEO wants under 3 seconds. Current setup: pre-warmed sandboxes spin up from image but still run git pull (2-4 seconds on large repos) and a health check before accepting sessions. How do I get below 3 seconds?
 ```
 
 ```
-Design a self-spawning pattern where the agent can create sub-sessions for parallel code research
+Design a self-spawning pattern for our coding agent. It receives requests that require changes across 3 microservice repos simultaneously. Currently it handles them sequentially (15+ minutes). Max 4 concurrent sub-sessions. Coordination: main agent should synthesize sub-session results and open a single PR per repo.
 ```
 
 ```
-Build a multiplayer architecture where 3 team members can collaborate on the same agent session
+Build a multiplayer architecture for our hosted agent. Two developers need to collaborate: one drives (sends prompts), one reviews (observes, can interject). Each person's prompts should be attributed to their GitHub identity so commits show the right author. Sessions are currently single-user WebSocket connections.
 ```
 
 ```
-What's the best way to add a Slack bot interface to our hosted agent? We want team members to trigger agent sessions from a channel.
+Design a Slack bot interface for our hosted agent. We have 12 microservice repos. Each Slack channel corresponds to one repo (#frontend -> web-app, #api -> backend-service, etc.). The bot should infer the repo from the channel and message, ask for confirmation when unsure, stream agent output as thread replies, and tag the triggering user when the agent opens a PR.
 ```
 
 **Key references:**

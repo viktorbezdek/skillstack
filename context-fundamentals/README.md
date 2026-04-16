@@ -30,6 +30,32 @@ The core principle is informativity over exhaustiveness: include what matters fo
 | System prompts are written once and never structured | Organize prompts with clear section boundaries at the right altitude: specific enough to guide, flexible enough to generalize |
 | No context budget -- discover limits only when things break | Design with explicit context budgets, monitoring usage and triggering optimization at 70-80% utilization |
 
+## Context to Provide
+
+This skill provides foundational theory, so prompts work best when they describe the design decision or architectural choice you are facing rather than asking about theory in the abstract. The skill generates the most useful output when it understands what you are building, not just what you want to learn.
+
+**What to include in your prompt:**
+- **What you are building** (agent type, tool count, document access pattern, expected conversation length)
+- **Your context window size** -- actual token budget forces concrete allocation guidance
+- **What is going wrong or unclear** (agent gets worse over time, not sure what to include, unsure how to structure the system prompt)
+- **Your current approach** -- describe what you have now so the skill can identify the gap
+
+**What makes results better:**
+- Describing the information your agent needs to access (number of documents, how often they change, how much is relevant per task)
+- Saying how many tools are defined and whether they are long or short descriptions
+- Specifying whether conversations are short (10 turns) or long (50+ turns)
+- Asking about a specific trade-off ("should I pre-load docs or use progressive disclosure?")
+
+**What makes results worse:**
+- Asking "explain context" without any agent design context -- produces textbook explanation rather than actionable guidance
+- Asking how LLMs work in general -- this skill teaches context engineering for agent design, not LLM internals
+- Skipping directly to "optimize my cache" or "compress my context" without understanding the fundamentals these techniques build on
+
+**Template prompt:**
+```
+I am building a [agent type] with [N] tools, access to [describe document set], and expected conversations of [length]. My model has a [N]-token context window. Help me understand [specific aspect: how to budget, whether to use progressive disclosure, how to structure the system prompt, why adding more context hurts performance].
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -114,19 +140,19 @@ context-fundamentals (plugin)
 **Try these prompts:**
 
 ```
-I'm designing a new coding agent -- what should I know about context engineering before I start? What are the key components and constraints?
+I'm designing a coding agent with 20 tools and access to a 200-file documentation set. My model has a 200K token window. What should I know about context engineering before I finalize the architecture? What are the key constraints I'll hit?
 ```
 
 ```
-Why does my agent get worse results when I add more documentation to its context? I thought more information would help.
+I added our entire API documentation (about 50 markdown files) to my agent's context and it got worse, not better. It was more accurate with just the top 10 docs. Why does more information hurt performance?
 ```
 
 ```
-How should I structure the system prompt for a multi-tool agent? What's the right level of specificity?
+How should I structure the system prompt for a customer support agent with 15 tools? It needs to stay consistent across a 60-turn conversation. What's the right level of specificity?
 ```
 
 ```
-What's progressive disclosure and how do I implement it in an agent that needs access to a large documentation set?
+My agent needs access to 300 documentation pages but only 3-5 are relevant to any single task. What is progressive disclosure and how do I implement it so context stays lean while the agent can still access anything it needs?
 ```
 
 **Key references:**

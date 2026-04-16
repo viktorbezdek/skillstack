@@ -29,6 +29,44 @@ The plugin is a single focused skill that activates when you need to map stakeho
 | Resistant stakeholders surprise the team during implementation | Attitude tracked (Supportive/Neutral/Resistant) with engagement strategy calibrated to change resistance to neutrality |
 | No visibility into who blocks, who champions, who is affected but silent | Complete stakeholder map with influence, interest, attitude, and engagement plan per person |
 
+## Context to Provide
+
+The more you describe who is involved and what they think about the project, the more accurate the stakeholder map. Organizational dynamics are unique to every project; the skill needs your specific context, not a generic org chart.
+
+**What information to include in your prompt:**
+- **Who is involved** -- names, roles, and teams. Include both obvious stakeholders (the ones in the room) and peripheral ones (teams affected downstream, executives who may surface later).
+- **Decision authority** -- who has the final say? Who can block? Who thinks they have authority but actually does not? Clarifying this upfront helps the skill place people on the Power-Interest matrix correctly.
+- **Known attitudes** -- which stakeholders are supportive, neutral, or resistant? Even rough impressions help (e.g., "the VP of Sales is skeptical because she thinks this will change her team's commission structure").
+- **Why you are doing this now** -- a migration, a launch, a reorg, a vendor change? The project type determines which risk categories to look for in stakeholder dynamics.
+- **What went wrong before (if anything)** -- if previous efforts stalled or surprised you with unexpected blockers, describe that. These patterns often reveal stakeholders who should have been in the "Manage Closely" quadrant.
+
+**What makes results better:**
+- Describing relationships between stakeholders, not just listing individuals
+- Flagging any ongoing organizational tension or competing priorities
+- Indicating which phase of the project you are in (planning vs. mid-execution -- stakeholder dynamics shift)
+
+**What makes results worse:**
+- Listing people by name only with no role or context ("map stakeholders: John, Sarah, Mike")
+- Providing an org chart without describing how each team relates to the project
+- Treating RACI as a formality -- if responsibilities are genuinely contested, say so
+
+**Template prompt:**
+```
+Map the stakeholders for [project/initiative name].
+
+Project description: [what you are doing and why, in 2-3 sentences]
+
+People involved:
+- [Name]: [role], [team]. Attitude: [supportive/neutral/resistant]. Note: [anything unusual about their position or influence]
+- [Name]: [role], [team]. Attitude: [...]
+
+Decision-maker (who has final say): [name/role]
+Known blockers or concerns: [describe any tension, competing priorities, or past issues]
+Timeline: [when key decisions need to be made]
+
+Deliverable needed: [Power-Interest matrix / RACI for specific tasks / full stakeholder engagement plan]
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -47,7 +85,7 @@ None. For creating individual user personas (demographics, goals, pain points), 
 After installing, test with:
 
 ```
-Map the stakeholders for a platform migration project that affects engineering, product, customer success, and executive leadership
+Map the stakeholders for a platform migration from monolith to microservices. The backend team (5 engineers) does the migration work. Frontend team (4 engineers) needs to adapt to new APIs -- their lead says they were never consulted. DevOps lead has raised concerns about deployment pipeline compatibility. VP of Product is upset about roadmap delays and escalated to the CTO last week. CTO approved the project and owns budget. Timeline: 6 months, with a decision point on architecture in 4 weeks.
 ```
 
 ## Quick Start

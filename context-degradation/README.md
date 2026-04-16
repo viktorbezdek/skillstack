@@ -30,6 +30,33 @@ The skill includes empirical data from the RULER benchmark and model-specific th
 | Agent mixes up instructions from different tasks in the same session | Recognize context confusion: multi-task sessions require explicit task segmentation and context isolation |
 | No way to tell if context quality is degrading until outputs are clearly wrong | Monitor degradation thresholds: model-specific onset points and the four-bucket mitigation strategy |
 
+## Context to Provide
+
+The more precisely you describe your degradation symptoms, the more targeted the diagnosis. Vague descriptions ("my agent is getting worse") activate the skill but produce generic guidance. Specific descriptions activate pattern-matching against the five degradation types and generate concrete mitigations.
+
+**What to include in your prompt:**
+- **The model you are using** (Claude Sonnet 4.5, GPT-5.2, Gemini 3 Pro) -- degradation thresholds differ significantly by model
+- **Approximate context size when symptoms appear** (in tokens or number of turns) -- this is the single most useful diagnostic signal
+- **The specific symptom** (wrong outputs, ignored information, persistent errors, contradictory answers, wrong task context applied)
+- **What has been tried** (if you have already attempted fixes, say what they were and why they did not work)
+- **The context composition** (what fills the context: retrieved documents, tool outputs, conversation history, system prompt)
+
+**What makes results better:**
+- Describing *when* the problem starts (turn 30? after 80K tokens?) rather than just that it exists
+- Specifying whether the symptom is consistent or intermittent
+- Naming the agent type (coding agent, RAG system, customer support bot, multi-task agent)
+- Sharing whether you have multiple tasks in one session or a single long conversation
+
+**What makes results worse:**
+- "My agent is broken" or "make my context better" -- too vague to match a pattern
+- Assuming the model needs a larger context window -- this is frequently backwards
+- Treating all degradation as one problem -- the five patterns have different causes and mitigations
+
+**Template prompt:**
+```
+My [agent type] shows [specific symptom: irrelevant outputs / persistent hallucinations / wrong-task context / contradictory answers] after approximately [N turns or K tokens]. I am using [model name]. The context contains [describe composition: retrieved docs, tool outputs, history]. Approaches I have already tried: [list]. What degradation pattern matches this and how do I fix it?
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -111,19 +138,19 @@ context-degradation (plugin)
 **Try these prompts:**
 
 ```
-My RAG system retrieves relevant documents but the agent ignores them when there are more than 5 documents in context. What's happening?
+My RAG system retrieves relevant documents but the agent ignores them when there are more than 5 documents in context. It was accurate with 3 documents. I'm using Claude Sonnet 4.5 with a 200K context window. What's happening and how do I fix the retrieval strategy?
 ```
 
 ```
-We're seeing hallucinations that persist even after explicit correction. The agent keeps referencing a fact it made up 20 turns ago. How do I fix this?
+We're seeing hallucinations that persist even after explicit correction. The agent keeps referencing a function name it invented at turn 12 even when I correct it directly. This is a coding agent with 40K tokens in context. How do I diagnose and recover from this?
 ```
 
 ```
-What are the empirical degradation thresholds for different models? I need to choose between Claude Opus 4.5 and Gemini 3 Pro for a long-context task.
+What are the empirical degradation thresholds for Claude Opus 4.5 and Gemini 3 Pro? I need to process 150K-token documents reliably and need to choose which model degrades more gracefully at that scale.
 ```
 
 ```
-My agent handles single tasks well but produces confused outputs when I give it multiple tasks in one session. What's the pattern?
+My customer support agent handles single-issue tickets well but produces confused outputs when customers describe two problems in one session. The agent applies context from one issue to the other. What's the pattern and what architectural change fixes it?
 ```
 
 **Key references:**

@@ -31,6 +31,41 @@ The output is actionable: a coverage matrix you can paste into a ticket, a valid
 | Validation logic is split between client and server with no single view of what is actually checked | Validation checklist covers six dimensions (required, type, format, range, length, characters) per field |
 | Post-mortems repeatedly cite "we didn't think of that case" as root cause | Anti-pattern audit catches the five most common gaps before review |
 
+## Context to Provide
+
+Edge case analysis is combinatorial -- the more concrete the inputs, the more specific the coverage matrix. "Find edge cases in my code" produces a taxonomy of categories. "Build a coverage matrix for this endpoint that accepts name (string, 1-255 chars), age (int, 0-150), and email" produces 15+ concrete test values you can paste directly into a test file.
+
+**What to include in your prompt:**
+- **Each input field with its type and constraints** (name: string 1-255 chars, quantity: int 1-99, price: decimal 0.01-99999.99) -- this is what the coverage matrix is built against
+- **The business rules that apply** (users must be 18+, coupon codes expire, quantities cannot exceed stock) -- helps distinguish technical edge cases from business validation
+- **The function or endpoint signature** -- paste it directly so the skill can reference specific parameter names
+- **Known failure modes if any** -- if you already know one thing that goes wrong, saying so helps the skill identify the related class of failures
+- **Where the validation happens** (client-only, server-only, both) -- for validation gap analysis between layers
+
+**What makes results better:**
+- Pasting the actual function signature or request schema rather than describing it in prose
+- Specifying the language and framework -- error handling patterns differ between Python/FastAPI and TypeScript/Express
+- For state machine analysis: listing all states and all transitions explicitly
+- For third-party integrations: naming the integration (Stripe, Twilio, AWS S3) -- the skill has knowledge of their specific failure modes
+
+**What makes results worse:**
+- Asking to write test code -- this plugin identifies *what* to test; hand the output to `test-driven-development` for implementation
+- Requesting coverage without any input specification -- "find edge cases in my app" has no coverage matrix to build against
+- Mixing edge case analysis with refactoring requests -- the skill works best focused on a single function or endpoint at a time
+
+**Template prompt:**
+```
+Build a coverage matrix for my [function name / endpoint] that accepts:
+- [field 1]: [type], constraints: [min/max/format/required]
+- [field 2]: [type], constraints: [min/max/format/required]
+- [field 3]: optional [type], format: [format specification]
+
+Business rules: [list rules that determine valid vs. invalid].
+Also identify the error scenarios for [the most likely failure modes].
+
+[paste the function signature or request schema]
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -117,23 +152,25 @@ Single-skill plugin with no hooks, no MCP servers, and no external dependencies.
 **Try these prompts:**
 
 ```
-What edge cases should I handle for this file upload endpoint that accepts PDFs up to 10MB?
+Build a coverage matrix for my POST /upload endpoint. It accepts PDFs only, maximum 10MB, uploaded as multipart/form-data with a required description field (string, 1-500 chars) and optional tags (array of strings). What edge cases should I handle for file type, size, description, and tags?
 ```
 
 ```
-Review this payment processing function for boundary conditions and error scenarios I might have missed
+Review this payment processing function for boundary conditions and error scenarios I might have missed. It accepts amount (decimal, minimum $0.01, maximum $99,999.99), currency (ISO 4217 string), and customer_id (UUID). Key concern: amounts at or near zero, currency codes that are valid ISO but not supported by our processor.
+
+[paste function signature]
 ```
 
 ```
-Build a coverage matrix for our search API -- it takes a query string, page number, page size, and optional date range filter
+Build a coverage matrix for our search API: query (string, required), page (int, default 1), per_page (int, 10-100, default 20), date_from (ISO 8601, optional), date_to (ISO 8601, optional). Focus especially on the date range -- what combinations of date_from and date_to are invalid?
 ```
 
 ```
-Document the failure modes for our third-party payment gateway integration using the error scenario template
+Document the failure modes for our Stripe webhook integration using the error scenario template. Known failure paths: webhook delivery timeout (Stripe retries for 72 hours), duplicate delivery (Stripe delivers at least once), out-of-order events (payment.failed arrives before payment.created), signature verification failure.
 ```
 
 ```
-Audit this form validation logic -- I want to know every gap between what the client checks and what the server checks
+Audit the validation gap between our React checkout form and the Express API endpoint. The form validates: email format, credit card using Luhn, zip code as 5-digit US. The API receives the same fields. What does the client check that the server doesn't, and what injection or bypass scenarios does that create?
 ```
 
 **Key components in the skill:**

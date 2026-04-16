@@ -29,6 +29,44 @@ The plugin provides a single focused skill that activates when you need to defin
 | No empathy mapping -- team cannot articulate what users think vs feel vs do | Structured empathy map: Says, Thinks, Does, Feels quadrants per persona |
 | Personas created once and never updated as the product and user base evolve | Anti-pattern awareness: static personas flagged as a known failure mode |
 
+## Context to Provide
+
+The more concrete your user segments and product context, the more useful the personas. The skill cannot invent user behavior -- it synthesizes what you describe.
+
+**What information to include in your prompt:**
+- **Who actually uses your product** -- job titles, company types, technical skill levels, and how they discovered the product. Not who you wish used it, but who does (or who you are targeting in the next 90 days).
+- **What problem the product solves** -- the domain context shapes the goals, pain points, and behaviors the skill will generate. A developer tool has completely different persona components than a B2C mobile app.
+- **Signals you already have** -- support tickets, sales call notes, user interview quotes, activation or churn patterns. Even rough observations like "most new signups don't make it past the configuration step" seed much more accurate personas than starting from scratch.
+- **The persona type you need** -- proto (fast, low-detail, for early alignment), lean (medium detail, for MVP iteration), or full (high detail, for strategic decisions). Stating this upfront avoids the skill defaulting to full personas when you need something in five minutes.
+- **How many segments you suspect** -- if you already know "we have both technical and non-technical users," say so. The skill will differentiate them rather than averaging them into one misleading persona.
+
+**What makes results better:**
+- Quotes or paraphrases from real users ("the most common support complaint is X")
+- Existing analytics signals (where users drop off, which features they actually use)
+- Competitive context (which other tools they use or considered)
+
+**What makes results worse:**
+- Describing features instead of users ("I need a persona for someone who uses the dashboard filter")
+- Aspirational framing ("our users are sophisticated data scientists" when signups are mostly junior analysts)
+- Requesting 8+ personas upfront -- start with 3-5 differentiated by goals, not demographics
+
+**Template prompt:**
+```
+Create [proto/lean/full] personas for [product name / type].
+
+Product context: [1-2 sentences on what it does and the core problem it solves]
+
+User segments I'm aware of:
+1. [Segment description: role, company type, technical level, how they use the product]
+2. [Segment description]
+
+Signals from real users (support tickets, interviews, analytics):
+- [Observation 1]
+- [Observation 2]
+
+Focus on: goals (what they want to achieve), pain points (what blocks them today), behaviors (how they work now without the product), and what success looks like for each persona.
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -47,7 +85,7 @@ None. For mapping personas across stakeholder landscapes, also install `persona-
 After installing, test with:
 
 ```
-Create personas for a developer documentation platform used by junior developers, senior architects, and DevOps engineers
+Create lean personas for a developer documentation platform. The product helps teams write and publish API reference docs. Three segments use it: junior developers who write their first docs, senior architects who review docs for accuracy, and DevOps engineers who maintain the publishing pipeline. Common support complaint: junior devs don't know what level of detail is expected. Senior architects say the review workflow takes too many steps.
 ```
 
 ## Quick Start

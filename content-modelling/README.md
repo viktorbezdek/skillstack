@@ -19,6 +19,36 @@ The core principle is COPE: Create Once, Publish Everywhere. Content types use s
 
 The skill covers field type selection (when to use rich text vs. short text, references vs. embeds), relationship modeling (reference, embedded, hierarchical), naming conventions, editorial workflow design, and governance rules. It provides a content model template that teams can fill in for each content type, producing a documented schema that serves as the contract between content creators and developers.
 
+## Context to Provide
+
+Content models need to reflect your actual content, channels, and editorial reality. The more detail you provide about what content exists, who creates it, and where it appears, the more precisely the types, fields, and workflows will be designed.
+
+**What information to include in your prompt:**
+
+- **Content inventory**: What types of content exist? (articles, products, authors, categories, reviews, events, FAQs, case studies) -- list all distinct types, not just the main one
+- **Relationships**: How do content types connect? ("A recipe has many ingredients, belongs to one category, has one author, and can appear in multiple collections")
+- **Output channels**: Where does content appear? (website, mobile app, email newsletter, in-app help, partner API) -- multi-channel requirements change the field design significantly
+- **Author roles**: Who creates and edits content? (technical writers, marketers, external contributors, developers) -- affects workflow complexity
+- **Editorial workflow**: How does content move from draft to published? Are there review stages? Approvals? Scheduling?
+- **Current pain points**: What is broken with the current system? (content duplicated across 5 places, "General Content" type with 40 fields, no archival process, mobile gets wrong data)
+- **CMS platform**: Contentful, Sanity, Strapi, WordPress, custom -- affects what field types and relationship patterns are available
+
+**What makes results better:**
+- Listing every content type, not just the main one -- a "Product" type depends on knowing that "Category," "Brand," "Review," and "Variant" also exist
+- Specifying your output channels explicitly -- a content type that only feeds a website can include layout assumptions; one that feeds a mobile app, email, and API cannot
+- Describing a real pain point ("our product description exists in 5 places with 5 slightly different versions and they drift apart") produces targeted COPE design
+- Sharing your current CMS schema (even informally: "we have a Page type with these fields: ...") enables a migration-oriented design rather than starting from scratch
+
+**What makes results worse:**
+- Designing for one page layout ("I need a hero banner with three feature cards") -- this is page design, not content modeling
+- Requesting a "General Content" type that can hold anything -- the skill will push back and ask what specific types you actually need
+- Omitting the channel list -- field design decisions are fundamentally different for single-channel vs. multi-channel systems
+
+**Template prompt:**
+```
+Design a content model for [domain / project]. Content types: [list all distinct types]. Relationships: [type A] has many [type B], [type C] belongs to one [type D]. Output channels: [website / mobile app / email / API / in-app help -- list all]. Author roles: [who creates content]. Editorial workflow: [describe review and approval stages]. Current pain: [what is broken today]. CMS platform: [Contentful / Sanity / Strapi / custom / not yet decided].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -106,19 +136,19 @@ Design a content model for a knowledge base with articles, categories, authors, 
 **Try these prompts:**
 
 ```
-Design a content model for an e-commerce product catalog with products, categories, brands, reviews, and variant options like size and color
+Design a content model for an e-commerce product catalog. Types: Product, ProductVariant (size/color combinations with separate SKU and stock), Category (hierarchical, up to 3 levels), Brand, Review (customer-submitted, needs moderation), Collection (curated groupings for campaigns). The same content must feed our website, mobile app, and a point-of-sale kiosk. Variants have their own price and stock per combination. CMS: Contentful.
 ```
 
 ```
-I'm migrating our blog from WordPress to a headless CMS. Design the content types to support the website, a mobile app, and an email newsletter from the same content.
+I'm migrating our blog from WordPress to a headless CMS (Sanity). Design the content types to support: the website (full article with sidebar), a mobile app (title, summary, and body only), and a weekly email newsletter (title, summary, and featured image). Our current WordPress has post, category, tag, and author. We have 1,200 existing posts to migrate.
 ```
 
 ```
-Our CMS has a "Page" content type with 35 optional fields that everyone uses for everything. Help me break it into specific, well-defined types.
+Our CMS has a "Page" content type with 35 optional fields and it's used for blog posts, landing pages, case studies, and product pages. Authors are confused about which fields to fill in. Help me decompose it into specific types. Here are the 35 fields: [paste field list]. Show field usage analysis and the new type boundaries.
 ```
 
 ```
-Design an editorial workflow for a multi-author documentation site with draft, technical review, editorial review, and scheduled publication stages
+Design a four-stage editorial workflow for our multi-author SaaS documentation site. Authors: technical writers (draft), engineers (technical review), editor (editorial review), then published with scheduling. Content types that need this workflow: Guide, Tutorial, API Reference. Some content (like Changelog entries) only needs one review step. Include status transition rules and who can approve each transition.
 ```
 
 ---

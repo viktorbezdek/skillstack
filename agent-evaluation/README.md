@@ -19,6 +19,36 @@ The skill teaches you to build evaluation systems that account for agent-specifi
 
 The result is an evaluation pipeline that runs automatically on agent changes, tracks quality metrics over time, catches regressions early, and gives you the data to make informed decisions about prompt engineering, model selection, and architecture changes.
 
+## Context to Provide
+
+The more specific you are about what you are evaluating, the more precise the rubrics, evaluation prompts, and pipeline architecture will be.
+
+**What information to include in your prompt:**
+
+- **Agent description**: What does your agent do? (e.g., "RAG agent that answers legal questions from a document corpus")
+- **Task type**: What kind of task does it perform? (question answering, code generation, summarization, classification, creative writing)
+- **Quality dimensions you care about**: Which aspects matter most? (accuracy, completeness, efficiency, citation correctness, tone, format compliance)
+- **Evaluation context**: Are you comparing two configurations (A/B), tracking quality over time (regression testing), or doing a one-time audit?
+- **Ground truth availability**: Do you have correct reference answers, or is evaluation preference-based with no single correct answer?
+- **Scale**: How many test cases? How often will you run the evaluation? What is your latency and cost budget?
+- **Known failure modes**: What specific problems have users or testers already reported?
+
+**What makes results better:**
+- Describing a real quality problem ("users say answers are too long and sometimes miss the point") produces actionable rubrics tuned to your failure mode
+- Specifying exact dimensions (accuracy, relevance, conciseness) rather than asking for "quality" produces measurable rubrics with level descriptions
+- Sharing a few example agent outputs, even just one good and one bad, anchors the rubric calibration
+- Mentioning which models you are comparing (Claude Sonnet vs GPT-4o) enables bias mitigation configuration specific to your setup
+
+**What makes results worse:**
+- Asking to "test my agent" without describing what the agent does
+- Requesting a single overall quality score (single scores hide dimension-specific failures)
+- Omitting whether you have ground truth (determines whether to use direct scoring or pairwise comparison)
+
+**Template prompt:**
+```
+I need to evaluate my [agent type] that [what it does]. The inputs are [describe input type] and the expected outputs are [describe what good looks like]. I care most about [list 2-4 dimensions]. I [do / do not] have verified correct answers to compare against. My evaluation goal is [catch regressions / compare two configurations / one-time quality audit]. Known problems: [describe user complaints or observed failures].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -115,23 +145,23 @@ The skill operates as a single comprehensive unit that covers the full evaluatio
 **Try these prompts:**
 
 ```
-Help me design evaluation rubrics for my research agent that synthesizes information from multiple sources
+Help me design evaluation rubrics for my research agent that synthesizes information from multiple sources. The agent searches 3-5 documents per query and produces 200-400 word answers. Users complain that answers sometimes miss key details even when technically accurate. I need to measure accuracy, completeness, and citation quality.
 ```
 
 ```
-I'm comparing GPT-4o vs Claude Sonnet for our customer support agent -- set up a pairwise comparison with bias mitigation
+I'm comparing GPT-4o vs Claude Sonnet for our customer support agent -- set up a pairwise comparison with bias mitigation. The agent handles billing and technical questions. I want to measure empathy, accuracy, and resolution rate. I suspect GPT-4o is winning because it's always in position A.
 ```
 
 ```
-My evaluation pipeline shows inconsistent results between runs -- help me diagnose what's going wrong
+My evaluation pipeline shows inconsistent results between runs on the same test cases -- scores vary by 0.2 or more. The rubric says "assess answer quality" without level descriptions. Help me diagnose and fix the inconsistency.
 ```
 
 ```
-Build me a test set for our coding agent that covers simple, medium, and complex tasks with realistic token budgets
+Build me a test set for our coding agent that covers simple (single-function), medium (multi-file refactor), and complex (architectural) tasks with realistic token budgets. The agent uses Claude Sonnet. I want 30 cases for development.
 ```
 
 ```
-I need to add continuous evaluation to our agent pipeline -- what metrics should I track and how do I set up alerting?
+I need to add continuous evaluation to our agent pipeline -- we deploy prompt changes weekly and regressions slip through. The agent classifies support tickets. I want to track accuracy, false positive rate, and latency. Alert me when any metric drops more than 5%.
 ```
 
 **Key references:**

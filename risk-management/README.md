@@ -13,6 +13,59 @@ Risk management in most teams is either completely absent or reduced to a one-ti
 
 Even teams that attempt risk management often confuse it with worry. They list everything that could go wrong without scoring likelihood and impact, so a catastrophic-but-unlikely risk gets the same attention as a near-certain-but-minor one. The result is either analysis paralysis (everything is "high risk") or false confidence (a long risk list makes people feel thorough while the actual mitigations are vague).
 
+## Context to Provide
+
+Risk identification is contextual -- generic project descriptions produce generic risks. The more specific you are about your situation, team, constraints, and what has already gone wrong, the more targeted and actionable the risk register becomes.
+
+**What information to include in your prompt:**
+- **Project description** -- what you are building, migrating, launching, or changing. Be specific about scope: "migrating 12 microservices to Aurora PostgreSQL" is actionable; "doing a database migration" is not.
+- **Timeline and deadline type** -- is the deadline hard (contract expiration, regulatory) or soft (planning target)? Hard deadlines change the risk calculus significantly.
+- **Team composition and expertise gaps** -- who will do the work, and what do they not know well? A team with no Aurora experience has different technical risks than one that has done similar migrations.
+- **Known concerns** -- if you already suspect specific risks, name them. The skill builds on your knowledge rather than duplicating it.
+- **Constraints and dependencies** -- what external systems, vendors, approvals, or teams does this project depend on? Dependencies are a primary source of schedule and external risks.
+- **Previous incidents or near-misses** -- if similar projects have failed before, or if there was a recent incident that relates to this work, include it. History is the best predictor.
+
+**What makes results better:**
+- Describing what "failure" looks like for this specific project (data loss, downtime, missed deadline, stakeholder rejection)
+- Mentioning contractual, regulatory, or SLA constraints that bound the acceptable risk level
+- Indicating the audience for the risk register (engineering team vs. executive presentation requires different language and level of detail)
+
+**What makes results worse:**
+- Generic project names without scope ("help me with risk management for our project")
+- Omitting team and expertise context -- the same migration is very different risk for an experienced team vs. a first-timer
+- Asking for a risk assessment without indicating any timeline (risk urgency and monitoring cadence depend on it)
+
+**Template prompt (for new project risk assessment):**
+```
+Build a risk register for this project.
+
+Project: [description -- what we are doing, why, and the expected outcome]
+Timeline: [start date, end date, any hard deadlines and why they're hard]
+Team: [size, relevant expertise, known skill gaps]
+Dependencies: [external APIs, vendors, teams, regulatory approvals, infrastructure]
+Constraints: [uptime requirements, data integrity requirements, budget, compliance]
+
+Known concerns we already have:
+- [Concern 1]
+- [Concern 2]
+
+Previous incidents that are relevant: [any past failures or near-misses on similar work]
+
+Please identify risks across all five categories (Technical, Schedule, Resource, External, Organizational), score each on likelihood and impact, and recommend mitigation strategies with specific actions and owners.
+```
+
+**Template prompt (for pre-mortem):**
+```
+Run a pre-mortem on this project.
+
+Project: [description]
+Timeline: [when it should be complete]
+
+Assume it is [date -- the project end date] and the project has failed. Work backward from failure and identify the most likely reasons it went wrong. Convert each finding into a scored risk register entry with a preventive action.
+
+Focus especially on risks that forward-looking analysis tends to miss because of optimism bias.
+```
+
 ## The Solution
 
 This plugin provides a complete risk management framework: a risk assessment matrix for consistent scoring, five risk categories (Technical, Schedule, Resource, External, Organizational) for comprehensive identification, a risk register template for structured tracking, four mitigation strategies (Avoid, Transfer, Mitigate, Accept) for deliberate response planning, monitoring cadences for ongoing review, and a pre-mortem technique for proactive risk discovery before projects begin.
@@ -46,7 +99,7 @@ Add the SkillStack marketplace, then install this plugin:
 After installing, test with:
 
 ```
-We're migrating our monolith to microservices over the next 6 months -- help me identify and assess the risks
+We're migrating our monolith to microservices over the next 6 months. Team: 4 backend engineers, 1 DevOps engineer -- none have done a microservices migration before. Hard deadline: new architecture must be live before Q4 when we plan a 3x traffic event. We're dependent on a third-party message queue vendor we haven't integrated with before. Previous incident: our last infrastructure change caused 4 hours of downtime. Help me identify and assess the risks.
 ```
 
 The skill should activate and produce a categorized risk register with scored entries and mitigation recommendations.

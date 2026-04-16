@@ -5,6 +5,39 @@
 > Multi-language test infrastructure setup, framework selection, and test suite authoring -- covering unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.
 > Single skill + 30 references + 11 scripts + 20+ templates + examples + assets
 
+## Context to Provide
+
+The skill routes you to the right testing module based on your language, platform, and specific testing need. The more precisely you describe your stack and constraints, the less back-and-forth is needed before configuration begins.
+
+**What information to include in your prompt:**
+
+- **Language and framework** -- "Rust CLI," "Next.js 15 with TypeScript," "TYPO3 extension in PHP 8.2," "Bash deployment scripts." This is the primary routing signal.
+- **Test types needed** -- unit, integration, E2E, component, accessibility, mutation, or fuzz. Listing multiple types helps the skill configure them in the right order.
+- **Current state** -- "no tests at all," "we have unit tests but no E2E," "migrating from Jest to Vitest." Starting point determines what gets set up vs what gets extended.
+- **CI/CD platform** -- GitHub Actions, GitLab CI, or none. Templates exist for both; without this the CI step is skipped.
+- **Specific constraints** -- "tests must run under 2 minutes," "must support PHP 8.1 and 8.2," "we use monorepo with Turbo." These determine configuration choices.
+- **For specialized testing**: describe what triggered the need -- "88% coverage but a real bug shipped" (mutation testing), "our app has a UI" (accessibility testing), "we process untrusted user input" (fuzz testing).
+
+**What makes results better vs worse:**
+
+- Better: specify the exact framework version (Next.js 15, Vitest 2.x, PHP 8.2) -- configuration differs between versions
+- Better: describe what you want to test, not just that you want tests ("repository layer with database," "React components with async state")
+- Better: include your current test run time if you are asking for CI optimization
+- Worse: asking to "add tests" without specifying the language -- the routing cannot work without this
+- Worse: mentioning coverage percentages without specifying what should actually be tested
+- Worse: asking for both TDD methodology and test infrastructure setup in one prompt -- use test-driven-development for the cycle, this plugin for the framework setup
+
+**Template prompt:**
+
+```
+Set up testing for my [language/framework] project. Stack details:
+- Language/framework: [e.g., Next.js 15 with TypeScript, Rust, PHP 8.2/TYPO3, Bash]
+- Test types needed: [unit / integration / E2E / component / accessibility / mutation / fuzz]
+- Current state: [no tests / some unit tests / migrating from X]
+- CI platform: [GitHub Actions / GitLab CI / none]
+- Constraints: [run time target, version compatibility, monorepo structure, etc.]
+```
+
 ## The Problem
 
 Setting up testing infrastructure is one of those tasks that takes half a day and nobody documents. You need to pick the right framework (Vitest vs. Jest for TypeScript? ShellSpec vs. BATS for shell scripts?), configure it for your project structure, set up CI/CD integration, add coverage reporting, and make sure the whole thing runs fast enough that developers actually use it. Get any of these decisions wrong and you either have slow tests nobody runs, flaky tests nobody trusts, or no tests at all.
@@ -140,27 +173,43 @@ User needs testing infrastructure / framework / test authoring
 **Try these prompts:**
 
 ```
-Set up a complete testing stack for my Next.js app with Vitest, React Testing Library, and Playwright
+Set up a complete testing stack for my Next.js 15 project with TypeScript. I need:
+- Vitest for unit tests (we use path aliases like @/components)
+- React Testing Library for component tests with a custom render utility
+- Playwright for E2E tests (desktop and mobile viewports)
+- axe-core integrated into both component and E2E tests
+- GitHub Actions CI with parallel shards
 ```
 
 ```
-I need to test my shell scripts -- what framework should I use and how do I set it up?
+I need to test my Bash deployment scripts. They: parse YAML config files, validate environment variables,
+call AWS CLI to deploy ECS services, and send Slack notifications. We have 500 lines across 3 scripts with
+no tests. One quoting bug caused a failed deploy last month. Should I use ShellSpec or BATS?
 ```
 
 ```
-Add accessibility testing to my React components using axe-core
+Add accessibility testing to my React components using axe-core. Current setup: Vitest + React Testing
+Library. I want axe violations to fail tests automatically on every PR. Start with our most complex
+component (a multi-step form wizard).
 ```
 
 ```
-Configure GitHub Actions to run my Playwright E2E tests in parallel with screenshot artifacts
+Our GitHub Actions test suite takes 22 minutes -- unit tests (3min), integration tests (8min), and
+Playwright E2E (11min). Developers skip running E2E locally. Configure parallel execution across 4 shards
+with screenshot artifacts on failure and JUnit XML for the CI dashboard.
 ```
 
 ```
-My tests have 85% coverage but I don't trust them -- how do I verify they actually catch bugs?
+My TYPO3 extension tests have 88% line coverage but a bug shipped last week that none of them caught.
+The tests assert mock call arguments instead of actual return values. How do I set up mutation testing
+to verify the tests would actually catch real bugs?
 ```
 
 ```
-Write Rust unit tests for this async function using tokio and the AAA pattern
+Write Rust unit tests for this async HTTP client function using tokio. The function makes a request
+and returns a Result<Response, ClientError>. I need tests for: successful response, 404 not found,
+network timeout, and invalid JSON in response body. Use the AAA pattern with descriptive names.
+[paste function signature]
 ```
 
 **Key scripts:**

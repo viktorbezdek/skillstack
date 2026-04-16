@@ -3,6 +3,45 @@
 > **v1.1.20** | Stop guessing at TypeScript patterns -- get opinionated, production-tested guidance for the type system, runtime validation, framework integration, and strict configuration in one place.
 > Single skill + 13 references + 1 script + 1 template + 1 example project | 13 trigger evals + 3 output evals
 
+## Context to Provide
+
+TypeScript questions are most answerable when you include your actual configuration, the exact error message, and what you are building. Vague questions get generic answers; specific questions get working code.
+
+**What information to include in your prompt:**
+
+- **Your current tsconfig** -- paste it or describe which flags are enabled. Many questions ("why are there still runtime nulls?") are immediately answerable once the config is visible.
+- **The exact TypeScript error message** -- always paste the full error text including the error code (TS2345, TS2322, etc.) and the line context. "Types don't match" is not diagnosable; the actual error text is.
+- **Your framework and module system** -- "NestJS with TypeORM," "React 19 with Next.js App Router," "Node.js 20 with ESM." TypeScript patterns differ significantly across these.
+- **The types that are giving you trouble** -- paste the type definitions. If branded types, generics, or discriminated unions are involved, the definitions themselves often show the issue.
+- **For validation library selection**: specify your actual requirements (OpenAPI generation, bundle size budget, React form integration, throughput at scale) -- the decision tree is requirement-driven.
+
+**What makes results better vs worse:**
+
+- Better: paste the exact error message and the type definitions that trigger it
+- Better: describe the bug that happened (the data leak, the runtime null crash) -- this provides the motivation for the pattern recommendation
+- Better: mention which flags you have already enabled in tsconfig
+- Worse: asking "what are TypeScript best practices?" -- too broad, produces a list, not actionable guidance
+- Worse: describing a type as "broken" without showing the definition or error message
+- Worse: asking about React hooks or component patterns here -- use react-development for those
+
+**Template prompt:**
+
+```
+Context:
+- Framework: [e.g., NestJS 10 / React 19 / Node.js 20 standalone]
+- Module system: [ESM / CommonJS]
+- tsconfig flags currently enabled: [list or paste config]
+
+Problem:
+[Describe what is going wrong -- runtime crash, type error, architectural question, library choice]
+
+Error message (if applicable):
+[paste the exact TypeScript error including TS#### code]
+
+Relevant type definitions:
+[paste the types involved]
+```
+
 ## The Problem
 
 TypeScript promises compile-time safety, but most codebases underdeliver on that promise. Teams enable `strict: true` and think they are covered, while `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes` -- the flags that actually catch runtime nulls from array access and optional properties -- stay disabled because nobody knows they exist. The result: types pass at compile time, data blows up at runtime.
@@ -141,27 +180,53 @@ The skill loads the core methodology on activation. When the conversation touche
 **Try these prompts:**
 
 ```
-Set up a production-ready tsconfig for a new Node.js API -- I want maximum strictness
+Set up a production-ready tsconfig for a new Node.js 20 API using ESM modules. I want every useful
+strict flag enabled and explained -- especially the ones beyond "strict: true" that catch runtime nulls
+from array access and optional properties. Include module resolution settings for NodeNext.
 ```
 
 ```
-I keep mixing up user IDs and order IDs in my codebase -- how do I make TypeScript catch this?
+We had a production incident last week: a function received a TenantId where it expected a UserId and
+returned data from the wrong tenant. Both are string. Here is the function signature:
+
+function getUserData(userId: string, tenantId: string): Promise<UserData>
+
+How do I make TypeScript catch this class of mistake at compile time?
 ```
 
 ```
-Compare Zod vs TypeBox vs Valibot for my use case: I need API validation with OpenAPI schema generation and the bundle size matters
+Help me choose between Zod, TypeBox, and Valibot. My requirements:
+- Backend NestJS API: need OpenAPI/JSON Schema generation for Swagger docs
+- Frontend React forms: need react-hook-form integration
+- Performance: API handles ~8,000 req/s at peak
+- Bundle: the frontend bundle is already 400KB, size matters
+Is a dual-library strategy (TypeBox on backend, Zod on frontend) worth the maintenance cost?
 ```
 
 ```
-How do I model loading/success/error states for API calls so the compiler catches missing branches?
+I need to model the states for async API calls in a way that the compiler catches when I forget
+to handle the loading or error case. Currently I use three boolean flags (isLoading, isError, data)
+and the compiler never complains when I access data without checking isLoading first. Show me a
+discriminated union approach that makes missing branches a compiler error.
 ```
 
 ```
-I'm getting "Type 'string' is not assignable to type 'string | undefined'" after enabling exactOptionalPropertyTypes -- what does this mean?
+I enabled exactOptionalPropertyTypes and now have 47 errors like this one:
+Type '{ name: string; email: string | undefined; }' is not assignable to type 'UpdateUserDto'.
+  Types of property 'email' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+
+My UpdateUserDto has email?: string. What does this flag actually do and how do I fix these errors
+without making the type less safe?
 ```
 
 ```
-Show me how to structure a NestJS service with repository pattern and dependency injection
+Structure a NestJS users module using the Repository Pattern and Use Case Pattern. I want:
+- TypeORM for data access
+- Separate UserRepository interface (not tied to TypeORM)
+- CreateUserUseCase that validates, checks uniqueness, and persists
+- Dependency injection wired through the NestJS module
+Show me all four files: entity, repository interface + implementation, use case, controller.
 ```
 
 **Key references:**

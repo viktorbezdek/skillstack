@@ -31,6 +31,39 @@ The plugin activates when you work on any UI-related task and provides the relev
 | No systematic way to evaluate UI quality; "it looks fine" is the acceptance criteria | Playwright-based UI evaluation scripts, CSS validation tools, and A/B comparison automation |
 | Component scaffolding is manual; each developer's file structure is different | Automation scripts generate components with consistent structure, types, tests, and Storybook stories |
 
+## Context to Provide
+
+Frontend design requests produce the most precise results when you specify your stack, constraints, and existing design system state.
+
+**What information to include in your prompt:**
+- **Your framework and component library** -- React, Vue, Svelte; with shadcn/ui, Radix UI, Headless UI, or custom; Tailwind CSS version and configuration
+- **Your design token state** -- whether you already have tokens set up (CSS variables, a Figma file, a design system), or if you are starting from scratch
+- **Accessibility target** -- WCAG 2.2 AA (standard) or AAA (enhanced); specific user needs (screen reader, keyboard-only users)
+- **Component states to handle** -- loading, error, empty, disabled, hover, focus, selected -- the more you specify upfront, the less you iterate
+- **Responsive breakpoints** -- mobile-first or desktop-first, specific breakpoints or Tailwind defaults, which layout changes at which width
+
+**What makes results better:**
+- Pasting your existing token setup (CSS variables, tailwind.config.js color palette) so generated code references real tokens instead of placeholders
+- Describing existing components the new one must match visually or structurally
+- Specifying the data shape for data-driven components (column definitions for tables, field schema for forms)
+- Naming the Figma component or design spec when you are implementing a specific design
+
+**What makes results worse:**
+- Asking for "something that looks good" without specifying brand colors, existing design tokens, or reference designs
+- Requesting component logic (state management, data fetching) alongside visual design -- split those requests for cleaner results
+- Omitting the framework -- the skill defaults to React + Tailwind, which may not match your stack
+
+**Template prompt:**
+```
+Build a [component name] component using [shadcn/ui / Radix UI / custom] in [React / Vue / Svelte]. 
+
+Stack: [Tailwind CSS version], [existing token setup or "no tokens yet"].
+States to handle: [loading / error / empty / disabled -- list all needed].
+Responsive behavior: [describe layout changes across breakpoints].
+Accessibility: WCAG 2.2 [AA / AAA] -- specific needs: [keyboard nav / screen reader announcements / focus management].
+Data shape: [paste or describe the data structure the component receives].
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -129,23 +162,23 @@ Single-skill plugin with 59 references, 30+ scripts, 5 templates, and component 
 **Try these prompts:**
 
 ```
-Build a responsive data table component with sorting, pagination, and keyboard navigation using shadcn/ui
+Build a sortable, paginated data table using shadcn/ui in React + Tailwind. Columns: name (string), status (enum: active/inactive/pending), created_at (date), actions (edit/delete). Keyboard navigation with arrow keys between rows, Enter to activate action. WCAG 2.2 AA. Announce sort changes to screen readers with aria-sort.
 ```
 
 ```
-Set up a three-tier design token system for our project -- primitives, semantics, and component tokens with dark mode support
+Set up a three-tier design token system. We have a Figma file with these raw colors: primary #2563EB, gray scale #F9FAFB to #111827, danger #DC2626. Generate CSS custom properties for primitives, semantic tokens (background, foreground, border, primary, error), and component tokens (button-height: 2.5rem, card-padding: 1.5rem). Include dark mode variants.
 ```
 
 ```
-Audit this component for WCAG 2.2 AA accessibility compliance. Check contrast, keyboard navigation, and screen reader support.
+Audit this Dialog component for WCAG 2.2 AA compliance -- [paste component code here]. Check: focus trapping when open, Escape key to close, focus returns to trigger on close, aria-labelledby on dialog role, contrast on overlay and content.
 ```
 
 ```
-Extract design tokens from our Figma file and generate CSS variables, SCSS variables, and TypeScript types
+Our Figma file key is [key]. Extract design tokens and generate: CSS custom properties, SCSS variables, and TypeScript const types. The token set has colors, typography (font-size, line-height, font-weight), spacing (4px grid), and border-radius values.
 ```
 
 ```
-Create a form with validation using React Hook Form + Zod + shadcn/ui components, including error states and loading states
+Build a registration form with React Hook Form + Zod + shadcn/ui. Fields: email (required, valid email), password (min 8 chars, 1 uppercase, 1 number), date of birth (18+ validation). Real-time validation on blur, error messages announced to screen readers via aria-describedby, focus jumps to first invalid field on submit failure, submit button shows loading state during submission.
 ```
 
 **Key reference categories:**

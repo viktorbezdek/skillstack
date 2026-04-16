@@ -19,6 +19,37 @@ The core architecture is a five-stage pipeline -- acquire, prepare, process, par
 
 The skill also covers task-model fit recognition (which problems benefit from LLMs and which do not), cost estimation formulas, architectural reduction (when removing tools improves performance), and the decision framework for single-agent vs multi-agent approaches. Real case studies ground the methodology: Karpathy's HN Time Capsule ($58 for 930 items) and Vercel's d0 agent (80% to 100% success rate by reducing from 17 tools to 2).
 
+## Context to Provide
+
+The more concretely you describe your task and constraints, the more accurate the task-model fit assessment, pipeline design, and cost estimate will be.
+
+**What information to include in your prompt:**
+
+- **Task description**: What transformation do you want to perform? (e.g., "extract structured financial data from earnings call transcripts")
+- **Input type and volume**: What are you processing? How many items? What is the average size in words or tokens?
+- **Output format**: What should the result look like? (JSON with specific fields, a summary paragraph, classification labels, etc.)
+- **Error tolerance**: Is 95% accuracy acceptable or does every item need to be correct? What happens when the model is wrong?
+- **Latency constraints**: Does this need to run in real time (per-user request) or can it run in batch overnight?
+- **Cost context**: Do you have a budget constraint? Is this a one-time run or recurring (daily/weekly/monthly)?
+- **Existing attempts**: Have you tried anything already? What happened? Did you test one example manually?
+- **Model preference**: Any specific model constraints (cost, capability, API access)?
+
+**What makes results better:**
+- Sharing the result of a manual test ("I tried one example in Claude and it produced this output: [paste output]") immediately tells the skill whether the task is viable
+- Specifying output fields explicitly ("I need: company name, revenue figure, guidance change, and risk factors as a JSON object") enables structured output prompt design
+- Describing the failure mode you are trying to avoid ("the model sometimes invents revenue numbers") shapes the validation and retry strategy
+- Giving the actual item size ("transcripts average 15,000 words") enables accurate cost estimation instead of guesses
+
+**What makes results worse:**
+- Starting with "build me an AI app" before testing one example manually
+- Omitting volume and frequency (cost estimates are meaningless without these)
+- Skipping error tolerance ("just make it work") prevents appropriate validation design
+
+**Template prompt:**
+```
+I want to use an LLM to [task description]. Inputs: [what you are processing], approximately [size per item], [total volume] items. Outputs: [exact format or fields needed]. Error tolerance: [acceptable failure rate and consequences of errors]. This would run [frequency]. I [have / have not] tested one example manually. [If tested: the result was [describe].] Model preference: [Claude Sonnet / Haiku / no preference]. Budget constraint: [if any].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -121,19 +152,19 @@ Task Idea
 **Try these prompts:**
 
 ```
-I want to use an LLM to classify 10,000 support tickets by category and urgency -- is this a good fit?
+I want to use an LLM to classify 10,000 support tickets by category and urgency. Tickets average 200 words. Categories: billing, technical, account, feature request. I need 95%+ accuracy because wrong classifications trigger incorrect routing. I tested one example and Claude got the category right but missed the urgency. Is this a good fit?
 ```
 
 ```
-Design a batch pipeline that takes company 10-K filings and produces structured financial summaries
+Design a batch pipeline that takes company 10-K filings and produces structured financial summaries. Filings are 50-150 pages. I need: revenue, EBITDA, YoY change, top 3 risk factors, and forward guidance -- as JSON. This runs quarterly on ~500 filings. I'm fine with Claude Sonnet.
 ```
 
 ```
-My LLM pipeline costs $200 per run and takes 4 hours -- help me optimize the architecture
+My LLM pipeline costs $200 per run and takes 4 hours -- help me optimize the architecture. We process 1,000 product descriptions and generate marketing copy. It currently re-runs all LLM calls when the output formatter breaks. I want to cut cost and make it resumable.
 ```
 
 ```
-Should I use a single agent or multi-agent setup for my research synthesis project?
+Should I use a single agent or multi-agent setup for my research synthesis project? The agent reads 10-20 papers per query, extracts key findings, and writes a 500-word synthesis. Papers average 8,000 words each. Concerned about context limits.
 ```
 
 **Key references:**

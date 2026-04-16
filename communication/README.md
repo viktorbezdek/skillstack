@@ -22,6 +22,58 @@ The Communication plugin gives Claude five composable communication skills, each
 
 Each skill activates on its own and composes in sequence: decide to write (documentation-discipline) → pick structure (structured-writing) → write it (stakeholder-alignment if cross-team) → diagram what paragraphs can't say (visual-communication) → edit for clarity (clarity-editing) → ship.
 
+## Context to Provide
+
+Each skill in this plugin activates on different signals. Providing the right context for each skill produces a usable artifact immediately rather than generic advice.
+
+**What information to include in your prompt:**
+
+- **The existing text**: For editing, structuring, or diagramming existing content, paste the text. The skill cannot improve what it cannot see.
+- **Target audience**: Who reads this? (engineering team, non-technical executives, external customers, open-source contributors) -- drives vocabulary, tone, and assumed context
+- **Document type**: RFC, ADR, status update, runbook, proposal, email, decision doc, or one-pager -- each has a different structure
+- **Decision or ask**: For structured-writing and stakeholder-alignment, what is the single most important thing the reader must take away?
+- **Roles**: For RFCs and proposals that need DACI or RAPID -- who is the decision-maker, who are the contributors, who is just informed?
+- **Diagram type**: For visual-communication, what type of thing are you diagramming? (flow of a request, state machine, system architecture, data schema, sequence of API calls)
+- **Constraints**: Length limit, formal vs. informal register, whether a diagram renderer is available (Mermaid in GitHub, Confluence, etc.)
+
+**What makes results better:**
+- Pasting the actual draft for clarity-editing -- the skill edits real text, not imaginary text
+- Specifying the named decision-maker for stakeholder-alignment ("our CTO Ali owns the approval") enables DACI with real names
+- Describing the flow in words before asking for a diagram ("the request hits the load balancer, then the API server checks the cache, then fetches from DB if miss") produces a diagram that matches your actual architecture
+- Specifying whether a doc should exist first (documentation-discipline) saves time -- if the answer is "don't write it," no further work is needed
+
+**What makes results worse:**
+- "Write an RFC" with no topic -- the skill needs a subject and the key decision being made
+- "Make this better" on a wall of text without specifying what dimension to improve (structure, clarity, or alignment)
+- Requesting a Mermaid diagram without describing the system being diagrammed -- the skill invents a generic diagram instead of modeling your system
+
+**Template prompts by skill:**
+
+**structured-writing:**
+```
+Apply BLUF / Minto Pyramid to this [email / status update / proposal]. The key point is [one sentence]. Audience: [who reads this]. Target length: [approximate]. [Paste text.]
+```
+
+**clarity-editing:**
+```
+Edit this for clarity and conciseness. Remove hedges, passive voice, and jargon. Audience: [technical / non-technical]. Keep all technical facts; only compress the prose. [Paste text.]
+```
+
+**stakeholder-alignment:**
+```
+Write an RFC for [topic]. The decision being made: [what]. Decision-maker (Approver): [name/role]. Contributors: [names/roles]. Informed parties: [names/roles]. Open questions: [list]. Trade-offs already considered: [list].
+```
+
+**documentation-discipline:**
+```
+Should we document [topic]? Context: [who needs this information, how often, what happens without it]. If yes, write the [ADR / runbook / decision log / one-pager].
+```
+
+**visual-communication:**
+```
+Draw a Mermaid [flowchart / sequence / state / ER] diagram for [what you are modeling]. [Describe the flow or relationships in plain language.] Render in [GitHub / Confluence / other].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -70,11 +122,11 @@ The `structured-writing` skill should activate and lead with the ask/answer in 3
 ## Quick Start
 
 1. Install the plugin using the commands above.
-2. Try: `Tighten this doc — too many hedges and passive voice.` — activates `clarity-editing`.
-3. Try: `Write an RFC for moving from REST to gRPC, include DACI roles.` — activates `stakeholder-alignment`.
-4. Try: `Should we write an ADR for adopting pnpm? Write it if yes.` — activates `documentation-discipline`.
-5. Try: `Draw a Mermaid sequence diagram for our login flow with cache hit and miss branches.` — activates `visual-communication`.
-6. Try: `Restructure this 800-word status update using the Pyramid Principle.` — activates `structured-writing`.
+2. Try: `Tighten this doc — too many hedges and passive voice. [paste your text]` — activates `clarity-editing`.
+3. Try: `Write an RFC for moving from REST to gRPC. Decision-maker: CTO. Contributors: backend leads. The key trade-off is latency vs. schema coupling. Include DACI roles.` — activates `stakeholder-alignment`.
+4. Try: `Should we write an ADR for adopting pnpm? Context: we have 6 engineers, 3 repos, npm today. Write it if yes.` — activates `documentation-discipline`.
+5. Try: `Draw a Mermaid sequence diagram for our login flow. The user submits credentials, we check the cache for a session token, on miss we validate against the DB, then issue a JWT. Show cache hit and miss branches.` — activates `visual-communication`.
+6. Try: `Restructure this 800-word status update using the Pyramid Principle. The key message is that the launch is delayed by 2 weeks due to a third-party API dependency. [paste text]` — activates `structured-writing`.
 
 ## System Overview
 

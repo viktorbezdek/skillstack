@@ -31,6 +31,32 @@ The plugin ships one SKILL.md with all six patterns, one reference file with det
 | Terminal output from long processes must be copy-pasted or carried in context | Terminal sessions persisted as searchable files; agents grep for relevant sections |
 | Agent behavior is static between sessions -- no learning from user preferences | Agents write learned preferences to instruction files that subsequent sessions load |
 
+## Context to Provide
+
+The skill produces much better results when you describe your specific situation rather than asking abstractly about "context management."
+
+**What information to include in your prompt:**
+- **The tool or data source causing context pressure** -- which tool is flooding your context (web search, database query, API call), how many tokens it returns per call, and how many times you call it per task
+- **Your agent's task structure** -- how many steps the task takes, whether it runs sequentially or in parallel, and whether context compression happens mid-task
+- **Your coordination model** -- if using multiple agents, how they communicate (message passing vs shared files), how many agents, and what each produces
+- **Your current approach** -- what you are doing now and where it breaks (context fills, agent loses track, findings degrade through summarization)
+
+**What makes results better:**
+- Providing the approximate token counts for tool outputs (e.g., "each search returns about 8,000 tokens")
+- Describing the task horizon (5-step task vs 50-step task vs multi-hour session)
+- Specifying whether you need read-after-write guarantees or eventual consistency is fine
+- Mentioning your agent framework (Claude Code, LangChain, custom) so the skill adapts file path conventions
+
+**What makes results worse:**
+- Vague descriptions like "my context is too large" without identifying what is filling it
+- Asking about "all patterns" without a specific problem -- the skill works best when matched to a concrete failure mode
+- Conflating filesystem context (this plugin) with in-context compression or KV-cache optimization (different plugins)
+
+**Template prompt:**
+```
+My agent calls [tool/API name] which returns approximately [token count] tokens per call. I call it [N] times during a [describe task]. By step [N], the context is full of [raw results / completed plan steps / sub-agent messages] and [describe what breaks: quality degrades / agent loses plan / findings get summarized away]. How should I implement [scratch pad / plan persistence / sub-agent workspace]?
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -115,23 +141,23 @@ Single-skill plugin with one reference file for detailed implementation patterns
 **Try these prompts:**
 
 ```
-How should I implement a scratch pad for my agent? Web search results are flooding the context window with 10K+ tokens per search.
+My agent calls the web search tool which returns about 8,000 tokens per call. I make 10 searches per research task. By search 4, the context is full and synthesis quality drops sharply. How should I implement a scratch pad pattern to offload search results?
 ```
 
 ```
-Design a file workspace layout for a coordinator agent that manages 4 parallel research sub-agents
+Design a file workspace layout for a coordinator agent that manages 4 parallel research sub-agents. Each sub-agent searches a different domain and writes findings -- the coordinator needs to read them without losing fidelity through message passing.
 ```
 
 ```
-My agent keeps losing track of its plan after context compression. How do I persist plans so they survive summarization?
+My coding agent runs multi-hour tasks. After context compression, it loses track of which files it already modified and which tasks remain. The plan was in the conversation history and got summarized away. How do I persist the plan so it survives?
 ```
 
 ```
-I have 15 skills in my system prompt but only 2-3 are relevant per task. How do I load them dynamically from files instead?
+I have 15 skills in my system prompt consuming about 12,000 tokens, but any given task uses only 2-3 of them. The irrelevant skills are degrading attention to the task-relevant instructions. How do I switch to dynamic loading from files?
 ```
 
 ```
-Build a self-modification pattern where my agent remembers user preferences between sessions by writing to an instruction file
+Build a self-modification pattern where my agent learns user preferences (preferred coding style, common project conventions) and writes them to an instruction file that subsequent sessions load automatically.
 ```
 
 **Key references:**

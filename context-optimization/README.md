@@ -30,6 +30,33 @@ The skill includes a decision framework for selecting which technique to apply b
 | No framework for deciding when to optimize or which technique to apply | Trigger-based optimization monitors utilization and applies techniques based on context composition |
 | Context optimization is ad hoc -- each developer invents their own approach | Systematic framework: measure, diagnose what dominates, apply the matching technique, verify improvement |
 
+## Context to Provide
+
+Optimization decisions depend heavily on what fills the context and at what utilization level quality degrades. Generic "make it faster" requests produce generic guidance. Providing your context composition breakdown unlocks targeted recommendations that match the specific waste pattern.
+
+**What to include in your prompt:**
+- **Current context utilization** (percentage or absolute tokens) and where quality starts to drop
+- **Context composition breakdown** -- what percentage is system prompt, tool definitions, retrieved documents, message history, and tool outputs; this determines which technique to apply
+- **Model and window size** -- thresholds differ by model
+- **Cost or latency constraints** -- whether you are optimizing for token cost, response latency, or quality at scale
+- **Workload characteristics** -- single long conversations vs. many short requests; stable prefix vs. dynamic content
+
+**What makes results better:**
+- Providing the actual percentage breakdown (e.g., "tool outputs are 52%, history is 20%, docs are 23%")
+- Describing whether the system prompt and tool definitions change between requests (stable = cacheable)
+- Saying whether tasks are coupled or independent (affects partitioning decisions)
+- Mentioning the scale (10 requests/day vs. 10,000 requests/day changes cost optimization priority)
+
+**What makes results worse:**
+- Requesting all four techniques at once without knowing which component dominates -- each technique targets a specific waste source and has its own overhead
+- Optimizing before measuring -- "make my agent better" without knowing current utilization leads to premature optimization
+- Framing it as "I need a bigger context window" -- the skill will redirect you to efficiency first
+
+**Template prompt:**
+```
+My [agent type] uses [N]% of its [M]-token context window. Composition: system prompt [X%], tool definitions [Y%], retrieved docs [Z%], message history [W%], tool outputs [V%]. Quality drops at [threshold]. I need to [reduce cost / handle longer sessions / improve quality]. What optimization techniques should I apply?
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -110,19 +137,19 @@ context-optimization (plugin)
 **Try these prompts:**
 
 ```
-My agent's context is 80% tool outputs from completed tasks. How do I free up space without losing access to that information?
+My code review agent's context is 80% tool outputs from grep, file reads, and earlier file reviews. Most of those outputs are from files reviewed 20 turns ago. How do I implement observation masking to free up space without losing the ability to reference earlier reviews?
 ```
 
 ```
-I'm paying too much for LLM tokens. My system prompt and tool definitions are identical across requests but get recomputed every time. How do I optimize for caching?
+I'm running a production agent with 20,000 requests/day. My system prompt is 3K tokens and 15 tool definitions are 6K tokens -- identical across every request. I'm spending significant money recomputing these on every call. How do I structure the prompt for maximum KV-cache efficiency?
 ```
 
 ```
-My agent handles customer issues but quality drops when it juggles multiple sub-tasks. Should I partition into sub-agents?
+My customer support agent handles both account lookups and billing issues in one session. When both are active, it confuses context from one task with the other and quality drops. Should I split into sub-agents? What does partitioning look like and when does the coordination overhead outweigh the benefit?
 ```
 
 ```
-What's the right trigger point for context optimization? I don't want to optimize too early or too late.
+My agent hits 80% context utilization around turn 35 and quality visibly degrades. I haven't implemented any optimization yet. What's the right order to apply compaction, masking, and caching -- and at what utilization percentage should each trigger?
 ```
 
 **Key references:**

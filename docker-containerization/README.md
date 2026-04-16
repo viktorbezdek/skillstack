@@ -30,6 +30,37 @@ The skill covers the full spectrum from first Dockerfile to advanced patterns: D
 | No way to test browser-dependent features in parallel worktrees | Browser isolation with separate user data directories and port ranges per worktree |
 | Dockerfile optimization is trial and error | `docker_optimize.py` script analyzes Dockerfiles and recommends specific improvements |
 
+## Context to Provide
+
+Docker configuration quality depends entirely on knowing what you are containerizing. A generic "write a Dockerfile" request produces a generic result. Specifying the language, framework, build process, runtime requirements, and target environment enables the skill to apply the right patterns -- multi-stage vs. single-stage, Alpine vs. slim base, which files to exclude from the image, what health check to use.
+
+**What to include in your prompt:**
+- **Language and framework** (Node.js 20 with Express, Python 3.11 with FastAPI, Go 1.21) -- base image selection depends on this
+- **Build process** (TypeScript compilation, wheel building, native extensions that need build tools) -- determines whether multi-stage is needed
+- **Target image size constraint** if you have one -- forces the skill to apply size optimization
+- **Services you need** (PostgreSQL version, Redis version, Nginx) -- each service has specific health check and volume patterns
+- **Environment** (development vs. production vs. CI) -- determines which optimizations and security settings apply
+- **Current Dockerfile or docker-compose.yml** if you are improving existing config -- paste it so the skill can analyze what to change rather than starting from scratch
+
+**What makes results better:**
+- Specifying non-root user requirements (almost always needed for production)
+- Mentioning whether you use git worktrees or parallel development environments -- triggers port allocation and isolation guidance
+- Describing your build artifacts (compiled binary, dist/ folder, wheel files) so the production stage copies only what is needed
+- Stating whether you need DDEV (PHP/TYPO3 projects) -- activates a completely different set of templates
+
+**What makes results worse:**
+- "Help with Docker" without language/framework -- produces generic patterns rather than language-specific optimizations
+- "Make it smaller" without knowing the current size and what is in the image -- optimization strategy differs for a 1.5GB Python image vs. a 500MB Node.js image
+- Asking for CI/CD pipeline configuration -- that is `cicd-pipelines`; this skill handles the Dockerfile and Compose that pipelines build
+
+**Template prompt:**
+```
+Write a production Dockerfile for a [language/version] application using [framework]. The build process: [describe how the app is built, e.g., TypeScript compilation, pip wheel building]. Runtime requirements: [what must be present at runtime]. Target image size: under [N]MB. Additional requirements: non-root user, health check on [endpoint], expose port [N].
+
+Current Dockerfile (if improving existing):
+[paste existing Dockerfile]
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -149,19 +180,19 @@ docker-containerization (plugin)
 **Try these prompts:**
 
 ```
-Write a production Dockerfile for a Python FastAPI app with multi-stage build, non-root user, health check, and under 200MB image size.
+Write a production Dockerfile for a Python 3.11 FastAPI application. The build uses pip with a requirements.txt file -- some packages have native extensions that need build tools. Target: non-root user, health check on /health, under 200MB, no build tools in the final image.
 ```
 
 ```
-Set up Docker Compose for my app with PostgreSQL, Redis, and an Nginx reverse proxy. Include health checks, named volumes, and resource limits.
+Set up Docker Compose for a Node.js 20 Express app with PostgreSQL 15 and Redis 7. Include: health checks so the app waits for both services to be ready, named volumes for database persistence, resource limits (512MB memory per service), and separate .env files for dev and CI.
 ```
 
 ```
-I need to run 3 git worktrees simultaneously, each with its own Docker environment. How do I manage ports and avoid conflicts?
+I run 3 git worktrees simultaneously -- main, feature-auth, and feature-payments. Each needs its own PostgreSQL, Redis, and API container. How do I allocate ports, name containers, and manage environment files so the worktrees never conflict? I want to be able to start and stop each worktree independently.
 ```
 
 ```
-Help me set up DDEV for a TYPO3 project with Redis, custom PHP version, and Xdebug.
+Set up DDEV for a TYPO3 13 project. We need PHP 8.2, Redis for caching, Xdebug for local development, and a Makefile with common commands. Show me the config.yaml and any Docker Compose overrides needed.
 ```
 
 **Key references:**

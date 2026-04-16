@@ -13,6 +13,61 @@ Architecture decisions made in the first week compound through the project's lif
 
 Component libraries suffer a different problem. Teams either build everything from scratch (wasting weeks on accessible dropdowns and date pickers) or adopt a component library without a variant system, leading to one-off CSS overrides scattered across the codebase. When design requirements change, every component needs individual attention because there is no systematic theming or variant architecture.
 
+## Context to Provide
+
+The skill routes to one of five domains (Next.js architecture, shadcn/ui components, fpkit library, hooks optimization, Bulletproof audit) based on what you describe. More context means faster, more targeted routing and less back-and-forth.
+
+**What information to include in your prompt:**
+- **What you are building** -- full-stack Next.js app, standalone component library, or optimizing existing code? The routing decision is different for each.
+- **Technology stack** -- Next.js version, backend (Supabase, Prisma, external API), state management (React Query, Zustand, Redux), UI library (shadcn/ui, custom). These determine which reference files load.
+- **The specific problem** -- for hooks issues, describe the exact behavior (firing too often, stale data, performance regression), not just "it doesn't work." The dependency array shape is usually the clue.
+- **Actual code when debugging** -- for anti-pattern detection, paste the component or hook. "My useEffect fires on every render" is diagnosable; "my component is slow" is not.
+- **Component requirements when building** -- for shadcn/ui component requests, specify variants, sizes, states (disabled, loading, error), and accessibility needs. Underspecified component requests produce bare-minimum scaffolds.
+
+**What makes results better:**
+- Showing the component code and the problem symptom together (not just the symptom)
+- Specifying Next.js App Router vs. Pages Router -- the patterns are completely different
+- Describing the data flow: where data comes from (server, client fetch, real-time), how it gets to the component, and where state lives
+
+**What makes results worse:**
+- Asking "how do hooks work" in general -- routes to documentation mode rather than practical guidance
+- Describing symptoms without showing the dependency array for hooks issues
+- Requesting "a button component" without specifying variants, states, and whether it needs to integrate with a form library
+
+**Template prompt (for Next.js architecture):**
+```
+I'm building a [type: SaaS dashboard / e-commerce / admin panel / internal tool] with Next.js [version] and [backend: Supabase / Prisma / external REST API].
+
+Main features: [list 2-3 key features -- e.g., "user dashboard with real-time updates, team management, billing"]
+Current structure: [describe how the project is organized now, or say "starting from scratch"]
+Specific concern: [what architectural decision you need help with -- data fetching strategy, layer boundaries, real-time subscriptions, auth flow]
+
+Help me set up / restructure using the 5-layer architecture (Types, Services, Hooks, Components, Pages).
+```
+
+**Template prompt (for hooks debugging):**
+```
+This component has a hooks problem. I need help diagnosing and fixing it.
+
+Symptom: [e.g., "the effect fires on every render even though the data hasn't changed", "state is stale inside the callback", "the component re-renders every time the parent renders"]
+
+[paste the component code, especially the useState/useEffect/useMemo calls and dependency arrays]
+
+What I've tried: [any fixes you already attempted]
+```
+
+**Template prompt (for component creation):**
+```
+Create a [ComponentName] component with shadcn/ui patterns.
+
+Variants: [e.g., default, secondary, outline, destructive, ghost]
+Sizes: [sm, md, lg]
+States: [disabled, loading, error, success]
+Needs to integrate with: [React Hook Form / a data table / a dialog / standalone]
+Accessibility: [any specific ARIA requirements]
+TypeScript: strict types for all props
+```
+
 ## The Solution
 
 This plugin combines expertise from seven specialized React development domains into a single skill: Next.js 5-layer architecture, shadcn/ui component patterns with CVA variants, fpkit component library building, Bulletproof React code quality auditing, and advanced hooks optimization. It activates whenever you work with React components, hooks, JSX/TSX files, or Next.js routing.
@@ -47,6 +102,13 @@ After installing, test with:
 
 ```
 I have a React component that uses useState and useEffect to keep a filtered list in sync with a search input -- is this the right pattern?
+
+Here's the code:
+const [searchQuery, setSearchQuery] = useState('');
+const [filteredItems, setFilteredItems] = useState(items);
+useEffect(() => {
+  setFilteredItems(items.filter(item => item.name.includes(searchQuery)));
+}, [searchQuery, items]);
 ```
 
 The skill should activate and identify this as a derived state anti-pattern, showing how to compute the filtered list during render instead.

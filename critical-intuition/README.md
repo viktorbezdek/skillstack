@@ -30,6 +30,35 @@ The skill teaches multi-level reading (surface, subtext, meta), signal detection
 | Analysis stays within a single domain; miss cross-domain patterns | Intuitive synthesis connects analogical reasoning, structural similarities, and principle transfer across domains |
 | Cognitive biases go unchecked; confirmation bias reinforces initial readings | Explicit metacognitive checks for biases, blind spots, and what would change the conclusion |
 
+## Context to Provide
+
+Critical analysis works at the subtext and meta levels -- which requires actual content to analyze. "What do you think about this?" with no document produces surface-level observations. Sharing the actual artifact (term sheet, proposal, architecture doc, competitor announcement, conversation transcript) enables the multi-level reading that surfaces what is hidden.
+
+**What to include in your prompt:**
+- **The artifact itself** -- paste the actual document, proposal, email, announcement, or conversation transcript; the skill reads between the lines, which requires actual lines to read
+- **What you are trying to understand** -- the real question behind the surface question (not "is this deal good?" but "what does their urgency signal about their position?")
+- **Your gut feeling if you have one** -- the skill is designed to articulate what intuition is detecting but cannot express; sharing "something feels off" is useful input, not noise
+- **The relevant context** (who the parties are, what their incentives are, what has happened recently)
+- **Your current interpretation** -- what you currently believe, so the skill can stress-test it rather than confirm it
+
+**What makes results better:**
+- Pasting the full document rather than paraphrasing it -- paraphrasing already filters out the signals
+- Describing the stakes clearly (reversible/low-cost vs. irreversible/high-stakes changes the depth of analysis)
+- Asking "what am I missing?" or "what could go wrong?" rather than "confirm this is good" -- the latter biases toward validation
+- Specifying whose perspective to take (buyer, seller, employee, board member) for multi-stakeholder situations
+
+**What makes results worse:**
+- Asking for creative solutions -- this skill evaluates existing situations; use `creative-problem-solving` to generate alternatives
+- Providing no artifact to analyze -- "what do you think about acquisitions generally?" is theory, not analysis
+- Asking for validation instead of analysis ("tell me this is a good plan") -- confirmation bias corrupts the output
+
+**Template prompt:**
+```
+Analyze [this document / proposal / announcement / situation] at multiple levels. I want to understand: what is explicitly stated, what is implied but not said, and what incentives or dynamics explain why it is being communicated this way. My current interpretation is [your read]. What am I missing, and what are the early warning signs I should watch for if I proceed?
+
+[Paste the actual content here]
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -119,19 +148,25 @@ critical-intuition (plugin)
 **Try these prompts:**
 
 ```
-Read between the lines on this vendor's proposal. They're recommending a 3-year contract with early termination penalties. What incentives are driving this structure?
+Read between the lines on this vendor proposal. They're recommending a 3-year enterprise contract with $50K early termination penalties and a "technology roadmap alignment" clause I don't fully understand. What incentives are driving this structure and what does the alignment clause actually mean for us?
+
+[paste the proposal text]
 ```
 
 ```
-What am I missing? Our competitor just open-sourced their core product. On the surface it seems like a gift. What's the strategic game being played?
+Our main competitor just open-sourced their core product -- the same product they've charged $200/seat for over three years. On the surface it looks like a strategic gift to us. What's the strategic game being played? What does this move signal about their position, and how should we respond?
 ```
 
 ```
-Analyze this team's architecture decision critically. They're confident but the timeline seems aggressive. What are the hidden risks?
+My team presented this microservices migration plan with a 6-month timeline. The presentation was polished and they are confident, but something feels off -- the timeline has no contingency, and the data migration section was skipped in the presentation. What are the hidden risks and what questions should I ask?
+
+[paste the architecture proposal]
 ```
 
 ```
-I have a gut feeling something is wrong with this partnership but I can't articulate it. Help me identify what my intuition is picking up on.
+I interviewed a senior engineer candidate. Technical interview was strong, resume checks out, but I have a persistent gut feeling something is wrong and I can't articulate it. Help me identify what my intuition might be detecting. Here's my interview notes.
+
+[paste interview notes]
 ```
 
 **Key references:**

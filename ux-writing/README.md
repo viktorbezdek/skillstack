@@ -3,6 +3,42 @@
 > **v1.0.10** | Turn "Submit", "Error 404", and "Click here" into interface text that actually helps users succeed.
 > Single skill, no references | 13 trigger evals + 3 output evals
 
+## Context to Provide
+
+UX writing works best when you show the current copy and describe where it appears. The skill rewrites specific text, not abstract intentions.
+
+**What information to include in your prompt:**
+
+- **The current copy** -- paste exactly what the button, error, dialog, or label says right now. Seeing "Are you sure?" is the starting point; hearing "our dialog is bad" is not.
+- **Where it appears** -- name the feature area (signup form, payment step, settings page, empty dashboard). Context determines tone and verb choice.
+- **What the action does or what went wrong** -- for buttons, describe the consequence of clicking. For errors, describe what actually failed. "Save" on a form that immediately publishes to 10,000 subscribers needs different copy than "Save" on a local draft.
+- **What the user needs to do next** -- the Useful principle requires a next step. If you know what that step is, include it. If you do not, the skill will ask.
+- **Brand voice, if you have one** -- formal/casual, playful/serious, technical audience or general public. Without this, the skill defaults to clear and neutral.
+
+**What makes results better vs worse:**
+
+- Better: paste multiple related pieces of copy together (all the errors on a form, all buttons on a checkout flow) -- the skill can ensure consistency across them
+- Better: mention which copy generates the most support tickets or confusion -- this focuses effort on the highest-impact rewrites
+- Better: include the surrounding context (what does the page title say? what does the preceding instruction say?) -- copy cannot be evaluated in isolation
+- Worse: asking to "improve the copy" without showing the current text
+- Worse: requesting marketing or landing page copy -- this skill is for in-product microcopy only
+- Worse: asking to fix one word without context ("should it say Save or Submit?") -- the verb depends entirely on what the action does and what surrounds it
+
+**Template prompt:**
+
+```
+Rewrite [copy type: error message / button label / empty state / confirmation dialog / form labels] for
+[feature area: signup form / payment step / settings page / etc.].
+
+Current copy: [paste exact text]
+
+Context:
+- What action does the button do / what went wrong for the error: [describe]
+- What should the user do next: [next step]
+- Audience: [technical / general / enterprise / consumer]
+- Tone: [formal / casual / motivating / neutral]
+```
+
 ## The Problem
 
 Interface text is the last thing that gets written and the first thing users read. Engineers fill in placeholder copy -- "Submit", "Error: Invalid input", "Click here to learn more" -- and that placeholder ships to production because nobody goes back to improve it. The result: users stare at a "Submit" button and do not know what they are submitting. They see "Error 404" and have no idea what to do about it. They encounter an empty screen with "No items found" and do not know how to create their first item.
@@ -122,27 +158,57 @@ This is a compact single-skill plugin with no reference documents. All methodolo
 **Try these prompts:**
 
 ```
-Rewrite our form error messages -- right now they just say "Invalid input" for everything
+Rewrite the error messages for our registration form. Every field shows "Invalid input" on validation
+failure. The fields are: email address, password (min 8 chars, one uppercase, one number), username
+(3-20 chars, alphanumeric only), and company name (optional). Users are signing up for a B2B SaaS tool --
+technical audience, expect precision.
 ```
 
 ```
-My checkout has five buttons that all say "Submit" or "Continue" -- write specific labels for each step
+My checkout has five steps and every primary button says "Continue". Rewrite them with specific labels.
+Here is what each button actually does:
+1. Cart review page: proceeds to shipping address entry
+2. Shipping page: saves address and moves to delivery options
+3. Delivery options: confirms selection and goes to payment
+4. Payment page: charges the card and creates the order
+5. Order confirmation: returns to the product catalog
 ```
 
 ```
-Write copy for the empty state when a user has no saved reports yet -- it needs to explain the feature and encourage the first action
+Write empty state copy for the Saved Reports screen in our analytics tool. A new user lands here with
+no reports yet. The feature lets users save custom query results as named reports they can revisit and
+share. The first action is "Create report" which opens a query builder. Tone: helpful but not overly
+enthusiastic -- our users are data analysts.
 ```
 
 ```
-Review this confirmation dialog: title says "Warning", body says "Are you sure?", buttons say "OK" and "Cancel". Rewrite it for a file deletion action.
+Rewrite this confirmation dialog for permanently deleting a workspace in our project management tool.
+A workspace contains all the user's projects, tasks, and files.
+
+Current dialog:
+Title: "Warning"
+Body: "Are you sure you want to delete this workspace? This action cannot be undone."
+Buttons: [OK] [Cancel]
+
+The user must understand exactly what they will lose and that it is permanent. They should feel
+like they made an active, informed choice, not like they clicked through an obstacle.
 ```
 
 ```
-Our app uses inconsistent tone -- errors sound angry, success messages sound robotic. Help me create a tone guide for all four contexts.
+Our B2B SaaS tool uses inconsistent tone across contexts: success messages sound robotic ("Operation
+completed successfully"), errors sound alarming ("CRITICAL ERROR: Request failed"), warnings are
+passive ("Please note that..."). Create a tone guide for all four contexts (success, error, warning,
+empty state) for a business productivity tool used by operations teams. Not playful, but not corporate.
 ```
 
 ```
-Write the microcopy for a password reset flow: the email prompt, the "check your email" confirmation, and the "password changed" success message
+Write all the microcopy for our password reset flow. The flow has three screens:
+1. Enter email screen (user requests reset link)
+2. Confirmation screen (link sent, user should check email)
+3. Success screen (password has been changed, user is now logged in)
+
+One complication: if the email is not in our system, we still show the "link sent" screen (security
+best practice). The copy needs to handle this without being dishonest.
 ```
 
 ---

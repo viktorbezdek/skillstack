@@ -29,6 +29,43 @@ The plugin provides a single focused skill that activates when you need to rank 
 | Sunk cost keeps zombie projects alive: "we already invested 3 months" | Anti-pattern detection flags sunk cost reasoning and redirects to forward-looking impact assessment |
 | Stakeholders cannot explain why feature A was prioritized over feature B | Prioritization template with scored rationale: reach, impact, confidence, effort, and decision narrative |
 
+## Context to Provide
+
+The scoring frameworks in this skill produce defensible results when you bring data. Without estimates, the skill must guess -- and guessed RICE scores are just opinions with math on top.
+
+**What information to include in your prompt:**
+- **The list of items to prioritize** -- be specific. "Search improvements" is too vague; "add fuzzy search to the product search bar, currently exact-match only" gives the skill enough to assess.
+- **Capacity constraints** -- how many engineers, for how long? Person-months of available effort anchors the MoSCoW and effort-impact analysis.
+- **Reach estimates per item** -- how many users are affected per quarter? Even rough numbers ("roughly 2,000 of our 8,000 active users hit this problem monthly") work better than no estimate.
+- **Effort estimates per item** -- in days or weeks per feature, not story points. The skill can handle rough estimates; just be explicit that they are rough.
+- **Business priorities and context** -- is this a growth quarter, a retention focus, an enterprise sales push? This helps the skill calibrate impact scores rather than treating all users as equivalent.
+- **Known constraints or must-haves** -- if certain items are contractually committed or tied to a major customer deal, say so upfront. The skill flags strategic overrides to RICE scoring explicitly.
+
+**What makes results better:**
+- Baseline metrics for each item (current state helps score impact)
+- Any existing customer data: support ticket volume, request frequency, deal blockers
+- Honest uncertainty signals ("I have no idea how many users need this" triggers ICE instead of RICE)
+
+**What makes results worse:**
+- Asking for prioritization without any effort or reach estimates -- forces guessing
+- Providing items without describing who they serve or what problem they solve
+- Framing the question as "which is more important" rather than providing data for scoring
+
+**Template prompt:**
+```
+Prioritize these [N] items using [RICE / ICE / MoSCoW / effort-impact matrix] for [team size] engineers over [timeframe].
+
+Items:
+1. [Item name]: [brief description]. Rough effort: [X weeks]. Estimated reach: [N users/month]. Notes: [any context on urgency, customer requests, strategic importance]
+2. [Item name]: [...]
+
+Capacity: [N] person-months total.
+Business context: [growth phase, retention focus, enterprise sales push, etc.]
+Any must-have items: [list items that are non-negotiable and why]
+
+Please flag any items where the scoring suggests a different priority than intuition would predict, and note if any constraints override the framework scores.
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -47,7 +84,15 @@ None. For defining the outcomes that prioritization serves, also install `outcom
 After installing, test with:
 
 ```
-I have 8 feature requests and capacity for 3 this quarter. Help me score and prioritize them using RICE.
+I have 8 feature requests and capacity for 3 this quarter (3 engineers, 3 months = ~9 person-months). Score and prioritize using RICE:
+1. Advanced search (effort: 2 PM) -- requested by ~3,000 users/month based on support tickets
+2. Onboarding redesign (effort: 3 PM) -- affects all new signups, ~1,000/month, 30% completion rate today
+3. API v2 (effort: 4 PM) -- required for 5 enterprise deals currently blocked
+4. SSO integration (effort: 2 PM) -- 200 enterprise users blocked
+5. Mobile push notifications (effort: 1.5 PM) -- marketing request, reach unclear
+6. Bulk data export (effort: 1 PM) -- top requested feature, ~2,500 users/month
+7. Custom dashboards (effort: 3 PM) -- CEO's request
+8. AI-powered insights (effort: 5 PM) -- product team idea, no user data yet
 ```
 
 ## Quick Start

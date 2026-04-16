@@ -13,6 +13,59 @@ Someone finds a prompt that "worked" in a blog post and copies it verbatim. It p
 
 The problem compounds across platforms. A prompt tuned for Claude's XML-tag conventions produces garbled output on GPT-4. A GPT-4 prompt that relies on "You MUST" directives feels over-constrained on Claude. Cross-platform prompt migration is treated as an art rather than an engineering discipline, which means every platform switch restarts the iteration cycle from zero. There is no shared vocabulary for what makes a prompt good, no rubric to score one version against another, and no systematic process for closing the gap between "sometimes works" and "reliably delivers."
 
+## Context to Provide
+
+Prompt engineering is a debugging discipline -- the more context you give about what is failing and why, the faster the skill can diagnose the problem and apply the right fix.
+
+**What information to include in your prompt:**
+- **The prompt itself** -- always paste the current prompt verbatim. The skill cannot diagnose what it cannot see.
+- **What output you are getting** -- describe the failure mode specifically: inconsistent format, wrong tone, missing key information, hallucinated content, too long, too short, fails on certain inputs. Generic "it doesn't work well" produces generic advice.
+- **What output you want** -- describe the ideal output in concrete terms, or paste an example of good output if you have one. The skill optimizes toward a target; without one, it improvises.
+- **The target platform** -- Claude, GPT-4, Gemini, or other. Platform-specific structural differences (XML tags vs. system/user separation vs. section headers) change the optimization strategy significantly.
+- **The audience for the output** -- who will read it? Busy engineers, non-technical stakeholders, customers? Audience calibrates tone, format, and density.
+- **Volume and consistency requirements** -- is this prompt run once or thousands of times per day? High-volume prompts need tighter output specifications because format drift compounds.
+
+**What makes results better:**
+- Showing actual examples of bad output alongside good output (the contrast is more informative than describing the gap)
+- Describing specific inputs that break the prompt (edge cases, unusual phrasing, long inputs)
+- Indicating which dimensions matter most: accuracy, tone, format, length, or consistency
+
+**What makes results worse:**
+- Describing the problem without pasting the prompt
+- Saying "make it better" without specifying what better means
+- Providing the prompt without describing what it is used for
+
+**Template prompt (for optimizing an existing prompt):**
+```
+This prompt gives me inconsistent results -- help me fix it.
+
+Platform: [Claude / GPT-4 / Gemini]
+Use case: [what this prompt is for and who sees the output]
+
+Current prompt:
+[paste your prompt here]
+
+The problem: [describe what goes wrong -- inconsistent format, wrong tone, misses key content, fails on certain inputs]
+
+Example of bad output: [paste an example or describe what you got]
+Example of good output: [paste an example or describe what you want]
+
+Constraints: [length limits, tone requirements, output format requirements, anything the prompt must not do]
+```
+
+**Template prompt (for building a new prompt):**
+```
+I need a prompt for [task description].
+
+Platform: [Claude / GPT-4 / Gemini]
+Who will use it: [the role running the prompt]
+Who sees the output: [the audience for the output]
+Output format: [describe the structure you want -- table, bullets, numbered steps, prose, JSON, etc.]
+Key requirements: [2-3 most important things the output must do]
+What it must NOT do: [guardrails, off-topic areas, tone restrictions]
+Example input: [a sample input the prompt will receive]
+```
+
 ## The Solution
 
 This plugin provides a structured 4-D methodology -- Deconstruct, Diagnose, Develop, Deliver -- that turns prompt optimization from guesswork into engineering. Instead of random edits, you systematically analyze what a prompt needs to accomplish, score it against five quality dimensions (Clarity, Specificity, Structure, Completeness, Efficiency), select the right techniques from a proven catalog, and produce an optimized version with clear explanations of what changed and why.
@@ -46,7 +99,13 @@ Add the SkillStack marketplace, then install this plugin:
 After installing, test with:
 
 ```
-Help me optimize this prompt: "Write a good blog post about AI"
+Help me optimize this prompt. Platform: Claude. Use case: internal knowledge base chatbot that answers HR policy questions.
+
+Current prompt: "You are a helpful HR assistant. Answer questions about company policy based on the documents provided."
+
+The problem: sometimes the bot makes up policies that aren't in the documents, and the format varies -- sometimes bullet points, sometimes paragraphs, sometimes numbered steps. Employees find the inconsistency confusing.
+
+Good output looks like: a short direct answer (1-3 sentences) followed by a citation of the specific policy section.
 ```
 
 The skill should activate automatically and run a diagnosis of the prompt across five quality dimensions before producing an improved version.

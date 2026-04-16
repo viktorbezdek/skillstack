@@ -3,6 +3,41 @@
 > **v1.1.21** | Automate the processes your team runs manually -- releases, parallel development, multi-agent orchestration, and computation pipelines -- with structured patterns and ready-to-use scripts.
 > Single skill + 6 modules + 21 references + 30+ FABER scripts + 10 CI/CD templates + 6 subskills + 6 git/release scripts | 13 trigger evals + 3 output evals
 
+## Context to Provide
+
+Workflow automation covers six distinct capability areas -- the skill routes to the right one based on what you describe. Precise context gets you directly to the scripts, patterns, and templates that fit your situation.
+
+**What information to include in your prompt:**
+
+- **The automation type** -- release management, parallel branch development, multi-agent orchestration, CI/CD pipelines, scientific computation scaling, or stateful process automation. If you are unsure, describe the manual process and let the skill route it.
+- **Your current manual process** -- describe what you do today, including the steps you execute in order and where things go wrong. The failure mode (wrong version bump, mid-deploy crash, merge conflicts) determines which automation pattern to apply.
+- **Language and tooling** -- "Node.js monorepo," "Python data pipeline," "Go services." Semantic release configuration differs by language; scientific workflow tool selection depends on what you are currently using.
+- **Scale and constraints** -- number of packages (monorepo), number of parallel branches, number of agents in the workflow, cluster size (HPC), or stage count (state machine). These drive configuration choices.
+- **What has already been tried** -- if you set up semantic release and it did nothing, if you tried conventional commits but versions did not bump, describing what failed prevents re-suggesting the same approach.
+
+**What makes results better vs worse:**
+
+- Better: for multi-agent orchestration, name each agent, what it does, and which agents depend on which
+- Better: for release automation, describe whether this is a monorepo with independent versioning or a single package
+- Better: for state machines, list the stages and what failure at each stage means (should it retry, rollback, or alert?)
+- Worse: asking for "CI YAML" without workflow context -- use cicd-pipelines for platform-specific YAML syntax
+- Worse: describing the tooling you want (FABER, Prefect) without describing the problem -- tool selection works backward from the problem
+- Worse: asking about Docker, Dockerfiles, or container configuration -- that belongs to docker-containerization
+
+**Template prompt:**
+
+```
+I want to automate: [describe the manual process in steps, including where it fails]
+
+Current state:
+- Language/platform: [e.g., Node.js monorepo with 3 packages, Python, Go]
+- Scale: [e.g., 4 parallel feature branches, 3 agents, 200-node HPC cluster, 5-stage deployment]
+- What has gone wrong: [the specific failure that motivated automation]
+
+What I need from automation:
+- [crash recovery / version bumps / parallel isolation / agent coordination / etc.]
+```
+
 ## The Problem
 
 Modern software delivery involves a web of interdependent processes that are easy to start manually and painful to scale. Releases require a human who remembers the right sequence: bump version, update changelog, tag, build, publish, notify. Miss a step and you ship a broken release or publish the wrong version. Run it out of order and the changelog references commits that do not exist in the tag.
@@ -153,27 +188,43 @@ The core skill acts as a router -- its decision tree identifies what type of wor
 **Try these prompts:**
 
 ```
-Automate my release process -- I want conventional commits to drive version bumps and changelog generation automatically
+Automate my release process for a Node.js monorepo with three packages: api, sdk, and dashboard-ui.
+Right now I manually: check commits, decide the version bump, update three package.json files, write
+the changelog, create a git tag, and publish each package to npm. Last month I published a breaking
+change under a minor version bump because a "feat:" commit had breaking behavior. Set up semantic
+release with independent versioning per package.
 ```
 
 ```
-I need to run three agents in parallel with the third depending on the first two finishing -- how do I wire this up?
+I need to coordinate three agents in a code generation pipeline:
+1. spec-writer: reads a feature request and produces a technical spec
+2. implementer: reads the spec and writes code
+3. reviewer: evaluates the code and either approves or sends back to implementer with feedback
+
+The reviewer can reject up to 3 times before escalating to a human. Agent 3 depends on agent 2,
+which depends on agent 1. How do I wire this with error recovery and loop termination?
 ```
 
 ```
-We have five feature branches being worked on simultaneously and merge conflicts are killing us -- set up worktree isolation
+We have six active feature branches: payments-v2, auth-sso, admin-dashboard, api-versioning,
+mobile-redesign, and notification-system. They share files in src/shared/ and merge conflicts
+are a daily problem. Three developers working on payments-v2 need to stay isolated from the
+others while sharing the main branch's security patches. Set up worktree isolation.
 ```
 
 ```
-My Python data pipeline needs to scale from my laptop to an HPC cluster -- which workflow tool should I use?
+My Python materials science pipeline currently runs on my laptop using joblib for parallelism.
+It processes molecular dynamics simulations: 500 independent jobs, each taking 10-30 minutes,
+using custom Fortran binaries. I need to scale to a university SLURM cluster with 200 nodes.
+Which workflow tool should I use -- Parsl, Prefect, or Covalent?
 ```
 
 ```
-Set up automated code review that checks test coverage, security, and code quality before PRs can merge
-```
-
-```
-I need a state machine for my deployment workflow -- it has stages (build, test, deploy, verify) and needs to survive crashes
+Build a deployment state machine for my four-stage pipeline: build (2 min), integration-test (8 min),
+staging-deploy (3 min), and production-deploy (5 min). The pipeline has crashed twice mid-deploy:
+once at staging-deploy, once at production-deploy. I need crash recovery (resume from the failed
+stage, not start over), concurrent execution prevention (no two deploys at once), and an audit
+trail for post-incident review.
 ```
 
 #### FABER State Machine (scripts)

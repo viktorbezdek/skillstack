@@ -30,6 +30,38 @@ For browser debugging, the plugin ships 9 Chrome DevTools automation scripts (na
 | "Works on my machine" with no way to reproduce browser issues | E2E testing workflow with visual debugging, screenshot comparison, and regression detection |
 | 40% first-time fix rate with frequent regression introduction | 95% first-time fix rate with defense-in-depth validation at every layer |
 
+## Context to Provide
+
+The single biggest predictor of fast debugging is error specificity. "My code is broken" produces a methodology lecture. A full stack trace, the exact conditions that reproduce the bug, and what you have already tried produce a targeted root cause analysis. The skill enforces root cause investigation before suggesting fixes -- give it the raw evidence, not your hypothesis about the cause.
+
+**What to include in your prompt:**
+- **The exact error message and full stack trace** -- do not paraphrase; paste the literal text including file paths and line numbers
+- **Reproduction conditions** -- does it fail always or intermittently? Locally or only in CI? With specific inputs?
+- **What changed recently** -- the git commits, dependency updates, or configuration changes immediately before the failure appeared
+- **What you have already tried** -- each attempted fix and why it did not work; this prevents the skill from suggesting approaches you have already ruled out
+- **The environment** (OS, runtime version, test runner, CI platform) -- especially for "works on my machine" failures
+
+**What makes results better:**
+- Pasting the actual stack trace rather than paraphrasing it -- the skill identifies patterns in specific file paths and line numbers
+- Describing the test that fails by name and which assertion fails, not just "the test fails"
+- For CI failures: including the relevant workflow log section, not just "CI is failing"
+- For browser bugs: naming the browser, version, and whether DevTools console shows errors
+- Mentioning if you have already tried multiple fixes -- this is a signal the root cause has not been identified yet
+
+**What makes results worse:**
+- Proposing your own fix first -- "I think the fix is X, should I try it?" skips root cause investigation; the skill enforces investigation before fixes
+- Providing only the symptom without the error -- "my tests are slow" is not enough without profiling data
+- Omitting the stack trace -- the exact error message and file/line references are the most information-dense input the skill has
+
+**Template prompt:**
+```
+[Test/Component/Endpoint] fails with:
+
+[paste exact error message and stack trace]
+
+Conditions: [always / intermittently / only in CI / only in specific browser / only with specific input]. Recent changes: [what changed before this started]. I have already tried: [list of attempted fixes and why each failed]. Environment: [OS, runtime version, test runner, CI platform if relevant].
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -136,19 +168,26 @@ debugging (plugin)
 **Try these prompts:**
 
 ```
-This test fails with "connection refused" but only in CI. It passes on every developer's machine. Walk me through the systematic debugging process.
+AuthService.test.ts fails with "connection refused" but only in GitHub Actions, not locally. Error:
+
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1494:16)
+
+The test starts a PostgreSQL container in beforeAll(). Recent change: we added a caching step to the workflow 3 days ago. Walk me through systematic debugging for this environment-specific failure.
 ```
 
 ```
-I've tried 3 different fixes for this race condition and none worked. I think I need to step back and find the real root cause.
+I've tried 3 different fixes for what I think is a race condition in our queue processor. The test still fails intermittently. I'm starting to doubt my root cause hypothesis. Here's the test, the production code, and the three things I tried.
+
+[paste code and attempted fixes]
 ```
 
 ```
-My React app renders correctly in Chrome but the layout is broken in Safari. How do I use DevTools to diagnose the CSS issue?
+My React checkout component renders correctly in Chrome 120 but the shipping address section collapses to zero height in Safari 17. The DevTools console shows no errors. How do I use the inspector to diagnose this CSS layout issue?
 ```
 
 ```
-Our CI pipeline started failing intermittently last week. Sometimes tests pass, sometimes they don't. How do I find the flaky test?
+Our GitHub Actions test suite passes 70% of the time. When it fails, the error is always in user.integration.test.ts but different assertions fail each time. This started last Tuesday after we added the Redis session store. How do I isolate which test is causing the pollution?
 ```
 
 **Key references (selected):**

@@ -3,6 +3,47 @@
 > **v1.0.4** | Design tools that agents actually use correctly -- the difference between an agent that completes tasks and one that flails.
 > Single skill + 2 deep references | 13 trigger evals + 3 output evals
 
+## Context to Provide
+
+Tool design problems are concrete -- the best input is the actual tool descriptions causing failures, not a general description of the situation.
+
+**What information to include in your prompt:**
+
+- **The actual tool descriptions** -- paste the full description text for the tools that are causing problems. A description like "search(query: str) -> Search the database" reveals exactly what is wrong in a way that "our search tool is broken" does not.
+- **The failure pattern** -- describe what the agent does wrong, not just that it fails. "Agent calls `searchCustomers` when it should call `getCustomerById` for requests like 'look up Acme Corp'" is diagnosable. "Tool selection is wrong" is not.
+- **The full tool count** -- say how many tools the agent has in total. Tool count relative to the recommended 10-20 range is a key diagnostic signal.
+- **The domain and what users ask** -- "customer support agent" + "users ask about account status, subscription history, and open tickets" gives the skill enough context to evaluate scope overlap.
+- **For greenfield design**: describe the core agent capabilities (what tasks it needs to accomplish) rather than the tools you imagine you will need -- tool design starts from tasks, not from tool lists.
+
+**What makes results better vs worse:**
+
+- Better: paste the actual tool description text, including parameter names and return value descriptions
+- Better: give a concrete example user request and trace which tool the agent incorrectly calls
+- Better: for greenfield design, describe what the agent accomplishes from the user's perspective, then let the skill derive the tools
+- Worse: describing tool selection failures without sharing the tool descriptions -- the descriptions are where the problem lives
+- Worse: asking to "improve the tools" without saying what is going wrong
+- Worse: conflating "building an MCP server" (implementation) with "designing the tool interface" (this skill's domain)
+
+**Template prompt:**
+
+```
+My [type] agent has [N] tools. The failure I'm seeing:
+
+When a user asks "[example user request]", the agent calls [wrong tool] instead of [right tool].
+
+Here are the descriptions for the tools it confuses:
+
+Tool 1: [name]
+Description: [paste full description]
+Parameters: [paste parameter list]
+
+Tool 2: [name]
+Description: [paste full description]
+Parameters: [paste parameter list]
+
+[For greenfield: instead describe the agent's core tasks from the user's perspective]
+```
+
 ## The Problem
 
 When an agent system underperforms, teams blame the model, the prompts, or the orchestration logic. In practice, the single largest source of agent failure is the tool interface itself. Overlapping tool descriptions cause the agent to pick the wrong tool -- not occasionally, but systematically. Vague parameter names like `query`, `val`, or `param1` force the model to guess what to pass. Missing error context means that when a tool call fails, the agent has no path to recovery and either retries blindly or gives up.
@@ -121,23 +162,45 @@ The skill loads the core methodology on activation. When the conversation touche
 **Try these prompts:**
 
 ```
-I'm building an agent that manages cloud infrastructure -- help me design the tool set from scratch
+I'm building an agent that manages cloud infrastructure (AWS). It needs to: list and describe running
+resources, create and destroy EC2 instances, update security groups, and check CloudWatch alarms.
+Help me design the initial tool set -- I want to stay under 15 tools and avoid the get/search ambiguity
+pattern. Start from the tasks, not the AWS API surface.
 ```
 
 ```
-My agent has 25 tools and keeps calling searchCustomers when it should call getCustomerById -- what's wrong?
+My customer data agent has 25 tools and keeps calling searchCustomers when it should call getCustomerById.
+Here are both descriptions:
+
+searchCustomers: "Search for customers by name, email, or other attributes. Returns a list of matching customers."
+getCustomerById: "Retrieve a specific customer by their unique ID. Returns the customer record."
+
+The failure: when a user says "look up Acme Corp", the agent calls searchCustomers -- correct. When a user
+says "pull up customer 12345", it still calls searchCustomers. What is causing this and how do I fix it?
 ```
 
 ```
-Review this tool description and tell me why agents might misuse it: "search(query: str) -> Search the database"
+Review this tool description and tell me why agents misuse it:
+
+getName(entity_type: str, entity_id: str) -> str
+"Gets the name of an entity. Supports customers, orders, and products."
+
+The failure I see: agents call this when they need the full entity record, then fail because they only
+got a name string back.
 ```
 
 ```
-Should I build custom data analysis tools or just give the agent bash and SQL access? Our data is in PostgreSQL.
+Should I build custom data analysis tools or give my agent direct bash and PostgreSQL access?
+Our data: 12 tables, well-documented schema, no PII (it's internal analytics). The agent's job:
+answer ad-hoc questions from the data team like "what was the p99 latency for checkout last Tuesday?"
 ```
 
 ```
-How should I write error messages so my agent can recover instead of retrying the same bad call?
+My tool returns this error when the agent passes a bad date format:
+{"error": "ValidationError", "message": "Invalid date"}
+
+The agent then retries with the same bad date three more times before giving up. Rewrite the error
+so the agent can self-correct on the next call.
 ```
 
 **Key references:**

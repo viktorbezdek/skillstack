@@ -31,6 +31,34 @@ The plugin ships a single SKILL.md with all templates and checklists, 13 trigger
 | Tutorials jump from trivial to advanced with no intermediate steps | Structured tutorial template with time estimate, prerequisites, and step-by-step progression |
 | No expected output -- reader cannot verify if their result is correct | Every example includes an expected output comment showing what success looks like |
 
+## Context to Provide
+
+Example quality is directly proportional to how much context the skill knows about the target reader, the concept being taught, and the realistic domain the code operates in. Generic "show me an example" produces generic examples with placeholder names. Specific context produces examples that a developer can copy, run, and immediately understand in the context of their real work.
+
+**What to include in your prompt:**
+- **The specific concept, API method, or feature to demonstrate** -- name it exactly; "authentication" is too broad, "JWT token refresh with automatic retry on 401" is specific enough to produce a focused example
+- **The language and framework version** (Python 3.11 with FastAPI 0.104, TypeScript with Express 4.x, Node.js 20 with the AWS SDK v3)
+- **The audience's experience level** (intermediate Python developer who knows HTTP but not our SDK; senior TypeScript developer unfamiliar with our authentication model)
+- **The realistic domain** -- if the code is for an e-commerce platform, use order/product/customer variables, not foo/bar
+- **The complexity level you need** -- minimal snippet, working example, or full progressive set (minimal through production-ready)
+- **Expected output** -- what should the user see when the example runs successfully?
+
+**What makes results better:**
+- Providing the actual API signature or method you want demonstrated -- the skill names variables after real parameters
+- Describing what typically goes wrong so the example can show the common error and how to handle it
+- Saying which prerequisite knowledge can be assumed (e.g., "they have already authenticated, show them the next step")
+- For tutorials: stating the concrete end result ("deploy their first endpoint" or "process their first webhook")
+
+**What makes results worse:**
+- Asking for examples in a vacuum without language or framework -- produces pseudocode that cannot be run
+- Requesting production application code -- this skill designs *teaching* code optimized for clarity; use language-specific skills for production code
+- Asking for a "complete application example" without specifying which concept each section should teach -- produces a wall of code with no clear focal point
+
+**Template prompt:**
+```
+Create a [progressive set of / single / tutorial for] example(s) showing how to [specific concept/API]. Language: [language version]. Framework: [framework version]. Target audience: [experience level, what they know, what they don't]. Domain: [the realistic domain for variable names, e.g., "e-commerce: orders, products, customers"]. Complexity: [minimal only / minimal through error handling / full 5-level progression]. Expected output when it runs: [what success looks like].
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -119,23 +147,25 @@ Single-skill plugin with no references, hooks, or MCP dependencies. The skill co
 **Try these prompts:**
 
 ```
-Create a progressive example showing how to use our REST API client -- from minimal to production-ready with retry logic
+Create a progressive example set (minimal through production-ready) showing how to use our REST API client to fetch paginated user records. Language: Python 3.11. Target audience: intermediate Python developers who know requests but not our SDK. Domain: user management (users, accounts, roles). The final level should include retry logic and structured error handling.
 ```
 
 ```
-Write a 10-minute tutorial that takes a new user from installation to their first successful API call
+Write a 10-minute tutorial that takes a Node.js developer from npm install to their first successful webhook delivery and verification. They know Express but have never used our SDK. Each step should show the exact command to run and the expected output so they know if something went wrong.
 ```
 
 ```
-Review these code examples for our SDK documentation -- are they runnable, realistic, and well-structured?
+Review these three code examples from our Python SDK documentation. Check each for: missing imports, placeholder variable names (foo/bar/data), expected output, and whether a beginner could run them without modification.
+
+[paste the three examples]
 ```
 
 ```
-Design a reference application that demonstrates authentication, CRUD operations, and error handling for our framework
+Design a reference todo application that demonstrates our TypeScript framework's four core concepts: routing, PostgreSQL persistence, JWT authentication, and centralized error handling. Each concept should be isolated in its own file so a developer can read just one file to learn that concept.
 ```
 
 ```
-Our quickstart guide loses users between step 2 and step 3. Help me redesign the examples to bridge that gap.
+Our CLI quickstart drops off between step 3 (configure credentials) and step 4 (run first command). Step 3 shows the config file but doesn't show what success looks like, so users don't know if they configured it correctly before continuing. Redesign steps 3 and 4 to show expected output at each step.
 ```
 
 **Key components in the skill:**

@@ -19,6 +19,36 @@ This plugin provides a single skill that teaches Claude how to compress context 
 
 The core insight is that structure forces preservation. When summaries have explicit sections for session intent, files modified, decisions made, and next steps, the summarizer must populate each section. Silent information drift becomes structurally impossible. The plugin also teaches when to trigger compression (70-80% context utilization), how to merge summaries incrementally rather than regenerating from scratch, and how to handle the artifact trail problem -- the weakest dimension across all compression methods.
 
+## Context to Provide
+
+Compression strategy depends on your session characteristics -- what the agent does, how long sessions run, and which specific information types get lost. Generic compression advice rarely fits; specific session context produces immediately applicable strategy.
+
+**What information to include in your prompt:**
+
+- **Agent type and task**: What does the agent do? (debugging, code migration, research synthesis, code generation) -- the critical information types differ by task
+- **Typical session length**: Approximate turns and token count (e.g., "150 turns, 80-100K tokens for a debugging session")
+- **Information that must survive compression**: What does the agent forget that causes problems? (file paths it modified, error messages it diagnosed, approaches it already tried, decisions it made)
+- **Re-fetch cost**: How expensive is it when the agent loses something and has to redo work? (re-reading a 10K-line file, re-running a slow API call, re-exploring an already-diagnosed error)
+- **Current compression approach**: What do you do now? (nothing, aggressive summarization, sliding window, full regeneration)
+- **Quality measurement problem**: How do you currently know if compression is working? Do you have any way to detect when critical information was silently lost?
+- **Phase structure**: Does the work have clear phases (research, planning, implementation) or is it continuous and unpredictable?
+
+**What makes results better:**
+- Describing a specific failure case ("after turn 80, the agent proposes fixes it already tried -- it forgets which approaches failed") maps directly to the decision-probe design and the decisions-made section of the summary template
+- Specifying what information is most expensive to re-fetch ("re-reading the codebase takes 20K tokens each time") quantifies the cost of compression failure and justifies a higher-quality compression strategy
+- Describing your current approach ("we use aggressive summarization, keeping summaries under 500 tokens") enables before/after comparison and specific improvement recommendations
+- Mentioning whether you need to audit compression quality ("regulators require traceability, so I need to verify the summary is accurate") drives the probe-based evaluation design
+
+**What makes results worse:**
+- "Summarize this conversation" -- the skill designs compression systems, not one-off summaries
+- Focusing on tokens-per-request reduction without describing what the agent does with recovered context -- the right metric is tokens-per-task
+- Omitting what specifically gets lost -- "the agent forgets things" is not enough to design the right summary structure
+
+**Template prompt:**
+```
+Design a context compression strategy for a [type of agent] that [what it does]. Sessions typically run [N turns / N tokens]. The critical information it must preserve across compressions: [list: file paths modified / error messages / decisions made / approaches tried / etc.]. Re-fetch cost when this is lost: [describe]. Current compression approach: [none / aggressive summarization / describe]. Phase structure: [phased research-plan-implement / continuous / other]. I also need to [evaluate compression quality / detect when information is silently lost].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -110,19 +140,19 @@ context-compression (plugin)
 **Try these prompts:**
 
 ```
-How should I compress a 90K-token debugging session without losing track of which files were modified and what the root cause was?
+How should I compress a 90K-token debugging session without losing track of which files were modified and what the root cause was? The agent reads many files but only modifies a few. When context gets compressed, it forgets which files it already diagnosed and re-reads them. Re-reading a file costs 2-8K tokens. I need a summary structure that forces file-state tracking.
 ```
 
 ```
-I'm building a coding agent that runs for hundreds of turns -- what summarization strategy prevents it from re-exploring approaches it already tried?
+I'm building a coding agent that runs for 200+ turns on complex refactoring tasks. After about turn 100, it starts proposing approaches it already tried and abandoned. What summarization strategy prevents this? Sessions average 120K tokens. The agent works on a single codebase but touches 20-40 files per session.
 ```
 
 ```
-What's the right compression trigger point? My agent sometimes compresses too early and loses context it still needs.
+My agent compresses at 70% context utilization using a simple summarize-everything approach. Sometimes it loses information it still needs mid-investigation, other times it waits too long. The agent does unpredictable debugging -- no clear phase structure. How should I tune the trigger strategy and what should the summary preserve?
 ```
 
 ```
-How do I evaluate whether my compression strategy is actually preserving the right information? ROUGE scores seem useless for this.
+How do I evaluate whether my compression strategy is actually preserving the right information? ROUGE scores are high (0.85+) but the agent still loses critical information after compression. I need a way to detect when specific information types -- file paths, error messages, decisions -- have been silently dropped. What probe questions should I run after each compression?
 ```
 
 **Key references:**

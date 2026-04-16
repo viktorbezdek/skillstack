@@ -29,6 +29,50 @@ The plugin ships one SKILL.md with the core methodology, 72 reference files orga
 | Plugin structure is guessed from examples; missing frontmatter, broken eval format, invalid manifest | Templates and validation scripts enforce correct structure for SKILL.md, plugin.json, evals, and references |
 | No way to test if the agent actually triggers the right skill or produces quality output | Evaluation framework with trigger evals (does the agent pick the right skill?) and output evals (is the response good?) |
 
+## Context to Provide
+
+MCP server quality depends heavily on how the tools are designed for agent consumption. Give the skill enough context to make tool design decisions, not just code generation decisions.
+
+**What information to include in your prompt:**
+- **What you are wrapping** -- REST API, database, file system, existing Python/TypeScript script; include the API surface (list of operations) and any constraints (rate limits, auth method, response size)
+- **Your language preference** -- Python (FastMCP) or TypeScript (MCP SDK); your existing tech stack matters because the server will live alongside it
+- **How agents will use the tools** -- which operations will be most common, what information agents need to construct valid requests, and what the typical workflow looks like (search first, then act)
+- **Output size characteristics** -- whether the underlying API returns large result sets (database queries, search results) that need pagination and truncation
+- **Plugin packaging intent** -- whether this is internal-only (MCP server config) or will be distributed as a Claude Code plugin (needs SKILL.md, trigger evals, references)
+
+**What makes results better:**
+- Pasting the existing API schema, OpenAPI spec, or function signatures -- the skill designs workflow-oriented tools from the actual operations, not invented ones
+- Describing the most common agent workflow end-to-end ("agent searches tasks, reads the matching task's details, then adds a comment") -- this drives tool consolidation decisions
+- Specifying what agents should NOT be able to do (delete without confirmation, access paths outside a sandbox, query without filters) -- security constraints shape the validation design
+- Mentioning the CHARACTER_LIMIT you want (default 25K) or confirming that the API returns bounded results
+
+**What makes results worse:**
+- Requesting one tool per API endpoint -- the skill will redesign toward workflow-oriented tools; save time by describing workflows, not endpoints
+- Skipping validation requirements ("add it later") -- validation is load-bearing for agent reliability and cannot be cleanly retrofitted
+- Asking for a plugin without specifying trigger phrases -- the skill needs to know what natural language prompts should activate the skill
+
+**Template prompt -- MCP server:**
+```
+Build an MCP server in [Python (FastMCP) / TypeScript (MCP SDK)] that wraps [describe what you are wrapping].
+
+Operations needed: [list the operations -- search, create, read, update, delete]
+Most common agent workflow: [describe: agent does X, then Y, then Z]
+Auth method: [API key in header / OAuth / no auth]
+Response size: [small (< 1K tokens) / medium (1-10K) / large (10K+, need pagination)]
+Security constraints: [list what agents must NOT do]
+Distribution: [internal only / Claude Code plugin for distribution]
+```
+
+**Template prompt -- Claude Code plugin:**
+```
+Create a Claude Code plugin for [domain]. The skill should help users [main capability].
+
+Trigger phrases (what users will type): [list 5-8 example prompts that should activate the skill]
+References needed: [list topics the skill should cover with deep references]
+Trigger evals: [N positive cases, N negative cases]
+Output quality criteria: [what makes a response from this skill "good"]
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -123,23 +167,25 @@ Single-skill plugin with 72 references, 10+ scripts, 8 templates, and 1 asset fi
 **Try these prompts:**
 
 ```
-Build a FastMCP server that wraps our REST API with tools for search, create, and update operations
+Build a FastMCP server in Python that wraps our project management REST API. Operations: list projects, get project details, create task, update task status, add comment. Auth: Bearer token in header. Most common workflow: search tasks by assignee or project, get task details, update status or add comment. Task search can return 200+ results -- add pagination with cursor and CHARACTER_LIMIT at 25K. Agents must not delete tasks without a confirm=true parameter.
 ```
 
 ```
-Create a Claude Code plugin with a skill that helps users design database schemas -- include trigger evals and references
+Create a Claude Code plugin for GraphQL API design. The skill should help users design schemas, choose between queries and mutations, handle N+1 problems, and write resolver patterns. Trigger phrases: "design a GraphQL schema", "help with GraphQL", "add a mutation to my schema", "GraphQL N+1 problem". Include 4 reference files (schema design, resolver patterns, error handling, performance). 8 positive trigger evals, 5 negative evals.
 ```
 
 ```
-Design an MCP tool for file management with proper path validation, destructive operation confirmation, and pagination for directory listings
+Design MCP tools for a file management server. Operations: read_file, write_file, list_directory, delete_file, move_file. Path validation: restrict all operations to /workspace/ directory, reject symlinks outside sandbox, reject relative paths with ../. Destructive operations (delete, overwrite): require confirm=true parameter. Directory listings can return thousands of files -- add pagination with offset/limit and filter by extension. Actionable error messages: "Path '/etc/passwd' is outside the allowed workspace (/workspace/). Use a path starting with /workspace/".
 ```
 
 ```
-Convert my existing Python script into an MCP server with proper tool descriptions and Zod/Pydantic validation
+Convert my existing Jira Python script to an MCP server. Here are my current functions:
+[paste function signatures and docstrings]
+Keep the logic but wrap it with FastMCP, add Pydantic validation for each parameter, write agent-optimized tool descriptions (not just the existing docstrings), and convert Jira API errors into actionable messages like "Issue PROJ-142 not found. Use search_issues to find the correct issue key."
 ```
 
 ```
-Set up evaluation tests for my MCP server -- I need trigger evals to verify the skill activates correctly and output evals for response quality
+Set up evaluation tests for my MCP server plugin. The skill is for PostgreSQL query optimization. Write: 8 positive trigger evals (natural language prompts that should activate it, covering: slow queries, index design, EXPLAIN output, vacuum, table bloat), 5 negative evals (SQL schema design, ORM questions, Redis, Mongo), and 3 output evals testing that responses include: specific index recommendations, EXPLAIN ANALYZE interpretation, and actionable next steps.
 ```
 
 **Key reference categories:**

@@ -31,6 +31,51 @@ The practical guidance follows a "start simple, add complexity when retrieval fa
 | Naive vector search fails on multi-hop reasoning and time-sensitive facts | Hybrid retrieval strategy selection (semantic + keyword + graph) with framework-specific guidance |
 | No error handling for empty retrieval, stale results, or conflicting facts | Explicit recovery patterns: broader search fallback, validity timestamp checks, recency-based conflict resolution |
 
+## Context to Provide
+
+Memory architecture recommendations are only as good as your requirements description. The skill's primary job is to match your retrieval patterns to the right framework -- and that matching requires specifics.
+
+**What information to include in your prompt:**
+- **What the agent needs to remember** -- user preferences, entity relationships, conversation history, facts that change over time, accumulated domain knowledge; be specific about the data types
+- **Query patterns** -- how will the agent retrieve memories? ("what does this user prefer?" vs "how has X changed over the last 6 months?" vs "what do we know about company A and its relationship to company B?")
+- **Scale and tenancy** -- single agent for one user, or multi-tenant with isolated per-user memory; expected number of tenants; memory volume per user over time
+- **Whether temporal reasoning is needed** -- do you need to query "what was the state on date X?" or handle facts that expire and get replaced?
+- **Current failure mode** -- if you have an existing memory system, describe what is going wrong (stale retrieval, empty results, degraded quality as memory grows, slow queries)
+
+**What makes results better:**
+- Describing the query in natural language as the agent would ask it ("does this user prefer dark mode?", "what issues has Acme Corp reported in the last quarter?")
+- Specifying whether conflicting facts should be resolved automatically or surfaced to the user
+- Mentioning your existing infrastructure (Postgres, Redis, Pinecone, Weaviate) -- the skill can integrate with existing vector stores rather than requiring new infrastructure
+- Stating your deployment constraints (self-hosted only, cloud OK, specific cloud provider)
+
+**What makes results worse:**
+- Asking "which framework is best?" without requirements -- there is no universally best framework; the skill needs your query patterns and scale to recommend
+- Conflating memory with context management -- memory persists across sessions; for within-session context optimization, use `context-optimization`
+- Requesting implementation before the architecture is decided -- specify requirements, get architecture recommendation, then ask for implementation code
+
+**Template prompt -- framework selection:**
+```
+I'm building [agent type] that needs to remember [what data] across sessions.
+
+Query patterns: [describe how the agent retrieves memories -- semantic search / entity lookup / temporal queries]
+Tenancy: [single user / multi-tenant with N users]
+Temporal needs: [yes -- need time-travel queries / no -- current state only]
+Expected memory volume: [N memories per user, growing at X per session]
+Existing infrastructure: [Postgres / Pinecone / Weaviate / none]
+Deployment: [self-hosted / cloud OK]
+Current failure (if any): [describe what is breaking]
+```
+
+**Template prompt -- debugging retrieval:**
+```
+My agent uses [framework] for memory but [specific problem].
+
+Example of a query that fails: "[what the agent asks the memory system]"
+What it retrieves: [describe the wrong/empty/stale result]
+What it should retrieve: [describe the correct result]
+Memory size: approximately [N] memories, [M] months old at the oldest
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -113,23 +158,23 @@ The plugin is a single skill with two deep-dive reference documents. The SKILL.m
 **Try these prompts:**
 
 ```
-I need to add long-term memory to my Python agent -- it should remember user preferences and past decisions across sessions
+I'm building a Python coding assistant that needs to remember: user's preferred coding style (snake_case vs camelCase, tab size, preferred libraries), project-specific conventions discovered during sessions, and past code review decisions. Single user. No temporal reasoning needed -- just current preferences. What's the simplest memory approach that actually works in production?
 ```
 
 ```
-Compare Mem0 vs Zep/Graphiti vs Cognee for a multi-tenant SaaS where each user's agent needs isolated memory
+Compare Mem0 vs Zep/Graphiti vs Cognee for a multi-tenant customer success platform. 500 enterprise accounts, each with a dedicated agent instance. Needs to remember: contact relationships, product usage patterns, past issues and resolutions, and health score changes over time. I need to query: "what issues has this account reported?" and "how has their health score changed this quarter?"
 ```
 
 ```
-My agent's memory retrieval is returning stale results -- facts changed weeks ago but old versions keep surfacing
+My agent uses Mem0 for memory but keeps returning stale preferences. A user switched their preferred framework from React to Vue 3 months ago, but the agent keeps recommending React patterns. The new preference was added but the old one wasn't invalidated. How do I fix stale retrieval and prevent this class of problem going forward?
 ```
 
 ```
-Design a temporal knowledge graph for a legal research agent that needs to track how regulations change over time
+Design a temporal knowledge graph for a regulatory compliance agent. It needs to track: GDPR interpretations, SEC rules, and industry standards -- all of which change over time. Key query: "what was the rule on topic X as of date Y?" and "what changed between version A and version B of regulation Z?" Needs to handle the same regulation being updated 3-4 times per year.
 ```
 
 ```
-Show me how to implement memory consolidation -- my agent has accumulated thousands of memories and retrieval quality is degrading
+My agent has accumulated 15,000 memories over 6 months of production use. Retrieval quality has degraded -- I'm getting irrelevant results from early interactions that were superseded by later ones. How do I implement consolidation that invalidates outdated memories without losing the ability to answer historical questions?
 ```
 
 **Key references:**

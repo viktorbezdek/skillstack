@@ -11,6 +11,48 @@ Without workflow guidance, teams face two failure modes. The first is skipping s
 
 Single skills cannot solve this because they do not know about each other. The API design skill does not know it should hand off to TDD. The debugging skill does not know it should assess blast radius before fixing. The pitch-writing skill does not know it should audit via critical intuition before polishing. Each skill is a chapter; nobody wrote the book.
 
+## Context to Provide
+
+Workflows activate on natural language problem descriptions -- not workflow names. The more context you provide about your situation, the more precisely the right workflow activates and the more useful the phase-by-phase guidance becomes.
+
+**What information to include in your prompt:**
+- **What you are trying to accomplish** -- describe the goal, not the process. "I need to ship a REST API" activates `api-to-production`; "I need to run the api workflow" is less effective.
+- **Your current state** -- are you starting from scratch or partway through? Workflows can start mid-phase. "I have the design done, now I need tests and deployment" skips to the right starting point.
+- **What has already failed or been tried** -- for debugging workflows, include how long you have been stuck and what you have already attempted. For cost optimization, include what optimizations you already made. History determines where to start.
+- **Constraints and stakes** -- hard deadlines, compliance requirements, team size, production traffic levels. These affect which gates are strict, which can be skipped, and how much caution to apply.
+- **Underlying plugins installed** -- workflows draw on specific SkillStack skills for domain depth. If you know which skills you have installed, mention it; the workflow adapts its depth accordingly.
+
+**What makes results better across workflows:**
+- Describing the failure mode you are most worried about (not just what you want to achieve)
+- Providing artifact descriptions (API contract, bug description, research notes, existing code) as context rather than abstract descriptions
+- Indicating whether you need a full walkthrough or targeted help with a specific phase
+
+**Workflow-specific context:**
+
+| Workflow | Most important context to provide |
+|---|---|
+| `debug-complex-issue` | How long you've been stuck, what you've already tried, what makes the bug unusual (intermittent, environment-dependent, multi-system) |
+| `api-to-production` | API purpose, auth requirements, expected load, existing test infrastructure, deployment target |
+| `build-ai-agent` | What problem the agent solves, what tools it needs access to, what "good" output looks like, what failure looks like |
+| `llm-cost-optimization` | Current monthly spend, which agents/features drive cost, what quality you cannot compromise |
+| `strategic-decision` | The specific options on the table, who makes the final call, what constraints are non-negotiable |
+| `product-story-to-ship` | Number of interviews conducted, what you learned, team capacity, timeline to ship |
+| `legacy-rescue` | Why the codebase is scary to touch, what happened last time someone changed it, what you need to change now |
+| `security-hardening-audit` | What data the system handles, compliance requirements, any known vulnerabilities or past incidents |
+
+**Template prompt:**
+```
+I need help with [multi-stage problem description].
+
+Current state: [where you are now -- starting fresh, mid-project, stuck at a specific phase]
+What I've already tried / done: [previous attempts, completed phases, decisions already made]
+The stakes: [what failure looks like, hard deadlines, compliance requirements, production impact]
+My constraints: [team size, timeline, technology choices that are locked in]
+Goal: [what done looks like -- shipped to production, risk register ready, decision made, backlog prioritized]
+
+Walk me through the full process.
+```
+
 ## The Solution
 
 This plugin provides eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for multi-stage problems. Each workflow is a self-contained playbook with phase-by-phase guidance, explicit gates (conditions that must be met before proceeding), loops (steps that repeat until a quality bar is met), and references to the underlying skills by name.
@@ -61,13 +103,13 @@ Or install the full SkillStack collection for complete coverage across all 18 wo
 After installing, test with:
 
 ```
-I've been stuck on this race condition for 3 hours -- help me debug it systematically
+I've been stuck on this race condition for 3 hours -- help me debug it systematically. The bug: our order processing service occasionally creates duplicate orders. It only happens under concurrent load (50+ req/s), never in local or staging. I've checked the database transactions and they look correct. I've already tried adding a unique index but it still happens about 1 in 10,000 requests.
 ```
 
 ## Quick Start
 
 1. Install the plugin with the commands above
-2. Describe your problem naturally: `I need to ship a new REST API endpoint from design to production deployment`
+2. Describe your problem naturally: `I need to ship a new user management REST API endpoint from design to production deployment. It needs CRUD operations, JWT auth, rate limiting, and must be containerized for our Kubernetes cluster. 2-week deadline, 3-engineer team.`
 3. The `api-to-production` workflow activates and walks you through five phases: API design, TDD, code review, CI/CD pipeline, and containerized deployment
 4. Follow each phase -- the workflow gates prevent you from deploying before tests pass or skipping code review
 5. Next, try: `Our Claude API costs tripled last month -- help me fix it without degrading quality`

@@ -30,6 +30,33 @@ The key innovation is skill orchestration: each phase loads specific SkillStack 
 | No way to measure documentation quality or detect drift from code | Validation script scores documentation and drift detection compares docs against current codebase |
 | Documentation is a one-time effort that rots immediately | Quality tracking with minimum scores, link checking, and drift detection integrated into workflow |
 
+## Context to Provide
+
+The documentation generator's most valuable phase is analysis -- which requires knowing what you are documenting, who will read it, and what problem the documentation must solve. Skipping to "generate docs" without specifying audience and purpose produces well-structured documentation that addresses the wrong questions.
+
+**What to include in your prompt:**
+- **Repository path or description** of the codebase (languages, frameworks, architecture) -- the analysis script uses this; for conversational requests, describe the structure
+- **Primary audience** (new developers joining the team, senior architects evaluating the system, DevOps/SRE on-call, external API consumers, open-source contributors) -- this drives which document types are highest priority
+- **The specific problem** you are solving (onboarding takes 3 weeks, API consumers create wrong integrations, incidents last longer without runbooks, docs are outdated) -- this focuses the documentation effort
+- **What already exists** -- existing docs, even poor ones, change the task from "generate" to "improve and fill gaps"
+- **Quality constraints** -- minimum acceptable quality score, whether drift detection matters, link validation requirements
+
+**What makes results better:**
+- Running `python doc-gen.py analyze /path/to/repo --output analysis.json` first and sharing the output -- enables data-driven prioritization
+- Specifying the onboarding target (new developer should be running the app in X minutes) -- gives the quickstart a concrete success criterion
+- Naming the audience's assumed knowledge level ("they know Python but not our architecture")
+- Stating which document types are most urgent vs. nice-to-have
+
+**What makes results worse:**
+- "Write some docs" without audience or problem -- produces documentation that is technically complete but doesn't solve the actual gap
+- Skipping the analysis phase and jumping to writing -- misses the prioritization that makes the documentation effort efficient
+- Expecting a single prompt to produce final documentation -- the first pass creates structure; editing passes add project-specific depth
+
+**Template prompt:**
+```
+Generate documentation for [repository description or path]. Primary audience: [who will read it -- be specific]. The problem I am solving: [what fails without this documentation]. Existing documentation: [what exists and how outdated it is]. Start with the analysis phase and tell me what document types are missing and in what priority order.
+```
+
 ## Installation
 
 Add the SkillStack marketplace and install:
@@ -134,19 +161,21 @@ documentation-generator (plugin)
 **Try these prompts:**
 
 ```
-Analyze this repository and tell me what documentation is missing. Prioritize by impact on developer onboarding time.
+Analyze this TypeScript monorepo with 4 packages and 12 microservices. We have a README and some inline comments but nothing else. Our team doubled in size and new developers take 3 weeks to onboard. Prioritize by what will most reduce onboarding time. Here is the analysis output:
+
+[paste doc-gen.py analyze output]
 ```
 
 ```
-Generate a quickstart guide for new developers. They should be able to run the app in under 5 minutes.
+Generate a quickstart guide for new developers joining our Node.js/PostgreSQL project. They know JavaScript but not our domain. Success criterion: they should have the app running locally and have made their first API call within 5 minutes. They start from cloning the repo.
 ```
 
 ```
-Create API documentation for our REST endpoints. Include authentication, pagination, error codes, and code examples in Python and JavaScript.
+Create REST API documentation for our /api/users and /api/orders endpoints. Include: authentication (JWT Bearer), request/response schemas, all error codes with explanations, pagination, and runnable code examples in Python and JavaScript. Our current API spec is missing error code documentation and examples.
 ```
 
 ```
-Our docs are 6 months old and the code has changed significantly. Run drift detection and show me what's outdated.
+Our API documentation is 6 months old and we've done two major refactors since. Run drift detection and tell me specifically which endpoint docs, response schemas, and code examples are now wrong or outdated. Repo is at /Users/me/myproject, docs are at /Users/me/myproject/docs.
 ```
 
 **Template portfolio (24 templates):**

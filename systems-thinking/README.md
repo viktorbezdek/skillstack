@@ -5,6 +5,40 @@
 > Analyze complex problems through feedback loops, leverage points, system archetypes, and causal loop diagrams -- see the structure behind the symptoms.
 > Single skill, self-contained methodology
 
+## Context to Provide
+
+Systems thinking is most valuable when applied to specific recurring problems with history -- not hypothetical situations. The richer your description of what has already been tried, the more precisely the skill can identify the feedback loops at work.
+
+**What information to include in your prompt:**
+
+- **The specific problem and how long it has been recurring** -- "we have had production outages 5 times in 3 months" is diagnosable; "we have outages sometimes" is not
+- **What interventions have already been tried** -- listing failed fixes is essential because the pattern of failed fixes often reveals the archetype (Fixes that Fail, Shifting the Burden). Without knowing what did not work, the skill cannot identify why
+- **What different stakeholders blame** -- when managers point to different causes, that is a signal of a multi-loop system. List the competing explanations
+- **Quantitative changes over time** -- "deploy frequency dropped from 15/week to 4/week over one year despite adding 30 engineers" is far more useful than "deployments are slow"
+- **The proposed interventions you are debating** -- if you want leverage point ranking, list the actual options under consideration
+
+**What makes results better vs worse:**
+
+- Better: describe what changed in the system over time (new people, new process, new tooling) alongside the outcome that got worse
+- Better: name the competing explanations from different teams -- these become the variables in the causal loop
+- Better: specify the boundary explicitly ("within the engineering org" not "the whole company")
+- Worse: asking "why are we failing?" without providing the history of what was tried
+- Worse: framing the request as a single-cause question ("what is the root cause of our outages?") -- this prevents systemic analysis
+- Worse: including so many variables that no boundary is clear -- narrow scope produces actionable output
+
+**Template prompt:**
+
+```
+[Problem] has been happening for [timeframe]. We have tried [list of interventions] but
+[what happened each time -- did it help temporarily, make it worse, shift to a different area].
+
+Different people on my team blame: [list competing explanations].
+
+Key metrics that changed: [list what got better or worse and by how much].
+
+I want to: [choose one: map the feedback loops / identify the system archetype / rank these interventions by leverage: list interventions].
+```
+
 ## The Problem
 
 Most problem-solving is linear: identify the symptom, trace it to a cause, apply a fix. This works for simple problems where A causes B. But most real-world problems are systemic -- A causes B, B causes C, and C loops back to amplify A. Teams fix the symptom and celebrate, only to find the problem returns six months later, often worse. They never see the feedback loop that regenerates the issue because they are focused on events, not structures.
@@ -127,27 +161,34 @@ This is a self-contained plugin -- the complete methodology lives in the SKILL.m
 **Try these prompts:**
 
 ```
-We keep shipping quick fixes that create new bugs. Help me map the feedback loops driving this cycle.
+We have shipped 6 emergency hotfixes in the last 2 months. Each hotfix is followed by a post-mortem and a
+new process rule, but outages keep happening in different services. My VP says it's flaky tests; my lead
+says it's tech debt; my PM says it's unclear requirements. Help me map the feedback loops these explanations
+are all pointing at.
 ```
 
 ```
-Our startup is growing fast but quality is declining -- where should we intervene to maintain both growth and quality?
+Our startup grew from 10 to 80 engineers in 18 months and deployment frequency dropped from 20 per week to
+3 per week. We added more code reviewers, automated more tests, and bought better tooling -- none of it helped.
+Map the system dynamics driving this and tell me where the leverage is.
 ```
 
 ```
-Map the system dynamics of our microservices architecture -- I want to understand why improving one service degrades others
+We optimized our product search service -- latency dropped from 200ms to 40ms. Within two weeks, our
+recommendation service started timing out because it was getting 5x more requests. I want to understand
+why before we optimize anything else.
 ```
 
 ```
-Which system archetype describes our situation: we outsource more to go faster, but the outsourcing creates coordination overhead that slows us down
+Our situation: we outsource feature development to go faster, the outsourcing creates more coordination
+overhead so we hire more managers, more managers create more processes, features slow down again, so
+we outsource more. Which system archetype is this and what breaks the cycle?
 ```
 
 ```
-Our customer support team is overwhelmed. Adding more agents helps temporarily but the problem always comes back. What's the structural cause?
-```
-
-```
-Rank these five proposed interventions by their leverage point level -- which one will have the most lasting impact?
+We are debating five interventions for our overwhelmed customer support team: hire 10 more agents,
+build a better self-serve help center, improve onboarding so fewer users need support, add better
+product error messages, create an AI triage bot. Rank them by Meadows leverage point level.
 ```
 
 ---

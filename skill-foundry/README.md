@@ -13,6 +13,59 @@ The deeper problem is that skill creators focus on procedure before philosophy. 
 
 The result is a skill ecosystem where most skills are either over-engineered (an "Everything Skill" that tries to handle an entire domain) or under-designed (a thin wrapper around a template with no expert knowledge). Teams that want to encode their real domain expertise into reusable skills have no systematic methodology for doing it well.
 
+## Context to Provide
+
+Skill creation is a design problem. The skill needs to know the domain expertise you want to encode, who will trigger the skill, and what mistakes it should prevent. Without this context, it produces a skeleton -- with it, it produces a skill that has real judgment.
+
+**What information to include in your prompt:**
+- **The domain expertise to encode** -- be specific about what knowledge the skill should contain. "Kubernetes security" is better than "infrastructure." "PostgreSQL query optimization for Django ORM with N+1 detection" is better than "database help."
+- **The top 3-5 mistakes to prevent** -- anti-patterns are the highest-value content in any skill. What does the expert know NOT to do that the novice doesn't? The more concrete the mistake, the stronger the skill.
+- **The target users** -- who will use this skill? Their experience level determines vocabulary, assumption depth, and how much explanation is needed in outputs.
+- **What the skill should NOT handle** -- exclusions are as important as inclusions for activation precision. A skill with no NOT clause will fire on adjacent topics it was not designed for.
+- **Existing skill or SKILL.md to review** -- if you want to improve an existing skill, paste it or provide the path. The skill can diagnose activation problems, quality issues, and structural gaps without starting from scratch.
+
+**What makes results better:**
+- Listing domain shibboleths -- the expert knowledge that separates practitioners from beginners (e.g., "experts know to check Aurora extension compatibility before migration, not during")
+- Describing the failure mode you want to prevent ("teams write SKILL.md as a 900-line checklist and the quality drops because the context is too long")
+- Indicating whether this is for internal use (Minimal workflow, 6 steps) or production distribution (Full workflow, 8 phases)
+
+**What makes results worse:**
+- Asking to "create a skill for Python" without specifying which Python expertise to encode -- produces a scope-too-broad skill that fires on everything
+- Describing what the skill should do without describing what it should NOT do
+- Requesting skill creation without providing any domain knowledge -- the skill cannot encode expertise you have not shared
+
+**Template prompt (for creating a new skill):**
+```
+Create a Claude Code skill for [domain expertise].
+
+Specific knowledge to encode:
+- [Pattern or technique 1]
+- [Pattern or technique 2]
+- [Decision heuristic 3]
+
+Top mistakes to prevent (anti-patterns):
+1. [Mistake]: What it looks like: [description]. Why it's wrong: [reason]. What to do instead: [correct approach].
+2. [Mistake]: [...]
+
+Target users: [role, experience level, what they are typically doing when they need this skill]
+The skill should NOT handle: [exclusions -- adjacent topics that should route elsewhere]
+
+Workflow: [Minimal (simple, internal) / Full (production, distributed)]
+```
+
+**Template prompt (for improving an existing skill):**
+```
+Review and improve this skill. Here is what's wrong with it:
+
+Current activation behavior: [triggers too broadly / too narrowly / inconsistently]
+Quality issue: [output is too generic / rigid / missing anti-patterns / oversized SKILL.md at X lines]
+Score from analyze_skill.py: [N/100 if you have it]
+
+[paste SKILL.md content or provide path]
+
+Focus improvements on: [activation precision / philosophy section / anti-patterns / progressive disclosure / quality score]
+```
+
 ## The Solution
 
 This plugin provides a complete skill engineering framework built on four pillars: Philosophy Before Procedure (establish "how to think" before "what to do"), Anti-Patterns as Guidance (what NOT to do is as important as what to do), Progressive Disclosure (core instructions in SKILL.md under 500 lines, details in references), and Shibboleths (encode the deep expert knowledge that separates novices from experts).
@@ -46,7 +99,7 @@ Add the SkillStack marketplace, then install this plugin:
 After installing, test with:
 
 ```
-I want to create a Claude Code skill for Kubernetes deployment best practices
+I want to create a Claude Code skill for Kubernetes deployment best practices. Specifically, I want it to encode our team's security patterns (RBAC scope, securityContext, resource limits) and catch the top 3 mistakes we keep making: running pods as root, missing resource limits, and overly permissive RBAC roles. Target users are mid-level engineers who know Kubernetes basics but don't have security expertise. The skill should NOT handle cluster provisioning or CNI configuration.
 ```
 
 The skill should activate and guide you through scope definition, description engineering, and the skill creation workflow.

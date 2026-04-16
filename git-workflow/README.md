@@ -29,6 +29,47 @@ The skill ships with 13 automation scripts covering the full workflow: diff anal
 | Version bumps are guesswork; someone picks a number | Semantic versioning calculated automatically from commit types (breaking -> major, feat -> minor, fix -> patch) |
 | No connection between code changes and user stories | Story tree database links commits to hierarchical user stories with acceptance criteria |
 
+## Context to Provide
+
+Git workflow requests are most effective when you describe what you have changed, not just what you want to do. The skill can work with staged diffs, file lists, and commit history -- give it the raw material.
+
+**What information to include in your prompt:**
+- **For commit writing:** the output of `git diff --staged --stat` or a list of changed files with their scope (auth, api, ui); the issue or ticket number you are closing; whether any changes are breaking
+- **For changelog generation:** the previous version tag or date range to cover; which audiences the changelog is for (users, developers, operators); whether you need a GitHub release format
+- **For version calculation:** the previous version string; any commits since that version that include `BREAKING CHANGE` or `feat!` footers
+- **For worktree operations:** the feature name, base branch, and whether you need it inside the repo root or alongside it
+- **For story tree management:** your project structure and whether you are initializing fresh or linking commits to existing stories
+
+**What makes results better:**
+- Running `git diff --staged --stat` and pasting the output -- the skill uses file paths to infer scope automatically
+- Including the branch name (which often contains the issue number or feature name for auto-linking)
+- Specifying the audience for changelogs (end users want plain language; developers want commit-level detail)
+- Listing commits since the last tag with `git log v1.3.0..HEAD --oneline` for accurate version and changelog generation
+
+**What makes results worse:**
+- Asking the skill to "just commit everything" -- it will push back and suggest grouping; save time by asking for grouping upfront
+- Requesting changelogs without specifying the version range -- "make a changelog" with no context produces a placeholder
+- Using relative time references ("last week's commits") instead of tag names or SHAs
+
+**Template prompt -- commit writing:**
+```
+Help me write commits for these staged changes. Output of git diff --staged --stat:
+[paste stat output here]
+
+Branch: [branch name]
+Closes: [issue #N, or "none"]
+Breaking changes: [yes/no -- describe if yes]
+```
+
+**Template prompt -- changelog:**
+```
+Generate a changelog for version [X.Y.Z] covering all commits since [previous tag or SHA]:
+[paste: git log v1.3.0..HEAD --oneline]
+
+Audience: [end users / developers / both]
+Format: [GitHub release markdown / CHANGELOG.md / Slack announcement]
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -132,23 +173,32 @@ Single-skill plugin with 13 references, 13 scripts, and 1 asset file. The skill 
 **Try these prompts:**
 
 ```
-Help me write a commit for these staged changes -- I have modifications in auth, api, and test files
+Help me write commits for these staged changes. git diff --staged --stat output:
+ src/auth/jwt.ts    | 89 ++++++++++++++++++++++++
+ src/auth/refresh.ts | 45 ++++++++++++
+ tests/auth/jwt.test.ts | 112 +++++++++++++++++++++++++++++++
+ src/api/users.ts   | 12 +--
+ tests/api/users.test.ts | 28 ++++----
+ docs/auth.md        | 34 +++++++++
+Branch: feature/142-jwt-refresh. Closes #142.
 ```
 
 ```
-Group my 12 changed files into atomic commits by scope and type
+Group my 14 changed files into atomic commits. Files changed: src/auth/ (3 files: new JWT refresh feature), src/api/users.ts (null pointer fix), tests/ (4 test files covering both), docs/ (auth endpoint docs updated, migration guide added).
 ```
 
 ```
-Generate a changelog for version 2.0.0 from the commit history since the last release
+Generate a changelog for version 2.0.0. Commits since v1.5.0:
+[paste: git log v1.5.0..HEAD --oneline]
+Audience: end users and API consumers. Format: GitHub release markdown. Breaking changes: the /auth endpoint now requires Bearer tokens.
 ```
 
 ```
-Create a feature worktree for the email-notifications feature following GitFlow conventions
+Create a feature worktree for the email-notifications feature. Base branch: main. I want it at ../project-worktrees/feature/email-notifications following GitFlow conventions.
 ```
 
 ```
-Initialize a story tree for our project and generate stories from the recent commit history
+Initialize a story tree for our project. We are starting a new sprint. Here are our epics: user authentication (JWT), notification system (email + push), and admin dashboard. Generate the story hierarchy from these epics.
 ```
 
 **Key references:**

@@ -31,6 +31,33 @@ The plugin ships 8 reference files covering the complete depth of each framework
 | Conversational AI asks questions and waits for answers, creating a robotic interview feel | Framework-driven design builds agents that reflect, summarize, and earn depth incrementally |
 | No systematic way to detect when an interview script has anti-patterns | Anti-pattern reference identifies 7 specific failure modes (interrogation trap, premature depth, therapy cosplay) with concrete fixes |
 
+## Context to Provide
+
+Interview design depends on who you are interviewing, what you want to learn, and how much trust has been established. The same topic requires a completely different conversation structure for a first-time contact versus an ongoing relationship, for a 20-minute user research call versus a 90-minute life story interview, for in-person versus async written format.
+
+**What to include in your prompt:**
+- **Who you are interviewing** (enterprise buyers, end users, team members, potential customers, research participants) -- different populations need different frameworks and vocabulary
+- **What you actually want to learn** -- go one level deeper than the surface goal; "why users abandon onboarding" is better than "user feedback"; "what values drive prioritization decisions" is better than "what the team wants"
+- **The trust level** (first contact / one prior interaction / established relationship) -- premature depth in low-trust contexts suppresses disclosure
+- **The format** (30-minute video call, async chat, in-person, written journaling prompt) -- pacing and reflection types differ
+- **What you already know** -- existing data, prior interviews, hypotheses you want to stress-test
+- **For conversation critique**: paste the actual transcript or script -- the skill reads the specific questions and reflections to flag anti-patterns
+
+**What makes results better:**
+- Stating what you have already tried and why it did not produce depth (e.g., "we ran 15 interviews that all produced 'it was confusing' with no specifics")
+- Describing any sensitive topics that might come up (career failures, financial stress, relationship dynamics) so the skill can add consent checkpoints
+- Specifying whether you want a conversation design, a critique of existing work, or a framework explanation
+
+**What makes results worse:**
+- Asking for "a list of questions" -- the skill's core methodology uses reflections, not questions; asking for questions gets questions but misses the depth-producing techniques
+- Requesting clinical or therapeutic conversation design -- the skill flags this as outside its ethical boundary and redirects
+- Omitting the trust stage -- asking for a deep-values discovery session for a first-contact interview produces an inappropriately invasive design
+
+**Template prompt:**
+```
+Design a [format: 30-minute video call / async written / 90-minute in-person] interview guide for [audience]. The goal is to understand [specific depth target -- what you really want to know, not just the surface topic]. Trust level: [first contact / one prior meeting / established relationship]. I already know: [existing data or hypotheses]. The stated reason I keep getting surface answers is [why current approach is not working].
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -122,23 +149,27 @@ Single-skill plugin with 8 progressive-disclosure reference files. References ar
 **Try these prompts:**
 
 ```
-Design an interview guide that reveals what actually motivates enterprise buyers to switch CRM vendors -- not what they say in sales calls
+Design a 45-minute video call interview guide for enterprise IT buyers (directors and VPs) who are evaluating switching from their current project management platform. I want to understand what actually drives their switching decision -- not the vendor comparison criteria they recite in sales calls. These are first contacts introduced through a partner. What's really behind phrases like "we need better reporting"?
 ```
 
 ```
-Critique this user research transcript -- where did the interviewer miss opportunities to go deeper?
+Critique this user research transcript for missed depth opportunities. We were trying to understand why users abandon our onboarding flow, but every answer was "it was confusing" with no actionable specifics. Flag where a reflection would have gone deeper than the question asked.
+
+[paste transcript]
 ```
 
 ```
-I'm building a journaling app that helps users reflect on their week. Design the conversational flow so it doesn't feel like an interrogation.
+I'm building a weekly reflection journaling app. Users answer 3 prompts each Friday. Design the prompt sequence so it builds depth over time -- first session feels welcoming, later sessions surface what users actually value about their work (not just what they did). Format: async written, 5-10 minutes per session.
 ```
 
 ```
-Help me surface the underlying values driving our user's feature requests -- they keep asking for "more customization" but I think the real need is something else
+Our users keep requesting "more customization" in our project management tool -- we've shipped 4 customization features and adoption is low. Help me design a 30-minute interview that surfaces what customization actually means to them. I have two prior interviews on this topic that produced the same "more control" answers. Trust level: one prior interaction each.
 ```
 
 ```
-Audit this chatbot script for anti-patterns -- it's supposed to help users process career transitions but it feels robotic
+Audit this career coaching chatbot script for anti-patterns. It's supposed to help users explore a career pivot but user feedback says it "feels like a job application form." I suspect the reflection-to-question ratio is wrong.
+
+[paste chatbot conversation flow]
 ```
 
 **Key references by topic:**

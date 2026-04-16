@@ -19,6 +19,37 @@ The skill provides concrete, copy-pasteable patterns: FastAPI route templates wi
 
 Time savings are substantial: 50%+ reduction in API development time through templates, code generation scripts, and consistent patterns that eliminate the "how do I structure this?" decision overhead.
 
+## Context to Provide
+
+The more you describe your domain, consumers, and constraints, the more precise the URL design, schemas, authentication patterns, and validation will be.
+
+**What information to include in your prompt:**
+
+- **Domain and resources**: What entities does your API manage? (e.g., "organizations, projects, tasks, users, invitations")
+- **Relationships**: How do resources relate to each other? ("An organization has many projects, a project has many tasks, tasks have one assignee who must be an organization member")
+- **API consumers**: Who calls this API? (React SPA, mobile app, third-party integrators, internal services) -- this drives authentication and pagination choices
+- **Multi-tenancy**: Is this a single-tenant or multi-tenant system? How is tenant isolation enforced?
+- **Authentication context**: What auth mechanism do you need or already have? (JWT, OAuth 2.0, API keys, session cookies)
+- **Scale expectations**: Rough order of magnitude for list endpoint sizes (50 records vs 50,000 records drives pagination design)
+- **Existing API**: If reviewing an existing API, paste the endpoint list, OpenAPI spec, or representative request/response examples
+- **Specific concerns**: What are you worried about? (versioning, rate limiting, CORS, error format consistency, N+1 queries in GraphQL)
+
+**What makes results better:**
+- Specifying all consumer types (not just the web app -- also the mobile app coming in 6 months and the enterprise API you will open up later) prevents decisions that lock you into single-consumer assumptions
+- Describing a current pain point ("our list endpoints return all records with no pagination and it's causing timeouts") focuses the design on your actual problem
+- Pasting an existing OpenAPI spec or endpoint list enables review mode with specific findings instead of generic advice
+- Naming your tech stack (FastAPI, Express, Rails) enables concrete template and code generation instead of abstract patterns
+
+**What makes results worse:**
+- "Build me an API" with no domain context produces placeholder patterns that need rework for your actual entities
+- Designing authentication "later" -- auth patterns affect URL structure, error format, and rate limiting from day one
+- Omitting scale expectations for list endpoints -- cursor vs offset pagination is a different decision at 100 records vs 100,000
+
+**Template prompt:**
+```
+Design a [REST / GraphQL / gRPC] API for [domain]. Resources: [list all entity types]. Relationships: [describe how they relate]. Consumers: [web app / mobile app / third-party developers / internal services]. Authentication: [what you need or have]. Multi-tenant: [yes/no, how isolation works]. Expected scale: [rough record counts for the largest list endpoints]. Tech stack: [backend language and framework]. Specific concerns: [versioning / rate limiting / pagination / error formats / security].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -159,23 +190,23 @@ Help me design a REST API for a multi-tenant project management app with teams, 
 **Try these prompts:**
 
 ```
-Design a REST API for an e-commerce platform with products, orders, customers, and inventory tracking
+Design a REST API for an e-commerce platform. Resources: products, product variants (size/color), categories, orders, order line items, customers, addresses. An order has many line items, each line item references one product variant. Consumers: React SPA now, mobile app in 6 months, third-party integrations eventually. Auth: JWT. Scale: up to 500K products, 10K orders/day. Stack: FastAPI + PostgreSQL. Concerns: cursor pagination for product lists, consistent error format, rate limiting for future public API.
 ```
 
 ```
-Review my API endpoints -- I'm not sure about the pagination approach and the error response format looks inconsistent
+Review my API endpoints for best practices. I'm concerned about pagination (we return all records) and error formats (some endpoints return {error: "message"}, others return {detail: "message"}). Here are my main endpoints: [paste your endpoint list or OpenAPI spec].
 ```
 
 ```
-I need a GraphQL schema for a social media app with users, posts, comments, and real-time notifications via subscriptions
+I need a GraphQL schema for a social media app with users, posts, comments, likes, and follows. Real-time notifications via subscriptions. Mobile clients need to fetch a user's feed, profile, and notifications in one query instead of 5 round trips. Schema must be Relay-compliant. Add DataLoader to prevent N+1 on nested queries.
 ```
 
 ```
-Set up Apollo Federation to split our monolith GraphQL API into user, product, and order subgraphs
+Split our monolith GraphQL API into federated subgraphs for user, product, and order teams. Each team deploys independently. Products reference users via userId. Orders reference both products and users. Show the @key directives, gateway config, and how cross-subgraph references resolve.
 ```
 
 ```
-What's the best authentication pattern for a mobile app that also has a public API for third-party developers?
+What's the best authentication pattern for our app? We have: a React SPA (no client secret in browser), a React Native mobile app, and we want to open a public API for third-party developers later. We use Auth0 today. Walk me through PKCE flow for the SPA/mobile and client credentials for third-party API keys.
 ```
 
 ---

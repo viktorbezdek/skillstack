@@ -5,6 +5,39 @@
 > Expert guidance for writing, editing, and teaching stories across fiction, business, data, speech, UX, and interactive narrative -- from structural frameworks through craft technique to anti-pattern diagnosis.
 > Single skill + 12 references (progressive disclosure by domain)
 
+## Context to Provide
+
+The storytelling skill is most powerful when it has actual material to work with, not just a topic. The more you share, the more specific and actionable the guidance becomes.
+
+**What information to include in your prompt:**
+
+- **Your draft or raw material** -- paste the actual pitch deck bullets, chapter excerpt, data slides, or speech outline you are working with. The skill diagnoses real content, not hypothetical scenarios.
+- **Domain and format** -- specify whether this is a fiction piece, investor pitch, quarterly business review, keynote, UX scenario, or game narrative. This drives reference selection.
+- **Audience** -- who will read or hear this? Series B investors, technical conference attendees, new employees, executive leadership, or fiction readers. Audience determines structure and tone.
+- **The specific problem** -- "the middle sags," "the dialogue is flat," "investors glaze over at slide 3," "the data doesn't tell a story." A named problem is diagnosable; a vague one is not.
+- **What you have already tried** -- if you have already restructured the pitch or tried a different framework, say so. This prevents circular advice.
+
+**What makes results better vs worse:**
+
+- Better: paste the actual text with a specific diagnosis request ("why does this fall flat?")
+- Better: name the domain and audience upfront ("investor pitch, Series B, technical audience")
+- Better: describe the desired emotional outcome ("I want them to feel urgency, not just understand the product")
+- Worse: asking for generic "storytelling advice" without any material to work with
+- Worse: describing the topic without sharing the draft ("I need help with my keynote about our pivot")
+- Worse: asking to "add storytelling" to existing content -- the skill restructures, it doesn't decorate
+
+**Template prompt:**
+
+```
+I'm writing a [genre/format: investor pitch / keynote / short story / data presentation] for [audience].
+Here's what I have:
+
+[paste your draft, outline, or bullet points]
+
+The specific problem: [what feels flat, stuck, or missing].
+The desired outcome: [what you want the audience to feel or do].
+```
+
 ## The Problem
 
 Everyone says "tell a story" -- at the investor pitch, the all-hands presentation, the product demo, the case study, the keynote. But most people have no structural vocabulary for what makes a story actually work. They start with a chronological sequence of events ("first we did X, then we did Y, then we did Z") and wonder why the audience is not engaged. The sequence has no causality, no conflict, no transformation, and no stakes. It is a timeline, not a narrative.
@@ -138,27 +171,40 @@ User asks about writing / editing / teaching stories
 **Try these prompts:**
 
 ```
-I'm writing a short story about a programmer who discovers their AI can feel emotions -- help me structure the plot
+I'm writing a thriller about a journalist investigating corporate corruption -- she's uncovering a cover-up
+that reaches into the government. The plot has a strong beginning and end but the middle third feels like
+a sequence of events with no escalation. Here's my chapter outline: [paste outline]. Which structure should
+I use and where are the act breaks?
 ```
 
 ```
-My investor pitch is a chronological list of milestones. Turn it into a narrative that makes investors care about our mission.
+My Series B investor pitch is currently a bullet list of milestones: "we built X in 2022, launched Y in 2023,
+grew to Z customers." Here's the current slide: [paste slide text]. Turn this into a Before-After-Bridge
+narrative. Our customer problem is: e-commerce teams spend 15 hours/week manually reordering product listings.
 ```
 
 ```
-I have a quarterly business review with 15 charts. Help me turn the data into a story that executives will act on.
+I have 15 charts for our Q3 business review. Revenue is up 12% but churn rose from 4% to 7%. Executives are
+going to ask "so what should we do?" Help me select the 5 charts that tell the story and structure them
+with situation-complication-resolution so the last slide is a clear decision point.
 ```
 
 ```
-This chapter feels flat -- the dialogue is just characters exchanging information. How do I add subtext?
+This dialogue scene feels flat -- here's the excerpt: [paste scene]. The two characters are arguing about
+a promotion but every line is just stating positions. How do I add subtext so the real conflict (jealousy,
+not the promotion) comes through without being stated directly?
 ```
 
 ```
-I'm giving a 20-minute keynote at a tech conference. Help me structure it so the audience actually remembers the key point.
+I'm giving a 20-minute keynote at a technical conference about why we moved from microservices back to a
+monolith. The audience is skeptical senior engineers. I want them to leave thinking "this is brave and right"
+not "this is a cautionary tale." Structure it so the contrarian take lands as conviction, not failure.
 ```
 
 ```
-Which story structure should I use for a customer case study -- Hero's Journey, StoryBrand, or something else?
+I need to write a customer case study for our enterprise sales team. The customer is a logistics company
+that reduced shipping errors by 34% using our software. Should I use Hero's Journey, StoryBrand, or
+something else? The audience is VP-level buyers at similar companies.
 ```
 
 ---

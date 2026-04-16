@@ -33,6 +33,51 @@ The practical guidance includes token economics data so you can evaluate whether
 | Consensus devolves into sycophancy -- agents agree on false premises | Weighted voting, debate protocols, and trigger-based intervention for stall/sycophancy detection |
 | Errors in one agent cascade to all downstream consumers | Output validation between agents, retry logic with circuit breakers, idempotent operations |
 
+## Context to Provide
+
+Multi-agent architecture decisions are high-stakes and depend on your task structure, token budget, and failure tolerance. Provide enough detail for the skill to evaluate whether multi-agent is even justified before designing the architecture.
+
+**What information to include in your prompt:**
+- **Why single-agent is failing** -- context window filling, reasoning degradation, tool overload, sequential bottleneck; the specific failure mode determines which pattern fits
+- **Task decomposition** -- what are the subtasks, are they parallelizable or sequential, and do different subtasks require different tools or system prompts?
+- **Coordination requirements** -- does output from one agent need to feed into another, or are agents fully independent? How do results get aggregated?
+- **Your existing framework** -- LangGraph, AutoGen, CrewAI, or custom; this determines which implementation patterns are relevant
+- **Token budget constraints** -- your current per-task cost and your target; multi-agent typically costs 15x single-agent, so the skill needs to evaluate whether the quality gain justifies the cost
+- **Failure tolerance** -- which failure modes are most dangerous for your use case (hallucination propagation, agent divergence, supervisor bottleneck)?
+
+**What makes results better:**
+- Describing the actual task decomposition, not an org-chart metaphor ("the task is: search 4 data sources in parallel, then synthesize into a report" vs "I need a researcher, analyst, and writer agent")
+- Specifying which subtasks are CPU-independent (can run in parallel) vs sequential (must wait for prior output)
+- Mentioning whether human oversight is needed during execution or only at the end
+- Including the quality metric you care about (PR merge rate, answer accuracy, synthesis coherence)
+
+**What makes results worse:**
+- Anthropomorphizing agent roles ("I want a CEO agent and worker agents") -- describe the task structure instead
+- Asking for implementation code before the architecture pattern is settled
+- Ignoring the "is multi-agent justified?" evaluation -- the skill will raise this and it is worth answering honestly
+
+**Template prompt -- architecture selection:**
+```
+I need to design a multi-agent system for [task description].
+
+Why single agent fails: [context window / sequential bottleneck / tool overload / reasoning degradation]
+Task decomposition: [describe subtasks -- are they parallel or sequential?]
+Subtask independence: [do subtasks need each other's output, or are they fully independent?]
+Result aggregation: [how should outputs be combined?]
+Framework: [LangGraph / AutoGen / CrewAI / custom]
+Current single-agent cost per task: approximately [$X / N tokens]
+Most critical failure mode: [hallucination cascade / supervisor bottleneck / agent divergence / sycophancy]
+```
+
+**Template prompt -- failure diagnosis:**
+```
+My multi-agent system uses [supervisor / swarm / hierarchical] pattern but I'm seeing [specific problem].
+
+Architecture: [describe agent roles, how they communicate, what the supervisor does]
+Problem: [describe the failure -- where in the pipeline it occurs, what the symptom is]
+Current mitigation attempts: [what you have already tried]
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -113,23 +158,23 @@ The plugin is a single skill with one deep-dive reference. The SKILL.md covers a
 **Try these prompts:**
 
 ```
-I'm building a research pipeline with search, analysis, and writing stages -- should I use a supervisor or let agents hand off to each other?
+I'm building a market research pipeline. It needs to search 4 data sources in parallel (financial databases, news archives, SEC filings, social media), then synthesize findings into a report. Each source requires different search tools and query strategies. Single agent fails because it hits context limits trying to hold all 4 search results while synthesizing. Should I use a supervisor pattern or peer-to-peer handoffs? Framework: LangGraph.
 ```
 
 ```
-My supervisor agent is becoming a bottleneck -- it accumulates context from all workers and quality is degrading. How do I fix this?
+My code review supervisor agent is bottlenecking. It routes PRs to 5 specialist agents (security, performance, style, test coverage, docs) and then aggregates their findings. The problem: after receiving all 5 specialist reports, the supervisor's context is full of raw specialist output (each report is 2-3K tokens) and its aggregation quality degrades on large PRs. How do I fix this without losing specialist detail?
 ```
 
 ```
-Design a multi-agent debate system where three agents evaluate a business proposal and reach consensus without sycophancy
+Design a 3-agent debate system for evaluating product strategy proposals. Agents: market opportunity analyst, technical feasibility reviewer, financial viability assessor. They need to reach a consensus recommendation without falling into sycophancy (all agreeing with the first agent who speaks). Framework: AutoGen. How do I detect and break sycophantic patterns?
 ```
 
 ```
-What's the token cost of going multi-agent? My single agent costs $0.50 per task -- what should I expect with a 3-agent supervisor setup?
+My single agent costs about $0.40 per code review task on average. I want to split into a supervisor + 3 specialists (security, performance, style). Based on the 15x token multiplier, I am looking at $6 per review -- that is too expensive. How do I get multi-agent quality gains at 3-4x single-agent cost instead of 15x? What architectural choices reduce coordination overhead?
 ```
 
 ```
-Show me how to implement agent handoffs in a swarm architecture with explicit state passing
+Show me how to implement agent handoffs in a customer support swarm. Agents: billing specialist, technical support specialist, sales specialist. A conversation starts with any agent and needs to hand off when the topic shifts (billing question turns into a technical problem). The handoff must transfer: full conversation history, resolved issues so far, customer context (account tier, open tickets). Framework: LangGraph with StateGraph.
 ```
 
 **Key references:**

@@ -19,6 +19,39 @@ The skill also handles PR comment analysis: extracting all comments from GitHub 
 
 The plugin ships with 22 scripts for automated analysis, 19 reference files covering best practices, analysis prompts, and example reviews, and 6 deep-dive modules covering AI debugging, automated review, performance optimization, smart refactoring, and TDD.
 
+## Context to Provide
+
+The review produces better findings when you give the skill scope, code to examine, and specific concerns. Without actual code, the skill can only give generic patterns -- with code, it finds specific line-level issues.
+
+**What information to include in your prompt:**
+
+- **Code to review**: Paste the diff, file contents, or specific code snippet. For PR review, provide the diff or describe the changes made
+- **Scope**: Which files, directories, or modules? What type of changes? (new feature, refactor, security fix, performance optimization)
+- **Dimensions to focus on**: Security, performance, style, test coverage, or documentation -- or all five with a priority order
+- **Severity threshold**: Do you want every NIT-level comment or only CRITICAL and MAJOR findings?
+- **Language and framework**: Python/FastAPI, TypeScript/React, Go, Java/Spring -- determines applicable linting rules and patterns
+- **Domain context**: What does this code do? (payment processing, authentication, data pipeline, public API endpoint) -- security review of payment code looks different from review of a utility function
+- **Known concerns**: What specifically worries you? ("I'm not sure the JWT validation is correct" or "concerned about SQL injection in the query builder")
+- **Multiple reviewer feedback**: If consolidating PR comments, describe the PR context and paste or describe the comments you received
+
+**What makes results better:**
+- Pasting actual code enables file:line references in findings -- "review my auth module" without code produces patterns, not findings
+- Specifying the security concern ("worried about JWT algorithm confusion") directs the security agent to check exactly that pattern
+- Describing the domain ("this endpoint handles payment processing, PCI-DSS applies") calibrates severity -- a minor input validation gap is CRITICAL in a payment handler, MINOR in an internal tool
+- Providing PR comment text for consolidation enables the skill to identify which concerns are shared across reviewers
+
+**What makes results worse:**
+- "Review my entire codebase" -- the review surface is too broad; findings become unactionable
+- Asking "is this code okay to merge?" -- the skill produces evidence-based findings, not approval stamps
+- Not specifying severity thresholds -- you will receive NIT formatting comments alongside CRITICAL security vulnerabilities in the same list
+
+**Template prompt:**
+```
+Review [file path / PR diff / code snippet below] for [security / performance / style / tests / docs / all dimensions]. Language: [language and framework]. Severity threshold: [CRITICAL only / MAJOR+ / all]. Domain context: [what this code does -- payment processing, authentication, data export, etc.]. Specific concern: [what you are most worried about]. Format: file:line references with evidence and suggested fix for every finding.
+
+[paste code or diff here]
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -147,19 +180,23 @@ Review my authentication module for security issues -- I'm worried about JWT han
 **Try these prompts:**
 
 ```
-Review this PR diff for security, performance, and maintainability issues -- focus on the authentication changes
+Review this PR diff for security, performance, and maintainability. The PR adds a new payment endpoint that creates orders and charges via Stripe. Language: Python/FastAPI. Focus on CRITICAL and MAJOR findings only -- I don't need NIT-level style comments before this merge. Specific concern: the Stripe webhook handler and the order query builder.
+
+[paste diff here]
 ```
 
 ```
-I have 25 comments from 3 reviewers on PR #456. Extract them all, find where reviewers agree, and give me a prioritized action plan.
+I have 28 comments from 3 reviewers on PR #456 (adds user invitation system). Reviewer 1 focuses on security, reviewer 2 on tests, reviewer 3 on API design. Consolidate all comments, identify where 2+ reviewers flag the same issue, and give me a prioritized action plan ordered by severity. I want to fix the top 5 issues before merging.
 ```
 
 ```
-Audit our payment processing module for security vulnerabilities. I need findings with file:line references and severity levels.
+Security audit src/auth/ and src/middleware/auth_middleware.py. This is our authentication layer for a HIPAA-regulated health data API. Check for: JWT algorithm confusion, missing expiry validation, session fixation, CSRF gaps, and OWASP Top 10 patterns. Report: CRITICAL findings with exploitation scenario first, then MAJOR, then MINOR. Include file:line for every finding.
 ```
 
 ```
-This function handles user input but I'm worried about injection attacks. Review it and show me exactly what's unsafe and how to fix it.
+Review this function for injection vulnerabilities. It takes user-submitted search terms and builds a database query. Language: Python with SQLAlchemy. Show exactly what is unsafe, how an attacker would exploit it, and the correct parameterized query replacement.
+
+[paste function here]
 ```
 
 ---

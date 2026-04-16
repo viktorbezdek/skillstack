@@ -19,6 +19,37 @@ The skill ships with 26 domain-specific reference files totaling over 7,500 line
 
 The result is not a cost-cutting exercise but a FinOps practice: continuous optimization that treats technology spend as a driver of business value rather than an expense to minimize.
 
+## Context to Provide
+
+FinOps advice is only as actionable as the cost data behind it. The more specific you are about spend figures, service breakdown, and organizational context, the more precise the recommendations will be.
+
+**What information to include in your prompt:**
+
+- **Cloud providers and monthly spend**: Which providers? Approximate monthly total by provider (e.g., "$180K/month: AWS 70%, Azure 25%, GCP 5%")
+- **Top services by spend**: The 5-10 largest cost line items from your Cost Explorer or billing console (e.g., "EC2 $45K, RDS $28K, S3 $12K, Data Transfer $8K")
+- **Tagging and allocation completeness**: What percentage of spend has cost allocation tags? How is the rest allocated?
+- **Commitment coverage**: Do you have Reserved Instances, Savings Plans, or Committed Use Discounts? What percentage of your fleet do they cover?
+- **FinOps maturity**: Do you have continuous cost monitoring? Automated anomaly detection? Per-team cost visibility?
+- **Workload characteristics**: Which workloads are steady-state vs. variable? What is typical CPU/memory utilization for your largest instances?
+- **AI and SaaS spend**: If relevant, describe your AI inference spend (which models, real-time vs batch, approximate tokens/month) and SaaS subscription count
+- **Organizational context**: How many teams? Does engineering see cost data? Who owns the FinOps function?
+
+**What makes results better:**
+- Sharing actual spend numbers ("EC2 is $45K/month with 35% average utilization from CloudWatch") enables rightsizing analysis with concrete savings estimates
+- Describing a specific bill increase ("AWS jumped 40% this quarter, I think it's EC2 but I'm not sure") enables root cause investigation with specific diagnostic steps
+- Specifying risk tolerance ("we cannot afford downtime, prefer no-upfront commitments") calibrates the commitment strategy recommendation
+- Describing your AI workload precisely ("60% real-time inference with Bedrock Sonnet, 40% batch jobs running overnight") enables model routing and batch inference optimization
+
+**What makes results worse:**
+- "Save money on cloud" without any spend data -- the skill cannot estimate savings or prioritize without cost visibility
+- Requesting commitment strategy before rightsizing -- buying RIs for oversized instances locks in waste
+- Treating AI cost like compute cost -- token-based billing requires different optimization levers (prompt caching, model routing, batch inference) not instance rightsizing
+
+**Template prompt:**
+```
+[Investigate / Optimize / Design strategy for] our [AWS / Azure / GCP / multi-cloud] spend. Monthly total: $[amount]. Top services: [list with spend amounts]. Tagging compliance: [%]. Commitment coverage: [none / partial / describe]. Workload mix: [% steady-state vs variable]. Average utilization: [if known]. Problem to solve: [bill spike / no visibility / need commitment strategy / AI costs / SaaS sprawl]. Risk tolerance: [low / medium / high -- prefer no-upfront / OK with 1-year / OK with 3-year].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -149,23 +180,23 @@ Our AWS bill jumped 40% this quarter -- help me investigate and find the biggest
 **Try these prompts:**
 
 ```
-Our AWS bill is $180K/month and growing 15% quarterly. Help me find the biggest savings opportunities without disrupting production.
+Our AWS bill is $180K/month and growing 15% quarterly. Top services: EC2 $85K (35% avg utilization from CloudWatch), RDS $32K, Data Transfer $18K, S3 $12K. No Savings Plans. Tagging compliance 65%. We need to cut spend by 20% without disrupting production. Where do we start?
 ```
 
 ```
-We're spending $12K/month on AI inference across Bedrock and Azure OpenAI. Design a cost optimization strategy that doesn't sacrifice quality.
+We're spending $12K/month on AI inference: Bedrock Claude Sonnet $7K (real-time customer chat, ~200M tokens/month), Azure OpenAI GPT-4 $5K (document summarization, running synchronously). Help me optimize without reducing quality. I can tolerate up to 2-second latency increase for the summarization workload.
 ```
 
 ```
-Build a commitment strategy for our multi-cloud environment -- 60% AWS, 30% Azure, 10% GCP. We want to maximize savings without over-committing.
+Build a commitment strategy for our multi-cloud environment -- $150K/month: AWS $90K (60%), Azure $45K (30%), GCP $15K (10%). On AWS, 70% of EC2 is steady-state, 30% variable. No commitments on any cloud yet. Risk tolerance: prefer 1-year no-upfront on AWS, open to 3-year for specific RDS instances.
 ```
 
 ```
-Our Kubernetes clusters are 40% utilized but we can't right-size because teams over-request resources. Design a governance framework.
+Our EKS clusters cost $60K/month across 5 teams and 40 namespaces. Average utilization: 38% CPU, 52% memory. Teams over-request because there is no chargeback -- cost is invisible to them. Design a governance framework that creates accountability without disrupting their workflows.
 ```
 
 ```
-We have 200+ SaaS subscriptions and suspect 30% are unused. How do we discover, audit, and rationalize our SaaS portfolio?
+We have 200+ SaaS subscriptions across 8 departments. Finance only tracks 60 of them. Estimated annual spend: $800K but we genuinely don't know. 30-40% may be unused or duplicated. We have no SaaS management process. How do we discover, audit, and rationalize the portfolio?
 ```
 
 ---

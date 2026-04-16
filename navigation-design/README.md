@@ -29,6 +29,52 @@ The plugin provides a single, focused skill that activates when you need to orga
 | Inconsistent navigation placement across sections | Consistency rules: same navigation structure and placement across all pages |
 | Sitemap is an afterthought or missing entirely | Structured sitemap template with primary and utility navigation separation |
 
+## Context to Provide
+
+Navigation design quality depends entirely on understanding your content inventory and user goals before any structure is proposed. The skill cannot design a hierarchy from thin air.
+
+**What information to include in your prompt:**
+- **Content inventory** -- a list of all sections, pages, or features that need to be navigable; approximate page count per section; whether content is documentation, a product UI, a knowledge base, or an e-commerce catalog
+- **User types and primary goals** -- who navigates this structure and what they are trying to accomplish (developers looking for API reference, new users following onboarding, admins managing team settings, customers browsing products)
+- **Current pain points** -- if you are restructuring, describe what users report they cannot find, where they get lost, or what they complain about; this tells the skill which constraints to prioritize
+- **Depth constraints** -- maximum acceptable clicks from home to content, preferred number of top-level items, whether mobile navigation is in scope
+- **Existing structure** -- if restructuring, share the current top-level items (a list is enough); the skill audits against design rules and identifies the problems
+
+**What makes results better:**
+- Sharing the actual list of sections and their approximate page counts rather than describing them in prose
+- Specifying different user journeys separately ("developers need: quickstart -> API reference -> SDKs" vs "managers need: overview -> pricing -> case studies")
+- Mentioning technical constraints (CMS limitations, single-level navigation only, no mega-menus on mobile)
+- Describing whether the content has cross-cutting concerns that need contextual linking (tutorials that reference API endpoints, products that link to support articles)
+
+**What makes results worse:**
+- Asking for navigation structure without a content list -- the skill cannot organize what it does not know exists
+- Focusing on visual design ("make it modern") instead of information architecture ("help users find API reference in 2 clicks")
+- Requesting navigation for a single page -- use `frontend-design` for within-page component layout
+
+**Template prompt -- new structure:**
+```
+Design the navigation for [site/app type].
+
+Content sections (approximate page count each):
+- [Section A]: [N pages] -- [brief description of what's in it]
+- [Section B]: [N pages] -- [brief description]
+[continue for all sections]
+
+User types and primary goals:
+- [User type 1]: needs to [primary task]
+- [User type 2]: needs to [primary task]
+
+Constraints: max [N] top-level items, any page reachable in [N] clicks, mobile navigation [in/out of scope].
+```
+
+**Template prompt -- restructuring:**
+```
+Restructure our navigation. Current top-level items: [list all N items].
+User complaints: [what users say they cannot find or where they get lost].
+Content that is hardest to find: [list specific pages or sections].
+Total pages: approximately [N] across [M] sections.
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -106,23 +152,23 @@ A single skill with no additional references -- the SKILL.md contains the comple
 **Try these prompts:**
 
 ```
-Design the information architecture for a SaaS product with dashboard, settings, team management, billing, and API docs
+Design the navigation for a B2B SaaS product. Content sections: Dashboard (1 page), Projects (list + detail + settings = ~15 pages), Team Management (members, roles, invites = 5 pages), Billing (plan, invoices, payment methods = 4 pages), Settings (account, notifications, integrations = 8 pages), API Docs (50 pages). Admin users need billing + team management; regular users do not. Primary user goal: get to a specific project and its tasks in 2 clicks.
 ```
 
 ```
-Our documentation site has 300 pages across 8 product areas -- help me create a hierarchy that users can navigate in 3 clicks or fewer
+Our developer documentation has 300 pages: API Reference (120 pages by endpoint), Tutorials (40 pages), SDK Guides (Python, JS, Go, Ruby = 60 pages total), Integration Guides (40 pages by integration partner), Changelog (20 pages), Conceptual Guides (20 pages). Users report: can't find the right SDK guide from the main nav, tutorials and conceptual guides feel redundant. Redesign the hierarchy so any page is reachable in 3 clicks.
 ```
 
 ```
-What navigation pattern works best for a faceted product catalog where users filter by category, price, and features?
+What navigation pattern works for a product catalog with 800 SKUs across 12 categories? Users need to browse by category AND filter by price range, rating, availability, and brand. Currently we have a flat mega-menu with all 12 categories, but users are dropping off before finding the right product. Do I need faceted navigation, or can we fix this with better hierarchy?
 ```
 
 ```
-Review our current sitemap -- we have 12 top-level items and users report feeling overwhelmed
+Review our current site navigation. Top-level items: Home, About, Products, Services, Solutions, Industries, Resources, Blog, Partners, Support, Careers, Contact. Users take an average of 6 clicks to find our pricing page. Our support requests are dominated by "I can't find X". How do I consolidate this to reduce cognitive load?
 ```
 
 ```
-Design breadcrumbs for a multi-level help center: product > category > article, with cross-linking between related articles
+Design breadcrumbs for a 4-level help center hierarchy: Product (5 products) > Category (8 categories per product) > Subcategory (4-6 per category) > Article. Articles can belong to multiple subcategories (a single article covers both Billing and Account Management). How do breadcrumbs handle multi-parent articles?
 ```
 
 ---

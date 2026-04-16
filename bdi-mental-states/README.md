@@ -19,6 +19,37 @@ The core paradigm is T2B2T (Triples-to-Beliefs-to-Triples): external RDF context
 
 The skill also covers integration with production frameworks (SEMAS, JADE, JADEX), neuro-symbolic AI patterns (Logic Augmented Generation), compositional mental entities for selective updates, temporal reasoning with validity intervals, and SPARQL competency queries for validating implementations. The result is agents that can explain their reasoning, share structured mental states across platforms, and be formally audited for rational consistency.
 
+## Context to Provide
+
+BDI modeling requires precise description of the agent's perception sources, decision context, and what needs to be explainable or auditable. The more specific you are, the more grounded the ontology will be in your actual domain.
+
+**What information to include in your prompt:**
+
+- **Agent purpose**: What does the agent do? What kind of decisions does it make? (e.g., "monitors inventory levels and decides whether to reorder or alert procurement")
+- **Perception sources**: What data does the agent receive? What format? (RDF knowledge graph, sensor streams, API responses, database records, user input)
+- **World state aspects**: What facts about the world does the agent need to track? (current inventory levels, supplier status, market prices)
+- **Goals and desires**: What does the agent want to achieve? List the end-states it pursues.
+- **Constraints and policies**: What rules govern the agent's behavior? (only auto-reorder if supplier lead time < 5 days, escalate to human if confidence < 0.7)
+- **Temporal requirements**: Do beliefs have expiry? (stock levels valid for 1 hour, market prices valid for 5 minutes)
+- **Explainability requirements**: Who needs to trace decisions and to what depth? (regulators, auditors, developers, end users)
+- **Integration targets**: Do you need FIPA ACL messaging, JADE/JADEX framework integration, or RDF output for downstream systems?
+
+**What makes results better:**
+- Describing a real failure mode ("the agent acts on stale supplier data because it doesn't know the data expired") directly maps to the temporal validity pattern
+- Specifying what "explainability" means in your context ("regulators need to trace from loan decision back to specific data points") determines how deep the justification chains need to go
+- Providing example inputs (a sample RDF triple set or a data record) enables concrete T2B2T modeling rather than abstract patterns
+- Naming the multi-agent partners and what they need to share enables the inter-agent communication protocol design
+
+**What makes results worse:**
+- "Add BDI to my chatbot" without describing what the chatbot decides or why traceability matters
+- Conflating what the agent believes with the actual world state (these are separate in BDI -- beliefs are the agent's representation, not the ground truth)
+- Requesting a model without specifying whether justifications are required (unjustified beliefs are decorative, not auditable)
+
+**Template prompt:**
+```
+Model the BDI cognitive architecture for an agent that [agent purpose]. The agent perceives [data sources and format]. It needs to track beliefs about [world state aspects]. Its goals are [desired end-states]. Constraints: [rules governing behavior]. Beliefs about [data type] should expire after [duration]. Explainability requirement: [who needs to trace decisions and to what depth]. Output format: RDF/Turtle with SPARQL validation queries.
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -117,19 +148,19 @@ External World                    Agent Cognitive Architecture
 **Try these prompts:**
 
 ```
-Model the mental states for a customer service agent that believes the customer is frustrated, desires to resolve the issue quickly, and intends to escalate to a human
+Model the BDI cognitive chain for a customer service agent. The agent perceives: customer account history (RDF triples), sentiment score from NLP analysis, and open ticket count. It should form beliefs about customer frustration level and issue urgency, develop a desire to resolve within SLA, and commit to an intention to either auto-resolve or escalate to a human based on belief combination. Show RDF/Turtle with justification links.
 ```
 
 ```
-Implement the T2B2T paradigm for an agent that reads sensor data from an IoT knowledge graph and decides when to trigger alerts
+Implement the T2B2T paradigm for an industrial IoT agent. Input: RDF triples from a sensor knowledge graph (temperature, pressure, vibration readings per machine). The agent should form beliefs about equipment health (valid for 10 minutes), develop desires to maintain uptime, and output RDF triples that trigger maintenance orders or alerts. Show both directions of the T2B2T flow.
 ```
 
 ```
-Add temporal validity to my agent's beliefs so it automatically discards stale market data after 5 minutes
+Add temporal validity to market data beliefs in my trading agent BDI model. Price beliefs should expire after 5 minutes, news sentiment beliefs after 1 hour, company fundamentals after 24 hours. Show the SPARQL query that returns only beliefs active at a given timestamp and filters out expired ones.
 ```
 
 ```
-Write SPARQL competency queries to verify that every intention in my BDI model is justified by at least one belief and fulfills at least one desire
+Write the four SPARQL competency queries to validate my BDI model: (1) every desire is motivated by at least one active belief, (2) every intention fulfills a desire, (3) no intention contradicts an active belief, (4) all plans have ordered task sequences. My model uses the prefix ex: http://example.org/bdi#.
 ```
 
 **Key references:**

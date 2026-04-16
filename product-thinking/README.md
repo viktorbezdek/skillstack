@@ -33,6 +33,62 @@ Each skill activates on its own, but they compose in sequence: define the proble
 | Options are compared vaguely ("let's do A"). | Trade-off matrix with reversibility classification, opportunity cost, and second-order effects. |
 | Decisions are not documented as bets — no falsification condition. | Each bet has a kill clause stating what evidence would reverse it. |
 
+## Context to Provide
+
+Each of the five skills activates on a different type of question. Providing the right context for the skill you need produces the most useful output. The richer your situation description, the less the skill has to assume.
+
+**For `problem-definition`:**
+- Paste the original brief, feature request, or problem statement as given to you
+- Describe who reported the problem and what they said verbatim (the gap between what stakeholders say and what they mean is where the skill finds the real problem)
+- Share any data that surrounds the symptom: support ticket volume, NPS comments, usage analytics
+
+**For `user-needs-identification`:**
+- Describe what users say they want (stated needs), then share anything you know about what they actually do (workarounds, shadow tools, apologies)
+- Include the user's context: what job are they doing, what does success look like for them, what would happen if the product disappeared tomorrow
+
+**For `value-proposition-design`:**
+- Describe the target customer segment specifically (not "businesses" -- "B2B teams of 5-20 that manage client projects in spreadsheets")
+- List the jobs they are currently doing (even manually), the pains they experience, and the gains they want
+- Share competitor products they use or considered, even if you lose to them
+
+**For `outcome-oriented-thinking`:**
+- Share current metrics you track and their values
+- Describe what a successful outcome looks like from the business perspective (not from the feature perspective)
+- Provide context on what the team has already tried and what moved (or did not move) the metric
+
+**For `trade-off-analysis`:**
+- Name each option explicitly, including the "do nothing" option
+- For each option, describe what you gain and what you give up
+- Flag any one-way-door decisions -- decisions that cannot be easily reversed -- so the skill applies the appropriate level of rigor
+
+**What makes results better across all five skills:**
+- Quoting actual users, stakeholders, or data rather than paraphrasing
+- Describing what has already been tried and what happened
+- Being explicit about constraints: time, team size, technical dependencies, political dynamics
+
+**Template prompt (problem-definition):**
+```
+Help me frame the real problem behind this request.
+
+The brief I was given: [paste exact wording of the request or brief]
+Who gave it: [role, context -- e.g., "the VP of Sales said this in a strategy meeting"]
+Data I have: [any numbers, quotes, or observations that surround the situation]
+What I suspect is really going on: [your hypothesis, even if uncertain]
+What the brief says NOT to touch: [any stated constraints or out-of-scope items]
+```
+
+**Template prompt (trade-off-analysis):**
+```
+Analyze the trade-offs between these options.
+
+Decision context: [what we are deciding, why now, what the stakes are]
+Option A: [describe it]. What we gain: [...]. What we give up: [...].
+Option B: [describe it]. What we gain: [...]. What we give up: [...].
+Do-nothing option: [what happens if we decide not to decide].
+Reversibility: [is this a one-way or two-way door? can we undo it?]
+Time horizon: [when do we need to live with the consequences?]
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -59,7 +115,7 @@ None. For adjacent disciplines:
 After installing, test with:
 
 ```
-Help me frame the real problem behind this feature request: "users want a dashboard with 12 widgets"
+Help me frame the real problem behind this feature request: "users want a dashboard with 12 widgets." The request came from our enterprise customer success team, who say their clients ask for it in every QBR. Our current dashboard has 4 widgets and no customization. We don't know if users want the widgets themselves or if they're working around something else.
 ```
 
 The `problem-definition` skill should activate and walk the symptom-vs-problem ladder.

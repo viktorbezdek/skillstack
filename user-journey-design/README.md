@@ -3,6 +3,41 @@
 > **v1.0.10** | Map the full user experience from first contact to mastery -- so you fix where the pain actually is, not where it is easiest to fix.
 > Single skill, no references | 13 trigger evals + 3 output evals
 
+## Context to Provide
+
+Journey maps are most useful when grounded in something real -- actual drop-off data, user feedback, support tickets, or known friction points. A map built on assumptions is a guess; a map built on what you know is a diagnostic tool.
+
+**What information to include in your prompt:**
+
+- **Who the user is** -- "a developer integrating our REST API for the first time" is specific; "a user" is not. The persona drives what each stage looks and feels like.
+- **Where they start and where they are trying to end up** -- "arrives at the docs site" to "runs their first API call in production." Boundaries make the stages meaningful.
+- **What you already know about friction** -- share any data you have: drop-off rates, support ticket categories, user feedback quotes, stage where users give up. This becomes the raw material for emotion scores and pain points.
+- **The map type you need** -- current-state (diagnose today's experience), future-state (design the improved version), or service blueprint (reveal internal handoffs that cause external friction).
+- **For comparison requests**: describe both the current design and the proposed redesign, even briefly -- the comparison is only valuable if both states are documented.
+
+**What makes results better vs worse:**
+
+- Better: include even rough metrics ("40% of users who create accounts never make a first API call") -- these anchor the emotion scores
+- Better: quote actual user complaints verbatim ("support tickets say 'I don't understand what CORS means in this context'")
+- Better: specify which team owns each stage, if that is relevant (product, docs, DevEx, support) -- this makes opportunity ownership clear
+- Worse: asking to "map the journey" without specifying who the user is and what they are trying to accomplish
+- Worse: combining persona creation with journey mapping in the same prompt -- create the persona first with persona-definition
+- Worse: describing internal technical processes (CI/CD pipeline, deploy scripts) as if they were user journeys -- these are process diagrams, not experience maps
+
+**Template prompt:**
+
+```
+Map the [current-state / future-state / service blueprint] journey for a [specific user type]
+who [starting point] and tries to [end goal].
+
+What I know about friction:
+- [Drop-off rate or completion metric, if available]
+- [Known pain points from support tickets, user feedback, or team observation]
+- [Stages that different teams own, if relevant]
+
+I need to [identify the worst friction / design an improved flow / see front-stage and back-stage together].
+```
+
 ## The Problem
 
 Product teams optimize individual screens and never see the friction that accumulates between them. A signup page might test well in isolation. The email verification flow might be fine on its own. The onboarding wizard might score well in usability testing. But the journey from discovering the product to successfully using it for the first time can be full of dead ends, confusing hand-offs, and emotional low points that never surface in screen-level reviews.
@@ -127,27 +162,46 @@ This is a compact single-skill plugin with no reference documents -- all methodo
 **Try these prompts:**
 
 ```
-Map the complete new user journey from first hearing about our product to becoming a power user
+Map the current-state journey for a first-time user of our project management SaaS -- someone who signed
+up after seeing a LinkedIn ad and is trying to create their first project and assign a task. We know 58%
+of users who create accounts never complete their first project. Support tickets in week 1 most commonly
+say "I couldn't figure out how to invite my team."
 ```
 
 ```
-Where are users getting frustrated during our API integration flow? Map the journey from discovering our API docs to running in production
+Map the current-state API integration journey for a backend developer at a mid-size e-commerce company.
+They discover our REST API through our docs site and are trying to go live in production. We know that
+only 22% of developers who create API credentials make a successful call within 7 days. Our docs team
+suspects the problem is between "get credentials" and "first successful test call."
 ```
 
 ```
-I need to compare our current checkout experience with the redesigned version -- create both journey maps so we can see what improves and what gets worse
+I need to validate a checkout redesign before we build it. Create current-state and future-state journey
+maps for our four-step checkout: cart review, shipping address, payment details, confirmation. The current
+design has a 31% abandonment rate at the payment step. The redesign consolidates shipping and payment onto
+one screen. Show me what improves, what stays the same, and what new friction the redesign might introduce.
 ```
 
 ```
-Create a service blueprint for our support ticket flow -- I need to see what happens both on the user side and inside our organization
+Create a service blueprint for our enterprise customer onboarding process. From the customer's side:
+they sign a contract, get a kickoff call, configure integrations, and go live. From our side: account
+manager, solutions engineer, and support engineer are involved with multiple handoffs. Our customers
+complain that "nobody knows who to ask" during integration setup -- I suspect it's a handoff problem,
+not a product problem.
 ```
 
 ```
-Help me design user research questions for each stage of our onboarding journey
+I need interview questions for user research on our onboarding journey. The journey has five stages:
+signup, workspace setup, first project, first integration, and first report. For each stage, I need
+questions that reveal what users are thinking, feeling, and struggling with -- not questions that
+confirm what we already believe.
 ```
 
 ```
-Map the developer journey through our documentation -- from landing on the docs site to successfully deploying their first integration
+Map the developer journey through our documentation site -- from landing on the docs homepage (via
+Google search, not a direct invite) to successfully deploying their first webhook integration in
+production. Our docs have four sections: Getting Started, API Reference, Tutorials, and Troubleshooting.
+We see high bounce rate after the Getting Started guide but cannot tell where users go next.
 ```
 
 ---

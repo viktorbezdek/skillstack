@@ -17,6 +17,35 @@ This plugin provides a framework for establishing and maintaining consistency ac
 
 The skill is deliberately compact -- it provides the standards framework and auditing approach, not hundreds of pages of rules. The goal is to give you the tools to define your project's consistency standards and the patterns to enforce them, whether you are standardizing code style, documentation terminology, or both.
 
+## Context to Provide
+
+Consistency standards are per-context and per-project. Generic style rules are useless if they do not match your actual tech stack and content types. Provide enough context to produce standards your team will actually follow.
+
+**What information to include in your prompt:**
+
+- **Tech stack**: Languages, frameworks, and databases in play (TypeScript/React, Python/FastAPI, PostgreSQL -- each needs different case style rules and different mapping conventions between layers)
+- **Consistency problem you are solving**: What specific inconsistency is causing friction? (three naming conventions in the same codebase, "user" vs "account" vs "member" in docs, inconsistent UI element references)
+- **Scope**: Code only, documentation only, or both? Public API endpoints, internal variable names, database column names, file names?
+- **Existing patterns**: What conventions are already in use, even inconsistently? Knowing that 60% of files use kebab-case helps -- the standard should align with the majority or have a strong reason to differ
+- **Enforcement mechanism**: How will the standard be enforced? (ESLint, Prettier, Ruff, manual PR review, automated docs linting) -- standards without enforcement decay
+- **Audience**: Who needs to follow the standard? (large open-source community with many contributors needs simpler rules than a 5-person team)
+
+**What makes results better:**
+- Describing the actual inconsistency you are observing ("our API returns `userId` but the DB stores `user_id` and the frontend uses `user_id` too -- only the API breaks the pattern") produces a targeted fix rather than a complete overhaul
+- Listing the specific synonym groups you want to resolve ("we use user, account, member, and profile to mean the same thing in different docs") produces a glossary with preferred terms and explicit "Do Not Use" alternatives
+- Specifying your enforcement toolchain enables the skill to generate lint rules and CI checks alongside the standard itself
+- Sharing a few examples of the inconsistency ("here are three files that each use a different naming pattern") makes the standard concrete
+
+**What makes results worse:**
+- "Make everything consistent" without scope -- the skill needs to know whether you mean code, docs, APIs, database schemas, or all of the above
+- Standards without an enforcement plan -- a style guide nobody checks is noise
+- Over-standardizing -- not every variation needs a rule; focus on inconsistencies that cause real confusion or maintenance cost
+
+**Template prompt:**
+```
+Create a [naming convention guide / terminology glossary / content reuse strategy / voice and tone guide] for [project type]. Stack: [languages and frameworks]. Scope: [what elements to standardize -- variables, functions, files, API endpoints, database columns, documentation]. Current inconsistencies: [describe or give examples]. Enforcement: [ESLint / Ruff / PR review checklist / automated linting]. Audience: [team size and contributor type].
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -110,19 +139,19 @@ Create a naming convention guide for our TypeScript project with React component
 **Try these prompts:**
 
 ```
-Create a naming convention guide for our full-stack project: TypeScript frontend, Python backend, PostgreSQL database
+Create a naming convention guide for our full-stack project: TypeScript/React frontend, Python/FastAPI backend, PostgreSQL database. Our inconsistencies: React components use both PascalCase files and kebab-case files, Python variables mix camelCase and snake_case, and DB columns are snake_case but our API responses return camelCase without a clear rule. Include mapping rules between layers and ESLint/Ruff rules to enforce them.
 ```
 
 ```
-Audit our API documentation for terminology inconsistencies -- we suspect multiple terms are used for the same concepts
+Audit our API documentation for terminology inconsistencies. We suspect we use "user," "account," "member," and "profile" to mean the same thing in different sections. Also "workspace" and "project" may be confused. Produce a glossary with: preferred term, definition, and explicit "Do Not Use" list for each synonym group.
 ```
 
 ```
-Design a content reuse strategy for our docs site -- the same installation steps appear in 8 different guides
+Design a content reuse strategy for our docs site. The installation instructions for our CLI appear in 8 different guides with slight variations. The Docker setup steps appear in 5 places. I want to maintain each in one canonical source and include it in other pages. We use a Markdown-based docs system (Docusaurus).
 ```
 
 ```
-Define voice and tone guidelines for our product: instructions, error messages, success states, and marketing copy
+Define voice and tone guidelines for our developer productivity tool. Contexts that need specific rules: step-by-step instructions (tutorials), API reference documentation, error messages shown in the CLI, success confirmations, and the marketing website. We have both technical and non-technical users.
 ```
 
 ---

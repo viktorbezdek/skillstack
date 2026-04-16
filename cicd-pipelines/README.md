@@ -17,6 +17,37 @@ This plugin provides a unified CI/CD skill covering pipeline design, DevOps auto
 
 The skill covers the entire DevOps lifecycle: creating pipelines from templates, optimizing slow builds (caching, parallelization, path filters), securing pipelines (OIDC authentication, secret management, supply chain security), containerizing applications (multi-stage Docker builds, Kubernetes deployments), implementing GitOps (ArgoCD, Flux), and managing releases (semantic versioning, signed artifacts, SLSA provenance). It provides concrete, copy-pasteable configurations rather than abstract advice.
 
+## Context to Provide
+
+Pipeline design, optimization, and security hardening all require knowing your platform, language, deployment target, and current bottlenecks. The more concrete your description, the more directly usable the generated YAML, Dockerfiles, and configurations will be.
+
+**What information to include in your prompt:**
+
+- **CI/CD platform**: GitHub Actions, GitLab CI, or Jenkins -- each has fundamentally different syntax and capabilities
+- **Language and build tool**: Node.js/npm, Python/pytest, Go, Java/Maven -- determines caching keys, test commands, and artifact types
+- **Deployment target**: AWS ECS, EKS, GCP Cloud Run, Azure AKS, Cloudflare Workers, bare Kubernetes -- drives deployment stage design
+- **Current pipeline state**: For optimization requests, paste your current workflow YAML or describe what jobs run and in what order
+- **Current build time and bottleneck**: "Takes 22 minutes, I think the Docker build is the slow part" enables targeted optimization
+- **Security baseline**: What is currently in place? (hardcoded credentials vs OIDC, pinned vs unpinned actions, root vs non-root containers)
+- **Compliance target**: OpenSSF Silver/Gold badge, SOC 2, custom security requirements
+- **Repo structure**: Monorepo (multiple packages) vs single-package -- determines matrix strategy and path filtering
+
+**What makes results better:**
+- Pasting your current workflow YAML for optimization requests -- the skill can identify specific issues rather than giving generic advice
+- Specifying the cloud provider and account structure enables concrete OIDC trust policy configuration (which conditions to use, which role ARN to trust)
+- Describing your Docker base image and known vulnerabilities enables targeted Trivy scanning configuration
+- Stating your team's git workflow (trunk-based, Gitflow, PR-based) determines which events trigger the pipeline
+
+**What makes results worse:**
+- "Create a CI pipeline" without specifying the platform -- GitHub Actions and GitLab CI are entirely different formats
+- "Make it faster" without sharing the current workflow or timing -- optimization requires knowing what is actually slow
+- Requesting security hardening without describing what is currently in place -- the skill needs to know what to harden, not start from scratch
+
+**Template prompt:**
+```
+[Create / Optimize / Secure] a [GitHub Actions / GitLab CI / Jenkins] pipeline for a [language] [project type -- monorepo / microservice / library]. It should [lint / test / build Docker image / deploy to target]. Current state: [describe or paste current workflow]. Current build time: [N minutes, bottleneck: X]. Cloud provider: [AWS / GCP / Azure]. Deployment target: [ECS / EKS / Cloud Run / etc.]. Security requirements: [OIDC / vulnerability scanning / signed releases / OpenSSF level]. [Paste workflow YAML here if optimizing.]
+```
+
 ## Before vs After
 
 | Without this plugin | With this plugin |
@@ -160,23 +191,27 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 **Try these prompts:**
 
 ```
-Create a GitHub Actions pipeline for a Python monorepo with 3 packages -- each needs separate testing but shared Docker builds
+Create a GitHub Actions pipeline for a Python monorepo with 3 packages (api/, worker/, shared/). Each package needs its own pytest suite but they share a base Docker image. I want parallel test runs, unified coverage reporting, and path-based triggers so api/ changes only test the api/ package. Deploying to AWS ECS Fargate.
 ```
 
 ```
-My CI takes 25 minutes -- analyze it and suggest optimizations. Here's my workflow file: [paste]
+My CI takes 25 minutes -- analyze it and suggest optimizations. Here's my workflow:
+
+[paste your workflow YAML]
+
+I'm using npm install (not npm ci), no caching, tests and lint run sequentially, and Docker builds run even on docs-only commits.
 ```
 
 ```
-Secure my pipeline: add OIDC auth to AWS, enable Dependabot, add container scanning, and pin all action versions to SHAs
+Harden my GitHub Actions pipeline that deploys to AWS. Currently using hardcoded AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY secrets. I want: OIDC auth to AWS, all actions pinned to SHA commits, Trivy container scanning before ECR push, and CodeQL for the Python codebase. AWS account: 123456789, role name: GitHubActionsRole.
 ```
 
 ```
-Set up ArgoCD GitOps for my Kubernetes cluster with automatic rollback on failed health checks
+Set up ArgoCD GitOps for my Kubernetes cluster. Currently we run kubectl apply from laptops. I want: ArgoCD Application manifests for 3 services, automatic sync with health check monitoring, rollback when health check fails within 5 minutes, and RBAC so developers can view but only platform team can sync. Cluster is on EKS.
 ```
 
 ```
-I need to achieve OpenSSF Silver badge for my open-source project -- what's missing and how do I fix each item?
+I need to achieve OpenSSF Silver badge for my open-source Python library. Run the assessment: we have GitHub Actions CI, no DCO checking, no signed releases, no SECURITY.md, no GOVERNANCE.md, 85% test coverage. Tell me exactly what is missing for Silver and show me how to implement each item.
 ```
 
 ---

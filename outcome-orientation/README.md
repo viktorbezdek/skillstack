@@ -31,6 +31,41 @@ The plugin is a single focused skill that activates when you need to define OKRs
 | Key results measure effort: "Write 10 docs" | Key results measure change: "90% of users complete onboarding" |
 | Success defined as what was delivered, not what changed | Outcome definition checklist: end state, measurable, time-bound, valuable, stretching |
 
+## Context to Provide
+
+The more concrete your situation, the sharper the output. Generic requests produce generic OKRs; specific context produces OKRs tied to your actual business.
+
+**What information to include in your prompt:**
+- **Current metrics and baselines** -- "our activation rate is currently 42%" is far more useful than "we want to improve activation." Without a baseline, key results cannot be written with real targets.
+- **The problem you are trying to solve** -- describe the business situation, not just the team's planned work. "Customer churn increased 5% last quarter despite shipping 14 features" gives the skill something to trace with the "so what?" test.
+- **Team scope and constraints** -- what does your team own? What can it influence but not control? OKRs outside a team's influence are useless.
+- **Time horizon** -- quarterly, half-year, or annual changes the appropriate ambition level for key results.
+- **Your current goal language** -- if you already have draft OKRs or a roadmap, paste them. The skill can diagnose exactly what is wrong and rewrite them.
+
+**What makes results better:**
+- Sharing existing planned work (roadmap, sprints, initiatives) so the skill can trace the results chain from outputs to outcomes
+- Providing actual metric values, not just metric names
+- Describing what the business leadership actually cares about measuring
+
+**What makes results worse:**
+- Asking for OKRs without any baseline ("just write good OKRs for a payments team")
+- Providing only feature lists without the problem they solve
+- Treating every KR as equally important -- indicate which outcomes matter most
+
+**Template prompt:**
+```
+Help me write outcome-focused OKRs for [team name] this [quarter/half/year].
+
+Context:
+- Business problem we're trying to solve: [describe the outcome you need to move]
+- Current baseline metrics: [metric name: current value, e.g. "Activation rate: 42%", "Churn: 5%/month"]
+- Our planned work / roadmap: [list features, projects, or initiatives]
+- What leadership is asking us to move: [what the CEO/VP cares about]
+- Team scope: [what the team owns and can influence]
+
+Please apply the "so what?" test to our planned work and produce 1-3 objectives with 3 quantitative key results each.
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -49,7 +84,7 @@ None. For prioritizing which outcomes to pursue, also install `prioritization`. 
 After installing, test with:
 
 ```
-Help me write OKRs for our engineering team this quarter -- we need to improve developer experience and reduce deployment failures
+Help me write OKRs for our engineering team this quarter. Our current deployment failure rate is 8%, mean time to recovery is 45 minutes, and the team ships roughly 3 deploys per day. We want to improve developer experience and reliability. Last quarter we shipped 12 features but deployment failures increased.
 ```
 
 ## Quick Start

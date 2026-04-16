@@ -1,7 +1,7 @@
 {
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"ls /Users/vbezdek/Work/skillstack/tool-design/hooks/ 2>/dev/null; ls /Users/vbezdek/Work/skillstack/tool-design/scripts/ 2>/dev/null\"}",
-  "error": "Exit code 1\n[rerun: b2]",
-  "timestamp": "2026-04-13T05:58:47.250Z",
-  "retry_count": 1
+  "tool_name": "Agent",
+  "tool_input_preview": "{\"description\":\"Enrich plugin READMEs batch 5\",\"prompt\":\"You are enriching Claude Code plugin READMEs for the skillstack repo at /Users/vbezdek/Work/skillstack.\\n\\n## Task\\n\\nFor each plugin in your b...",
+  "error": "Agent type 'oh-my-claudecode:executor' not found. Available agents: general-purpose, statusline-setup, Explore, Plan, claude-code-guide, pilot:spec-review, pilot:web-search-agent, pilot:changes-review, superpowers:code-reviewer, codex:codex-rescue, python-reviewer, rust-build-resolver, typescript-reviewer, code-reviewer, scientist, qa-tester, writer, explore, harness-optimizer, java-build-resolver, security-reviewer, test-engineer, docs-lookup, architect, debugger, refactor-cleaner, designer, an...",
+  "timestamp": "2026-04-16T08:19:34.566Z",
+  "retry_count": 5
 }

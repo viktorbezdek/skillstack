@@ -33,6 +33,59 @@ For Next.js 16 specifically, the plugin provides: async route parameter migratio
 | Cache strategy chosen by guesswork -- stale data or unnecessary revalidation | Cache strategy decision framework: no-store vs force-cache vs ISR vs "use cache" with revalidation profiles |
 | No templates for common patterns -- every developer writes boilerplate from scratch | 9 code templates: async params, cache components, parallel routes, proxy migration, route handlers, Server Actions forms |
 
+## Context to Provide
+
+Next.js patterns change significantly between versions, and the skill's advice is highly version-specific. Always include your version, and include enough specifics about your data flow and component needs to get production-ready code on the first attempt.
+
+**What information to include in your prompt:**
+- **Next.js version** -- 13, 14, 15, or 16; this changes params handling, caching directives, and middleware vs proxy patterns significantly
+- **Data source and access pattern** -- where the data comes from (Postgres, REST API, GraphQL, external SaaS), how frequently it changes, and whether it is user-specific or shared
+- **Component interaction requirements** -- does the component need event handlers, browser APIs, or React hooks? If not, it should be a Server Component -- state this explicitly and the skill will enforce it
+- **Caching requirements** -- how stale data can be (seconds, minutes, hours), whether on-demand revalidation is needed (e.g., after a form submit), and whether `"use cache"` or ISR is more appropriate
+- **Existing error messages** -- if you are debugging, paste the exact error message from the terminal or browser console; Next.js error messages are specific enough to route to the right fix
+
+**What makes results better:**
+- Specifying whether the page is inside a route group, and the current `app/` directory structure for complex routing scenarios
+- Describing the complete data flow (where data comes from, which component fetches it, what the child components do with it) rather than asking about one component in isolation
+- For migrations, sharing a code snippet of the old pattern alongside the error message -- the skill generates before/after diffs
+- Mentioning related features on the same page (e.g., "this page also has a search filter that needs client-side state") so the Server/Client boundary is designed correctly the first time
+
+**What makes results worse:**
+- Specifying only the UI without describing the data -- caching and component boundary decisions depend on the data characteristics
+- Mixing Next.js version assumptions ("I think I'm on 15 but might be 14") -- run `check-versions.sh` and include the output
+- Asking about "React" when you mean Next.js -- Server Components, Server Actions, and the App Router are Next.js concepts; if you need generic React hooks and state, that is a different plugin
+
+**Template prompt -- new page:**
+```
+Create a Next.js [version] page at app/[route path]/page.tsx.
+
+Data: fetches [describe data] from [source: Postgres / REST API at URL / GraphQL].
+Data freshness: [real-time (no-store) / acceptable to be N minutes stale / revalidate on-demand when X happens].
+Server vs Client: [fully server-rendered / needs [specific hooks or events] so requires client].
+Loading state: [Suspense with skeleton / loading.tsx / none].
+Error handling: [error.tsx boundary / inline error state / propagate to parent].
+Related components on this page: [describe any interactive elements that need 'use client'].
+```
+
+**Template prompt -- migration:**
+```
+Migrate this Next.js [old version] code to [new version]:
+[paste the component or page code]
+
+Error I'm seeing: [paste exact error message]
+```
+
+**Template prompt -- caching strategy:**
+```
+Design the caching strategy for [feature/page]. 
+
+Data: [describe what is fetched and from where]
+Freshness requirement: [how stale can the data be?]
+Revalidation triggers: [user action / webhook / scheduled / none]
+Traffic: [low / medium / high -- affects whether ISR makes sense]
+Next.js version: [15 / 16]
+```
+
 ## Installation
 
 Add the marketplace and install:
@@ -155,27 +208,32 @@ The plugin is a single comprehensive skill backed by a large reference library. 
 **Try these prompts:**
 
 ```
-Create a dashboard page with a data table that fetches from a Postgres database using Server Components, with loading and error states
+Next.js 16. Create app/(dashboard)/users/page.tsx -- a data table that fetches users from our Postgres database via a service function getUsers(). Columns: name, email, role, created_at, status (active/inactive). Needs: loading skeleton while fetching (Suspense), error boundary if the query fails, no client-side interactivity. Data freshness: revalidate every 5 minutes.
 ```
 
 ```
-I need to implement ISR for a blog -- posts should revalidate every hour, but the homepage should revalidate on-demand when a post is published
+Next.js 16. Implement ISR for our blog. Post pages at app/blog/[slug]/page.tsx should revalidate every hour (ISR). The homepage at app/page.tsx should revalidate on-demand when a post is published (our CMS sends a webhook). Params are accessed as: const { slug } = await params. Show the full caching setup including the revalidation webhook route handler.
 ```
 
 ```
-Migrate my Next.js 15 app to 16 -- I have 30 pages using params and searchParams that need async migration
+Migrate these Next.js 15 pages to Next.js 16. I'm getting "params is not iterable" on every page. Here is one example:
+export default function ProductPage({ params }: { params: { id: string } }) {
+  const { id } = params
+  // ...
+}
+I have 30 pages with this pattern plus 8 layouts. Show me the migration pattern and a script to find all occurrences.
 ```
 
 ```
-Design the module architecture for a multi-tenant SaaS app with Next.js -- users, projects, billing, and settings modules
+Design the module architecture for a multi-tenant project management SaaS with Next.js 16. Modules: users (auth + profiles), projects (CRUD + settings), tasks (CRUD + assignments + status), teams (members + roles), billing (plans + invoices). Apply the 5-layer module pattern. Show the full app/ directory structure, service layer organization, type file locations, and component boundaries.
 ```
 
 ```
-Should this component be a Server Component or Client Component? It fetches data from an API and has a search input with onChange
+This component fetches project data from an API and also has a search input with onChange that filters the displayed projects. Should it be a Server Component or Client Component? Next.js 16. If it needs to be split, show me the correct split: which part is the Server Component, which is the Client Component, and how the data passes between them.
 ```
 
 ```
-Set up Server Actions for a form with Zod validation, optimistic UI updates, and revalidation on submit
+Next.js 16. Build a Server Action for a project creation form. Zod schema: name (string, 2-50 chars), description (string, optional, max 500 chars), visibility (enum: public/private). On success: revalidateTag('projects'), redirect to the new project page. On error: return field-level errors for useFormState. Client-side: useFormStatus for loading state, useOptimistic for immediate list update before server confirms.
 ```
 
 **Key references:**

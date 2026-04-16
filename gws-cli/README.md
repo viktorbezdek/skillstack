@@ -29,6 +29,38 @@ The plugin ships one SKILL.md with the full CLI reference, 3 reference files (au
 | Multi-service workflows require separate scripts per API | Cross-service `workflow` commands: standup report, meeting prep, email-to-task |
 | Claude guesses at API parameters and fails silently | Claude has the complete `gws schema` introspection flow to discover valid parameters before constructing commands |
 
+## Context to Provide
+
+The skill generates exact `gws` commands. The more specifically you describe the operation, the less you iterate on parameter details.
+
+**What information to include in your prompt:**
+- **The specific service and operation** -- which Google Workspace service (Drive, Gmail, Sheets, Calendar, etc.) and exactly what you want to do (list, search, create, update, delete, share)
+- **Filter and search criteria** -- for Gmail: sender, subject pattern, date range, labels, attachment presence; for Drive: file name, type, owner, modification date; for Sheets: spreadsheet ID or name, sheet tab name, cell range
+- **IDs you already know** -- if you have a spreadsheet ID, calendar ID, message ID, or Drive file ID, include it; the skill can construct commands directly instead of first showing you how to look them up
+- **Output format preferences** -- whether you want table (human-readable), JSON (for piping to other tools), CSV (for importing), or YAML
+- **Cross-service workflow context** -- if the operation is part of a multi-step workflow (email-to-task, standup report), describe the full workflow so the skill can chain commands
+
+**What makes results better:**
+- Including the exact spreadsheet ID and range notation (`Sheet1!A1:D20`) instead of describing the file by name
+- Specifying the Gmail query syntax you already know (`from:alice@example.com has:attachment after:2026/01/01`) -- the skill extends it correctly
+- Describing pagination needs upfront (do you want all results or just the first page?)
+- Mentioning whether you want the output piped to another command or saved to a file
+
+**What makes results worse:**
+- Vague references to "my spreadsheet" or "the calendar" without IDs or distinguishing details
+- Asking for operations that require scopes you have not yet authorized -- check `gws auth status` first and mention the result
+- Requesting binary downloads (PDFs, images) without specifying `--output ./filename` in your request -- the skill will remind you, but specifying upfront skips the back-and-forth
+
+**Template prompt:**
+```
+[Service operation]: [exactly what you want to do]
+Service: [drive / gmail / sheets / calendar / tasks / chat / etc.]
+[ID if known]: [spreadsheet ID / calendar ID / message ID / file ID]
+[Filters]: [search criteria, date ranges, query syntax]
+Output: [table / json / csv / yaml]
+[Pipeline]: [pipe to jq / save to file / use in another command]
+```
+
 ## Installation
 
 Add the SkillStack marketplace, then install this plugin:
@@ -131,23 +163,23 @@ Single-skill plugin with 3 references and 2 example files. The skill contains th
 **Try these prompts:**
 
 ```
-List my unread Gmail messages from the last week with attachments
+List my unread Gmail messages from the last 7 days that have attachments and are from senders outside my organization. Show subject, sender, and date. Output as table, max 20 results.
 ```
 
 ```
-Create a Calendar event for tomorrow at 2pm with Alice and Bob, include a Google Meet link
+Create a Calendar event on my primary calendar: tomorrow April 17 at 2:00 PM, title "Q2 Planning", duration 1 hour, attendees alice@example.com and bob@example.com, include a Google Meet link, description "Agenda: review OKRs and set priorities".
 ```
 
 ```
-Read the data from Sheet1 cells A1:D10 in my budget spreadsheet and show it as a table
+Read the data from my budget spreadsheet (ID: 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms), tab Sheet1, range A1:F52. Format as a table. I want to see all rows where the "Amount" column (column D) is over 1000.
 ```
 
 ```
-Upload this report PDF to my Q2 folder in Drive
+Upload ./Q2-report.pdf to my Google Drive folder named "Q2 2026 Reports". If the folder doesn't exist, create it first. Return the shareable link after upload.
 ```
 
 ```
-Run my morning standup: show today's calendar agenda and open tasks
+Run my morning standup: show today's calendar events with attendees and video links, then show all open tasks in my "Sprint 42" task list sorted by due date.
 ```
 
 **Key references:**

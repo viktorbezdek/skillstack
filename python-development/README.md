@@ -13,6 +13,54 @@ The knowledge is scattered across dozens of PEPs, tool documentation sites, and 
 
 For specialized domains like embedded development (MicroPython on RP2350) or library architecture for PyPI publishing, the gap is even wider. The patterns that work for application development actively harm library design, and MicroPython's async model has critical differences from CPython that cause subtle bugs if you treat them the same way.
 
+## Context to Provide
+
+The skill selects the right tier, toolchain configuration, and reference files based on what you tell it about your project. More context means less time on setup decisions and more time on the actual code.
+
+**What information to include in your prompt:**
+- **Project type and scope** -- single-file script, REST API, CLI tool, data pipeline, Python library for PyPI, or embedded MicroPython firmware. This determines which tier (Minimal, Standard, or Full) and which references load.
+- **Python version** -- patterns differ significantly between Python 3.8 and 3.12. Mention your version so the skill avoids suggesting syntax that does not exist in your runtime (e.g., `match` statements, `str | int` unions, `tomllib`).
+- **Existing toolchain** -- if you are modernizing a project, describe what you currently use: `pip + requirements.txt`, `Black + flake8 + isort`, `unittest`. The skill produces a migration path rather than a greenfield setup.
+- **Key dependencies** -- what libraries are you already using or planning to use? `httpx`, `FastAPI`, `pydantic`, `asyncpg`, `Typer`, `pandas`? The relevant module references load automatically.
+- **Code to review or fix** -- when asking about anti-patterns or code quality, paste the actual code. "Fix my async function" is far less actionable than showing the function with its imports.
+- **Target environment** -- PyPI-published library vs. internal tool vs. MicroPython on RP2350 changes the guidance substantially for architecture, packaging, and async patterns.
+
+**What makes results better:**
+- Sharing the actual `pyproject.toml` or `requirements.txt` when asking about dependency management
+- Pasting the code when asking for anti-pattern detection, test writing, or type annotation help
+- Describing your test setup (fixtures, existing conftest.py, pytest configuration) when asking for test help
+
+**What makes results worse:**
+- Asking for generic "Python best practices" without project context -- produces generic guidance, not actionable patterns
+- Requesting async patterns without indicating CPython vs. MicroPython (the APIs are different)
+- Describing the problem in vague terms when the actual error message or stack trace would pinpoint it
+
+**Template prompt (for new project setup):**
+```
+Set up a new Python [project type: CLI tool / REST API / library / data pipeline] that [core purpose].
+
+Python version: [3.x]
+Key dependencies: [e.g., httpx for HTTP, pydantic for validation, FastAPI for the API layer]
+Specific requirements:
+- [async / sync]
+- [test coverage requirements]
+- [any packaging or distribution needs]
+
+Use the standard toolchain: uv + ruff + mypy in strict mode + pytest.
+```
+
+**Template prompt (for code review / anti-pattern detection):**
+```
+Review this Python code for anti-patterns and apply modern Python patterns where needed.
+
+Python version: [3.x]
+Context: [what this code does, how it's called, how critical it is]
+
+[paste code]
+
+Specific concerns: [e.g., "I think there's a blocking call in the async path", "the exception handling feels wrong", "the type annotations are incomplete"]
+```
+
 ## The Solution
 
 This plugin encodes production-grade Python expertise into a skill that activates whenever you work with `.py` files, `pyproject.toml`, uv, ruff, mypy, or pytest. It provides opinionated but well-reasoned defaults for every decision point in Python development: uv for dependency management, ruff for linting and formatting, mypy in strict mode for type checking, pytest with fixtures and parametrization for testing, and `src/` layout for project structure.
@@ -47,7 +95,7 @@ Add the SkillStack marketplace, then install this plugin:
 After installing, test with:
 
 ```
-Set up a new Python project with uv, ruff, mypy, and pytest
+Set up a new Python project with uv, ruff, mypy, and pytest. Project type: REST API with FastAPI and PostgreSQL. Python 3.12. I need async endpoints, pydantic models for request/response validation, and pytest with at least 80% coverage. This will be an internal service, not published to PyPI.
 ```
 
 The skill should activate and walk you through project initialization with a properly configured `pyproject.toml`.
