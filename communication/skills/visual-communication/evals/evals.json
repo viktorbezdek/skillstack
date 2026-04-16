@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Draw a Mermaid sequence diagram for a login flow that hits a Redis cache first, falls back to the database on cache miss, and returns a JWT token. Include the 'alt / else' branches.",
+    "files": [],
+    "expected_behavior": "Agent activates visual-communication and produces valid Mermaid sequenceDiagram code with: autonumber enabled, participants (User, API, Cache/Redis, DB), explicit arrows (sync ->> / async dashed -->>), alt/else branches for cache hit vs miss, labeled transitions, and a final 200 OK + token response. Code is checked for syntactic correctness (valid Mermaid grammar, matched alt/end blocks). Agent notes the conventions used (autonumber for referenceability, alt/else for branches, arrow semantics)."
+  },
+  {
+    "query": "I need to visualize our three-service system (web frontend, API server, data pipeline) with their interactions and data stores. Pick the right diagram type and produce it.",
+    "files": [],
+    "expected_behavior": "Agent activates visual-communication and reasons about diagram choice: a C4 Container diagram is right (system-level architecture view showing containers/services + data stores + external dependencies). Explains why not a sequence diagram (no time-ordering) or flowchart (not a process). Produces Mermaid using C4Context/C4Container syntax OR a regular flowchart LR with clear container boxes + data store shapes + labeled arrows indicating data flow. Includes a legend. Agent notes that Container is usually sufficient and Code-level is rarely needed."
+  },
+  {
+    "query": "I wrote 5 paragraphs describing how our RFC lifecycle works (draft → review → accepted/rejected → superseded → deprecated). Replace with a diagram — which type and why?",
+    "files": [],
+    "expected_behavior": "Agent activates visual-communication and picks a state diagram (discrete states with named transitions — perfect fit). Explains why not a flowchart (flowchart implies decisions made by an actor; state diagram captures the entity's state over time). Produces Mermaid stateDiagram-v2 with: [*] start, all five states, explicit transition labels (e.g., 'submit', 'approve', 'reject', 'new ADR supersedes'), and terminal states. Agent comments that replacing 5 paragraphs with a ~12-line diagram is exactly where visual communication wins — the reader grasps the lifecycle in 20 seconds instead of scanning prose."
+  }
+]

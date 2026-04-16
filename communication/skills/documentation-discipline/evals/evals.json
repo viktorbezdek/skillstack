@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Should we write an ADR for adopting pnpm as our package manager? If yes, draft it. If no, explain what to do instead.",
+    "files": [],
+    "expected_behavior": "Agent activates documentation-discipline and applies the write-it-down test plus the artifact-selection question (ADR vs decision doc). Determines that 'pnpm adoption' is a tooling choice, not strictly architectural — it may be better captured as a decision doc (from stakeholder-alignment) rather than an ADR, unless the org has decided that build-toolchain decisions live in ADRs. Agent lays out the case either way and makes a recommendation. If drafting the ADR, uses the template (number, date, status, context, decision, consequences, alternatives considered), keeping it 1-3 pages, immutable once accepted. Notes the numbering must be sequential and the file stored in the repo at a known path."
+  },
+  {
+    "query": "We run a manual backup verification every Monday morning. It's knowledge stuck in one engineer's head. Write a runbook.",
+    "files": [],
+    "expected_behavior": "Agent activates documentation-discipline and produces a runbook following the template: owner (named), last-reviewed date, when-to-run (every Monday 9am), prerequisites (access, tools, context), numbered steps with expected result per step, verification checklist, rollback (or 'irreversible' with validation), and troubleshooting (common failures with named escalation contacts). Flags the 'expected result per step' as non-negotiable — a runbook without them is a wish list. Recommends a 6-month review cadence given the operation's volatility. Notes that runbook rot is the primary failure mode and suggests quarterly game-day exercises to verify the runbook still works."
+  },
+  {
+    "query": "Walk me through the write-it-down test for this situation: a senior engineer is leaving in 4 weeks and has built an internal tool that three teams depend on but have never contributed to.",
+    "files": [],
+    "expected_behavior": "Agent activates documentation-discipline and runs the 5-question test: (1) Read more than once? Yes — three teams depend. (2) Specific reader in mind? Yes — the next maintainer + the 3 consumer teams. (3) Answer stable enough? Mostly — core architecture unlikely to change, quirks documented now. (4) Who owns it after? Critical gap — agent highlights this must be resolved BEFORE writing (name an owning team/engineer). (5) Review date? Recommends 6 months post-handoff. Recommends a combination: (a) ADR capturing the core design decisions, (b) runbooks for 3-5 operational procedures the engineer routinely does, (c) one-pager indexing the tool. Agent warns that docs-without-owner decay; the owner question is the gate, not writing speed."
+  }
+]

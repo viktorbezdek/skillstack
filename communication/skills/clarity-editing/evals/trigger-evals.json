@@ -1,0 +1,15 @@
+[
+  {"query": "Tighten this paragraph — too many hedges and passive voice.", "should_trigger": true, "note": "Direct compression + active voice."},
+  {"query": "Remove the hedges and weasel words from this doc.", "should_trigger": true, "note": "Hedge removal is explicitly covered."},
+  {"query": "Convert this to active voice.", "should_trigger": true, "note": "Active voice is a primary editing pass."},
+  {"query": "Strip the jargon from this engineering update.", "should_trigger": true, "note": "Jargon stripping."},
+  {"query": "This sentence is too long. Break it up.", "should_trigger": true, "note": "Sentence compression."},
+  {"query": "Improve the readability of this paragraph — it's slow and abstract.", "should_trigger": true, "note": "Readability + nominalization fix."},
+  {"query": "Edit this doc for conciseness. Aim for 40% shorter.", "should_trigger": true, "note": "Conciseness pass."},
+  {"query": "Fix the nominalizations — too many 'perform an evaluation of' constructions.", "should_trigger": true, "note": "Nominalization is named explicitly."},
+  {"query": "Structure this doc using the Pyramid Principle.", "should_trigger": false, "note": "Structural work belongs to structured-writing."},
+  {"query": "Write a button label for the cancel subscription flow.", "should_trigger": false, "note": "UI microcopy belongs to ux-writing."},
+  {"query": "Generate API docs from this TypeScript project.", "should_trigger": false, "note": "Auto-generated docs belong to documentation-generator."},
+  {"query": "Write the tone-of-voice section for our design system.", "should_trigger": false, "note": "Design-system tone belongs to consistency-standards."},
+  {"query": "Write an RFC for this architectural change.", "should_trigger": false, "note": "RFC authoring belongs to stakeholder-alignment."}
+]

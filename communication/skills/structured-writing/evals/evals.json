@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Rewrite this email as BLUF: 'Hi team, I've been looking at our Q3 numbers and noticing some patterns. We had a good start to the quarter but July was soft. I spent some time with the analytics team and we think the main issue is that our new onboarding flow is causing some friction for free users. I'd like to propose we roll back the recent changes and re-test them one at a time. Can we discuss this at the next staff meeting, and if everyone agrees, I'll start the rollback on Monday?'",
+    "files": [],
+    "expected_behavior": "Agent activates structured-writing and produces a BLUF-formatted rewrite: subject/opening states the ask (approve Monday rollback of the new onboarding flow) in ≤30 words, followed by concise 'Why it matters' bullets (Q3 number impact), 'Details' (July softness, analytics attribution), and an explicit 'What I need' line with deadline. Agent preserves the substance but inverts the structure — conclusion first, chronology last. Notes that the current version buries the ask in paragraph 3."
+  },
+  {
+    "query": "Apply the Minto Pyramid to this memo about deprecating our legacy billing system. Currently it reads as a list of technical debt items with no synthesis.",
+    "files": [],
+    "expected_behavior": "Agent activates structured-writing and produces a pyramid with a single governing thought (e.g., 'Deprecate the legacy billing system this quarter because maintenance costs now exceed revenue attribution AND block three strategic initiatives'), followed by 3 MECE supporting arguments (e.g., maintenance cost, strategic blockers, migration feasibility) each backed by evidence. Agent explains that the list-of-debt-items format is evidence dumping, not an argument, and that readers need the governing claim first to evaluate the evidence."
+  },
+  {
+    "query": "Pick a structure for this piece: a 2-page announcement to the company that we are sunsetting a product line. Audience is all employees. Explain why you chose it and draft the opening paragraph.",
+    "files": [],
+    "expected_behavior": "Agent activates structured-writing and recommends inverted pyramid (announcement, general audience — lead with the headline fact: 'We are sunsetting X on Y date.'). Justifies choice by contrasting with alternatives (BLUF would work but inverted pyramid is more appropriate for broadcast announcements; SPQR is for briefs needing context first). Drafts an opening paragraph that states the decision, the date, and the scope in the first sentence, followed by why (second sentence) and what's next for affected employees (third sentence). Flags that sympathy/empathy belongs after the fact, not before (broadcasting audiences resent euphemism)."
+  }
+]

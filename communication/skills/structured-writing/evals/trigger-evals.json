@@ -1,0 +1,15 @@
+[
+  {"query": "Rewrite this email as BLUF — lead with the ask.", "should_trigger": true, "note": "Direct BLUF request."},
+  {"query": "Apply the Minto Pyramid Principle to this memo.", "should_trigger": true, "note": "Pyramid Principle is core."},
+  {"query": "This 800-word status update buries the lede. Restructure it.", "should_trigger": true, "note": "Buried lede is an explicit anti-pattern."},
+  {"query": "Structure this doc so someone can skim-read it in 30 seconds.", "should_trigger": true, "note": "Skim-readability is a primary outcome."},
+  {"query": "Help me outline a memo using the Pyramid Principle — governing thought plus supporting arguments.", "should_trigger": true, "note": "Minto vocabulary."},
+  {"query": "Write the SPQR structure for this consulting brief.", "should_trigger": true, "note": "SPQR is a named structure."},
+  {"query": "Make this update lead with the conclusion, not the chronology.", "should_trigger": true, "note": "Anti-pattern (chronological narrative) reversal."},
+  {"query": "Turn this rambling Slack message into a BLUF-style update.", "should_trigger": true, "note": "Medium-specific BLUF application."},
+  {"query": "Tighten this paragraph — too many hedges and passive voice.", "should_trigger": false, "note": "Clarity/conciseness belongs to clarity-editing."},
+  {"query": "Write an RFC for moving from REST to gRPC.", "should_trigger": false, "note": "RFC authoring belongs to stakeholder-alignment."},
+  {"query": "Fix this button label — too wordy.", "should_trigger": false, "note": "UI microcopy belongs to ux-writing."},
+  {"query": "Draw a sequence diagram for the login flow.", "should_trigger": false, "note": "Diagrams belong to visual-communication."},
+  {"query": "Write a short story about a protagonist overcoming a challenge.", "should_trigger": false, "note": "Narrative/story arcs belong to storytelling."}
+]

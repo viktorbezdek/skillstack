@@ -1,0 +1,15 @@
+[
+  {"query": "Draw a Mermaid sequence diagram for our login flow.", "should_trigger": true, "note": "Direct Mermaid + sequence."},
+  {"query": "Create a flowchart for the order processing state machine.", "should_trigger": true, "note": "Flowchart."},
+  {"query": "Write a state diagram for the RFC lifecycle (draft, reviewing, accepted, superseded).", "should_trigger": true, "note": "State diagram."},
+  {"query": "Draw the ER diagram for our users, orders, and line items tables.", "should_trigger": true, "note": "ER diagram."},
+  {"query": "Give me a C4 container diagram for this three-service system.", "should_trigger": true, "note": "C4 model."},
+  {"query": "Visualize this architecture as a diagram.", "should_trigger": true, "note": "Architecture diagram."},
+  {"query": "I need Mermaid code for the checkout flow with branches.", "should_trigger": true, "note": "Mermaid by name."},
+  {"query": "Which diagram type should I use to show what-talks-to-what-when?", "should_trigger": true, "note": "Diagram-selection question."},
+  {"query": "Design the landing page hero section for our product.", "should_trigger": false, "note": "UI design belongs to frontend-design."},
+  {"query": "Create the slide deck for our board meeting.", "should_trigger": false, "note": "Slide decks belong to frontend-slides."},
+  {"query": "Wireframe a mobile app onboarding flow.", "should_trigger": false, "note": "Wireframes belong to frontend-design."},
+  {"query": "Write an RFC for the new service.", "should_trigger": false, "note": "RFC authoring belongs to stakeholder-alignment."},
+  {"query": "Tighten this paragraph.", "should_trigger": false, "note": "Prose editing belongs to clarity-editing."}
+]

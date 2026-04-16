@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Write an RFC for migrating our API from REST to gRPC. Three teams affected: API platform, mobile, web. Include DACI roles. Assume the driver is the API platform lead.",
+    "files": [],
+    "expected_behavior": "Agent activates stakeholder-alignment and produces an RFC following the template: title + state, BLUF (one paragraph — problem + proposal + ask), DACI roles (Driver: named API platform lead; Approver: ONE named person with reasoning; Contributors: mobile + web tech leads; Informed: broader eng org), Context, Problem, Options considered (REST status quo, gRPC proposed, alternative like GraphQL briefly — including do-nothing), Recommendation with confidence, Trade-offs (what we give up: tooling maturity, browser support), Open questions with owners, Plan with milestones, Appendix. Agent flags that 'Approver' must be one person and that multi-team Contributors do not have veto power. Notes the RFC should be posted with an explicit comment deadline."
+  },
+  {
+    "query": "Prepare a pre-read for a 30-minute meeting next Tuesday where leadership decides whether to discontinue our open-source CLI in favor of a paid SaaS offering.",
+    "files": [],
+    "expected_behavior": "Agent activates stakeholder-alignment and produces a 1-2 page pre-read. Structure: (1) The decision being made in one sentence; (2) Options with crisp summaries including do-nothing — ≤2 paragraphs each (keep OSS, discontinue + migrate, hybrid dual-track); (3) Recommendation with stated confidence; (4) What's needed from the meeting — ≤3 specific actionable items (e.g., 'approve migration timeline', 'name executive sponsor', 'ratify communication plan'). Agent emphasizes that the pre-read must go out 24-48 hours before and that if the 30-min meeting still runs long, either the pre-read was bad or the decision wasn't ready."
+  },
+  {
+    "query": "Write a decision doc capturing the decision we just made: we're adopting pnpm as the standard package manager across our TypeScript monorepos, replacing npm and yarn. The decider was the platform engineering lead; the decision is accepted.",
+    "files": [],
+    "expected_behavior": "Agent activates stakeholder-alignment and produces a decision doc using the template: Date, Decider (named, not group), Status: Accepted, Context (monorepo pain, disk usage, install speed problems with npm/yarn), Decision (one paragraph — adopt pnpm, timeline, who migrates), Alternatives considered (npm + yarn with one-line rejection rationale each), Consequences (disk savings, speed improvements, what we give up — toolchain changes, CI updates), Follow-ups with owner + date. Agent notes that this is distinct from an ADR (which would be architecture-only) and that the doc goes in a standard decisions folder with a link for future reference."
+  }
+]

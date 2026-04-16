@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Edit this for clarity: 'We have been giving some thought to the fact that it might possibly be a good idea for us to potentially consider making some kind of change to our deployment process, given that the process is currently being performed on a daily basis and there is some concern that it may be the case that the current approach is producing some suboptimal outcomes from time to time.'",
+    "files": [],
+    "expected_behavior": "Agent activates clarity-editing and runs the four passes. Produces a dramatically shorter output — aim for under 30 words, compressed from ~65 (50%+ savings). Demonstrates: compression ('on a daily basis' → 'daily', 'have been giving some thought' → 'we think', 'making some kind of change' → 'change'), hedge removal ('might possibly', 'potentially consider', 'it may be the case'), active voice ('the process is currently being performed' → 'we deploy'), and nominalization fix ('producing suboptimal outcomes' → 'produces worse results'). Example output: 'We deploy daily, and we think the current process produces worse results than it should. We should change it.' Agent notes each pass applied."
+  },
+  {
+    "query": "Strip the jargon from this engineering update: 'The synergies realized through our paradigm shift toward a microservices architecture have empowered our stakeholders to leverage cross-functional efficiencies at scale, driving meaningful alignment across the organization.'",
+    "files": [],
+    "expected_behavior": "Agent activates clarity-editing and rewrites with corporate jargon stripped. Keeps legitimate technical terms ('microservices architecture' is real) but removes 'synergies', 'paradigm shift', 'empowered', 'leverage', 'stakeholders', 'cross-functional efficiencies at scale', 'meaningful alignment' — all empty filler. Rewrite is concrete and claim-making: e.g., 'Since moving to microservices, three teams can now ship changes independently. Cross-team coordination dropped from 2 days to 2 hours.' Agent notes that the original makes no falsifiable claim and that replacing it with concrete metrics is the test of whether any substance was there."
+  },
+  {
+    "query": "Convert this to active voice and fix nominalizations: 'A review was conducted by the security team and recommendations have been made. Implementation of the recommendations is expected to be performed by engineering over the next two sprints.'",
+    "files": [],
+    "expected_behavior": "Agent activates clarity-editing and produces: 'The security team reviewed and recommended. Engineering will implement over the next two sprints.' — or similar. Identifies the passive constructions ('was conducted by', 'have been made', 'is expected to be performed by') and the nominalization ('Implementation of the recommendations' → 'implement'). Keeps meaning identical. Notes that active voice also surfaces accountability: the original hides who reviewed, who recommended, who implements; the rewrite names them."
+  }
+]

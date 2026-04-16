@@ -1,0 +1,15 @@
+[
+  {"query": "Should this decision be documented? We just picked pnpm over npm.", "should_trigger": true, "note": "The write-it-down decision is core."},
+  {"query": "Write an ADR for adopting PostgreSQL as our primary datastore.", "should_trigger": true, "note": "ADR authoring."},
+  {"query": "We need a runbook for the weekly backup verification procedure.", "should_trigger": true, "note": "Runbook artifact."},
+  {"query": "Start a team decision log — how should I structure it?", "should_trigger": true, "note": "Decision log."},
+  {"query": "Write a one-pager for the caching-layer idea before I commit to a full RFC.", "should_trigger": true, "note": "One-pager is explicitly covered."},
+  {"query": "How do I decide whether to write an ADR or a design doc for this choice?", "should_trigger": true, "note": "Artifact-selection is core."},
+  {"query": "Our runbook doesn't have expected results per step — how do I fix that?", "should_trigger": true, "note": "Runbook anti-pattern."},
+  {"query": "Write the Architecture Decision Record for deprecating our v1 API.", "should_trigger": true, "note": "ADR artifact — full name."},
+  {"query": "Generate documentation for this TypeScript project from the source.", "should_trigger": false, "note": "Auto-generated docs belong to documentation-generator."},
+  {"query": "Write an end-user tutorial for signing up and creating a first project.", "should_trigger": false, "note": "Tutorials belong to example-design."},
+  {"query": "Redesign the navigation of our docs site.", "should_trigger": false, "note": "Docs-site IA belongs to navigation-design."},
+  {"query": "Write an RFC to align three teams on a rollout plan.", "should_trigger": false, "note": "Cross-team RFCs belong to stakeholder-alignment."},
+  {"query": "Write a BLUF-style status update.", "should_trigger": false, "note": "Generic structure belongs to structured-writing."}
+]

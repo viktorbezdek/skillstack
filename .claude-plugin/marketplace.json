@@ -81,7 +81,7 @@
     {
       "name": "cloud-finops",
       "source": "./cloud-finops",
-      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files with 35+ real-world use cases. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
+      "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
       "version": "2.1.0",
       "category": "devops",
       "tags": [
@@ -112,6 +112,26 @@
         "security",
         "performance",
         "style"
+      ]
+    },
+    {
+      "name": "communication",
+      "source": "./communication",
+      "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
+      "version": "1.0.0",
+      "category": "documentation",
+      "tags": [
+        "communication",
+        "structured-writing",
+        "bluf",
+        "pyramid-principle",
+        "clarity",
+        "stakeholder-alignment",
+        "adr",
+        "runbook",
+        "mermaid",
+        "diagram-as-code",
+        "c4-model"
       ]
     },
     {
@@ -269,7 +289,7 @@
     {
       "name": "elicitation",
       "source": "./elicitation",
-      "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and LIWC. Progressive-disclosure structure with 8 domain references.",
+      "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
       "version": "2.0.0",
       "category": "design",
       "tags": [
@@ -484,7 +504,7 @@
     {
       "name": "plugin-dev",
       "source": "./plugin-dev",
-      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts. Multi-skill plugin.",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
       "version": "1.1.0",
       "category": "development",
       "tags": [
@@ -509,6 +529,26 @@
         "moscow",
         "ice",
         "prioritization"
+      ]
+    },
+    {
+      "name": "product-thinking",
+      "source": "./product-thinking",
+      "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
+      "version": "1.0.0",
+      "category": "thinking",
+      "tags": [
+        "product-thinking",
+        "problem-definition",
+        "jobs-to-be-done",
+        "jtbd",
+        "user-needs",
+        "value-proposition",
+        "kano-model",
+        "outcome-oriented",
+        "north-star",
+        "trade-off-analysis",
+        "product-strategy"
       ]
     },
     {
@@ -567,7 +607,7 @@
     {
       "name": "skill-foundry",
       "source": "./skill-foundry",
-      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills. Distinct from Anthropic's bundled skill-creator.",
+      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills, and progressive disclosure architecture. Distinct from Anthropic's bundled skill-creator \u2014 this is the full production toolkit for philosophy-first design, evidence-based prompting, anti-pattern prevention, shibboleths, eval-driven iteration, and enterprise-grade workflows.",
       "version": "2.0.0",
       "category": "development",
       "tags": [
@@ -582,7 +622,7 @@
     {
       "name": "skillstack-workflows",
       "source": "./skillstack-workflows",
-      "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, plus the original 9 workflows. Multi-skill plugin.",
+      "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
       "version": "2.0.0",
       "category": "thinking",
       "tags": [
@@ -603,7 +643,7 @@
     {
       "name": "storytelling",
       "source": "./storytelling",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. 9 canonical structures, character design, scene/pacing, dialogue, POV, StoryBrand/Pixar Spine, data storytelling, speech writing, interactive narrative, and narrative theory. 12 progressive-disclosure references.",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "version": "1.0.0",
       "category": "design",
       "tags": [

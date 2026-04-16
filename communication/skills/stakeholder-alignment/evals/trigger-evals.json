@@ -1,0 +1,15 @@
+[
+  {"query": "Write an RFC for moving from REST to gRPC, include DACI roles.", "should_trigger": true, "note": "Direct RFC + DACI."},
+  {"query": "Draft a design doc for the new notification service.", "should_trigger": true, "note": "Design doc is synonymous with RFC."},
+  {"query": "Write a proposal asking for headcount to build the data platform.", "should_trigger": true, "note": "Proposal artifact."},
+  {"query": "Prepare a pre-read for next week's architecture decision meeting.", "should_trigger": true, "note": "Pre-read is explicitly covered."},
+  {"query": "Assign DACI roles for this decision — who's the Driver, Approver, Contributors, Informed?", "should_trigger": true, "note": "DACI role assignment."},
+  {"query": "Use RAPID to structure the decision process for pricing model changes.", "should_trigger": true, "note": "RAPID framework."},
+  {"query": "Write a decision doc capturing why we chose PostgreSQL over MySQL.", "should_trigger": true, "note": "Decision doc."},
+  {"query": "We need to align three teams async on the migration plan. Draft the proposal.", "should_trigger": true, "note": "Cross-team async alignment."},
+  {"query": "Rewrite this email as BLUF.", "should_trigger": false, "note": "Generic structure belongs to structured-writing."},
+  {"query": "Map the power and interest of our stakeholders for this launch.", "should_trigger": false, "note": "Stakeholder mapping belongs to persona-mapping."},
+  {"query": "Write a compelling investor narrative for our Series A pitch.", "should_trigger": false, "note": "Investor pitch belongs to storytelling-for-stakeholders."},
+  {"query": "Tighten this paragraph — too wordy.", "should_trigger": false, "note": "Line editing belongs to clarity-editing."},
+  {"query": "Should we write an ADR for adopting pnpm?", "should_trigger": false, "note": "ADR decisions belong to documentation-discipline."}
+]
