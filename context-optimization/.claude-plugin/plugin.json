@@ -1,6 +1,6 @@
 {
   "name": "context-optimization",
-  "version": "1.0.4",
+  "version": "1.0.11",
   "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
   "author": {
     "name": "Viktor Bezdek",
