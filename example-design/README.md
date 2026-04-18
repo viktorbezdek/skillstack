@@ -1,6 +1,6 @@
 # Example Design
 
-> **v1.0.10** | Documentation | 11 iterations
+> **v1.0.11** | Documentation | 12 iterations
 
 > Design code examples, tutorials, and runnable samples that actually teach -- with progressive complexity, realistic naming, and copy-paste reliability.
 

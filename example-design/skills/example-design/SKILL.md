@@ -7,21 +7,31 @@ description: >-
   for a library or API, build a runnable demo, or structure examples from simple to
   advanced. NOT for generating full repo documentation or READMEs (use
   documentation-generator). NOT for writing examples inside a skill file (use
-  skill-foundry).
+  skill-foundry). NOT for API endpoint design (use api-design).
 ---
 
 # Example Design
 
 Create code examples that teach effectively through progressive complexity.
 
+## Decision Tree: Which Example Type?
+
+```
+What does the user need?
+├─ Show a single concept → Snippet (5-15 lines)
+├─ Working code for a feature → Complete example (20-50 lines)
+├─ Step-by-step teaching → Tutorial (multi-file, progressive)
+└─ Reference for production use → Reference app (full project)
+```
+
 ## Example Types
 
-| Type | Purpose | Length |
-|------|---------|--------|
-| Snippet | Single concept | 5-15 lines |
-| Complete example | Working code | 20-50 lines |
-| Tutorial | Step-by-step | Multi-file |
-| Reference app | Production patterns | Full project |
+| Type | Purpose | Length | When to Use |
+|------|---------|--------|-------------|
+| Snippet | Single concept | 5-15 lines | Quick reference, API parameter demo |
+| Complete example | Working code | 20-50 lines | Feature walkthrough, integration demo |
+| Tutorial | Step-by-step | Multi-file | Onboarding, learning path |
+| Reference app | Production patterns | Full project | Architecture reference, starter template |
 
 ## Progressive Complexity
 
@@ -36,6 +46,8 @@ Level 4: Add edge cases
    ↓
 Level 5: Production-ready
 ```
+
+Each level must be runnable independently. Never skip a level — the reader needs the progression to build understanding incrementally.
 
 ## Example Anatomy
 
@@ -56,12 +68,12 @@ print(user["name"])  # Output: "Alice"
 
 ## Quality Checklist
 
-- [ ] **Runnable**: Copy-paste works
-- [ ] **Complete**: All imports included
-- [ ] **Minimal**: No unrelated code
-- [ ] **Commented**: Key lines explained
-- [ ] **Realistic**: Uses real-world patterns
-- [ ] **Tested**: Verified working
+- [ ] **Runnable**: Copy-paste works without modifications
+- [ ] **Complete**: All imports included, no hidden dependencies
+- [ ] **Minimal**: No unrelated code, no ceremonial boilerplate
+- [ ] **Commented**: Key lines explained, not every line
+- [ ] **Realistic**: Uses real-world names, URLs, and patterns
+- [ ] **Tested**: Verified working before publishing
 
 ## Tutorial Structure
 
@@ -92,10 +104,18 @@ print(user["name"])  # Output: "Alice"
 
 ## Anti-Patterns
 
-- Foo/bar variables (use realistic names)
-- Missing imports
-- Outdated syntax
-- No expected output
-- Untested code
-- Wall of code (no explanation)
+- **Foo/bar variables** — use realistic names that convey domain meaning; `customerName` teaches more than `foo`
+- **Missing imports** — if the reader cannot copy-paste and run, the example fails its purpose
+- **Outdated syntax** — examples lag behind API changes faster than any other documentation; verify against current version
+- **No expected output** — the reader cannot verify their result is correct without seeing what success looks like
+- **Untested code** — untested examples are wrong examples; always run before publishing
+- **Wall of code with no explanation** — code without context is a source listing, not a teaching tool
+- **Showing only the happy path** — real usage hits errors; show what happens when things go wrong (at least in progressive Level 3+)
+- **Over-abstracted examples** — wrapping the concept in 3 layers of indirection obscures the point; keep the example direct
 
+## When to Use
+
+- Creating API reference examples for each endpoint
+- Building quickstart guides for a library or framework
+- Writing runnable demos for a product feature
+- Designing tutorial sequences for onboarding
