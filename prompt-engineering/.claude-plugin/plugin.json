@@ -1,6 +1,6 @@
 {
   "name": "prompt-engineering",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
   "author": {
     "name": "Viktor Bezdek",

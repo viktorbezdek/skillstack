@@ -1,6 +1,6 @@
 # Prompt Engineering
 
-> **v1.1.15** | Development | 17 iterations
+> **v1.1.16** | Development | 17 iterations
 
 > Systematic prompt optimization for LLMs -- turn vague instructions into precision-engineered prompts that produce reliable, high-quality outputs across Claude, GPT-4, and Gemini.
 > Single skill + 4 references + 3 scripts
