@@ -1,6 +1,6 @@
 # Consistency Standards
 
-> **v1.0.10** | Establish and maintain naming conventions, taxonomy standards, style guides, and content reuse patterns across documentation and code.
+> **v1.0.11** | Establish and maintain naming conventions, taxonomy standards, style guides, and content reuse patterns across documentation and code.
 > 1 skill | 13 trigger evals, 3 output evals
 
 ## The Problem

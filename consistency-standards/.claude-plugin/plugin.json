@@ -1,6 +1,6 @@
 {
   "name": "consistency-standards",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
   "author": {
     "name": "Viktor Bezdek",

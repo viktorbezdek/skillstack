@@ -14,6 +14,37 @@ description: >-
 
 Establish uniform patterns for naming, terminology, and content reuse.
 
+## When to Use / Not Use
+
+**Use when:**
+- Establishing naming conventions for a new project
+- Auditing existing code or docs for consistency issues
+- Creating a terminology glossary to standardize vocabulary
+- Defining voice and tone guidelines for different content types
+- Designing content reuse strategies (DRY documentation)
+- Onboarding new team members with style standards
+
+**Do NOT use when:**
+- Formal ontology or semantic modeling -> use `ontology-design`
+- Content type and CMS schema design -> use `content-modelling`
+- Writing the actual documentation content -> use `documentation-generator`
+
+## Decision Tree
+
+```
+What are you standardizing?
+├── How things are NAMED (variables, files, endpoints, columns)
+│   ├── Single language? -> Case style guide (§Naming Conventions)
+│   └── Multi-language stack? -> Per-context rules + mapping between layers (§Naming Conventions)
+├── How things are CALLED (terminology, synonyms, product names)
+│   └── Multiple terms for same concept? -> Glossary with preferred + forbidden terms (§Terminology)
+├── How things SOUND (voice, tone, formality)
+│   └── Different contexts need different voices? -> Per-context voice rules (§Voice and Tone)
+├── How content is REUSED (repeated sections across docs)
+│   └── Same content in 3+ places? -> Snippets/variables/conditionals (§Content Reuse)
+└── Not sure / combination? -> Start with audit (§Style Checklist)
+```
+
 ## Naming Conventions
 
 ### Case Styles
@@ -33,6 +64,18 @@ Establish uniform patterns for naming, terminology, and content reuse.
 component-button-primary.tsx
 doc-api-reference.md
 ```
+
+### Cross-Layer Mapping Rules
+
+When a stack has multiple languages, define how names map between layers:
+
+| Layer | Convention | Example |
+|-------|-----------|---------|
+| Database column | snake_case | `user_name` |
+| API response field | camelCase | `userName` |
+| Frontend variable | camelCase | `userName` |
+| URL path segment | kebab-case | `/user-profile` |
+| File name | kebab-case | `user-profile.tsx` |
 
 ## Terminology Standards
 
@@ -86,8 +129,12 @@ Install {{product_name}} v{{version}}
 
 ## Anti-Patterns
 
-- Synonym sprawl (multiple terms for same concept)
-- Inconsistent capitalization
-- Mixed voice (you/we/user)
-- Orphaned content (outdated references)
-
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Synonym sprawl | Multiple terms for same concept ("user"/"account"/"member") | Create glossary with one preferred term + explicit "Do Not Use" list |
+| Inconsistent capitalization | Feature names capitalized randomly | Define rule: capitalize only proper nouns and product names |
+| Mixed voice | "you should"/"the user must"/"we recommend" in same doc | Per-context voice guide: instructions=direct active, errors=helpful, success=brief |
+| Orphaned content | Outdated references to renamed features | Audit checklist: search for forbidden terms, add to CI lint step |
+| Standards without enforcement | Glossary exists but nobody follows it | Add lint rules (ESLint, Ruff) + PR review checklist + automated docs linting |
+| Over-standardizing | Rule for every possible variation | Focus only on inconsistencies causing real confusion or maintenance cost |
+| Page-based reuse | Same content copy-pasted into 8 documents | Single-source snippet with `{{> shared/section.md}}` includes |
