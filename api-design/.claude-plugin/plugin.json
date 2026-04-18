@@ -1,6 +1,6 @@
 {
   "name": "api-design",
-  "version": "1.2.23",
+  "version": "1.2.24",
   "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
   "author": {
     "name": "Viktor Bezdek",

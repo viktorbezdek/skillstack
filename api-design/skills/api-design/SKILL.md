@@ -11,18 +11,32 @@ description: >-
 
 # API Design
 
-Comprehensive API design skill combining REST, GraphQL, gRPC, and Python library architecture expertise. This merged skill provides patterns, templates, and tools for building production-grade APIs.
+Comprehensive API design skill combining REST, GraphQL, gRPC, and Python library architecture expertise with patterns, templates, and tools for production-grade APIs.
 
-## Overview
+## When to Activate
 
-This skill combines expertise from multiple specialized domains:
-- **REST API Design** - Resource-oriented endpoints, HTTP semantics, OpenAPI specs
-- **GraphQL Development** - Schema-first design, resolvers, federation, DataLoader
-- **gRPC Services** - Protocol Buffers, streaming patterns
-- **Python Library Architecture** - Package structure, API design, SOLID principles
-- **Security & Performance** - OAuth, JWT, rate limiting, caching
+- Creating new API endpoints (REST, GraphQL, gRPC)
+- Designing resource hierarchies and schemas
+- Writing OpenAPI/Swagger specifications
+- Implementing authentication and authorization
+- Setting up pagination, filtering, and sorting
+- Configuring rate limiting and CORS
+- Designing Python library APIs
+- Reviewing API designs in pull requests
 
-**Time Savings:** 50%+ reduction in API development time through templates, code generation, and best practices.
+## Decision Tree: API Style Selection
+
+```
+What are you building?
++-- CRUD resources with clear entity model? --> REST
+|   Best for: resource-oriented operations, caching, wide tooling support
++-- Complex queries with varying client needs? --> GraphQL
+|   Best for: over-fetching prevention, nested data, multiple client types
++-- High-throughput service-to-service? --> gRPC
+|   Best for: low latency, strong typing, streaming, polyglot microservices
++-- Reusable Python package? --> Python Library API
+    Best for: SDKs, internal tooling, developer experience
+```
 
 ## Quick Reference
 
@@ -34,31 +48,28 @@ This skill combines expertise from multiple specialized domains:
 - Never use verbs: `/getUsers` or underscores: `/user_profiles`
 
 **HTTP Methods:**
-- `GET` - Retrieve resources (safe, idempotent, cacheable)
-- `POST` - Create new resources (returns 201 with Location header)
+- `GET` - Retrieve (safe, idempotent, cacheable)
+- `POST` - Create (returns 201 with Location header)
 - `PUT` - Replace entire resource (idempotent)
 - `PATCH` - Partial update (only changed fields)
-- `DELETE` - Remove resource (idempotent, returns 204)
+- `DELETE` - Remove (idempotent, returns 204)
 
 ### HTTP Status Codes
 
-**Success:**
-- `200 OK` - GET, PUT, PATCH success
-- `201 Created` - POST success (include Location header)
-- `204 No Content` - DELETE success
-
-**Client Errors:**
-- `400 Bad Request` - Malformed request
-- `401 Unauthorized` - Missing/invalid authentication
-- `403 Forbidden` - Insufficient permissions
-- `404 Not Found` - Resource doesn't exist
-- `409 Conflict` - Duplicate resource
-- `422 Unprocessable Entity` - Validation errors
-- `429 Too Many Requests` - Rate limit exceeded
-
-**Server Errors:**
-- `500 Internal Server Error` - Unhandled exception
-- `503 Service Unavailable` - Database/service down
+| Category | Code | When |
+|----------|------|------|
+| Success | 200 | GET, PUT, PATCH success |
+| Success | 201 | POST success (include Location header) |
+| Success | 204 | DELETE success |
+| Client Error | 400 | Malformed request |
+| Client Error | 401 | Missing/invalid authentication |
+| Client Error | 403 | Insufficient permissions |
+| Client Error | 404 | Resource doesn't exist |
+| Client Error | 409 | Duplicate resource |
+| Client Error | 422 | Validation errors |
+| Client Error | 429 | Rate limit exceeded |
+| Server Error | 500 | Unhandled exception |
+| Server Error | 503 | Database/service down |
 
 ### Error Response Format
 
@@ -130,69 +141,42 @@ async def create_user(
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 
 class UserCreate(BaseModel):
-    """Schema for creating a new user."""
     email: EmailStr
     full_name: str = Field(..., min_length=1, max_length=255)
     password: str = Field(..., min_length=8)
 
 class UserRead(BaseModel):
-    """Schema for reading user data (public fields only)."""
     id: str
     tenant_id: str
     email: EmailStr
     full_name: str
     created_at: datetime
-
     model_config = ConfigDict(from_attributes=True)
 ```
 
 ### Pagination Patterns
 
-**Cursor-Based (recommended):**
+**Cursor-Based (recommended for large datasets):**
 ```
-GET /posts?limit=20&cursor=eyJpZCI6MTIzfQ
-
-Response:
-{
-  "data": [...],
-  "pagination": {
-    "nextCursor": "eyJpZCI6MTQzfQ",
-    "hasMore": true
-  }
-}
+GET /posts?limit=20&cursor=***
+{ "data": [...], "pagination": { "nextCursor": "***", "hasMore": true } }
 ```
 
-**Offset-Based (simpler):**
+**Offset-Based (simpler, for small datasets):**
 ```
 GET /posts?limit=20&offset=40
-
-Response:
-{
-  "data": [...],
-  "pagination": {
-    "total": 500,
-    "limit": 20,
-    "offset": 40
-  }
-}
+{ "data": [...], "pagination": { "total": 500, "limit": 20, "offset": 40 } }
 ```
 
 ### Authentication Patterns
 
-**JWT Token Usage:**
-```http
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
-```
-
-**API Key Usage:**
-```http
-X-API-Key: sk_live_abc123def456
-```
-
-**OAuth 2.0 Flows:**
-- Authorization Code Flow - Web apps with backend
-- Client Credentials Flow - Service-to-service
-- PKCE Flow - Mobile/SPA apps
+| Flow | Use Case |
+|------|----------|
+| JWT Bearer tokens | API authentication, stateless sessions |
+| API Key (X-API-Key) | Service-to-service, developer access |
+| OAuth 2.0 Authorization Code | Web apps with backend |
+| OAuth 2.0 Client Credentials | Service-to-service |
+| OAuth 2.0 PKCE | Mobile/SPA apps |
 
 ### Rate Limiting Headers
 
@@ -301,18 +285,7 @@ Retry-After: 60
 5. Add authentication in resolvers
 6. Configure caching and complexity limits
 
-### 3. Set Up Apollo Federation
-
-```bash
-# Scaffold subgraphs
-python scripts/federation_scaffolder.py users-service --entities User,Profile
-python scripts/federation_scaffolder.py posts-service --entities Post --references User
-
-# Configure gateway
-python scripts/federation_scaffolder.py gateway --subgraphs users:4001,posts:4002
-```
-
-### 4. Validate API Specification
+### 3. Validate API Specification
 
 ```bash
 # Validate OpenAPI spec
@@ -325,18 +298,22 @@ python scripts/schema_analyzer.py schema.graphql --validate
 python scripts/api_helper.py docs --spec openapi.yaml --output docs/
 ```
 
-## Anti-Patterns to Avoid
+## Anti-Patterns
 
-1. **Verb-Based URLs** - Use `/users` not `/getUsers`
-2. **Inconsistent Response Envelopes** - Always use consistent structure
-3. **Breaking Changes Without Versioning** - Use semantic versioning
-4. **N+1 Queries in GraphQL** - Use DataLoader for batching
-5. **Over-fetching REST Endpoints** - Support sparse fieldsets
-6. **Missing Pagination** - Always paginate list endpoints
-7. **No Idempotency Keys** - Accept `Idempotency-Key` header for mutations
-8. **Leaky Internal Errors** - Generic messages in production
-9. **Missing CORS Configuration** - Configure allowed origins explicitly
-10. **No Rate Limiting** - Implement per-user/per-endpoint limits
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| Verb-based URLs | `/getUsers` violates REST conventions | Use `/users` with GET method |
+| Inconsistent response envelopes | Clients can't parse predictably | Always use consistent structure |
+| Breaking changes without versioning | Clients break on updates | Use semantic versioning; deprecation headers |
+| N+1 queries in GraphQL | Each resolver fires separate DB query | Use DataLoader for batching |
+| Over-fetching REST endpoints | Clients get more data than needed | Support sparse fieldsets, filtering |
+| Missing pagination | List endpoints return unbounded results | Always paginate list endpoints |
+| No idempotency keys | Duplicate mutations from retries | Accept `Idempotency-Key` header |
+| Leaky internal errors | Stack traces exposed to clients | Generic messages in production |
+| Missing CORS configuration | Browser requests blocked | Configure allowed origins explicitly |
+| No rate limiting | API abuse and DoS | Implement per-user/per-endpoint limits |
+| PUT for partial updates | Overwrites unchanged fields | Use PATCH for partial updates |
+| Monolithic GraphQL schema | Schema becomes unmaintainable | Use Federation for schema separation |
 
 ## Quality Checklist
 
@@ -351,43 +328,10 @@ python scripts/api_helper.py docs --spec openapi.yaml --output docs/
 [ ] CORS configured for known origins
 [ ] Idempotency keys for mutating operations
 [ ] OpenAPI spec validates without errors
-[ ] SDK generation tested
 [ ] Examples for all request/response types
 ```
 
-## When to Use This Skill
-
-- Creating new API endpoints (REST, GraphQL, gRPC)
-- Designing resource hierarchies and schemas
-- Writing OpenAPI/Swagger specifications
-- Implementing authentication and authorization
-- Setting up pagination, filtering, and sorting
-- Configuring rate limiting and CORS
-- Designing Python library APIs
-- Reviewing API designs in pull requests
-
-## Source Skills
-
-This merged skill combines content from the following legacy skills (now part of `api-design`):
-- FastAPI, Pydantic, multi-tenant patterns
-- Library structure, SOLID principles, PEP standards
-- GraphQL, Apollo, Federation, DataLoader
-- REST, gRPC, security, versioning
-- Documentation, authentication, best practices
-
 ---
 
-**Version:** 1.0.0
-**Last Updated:** 2025-01-18
-
-
-
-
-
-
-
-
-
-
-
-
+**Version:** 1.1.0
+**Last Updated:** 2026-04-18

@@ -223,6 +223,16 @@ python scripts/validate_tokens.py tokens.json
 - Ignore Core Web Vitals
 - Use hardcoded colors/spacing
 
+## Anti-Patterns
+
+- **Copy-pasting entire component libraries without understanding** — shadcn/ui is copy-paste by design, but you must understand what you copy; blindly adding 30 components bloats your bundle
+- **Overriding Radix ARIA attributes** — Radix provides correct accessibility out of the box; overriding `role` or `aria-*` attributes usually makes things worse, not better
+- **Dynamic Tailwind class construction** — `className={\`text-${color}-${shade}\`}` does not work because Tailwind purges unreferenced classes; use `className={variants[color]}` with safelist instead
+- **Using px instead of rem** — px does not scale with user font-size preferences; rem respects browser zoom and accessibility settings
+- **Skipping focus indicators for aesthetics** — visible focus is a WCAG requirement; style it with `focus-visible:` instead of removing it
+- **Nested interactive elements** — `<button>` inside `<a>` or vice versa creates ambiguous activation targets and violates HTML spec
+- **Theme tokens that only change colors** — a proper dark mode also adjusts shadows, borders, and opacity; only swapping colors creates jarring, inconsistent dark mode
+
 See [Extended Patterns](references/extended-patterns.md) for detailed component examples, styling patterns, file organization, scripts reference, and reference quick guide.
 
 ---
