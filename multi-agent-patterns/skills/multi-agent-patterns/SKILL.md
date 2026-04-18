@@ -7,15 +7,53 @@ description: This skill should be used when the user asks to "design multi-agent
 
 Multi-agent architectures distribute work across multiple language model instances, each with its own context window. When designed well, this distribution enables capabilities beyond single-agent limits. When designed poorly, it introduces coordination overhead that negates benefits. The critical insight is that sub-agents exist primarily to isolate context, not to anthropomorphize role division.
 
-## When to Activate
+## When to Use
 
-Activate this skill when:
 - Single-agent context limits constrain task complexity
 - Tasks decompose naturally into parallel subtasks
 - Different subtasks require different tool sets or system prompts
 - Building systems that must handle multiple domains simultaneously
 - Scaling agent capabilities beyond single-context limits
 - Designing production agent systems with multiple specialized components
+
+## When NOT to Use
+
+- Agent memory or persistence across sessions (use memory-systems)
+- Tool design or tool interfaces (use tool-design)
+- Hosted agent infrastructure or sandboxed VMs (use hosted-agents)
+- BDI cognitive models or mental state modeling (use bdi-mental-states)
+- Simple tasks that fit within a single context window (no need for multi-agent)
+
+## Decision Tree
+
+```
+Do you need multiple agents?
+│
+├─ Single-agent context limits reached?
+│  ├─ YES → Continue
+│  └─ NO → Single agent is simpler and cheaper; stay with it
+│
+├─ How should agents coordinate?
+│  ├─ Central control needed? → Supervisor/Orchestrator
+│  │  ├─ Need strict workflow control? → Supervisor with plan enforcement
+│  │  └─ Need human-in-the-loop? → Supervisor with approval gates
+│  ├─ Flexible exploration needed? → Peer-to-Peer/Swarm
+│  │  ├─ Tasks have emergent requirements? → Swarm with handoff protocols
+│  │  └─ Breadth-first search? → Swarm with convergence constraints
+│  └─ Large-scale with layers? → Hierarchical
+│     ├─ Strategic + planning + execution layers → 3-tier hierarchy
+│     └─ Enterprise workflows with management levels → Match org structure
+│
+├─ How should context be isolated?
+│  ├─ Sub-agent needs full understanding? → Full context delegation
+│  ├─ Sub-task is well-defined? → Instruction passing only
+│  └─ Need shared state without context bloat? → File-system memory
+│
+└─ Consensus mechanism needed?
+   ├─ Quick decision? → Weighted voting by confidence
+   ├─ High-stakes accuracy? → Debate protocol (adversarial critique)
+   └─ Detecting sycophancy? → Trigger-based intervention
+```
 
 ## Core Concepts
 
@@ -162,29 +200,18 @@ Monitor multi-agent interactions for specific behavioral markers. Stall triggers
 
 Different frameworks implement these patterns with different philosophies. LangGraph uses graph-based state machines with explicit nodes and edges. AutoGen uses conversational/event-driven patterns with GroupChat. CrewAI uses role-based process flows with hierarchical crew structures.
 
-## Practical Guidance
+## Anti-Patterns
 
-### Failure Modes and Mitigations
-
-**Failure: Supervisor Bottleneck**
-The supervisor accumulates context from all workers, becoming susceptible to saturation and degradation.
-
-Mitigation: Implement output schema constraints so workers return only distilled summaries. Use checkpointing to persist supervisor state without carrying full history.
-
-**Failure: Coordination Overhead**
-Agent communication consumes tokens and introduces latency. Complex coordination can negate parallelization benefits.
-
-Mitigation: Minimize communication through clear handoff protocols. Batch results where possible. Use asynchronous communication patterns.
-
-**Failure: Divergence**
-Agents pursuing different goals without central coordination can drift from intended objectives.
-
-Mitigation: Define clear objective boundaries for each agent. Implement convergence checks that verify progress toward shared goals. Use time-to-live limits on agent execution.
-
-**Failure: Error Propagation**
-Errors in one agent's output propagate to downstream agents that consume that output.
-
-Mitigation: Validate agent outputs before passing to consumers. Implement retry logic with circuit breakers. Use idempotent operations where possible.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Role-based decomposition instead of context-based | Agents divided by job title ("researcher", "writer") rather than by context isolation needs | Decompose by context boundary: each sub-agent handles a distinct context scope, not an org-chart role |
+| Supervisor paraphrasing all sub-agent outputs | "Telephone game" — fidelity loss when supervisor summarizes | Implement `forward_message` for direct pass-through; supervisor only synthesizes when aggregation is needed |
+| No time-to-live limits on agents | Agents run indefinitely, burning tokens without convergence | Set TTL per agent execution; enforce convergence checks |
+| Skipping output validation between agents | Errors propagate silently to downstream agents | Validate outputs before passing to consumers; use schema constraints |
+| Simple majority voting without weighting | Weak model hallucinations count equally with strong model reasoning | Use weighted voting by confidence or expertise; use debate protocols for high-stakes decisions |
+| Full context delegation everywhere | Negates the purpose of multi-agent (context isolation) | Use instruction passing for well-defined subtasks; reserve full delegation for complex decisions |
+| Choosing pattern by organizational metaphor | "Our team has a manager so we need a supervisor" — wrong basis | Choose by coordination needs: supervisor for control, swarm for exploration, hierarchical for layered abstraction |
+| Ignoring token cost multiplier | 15× token cost surprises teams at billing time | Budget tokens explicitly; monitor per-agent usage; compare single-agent baseline |
 
 ## Examples
 
@@ -244,12 +271,3 @@ External resources:
 - [AutoGen Framework](https://microsoft.github.io/autogen/) - GroupChat and conversational patterns
 - [CrewAI Documentation](https://docs.crewai.com/) - Hierarchical agent processes
 - [Research on Multi-Agent Coordination](https://arxiv.org/abs/2308.00352) - Survey of multi-agent systems
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2025-12-20
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.0.0

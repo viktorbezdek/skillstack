@@ -1,132 +1,150 @@
 ---
 name: critical-intuition
-description: Stress-test, critique, and challenge existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind-spot exposure, and red-flag identification. Use when the user asks to stress-test a plan, challenge assumptions, find flaws, identify risks in an idea, expose hidden biases, audit a proposal for blind spots, or "poke holes in this". NOT for generating new ideas or solutions (use creative-problem-solving). NOT for structured risk registers or mitigation plans (use risk-management).
+description: Stress-test, critique, and challenge existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind-spot exposure, and red-flag identification. Use when the user asks to stress-test a plan, challenge assumptions, find flaws, identify risks in an idea, expose hidden biases, audit a proposal for blind spots, or "poke holes in this". NOT for generating new ideas or solutions (use creative-problem-solving), NOT for structured risk registers or mitigation plans (use risk-management), NOT for brainstorming or divergent thinking (use creative-problem-solving).
 ---
 
 # Critical Intuition & Sixth Sense
 
-This skill enables sophisticated analytical and intuitive thinking to help users detect subtle patterns, read between the lines, reason rigorously, sense hidden dynamics, and make sound judgments under uncertainty.
+Stress-test existing ideas and detect hidden patterns. Backward-looking, convergent analysis — complements creative-problem-solving (forward-looking, divergent generation).
 
-## When to Use This Skill
+## When to Use / Not Use
 
-Apply when the user requests:
-- "Read between the lines"
-- "What am I missing?"
-- "Analyze this critically"
-- "What's really going on here?"
-- "Trust your intuition" or "what does your gut say?"
-- "Early warning signs" or "red flags"
-- "Hidden patterns" or "subtle signals"
-- Detect unstated assumptions or hidden agendas
-- Rigorous reasoning or logical analysis
-- Risk assessment or opportunity detection
-- Synthesis of complex information
-- Judgment under uncertainty
+**Use when:**
+- Reading between the lines on proposals, communications, or situations
+- Identifying what is missing, hidden, or unstated
+- Critically evaluating arguments, evidence, or reasoning
+- Detecting early warning signs or red flags
+- Synthesizing complex information under uncertainty
+- "Something feels off" but you cannot articulate why
 
-## Core Approach
+**Do NOT use when:**
+- Generating new creative solutions -> use `creative-problem-solving`
+- Brainstorming or strategic reframing -> use `creative-problem-solving`
+- Building structured risk registers -> use `risk-management`
+- Making final decisions between options -> use `prioritization`
 
-Critical intuition follows this pattern:
+## Decision Tree
 
-1. **Surface Analysis** - What's explicitly stated and obvious
-2. **Deep Reading** - What's implied, hidden, or absent
-3. **Pattern Detection** - Recognize significant patterns and anomalies
-4. **Critical Evaluation** - Rigorously test reasoning and evidence
-5. **Intuitive Synthesis** - Integrate multiple signals into gestalt understanding
-6. **Judgment Formation** - Reach sound conclusions despite uncertainty
+```
+What kind of analysis do you need?
+├── "What am I missing?" or "What could go wrong?"
+│   └── Gap analysis + red flag detection (§Step 2, §Step 6)
+├── "Read between the lines" on a document
+│   └── Multi-level reading (§Step 1: surface, subtext, meta)
+├── "Is this argument/evidence sound?"
+│   └── Critical reasoning (§Step 3: argument structure, fallacies, evidence)
+├── "How likely is this?" or "What should I believe?"
+│   └── Probabilistic assessment (§Step 4: Bayesian, multiple hypotheses)
+├── "Something feels off but I can't say why"
+│   └── Intuitive synthesis (§Step 5: gestalt, micro-signals)
+├── "What should I watch for going forward?"
+│   └── Early warning detection (§Step 6: leading indicators, tipping points)
+└── Need to GENERATE new ideas, not evaluate existing ones?
+    └── Use creative-problem-solving instead
+```
 
-## Analysis Process
+## Seven-Step Analysis Process
 
 ### Step 1: Multi-Level Reading
 
-**Surface level:** What is explicitly stated? What are the obvious facts?
+| Level | What to Examine | Question |
+|-------|----------------|----------|
+| Surface | What is explicitly stated | "What are the obvious facts?" |
+| Subtext | What is implied but not stated | "What assumptions are embedded? What's conspicuously absent?" |
+| Meta | Why it's communicated this way | "What are the incentives? What power dynamics are at play?" |
 
-**Subtext level:** What's implied but not stated? What assumptions are embedded? What's conspicuously absent?
-
-**Meta level:** Why is this being communicated this way? What are the incentives and constraints? What power dynamics are at play?
-
-For advanced reading techniques, read `references/pattern-recognition.md`.
+For techniques, read `references/pattern-recognition.md`.
 
 ### Step 2: Signal Detection
 
-**Pattern recognition:** What patterns emerge? What's signal vs. noise? Are there meta-patterns?
-
-**Anomaly detection:** What doesn't fit? What's unusually present or absent? Where are discontinuities?
-
-**Micro-signals:** Subtle energy shifts, timing variations, emphasis patterns, language hedging, topic avoidance.
-
-**Gap analysis:** What information is missing? What would normally be mentioned but isn't?
+- **Pattern recognition**: What patterns emerge? Signal vs. noise? Meta-patterns?
+- **Anomaly detection**: What doesn't fit? Discontinuities? Unusually present or absent?
+- **Micro-signals**: Timing variations, emphasis patterns, language hedging, topic avoidance
+- **Gap analysis**: What information is missing that would normally be present?
 
 For subtle signal detection, read `references/sixth-sense.md`.
 
 ### Step 3: Critical Reasoning
 
-**Argument structure:** Identify premises and conclusions. Evaluate logical validity. Detect hidden assumptions.
+- **Argument structure**: Identify premises and conclusions, evaluate logical validity, detect hidden assumptions
+- **Fallacy detection**: Formal fallacies, informal fallacies, statistical fallacies, motivated reasoning
+- **Evidence evaluation**: Source credibility, data quality, sample representativeness, confounding factors
 
-**Fallacy detection:** Formal fallacies, informal fallacies, statistical fallacies, motivated reasoning.
-
-**Evidence evaluation:** Source credibility, data quality, sample representativeness, confounding factors.
-
-For critical thinking frameworks, read `references/critical-thinking.md`.
+For frameworks, read `references/critical-thinking.md`.
 
 ### Step 4: Probabilistic Assessment
 
-**Bayesian thinking:** Prior probability, evidence strength, updated probability, residual uncertainty.
-
-**Multiple hypotheses:** Generate alternatives, assess relative likelihood, identify discriminating evidence.
-
-**Confidence calibration:** How confident should I be? What would change my mind?
+- **Bayesian thinking**: Prior probability → evidence strength → updated probability → residual uncertainty
+- **Multiple hypotheses**: Generate alternatives, assess relative likelihood, identify discriminating evidence
+- **Confidence calibration**: How confident should you be? What would change your mind?
 
 ### Step 5: Intuitive Synthesis
 
-**Gestalt perception:** Combine disparate cues, see the whole picture, pattern completion, emergent understanding.
-
-**Cross-domain connections:** Analogical reasoning, structural similarities, principle transfer.
-
-**Tacit knowledge:** Pattern matching without explicit rules, gut feeling as compressed expertise.
+- **Gestalt perception**: Combine disparate cues, see the whole picture, emergent understanding
+- **Cross-domain connections**: Analogical reasoning, structural similarities, principle transfer
+- **Tacit knowledge**: Pattern matching without explicit rules — gut feeling as compressed expertise
 
 For synthesis techniques, read `references/synthesis-frameworks.md`.
 
 ### Step 6: Early Warning Detection
 
-**Leading indicators:** Upstream signals, stress accumulation, resilience degradation, variance increases.
+- **Leading indicators**: Upstream signals, stress accumulation, resilience degradation, variance increases
+- **Trajectory sensing**: Momentum assessment, inflection point detection, tipping point proximity
+- **Red flag clusters**: Multiple small concerns, coincidence accumulation, pattern breaks
 
-**Trajectory sensing:** Momentum assessment, inflection point detection, tipping point proximity.
-
-**Red flag clusters:** Multiple small concerns, coincidence accumulation, pattern breaks.
-
-For early warning details, read `references/sixth-sense.md`.
+For details, read `references/sixth-sense.md`.
 
 ### Step 7: Judgment Formation
 
-**Information integration:** Combine quantitative and qualitative, triangulate sources, weight by reliability.
+- **Information integration**: Combine quantitative and qualitative, triangulate sources, weight by reliability
+- **Decision under uncertainty**: Expected value, scenario analysis, robust options
+- **Metacognitive check**: How confident am I? What biases might affect me? What am I missing?
 
-**Decision under uncertainty:** Expected value thinking, scenario analysis, robust options.
+## Analysis Depth by Stakes
 
-**Metacognitive check:** How confident am I? What biases might affect me? What am I missing?
+| Stakes Level | Steps | Techniques |
+|---|---|---|
+| Low (minor, reversible) | Steps 1-2 + red flag scan | Surface + subtext reading, quick pattern check |
+| Medium (significant, partially reversible) | Full 7-step process | All techniques, probabilistic assessment |
+| High (irreversible, major consequences) | Full process + extended patterns | Multiple hypothesis testing, explicit metacognitive checks, counter-argument generation |
 
-For comprehensive synthesis, read `references/synthesis-frameworks.md`.
+## Anti-Patterns
 
-## Workflow
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Over-reading: finding signals that aren't there | Every proposal looks suspicious; alarming conclusions from ambiguous data | Calibrate confidence; distinguish high-confidence findings from speculation; require corroborating evidence |
+| Analysis paralysis: too many hypotheses | 10 possible interpretations but no recommendation | Force probabilistic ranking; assign relative likelihoods; identify discriminating evidence that would resolve ambiguity |
+| Confirmation bias in direction | "Gut feeling" biases analysis toward confirming initial suspicion | Explicit metacognitive check: "What would change my mind?" Generate strongest counter-argument |
+| Asking for validation not analysis | "Confirm this is a good plan" biases toward agreement | Ask "What am I missing?" or "What could go wrong?" instead |
+| No artifact to analyze | "What do you think about acquisitions generally?" is theory, not analysis | Share the actual document, proposal, or situation details; subtext reading requires actual text |
+| Paraphrasing instead of sharing originals | Paraphrasing already filters out the signals the skill would detect | Paste the full document; let the skill read between the actual lines |
+| Skipping metacognitive check | Analysis blind to its own biases and gaps | Always complete Step 7: "What biases might affect me? What am I missing?" |
+| Creative-problem-solving overlap | Trying to generate solutions with a critique skill | Generate with creative-problem-solving, then evaluate here; they are complementary opposites |
 
-When user triggers critical intuition:
-
-1. **Initial Understanding** - Acknowledge request, identify what needs analysis
-2. **Load References** - Pattern recognition, critical thinking, sixth sense, or synthesis as needed
-3. **Multi-Level Analysis** - Surface, deep reading, pattern detection
-4. **Critical Evaluation** - Reasoning analysis, evidence assessment, bias check
-5. **Intuitive Synthesis** - Gestalt integration, sixth sense signals, confidence calibration
-6. **Judgment & Recommendations** - Core conclusion, uncertainty acknowledgment, actionable implications
-
-## Validation Checks
+## Validation Checklist
 
 Before finalizing judgment:
-- Have I read at multiple levels (surface, subtext, meta)?
-- Have I detected patterns and anomalies?
-- Have I evaluated reasoning and evidence rigorously?
-- Have I checked for cognitive biases?
-- Have I synthesized multiple signals intuitively?
-- Have I calibrated confidence appropriately?
-- Have I acknowledged what I don't know?
-- Is my judgment actionable and well-grounded?
+- [ ] Read at multiple levels (surface, subtext, meta)?
+- [ ] Detected patterns and anomalies?
+- [ ] Evaluated reasoning and evidence rigorously?
+- [ ] Checked for cognitive biases?
+- [ ] Synthesized multiple signals intuitively?
+- [ ] Calibrated confidence appropriately?
+- [ ] Acknowledged what you don't know?
+- [ ] Judgment is actionable and well-grounded?
 
-See [Extended Patterns](references/extended-patterns.md) for advanced techniques (reading between lines, sixth sense development, critical questioning, bias mitigation), synthesis principles, red/green flag catalogs, and output format templates.
+## Integration
+
+- creative-problem-solving — Generative counterpart: create ideas there, evaluate here
+- risk-management — Structured risk frameworks that this skill's pattern detection feeds into
+- systems-thinking — Deeper feedback loop analysis for what this skill identifies
+- prioritization — Ranking the risks and opportunities this skill surfaces
+- outcome-orientation — Define measurable criteria for monitoring early warning indicators
+
+## References
+
+- `references/pattern-recognition.md` — Advanced pattern detection, signal vs. noise, anomaly detection
+- `references/critical-thinking.md` — Argument analysis, logical structure, fallacy detection
+- `references/sixth-sense.md` — Micro-signals, subtle energy shifts, early warning systems
+- `references/synthesis-frameworks.md` — Multi-source synthesis, decision under uncertainty
+- `references/extended-patterns.md` — Advanced techniques, red/green flag catalogs, output templates

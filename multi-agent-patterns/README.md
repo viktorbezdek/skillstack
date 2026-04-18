@@ -1,6 +1,6 @@
 # Multi-Agent Patterns
 
-> **v1.0.4** | Agent Architecture | 5 iterations
+> **v1.0.5** | Agent Architecture | 5 iterations
 
 ---
 

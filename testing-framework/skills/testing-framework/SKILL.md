@@ -6,52 +6,50 @@ description: |
 
 # Testing Framework
 
-A comprehensive, multi-language testing skill combining best practices for unit testing, E2E testing, component testing, accessibility testing, and test automation across multiple platforms and frameworks.
-
-## Overview
-
-This skill provides testing guidance and tooling for:
-
-- **Unit Testing**: Rust, TypeScript/JavaScript, PHP, Bash/Shell
-- **E2E Testing**: Playwright with visual analysis and screenshot capture
-- **Component Testing**: React Testing Library, Vitest
-- **Accessibility Testing**: axe-core integration
-- **Shell Script Testing**: ShellSpec, BATS frameworks
-- **Specialized Testing**: Mutation testing, fuzz testing, skill validation
-- **CI/CD Integration**: GitHub Actions, GitLab CI
+Set up test infrastructure, choose frameworks, and author test suites across multiple languages.
 
 ## When to Use This Skill
 
-**Trigger Phrases**:
-- "set up testing for my project"
-- "write unit tests for..."
-- "help me debug test failures"
-- "create E2E tests with Playwright"
-- "add accessibility testing"
-- "test my shell scripts"
-- "set up CI/CD test automation"
-
-**Use Cases**:
 - Setting up test infrastructure from scratch
+- Choosing a test framework for a new project
 - Writing new tests (unit, integration, E2E)
-- Debugging failing tests
-- Improving test quality and coverage
-- Implementing TDD/BDD workflows
-- Adding accessibility testing requirements
-- Configuring CI/CD pipelines with test automation
+- Adding accessibility testing to an existing suite
+- Configuring CI/CD test automation
+- Testing shell scripts with ShellSpec or BATS
 
-## Quick Decision Matrix
+## When NOT to Use This Skill
 
-| Need | Technology | Reference |
-|------|------------|-----------|
-| Rust unit tests | cargo test, tokio | `references/unit-testing.md`, `templates/rust/` |
-| Next.js/React testing | Vitest, RTL, Playwright | `assets/nextjs/`, `references/a11y-testing.md` |
-| PHP/TYPO3 testing | PHPUnit, Playwright | `templates/typo3/`, `references/functional-testing.md` |
-| Bash/Shell testing | ShellSpec, BATS | `assets/shellspec/`, `references/gotchas.md` |
-| E2E with screenshots | Playwright | `assets/e2e-workflow/`, `templates/e2e/` |
-| Accessibility testing | axe-core | `references/accessibility-testing.md` |
-| Test quality analysis | Python scripts | `scripts/analyze-test-quality.py` |
-| Skill validation | JSON test suites | `scripts/run_tests.py` |
+- **TDD methodology (red-green-refactor)** → use `test-driven-development`
+- **Diagnosing and fixing bugs** → use `debugging`
+- **Reviewing existing code or PRs** → use `code-review`
+- **Performance benchmarking** → use domain-specific profiling tools
+
+## Decision Tree
+
+```
+What do you need to test?
+│
+├─ Rust application
+│   └─ cargo test + AAA pattern → templates/rust/
+│
+├─ Next.js / React application
+│   ├─ Component tests → Vitest + React Testing Library → assets/nextjs/
+│   ├─ E2E tests → Playwright → templates/e2e/
+│   └─ Accessibility → axe-core → references/a11y-testing.md
+│
+├─ PHP / TYPO3 extension
+│   └─ PHPUnit + Playwright E2E → templates/typo3/
+│
+├─ Shell / Bash scripts
+│   ├─ BDD-style → ShellSpec → assets/shellspec/
+│   └─ TAP-compliant → BATS → scripts/init_bats_project.sh
+│
+├─ Existing code needs coverage analysis
+│   └─ scripts/analyze-test-quality.py + references/anti-patterns.md
+│
+└─ CI/CD integration needed
+    └─ GitHub Actions or GitLab CI → references/ci-cd.md
+```
 
 ## Testing Modules
 
@@ -414,14 +412,26 @@ scripts/validate_test_results.py actual.txt expected.txt
 | [BATS](https://bats-core.readthedocs.io/) | Shell script TAP testing |
 | [PHPUnit](https://phpunit.de/documentation.html) | PHP unit testing |
 
+## Anti-Patterns with Solutions
+
+1. **Testing implementation instead of behavior** — asserting internal function calls instead of observable outputs.
+   - **Solution**: test what the code produces (return values, side effects, DOM output) not how it produces it.
+
+2. **Oversized test fixtures** — test setup is 50+ lines for a 3-line assertion.
+   - **Solution**: use test builders and factory patterns (references/test-builders.md). Keep fixtures minimal and reusable.
+
+3. **Flaky tests from global state** — tests pass locally but fail in CI, or pass/fail unpredictably.
+   - **Solution**: mock time/random dependencies, ensure proper cleanup in tearDown, check for global state leakage. See references/troubleshooting.md.
+
+4. **Coverage theater** — chasing 100% line coverage while ignoring edge cases and error paths.
+   - **Solution**: quality over coverage. Focus testing effort where failures hurt most. 85% meaningful coverage > 100% shallow coverage.
+
+5. **E2E tests for everything** — using Playwright for logic that could be unit-tested in milliseconds.
+   - **Solution**: use the testing tier pyramid. Unit tests for logic (ms), integration for component interaction (seconds), E2E for critical user workflows (minutes).
+
 ---
 
-**Remember**: The goal is deployment confidence, not coverage theater. Focus testing effort where failures hurt most.
-
-
-
-
-
+**Remember**: The goal is deployment confidence, not coverage theater.
 
 
 

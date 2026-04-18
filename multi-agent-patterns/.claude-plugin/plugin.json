@@ -1,6 +1,6 @@
 {
   "name": "multi-agent-patterns",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
   "author": {
     "name": "Viktor Bezdek",
