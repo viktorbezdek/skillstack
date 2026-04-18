@@ -1,6 +1,6 @@
 {
   "name": "python-development",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
   "author": {
     "name": "Viktor Bezdek",

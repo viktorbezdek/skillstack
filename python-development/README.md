@@ -1,6 +1,6 @@
 # Python Development
 
-> **v1.1.24** | Development | 26 iterations
+> **v1.1.25** | Development | 26 iterations
 
 > Production-grade Python development guidance covering modern tooling (uv, ruff, mypy, pytest), best practices, library architecture, async patterns, MicroPython, and complete development workflows.
 > Single skill + 29 references + 5 cookbooks + 8 workflows + 3 scripts + 1 template
