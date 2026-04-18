@@ -1,249 +1,155 @@
 ---
 name: creative-problem-solving
-description: Generate new ideas and breakthrough solutions using brainstorming, lateral thinking, SCAMPER, first principles reasoning, game theory, and strategic reframing. Use when the user asks to brainstorm, ideate, "think outside the box", generate alternatives, explore creative solutions, reframe a problem, or come up with ideas — especially when stuck in conventional thinking. NOT for stress-testing or finding flaws in existing ideas (use critical-intuition). NOT for making a final decision between options (use strategic-decision or prioritization).
+description: Generate new ideas and breakthrough solutions using brainstorming, lateral thinking, SCAMPER, first principles reasoning, game theory, and strategic reframing. Use when the user asks to brainstorm, ideate, "think outside the box", generate alternatives, explore creative solutions, reframe a problem, or come up with ideas — especially when stuck in conventional thinking. NOT for stress-testing or finding flaws in existing ideas (use critical-intuition), NOT for making a final decision between options (use strategic-decision or prioritization), NOT for detecting bias or evaluating evidence quality (use critical-intuition).
 ---
 
 # Creative Problem-Solving
 
-This skill enables sophisticated creative and strategic thinking to help users find optimal, unconventional, and high-leverage solutions to complex problems.
+Generate breakthrough solutions using structured creativity techniques matched to problem type. Forward-looking, divergent thinking — complements critical-intuition (backward-looking, convergent).
 
-## When to Use This Skill
+## When to Use / Not Use
 
-Apply when the user requests:
-- "Think outside the box"
-- "Creative solutions"
-- "What are unconventional approaches?"
-- "Use game theory" or "apply first principles"
-- "Best outcome" or "optimal strategy"
-- Problem reframing or new perspectives
-- Strategic analysis or decision-making
-- Probability-based recommendations
-- Breaking through mental blocks
+**Use when:**
+- Conventional approaches have failed and you need fresh thinking
+- Breaking through mental blocks on a project
+- Strategic decisions involving competitors, stakeholders, or incentive dynamics
+- First-principles analysis of whether the problem itself is the right one to solve
+- Generating diverse alternatives with trade-offs
 
-## Core Approach
+**Do NOT use when:**
+- Analyzing or critiquing existing ideas -> use `critical-intuition`
+- Detecting bias in evidence or proposals -> use `critical-intuition`
+- Making a final decision between known options -> use `prioritization`
+- Pattern recognition in data -> use `critical-intuition`
 
-Creative problem-solving follows this pattern:
+## Decision Tree
 
-1. **Understand deeply** - Go beyond surface problem to underlying goals and constraints
-2. **Reframe strategically** - View from multiple angles before solving
-3. **Generate broadly** - Explore diverse solution space using creativity techniques
-4. **Analyze rigorously** - Apply strategic frameworks and probabilistic reasoning
-5. **Recommend optimally** - Synthesize insights into actionable high-value approach
+```
+What type of problem are you solving?
+├── Stuck in conventional thinking / mental block
+│   └── Lateral Thinking -> random entry, provocation, escape assumptions
+├── Need systematic exploration of solution space
+│   └── SCAMPER + Morphological Analysis -> structured ideation
+├── Strategic or competitive problem
+│   ├── Incentives/misaligned actors -> Game Theory -> Nash equilibrium, incentive alignment
+│   └── Fundamental constraints -> First Principles -> question everything assumed
+├── Organizational/team dynamics
+│   └── Systems Thinking -> feedback loops, leverage points, second-order effects
+├── Choosing between generated options
+│   └── Decision Frameworks -> expected value, Pareto optimization, reversibility test
+└── Need to evaluate existing ideas, not generate new ones?
+    └── Use critical-intuition instead
+```
 
-## Problem Analysis Process
+## Five-Step Process
 
 ### Step 1: Deep Understanding
 
-Before jumping to solutions, establish comprehensive problem understanding:
-
-**Extract the real problem:**
-- What is the stated problem?
-- What is the underlying goal/need?
-- What constraints exist (real vs. assumed)?
+Extract the real problem beneath the stated one:
+- What is the stated problem vs. the underlying goal?
+- What constraints are real vs. assumed (ghost constraints)?
 - Who are the stakeholders and what do they want?
 - What happens if we do nothing?
 
-**Challenge assumptions:**
-- List all implicit assumptions
-- Which assumptions can be questioned?
-- What becomes possible if assumptions change?
-- Are constraints physical, political, or conventional?
-
-**Identify problem type:**
-- Well-defined vs. ill-defined
-- Technical vs. adaptive challenge
-- Individual vs. systemic issue
-- Scarce resources vs. coordination problem
+Challenge assumptions explicitly. List all implicit assumptions and question which can be removed.
 
 ### Step 2: Strategic Reframing
 
-View the problem through multiple lenses before solving. Select relevant frameworks from references:
-
-**Recommended reframes:**
+View the problem through multiple lenses before solving:
 - **Abstraction shifts**: Chunk up (broader purpose), down (specific components), sideways (analogies)
 - **Perspective rotation**: Different stakeholders, time horizons, scales
-- **Constraint manipulation**: What if fixed constraints were variable? What if we removed vs. added?
+- **Constraint manipulation**: What if fixed constraints were variable?
 - **Inversion**: How would we guarantee failure? What would make this worse?
 
-For reframing techniques, read `references/reframing-techniques.md`.
+For techniques, read `references/reframing-techniques.md`.
 
 ### Step 3: Solution Generation
 
-Generate diverse solutions using creativity techniques. Select methods based on problem type:
+Generate diverse solutions using matched creativity techniques:
 
-**For breaking mental blocks:**
-- Random entry (force connections to random concepts)
-- Provocation (deliberately unreasonable statements)
-- Escape assumptions (negate core beliefs)
-- Read `references/lateral-thinking.md`
-
-**For systematic exploration:**
-- SCAMPER (Substitute, Combine, Adapt, Modify, Put to other use, Eliminate, Reverse)
-- Morphological analysis (combine attributes systematically)
-- Cross-domain transfer (solutions from other fields)
-- Read `references/ideation-techniques.md`
-
-**For strategic innovation:**
-- Game theory analysis (incentives, Nash equilibrium, cooperation vs. competition)
-- First principles thinking (fundamental truths, not conventions)
-- Systems thinking (feedback loops, leverage points, unintended consequences)
-- Read `references/strategic-frameworks.md`
+| Problem Type | Technique | Reference |
+|---|---|---|
+| Mental blocks | Random entry, provocation, escape assumptions | `references/lateral-thinking.md` |
+| Systematic exploration | SCAMPER, morphological analysis, cross-domain transfer | `references/ideation-techniques.md` |
+| Strategic innovation | Game theory, first principles, systems thinking | `references/strategic-frameworks.md` |
 
 ### Step 4: Solution Analysis
 
-Evaluate generated solutions using strategic frameworks:
+Evaluate generated solutions with strategic frameworks:
 
-**Probabilistic assessment:**
-- Expected value calculation (probability × outcome)
-- Base rates (population frequencies)
-- Bayesian updating (revise beliefs with evidence)
-- Tail risk analysis (low probability, high impact)
+- **Probabilistic**: Expected value, base rates, Bayesian updating, tail risk
+- **Game theory**: Nash equilibrium, incentive alignment, strategic commitment, backwards induction
+- **System dynamics**: Feedback loops, leverage points, second-order effects, time delays
 
-**Game theory validation:**
-- Nash equilibrium (stable outcomes)
-- Incentive alignment (individual vs. collective)
-- Strategic commitment (first-mover advantage)
-- Backwards induction (work from desired end state)
-
-**System dynamics:**
-- Feedback loops (reinforcing vs. balancing)
-- Leverage points (high-impact interventions)
-- Second-order effects (what happens next?)
-- Time delays between action and effect
-
-For comprehensive frameworks, read `references/strategic-frameworks.md`.
+For frameworks, read `references/strategic-frameworks.md`.
 
 ### Step 5: Decision & Recommendation
 
-Synthesize analysis into clear recommendations:
+Synthesize into actionable recommendations:
+1. Primary recommendation with reasoning
+2. Key advantages (why this is superior)
+3. Critical risks (what could go wrong)
+4. Mitigation strategies
+5. Decision criteria (when to choose alternatives)
+6. First concrete implementation steps
 
-**Structure optimal recommendations:**
-1. **Primary recommendation** with reasoning
-2. **Key advantages** (why this is superior)
-3. **Critical risks** (what could go wrong) 
-4. **Mitigation strategies** (how to address risks)
-5. **Decision criteria** (when to choose alternatives)
-6. **Implementation approach** (first concrete steps)
+Apply decision frameworks: expected value for uncertainty, Pareto for trade-offs, real options for flexibility, reversibility test for one-way vs. two-way doors.
 
-**Apply decision frameworks:**
-- Expected value for uncertain outcomes
-- Pareto optimization for trade-offs
-- Real options for flexibility value
-- Reversibility test (one-way vs. two-way doors)
+For frameworks, read `references/decision-frameworks.md`.
 
-For decision-making tools, read `references/decision-frameworks.md`.
+## Technique Selection Guide
 
-## Thinking Guidelines
+| Signal | Use Technique | Why |
+|--------|--------------|-----|
+| "We've tried everything" | Lateral thinking + inversion | Break the pattern by forcing random connections |
+| "We need more options" | SCAMPER + morphological analysis | Systematically explore combinations |
+| "Competitors react to our moves" | Game theory | Map incentives and equilibrium outcomes |
+| "Why do we even do it this way?" | First principles | Strip to fundamentals and rebuild |
+| "Teams are blocking each other" | Systems thinking + game theory | Find incentive misalignment and leverage points |
+| "What's the best approach?" | Expected value + reversibility test | Quantify trade-offs and identify safe-to-reverse options |
 
-### Embrace Unconventional
+## Anti-Patterns
 
-When user requests creative/out-of-box thinking:
-- Challenge every assumption explicitly
-- Generate seemingly impractical ideas (extract valuable kernels)
-- Look for solutions from unexpected domains
-- Ask "What would [famous innovator/different industry] do?"
-- Propose bold options even if risky (label clearly as such)
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Skipping Step 1 (deep understanding) | Solutions address stated problem, not real need | Always extract: "What is the underlying goal?" and "What happens if we do nothing?" |
+| Jumping to a single "best" answer | Short-circuits divergent exploration; misses high-leverage unconventional options | Generate 5-10 alternatives before converging; ask for approaches with trade-offs, not "the answer" |
+| Not sharing what has already been tried | Skill regenerates solutions already rejected | Provide prior approaches and why each failed in your prompt |
+| Critiquing instead of generating | Asking "critique this plan" triggers analysis, not ideation | Use this skill for generating alternatives; use critical-intuition for critique |
+| Abstraction without grounding | Game theory analysis too abstract to map to concrete actions | Name specific actors, specific moves, specific payoffs; ground in real people and teams |
+| Skipping feasibility assessment | Generated ideas are inspiring but have no implementation path | Never skip Step 4 (analysis) and Step 5 (recommendation); every idea needs feasibility check |
+| Assuming constraints are real | Ghost constraints narrow solution space invisibly | Explicitly label each constraint as "verified" or "assumption" and challenge assumptions |
+| Creative thinking without rigor | Unconventional ideas fail in real-world strategic complexity | Always pair generation (this skill) with analysis (game theory, Bayesian reasoning, systems thinking) |
 
-### Read Between Lines
+## Input Requirements
 
-Infer unstated needs and constraints:
-- What is the user really trying to accomplish?
-- What pressures or contexts might influence this?
-- What trade-offs are they implicitly making?
-- What might they be hesitant to state directly?
+What to include in your prompt for best results:
 
-### Use Probability
+| Input | Why It Matters |
+|-------|---------------|
+| What you have already tried + why each failed | Prevents regenerating rejected solutions |
+| Real constraint vs. assumed constraint | Identifies ghost constraints to challenge |
+| Who the relevant actors are | Game theory needs named players with real incentives |
+| Your resources and advantages | Asymmetric strategy depends on knowing your strengths |
+| What "success" looks like | Enables expected value calculation and decision criteria |
 
-Ground recommendations in likelihood:
-- "Most likely outcome is X (60%), though Y (30%) is possible..."
-- Weight by expected value, not just best case
-- Acknowledge uncertainty ranges
-- Distinguish high-confidence from speculative analysis
+**Template prompt:**
+```
+We have been trying to [solve problem] for [duration]. Approaches we've tried: [list each with why it failed]. The constraint we're working within: [describe, noting which are assumptions]. Our resources/advantages: [list]. Stakeholders involved: [who has influence]. Help me find approaches outside our current thinking.
+```
 
-### Apply Game Theory
+## Integration
 
-Analyze strategic interactions:
-- Map each party's incentives and optimal moves
-- Identify Nash equilibria (stable outcomes)
-- Look for positive-sum opportunities
-- Consider reputation, repeated games, commitment
-- Watch for prisoner's dilemmas (misaligned incentives)
+- critical-intuition — Analytical counterpart: critique what this skill generates
+- systems-thinking — Deeper systems dynamics for complex adaptive problems
+- prioritization — RICE, MoSCoW, ICE scoring for ranking generated solutions
+- risk-management — Systematic risk assessment for riskier creative solutions
+- outcome-orientation — Define measurable success criteria using OKRs
 
-### Maximize User Outcomes
+## References
 
-Optimize for user's success:
-- Anticipate obstacles and provide mitigation
-- Identify highest-leverage actions
-- Consider both short and long-term value
-- Balance risk and reward appropriately
-- Provide escape routes and decision criteria
-
-## Reference Materials
-
-Load these as needed for comprehensive techniques:
-
-- **`references/lateral-thinking.md`** - Random entry, provocation, challenge assumptions, concept fan, movement
-- **`references/strategic-frameworks.md`** - Game theory, first principles, systems thinking, constraints analysis
-- **`references/reframing-techniques.md`** - Meta-level shifts, perspective rotation, context changes, constraint manipulation
-- **`references/ideation-techniques.md`** - SCAMPER, morphological analysis, analogical thinking, TRIZ principles
-- **`references/decision-frameworks.md`** - Multi-criteria analysis, optimization, risk analysis, bias mitigation
-
-## Output Approach
-
-**Be direct and actionable:**
-- Lead with the key insight or recommendation
-- Explain reasoning concisely  
-- Make trade-offs explicit
-- Provide concrete next steps
-- Flag assumptions and uncertainties
-
-**Show creative thinking:**
-- Propose unconventional angles
-- Make surprising connections
-- Challenge conventional wisdom (when warranted)
-- Offer multiple solution paths
-- Explain the strategic logic
-
-**Maintain rigor:**
-- Ground in frameworks and evidence
-- Acknowledge limitations
-- Distinguish speculation from analysis
-- Provide decision criteria
-- Enable informed choice
-
-## Examples
-
-**Example 1: Product strategy**
-User: "How can we compete with larger competitors who have more resources?"
-
-Analysis approach:
-1. Read between lines: Resource disadvantage, need asymmetric advantage
-2. Reframe: Not "how to match resources" but "how to win differently"
-3. Apply game theory: Where are competitors committed? What can't they do?
-4. First principles: What do customers really value that size prevents?
-5. Strategic options: Niche domination, speed/agility, relationship depth, constraint-based innovation
-
-**Example 2: Technical challenge**
-User: "Our system is too slow. How do we make it faster?"
-
-Analysis approach:
-1. Challenge assumption: Must we make it faster, or can we change perception of speed?
-2. Chunk up: What's the real goal? User satisfaction? Throughput? Cost reduction?
-3. First principles: What are theoretical limits? Where is the actual bottleneck?
-4. Alternative reframes: Make slow parts async, reduce need for operation, cache, precompute
-5. Decision framework: Cost-benefit of each approach, reversibility, time to value
-
-**Example 3: Organizational issue**
-User: "Teams aren't collaborating well."
-
-Analysis approach:
-1. Systems thinking: Is this symptom or root cause? What incentives exist?
-2. Game theory: Are individual and collective incentives misaligned?
-3. Reframe perspectives: What does each team's optimal strategy look like?
-4. Leverage points: Change information flows? Adjust metrics? Restructure?
-5. Second-order effects: What will proposed changes incentivize?
-
-
-
-
-
+- `references/lateral-thinking.md` — Random entry, provocation, escape assumptions, concept fan
+- `references/strategic-frameworks.md` — Game theory, first principles, systems thinking
+- `references/reframing-techniques.md` — Abstraction shifts, perspective rotation, constraint manipulation
+- `references/ideation-techniques.md` — SCAMPER, morphological analysis, TRIZ principles
+- `references/decision-frameworks.md` — Multi-criteria analysis, expected value, bias mitigation
