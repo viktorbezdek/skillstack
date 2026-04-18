@@ -1,6 +1,6 @@
 # Persona Mapping
 
-> **v1.0.10** | Design & UX | 11 iterations
+> **v1.0.11** | Design & UX | 11 iterations
 
 ---
 
