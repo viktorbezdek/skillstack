@@ -1,6 +1,6 @@
 {
   "name": "hosted-agents",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
   "author": {
     "name": "Viktor Bezdek",

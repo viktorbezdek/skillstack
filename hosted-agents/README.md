@@ -1,6 +1,6 @@
 # Hosted Agents
 
-> **v1.0.4** | Agent Architecture | 5 iterations
+> **v1.0.5** | Agent Architecture | 5 iterations
 
 > Infrastructure patterns for running AI coding agents in the cloud -- sandbox environments, image pre-building, warm pools, self-spawning, multiplayer sessions, and multi-client integration.
 

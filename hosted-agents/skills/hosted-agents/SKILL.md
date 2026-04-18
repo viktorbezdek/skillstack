@@ -1,21 +1,52 @@
 ---
 name: hosted-agents
-description: This skill should be used when the user asks to "build background agent", "create hosted coding agent", "set up sandboxed execution", "implement multiplayer agent", or mentions background agents, sandboxed VMs, agent infrastructure, Modal sandboxes, self-spawning agents, or remote coding environments. NOT for agent coordination patterns or multi-agent design (use multi-agent-patterns), NOT for agent memory or persistence (use memory-systems), NOT for tool design or tool interfaces (use tool-design).
+description: Build and deploy hosted background coding agents with sandboxed VM execution, multiplayer sessions, and multi-client interfaces. Use when the user asks to "build background agent", "create hosted coding agent", "set up sandboxed execution", "implement multiplayer agent", or mentions background agents, sandboxed VMs, agent infrastructure, Modal sandboxes, self-spawning agents, or remote coding environments. NOT for agent coordination patterns or multi-agent design (use multi-agent-patterns), NOT for agent memory or persistence (use memory-systems), NOT for tool design or tool interfaces (use tool-design).
 ---
 
 # Hosted Agent Infrastructure
 
 Hosted agents run in remote sandboxed environments rather than on local machines. When designed well, they provide unlimited concurrency, consistent execution environments, and multiplayer collaboration. The critical insight is that session speed should be limited only by model provider time-to-first-token, with all infrastructure setup completed before the user starts their session.
 
-## When to Activate
+## When to Use
 
-Activate this skill when:
 - Building background coding agents that run independently of user devices
 - Designing sandboxed execution environments for agent workloads
 - Implementing multiplayer agent sessions with shared state
 - Creating multi-client agent interfaces (Slack, Web, Chrome extensions)
 - Scaling agent infrastructure beyond local machine constraints
 - Building systems where agents spawn sub-agents for parallel work
+
+## When NOT to Use
+
+- Coordinating multiple agents with handoffs or supervisor patterns (use multi-agent-patterns)
+- Persisting agent state or memory across sessions (use memory-systems)
+- Designing individual tools or tool interfaces for agents (use tool-design)
+- Running agents locally on a user's machine (not a hosting problem)
+
+## Decision Tree
+
+```
+What are you building?
+│
+├─ Agent runs remotely in sandboxed environment
+│  ├─ Need pre-built environment images? → Image Registry Pattern
+│  ├─ Need instant session start? → Warm Pool + Predictive Warm-Up
+│  └─ Need multiple users in same session? → Multiplayer Support
+│
+├─ Agent needs to spawn sub-agents
+│  ├─ Sub-agents work on same repo? → Self-Spawning with shared state
+│  └─ Sub-agents work across repos? → Self-Spawning with API coordination
+│
+├─ Need multiple client interfaces
+│  ├─ Internal team adoption priority? → Slack Integration
+│  ├─ Need visual verification? → Web Interface with VS Code
+│  └─ Non-engineering users? → Chrome Extension
+│
+└─ Not sure if hosted or local
+   ├─ Need unlimited concurrency? → Hosted
+   ├─ Need reproducible environments? → Hosted
+   └─ Single user, local dev only? → Local agent (not this skill)
+```
 
 ## Core Concepts
 
@@ -207,6 +238,20 @@ For non-engineering users:
 - Reduces token usage while maintaining precision
 - Distribute via managed device policy (bypasses Chrome Web Store)
 
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Building images on-demand per session | Users wait minutes for environment setup | Use Image Registry Pattern with 30-min cadence pre-builds |
+| Blocking file reads until git sync completes | Agent idles while user waits | Allow reads immediately; block only writes until sync finishes |
+| Tying sessions to a single author in the data model | Multiplayer becomes impossible | Design authorship as per-prompt metadata, not session-level |
+| Attributing commits to the app identity | Audit trail breaks; users see bot commits | Use the prompting user's GitHub identity for all commits |
+| Warming sandboxes only on session request | Cold start latency kills adoption | Start warming when user begins typing (predictive warm-up) |
+| Supervisor paraphrasing sub-agent responses | "Telephone game" loses fidelity | Implement `forward_message` tool for direct pass-through |
+| Tracking sessions or PRs created as the success metric | Volume doesn't equal value | Track merged PRs as the primary metric |
+| Storing all sessions in a shared database | Cross-session interference and contention | Use per-session isolated storage (e.g., SQLite per session) |
+| Skipping WebSocket hibernation | Idle connections waste compute | Use hibernation APIs to reduce costs during idle periods |
+
 ## Practical Guidance
 
 ### Follow-Up Message Handling
@@ -268,12 +313,3 @@ External resources:
 - [Modal Sandboxes](https://modal.com/docs/guide/sandbox) - Cloud sandbox infrastructure
 - [Cloudflare Durable Objects](https://developers.cloudflare.com/durable-objects/) - Per-session state management
 - [OpenCode](https://github.com/sst/opencode) - Server-first agent framework
-
----
-
-## Skill Metadata
-
-**Created**: 2026-01-12
-**Last Updated**: 2026-01-12
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.0.0
