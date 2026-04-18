@@ -1,6 +1,6 @@
 {
   "name": "ontology-design",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
   "author": {
     "name": "Viktor Bezdek",
