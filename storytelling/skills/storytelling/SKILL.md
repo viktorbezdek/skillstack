@@ -52,6 +52,31 @@ Before loading any reference, hold these five principles. They are non-negotiabl
 
 Load ONLY the references that match the query. Do not pre-load everything — this skill is designed for progressive disclosure.
 
+### Decision Tree: Which structure?
+
+```
+What are you building?
+│
+├─ Investor pitch / sales narrative
+│   └─ Before-After-Bridge or StoryBrand (customer-as-hero)
+├─ Keynote / conference talk
+│   └─ Duarte SparkLine or Monroe's Motivated Sequence
+├─ Thriller / investigation / escalation-driven
+│   └─ Fichtean Curve
+├─ Screenplay / commercial fiction
+│   └─ Save the Cat (beat-by-beat)
+├─ TV series / simplified transformation
+│   └─ Story Circle (Harmon)
+├─ Protagonist on external adventure with transformation
+│   └─ Hero's Journey
+├─ East Asian narrative / twist without conflict
+│   └─ Kishōtenketsu
+├─ General narrative / most purposes
+│   └─ 3-Act Structure or Freytag's Pyramid
+└─ Data presentation
+    └─ Situation-Complication-Resolution
+```
+
 ### Foundations (usually load one of these first)
 
 | Query | Load |

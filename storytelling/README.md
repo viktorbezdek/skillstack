@@ -1,6 +1,6 @@
 # Storytelling
 
-> **v1.0.0** | Design & UX | 1 iteration
+> **v1.0.1** | Design & UX | 2 iterations
 
 > Expert guidance for writing, editing, and teaching stories across fiction, business, data, speech, UX, and interactive narrative -- from structural frameworks through craft technique to anti-pattern diagnosis.
 > Single skill + 12 references (progressive disclosure by domain)
