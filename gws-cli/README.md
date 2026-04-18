@@ -1,6 +1,6 @@
 # GWS CLI
 
-> **v1.0.0** | Development | 1 iteration
+> **v1.0.1** | Development | 2 iterations
 
 > Manage all 18 Google Workspace APIs from the terminal -- Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and more -- with one dynamically-generated CLI that stays current without updates.
 

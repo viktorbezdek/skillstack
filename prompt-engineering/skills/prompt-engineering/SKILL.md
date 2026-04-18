@@ -12,11 +12,25 @@ description: >-
 
 # Prompt Engineering Skill
 
-## Overview
+## When to Use
 
-Transform vague AI instructions into precision-engineered prompts that reliably produce
-high-quality outputs. This skill combines proven techniques, systematic evaluation, and
-iterative refinement to create prompts for any LLM platform.
+Activate this skill when:
+- Optimizing an existing prompt that produces inconsistent or low-quality output
+- Creating a new prompt from scratch (system prompt, instruction template, few-shot)
+- Evaluating prompt quality across dimensions (clarity, specificity, structure)
+- A/B testing prompt variants for measurable improvement
+- Migrating a prompt between LLM platforms (Claude ↔ GPT-4 ↔ Gemini)
+- Applying specific techniques: Chain-of-Thought, Few-Shot, Role Assignment, Output Specification
+- Reducing hallucinations through prompt structure and constraints
+- Designing multi-stage prompt pipelines
+
+## When NOT to Use
+
+- **Building MCP servers or implementing MCP protocol** → use `mcp-server`
+- **Creating Claude Code SKILL.md files** → use `skill-foundry`
+- **Building a full agent system** → use agent-project-development workflow
+- **Generating creative content directly** → this skill optimizes the prompt, not the output
+- **Fine-tuning or training models** → prompt engineering operates at inference time
 
 ## Decision Flow
 
@@ -25,18 +39,52 @@ Assess the request and pick the right mode:
 ```
 User request arrives
   │
-  ├─ "Make this prompt better" / has existing prompt
-  │   └─ OPTIMIZE MODE: Analyze → Apply techniques → Deliver improved prompt
+  ├─ Has existing prompt + describes problem?
+  │   └─ OPTIMIZE MODE
+  │       1. Deconstruct: What's really being asked?
+  │       2. Diagnose: Score on 5 dimensions (see below)
+  │       3. Develop: Apply targeted techniques
+  │       4. Deliver: Improved prompt + brief explanation
   │
-  ├─ "Create a prompt for X" / needs new prompt from scratch
-  │   ├─ Simple task → AUTO DESIGN: Apply techniques → Deliver
-  │   └─ Complex task → INTERACTIVE DESIGN: Ask 2-3 questions → Design → Test
+  ├─ Needs new prompt from scratch?
+  │   ├─ Simple, well-defined task → AUTO DESIGN: Build directly
+  │   └─ Complex or ambiguous task → INTERACTIVE DESIGN: Ask 2-3 questions first
   │
-  ├─ "Evaluate/test this prompt" / quality assessment
-  │   └─ EVALUATE MODE: Score → Identify weaknesses → Suggest improvements
+  ├─ Quality assessment / comparison request?
+  │   └─ EVALUATE MODE
+  │       1. Score each dimension 1-5
+  │       2. Identify specific weaknesses
+  │       3. Suggest targeted improvements
   │
-  └─ "Help me understand prompt engineering" / learning
-      └─ EDUCATE: Teach relevant techniques with examples
+  └─ Learning / understanding request?
+      └─ EDUCATE: Teach relevant techniques with before/after examples
+```
+
+### Technique Selection Decision Tree
+
+```
+Diagnosis reveals the problem:
+  │
+  ├─ No domain expertise → Role Assignment
+  │   └─ Give LLM a specific expert identity with credentials
+  │
+  ├─ Missing background / LLM lacks context → Context Layering
+  │   └─ Background → Goal → Constraints → Output Format
+  │
+  ├─ Complex reasoning, math, multi-factor analysis → Chain-of-Thought
+  │   └─ Ask LLM to reason step by step before answering
+  │
+  ├─ Output format inconsistent → Few-Shot Examples + Output Specification
+  │   └─ Show 2-3 input→output pairs + define exact structure
+  │
+  ├─ Task too large for single pass → Task Decomposition
+  │   └─ Break into sequential stages; each feeds the next
+  │
+  ├─ No boundaries defined → Constraints & Guardrails
+  │   └─ Define what NOT to do, length limits, format requirements
+  │
+  └─ Output structure undefined → Output Specification
+      └─ Define headers, sections, length, style, tone explicitly
 ```
 
 ## Core Process: The 4-D Framework
@@ -45,7 +93,6 @@ Apply this framework for every prompt optimization task.
 
 ### 1. DECONSTRUCT — Understand What's Really Being Asked
 
-Read the prompt (or request) and answer:
 - What is the actual goal? (Often different from what's literally stated)
 - What assumptions are unstated?
 - What information is missing that the LLM will need?
@@ -54,21 +101,24 @@ Read the prompt (or request) and answer:
 ### 2. DIAGNOSE — Identify What's Wrong or Missing
 
 Score the prompt against these dimensions:
-- **Clarity**: Is it unambiguous? Could the LLM interpret it differently than intended?
-- **Specificity**: Are outputs constrained enough to be useful?
-- **Structure**: Is information organized logically?
-- **Completeness**: Does it include role, context, constraints, format, examples?
-- **Efficiency**: Is every token earning its keep, or is there bloat?
+
+| Dimension | What to Check | Red Flag |
+|-----------|--------------|----------|
+| **Clarity** | Could this be misinterpreted? Vague terms? | Score ≤ 2: Rewrite with precise language |
+| **Specificity** | Are outputs constrained enough? Format defined? | Score ≤ 2: Add Output Specification |
+| **Structure** | Information organized logically? | Score ≤ 2: Apply Context Layering |
+| **Completeness** | Role + Context + Task + Format + Examples present? | Score ≤ 2: Add missing components |
+| **Efficiency** | Every token earns its keep? No redundancy? | Score ≤ 2: Cut bloat |
 
 ### 3. DEVELOP — Apply the Right Techniques
 
-Select techniques based on what the diagnosis reveals. Here are the core techniques
-(see `references/TECHNIQUES.md` for the full catalog with detailed examples):
+Select techniques based on diagnosis (see Technique Selection Decision Tree above).
+For detailed examples, see `references/TECHNIQUES.md`.
 
 **Role Assignment** — Give the LLM a specific expert identity with credentials and methodology.
 Use when domain expertise matters. The more specific the role, the better the output quality.
 
-**Context Layering** — Provide essential background in a structured format:
+**Context Layering** — Provide essential background in structured format:
 Background → Goal → Constraints → Output Format. Remove anything the LLM doesn't need.
 
 **Chain-of-Thought** — Ask the LLM to reason step by step. Critical for complex analytical,
@@ -88,9 +138,8 @@ of the output. Be explicit: headers, sections, length, style, tone.
 
 ### 4. DELIVER — Present the Optimized Prompt
 
-When delivering:
 - Show the complete optimized prompt in a code block or artifact
-- Briefly explain the key improvements (2-3 sentences, not a lecture)
+- Briefly explain key improvements (2-3 sentences, not a lecture)
 - Note which techniques were applied and why
 - If relevant, provide platform-specific tips (see `references/PLATFORMS.md`)
 - Offer to iterate if the user wants refinements
@@ -163,6 +212,21 @@ Based on your analysis, [PRODUCE FINAL DELIVERABLE]
 Format: [FINAL OUTPUT SPECIFICATION]
 ```
 
+## Anti-Patterns to Fix
+
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| **Kitchen sink prompt** | Every possible instruction crammed in; model drowns in contradictory directives | Identify the 3 most important requirements. Cut the rest. Each instruction must earn its tokens. |
+| **Copycat prompt** | Copied from a blog post without understanding why it works; fails when use case differs slightly | Use the 4-D framework to analyze why a template works before adapting it. Understand the technique, not just the words. |
+| **Platform-blind prompt** | Written for one LLM and assumed to transfer; Claude XML tags confuse GPT-4, "You MUST" over-constrains Claude | Use platform-specific translation (see `references/PLATFORMS.md`). Convert structural patterns, don't just change words. |
+| **Format-free prompt** | No output structure specified; each run produces different format, breaking downstream processing | Add explicit Output Specification with headers, structure, and length requirements. |
+| **Contradiction prompt** | "Be concise" AND "Be thorough" in same prompt; model oscillates between contradictory instructions | Resolve trade-offs explicitly: "Prioritize completeness over brevity" or "Be thorough on methodology, concise on examples." |
+| **Vague instructions** | "Analyze the data" — no format, scope, or audience defined | Add specificity: who, what, how, format, length, audience |
+| **Buried intent** | The actual task is buried under paragraphs of context | Move the task to the top; context supports, doesn't obscure |
+| **Assumed knowledge** | LLM expected to know company-specific or domain-specific facts | Add necessary context the LLM wouldn't have |
+| **No examples** | LLM must infer expected output format from description alone | Add 2-3 few-shot examples showing desired output pattern |
+| **Over-engineering** | Simple task gets a complex multi-stage prompt with unnecessary techniques | Simple tasks need simple prompts. Don't add complexity for its own sake. |
+
 ## Context Enrichment
 
 When the user's prompt references specific company data, projects, documents, or internal
@@ -175,13 +239,10 @@ information, enrich the prompt with real context before optimizing.
 - Mentions temporal markers like "Q3", "this sprint", "last month"
 
 **How to enrich:**
-Use available tools (web search, connected integrations like Google Drive, Asana, Jira,
-Confluence, Slack, etc.) to pull relevant context. Synthesize the key facts — goals,
-metrics, stakeholders, constraints, timelines — and inject them into the prompt's
-context section.
-
-The goal is to transform a generic prompt into one grounded in the user's actual situation.
-Don't dump raw data — distill what the LLM actually needs to produce a useful output.
+Use available tools (web search, connected integrations) to pull relevant context.
+Synthesize the key facts — goals, metrics, stakeholders, constraints, timelines — and
+inject them into the prompt's context section. Don't dump raw data — distill what the
+LLM actually needs to produce a useful output.
 
 ## Evaluation Framework
 
@@ -198,27 +259,6 @@ these dimensions. See `references/EVALUATION.md` for the full methodology.
 | **Efficiency** | Token-efficient? No redundancy? Every line earns its place? |
 | **Robustness** | Will it work across input variations? Edge cases handled? |
 
-### LLM-as-Judge Evaluation
-
-For systematic testing, use the LLM itself as an evaluator:
-
-```
-Evaluate the following response against these criteria.
-Score each 1-5 with brief justification.
-
-Criteria:
-1. Accuracy — factual correctness
-2. Relevance — addresses the actual question
-3. Completeness — covers all aspects
-4. Clarity — well-organized and readable
-
-Response to evaluate:
-[PASTE RESPONSE]
-
-For each criterion: Score (1-5) | Evidence | Improvement suggestion
-Overall: __/20
-```
-
 ### A/B Testing Process
 
 When comparing two prompt versions:
@@ -230,38 +270,13 @@ When comparing two prompt versions:
 
 ## Platform-Specific Notes
 
-Different LLMs respond to different prompting styles. Key differences:
-
-- **Claude**: Excels with XML tags for structure, responds well to nuanced role
-  descriptions, supports extended thinking. Avoid over-constraining — Claude performs
-  better with clear intent than rigid rules.
-- **ChatGPT (GPT-4)**: Responds well to system/user message separation, function calling
-  patterns, and explicit instruction following. Benefits from "You MUST" directives.
-- **Gemini**: Strong with multimodal prompts, benefits from clear section demarcation.
+| Platform | Strengths | Avoid |
+|----------|----------|-------|
+| **Claude** | XML tags for structure, nuanced role descriptions, extended thinking | Over-constraining with rigid rules; Claude performs better with clear intent |
+| **GPT-4** | System/user message separation, function calling, "You MUST" directives | Assuming XML tags work; use explicit directives instead |
+| **Gemini** | Multimodal prompts, clear section demarcation | Ambiguous section boundaries |
 
 See `references/PLATFORMS.md` for detailed platform optimization guides.
-
-## Templates
-
-Reusable prompt templates for common use cases are in `references/TEMPLATES.md`:
-- Research & Analysis
-- Creative & Content
-- Technical & Code
-- Business & Strategy
-- Teaching & Explanation
-
-## Anti-Patterns to Fix
-
-When optimizing, watch for and fix these common problems:
-
-**Vague instructions** → Add specificity: who, what, how, format, length, audience
-**No examples** → Add 2-3 few-shot examples showing desired output pattern
-**Buried intent** → Move the actual task to the top; context supports, doesn't obscure
-**Kitchen sink** → Remove requirements that don't serve the core goal
-**No output spec** → Define exact format, structure, and length expectations
-**Assumed knowledge** → Add necessary context the LLM wouldn't have
-**Contradictions** → Resolve conflicting requirements; flag trade-offs
-**Over-engineering** → Simple tasks need simple prompts. Don't add complexity for its own sake.
 
 ## Reference Files
 
@@ -273,18 +288,3 @@ Load these as needed for deeper guidance:
 | `references/EVALUATION.md` | Comprehensive evaluation methodologies and rubrics |
 | `references/TEMPLATES.md` | Reusable prompt patterns for common use cases |
 | `references/PLATFORMS.md` | Platform-specific optimization (Claude, GPT, Gemini) |
-
-## Best Practices
-
-- Focus on user intent, not their exact wording — understand what they actually need
-- Ask 2-3 strategic questions for complex cases; don't interrogate
-- Test professionally-used prompts before deploying
-- Explain significant changes briefly — don't lecture
-- Keep prompts as concise as possible while being complete
-- Consider the target platform's strengths and quirks
-- Iterate: first draft → test → refine → test again
-
-
-
-
-

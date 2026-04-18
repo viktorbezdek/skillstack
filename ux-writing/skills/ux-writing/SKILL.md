@@ -6,7 +6,8 @@ description: >-
   messages, button labels, empty states, or conversational UI text. NOT for generating
   documentation (use documentation-generator). NOT for writing marketing copy or brand
   voice guidelines (use storytelling for narrative, not UI microcopy). NOT for designing
-  the UI itself (use frontend-design or navigation-design).
+  the UI itself (use frontend-design or navigation-design). NOT for content strategy
+  or information architecture (use content-modelling).
 ---
 
 # UX Writing
@@ -49,6 +50,9 @@ What are you writing?
   │
   ├─ A tooltip or help text
   │   └─ Formula: One sentence max. Explain the non-obvious, skip the obvious.
+  │
+  ├─ A loading or progress state
+  │   └─ Formula: What's happening + How long (if known). Transparent, not silent.
   │
   └─ Onboarding or conversational UI flow
       └─ Map the emotional arc: uncertain → guided → confident. Adjust tone per step.
@@ -113,5 +117,7 @@ We'll send a confirmation link.
 3. **Dead-end messages** — errors or empty states with no next step. Fix: every message should include what the user can do next (retry, search, contact support).
 4. **Vague button labels** — "OK", "Submit", "Cancel" without context. Fix: label buttons with the specific action — "Delete project", "Send invitation", "Save changes".
 5. **Overly formal tone** — "Your request has been processed successfully" in a consumer product. Fix: "Done!" unless the context demands formality (legal, financial).
-6. **Inconsistent terminology** — "Delete" in one place, "Remove" in another for the same action. Fix: pick one term and use it everywhere; create a microcopy glossary.
+7. **Inconsistent terminology** — "Delete" in one place, "Remove" in another for the same action. Fix: pick one term and use it everywhere; create a microcopy glossary.
+8. **Silent loading states** — showing a spinner with no text while the user waits. Fix: always describe what's happening ("Finding your files...") and add estimated time if known ("This takes about 30 seconds").
+9. **Progressive disclosure overload** — revealing too many options at once in tooltips or helper text. Fix: show the essential instruction; link or collapse deeper details. Helper text is for the next step, not the whole manual.
 7. **Confirmations without consequences** — "Are you sure?" without explaining what will happen. Fix: "Delete this project? All 23 tasks will be permanently removed."

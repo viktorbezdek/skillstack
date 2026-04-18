@@ -21,19 +21,81 @@ Activate this skill when:
 - Setting up CI/CD for Python projects
 - Publishing packages to PyPI
 
-## Quick Start
+## When NOT to Use This Skill
+
+- **TypeScript or JavaScript development** → use `typescript-development`
+- **React component patterns or hooks** → use `react-development`
+- **TDD methodology (Red-Green-Refactor cycle)** → use `test-driven-development` (this skill covers pytest patterns but not the full TDD workflow)
+- **Django/Flask framework-specific patterns** → this skill covers Python fundamentals; dedicated framework plugins provide deeper coverage
+
+## Decision Trees
 
 ### Tier Selection
 
-Choose your complexity level:
+```
+What are you building?
+  │
+  ├─ Single-file script, one-off utility, quick data processing
+  │   └─ MINIMAL tier: PEP 723 inline metadata, no project scaffolding
+  │
+  ├─ Multi-file project, team development, anything with tests
+  │   └─ STANDARD tier (default): src/ layout + uv + ruff + mypy + pytest
+  │
+  └─ PyPI package, production system requiring CI/CD
+      └─ FULL tier: Complete tooling + bandit + CI/CD + release workflow
+```
 
-| Tier | Use Case | Setup |
-|------|----------|-------|
-| **Minimal** | Single-file utilities, scripts | Just Python 3.12+ |
-| **Standard** | Multi-file projects, team work | Python + uv + ruff + mypy + pytest |
-| **Full** | PyPI packages, production systems | Complete tooling ecosystem + CI/CD |
+**Default to Standard** — it covers most use cases.
 
-**Default to Standard** - it covers most use cases.
+### Async vs Sync Decision
+
+```
+Does the task involve I/O-bound operations (HTTP, DB, file, network)?
+  │
+  ├─ No → Use synchronous code (simpler, easier to debug)
+  │
+  └─ Yes → Are operations concurrent (many requests at once)?
+      │
+      ├─ No → Simple async/await with httpx.AsyncClient
+      │
+      └─ Yes → asyncio.Semaphore per resource + httpx.AsyncClient
+               with connection pooling + retry logic
+```
+
+### Protocol vs ABC Decision
+
+```
+Do you need structural subtyping (duck typing with type safety)?
+  │
+  ├─ Yes → Protocol
+  │   └─ Enables dependency injection, avoids inheritance coupling
+  │
+  └─ No → Do you need runtime type checking or enforced method implementation?
+      │
+      ├─ Yes → ABC with @abstractmethod
+      │
+      └─ No → Protocol (lighter weight, preferred default)
+```
+
+### Library vs Application Architecture Decision
+
+```
+Will this code be imported by other projects?
+  │
+  ├─ Yes → Library architecture:
+  │   - Protocol-based API surface
+  │   - py.typed marker
+  │   - Minimal public exports (__all__)
+  │   - Stable deprecation policy
+  │   - pyproject.toml with [project.optional-dependencies]
+  │
+  └─ No → Application architecture:
+      - Direct implementation (no Protocol overhead)
+      - Simpler project structure
+      - pyproject.toml with [project.scripts]
+```
+
+## Quick Start
 
 ### Standard Project Setup
 
@@ -151,17 +213,20 @@ testpaths = ["tests"]
 
 ## Anti-Patterns to Avoid
 
-| Avoid | Do Instead |
-|-------|------------|
-| Mutable default args `def f(lst=[])` | `def f(lst=None)` |
-| `requests.get` in async | `httpx.AsyncClient` |
-| Classes for data bags | `@dataclass(frozen=True)` |
-| Inheritance hierarchies | Protocols + composition |
-| Mutating function args | Return new values |
-| `try/except Exception` | Specific exception types |
-| Blocking in async | `await asyncio.to_thread(fn)` |
-| `from module import *` | Explicit imports |
-| Bare `except:` | `except (ValueError, KeyError)` |
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| **Mutable default args** `def f(lst=[])` | Default value is shared across all calls; mutations persist unexpectedly | `def f(lst: list \| None = None)` then `lst = lst or []` inside |
+| **`requests.get` in async** | Blocks the event loop; all concurrent tasks stall | `httpx.AsyncClient` for async HTTP; `requests` only in sync code |
+| **Classes for data bags** | Boilerplate `__init__`, mutable by default, no equality | `@dataclass(frozen=True)` for immutable value objects, or `NamedTuple` for lightweight records |
+| **Deep inheritance hierarchies** | Tight coupling, fragile base class, hard to test | `Protocol` + composition; define behavior by what it does, not what it is |
+| **Mutating function args** | Side effects make code unpredictable and hard to test | Return new values; use frozen dataclasses; prefer pure functions |
+| **`try/except Exception`** | Swallows all errors including KeyboardInterrupt, SystemExit | Catch specific types: `except (ValueError, KeyError)` |
+| **Blocking in async** | `time.sleep()`, `requests.get()`, `subprocess.run()` freeze the event loop | `await asyncio.to_thread(fn)` or `asyncio.sleep()` for non-blocking alternatives |
+| **`from module import *`** | Pollutes namespace, makes dependencies invisible, breaks linters | Explicit imports: `from module import ClassA, func_b` |
+| **Bare `except:`** | Catches everything including SystemExit/KeyboardInterrupt; hides bugs | `except (SpecificError, AnotherError):` |
+| **Using `List[str]` etc.** | Legacy typing; deprecated since Python 3.9 | Use modern syntax: `list[str]`, `dict[str, int]`, `tuple[int, ...]` |
+| **Ignoring mypy errors** | Type errors at compile time become runtime crashes | Fix the type; use `# type: ignore[specific-code]` with comment explaining why |
+| **Testing with production URLs** | Tests hit real APIs, flaky, slow, depend on network | Mock HTTP calls with `pytest-httpx` or `respx`; test against fixtures |
 
 ## Quality Gates
 
