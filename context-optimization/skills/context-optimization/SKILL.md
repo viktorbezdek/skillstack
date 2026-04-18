@@ -1,143 +1,143 @@
 ---
 name: context-optimization
-description: EXTENDING effective context capacity — KV-cache optimization, observation masking, context partitioning, and retrieval strategies. Use when the user asks to "optimize context", "implement KV-cache", "partition context", "mask observations", or mentions extending context capacity or cache-friendly prompt design. NOT for reducing or compressing content via summarization (use context-compression), NOT for diagnosing context failures or degradation patterns (use context-degradation), NOT for file-based context patterns or scratch pads (use filesystem-context).
+description: EXTENDING effective context capacity — KV-cache optimization, observation masking, context partitioning, and retrieval strategies. Use when the user asks to "optimize context", "implement KV-cache", "partition context", "mask observations", or mentions extending context capacity or cache-friendly prompt design. NOT for reducing or compressing content via summarization (use context-compression), NOT for diagnosing context failures or degradation patterns (use context-degradation), NOT for file-based context patterns or scratch pads (use filesystem-context), NOT for learning context basics (use context-fundamentals).
 ---
 
 # Context Optimization Techniques
 
-Context optimization extends the effective capacity of limited context windows through strategic compression, masking, caching, and partitioning. The goal is not to magically increase context windows but to make better use of available capacity. Effective optimization can double or triple effective context capacity without requiring larger models or longer contexts.
+Context optimization extends effective capacity through strategic compression, masking, caching, and partitioning. The goal is making better use of available capacity — not magically increasing windows. Effective optimization can double or triple effective context without larger models.
 
-## When to Activate
+## When to Use / Not Use
 
-Activate this skill when:
+**Use when:**
 - Context limits constrain task complexity
 - Optimizing for cost reduction (fewer tokens = lower costs)
 - Reducing latency for long conversations
 - Implementing long-running agent systems
-- Needing to handle larger documents or conversations
 - Building production systems at scale
 
-## Core Concepts
+**Do NOT use when:**
+- Compressing or summarizing context -> use `context-compression`
+- Diagnosing context failures or degradation -> use `context-degradation`
+- Learning context basics -> use `context-fundamentals`
+- File-based context patterns or scratch pads -> use `filesystem-context`
 
-Context optimization extends effective capacity through four primary strategies: compaction (summarizing context near limits), observation masking (replacing verbose outputs with references), KV-cache optimization (reusing cached computations), and context partitioning (splitting work across isolated contexts).
+## Decision Tree
 
-The key insight is that context quality matters more than quantity. Optimization preserves signal while reducing noise. The art lies in selecting what to keep versus what to discard, and when to apply each technique.
+```
+What optimization problem are you solving?
+├── Tool outputs dominate token usage (>80%)
+│   └── Observation Masking -> Replace verbose outputs with references
+├── Context approaching limits (>70% utilization)
+│   ├── Message history dominates -> Compaction + Summarization
+│   ├── Retrieved docs dominate -> Summarization or Partitioning
+│   └── Multiple components -> Combine strategies
+├── Repeated requests with common prefixes
+│   └── KV-Cache Optimization -> Stable prefix ordering
+├── Single context too large for one agent
+│   └── Context Partitioning -> Sub-agent isolation
+├── Need to measure if optimization is working
+│   └── See §Performance Targets
+└── Not about extending capacity? -> See related skills
+```
 
-## Detailed Topics
+## Four Primary Strategies
 
-### Compaction Strategies
+| Strategy | Mechanism | Best For | Expected Savings |
+|----------|-----------|----------|-----------------|
+| Compaction | Summarize context near limits, reinitialize with summary | Message history dominating | 50-70% token reduction |
+| Observation Masking | Replace verbose tool outputs with compact references | Tool output dominance (80%+ of tokens) | 60-80% reduction in masked obs |
+| KV-Cache Optimization | Reuse cached KV computations across shared prefixes | Repeated requests with stable prefixes | 70%+ cache hit rate |
+| Context Partitioning | Split work across sub-agents with isolated contexts | Single context too large | Isolation + clean focus |
 
-**What is Compaction**
-Compaction is the practice of summarizing context contents when approaching limits, then reinitializing a new context window with the summary. This distills the contents of a context window in a high-fidelity manner, enabling the agent to continue with minimal performance degradation.
+### Compaction
 
-Compaction typically serves as the first lever in context optimization. The art lies in selecting what to keep versus what to discard.
+Summarize context sections when approaching limits, then reinitialize with the summary. Priority order for compression:
 
-**Compaction Implementation**
-Compaction works by identifying sections that can be compressed, generating summaries that capture essential points, and replacing full content with summaries. Priority for compression goes to tool outputs (replace with summaries), old turns (summarize early conversation), retrieved docs (summarize if recent versions exist), and never compress system prompt.
+1. **Tool outputs** — Replace with summaries of key findings, metrics, conclusions
+2. **Old turns** — Summarize early conversation, preserve decisions and context shifts
+3. **Retrieved docs** — Summarize if recent versions exist
+4. **Never compress** — System prompt
 
-**Summary Generation**
-Effective summaries preserve different elements depending on message type:
-
-Tool outputs: Preserve key findings, metrics, and conclusions. Remove verbose raw output.
-
-Conversational turns: Preserve key decisions, commitments, and context shifts. Remove filler and back-and-forth.
-
-Retrieved documents: Preserve key facts and claims. Remove supporting evidence and elaboration.
+Target: 50-70% token reduction with less than 5% quality degradation.
 
 ### Observation Masking
 
-**The Observation Problem**
-Tool outputs can comprise 80%+ of token usage in agent trajectories. Much of this is verbose output that has already served its purpose. Once an agent has used a tool output to make a decision, keeping the full output provides diminishing value while consuming significant context.
+Replace verbose tool outputs with compact references once the output has served its purpose.
 
-Observation masking replaces verbose tool outputs with compact references. The information remains accessible if needed but does not consume context continuously.
+| Category | Action | Examples |
+|----------|--------|---------|
+| Never mask | Critical to current task, most recent turn, active reasoning | Current file being edited, error being debugged |
+| Consider masking | 3+ turns old, verbose with extractable key points, purpose served | Large file reads, search results already acted on |
+| Always mask | Repeated outputs, boilerplate headers/footers, already summarized | Help text, version banners, duplicate reads |
 
-**Masking Strategy Selection**
-Not all observations should be masked equally:
-
-Never mask: Observations critical to current task, observations from the most recent turn, observations used in active reasoning.
-
-Consider masking: Observations from 3+ turns ago, verbose outputs with key points extractable, observations whose purpose has been served.
-
-Always mask: Repeated outputs, boilerplate headers/footers, outputs already summarized in conversation.
-
-### KV-Cache Optimization
-
-**Understanding KV-Cache**
-The KV-cache stores Key and Value tensors computed during inference, growing linearly with sequence length. Caching the KV-cache across requests sharing identical prefixes avoids recomputation.
-
-Prefix caching reuses KV blocks across requests with identical prefixes using hash-based block matching. This dramatically reduces cost and latency for requests with common prefixes like system prompts.
-
-**Cache Optimization Patterns**
-Optimize for caching by reordering context elements to maximize cache hits. Place stable elements first (system prompt, tool definitions), then frequently reused elements, then unique elements last.
-
-Design prompts to maximize cache stability: avoid dynamic content like timestamps, use consistent formatting, keep structure stable across sessions.
-
-### Context Partitioning
-
-**Sub-Agent Partitioning**
-The most aggressive form of context optimization is partitioning work across sub-agents with isolated contexts. Each sub-agent operates in a clean context focused on its subtask without carrying accumulated context from other subtasks.
-
-This approach achieves separation of concerns—the detailed search context remains isolated within sub-agents while the coordinator focuses on synthesis and analysis.
-
-**Result Aggregation**
-Aggregate results from partitioned subtasks by validating all partitions completed, merging compatible results, and summarizing if still too large.
-
-### Budget Management
-
-**Context Budget Allocation**
-Design explicit context budgets. Allocate tokens to categories: system prompt, tool definitions, retrieved docs, message history, and reserved buffer. Monitor usage against budget and trigger optimization when approaching limits.
-
-**Trigger-Based Optimization**
-Monitor signals for optimization triggers: token utilization above 80%, degradation indicators, and performance drops. Apply appropriate optimization techniques based on context composition.
-
-## Practical Guidance
-
-### Optimization Decision Framework
-
-When to optimize:
-- Context utilization exceeds 70%
-- Response quality degrades as conversations extend
-- Costs increase due to long contexts
-- Latency increases with conversation length
-
-What to apply:
-- Tool outputs dominate: observation masking
-- Retrieved documents dominate: summarization or partitioning
-- Message history dominates: compaction with summarization
-- Multiple components: combine strategies
-
-### Performance Considerations
-
-Compaction should achieve 50-70% token reduction with less than 5% quality degradation. Masking should achieve 60-80% reduction in masked observations. Cache optimization should achieve 70%+ hit rate for stable workloads.
-
-Monitor and iterate on optimization strategies based on measured effectiveness.
-
-## Examples
-
-**Example 1: Compaction Trigger**
-```python
-if context_tokens / context_limit > 0.8:
-    context = compact_context(context)
-```
-
-**Example 2: Observation Masking**
 ```python
 if len(observation) > max_length:
     ref_id = store_observation(observation)
     return f"[Obs:{ref_id} elided. Key: {extract_key(observation)}]"
 ```
 
-**Example 3: Cache-Friendly Ordering**
+### KV-Cache Optimization
+
+KV-cache stores Key and Value tensors from inference, growing linearly with sequence length. Prefix caching reuses KV blocks across requests with identical prefixes via hash-based block matching.
+
+**Cache-friendly ordering principle:** Stable elements first, unique elements last.
+
 ```python
-# Stable content first
-context = [system_prompt, tool_definitions]  # Cacheable
-context += [reused_templates]  # Reusable
-context += [unique_content]  # Unique
+context = [system_prompt, tool_definitions]  # Cacheable (stable)
+context += [reused_templates]                 # Reusable (semi-stable)
+context += [unique_content]                   # Unique (never cached)
 ```
+
+**Cache stability design:**
+- Avoid dynamic content (timestamps, random IDs) in prefixes
+- Use consistent formatting across sessions
+- Keep structure stable even when content changes
+
+### Context Partitioning
+
+Most aggressive optimization: partition work across sub-agents with isolated contexts. Each sub-agent operates in a clean context focused on its subtask.
+
+**When to partition:**
+- Single context would exceed limits
+- Independent subtasks with minimal dependencies
+- Need separation of concerns (search context vs. synthesis context)
+
+**Result aggregation:** Validate all partitions completed → merge compatible results → summarize if still too large.
+
+## Context Budget Management
+
+| Budget Category | Typical Allocation | Notes |
+|----------------|-------------------|-------|
+| System prompt | 5-10% | Never compress |
+| Tool definitions | 10-15% | Semi-stable, cacheable |
+| Retrieved documents | 15-30% | Dynamic, filterable |
+| Message history | 20-40% | Growing, compactable |
+| Tool outputs | 30-50% | Dominant, maskable |
+| Reserved buffer | 10% | Headroom for responses |
+
+**Trigger signals for optimization:**
+- Token utilization above 80%
+- Degradation indicators (quality dropping)
+- Performance drops (latency increasing)
+- Cost thresholds exceeded
+
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Optimizing without measuring | Cannot distinguish effective optimization from harmful compression | Measure before and after: token counts, quality metrics, cache hit rates |
+| Masking too aggressively | Masking recent or critical observations causes agent to lose context mid-task | Follow masking categories: never mask current-turn or active-reasoning outputs |
+| Ignoring cache stability | Dynamic content in prefixes (timestamps, random IDs) breaks cache hits | Place stable content first; push dynamic content to end of context |
+| Partitioning too early | Isolation overhead exceeds savings for moderately-sized contexts | Partition only when single context would exceed limits or subtasks are genuinely independent |
+| Compressing system prompt | System prompt establishes identity; compression loses behavioral constraints | Never compress system prompt; always include in cacheable prefix |
+| No compaction triggers | Context fills silently until severe degradation | Implement triggers at 70-80% utilization; monitor usage against budget |
+| Applying single strategy | Different context components need different optimization techniques | Combine strategies based on context composition (see Decision Tree) |
+| Assuming optimization is free | Each strategy has quality cost; aggressive targets degrade output | Target 50-70% compaction with <5% quality loss; measure, don't assume |
 
 ## Guidelines
 
-1. Measure before optimizing—know your current state
+1. Measure before optimizing — know your current state
 2. Apply compaction before masking when possible
 3. Design for cache stability with consistent prompts
 4. Partition before context becomes problematic
@@ -148,8 +148,9 @@ context += [unique_content]  # Unique
 
 ## Integration
 
-This skill builds on context-fundamentals and context-degradation. It connects to:
-
+- context-fundamentals - Prerequisite: basic context concepts
+- context-degradation - Understanding when optimization is needed
+- context-compression - Compression as one optimization technique
 - multi-agent-patterns - Partitioning as isolation
 - evaluation - Measuring optimization effectiveness
 - memory-systems - Offloading context to memory
@@ -159,21 +160,6 @@ This skill builds on context-fundamentals and context-degradation. It connects t
 Internal reference:
 - [Optimization Techniques Reference](./references/optimization_techniques.md) - Detailed technical reference
 
-Related skills in this collection:
-- context-fundamentals - Context basics
-- context-degradation - Understanding when to optimize
-- evaluation - Measuring optimization
-
 External resources:
-- Research on context window limitations
-- KV-cache optimization techniques
-- Production engineering guides
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2025-12-20
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 1.0.0
+- Research on context window limitations and KV-cache optimization
+- Production engineering guides from leading AI labs
