@@ -42,7 +42,7 @@ What are you trying to do?
   │   └─ Full risk assessment: identify by category → score → mitigate → monitor
   │
   ├─ Imagine the project already FAILED and find out why
-  │   └─ Pre-mortem technique: assume failure → work backward → convert to risks
+  │   └─ Pre-mortem technique (see below)
   │
   ├─ Score and prioritize an EXISTING list of concerns
   │   └─ Apply 3x3 matrix → assign strategies → add owners and review dates
@@ -131,17 +131,30 @@ Low        Low    Low    Med
 ## Pre-Mortem Technique
 
 Before project starts, imagine it failed.
-1. What went wrong?
-2. Why did it happen?
-3. What could we have done?
+1. What went wrong? — list specific failure modes (not "it failed" but "the database migration corrupted production data")
+2. Why did it happen? — trace each failure to a root cause; ask "why?" three times
+3. What could we have done? — convert each finding into a preventive action with an owner
 
-Convert answers to risks and mitigations.
+Convert answers to risks and mitigations. The pre-mortem bypasses optimism bias because starting from assumed failure removes the temptation to say "that probably won't happen."
 
-## Anti-Patterns
+**When to run a pre-mortem**: before any project with a hard deadline, irreversible commitment, or budget > 2 team-months.
 
-1. **Medium-Medium everything** — every risk gets scored "Medium/Medium" without analysis, making the register useless for prioritization. Counter: for each "Medium," ask "what specific evidence supports this score? What would change it to High?"
-2. **Vague mitigations** — "Mitigate: reduce risk" without specific actions, triggers, or owners. Counter: every mitigation must answer: What action? Who owns it? By when? What triggers activation?
-3. **Register as checkbox exercise** — team fills it mechanically and never revisits. Counter: assign each risk a specific owner with a concrete check action; schedule quarterly reviews that close resolved risks and force Accept decisions on stale low-score items.
-4. **Optimism bias** — forward-looking analysis misses risks because "things usually work out." Counter: use the pre-mortem technique; it bypasses optimism bias by starting from assumed failure.
-5. **Infinite register growth** — every concern gets added, nothing is ever closed. Counter: cap at 20 items; at each review, close resolved risks, merge duplicates, and force decisions on items open for 2+ cycles.
-6. **Single-category tunnel vision** — only technical risks get identified, ignoring schedule, resource, external, and organizational risks. Counter: systematically walk all five categories during identification.
+## Anti-Patterns with Solutions
+
+1. **Medium-Medium everything** — every risk gets scored "Medium/Medium" without analysis, making the register useless for prioritization.
+   - **Solution**: for each "Medium," demand evidence: "what specific fact supports this score? What would change it to High?" If no evidence exists, the score is a guess — gather data before scoring.
+
+2. **Vague mitigations** — "Mitigate: reduce risk" without specific actions, triggers, or owners.
+   - **Solution**: every mitigation must answer four questions: What specific action? Who owns it? By when? What trigger activates it? Example: "Mitigate: run Aurora compatibility audit by end of week 1 (owned by DB lead), trigger: any incompatible extension found."
+
+3. **Register as checkbox exercise** — team fills it mechanically and never revisits.
+   - **Solution**: assign each risk a specific owner with a concrete check action (not "keep an eye on it" but "run load test against staging every Monday"); schedule quarterly reviews that close resolved risks and force Accept decisions on stale items.
+
+4. **Optimism bias** — forward-looking analysis misses risks because "things usually work out."
+   - **Solution**: use the pre-mortem technique; it bypasses optimism bias by starting from assumed failure.
+
+5. **Infinite register growth** — every concern gets added, nothing is ever closed.
+   - **Solution**: cap at 20 items; at each review, close resolved risks, merge duplicates, and force decisions on items open for 2+ cycles. A register over 20 items loses its usefulness.
+
+6. **Single-category tunnel vision** — only technical risks get identified, ignoring schedule, resource, external, and organizational risks.
+   - **Solution**: systematically walk all five categories during identification; use the category table as a checklist, not a suggestion.
