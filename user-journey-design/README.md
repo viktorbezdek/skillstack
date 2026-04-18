@@ -1,6 +1,6 @@
 # User Journey Design
 
-> **v1.0.10** | Map the full user experience from first contact to mastery -- so you fix where the pain actually is, not where it is easiest to fix.
+> **v1.0.11** | Map the full user experience from first contact to mastery -- so you fix where the pain actually is, not where it is easiest to fix.
 > Single skill, no references | 13 trigger evals + 3 output evals
 
 ## Context to Provide

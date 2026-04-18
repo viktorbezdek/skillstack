@@ -8,6 +8,7 @@ description: >-
   across multiple interactions. NOT for static navigation structure or sitemaps
   (use navigation-design). NOT for creating user personas or archetypes (use
   persona-definition). NOT for designing research interview flows (use elicitation).
+  NOT for writing microcopy at specific touchpoints (use ux-writing).
 ---
 
 # User Journey Design
@@ -48,6 +49,17 @@ What are you trying to understand?
   │
   └─ Where users drop off or struggle in a specific flow
       └─ Focused journey fragment: zoom into the problem stage → map in detail
+
+Journey scope?
+  │
+  ├─ Full product lifecycle (awareness → mastery)
+  │   └─ 5-7 stages, broad but structured
+  │
+  ├─ Single flow (e.g., checkout, onboarding, API integration)
+  │   └─ 3-5 stages, narrow and deep
+  │
+  └─ Documentation path (getting started, troubleshooting, API reference)
+      └─ Use pre-built templates: Getting Started / Troubleshooting / API Integration
 ```
 
 ---
@@ -100,3 +112,4 @@ What are you trying to understand?
 4. **Too many stages** — 10+ stages make the map unreadable and unfocused. Fix: group into 4-7 major stages; use sub-stages only when zooming into a specific section.
 5. **Service blueprint without back-stage** — showing only the user-facing experience without the internal processes that enable it. Fix: a real service blueprint has three layers: front-stage (user sees), back-stage (org does), support processes (systems that enable).
 6. **Journey map as artifact, not tool** — creating the map once and never revisiting it. Fix: treat journey maps as living documents; revisit after feature launches, user research, or quarterly reviews.
+7. **Mixing personas in one map** — mapping "users" without differentiating personas causes pain points to average out and hide critical differences. Fix: create separate maps per key persona; a power user's troubleshooting journey differs fundamentally from a beginner's.
