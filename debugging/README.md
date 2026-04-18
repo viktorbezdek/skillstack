@@ -1,4 +1,4 @@
-> **v1.1.26** | Development | 28 iterations
+> **v1.1.27** | Development | 29 iterations
 
 # Debugging
 

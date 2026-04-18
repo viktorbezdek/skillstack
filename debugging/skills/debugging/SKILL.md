@@ -1,7 +1,7 @@
 ---
 name: debugging
 description: |
-  Finds and fixes bugs through systematic root cause analysis, stack trace interpretation, browser DevTools automation, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. Use when the user asks to debug something, fix a bug, investigate an error, analyze a stack trace, find the root cause of a failure, profile performance, diagnose test failures, troubleshoot CI/CD pipelines, or use Chrome DevTools to inspect issues. NOT for writing new tests or setting up test frameworks (use testing-framework), NOT for TDD methodology or writing tests before code (use test-driven-development), NOT for reviewing code quality or PRs (use code-review), NOT for designing CI/CD pipelines (use cicd-pipelines).
+  Finds and fixes bugs through systematic root cause analysis, stack trace interpretation, browser DevTools automation, CI/CD pipeline debugging, performance profiling, test pollution detection, and AI-powered error analysis. Use when the user asks to debug, fix a bug, investigate an error, analyze a stack trace, find root cause of a failure, profile performance, diagnose test failures (unit/integration/E2E), troubleshoot CI/CD pipelines, debug flaky tests, use Chrome DevTools, or trace data flow to source. NOT for writing new tests or setting up test frameworks (use testing-framework), NOT for TDD methodology or writing tests before code (use test-driven-development), NOT for reviewing code quality or PRs (use code-review), NOT for designing CI/CD pipelines (use cicd-pipelines), NOT for feature development or refactoring (use language-specific plugins).
 license: Apache-2.0
 ---
 
@@ -205,7 +205,10 @@ NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 | Trusting "API returns 200" as success | 200 status doesn't mean response shape is correct for consumer | Check actual response data, not just status; validate contracts |
 | Proposing fixes before investigation | "I think the fix is X" skips root cause analysis | Let Phase 1 complete before suggesting any fix |
 | Omitting the stack trace | Most information-dense debugging input discarded | Always paste exact error message, stack trace, file paths, line numbers |
-| Fixing at symptom, not source | Bad value originates elsewhere; symptom fix masks real problem | Trace data flow upstream to source; fix at origin (Phase 1, Step 5) |
+|| Fixing at symptom, not source | Bad value originates elsewhere; symptom fix masks real problem | Trace data flow upstream to source; fix at origin (Phase 1, Step 5) |
+|| Assuming "it works" after one test passes | Fix may not cover edge cases; other components may break | Run full test suite after fix; verify at each defense layer |
+|| Debugging without a failing test | No reproducibility; can't verify fix works or stays fixed | Create failing test first (Phase 4, Step 1); it's proof the fix is correct |
+|| Ignoring environment differences | Bug appears only in CI/production but not locally | Audit OS, runtime version, env vars, services, network before assuming code is the cause |
 
 ## Red Flags — STOP and Follow Process
 
