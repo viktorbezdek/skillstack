@@ -9,7 +9,6 @@ Comprehensive guide for workflow automation, task management, and productivity o
 
 ## When to Use This Skill
 
-Use this skill when:
 - **CI/CD Pipelines**: Creating, optimizing, or troubleshooting CI/CD workflows
 - **Git Workflows**: Managing parallel development with worktrees and GitFlow
 - **Scientific Workflows**: Choosing tools for computational workflows (joblib, Prefect, Parsl)
@@ -19,9 +18,15 @@ Use this skill when:
 - **Release Automation**: Setting up semantic versioning and automated releases
 - **Task Management**: Orchestrating complex dependencies and parallel execution
 
-## Quick Decision Guide
+## When NOT to Use This Skill
 
-### What are you trying to automate?
+- **CI/CD YAML configuration** → use `cicd-pipelines`
+- **Docker containers or Dockerfiles** → use `docker-containerization`
+- **Git branching strategy or commit conventions** → use `git-workflow`
+
+---
+
+## Decision Tree
 
 ```
 START: What type of workflow?
@@ -60,85 +65,34 @@ START: What type of workflow?
         • Conventional commits
 ```
 
+---
+
 ## Core Capabilities
 
 ### 1. CI/CD Pipelines
 
 Design, optimize, and troubleshoot CI/CD pipelines across GitHub Actions and GitLab CI.
 
-**Key Features:**
-- Pipeline design patterns (fail-fast, parallelize, cache)
-- DevSecOps security scanning (SAST, DAST, SCA)
-- Deployment strategies (blue-green, canary, rolling)
-- Performance optimization and troubleshooting
+**Key Features:** Pipeline design patterns (fail-fast, parallelize, cache), DevSecOps security scanning (SAST, DAST, SCA), deployment strategies (blue-green, canary, rolling), performance optimization.
 
-**Quick Start:**
-```yaml
-# Basic pipeline structure
-# 1. Fast feedback (lint, format) - <1 min
-# 2. Unit tests - 1-5 min
-# 3. Integration tests - 5-15 min
-# 4. Build artifacts
-# 5. Deploy (with approval gates)
-```
+**Pipeline structure:** Fast feedback (<1 min) → Unit tests (1-5 min) → Integration tests (5-15 min) → Build artifacts → Deploy (with approval gates).
 
-**Resources:**
-- `references/cicd/best_practices.md` - Pipeline design patterns
-- `references/cicd/security.md` - Secrets management, OIDC
-- `references/cicd/devsecops.md` - Security scanning guide
-- `templates/github-actions/` - GitHub Actions templates
-- `templates/gitlab-ci/` - GitLab CI templates
+**Resources:** `references/cicd/best_practices.md`, `references/cicd/security.md`, `references/cicd/devsecops.md`, `templates/github-actions/`, `templates/gitlab-ci/`
 
 ### 2. Git Workflow Management
 
 Manage git worktrees following GitFlow conventions for parallel development.
 
-**Key Features:**
-- Worktree creation and management
-- GitFlow branch conventions (feature/, fix/, hotfix/)
-- Parallel feature development
-- Clean branch organization
-
 **Quick Start:**
-```bash
-# Create feature worktree
-./scripts/git/create_worktree.sh feature email-notifications
+- `./scripts/git/create_worktree.sh feature email-notifications` → branch `feature/email-notifications`, worktree `../project-worktrees/feature/email-notifications/`
+- `./scripts/git/list_worktrees.sh` → visibility into all active worktrees
+- `./scripts/git/cleanup_worktrees.sh --merged` → clean up stale branches
 
-# Result:
-# - Branch: feature/email-notifications
-# - Worktree: ../project-worktrees/feature/email-notifications/
-
-# List all worktrees
-./scripts/git/list_worktrees.sh
-
-# Clean up merged worktrees
-./scripts/git/cleanup_worktrees.sh --merged
-```
-
-**Directory Structure:**
-```
-project/                    ← Main repository (main branch)
-project-worktrees/          ← Worktree parent
-├── feature/
-│   ├── email-notifications/
-│   └── user-dashboard/
-├── fix/
-│   └── login-timeout/
-└── hotfix/
-    └── security-patch/
-```
-
-**Resources:**
-- `scripts/git/create_worktree.sh` - Create worktree with GitFlow conventions
-- `scripts/git/list_worktrees.sh` - List worktrees with status
-- `scripts/git/cleanup_worktrees.sh` - Clean up stale worktrees
-- `references/gitflow-conventions.md` - Complete GitFlow reference
+**Resources:** `scripts/git/`, `references/gitflow-conventions.md`
 
 ### 3. Scientific Workflow Management
 
-Choose the right tool for computational workflows - from simple joblib caching to complex orchestration.
-
-**Tool Selection:**
+Choose the right tool for computational workflows.
 
 | Situation | Tool | Why |
 |-----------|------|-----|
@@ -150,171 +104,39 @@ Choose the right tool for computational workflows - from simple joblib caching t
 | Materials DFT workflows | quacc | Pre-built recipes |
 | Production materials | FireWorks | Battle-tested |
 
-**Quick Start:**
-```python
-# Simple caching
-from joblib import Memory
-memory = Memory("./cache")
-
-@memory.cache
-def expensive_computation(x):
-    return result
-
-# Parallel execution
-from joblib import Parallel, delayed
-results = Parallel(n_jobs=4)(
-    delayed(compute)(i) for i in range(100)
-)
-```
-
-**Resources:**
-- `subskills/joblib.md` - Caching and parallelism
-- `subskills/prefect.md` - Modern Python orchestration
-- `subskills/parsl.md` - HPC scientific computing
-- `subskills/covalent.md` - Cloud/quantum workflows
-- `subskills/fireworks.md` - Materials production
-- `subskills/quacc.md` - Materials high-throughput
+**Resources:** `subskills/joblib.md`, `subskills/prefect.md`, `subskills/parsl.md`, `subskills/covalent.md`, `subskills/fireworks.md`, `subskills/quacc.md`
 
 ### 4. Multi-Agent Workflow Orchestration
 
-Coordinate multiple agents for complex development workflows with Context7 integration.
+Coordinate multiple agents with WorkflowEngine: `engine.create_workflow()` → `workflow.add_stage(agent, depends_on=[...])` → `engine.execute(workflow, input_data)`. Error handling, performance monitoring, and stage dependencies built in.
 
-**Key Features:**
-- Multi-agent coordination
-- Task scheduling with priorities
-- Error handling and recovery
-- Performance monitoring
+**Workflow Templates:** Feature Development (spec → implementation → testing), Bug Fix (diagnosis → fix → validation), Code Review (analysis → feedback → approval).
 
-**Quick Start:**
-```python
-from alfred_workflow import WorkflowEngine, Agent
-
-engine = WorkflowEngine()
-spec_agent = Agent("spec-builder", domain="requirements")
-impl_agent = Agent("tdd-implementer", domain="development")
-test_agent = Agent("quality-gate", domain="testing")
-
-workflow = engine.create_workflow("feature_development")
-workflow.add_stage("specification", spec_agent)
-workflow.add_stage("implementation", impl_agent, depends_on=["specification"])
-workflow.add_stage("testing", test_agent, depends_on=["implementation"])
-
-result = engine.execute(workflow, input_data={"feature": "user auth"})
-```
-
-**Workflow Templates:**
-- Feature Development: spec → implementation → testing
-- Bug Fix: diagnosis → fix → validation
-- Code Review: analysis → feedback → approval
-
-**Resources:**
-- `references/alfred-workflow-reference.md` - Orchestration patterns
-- `examples/enterprise-testing-workflow.py` - Complete workflow example
+**Resources:** `references/alfred-workflow-reference.md`, `examples/enterprise-testing-workflow.py`
 
 ### 5. Development Workflow (TDD/Debug/Review)
 
-Implement TDD cycles, AI-powered debugging, and automated code review with TRUST 5 framework.
+- **TDDManager** (`modules/tdd-context7.md`): RED-GREEN-REFACTOR cycle with `tdd.run_full_tdd_cycle(specification, target_function)`
+- **AIDebugger** (`modules/ai-debugging.md`): Root cause analysis with `debugger.debug_with_context7_patterns(exception, context, project_path)` → returns root cause, solutions, code suggestions
+- **AutomatedCodeReviewer** (`modules/automated-code-review.md`): TRUST 5 validation (Test-first, Readable, Unified, Secured, Trackable) with `reviewer.review_codebase(project_path, changed_files)`
 
-**Key Components:**
-
-**TDDManager** - Test-driven development cycle:
-```python
-from workflow import TDDManager, TestSpecification
-
-tdd = TDDManager(project_path, context7_client)
-
-# RED: Generate failing test
-# GREEN: Implement minimum code
-# REFACTOR: Optimize with patterns
-cycle_results = await tdd.run_full_tdd_cycle(
-    specification=test_spec,
-    target_function="authenticate_user"
-)
-```
-
-**AIDebugger** - Intelligent error analysis:
-```python
-from workflow import AIDebugger
-
-debugger = AIDebugger(context7_client)
-analysis = await debugger.debug_with_context7_patterns(
-    exception=e,
-    context={"file": "app.py", "function": "main"},
-    project_path="/project/src"
-)
-# Returns: root cause, solutions, code suggestions
-```
-
-**AutomatedCodeReviewer** - TRUST 5 validation:
-```python
-from workflow import AutomatedCodeReviewer
-
-reviewer = AutomatedCodeReviewer(context7_client)
-review = await reviewer.review_codebase(
-    project_path="/project/src",
-    changed_files=["src/auth/service.py"]
-)
-# TRUST 5: Test-first, Readable, Unified, Secured, Trackable
-```
-
-**Resources:**
-- `modules/tdd-context7.md` - TDD with Context7
-- `modules/ai-debugging.md` - AI-powered debugging
-- `modules/automated-code-review.md` - TRUST 5 review
-- `modules/smart-refactoring.md` - Technical debt analysis
-- `modules/performance-optimization.md` - Profiling and optimization
+**Also:** `modules/smart-refactoring.md` (technical debt), `modules/performance-optimization.md` (profiling)
 
 ### 6. Release Automation (Semantic Release)
 
-Automate versioning and releases using semantic-release (Node.js) for any language.
+Automate versioning with conventional commits: `feat:` → MINOR, `fix:` → PATCH, `BREAKING CHANGE:` → MAJOR. Local-first releases for instant feedback.
 
-**Key Features:**
-- Local-first releases (instant feedback vs 2-5 min CI wait)
-- Conventional commits for automatic version bumps
-- GitHub releases and changelog generation
-- Multi-account authentication support
+**Quick Start:** `GITHUB_TOKEN=*** npx semantic-release --no-ci --dry-run` (test) then `--no-ci` (release).
 
-**Quick Start:**
-```bash
-# Dry-run first
-GITHUB_TOKEN=$(gh auth token) npx semantic-release --no-ci --dry-run
-
-# Create release
-GITHUB_TOKEN=$(gh auth token) npx semantic-release --no-ci
-```
-
-**Version Bump Rules:**
-- `feat:` → MINOR (0.1.0 → 0.2.0)
-- `fix:` → PATCH (0.1.0 → 0.1.1)
-- `BREAKING CHANGE:` → MAJOR (0.1.0 → 1.0.0)
-
-**Resources:**
-- `references/semantic-release/` - Complete release workflow
-- `references/semantic-release/local-release-workflow.md` - Local release guide
-- `references/semantic-release/authentication.md` - SSH and gh CLI setup
+**Resources:** `references/semantic-release/` (local workflow, authentication, troubleshooting, monorepo support, PyPI publishing)
 
 ### 7. FABER Workflow State Management
 
-Manage workflow state with FABER (Frame, Architect, Build, Evaluate, Release) methodology.
+Stateful workflow automation: `config-loader.sh` → `state-read.sh` → `state-update-phase.sh` → `status-card-post.sh`. 29 scripts for init, read, write, validate, lock, hook, phase management, audit, and backup.
 
-**Key Operations:**
-```bash
-# Load configuration
-./scripts/faber/config-loader.sh
+**Resources:** `scripts/faber/`, `templates/status-card.template.md`
 
-# Read workflow state
-./scripts/faber/state-read.sh ".faber/state.json"
-
-# Update phase state
-./scripts/faber/state-update-phase.sh frame completed '{"work_type": "feature"}'
-
-# Post status card
-./scripts/faber/status-card-post.sh abc12345 123 evaluate "Build is green"
-```
-
-**Resources:**
-- `scripts/faber/` - FABER workflow framework (29 scripts)
-- `templates/status-card.template.md` - Status card template
+---
 
 ## Quality Metrics
 
@@ -325,6 +147,21 @@ Manage workflow state with FABER (Frame, Architect, Build, Evaluate, Release) me
 | Critical Issues | 0 | No critical security/bugs |
 | Performance Regression | < 10% | Max allowed degradation |
 | Response Time | < 100ms | API response target |
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Manual release checklist** | Human remembers steps, misses one under pressure | Semantic release with conventional commits drives automatic version bumps, changelogs, and publishing |
+| 2 | **Ad-hoc multi-agent coordination** | No state persistence, no error recovery, no audit trail | Use WorkflowEngine with `depends_on` declarations, error recovery patterns, and audit logging |
+| 3 | **Stale worktrees accumulating** | Disk fills up, developers forget which worktrees are active | Run `cleanup_worktrees.sh --merged` weekly via cron or CI schedule; use `list_worktrees.sh` for visibility |
+| 4 | **Non-semantic commits breaking releases** | `feat:` commit with breaking behavior published under minor bump | Use `BREAKING CHANGE:` footer in commit body; enforce with commit-msg hook (see git-workflow) |
+| 5 | **Wrong scientific workflow tool** | joblib on HPC cluster (slow) or Parsl for 10 tasks (overkill) | Follow the decision tree before committing. Subskills provide migration paths if already wrong |
+| 6 | **FABER state file corruption** | `state-read.sh` returns invalid data after crash | `state-backup.sh` snapshots before risky operations. Restore from latest backup or `state-init.sh` to reset |
+| 7 | **Infinite reviewer-implementer loop** | Reviewer keeps rejecting, implementer keeps revising, tokens wasted | Set maximum iteration count in WorkflowEngine config (typically 3). After max, escalate to human |
+| 8 | **CI/CD without security scanning** | Pipeline builds and deploys but never scans for vulnerabilities | Add DevSecOps stage: SAST (code), SCA (dependencies), DAST (runtime). See `references/cicd/devsecops.md` |
+| 9 | **Local-only release without CI backup** | Developer's machine is the only release path; vacation blocks releases | Local-first is the default, but add CI as a backup. See `references/semantic-release/local-release-workflow.md` |
+| 10 | **TDD without coverage gate** | Tests written but coverage still below 50% | Enforce >= 85% in AutomatedCodeReviewer TRUST 5 score; fail the build below threshold |
 
 ## Best Practices
 
@@ -391,17 +228,7 @@ workflow-automation/
 │   └── quacc.md
 ├── templates/
 │   ├── github-actions/
-│   │   ├── node-ci.yml
-│   │   ├── python-ci.yml
-│   │   ├── go-ci.yml
-│   │   ├── docker-build.yml
-│   │   └── security-scan.yml
 │   └── gitlab-ci/
-│       ├── node-ci.yml
-│       ├── python-ci.yml
-│       ├── go-ci.yml
-│       ├── docker-build.yml
-│       └── security-scan.yml
 ├── examples/
 │   └── enterprise-testing-workflow.py
 └── docs/
@@ -421,10 +248,3 @@ workflow-automation/
 **Version**: 1.0.0
 **Last Updated**: 2025-01-18
 **Sources**: development-workflow-specialist, git-workflow-manager, scientific-workflow-management, alfred-workflow-orchestration, faber-core, cicd-pipelines, semantic-release
-
-
-
-
-
-
-

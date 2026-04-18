@@ -1,6 +1,6 @@
 # Workflow Automation
 
-> **v1.1.21** | Automate the processes your team runs manually -- releases, parallel development, multi-agent orchestration, and computation pipelines -- with structured patterns and ready-to-use scripts.
+> **v1.1.22** | Automate the processes your team runs manually -- releases, parallel development, multi-agent orchestration, and computation pipelines -- with structured patterns and ready-to-use scripts.
 > Single skill + 6 modules + 21 references + 30+ FABER scripts + 10 CI/CD templates + 6 subskills + 6 git/release scripts | 13 trigger evals + 3 output evals
 
 ## Context to Provide
