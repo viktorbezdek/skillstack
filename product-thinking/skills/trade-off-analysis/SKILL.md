@@ -14,6 +14,49 @@ description: >-
 
 Every product decision kills alternatives. The cost of a choice is not its price — it is the value of the best option you did not take. Teams that do not surface trade-offs build by default and are surprised when the default was wrong.
 
+## When to Use
+
+- Facing a product choice with non-trivial trade-offs
+- Asking "what are we giving up" by choosing X over Y
+- Weighing short-term vs long-term impact
+- Framing a decision before committing resources
+- Determining whether a decision is reversible (two-way) or irreversible (one-way)
+- Surfacing second-order effects of a decision
+
+## When NOT to Use
+
+- Scored prioritization of a backlog (use prioritization)
+- Quantified risk assessment (use risk-management)
+- Strategic go/no-go decisions (use strategic-decision)
+- Problem framing (use problem-definition — do that first)
+
+## Decision Tree
+
+```
+What trade-off problem do you have?
+│
+├─ "Should we do X?" — only one option framed
+│  └─ One option is rationalization, not decision-making → Add alternatives + "do nothing"
+│
+├─ Multiple options, need to compare
+│  ├─ 2-4 options? → Fill the trade-off matrix
+│  └─ More than 4? → Prune to the top 3-4; adding more dilutes analysis
+│
+├─ How reversible is this?
+│  ├─ Easy to undo, wrong choice costs days? → Two-way door; decide fast, test
+│  ├─ Hard/impossible to undo, wrong choice costs months? → One-way door; decide slow, gather evidence
+│  └─ Not sure? → Treat as one-way until proven otherwise
+│
+├─ Short-term vs long-term tension
+│  ├─ Short-term win + long-term win? → Obvious choice; do it
+│  ├─ Short-term cost + long-term win? → Strategic bet; do if reversible or high confidence
+│  ├─ Short-term win + long-term cost? → Debt; only if win is large and you have a paydown plan
+│  └─ Short-term cost + long-term cost? → Avoid
+│
+└─ Not sure what you're giving up
+   └─ You haven't named the opportunity cost → Name the next-best alternative explicitly
+```
+
 ## The four dimensions of a trade-off
 
 Every non-trivial decision has trade-offs on these four axes. Analyzing only one is the most common failure mode.
@@ -112,13 +155,15 @@ The dangerous quadrant is top-left-spelled-as-bottom-left — decisions that loo
 
 ## Anti-patterns
 
-- **One option, no alternatives** — the decision is framed as "should we do X" with no comparison set. This is rationalization, not decision-making.
-- **Sunk-cost anchoring** — "we already started X so we should continue" is not a trade-off, it is a cognitive trap.
-- **First-order-only** — team optimizes direct metric and ignores downstream effects on retention, support load, or team morale.
-- **Reversibility ignored** — team treats one-way doors as fast-decide and two-way doors as slow-decide. Inverted.
-- **Confidence theater** — options labeled "high confidence" without stating what the confidence is based on.
-- **Opportunity cost left implicit** — team debates option cost without naming the alternative that is being foregone.
-- **No kill clause** — no condition would reverse the decision, which means the decision cannot be wrong and cannot be learned from.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| One option, no alternatives | "Should we do X?" with no comparison set = rationalization, not decision-making | Always include "do nothing" and "do a smaller version" as options |
+| Sunk-cost anchoring | "We already started X so we should continue" is a cognitive trap, not a trade-off | Evaluate from a blank slate: "If we hadn't started, would we begin now?" |
+| First-order-only | Optimizing direct metric and ignoring downstream effects on retention, support, morale | Name at least two second-order effects per option before deciding |
+| Reversibility ignored | One-way doors decided fast; two-way doors debated endlessly | Classify reversibility first; invert the speed bias |
+| Confidence theater | "High confidence" without stating what the confidence is based on | State the evidence behind confidence; low evidence + one-way door = stop |
+| Opportunity cost left implicit | Debating option cost without naming the foregone alternative | Always name the next-best alternative explicitly |
+| No kill clause | No condition would reverse the decision; it cannot be wrong and cannot be learned from | Document what evidence would change your mind; schedule a review |
 
 ## References
 

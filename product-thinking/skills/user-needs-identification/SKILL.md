@@ -15,6 +15,49 @@ description: >-
 
 Users tell you what they want. They rarely tell you what they need. The two are different and treating them as the same is the fastest way to build a feature that gets used once and never again.
 
+## When to Use
+
+- Moving past stated wants to underlying needs
+- Writing job statements (When/I-want-to/So-I-can)
+- Separating functional jobs from emotional or social ones
+- Surfacing latent needs users cannot articulate
+- Identifying workarounds, apologies, and shadow tools that signal unmet needs
+
+## When NOT to Use
+
+- Persona demographics (use persona-definition)
+- Stakeholder power maps (use persona-mapping)
+- Interview scripting (use elicitation)
+- Writing value propositions (use value-proposition-design)
+- Problem framing (use problem-definition — do that first)
+
+## Decision Tree
+
+```
+What needs identification problem do you have?
+│
+├─ User said "I want X" — is X a need or a want?
+│  ├─ X names a specific solution? → It's a want; run needs-vs-wants ladder
+│  ├─ X names a goal/outcome? → It's closer to a need; extract the job
+│  └─ X names a feeling? → It's an emotional job; name it explicitly
+│
+├─ Have wants, need to find needs
+│  ├─ User described a dashboard/feature? → Run the 5-step ladder (Mirror → Why → Context → Outcome → Alternative)
+│  ├─ User described a pain? → Pain = functional job gap; what job is blocked?
+│  └─ User described a behavior? → Workaround = latent need signal
+│
+├─ Which job dimensions matter?
+│  ├─ Task-oriented? → Functional job (what they're literally trying to do)
+│  ├─ Feeling-oriented? → Emotional job (how they want to feel)
+│  └─ Perception-oriented? → Social job (how they want to be seen)
+│
+└─ Finding latent needs
+   ├─ Users have workarounds? → Unmet need (product didn't intend the workaround)
+   ├─ Users apologize for using alternatives? → Unmet need (main tool doesn't cover it)
+   ├─ Users pay for shadow tools? → Misaligned need (official tool doesn't serve them)
+   └─ Same question repeated in support? → Unmet need (UI doesn't address it)
+```
+
 ## Wants vs needs vs jobs
 
 | Layer | What the user says | What it actually is |
@@ -106,11 +149,15 @@ Workaround:  [how the user copes without the ideal solution]
 
 ## Anti-patterns
 
-- **Feature-as-need** — "users need notifications" is a feature, not a need. The need is "I want to know when X happens without having to check."
-- **Ignoring the emotional layer** — everything is measured in minutes saved, not in anxiety reduced. Emotional needs drive retention.
-- **Projecting needs** — team imagines what users need without evidence. Build on observed behavior, not on team intuition.
-- **Averaging needs** — aggregating needs across segments produces a product that serves nobody well. Segment first, then identify needs per segment.
-- **Stopping at the functional** — functional jobs are the easiest to elicit, so teams stop there and miss the emotional and social drivers that actually determine adoption.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Feature-as-need | "Users need notifications" is a feature, not a need | Reframe: "I want to know when X happens without having to check" |
+| Ignoring the emotional layer | Everything measured in minutes saved, not anxiety reduced | Name emotional jobs explicitly; they drive retention more than functional ones |
+| Projecting needs | Team imagines what users need without evidence | Build on observed behavior, not team intuition; interview and watch, don't guess |
+| Averaging needs | Aggregating across segments produces a product that serves nobody well | Segment first, then identify needs per segment |
+| Stopping at the functional | Functional jobs are easiest to elicit, so teams stop there | Always ask emotional and social layers; they determine adoption |
+| Taking wants at face value | Building the dashboard with 12 widgets because users asked for it | Run the needs-vs-wants ladder on every want before building |
+| Missing latent needs | Only looking at what users say, not what they do | Audit for workarounds, apologies, shadow tools, and repeated support questions |
 
 ## References
 

@@ -1,6 +1,6 @@
 {
   "name": "product-thinking",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
   "author": {
     "name": "Viktor Bezdek",

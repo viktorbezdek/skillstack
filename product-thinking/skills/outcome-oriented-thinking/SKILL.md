@@ -19,6 +19,49 @@ Shipping a feature is not an outcome. Outputs are what your team produces. Outco
 
 This skill is the product-strategy lens on outcomes — specifically: North Star selection, outcome hypotheses, and the output/outcome/impact chain applied to product bets. For generic OKR authoring (team-level objectives and key results), use `outcome-orientation`.
 
+## When to Use
+
+- Determining whether something is an outcome or an output in a product context
+- Running the "so what" test on a deliverable to climb to outcomes
+- Selecting a North Star metric for a product
+- Choosing leading indicators for a product bet
+- Debating whether shipping a feature equals success
+- Writing outcome hypotheses with kill clauses
+
+## When NOT to Use
+
+- Generic OKR authoring (use outcome-orientation)
+- Feedback-loop analysis (use systems-thinking)
+- Metric scoring or ranking (use prioritization)
+- Individual performance metrics (that's HR, not product strategy)
+
+## Decision Tree
+
+```
+What outcome thinking problem do you have?
+│
+├─ "Is this an outcome or an output?"
+│  ├─ "Shipped X to 100% of users" → Output (what you produced)
+│  ├─ "Activation rate rose from 32% to 48%" → Outcome (what changed for users)
+│  └─ "MRR rose 9%" → Impact (what changed for the business)
+│
+├─ Choosing a North Star
+│  ├─ Is it revenue? → No, that's impact (lagging); North Star is at outcome layer
+│  ├─ Is it feature count? → No, that's output; North Star measures user value
+│  ├─ Is it a composite score? → No; must be understandable by a new hire on day 1
+│  └─ Does it pass all 5 criteria? → Aligned to value, actionable, predictive, measurable, understandable
+│
+├─ Leading vs lagging indicators
+│  ├─ Need early signal? → Leading (behavioral, readable within days/weeks)
+│  ├─ Need proof of result? → Lagging (outcome-level, readable in months/quarters)
+│  └─ Rule: every product bet needs at least one leading indicator
+│
+└─ Writing an outcome hypothesis
+   ├─ Missing kill clause? → Bets without failure conditions survive forever
+   ├─ Missing leading indicator threshold? → Can't tell if the bet is working
+   └─ Missing timeframe? → No urgency; "someday" is not a test
+```
+
 ## The output-outcome-impact chain
 
 | Layer | Question it answers | Example |
@@ -120,12 +163,15 @@ The `kill` clause is the most-skipped line and the most valuable. Without it, a 
 
 ## Anti-patterns
 
-- **Roadmap-as-strategy** — a list of outputs with no outcome hypothesis. Tells you what is being built but not why.
-- **Output-masquerading-as-outcome** — "we shipped the feature to 100% of users" counted as an outcome. Shipping is not change.
-- **Lagging-only metrics** — retention and revenue are the only measures tracked. You find out the bet failed three months after you could have acted.
-- **No kill clause** — bets never die. Teams keep shipping against a failing hypothesis because nobody defined failure.
-- **Moving the North Star** — the metric changes every quarter to flatter the roadmap. A North Star that shifts is not a North Star.
-- **One metric, one team** — every team picks its own North Star and optimizes against it, pulling the product in five directions.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Roadmap-as-strategy | List of outputs with no outcome hypothesis | Every roadmap item needs an outcome hypothesis; if it doesn't, it's undirected work |
+| Output-masquerading-as-outcome | "Shipped feature to 100% of users" counted as outcome | Shipping is output; ask "so what changed for the user?" |
+| Lagging-only metrics | Retention and revenue are the only measures; you find out the bet failed 3 months too late | Add at least one leading indicator per bet |
+| No kill clause | Bets never die; teams keep shipping against a failing hypothesis | Every hypothesis must state what evidence would kill it |
+| Moving the North Star | Metric changes every quarter to flatter the roadmap | A North Star that shifts is not a North Star; pick one and hold it for at least a year |
+| One metric, one team | Every team picks its own North Star and optimizes locally, pulling the product in five directions | One North Star for the product; teams get input metrics that feed it |
+| Composite North Star | "Engagement Score = 0.3A + 0.2B + ..." — unreadable, un-falsifiable, gameable | Pick a single observable metric; if you need to combine, use the metric that's most predictive |
 
 ## References
 

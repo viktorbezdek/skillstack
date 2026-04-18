@@ -14,6 +14,48 @@ description: >-
 
 A value proposition is not a slogan. It is a structured claim about which user jobs you do better, which pains you relieve, and which gains you create — specific enough that a failure to deliver any of the three invalidates the claim.
 
+## When to Use
+
+- Writing a value proposition for a product or feature
+- Mapping pains and gains to product features using VPC
+- Applying Kano model to categorize features (basic/performance/delighter)
+- Articulating why a product matters to a specific customer segment
+- Checking whether product features trace to real customer pains/gains
+
+## When NOT to Use
+
+- Marketing copy or microcopy (use ux-writing)
+- Pitching the value prop to stakeholders (use storytelling-for-stakeholders)
+- Generic slogans or taglines
+- Identifying user needs before the VPC (use user-needs-identification)
+- Analyzing trade-offs between features (use trade-off-analysis)
+
+## Decision Tree
+
+```
+What value proposition problem are you solving?
+│
+├─ Starting from scratch
+│  ├─ Have a specific segment? → Yes: fill VPC right side first
+│  ├─ No specific segment? → Segment first; one VPC per segment
+│  └─ Have features but no pain mapping? → Fill right side from evidence, then trace
+│
+├─ VPC not connecting
+│  ├─ Pain relievers with no matching pain? → Orphans; delete or add the pain
+│  ├─ Gains listed but no gain creators? → Add creators or remove the gain
+│  └─ Right side is speculation? → Validate with interviews, not team guessing
+│
+├─ Kano categorization
+│  ├─ Is it expected? → Basic (must-have; absence = churn)
+│  ├─ Does more = better? → Performance (linear satisfaction)
+│  └─ Is it a pleasant surprise? → Delighter (presence = joy; absence = neutral)
+│
+└─ Value proposition statement
+   ├─ Can't name the alternative? → "Unlike other tools" is a non-statement
+   ├─ "Because" just restates the gain? → State the differentiator
+   └─ Two segments in one statement? → Write two statements
+```
+
 ## The Value Proposition Canvas (VPC)
 
 Two halves that must map onto each other.
@@ -102,12 +144,15 @@ Rules:
 
 ## Anti-patterns
 
-- **Slogan instead of claim** — "we make work better" is marketing copy, not a value proposition. A value proposition is specific and falsifiable.
-- **Segment of one or segment of everyone** — the canvas is either built for a single interviewee or for "small businesses" (too broad to act on).
-- **Orphaned pain relievers** — the value map lists features that do not trace to any stated pain or gain.
-- **Basics dressed as delighters** — login and search are basics. Calling them delighters hides gaps.
-- **Ignoring Kano decay** — a feature that was a delighter two years ago is now a basic; keeping it as a differentiator leaves the product behind.
-- **"Unlike X" is missing or vague** — without a named alternative, the claim is undifferentiated.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Slogan instead of claim | "We make work better" is marketing copy, not a value proposition | A value proposition is specific and falsifiable — test by asking "what would disprove this?" |
+| Segment of one or everyone | Canvas built for a single interviewee or "small businesses" (too broad) | One VPC per segment; each segment must be specific enough to act on |
+| Orphaned pain relievers | Features that don't trace to any stated pain or gain | Delete orphans; every left-side item must match a right-side item |
+| Basics dressed as delighters | Login and search are basics, not differentiators | Be honest in Kano categorization; basics prevent churn, they don't drive it |
+| Ignoring Kano decay | A feature that was a delighter two years ago is now a basic | Re-survey Kano categories annually; update categorization |
+| "Unlike X" is missing or vague | Without a named alternative, the claim is undifferentiated | Name a specific competitor or approach in the "unlike" clause |
+| Right side from team speculation | VPC reflects what the team believes, not what customers said | Fill right side only from interview data and observed behavior |
 
 ## References
 

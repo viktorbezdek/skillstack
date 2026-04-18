@@ -17,6 +17,49 @@ description: >-
 
 Most products fail not because the solution was wrong, but because the problem was never sharpened. Teams jump from brief to build, skipping the step where they ask what problem they are actually solving, for whom, and why now.
 
+## When to Use
+
+- A brief or feature request needs to be unpacked into the underlying problem
+- You suspect the team is solving the wrong problem
+- You need to separate symptoms from root causes
+- You want to apply 5-whys to a product or organizational issue
+- You need to write a problem statement with assumptions and not-goals
+- You want to surface hidden assumptions about what's being solved
+
+## When NOT to Use
+
+- Ideating or brainstorming candidate solutions (use creative-problem-solving)
+- Diagnosing code, test, or CI bugs (use debugging)
+- Ranking problems by priority (use prioritization)
+- Writing a value proposition (use value-proposition-design)
+- Identifying user needs (use user-needs-identification)
+
+## Decision Tree
+
+```
+What problem framing problem do you have?
+│
+├─ Brief says "build X" — is X the problem?
+│  ├─ X names a feature? → It's a solution, not a problem; apply JTBD
+│  ├─ X names a metric? → It's a symptom; apply 5-whys
+│  └─ X names a situation? → Closer; check for who/what/why-now gaps
+│
+├─ Symptom vs problem confusion
+│  ├─ "Users churn in week one" → Symptom; 5-whys to find root cause
+│  ├─ "Users can't get a working result in first session" → Problem ✅
+│  └─ "Need a dashboard" → Solution in disguise; extract the job
+│
+├─ Writing a problem statement
+│  ├─ Can't name a specific segment? → "Users" is too broad; narrow it
+│  ├─ No current workaround documented? → You don't know how they cope yet
+│  └─ No "why now" answer? → The problem may not be urgent enough to solve
+│
+└─ Validating an existing problem statement
+   ├─ Names a feature as the problem? → Reframe as a job to be done
+   ├─ Segment is "everyone"? → Too broad; narrow to a specific group
+   └─ No assumptions listed? → Add 2-3 beliefs that, if wrong, invalidate the problem
+```
+
 ## The three questions
 
 Every well-defined problem answers these in one breath:
@@ -102,11 +145,15 @@ If two or more of these are true, you do not yet have a problem — you have a b
 
 ## Anti-patterns
 
-- **Solutioning the brief** — a brief says "build X"; the problem behind X is never stated, and the team accepts X as the problem.
-- **Problem-as-feature** — "users need Slack integration" is a solution; the problem is a workflow broken by app-switching.
-- **Segment of one** — the problem is defined around a single user interview and generalized without evidence.
-- **Symptom persistence** — the problem statement names a metric ("reduce churn") instead of the underlying user situation that causes the metric to move.
-- **Frozen not-goals** — not-goals that never change as understanding improves; they should be revisited each iteration.
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Solutioning the brief | Brief says "build X"; the problem behind X is never stated | Reframe: what job is X being hired for? What constraint makes X necessary? |
+| Problem-as-feature | "Users need Slack integration" is a solution; the problem is a workflow broken by app-switching | Extract the job: "When I'm in my workflow, I want to notify the team, so I can..." |
+| Segment of one | Problem defined around a single user interview and generalized without evidence | Validate with 3-5 more data points before committing resources |
+| Symptom persistence | Problem statement names a metric ("reduce churn") instead of the underlying user situation | 5-whys from metric to root cause; restate as a job |
+| Frozen not-goals | Not-goals never change as understanding improves | Revisit not-goals each iteration; they should evolve with understanding |
+| No assumptions listed | Team proceeds without surfacing what they're betting on | List 2-3 assumptions; design a test for each |
+| Skipping the current workaround | You don't know how users cope today, so you can't measure improvement | Document the workaround; the gap between workaround and ideal IS the problem |
 
 ## References
 
