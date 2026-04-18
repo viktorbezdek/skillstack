@@ -1,6 +1,6 @@
 # MCP Server
 
-> **v1.2.20** | Development | 23 iterations
+> **v1.2.21** | Development | 23 iterations
 
 > Build production-grade MCP (Model Context Protocol) servers in Python or TypeScript -- tool design, validation, security, evaluation testing, and Claude Code plugin packaging.
 

@@ -54,6 +54,42 @@ What's your goal?
   Predict behavior → Identify delays, stocks, and flows; trace system dynamics
 ```
 
+### Leverage Point Selection
+
+```
+What type of change are you considering?
+│
+├─ Changing a number (budget, headcount, threshold)
+│   └─ Level 1 (Parameters) — least effective; ask first: "what rule change would make this number irrelevant?"
+│
+├─ Changing physical structure (org chart, technology, node layout)
+│   └─ Level 2 (Structure) — modest; good for removing bottlenecks
+│
+├─ Adding/removing buffers (inventory, slack time, reserves)
+│   └─ Level 3 (Buffer sizes) — stabilizing but doesn't change dynamics
+│
+├─ Changing delays (feedback speed, reporting cadence)
+│   └─ Level 5 (Delays) — powerful when the system oscillates from lag
+│
+├─ Strengthening/weakening feedback loops
+│   └─ Level 6-7 (Balancing/Reinforcing loops) — changes system dynamics directly
+│
+├─ Changing information flows (who sees what data)
+│   └─ Level 8 (Information flows) — often the cheapest high-leverage intervention
+│
+├─ Changing rules (incentives, constraints, permissions)
+│   └─ Level 9 (Rules) — high leverage; rules determine who can do what
+│
+├─ Enabling self-organization (letting the system evolve its own structure)
+│   └─ Level 10 (Self-organization) — very high leverage but requires trust
+│
+├─ Changing the system goal
+│   └─ Level 11 (Goals) — transforms what the system optimizes for
+│
+└─ Changing the paradigm (mental model underlying the system)
+    └─ Level 12 (Paradigms) — most powerful, rarest; reframes everything
+```
+
 ---
 
 ## Core Concepts
