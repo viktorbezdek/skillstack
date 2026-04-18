@@ -13,7 +13,7 @@
       "name": "agent-evaluation",
       "source": "./agent-evaluation",
       "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "evaluation",
@@ -27,7 +27,7 @@
       "name": "agent-project-development",
       "source": "./agent-project-development",
       "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "project-development",
@@ -40,7 +40,7 @@
       "name": "api-design",
       "source": "./api-design",
       "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
-      "version": "1.2.23",
+      "version": "1.2.24",
       "category": "development",
       "tags": [
         "api",
@@ -54,7 +54,7 @@
       "name": "bdi-mental-states",
       "source": "./bdi-mental-states",
       "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "bdi",
@@ -68,7 +68,7 @@
       "name": "cicd-pipelines",
       "source": "./cicd-pipelines",
       "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "category": "devops",
       "tags": [
         "ci-cd",
@@ -82,7 +82,7 @@
       "name": "cloud-finops",
       "source": "./cloud-finops",
       "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "category": "devops",
       "tags": [
         "finops",
@@ -105,7 +105,7 @@
       "name": "code-review",
       "source": "./code-review",
       "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
-      "version": "1.1.24",
+      "version": "1.1.25",
       "category": "quality",
       "tags": [
         "code-review",
@@ -118,7 +118,7 @@
       "name": "communication",
       "source": "./communication",
       "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "documentation",
       "tags": [
         "communication",
@@ -138,7 +138,7 @@
       "name": "consistency-standards",
       "source": "./consistency-standards",
       "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "quality",
       "tags": [
         "naming",
@@ -150,7 +150,7 @@
       "name": "content-modelling",
       "source": "./content-modelling",
       "description": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
-      "version": "1.0.11",
+      "version": "1.0.12",
       "category": "design",
       "tags": [
         "content",
@@ -163,7 +163,7 @@
       "name": "context-compression",
       "source": "./context-compression",
       "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "category": "context-engineering",
       "tags": [
         "context-compression",
@@ -176,7 +176,7 @@
       "name": "context-degradation",
       "source": "./context-degradation",
       "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "category": "context-engineering",
       "tags": [
         "context-degradation",
@@ -189,7 +189,7 @@
       "name": "context-fundamentals",
       "source": "./context-fundamentals",
       "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "category": "context-engineering",
       "tags": [
         "context-engineering",
@@ -202,7 +202,7 @@
       "name": "context-optimization",
       "source": "./context-optimization",
       "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "category": "context-engineering",
       "tags": [
         "context-optimization",
@@ -215,7 +215,7 @@
       "name": "creative-problem-solving",
       "source": "./creative-problem-solving",
       "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "category": "thinking",
       "tags": [
         "problem-solving",
@@ -227,7 +227,7 @@
       "name": "critical-intuition",
       "source": "./critical-intuition",
       "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "category": "thinking",
       "tags": [
         "pattern-recognition",
@@ -239,7 +239,7 @@
       "name": "debugging",
       "source": "./debugging",
       "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
-      "version": "1.1.26",
+      "version": "1.1.27",
       "category": "development",
       "tags": [
         "debugging",
@@ -252,7 +252,7 @@
       "name": "docker-containerization",
       "source": "./docker-containerization",
       "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
-      "version": "1.1.22",
+      "version": "1.1.23",
       "category": "devops",
       "tags": [
         "docker",
@@ -265,7 +265,7 @@
       "name": "documentation-generator",
       "source": "./documentation-generator",
       "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
-      "version": "1.1.15",
+      "version": "1.1.16",
       "category": "documentation",
       "tags": [
         "docs",
@@ -278,7 +278,7 @@
       "name": "edge-case-coverage",
       "source": "./edge-case-coverage",
       "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "quality",
       "tags": [
         "edge-cases",
@@ -290,7 +290,7 @@
       "name": "elicitation",
       "source": "./elicitation",
       "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "category": "design",
       "tags": [
         "elicitation",
@@ -308,7 +308,7 @@
       "name": "example-design",
       "source": "./example-design",
       "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "documentation",
       "tags": [
         "examples",
@@ -320,7 +320,7 @@
       "name": "filesystem-context",
       "source": "./filesystem-context",
       "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
-      "version": "1.0.4",
+      "version": "1.0.14",
       "category": "context-engineering",
       "tags": [
         "filesystem",
@@ -333,7 +333,7 @@
       "name": "frontend-design",
       "source": "./frontend-design",
       "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "category": "development",
       "tags": [
         "frontend",
@@ -347,7 +347,7 @@
       "name": "git-workflow",
       "source": "./git-workflow",
       "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "category": "devops",
       "tags": [
         "git",
@@ -360,7 +360,7 @@
       "name": "gws-cli",
       "source": "./gws-cli",
       "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "development",
       "tags": [
         "google-workspace",
@@ -376,7 +376,7 @@
       "name": "hosted-agents",
       "source": "./hosted-agents",
       "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "hosted-agents",
@@ -390,7 +390,7 @@
       "name": "mcp-server",
       "source": "./mcp-server",
       "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
-      "version": "1.2.20",
+      "version": "1.2.21",
       "category": "development",
       "tags": [
         "mcp",
@@ -403,7 +403,7 @@
       "name": "memory-systems",
       "source": "./memory-systems",
       "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "category": "agent-architecture",
       "tags": [
         "agent-memory",
@@ -418,7 +418,7 @@
       "name": "multi-agent-patterns",
       "source": "./multi-agent-patterns",
       "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "multi-agent",
@@ -432,7 +432,7 @@
       "name": "navigation-design",
       "source": "./navigation-design",
       "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "navigation",
@@ -444,7 +444,7 @@
       "name": "nextjs-development",
       "source": "./nextjs-development",
       "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
-      "version": "2.0.23",
+      "version": "2.0.24",
       "category": "development",
       "tags": [
         "nextjs",
@@ -457,7 +457,7 @@
       "name": "ontology-design",
       "source": "./ontology-design",
       "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "ontology",
@@ -469,7 +469,7 @@
       "name": "outcome-orientation",
       "source": "./outcome-orientation",
       "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "thinking",
       "tags": [
         "okrs",
@@ -481,7 +481,7 @@
       "name": "persona-definition",
       "source": "./persona-definition",
       "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "personas",
@@ -493,7 +493,7 @@
       "name": "persona-mapping",
       "source": "./persona-mapping",
       "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "stakeholders",
@@ -505,7 +505,7 @@
       "name": "plugin-dev",
       "source": "./plugin-dev",
       "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "category": "development",
       "tags": [
         "plugin-development",
@@ -522,7 +522,7 @@
       "name": "prioritization",
       "source": "./prioritization",
       "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "thinking",
       "tags": [
         "rice",
@@ -535,7 +535,7 @@
       "name": "product-thinking",
       "source": "./product-thinking",
       "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "thinking",
       "tags": [
         "product-thinking",
@@ -555,7 +555,7 @@
       "name": "prompt-engineering",
       "source": "./prompt-engineering",
       "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
-      "version": "1.1.15",
+      "version": "1.1.16",
       "category": "development",
       "tags": [
         "prompts",
@@ -568,7 +568,7 @@
       "name": "python-development",
       "source": "./python-development",
       "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
-      "version": "1.1.24",
+      "version": "1.1.25",
       "category": "development",
       "tags": [
         "python",
@@ -583,7 +583,7 @@
       "name": "react-development",
       "source": "./react-development",
       "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "category": "development",
       "tags": [
         "react",
@@ -596,7 +596,7 @@
       "name": "risk-management",
       "source": "./risk-management",
       "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
-      "version": "1.0.10",
+      "version": "1.0.12",
       "category": "thinking",
       "tags": [
         "risk",
@@ -607,8 +607,8 @@
     {
       "name": "skill-foundry",
       "source": "./skill-foundry",
-      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills, and progressive disclosure architecture. Distinct from Anthropic's bundled skill-creator \u2014 this is the full production toolkit for philosophy-first design, evidence-based prompting, anti-pattern prevention, shibboleths, eval-driven iteration, and enterprise-grade workflows.",
-      "version": "2.0.0",
+      "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
+      "version": "2.2.0",
       "category": "development",
       "tags": [
         "skill",
@@ -623,7 +623,7 @@
       "name": "skillstack-workflows",
       "source": "./skillstack-workflows",
       "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "category": "thinking",
       "tags": [
         "workflow",
@@ -643,8 +643,8 @@
     {
       "name": "storytelling",
       "source": "./storytelling",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
-      "version": "1.0.0",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+      "version": "1.0.1",
       "category": "design",
       "tags": [
         "storytelling",
@@ -665,7 +665,7 @@
       "name": "systems-thinking",
       "source": "./systems-thinking",
       "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "thinking",
       "tags": [
         "systems",
@@ -677,7 +677,7 @@
       "name": "test-driven-development",
       "source": "./test-driven-development",
       "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
-      "version": "1.1.17",
+      "version": "1.1.18",
       "category": "quality",
       "tags": [
         "tdd",
@@ -690,7 +690,7 @@
       "name": "testing-framework",
       "source": "./testing-framework",
       "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "category": "quality",
       "tags": [
         "testing",
@@ -704,7 +704,7 @@
       "name": "tool-design",
       "source": "./tool-design",
       "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "agent-architecture",
       "tags": [
         "tool-design",
@@ -717,7 +717,7 @@
       "name": "typescript-development",
       "source": "./typescript-development",
       "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "category": "development",
       "tags": [
         "typescript",
@@ -730,7 +730,7 @@
       "name": "user-journey-design",
       "source": "./user-journey-design",
       "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "user-journey",
@@ -742,7 +742,7 @@
       "name": "ux-writing",
       "source": "./ux-writing",
       "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "category": "design",
       "tags": [
         "ux-writing",
@@ -754,7 +754,7 @@
       "name": "workflow-automation",
       "source": "./workflow-automation",
       "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
-      "version": "1.1.21",
+      "version": "1.1.22",
       "category": "devops",
       "tags": [
         "automation",

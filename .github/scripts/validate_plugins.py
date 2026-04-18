@@ -197,7 +197,14 @@ def validate_skill(skill_dir: Path, plugin_name: str, report: Report) -> None:
     # SKILL.md should exist on disk.
     ref_dir = skill_dir / "references"
     if ref_dir.exists():
-        cited = set(re.findall(r"references/([A-Za-z0-9_\-]+\.md)", body))
+        # Match markdown links/references like [text](references/foo.md) or `references/foo.md`
+        # but skip examples inside inline code that use placeholder names.
+        # Strip inline code spans first to avoid false positives from examples.
+        body_no_code = re.sub(r"`[^`]+`", "", body)
+        cited = set(re.findall(r"references/([A-Za-z0-9_\-]+\.md)", body_no_code))
+        # Filter out obvious placeholder names used in examples
+        placeholders = {"foo.md", "bar.md", "baz.md", "example.md", "template.md"}
+        cited -= placeholders
         for ref in sorted(cited):
             target = ref_dir / ref
             if not target.is_file():

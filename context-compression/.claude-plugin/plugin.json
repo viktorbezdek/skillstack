@@ -1,6 +1,6 @@
 {
   "name": "context-compression",
-"version": "1.0.11"
+"version": "1.0.11",
   "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
   "author": {
     "name": "Viktor Bezdek",

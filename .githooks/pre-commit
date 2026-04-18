@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+# skillstack pre-commit hook
+# Runs structural validation and basic sanity checks.
+# Install: cp .githooks/pre-commit .git/hooks/pre-commit
+# Or:      git config core.hooksPath .githooks
+
+set -euo pipefail
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+FAILED=0
+
+echo "Running pre-commit checks..."
+echo ""
+
+# ── 1. Plugin structural validation ──────────────────────────────────
+echo -n "  [1/4] Plugin structural validator... "
+VALIDATOR_OUTPUT=$(python3 "$REPO_ROOT/.github/scripts/validate_plugins.py" 2>&1) || {
+    echo -e "${RED}FAIL${NC}"
+    echo "$VALIDATOR_OUTPUT" | grep "ERRORS" -A200 | head -40
+    echo ""
+    echo -e "${YELLOW}Run 'python3 .github/scripts/validate_plugins.py' for full report${NC}"
+    FAILED=1
+}
+if [ $FAILED -eq 0 ]; then
+    echo -e "${GREEN}OK${NC}"
+fi
+
+# ── 2. Valid JSON for all plugin.json files ───────────────────────────
+echo -n "  [2/4] JSON validity (plugin.json)... "
+JSON_ERRORS=""
+for f in $(git diff --cached --name-only --diff-filter=ACM -- '*.json'); do
+    if [ -f "$REPO_ROOT/$f" ]; then
+        python3 -c "import json; json.load(open('$REPO_ROOT/$f'))" 2>/dev/null || {
+            JSON_ERRORS="$JSON_ERRORS  $f"
+        }
+    fi
+done
+# Also check all plugin.json files (not just staged)
+ALL_JSON_ERRORS=""
+for f in $(find "$REPO_ROOT" -path '*/.claude-plugin/plugin.json'); do
+    python3 -c "import json; json.load(open('$f'))" 2>/dev/null || {
+        rel="${f#$REPO_ROOT/}"
+        ALL_JSON_ERRORS="$ALL_JSON_ERRORS  $rel"
+    }
+done
+if [ -n "$ALL_JSON_ERRORS" ]; then
+    echo -e "${RED}FAIL${NC}"
+    echo "$ALL_JSON_ERRORS"
+    FAILED=1
+elif [ -n "$JSON_ERRORS" ]; then
+    echo -e "${RED}FAIL (staged)${NC}"
+    echo "$JSON_ERRORS"
+    FAILED=1
+else
+    echo -e "${GREEN}OK${NC}"
+fi
+
+# ── 3. SKILL.md frontmatter check (staged files only) ────────────────
+echo -n "  [3/4] SKILL.md frontmatter... "
+FM_ERRORS=""
+for f in $(git diff --cached --name-only --diff-filter=ACM -- '*/SKILL.md'); do
+    if [ -f "$REPO_ROOT/$f" ]; then
+        MISSING=""
+        python3 -c "
+import sys
+text = open('$REPO_ROOT/$f').read()
+if not text.startswith('---'):
+    print('missing frontmatter fence')
+    sys.exit(1)
+end = text.find('\n---', 3)
+if end == -1:
+    print('unclosed frontmatter')
+    sys.exit(1)
+fm = text[3:end]
+for field in ['name', 'description']:
+    if field + ':' not in fm:
+        print(f'missing {field}')
+        sys.exit(1)
+" 2>/dev/null || MISSING="$f: $(python3 -c "
+import sys
+text = open('$REPO_ROOT/$f').read()
+if not text.startswith('---'): print('missing frontmatter fence'); sys.exit()
+end = text.find('\n---', 3)
+if end == -1: print('unclosed frontmatter'); sys.exit()
+fm = text[3:end]
+for field in ['name', 'description']:
+    if field + ':' not in fm: print(f'missing {field}'); sys.exit()
+" 2>/dev/null)"
+        if [ -n "$MISSING" ]; then
+            FM_ERRORS="$FM_ERRORS  $MISSING"
+        fi
+    fi
+done
+if [ -n "$FM_ERRORS" ]; then
+    echo -e "${RED}FAIL${NC}"
+    echo "$FM_ERRORS"
+    FAILED=1
+else
+    echo -e "${GREEN}OK${NC}"
+fi
+
+# ── 4. No trailing whitespace in staged markdown ─────────────────────
+echo -n "  [4/4] Trailing whitespace (staged .md)... "
+WS_FILES=""
+for f in $(git diff --cached --name-only --diff-filter=ACM -- '*.md'); do
+    if [ -f "$REPO_ROOT/$f" ] && grep -Pl '\s+$' "$REPO_ROOT/$f" >/dev/null 2>&1; then
+        WS_FILES="$WS_FILES  $f"
+    fi
+done
+if [ -n "$WS_FILES" ]; then
+    echo -e "${YELLOW}WARN${NC}"
+    echo "$WS_FILES"
+    echo "  Fix: sed -i '' 's/[[:space:]]*$//' <files>"
+else
+    echo -e "${GREEN}OK${NC}"
+fi
+
+# ── Result ────────────────────────────────────────────────────────────
+echo ""
+if [ $FAILED -ne 0 ]; then
+    echo -e "${RED}Pre-commit checks FAILED. Fix errors before committing.${NC}"
+    echo -e "${YELLOW}Bypass with: git commit --no-verify${NC}"
+    exit 1
+else
+    echo -e "${GREEN}All checks passed.${NC}"
+    exit 0
+fi

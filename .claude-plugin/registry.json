@@ -31,7 +31,7 @@
       "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "agent-evaluation/skills/agent-evaluation",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "evaluation",
         "llm-as-judge",
@@ -53,7 +53,7 @@
       "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "agent-project-development/skills/agent-project-development",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "project-development",
         "pipeline",
@@ -74,7 +74,7 @@
       "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "api-design/skills/api-design",
-      "version": "1.2.23",
+      "version": "1.2.24",
       "tags": [
         "api",
         "rest",
@@ -96,7 +96,7 @@
       "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "bdi-mental-states/skills/bdi-mental-states",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "bdi",
         "cognitive-architecture",
@@ -118,7 +118,7 @@
       "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "cicd-pipelines/skills/cicd-pipelines",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "tags": [
         "ci-cd",
         "github-actions",
@@ -140,7 +140,7 @@
       "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "cloud-finops/skills/cloud-finops",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "tags": [
         "finops",
         "cloud-cost",
@@ -171,7 +171,7 @@
       "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "code-review/skills/code-review",
-      "version": "1.1.24",
+      "version": "1.1.25",
       "tags": [
         "code-review",
         "security",
@@ -192,7 +192,7 @@
       "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "communication",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "communication",
         "structured-writing",
@@ -220,7 +220,7 @@
       "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "consistency-standards/skills/consistency-standards",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "naming",
         "conventions",
@@ -240,7 +240,7 @@
       "description": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "content-modelling/skills/content-modelling",
-      "version": "1.0.11",
+      "version": "1.0.12",
       "tags": [
         "content",
         "cms",
@@ -261,7 +261,7 @@
       "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "context-compression/skills/context-compression",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "tags": [
         "context-compression",
         "summarization",
@@ -282,7 +282,7 @@
       "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "context-degradation/skills/context-degradation",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "tags": [
         "context-degradation",
         "lost-in-middle",
@@ -303,7 +303,7 @@
       "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "context-fundamentals/skills/context-fundamentals",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "tags": [
         "context-engineering",
         "attention",
@@ -324,7 +324,7 @@
       "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "context-optimization/skills/context-optimization",
-      "version": "1.0.4",
+      "version": "1.0.11",
       "tags": [
         "context-optimization",
         "kv-cache",
@@ -345,7 +345,7 @@
       "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "creative-problem-solving/skills/creative-problem-solving",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "tags": [
         "problem-solving",
         "lateral-thinking",
@@ -365,7 +365,7 @@
       "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "critical-intuition/skills/critical-intuition",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "tags": [
         "pattern-recognition",
         "bayesian-reasoning",
@@ -385,7 +385,7 @@
       "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "debugging/skills/debugging",
-      "version": "1.1.26",
+      "version": "1.1.27",
       "tags": [
         "debugging",
         "devtools",
@@ -406,7 +406,7 @@
       "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "docker-containerization/skills/docker-containerization",
-      "version": "1.1.22",
+      "version": "1.1.23",
       "tags": [
         "docker",
         "containers",
@@ -427,7 +427,7 @@
       "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "documentation-generator/skills/documentation-generator",
-      "version": "1.1.15",
+      "version": "1.1.16",
       "tags": [
         "docs",
         "readme",
@@ -448,7 +448,7 @@
       "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "edge-case-coverage/skills/edge-case-coverage",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "edge-cases",
         "boundary-conditions",
@@ -468,7 +468,7 @@
       "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "elicitation/skills/elicitation",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tags": [
         "elicitation",
         "deep-interview",
@@ -494,7 +494,7 @@
       "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "example-design/skills/example-design",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "examples",
         "tutorials",
@@ -514,7 +514,7 @@
       "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "filesystem-context/skills/filesystem-context",
-      "version": "1.0.4",
+      "version": "1.0.14",
       "tags": [
         "filesystem",
         "context-management",
@@ -535,7 +535,7 @@
       "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "frontend-design/skills/frontend-design",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "tags": [
         "frontend",
         "ui-ux",
@@ -557,7 +557,7 @@
       "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "git-workflow/skills/git-workflow",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "tags": [
         "git",
         "conventional-commits",
@@ -578,7 +578,7 @@
       "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "gws-cli/skills/gws-cli",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "google-workspace",
         "gws",
@@ -602,7 +602,7 @@
       "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "hosted-agents/skills/hosted-agents",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "hosted-agents",
         "sandbox",
@@ -624,7 +624,7 @@
       "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "mcp-server/skills/mcp-server",
-      "version": "1.2.20",
+      "version": "1.2.21",
       "tags": [
         "mcp",
         "model-context-protocol",
@@ -645,7 +645,7 @@
       "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "memory-systems/skills/memory-systems",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "tags": [
         "agent-memory",
         "mem0",
@@ -668,7 +668,7 @@
       "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "multi-agent-patterns/skills/multi-agent-patterns",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "multi-agent",
         "supervisor",
@@ -690,7 +690,7 @@
       "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "navigation-design/skills/navigation-design",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "navigation",
         "information-architecture",
@@ -710,7 +710,7 @@
       "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "nextjs-development/skills/nextjs-development",
-      "version": "2.0.23",
+      "version": "2.0.24",
       "tags": [
         "nextjs",
         "react",
@@ -731,7 +731,7 @@
       "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "ontology-design/skills/ontology-design",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "ontology",
         "knowledge-models",
@@ -751,7 +751,7 @@
       "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "outcome-orientation/skills/outcome-orientation",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "okrs",
         "outcomes",
@@ -771,7 +771,7 @@
       "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "persona-definition/skills/persona-definition",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "personas",
         "user-research",
@@ -791,7 +791,7 @@
       "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "persona-mapping/skills/persona-mapping",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "stakeholders",
         "raci",
@@ -811,7 +811,7 @@
       "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "plugin-dev",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "tags": [
         "plugin-development",
         "plugin-authoring",
@@ -836,7 +836,7 @@
       "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "prioritization/skills/prioritization",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "rice",
         "moscow",
@@ -857,7 +857,7 @@
       "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "product-thinking",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "product-thinking",
         "problem-definition",
@@ -885,7 +885,7 @@
       "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "prompt-engineering/skills/prompt-engineering",
-      "version": "1.1.15",
+      "version": "1.1.16",
       "tags": [
         "prompts",
         "llm",
@@ -906,7 +906,7 @@
       "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "python-development/skills/python-development",
-      "version": "1.1.24",
+      "version": "1.1.25",
       "tags": [
         "python",
         "uv",
@@ -929,7 +929,7 @@
       "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "react-development/skills/react-development",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "tags": [
         "react",
         "hooks",
@@ -950,7 +950,7 @@
       "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "risk-management/skills/risk-management",
-      "version": "1.0.10",
+      "version": "1.0.12",
       "tags": [
         "risk",
         "mitigation",
@@ -967,10 +967,10 @@
       "name": "Skill Foundry",
       "type": "skill",
       "category": "development",
-      "description": "Advanced skill engineering framework with 8-phase methodology, 20+ scripts, 59 references, 13 example skills, and progressive disclosure architecture. Distinct from Anthropic's bundled skill-creator \u2014 this is the full production toolkit for philosophy-first design, evidence-based prompting, anti-pattern prevention, shibboleths, eval-driven iteration, and enterprise-grade workflows.",
+      "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "skill-foundry/skills/skill-foundry",
-      "version": "2.0.0",
+      "version": "2.2.0",
       "tags": [
         "skill",
         "skill-foundry",
@@ -993,7 +993,7 @@
       "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "skillstack-workflows",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "tags": [
         "workflow",
         "composition",
@@ -1019,10 +1019,10 @@
       "name": "Storytelling",
       "type": "skill",
       "category": "design",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "storytelling/skills/storytelling",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "storytelling",
         "narrative",
@@ -1051,7 +1051,7 @@
       "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "systems-thinking/skills/systems-thinking",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "systems",
         "feedback-loops",
@@ -1071,7 +1071,7 @@
       "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "test-driven-development/skills/test-driven-development",
-      "version": "1.1.17",
+      "version": "1.1.18",
       "tags": [
         "tdd",
         "red-green-refactor",
@@ -1092,7 +1092,7 @@
       "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "testing-framework/skills/testing-framework",
-      "version": "1.1.23",
+      "version": "1.1.24",
       "tags": [
         "testing",
         "playwright",
@@ -1114,7 +1114,7 @@
       "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "tool-design/skills/tool-design",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "tags": [
         "tool-design",
         "mcp",
@@ -1135,7 +1135,7 @@
       "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "typescript-development/skills/typescript-development",
-      "version": "1.1.20",
+      "version": "1.1.21",
       "tags": [
         "typescript",
         "zod",
@@ -1156,7 +1156,7 @@
       "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "user-journey-design/skills/user-journey-design",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "user-journey",
         "touchpoints",
@@ -1176,7 +1176,7 @@
       "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "ux-writing/skills/ux-writing",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "tags": [
         "ux-writing",
         "microcopy",
@@ -1196,7 +1196,7 @@
       "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "workflow-automation/skills/workflow-automation",
-      "version": "1.1.21",
+      "version": "1.1.22",
       "tags": [
         "automation",
         "ci-cd",
@@ -1214,7 +1214,7 @@
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library \u2014 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
+      "description": "The complete SkillStack library — 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [
