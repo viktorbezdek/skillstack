@@ -137,8 +137,8 @@ class TestValidPlugin:
         create_plugin(
             fake_repo,
             "alpha",
-            references_cited=["foo.md", "bar.md"],
-            references_on_disk=["foo.md", "bar.md"],
+            references_cited=["data-models.md", "api-contracts.md"],
+            references_on_disk=["data-models.md", "api-contracts.md"],
         )
         register_in_catalog(fake_repo, "alpha")
         (fake_repo / "README.md").write_text("**1** plugins · categories\n")
@@ -194,13 +194,13 @@ class TestPluginStructure:
         create_plugin(
             fake_repo,
             "alpha",
-            references_cited=["foo.md"],
+            references_cited=["missing-guide.md"],
             references_on_disk=[],  # cited but not on disk
         )
         register_in_catalog(fake_repo, "alpha")
         (fake_repo / "README.md").write_text("**1** plugins · categories\n")
         report = run()
-        assert any("foo.md which does not exist" in e.message for e in report.errors)
+        assert any("missing-guide.md which does not exist" in e.message for e in report.errors)
 
 
 class TestCatalogConsistency:
