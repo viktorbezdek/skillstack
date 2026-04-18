@@ -1,6 +1,6 @@
 {
   "name": "prioritization",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
   "author": {
     "name": "Viktor Bezdek",
