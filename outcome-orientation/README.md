@@ -1,6 +1,6 @@
 # Outcome Orientation
 
-> **v1.0.10** | Strategic Thinking | 11 iterations
+> **v1.0.11** | Strategic Thinking | 11 iterations
 
 ---
 
