@@ -21,7 +21,7 @@ allowed-tools:
 
 # Skill Foundry
 
-> **v2.1.0** | Production
+> **v2.2.0** | Production
 
 Framework for creating Claude Code skills that encode domain expertise through philosophy-first design, anti-pattern prevention, and progressive disclosure.
 
@@ -71,8 +71,8 @@ Two tracks: **Minimal Workflow** (6 steps for simple skills) and **Full 8-Phase 
 | Core skill | 1 | Four pillars, description engineering, two workflow tracks, quality heuristics |
 | Reference files | 47 | Methodology, anti-patterns, quality, composability, enterprise, agents |
 | Utility scripts | 25 | Init, validation, analysis, doc extraction, packaging, activation testing |
-| Templates | 19 | SKILL.md starters, script boilerplate, config, metrics, intake forms |
-| Examples | 18 | Annotated analysis, before/after, good skills, pipeline walkthroughs |
+| Templates | 17 | SKILL.md starters, script boilerplate, config, metrics, intake forms |
+| Examples | 23 | Annotated analysis, before/after, good skills, pipeline walkthroughs |
 | Flowcharts | 6 | Decision tree, approval workflow, parallel execution, swimlane, onboarding |
 | Evals | 2 | Trigger evaluation + output evaluation cases |
 

@@ -1,7 +1,7 @@
 {
   "name": "skill-foundry",
   "version": "2.2.0",
-  "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 19 templates, 18 examples.",
+  "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
   "author": {
     "name": "Viktor Bezdek",
     "url": "https://github.com/viktorbezdek"
