@@ -1,6 +1,6 @@
 # Tool Design
 
-> **v1.0.4** | Design tools that agents actually use correctly -- the difference between an agent that completes tasks and one that flails.
+> **v1.0.5** | Design tools that agents actually use correctly -- the difference between an agent that completes tasks and one that flails.
 > Single skill + 2 deep references | 13 trigger evals + 3 output evals
 
 ## Context to Provide

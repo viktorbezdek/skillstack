@@ -1,6 +1,6 @@
 {
   "name": "tool-design",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
   "author": {
     "name": "Viktor Bezdek",
