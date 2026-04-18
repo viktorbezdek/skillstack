@@ -1,6 +1,6 @@
 # Content Modelling
 
-> **v1.0.11** | Design content models with types, fields, relationships, and governance rules for structured content systems -- COPE patterns, editorial workflows, and CMS schema architecture.
+> **v1.0.12** | Design content models with types, fields, relationships, and governance rules for structured content systems -- COPE patterns, editorial workflows, and CMS schema architecture.
 > 1 skill | 13 trigger evals, 3 output evals
 
 ## The Problem
