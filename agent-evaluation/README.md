@@ -1,6 +1,6 @@
 # Agent Evaluation
 
-> **v1.0.4** | Comprehensive evaluation framework for LLM agent systems -- multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, and continuous monitoring.
+> **v1.0.5** | Comprehensive evaluation framework for LLM agent systems -- multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, and continuous monitoring.
 > 1 skill | 4 references | 15 trigger evals, 3 output evals
 
 ## The Problem

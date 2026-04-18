@@ -1,6 +1,6 @@
 {
   "name": "agent-evaluation",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
   "author": {
     "name": "Viktor Bezdek",
