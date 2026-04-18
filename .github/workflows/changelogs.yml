@@ -1,0 +1,58 @@
+name: Generate Plugin Changelogs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/.claude-plugin/plugin.json'
+      - '**/SKILL.md'
+      - '**/README.md'
+      - '**/skills/**'
+      - '**/references/**'
+      - '**/scripts/**'
+      - '**/templates/**'
+      - '**/examples/**'
+      - '!.github/**'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-changelogs:
+    name: Generate Changelogs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history needed for changelog generation
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate per-plugin changelogs
+        run: python3 .github/scripts/generate_changelogs.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "## Updated changelogs" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            git diff --name-only | grep CHANGELOG.md | while read f; do
+              plugin=$(dirname "$f" | sed 's/CHANGELOG.md//' | sed 's|/$||')
+              echo "- \`${plugin}\`" >> "$GITHUB_STEP_SUMMARY"
+            done
+          fi
+
+      - name: Commit and push changelogs
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add '**/CHANGELOG.md'
+          git commit -m "chore: update plugin changelogs [skip ci]"
+          git push
