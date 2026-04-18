@@ -5,11 +5,12 @@ description: This skill should be used when the user asks to "model agent mental
 
 # BDI Mental State Modeling
 
-Transform external RDF context into agent mental states (beliefs, desires, intentions) using formal BDI ontology patterns. This skill enables agents to reason about context through cognitive architecture, supporting deliberative reasoning, explainability, and semantic interoperability within multi-agent systems.
+Transform external RDF context into agent mental states (beliefs, desires, intentions) using formal BDI ontology patterns. This skill enables agents to reason about context through cognitive architecture, supporting deliberative reasoning, explainability, and semantic interoperability.
+
+**Core insight**: BDI modeling gives agents traceable reasoning chains -- every belief links to a justification, every desire to motivating beliefs, every intention to fulfilling desires.
 
 ## When to Activate
 
-Activate this skill when:
 - Processing external RDF context into agent beliefs about world states
 - Modeling rational agency with perception, deliberation, and action cycles
 - Enabling explainability through traceable reasoning chains
@@ -17,7 +18,17 @@ Activate this skill when:
 - Augmenting LLMs with formal cognitive structures (Logic Augmented Generation)
 - Coordinating mental states across multi-agent platforms
 - Tracking temporal evolution of beliefs, desires, and intentions
-- Linking motivational states to action plans
+
+## Decision Tree: BDI Modeling Approach
+
+```
+What is the primary goal?
++-- Explainability and traceability --> Full BDI ontology with Justification instances
++-- Bidirectional RDF integration --> T2B2T paradigm (Triples-to-Beliefs-to-Triples)
++-- LLM augmentation with constraints --> Logic Augmented Generation (LAG)
++-- Executable agent behavior --> SEMAS rule translation from BDI to production rules
++-- All of the above --> Combine approaches; each addresses different concern
+```
 
 ## Core Concepts
 
@@ -88,9 +99,8 @@ Intentions specify plans that address goals through task sequences:
 
 Triples-to-Beliefs-to-Triples implements bidirectional flow between RDF knowledge graphs and internal mental states:
 
-**Phase 1: Triples-to-Beliefs**
+**Phase 1: Triples-to-Beliefs** -- External RDF context triggers belief formation.
 ```turtle
-# External RDF context triggers belief formation
 :WorldState_notification a bdi:WorldState ;
     rdfs:comment "Push notification: Payment request $250" ;
     bdi:triggers :BeliefProcess_BP1 .
@@ -99,9 +109,8 @@ Triples-to-Beliefs-to-Triples implements bidirectional flow between RDF knowledg
     bdi:generates :Belief_payment_request .
 ```
 
-**Phase 2: Beliefs-to-Triples**
+**Phase 2: Beliefs-to-Triples** -- Mental deliberation produces new RDF output.
 ```turtle
-# Mental deliberation produces new RDF output
 :Intention_pay a bdi:Intention ;
     bdi:specifies :Plan_payment .
 
@@ -121,25 +130,15 @@ Triples-to-Beliefs-to-Triples implements bidirectional flow between RDF knowledg
 
 ## Justification and Explainability
 
-Mental entities link to supporting evidence for traceable reasoning:
-
 ```turtle
 :Belief_B1 a bdi:Belief ;
     bdi:isJustifiedBy :Justification_J1 .
 
 :Justification_J1 a bdi:Justification ;
     rdfs:comment "Official announcement received via email" .
-
-:Intention_I1 a bdi:Intention ;
-    bdi:isJustifiedBy :Justification_J2 .
-
-:Justification_J2 a bdi:Justification ;
-    rdfs:comment "Location precondition satisfied" .
 ```
 
 ## Temporal Dimensions
-
-Mental states persist over bounded time periods:
 
 ```turtle
 :Belief_B1 a bdi:Belief ;
@@ -151,7 +150,6 @@ Mental states persist over bounded time periods:
 ```
 
 Query mental states active at specific moments:
-
 ```sparql
 SELECT ?mentalState WHERE {
     ?mentalState bdi:hasValidity ?interval .
@@ -210,27 +208,17 @@ Map BDI ontology to executable production rules:
 [TAIL: commit_intention(agent_a, buy_groceries)].
 ```
 
-## Guidelines
+## Anti-Patterns
 
-1. Model world states as configurations independent of agent perspectives, providing referential substrate for mental states.
-
-2. Distinguish endurants (persistent mental states) from perdurants (temporal mental processes), aligning with DOLCE ontology.
-
-3. Treat goals as descriptions rather than mental states, maintaining separation between cognitive and planning layers.
-
-4. Use `hasPart` relations for meronymic structures enabling selective belief updates.
-
-5. Associate every mental entity with temporal constructs via `atTime` or `hasValidity`.
-
-6. Use bidirectional property pairs (`motivates`/`isMotivatedBy`, `generates`/`isGeneratedBy`) for flexible querying.
-
-7. Link mental entities to `Justification` instances for explainability and trust.
-
-8. Implement T2B2T through: (1) translate RDF to beliefs, (2) execute BDI reasoning, (3) project mental states back to RDF.
-
-9. Define existential restrictions on mental processes (e.g., `BeliefProcess ⊑ ∃generates.Belief`).
-
-10. Reuse established ODPs (EventCore, Situation, TimeIndexedSituation, BasicPlan, Provenance) for interoperability.
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| Conflating mental states with world states | Mental states reference world states, they are not world states themselves | Always link beliefs to WorldState instances via `refersTo` |
+| Missing temporal bounds | Cannot reason about when beliefs are valid | Every mental state should have validity intervals via `hasValidity` |
+| Flat belief structures | Cannot update parts of complex beliefs independently | Use compositional modeling with `hasPart` |
+| Implicit justifications | No traceability for why agents believe something | Always link mental entities to explicit Justification instances |
+| Direct intention-to-action mapping | Bypasses plan structure, loses task ordering | Intentions specify plans which contain tasks; actions execute tasks |
+| Unidirectional property chains | Cannot query in both directions (e.g., "what does this belief motivate?") | Use bidirectional property pairs (`motivates`/`isMotivatedBy`) |
+| Goals as mental states | Goals are descriptions, not cognitive states | Treat goals as separate descriptions; maintain separation between cognitive and planning layers |
 
 ## Competency Questions
 
@@ -259,17 +247,18 @@ SELECT ?task ?nextTask WHERE {
 } ORDER BY ?task
 ```
 
-## Anti-Patterns
+## Guidelines
 
-1. **Conflating mental states with world states**: Mental states reference world states, they are not world states themselves.
-
-2. **Missing temporal bounds**: Every mental state should have validity intervals for diachronic reasoning.
-
-3. **Flat belief structures**: Use compositional modeling with `hasPart` for complex beliefs.
-
-4. **Implicit justifications**: Always link mental entities to explicit justification instances.
-
-5. **Direct intention-to-action mapping**: Intentions specify plans which contain tasks; actions execute tasks.
+1. Model world states as configurations independent of agent perspectives
+2. Distinguish endurants (persistent mental states) from perdurants (temporal mental processes)
+3. Treat goals as descriptions rather than mental states
+4. Use `hasPart` relations for meronymic structures enabling selective updates
+5. Associate every mental entity with temporal constructs via `atTime` or `hasValidity`
+6. Use bidirectional property pairs for flexible querying
+7. Link mental entities to Justification instances for explainability
+8. Implement T2B2T for bidirectional RDF integration
+9. Define existential restrictions on mental processes (e.g., `BeliefProcess ⊑ ∃generates.Belief`)
+10. Reuse established ODPs (EventCore, Situation, TimeIndexedSituation, BasicPlan, Provenance) for interoperability
 
 ## Integration
 
@@ -292,4 +281,3 @@ Primary sources:
 - Zuppiroli et al. "The Belief-Desire-Intention Ontology" (2025)
 - Rao & Georgeff "BDI agents: From theory to practice" (1995)
 - Bratman "Intention, plans, and practical reason" (1987)
-
