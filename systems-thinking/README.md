@@ -1,6 +1,6 @@
 # Systems Thinking
 
-> **v1.0.10** | Strategic Thinking | 11 iterations
+> **v1.0.11** | Strategic Thinking | 12 iterations
 
 > Analyze complex problems through feedback loops, leverage points, system archetypes, and causal loop diagrams -- see the structure behind the symptoms.
 > Single skill, self-contained methodology

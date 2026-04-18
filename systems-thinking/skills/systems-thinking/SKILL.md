@@ -153,11 +153,22 @@ A --[-]--> B   (opposite direction)
 R = Reinforcing, B = Balancing
 ```
 
-## Anti-Patterns
+## Anti-Patterns with Solutions
 
-1. **Linear thinking** — treating a system as a one-way chain when B→A feedback exists. Fix: always check for reverse causality after mapping a forward link.
-2. **Event focus** — reacting to events (symptoms) instead of addressing the underlying structure. Fix: ask "why did this happen?" at least three times before proposing a fix.
-3. **Boundary errors** — drawing the system boundary too narrow (misses key interactions) or too wide (loses focus). Fix: start narrow, expand only when the model fails to explain observed behavior.
-4. **Delay blindness** — ignoring the time lag between action and response, leading to overcorrection. Fix: explicitly label delays in every causal loop diagram.
-5. **Parameter obsession** — tweaking numbers (level 1 leverage) instead of changing goals, rules, or information flows. Fix: before adjusting a parameter, ask "what rule or goal change would make this parameter irrelevant?"
-6. **Intervening without understanding** — "something must be done" without first mapping the feedback loops. Fix: always complete the analysis workflow before proposing interventions.
+1. **Linear thinking** — treating a system as a one-way chain when B→A feedback exists.
+   - **Solution**: always check for reverse causality after mapping a forward link. Ask: "does the effect loop back to influence the cause?"
+
+2. **Event focus** — reacting to events (symptoms) instead of addressing the underlying structure.
+   - **Solution**: ask "why did this happen?" at least three times before proposing a fix. If the answer at level 3 is different from level 1, you have a structural problem.
+
+3. **Boundary errors** — drawing the system boundary too narrow (misses key interactions) or too wide (loses focus).
+   - **Solution**: start narrow, expand only when the model fails to explain observed behavior. A good model has 6-10 variables and 2-3 dominant loops.
+
+4. **Delay blindness** — ignoring the time lag between action and response, leading to overcorrection.
+   - **Solution**: explicitly label delays in every causal loop diagram. Ask: "how long between this action and its effect?"
+
+5. **Parameter obsession** — tweaking numbers (level 1 leverage) instead of changing goals, rules, or information flows.
+   - **Solution**: before adjusting a parameter, ask "what rule or goal change would make this parameter irrelevant?" If the answer exists, the parameter change is low-leverage.
+
+6. **Intervening without understanding** — "something must be done" without first mapping the feedback loops.
+   - **Solution**: always complete the analysis workflow (boundary → elements → relationships → loops → leverage) before proposing interventions. The map must exist before you navigate.
