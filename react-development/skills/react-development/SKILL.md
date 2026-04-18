@@ -3,53 +3,49 @@ name: react-development
 description: React-specific development patterns including hooks (useState, useEffect, useReducer, useContext), component architecture, state management, shadcn/ui integration, JSX/TSX, React testing, and Bulletproof React auditing. NOT for Next.js routing, SSR, or server components (use nextjs-development). NOT for CSS design systems, Tailwind utilities, or accessibility patterns (use frontend-design).
 ---
 
-# React Development Skill
+# React Development
 
-A comprehensive skill for building modern React applications, covering component architecture, hooks optimization, Next.js patterns, and code quality auditing.
+Build production-grade React with proper architecture, optimized hooks, and quality auditing.
 
----
+## When to Use This Skill
 
-## Overview
-
-This skill combines expertise from 7 specialized React development skills:
-
-1. **Next.js Module Builder** - Full-stack development with Next.js 15 App Router + Supabase
-2. **shadcn/ui Component Library** - Component architecture with Tailwind CSS and CVA
-3. **fpkit Component Builder** - Building library components for @fpkit/acss
-4. **Bulletproof React Auditor** - Code quality auditing against best practices
-5. **fpkit Developer** - Using @fpkit/acss components in applications
-6. **React Hooks Advanced** - Advanced hooks patterns and optimization
-7. **React Hooks Best Practices** - Hooks anti-patterns and correct usage
-
----
-
-## Quick Start
-
-### When to Use This Skill
-
-Use this skill when:
 - Building React applications with Next.js App Router
-- Creating reusable component libraries
-- Optimizing React hooks usage
-- Auditing React codebase quality
+- Creating reusable component libraries with shadcn/ui or fpkit
+- Optimizing React hooks usage and eliminating anti-patterns
+- Auditing React codebase quality with Bulletproof React
 - Implementing accessible, well-tested components
-- Setting up shadcn/ui or fpkit component systems
 
-### Decision Tree
+## When NOT to Use This Skill
+
+- **Next.js routing, SSR, server components** → use `nextjs-development`
+- **CSS design systems, Tailwind utilities, accessibility patterns** → use `frontend-design`
+- **Backend API development** → use `api-design` or `typescript-development`
+- **Test framework setup** → use `testing-framework`
+
+---
+
+## Decision Tree
 
 ```
 What are you building?
 |
 +-- Full-stack Next.js app?
-|   --> See: Next.js Architecture (Section 1)
+|   --> 5-Layer Architecture (Section 1)
 |
 +-- Component library?
-|   +-- Using shadcn/ui? --> See: shadcn/ui Patterns (Section 2)
-|   +-- Using fpkit? --> See: fpkit Patterns (references/extended-patterns.md)
+|   +-- shadcn/ui? --> CVA Variants + Radix Primitives (Section 2)
+|   +-- fpkit? --> Composition Patterns (references/extended-patterns.md)
 |
 +-- Optimizing existing React code?
-|   +-- Hooks issues? --> See: Hooks Best Practices (Section 3)
-|   +-- Architecture audit? --> See: Bulletproof Audit (references/extended-patterns.md)
+|   +-- Hooks issues (re-renders, stale state, dependency arrays)?
+|   |   --> Anti-pattern Detection + Fix (Section 3)
+|   +-- Code quality audit needed?
+|       --> Bulletproof React Auditor (references/extended-patterns.md)
+|
++-- Debugging a specific hooks problem?
+    +-- Effect fires too often? --> Check dependency array (Section 3)
+    +-- State stale in callback? --> Functional update or useRef
+    +-- Component re-renders unnecessarily? --> Memoization decision tree
 ```
 
 ---
@@ -139,15 +135,55 @@ const buttonVariants = cva(
 
 > "The best hook is the one you don't need to write."
 
-### Common Anti-Patterns
+### Anti-Patterns with Solutions
 
-**Derived State**: Don't use `useState` + `useEffect` for derived values. Calculate during render instead.
+**1. Derived State** — Don't use `useState` + `useEffect` for derived values.
+```tsx
+// ANTI-PATTERN: derived state in useState+useEffect
+const [searchQuery, setSearchQuery] = useState('');
+const [filteredItems, setFilteredItems] = useState(items);
+useEffect(() => {
+  setFilteredItems(items.filter(item => item.name.includes(searchQuery)));
+}, [searchQuery, items]); // extra re-render, stale data risk
 
-**Event Response**: Don't use `useEffect` for user actions. Handle in event handlers directly.
+// CORRECT: compute during render
+const [searchQuery, setSearchQuery] = useState('');
+const filteredItems = items.filter(item => item.name.includes(searchQuery));
+```
 
-**Props-to-State**: Don't sync props to state. Use `key` prop for component reset.
+**2. Event Response** — Don't use `useEffect` for user actions.
+```tsx
+// ANTI-PATTERN: responding to events in useEffect
+const [userId, setUserId] = useState(null);
+useEffect(() => {
+  if (userId) api.trackUserSelection(userId); // fires on every userId change
+}, [userId]);
 
-**Premature Memoization**: Don't `useMemo`/`useCallback` cheap operations. Just calculate them.
+// CORRECT: handle in event handler
+<Button onClick={() => {
+  setUserId(id);
+  api.trackUserSelection(id);
+}}>Select</Button>
+```
+
+**3. Props-to-State Sync** — Don't mirror props in state.
+```tsx
+// ANTI-PATTERN: syncing props to state
+const [localValue, setLocalValue] = useState(props.value);
+useEffect(() => { setLocalValue(props.value); }, [props.value]);
+
+// CORRECT: use key prop for reset, or compute from props
+<Editor key={props.documentId} initialValue={props.value} />
+```
+
+**4. Premature Memoization** — Don't `useMemo`/`useCallback` cheap operations.
+```tsx
+// ANTI-PATTERN: memoizing cheap computations
+const fullName = useMemo(() => `${first} ${last}`, [first, last]);
+
+// CORRECT: compute during render (string concat is trivial)
+const fullName = `${first} ${last}`;
+```
 
 ### When to Use Memoization
 
