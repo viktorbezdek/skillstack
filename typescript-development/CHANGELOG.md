@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add When NOT to Use section, add comprehensive anti-patterns table with solutions, add NestJS architecture decision tree, improve decision trees
 
 ## [1.1.20] - 2026-04-16

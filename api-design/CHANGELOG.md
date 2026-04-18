@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add API style selection decision tree, condense anti-patterns into table with solutions, add PUT/PATCH and Federation anti-patterns, remove trailing blank lines, improve progressive disclosure
 
 ## [1.2.23] - 2026-04-16

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - trim documenter SKILL.md from 578 to 423 lines, add anti-patterns and decision tree to validation skill
 
 ## [1.1.0] - 2026-04-13

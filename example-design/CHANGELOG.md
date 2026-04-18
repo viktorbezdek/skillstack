@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add decision tree, expand anti-patterns, add when-to-use, add NOT clause for api-design, progressive complexity rule
 
 ## [1.0.10] - 2026-04-16

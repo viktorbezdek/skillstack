@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add NOT clause for feature dev/refactoring, add 3 anti-patterns (one-test-pass, no-failing-test, ignore-env), refine description keywords with test pollution/flaky/E2E
 
 ## [1.1.26] - 2026-04-16

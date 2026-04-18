@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.11] - 2026-04-18
+
+### Changed
+
+- add pre-commit hook, fix validation errors, sync registry/marketplace
+
 ## [1.0.4] - 2026-04-16
 
 ### Changed
@@ -31,4 +37,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add decision tree, add anti-patterns with solutions, add when-to-use/not, improve description precision

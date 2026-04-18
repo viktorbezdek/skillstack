@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - cut 249 lines of fluff, add decision tree for eval approach selection, condense anti-patterns into table, compress examples, improve progressive disclosure
 
 ## [1.0.4] - 2026-04-16

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add decision trees and expanded anti-patterns to all 5 skills, bump v1.0.1
 
 ## [1.0.0] - 2026-04-16

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - compress SKILL.md from 1077 to 222 lines, move command details to references/command-reference.md, add decision tree, anti-patterns table, when-to-use/not
 
 ## [1.0.0] - 2026-04-16

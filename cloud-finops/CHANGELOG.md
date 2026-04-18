@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add anti-patterns section covering 8 common FinOps mistakes (premature commitments, spillover, tagging, SaaS sprawl, finance-only FinOps)
 
 ## [2.1.0] - 2026-04-16

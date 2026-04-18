@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - condense anti-patterns into table, add missing anti-patterns (resource limits, unpinned actions), remove trailing blank lines
 
 ## [1.1.23] - 2026-04-16

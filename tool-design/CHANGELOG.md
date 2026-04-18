@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - add When NOT to Use section, decision trees (consolidation/primitives/error messages), expand anti-patterns with solutions table, cut repetitive prose
 
 ## [1.0.4] - 2026-04-16

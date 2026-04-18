@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - rewrite SKILL.md removing fabricated MoAI/Context7 classes, add review type decision tree, priority levels, structured review checklist, 8 concrete anti-patterns, proper trigger description with NOT clause
 
 ## [1.1.24] - 2026-04-16

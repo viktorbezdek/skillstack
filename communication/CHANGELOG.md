@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- add per-plugin changelog generation workflow
 - condense anti-patterns in stakeholder-alignment, add 2 new entries, bump version
 
 ## [1.0.0] - 2026-04-16
