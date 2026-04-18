@@ -1,6 +1,6 @@
 {
   "name": "elicitation",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
   "authors": [
     {

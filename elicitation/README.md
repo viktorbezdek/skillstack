@@ -1,6 +1,6 @@
 # Elicitation
 
-> **v2.0.0** | Design & UX | 2 iterations
+> **v2.0.1** | Design & UX | 3 iterations
 
 > Design conversations that reveal what people actually think, feel, and value -- using evidence-based psychological frameworks instead of standard interview questions.
 
