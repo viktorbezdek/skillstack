@@ -1,6 +1,6 @@
 {
   "name": "context-fundamentals",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
   "author": {
     "name": "Viktor Bezdek",

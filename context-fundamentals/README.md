@@ -1,4 +1,4 @@
-> **v1.0.5** | Context Engineering | 6 iterations
+> **v1.0.6** | Context Engineering | 6 iterations
 
 # Context Fundamentals
 
