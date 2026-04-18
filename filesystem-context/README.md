@@ -1,6 +1,6 @@
 # Filesystem Context
 
-> **v1.0.4** | Context Engineering | 5 iterations
+> **v1.0.14** | Context Engineering | 6 iterations
 
 > Use the filesystem as unlimited external memory for LLM agents -- scratch pads, plan persistence, sub-agent workspaces, dynamic skill loading, and self-modification patterns.
 
