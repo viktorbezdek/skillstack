@@ -1,6 +1,6 @@
 # Git Workflow
 
-> **v1.1.20** | DevOps & Infrastructure | 22 iterations
+> **v1.1.21** | DevOps & Infrastructure | 23 iterations
 
 > Unified Git workflow management -- conventional commits, intelligent file grouping, worktree operations, changelog generation, semantic versioning, and story backlog tracking in one plugin.
 

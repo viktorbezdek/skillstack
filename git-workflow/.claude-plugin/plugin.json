@@ -1,6 +1,6 @@
 {
   "name": "git-workflow",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
   "author": {
     "name": "Viktor Bezdek",
