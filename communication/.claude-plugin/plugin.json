@@ -1,6 +1,6 @@
 {
   "name": "communication",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
   "author": {
     "name": "Viktor Bezdek",

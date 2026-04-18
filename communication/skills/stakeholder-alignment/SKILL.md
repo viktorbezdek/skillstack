@@ -153,15 +153,19 @@ When alignment fails:
 2. **Name the cost of delay.** "Every week without a decision costs [concrete cost]."
 3. **Escalate the decision, not the debate.** The approver decides the question; they do not re-run the debate.
 
-## Anti-patterns
+## Anti-Patterns
 
-- **RFC as rationalization** — the doc is written to justify a decision already made. Readers sense this and disengage.
-- **Group approver** — "Engineering leadership" as the approver. No one decides.
-- **Missing trade-offs section** — every doc lists only upsides. Readers suspect the downsides were not examined.
-- **Options theater** — Option A is the real proposal; Options B and C are strawmen. Serious options or no options section at all.
-- **Consensus-seeking** — trying to get everyone to agree on everything, instead of getting the decider to decide while contributors contribute.
-- **Pre-reads read in the meeting** — meeting time wasted re-reading the doc. If the group didn't read, the doc wasn't sent early enough or wasn't short enough.
-- **Missing kill condition** — the proposal has no clause for "what evidence would reverse this decision."
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| RFC as rationalization | Doc written to justify a decision already made; readers disengage | Write the RFC before the decision; include real alternatives |
+| Group approver | "Engineering leadership" as approver; no one decides | One named person as Approver/Decider |
+| Missing trade-offs section | Only upsides listed; readers suspect downsides not examined | Every proposal lists what it gives up |
+| Options theater | Option A is the real proposal; B and C are strawmen | Include serious alternatives or omit the section entirely |
+| Consensus-seeking | Trying to get everyone to agree on everything | Decider decides while contributors contribute; disagreement is logged |
+| Pre-reads read in the meeting | Meeting time wasted re-reading the doc | Send 24-48 hours before; if not read, doc was too late or too long |
+| Missing kill condition | No clause for what evidence would reverse the decision | Add "We will reconsider if [specific measurable outcome]" |
+| Decider named after debate | Roles migrate to favor whoever speaks loudest | Publish roles before the debate |
+| Contributors treated as vetoers | Individual contributors block progress | Contributors provide input; they do not have veto power |
 
 ## Workflow
 
