@@ -251,40 +251,26 @@ App Repo --CI--> Config Repo --ArgoCD--> K8s Cluster
 | `scripts/create_org_config.sh` | Create organization release config |
 | `scripts/generate-adr-notes.mjs` | Auto-link ADRs in release notes |
 
-## Anti-Patterns to Avoid
+## Anti-Patterns
 
-### 1. YAML Copy-Paste Proliferation
-**Symptom**: Nearly identical workflow files duplicated across repositories
-**Fix**: Reusable workflows, Helm charts, Kustomize bases, Terraform modules
+| Anti-Pattern | Symptom | Fix |
+|-------------|---------|-----|
+| YAML copy-paste proliferation | Identical workflows duplicated across repos | Reusable workflows, Helm charts, Kustomize bases, Terraform modules |
+| Hardcoded secrets in code | API keys/passwords committed to git | Secret managers (Vault, AWS SM), sealed secrets, env vars from secure sources |
+| No rollback strategy | No plan for deployment failure | Blue/green, canary with automated rollback, ArgoCD auto-revert |
+| Monolithic CI pipeline | Single 45-minute pipeline on every commit | Parallel jobs, caching, incremental builds, path-based triggers |
+| Running as root in containers | No USER instruction, privileged pods | Add USER instruction, set `securityContext.runAsNonRoot: true` |
+| Using :latest tags | `FROM node:latest` in production | Pin specific versions, use immutable tags with SHA digests |
+| Script injection vulnerability | `${{ github.event.* }}` directly in `run:` blocks | Use environment variables instead (see below) |
+| Missing resource limits | Pods consume unbounded resources | Set requests and limits for CPU/memory in all deployments |
+| Unpinned GitHub Actions | `uses: actions/checkout@v4` without SHA | Pin to commit SHA: `uses: actions/checkout@b4ffde6` |
 
-### 2. Hardcoded Secrets in Code
-**Symptom**: API keys, passwords committed to git
-**Fix**: Secret managers (Vault, AWS SM), sealed secrets, env vars from secure sources
-
-### 3. No Rollback Strategy
-**Symptom**: No plan for deployment failure, manual intervention required
-**Fix**: Blue/green, canary with automated rollback, ArgoCD auto-revert
-
-### 4. Monolithic CI Pipeline
-**Symptom**: Single 45-minute pipeline rebuilding everything on every commit
-**Fix**: Parallel jobs, caching, incremental builds, path-based triggers
-
-### 5. Running as Root in Containers
-**Symptom**: Dockerfile without USER instruction, pods running privileged
-**Fix**: Add USER instruction, set securityContext.runAsNonRoot: true
-
-### 6. Using :latest Tags
-**Symptom**: `FROM node:latest` or `image: app:latest` in production
-**Fix**: Pin specific versions, use immutable tags with SHA digests
-
-### 7. Script Injection Vulnerability
-**Symptom**: Using `${{ github.event.* }}` directly in workflow `run:` blocks
-**Fix**: Use environment variables:
+**Script injection fix:**
 ```yaml
-# DANGEROUS - Script injection vulnerability
+# DANGEROUS
 - run: echo "Title: ${{ github.event.issue.title }}"
 
-# SAFE - Use environment variables
+# SAFE
 - name: Process issue
   env:
     TITLE: ${{ github.event.issue.title }}
@@ -400,10 +386,6 @@ This curated skill combines content from the following legacy skills (now part o
 - **OpenSSF Scorecard**: https://securityscorecards.dev/
 - **SLSA Framework**: https://slsa.dev/
 - **semantic-release**: https://semantic-release.gitbook.io/
-
-
-
-
 
 
 

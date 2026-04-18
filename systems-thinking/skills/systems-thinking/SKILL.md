@@ -15,6 +15,47 @@ description: >-
 
 Analyze complex systems through feedback loops, leverage points, and system dynamics.
 
+## When to use this skill
+
+- A problem keeps recurring despite repeated fixes — suspect a feedback loop
+- You need to understand WHY a system behaves the way it does before intervening
+- Intervening in one area might cause unintended consequences elsewhere
+- You're trying to find the highest-leverage point to change a system
+- Multiple stakeholders see the same problem differently and you need to reconcile views
+
+## When NOT to use this skill
+
+- **Generating novel solutions** → use `creative-problem-solving`
+- **Stress-testing assumptions** → use `critical-intuition`
+- **Building risk registers and mitigation plans** → use `risk-management`
+- **Prioritizing which problem to solve first** → use `prioritization`
+- **Simple cause-and-effect problems** → straightforward analysis suffices; systems thinking adds overhead without value when there are <3 interacting variables
+
+---
+
+## Decision tree
+
+```
+How many interacting variables are involved?
+  1-2 → Systems thinking is overkill; use direct analysis
+  3+ → Continue
+
+Is the problem recurring (keeps coming back)?
+  YES → Feedback loop likely; map the loop → identify leverage points
+  NO  → Is the problem about unintended consequences of an intervention?
+    YES → "Fixes that Fail" archetype; trace side effects
+    NO  → Is the system hitting limits despite initial success?
+      YES → "Limits to Growth" archetype; identify the constraining factor
+      NO  → Use general causal loop analysis
+
+What's your goal?
+  Understand WHY → Map feedback loops, identify dominant loops
+  Find where to intervene → Apply Meadows' leverage points (start at 12, work down)
+  Predict behavior → Identify delays, stocks, and flows; trace system dynamics
+```
+
+---
+
 ## Core Concepts
 
 ### Feedback Loops
@@ -48,12 +89,16 @@ Intervention points ranked by effectiveness (most to least powerful):
 | 2 | Structure | Physical connections |
 | 1 | Parameters | Numbers and constants |
 
+**Rule**: Changing parameters (level 1) is the most common intervention and the least effective. Changing paradigms (level 12) is the rarest intervention and the most effective.
+
 ### System Archetypes
 
-**Fixes that Fail**: Quick fix creates side effects
-**Shifting the Burden**: Symptomatic solution undermines fundamental solution
-**Limits to Growth**: Initial success hits constraints
-**Tragedy of the Commons**: Individual benefit depletes shared resource
+| Archetype | Pattern | Intervention |
+|-----------|---------|--------------|
+| **Fixes that Fail** | Quick fix creates side effects that worsen the original problem | Address the fundamental cause instead of the symptom |
+| **Shifting the Burden** | Symptomatic solution undermines the fundamental solution | Invest in the fundamental solution; use symptomatic relief only as a bridge |
+| **Limits to Growth** | Initial success hits a constraining factor | Identify and remove the limit before growth stalls |
+| **Tragedy of the Commons** | Individual benefit depletes shared resource | Add feedback (information, rules, or allocation) that makes the shared cost visible |
 
 ## Analysis Workflow
 
@@ -62,6 +107,7 @@ Intervention points ranked by effectiveness (most to least powerful):
 3. **Relationship Identification**: Causal connections, +/- classification
 4. **Loop Detection**: Feedback paths, dominant loops
 5. **Leverage Point Analysis**: High-impact intervention points
+6. **Archetype Check**: Does the system match a known pattern?
 
 ## Causal Loop Notation
 
@@ -71,10 +117,11 @@ A --[-]--> B   (opposite direction)
 R = Reinforcing, B = Balancing
 ```
 
-## Common Pitfalls
+## Anti-Patterns
 
-- Linear thinking (ignoring B→A)
-- Event focus (symptoms vs structures)
-- Boundary errors (too narrow/wide)
-- Delay blindness
-
+1. **Linear thinking** — treating a system as a one-way chain when B→A feedback exists. Fix: always check for reverse causality after mapping a forward link.
+2. **Event focus** — reacting to events (symptoms) instead of addressing the underlying structure. Fix: ask "why did this happen?" at least three times before proposing a fix.
+3. **Boundary errors** — drawing the system boundary too narrow (misses key interactions) or too wide (loses focus). Fix: start narrow, expand only when the model fails to explain observed behavior.
+4. **Delay blindness** — ignoring the time lag between action and response, leading to overcorrection. Fix: explicitly label delays in every causal loop diagram.
+5. **Parameter obsession** — tweaking numbers (level 1 leverage) instead of changing goals, rules, or information flows. Fix: before adjusting a parameter, ask "what rule or goal change would make this parameter irrelevant?"
+6. **Intervening without understanding** — "something must be done" without first mapping the feedback loops. Fix: always complete the analysis workflow before proposing interventions.
