@@ -7,7 +7,7 @@ description: >-
   documentation", "document this codebase", "write architecture docs", or "produce
   technical references" for an existing project. NOT for UX copy, button labels, or
   interface microcopy (use ux-writing). NOT for pedagogical code examples or tutorials
-  (use example-design). NOT for inline code comments.
+  (use example-design). NOT for inline code comments. NOT for navigation or sitemap design (use navigation-design).
 ---
 
 # Repository Documentation Generator
@@ -317,14 +317,42 @@ python "$SKILL_DIR/scripts/doc-gen.py" drift /path/to/repo --docs-path /path/to/
 
 ---
 
+## Decision Tree: Which Doc Type First?
+
+```
+What does the user need documented?
+├─ New repo with no docs → README first, then quickstart
+├─ Existing repo, docs outdated → Audit with drift detection, then update
+├─ API for external consumers → API reference + examples first
+├─ Internal system → Architecture docs + runbooks first
+├─ Onboarding problem → Quickstart + user guide first
+└─ Full documentation project → Run all 6 phases sequentially
+```
+
+## Anti-Patterns
+
+- **Documentation by the sole developer** — the builder cannot see what is not obvious; always validate with a second reader
+- **Writing docs before running analysis** — scripts surface structure you will miss manually
+- **Skipping the planning phase** — without personas and prioritization, docs serve no one specifically
+- **Template-only output without skill application** — templates are scaffolding; each requires its listed skills to produce quality content
+- **Generating all docs at once** — produces shallow coverage; prioritize with RICE scoring and iterate
+- **No validation phase** — unmeasured docs drift from accuracy; always run drift detection and outcome measurement
+
+## When NOT to Use This Skill
+
+- Writing a single README for a small project — use `ux-writing` for concise copy
+- Creating navigation structure for a docs site — use `navigation-design`
+- Building a tutorial with runnable code — use `example-design`
+- Writing inline code comments — this is not documentation generation
+
 ## Rules
 
-1. **Load skills per phase** - Don't skip skill loading steps
-2. **Run scripts first** - They handle initial analysis
-3. **Use templates** - Don't reinvent document structures
-4. **Apply skills to templates** - Each template has required skills
-5. **Validate with outcome-orientation** - Measure doc effectiveness
-6. **Audit with risk-management** - Identify and track gaps
+1. **Load skills per phase** — Don't skip skill loading steps
+2. **Run scripts first** — They handle initial analysis
+3. **Use templates** — Don't reinvent document structures
+4. **Apply skills to templates** — Each template has required skills
+5. **Validate with outcome-orientation** — Measure doc effectiveness
+6. **Audit with risk-management** — Identify and track gaps
 
 
 
