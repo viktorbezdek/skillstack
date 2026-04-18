@@ -1,6 +1,6 @@
 {
   "name": "edge-case-coverage",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
   "author": {
     "name": "Viktor Bezdek",

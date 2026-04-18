@@ -14,16 +14,29 @@ description: >-
 
 Systematically identify and handle boundary conditions.
 
+## Decision Tree: Which Edge Case Category?
+
+```
+What kind of edge case are you looking for?
+├─ Input validation? → Check null, wrong type, empty, overflow, malformed
+├─ Boundary values? → Check 0, 1, min, max, just-above, just-below
+├─ State transitions? → Check uninitialized, concurrent, stale, partial
+├─ Resource limits? → Check timeout, OOM, disk full, connection pool exhaustion
+├─ Network failures? → Check offline, slow, partial failure, retry exhaustion
+├─ Permission issues? → Check unauthorized, expired, revoked, insufficient scope
+└─ Multi-system interaction? → Check race conditions, ordering, idempotency
+```
+
 ## Edge Case Categories
 
-| Category | Examples |
-|----------|----------|
-| Boundary | 0, 1, max, min, empty |
-| Input | null, undefined, wrong type |
-| State | uninitialized, concurrent, stale |
-| Resource | timeout, no memory, disk full |
-| Network | offline, slow, partial failure |
-| Permission | unauthorized, expired, revoked |
+| Category | Examples | Detection Heuristic |
+|----------|----------|---------------------|
+| Boundary | 0, 1, max, min, empty | Any numeric or size parameter |
+| Input | null, undefined, wrong type | Any external-facing function |
+| State | uninitialized, concurrent, stale | Any stateful operation |
+| Resource | timeout, no memory, disk full | Any I/O or long-running operation |
+| Network | offline, slow, partial failure | Any remote call |
+| Permission | unauthorized, expired, revoked | Any auth-gated operation |
 
 ## Boundary Analysis
 
@@ -89,9 +102,17 @@ Value: username
 
 ## Anti-Patterns
 
-- Happy path only
-- Ignoring nulls
-- Assuming valid input
-- Missing timeout handling
-- Silent failures
+- **Happy path only** — designing and testing only the expected flow; every production failure starts as an edge case someone assumed would not happen
+- **Ignoring nulls** — null is the most common edge case in production; always handle explicitly
+- **Assuming valid input** — external input is never trustworthy; validate at the boundary
+- **Missing timeout handling** — every network or I/O operation must have a timeout; without one, the system hangs indefinitely
+- **Silent failures** — swallowing errors without logging or surfacing hides bugs until they cascade
+- **Testing only one layer** — edge cases at the integration boundary (API + DB, UI + API) are the most common production failures
+- **Forgetting idempotency** — retries on failed operations cause duplicates if endpoints are not idempotent
 
+## When to Use
+
+- Before implementing a feature — identify edge cases in the spec
+- During code review — check for unhandled boundaries
+- When hardening an existing system — systematic enumeration of failure modes
+- When writing error handling — ensure all categories are covered
