@@ -1,6 +1,6 @@
 # TypeScript Development
 
-> **v1.1.20** | Stop guessing at TypeScript patterns -- get opinionated, production-tested guidance for the type system, runtime validation, framework integration, and strict configuration in one place.
+> **v1.1.21** | Stop guessing at TypeScript patterns -- get opinionated, production-tested guidance for the type system, runtime validation, framework integration, and strict configuration in one place.
 > Single skill + 13 references + 1 script + 1 template + 1 example project | 13 trigger evals + 3 output evals
 
 ## Context to Provide
