@@ -130,6 +130,43 @@ Output: a remediation report with fix evidence, test results, and updated threat
 
 ---
 
+## Decision Tree
+
+```
+What's the security situation?
+│
+├─ Hardening before launch
+│   └─ Run all 5 phases — full audit is the point
+│
+├─ After a security incident
+│   └─ Phase 1 (threat model, scoped to affected area) → Phase 2 → Phase 4 → Phase 5
+│      skip Phase 3 (edge cases) if the incident was a known vuln class
+│
+├─ Compliance preparation (SOC2, HIPAA, PCI-DSS)
+│   └─ Phase 1 (threat model with compliance controls) → Phase 2 → Phase 4
+│      Phase 3 optional — compliance usually needs evidence, not edge cases
+│
+├─ Periodic security review
+│   └─ Phase 1 → Phase 2 only — focused review, not full hardening
+│
+├─ New codebase, never audited
+│   └─ Run all 5 phases — you have no baseline
+│
+└─ Quick one-file fix for known vulnerability
+    └─ Skip this workflow — just fix it directly
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Checklist-only audit** | Team runs OWASP Top 10 as a generic checklist without mapping to their entry points | Phase 1's threat model ensures the review targets actual risk in your specific codebase, not abstract categories. |
+| 2 | **Findings without fixes** | Beautiful report with 47 findings, but nobody fixes them; vulnerabilities ship | Phase 5 requires fixes and tests, not just findings. A finding without a fix is a report that collects dust. |
+| 3 | **Fix-and-forget** | Vulnerability is fixed but no regression test added; a refactor reintroduces it 6 months later | Phase 4 requires a test for every finding. The test is the permanent guard. |
+| 4 | **Scope creep into infrastructure** | Audit starts reviewing Kubernetes configs, firewall rules, cloud IAM | The scope is application code only. Infrastructure security requires different expertise and tools. |
+| 5 | **Testing the happy path only** | All security tests pass, but none test malformed input or unauthorized access | Phase 4 requires negative tests, fuzz tests, and property-based invariants, not just functional tests. |
+| 6 | **Auditing dependencies instead of code** | Team runs `npm audit` and calls it done | Dependency scanning is necessary but not sufficient. Phase 2 reviews YOUR code for injection, auth bypass, and leakage that no scanner catches. |
+
 ## Gates and failure modes
 
 **Gate 1: the threat model gate.** Phase 2 cannot start until Phase 1's threat model exists. Reviewing code without knowing where the risks are produces unfocused reviews.

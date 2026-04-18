@@ -119,6 +119,41 @@ Output: a filesystem context architecture — what files the agent reads and wri
 
 ---
 
+## Decision Tree
+
+```
+What's the context problem?
+│
+├─ Agent output quality degrades over time
+│   └─ Likely instruction decay or lost-in-middle → Phase 4 (degradation)
+│      but run Phase 1-3 first to rule out bloat
+│
+├─ Token costs are bloated
+│   └─ Likely context bloat → Phase 1 (budget) → Phase 2 (optimization) → Phase 3 (compression)
+│
+├─ Agent forgets instructions mid-session
+│   └─ Likely instruction decay → Phase 1 (budget) → Phase 4 (degradation diagnosis)
+│
+├─ Agent contradicts itself
+│   └─ Likely context poisoning or clash → Phase 4 (degradation diagnosis)
+│
+├─ Building a new agent, want context right from start
+│   └─ Run all 5 phases in order as design, not diagnosis
+│
+└─ Prompt engineering didn't help
+    └─ The problem IS upstream of the prompt → Phase 1 (budget) reveals what
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Compressing the poison** | You compress incorrect/outdated info, making it denser and harder to find | Run Phase 4 (degradation) after Phase 3 (compression) to catch what compression preserved. Diagnosis before optimization. |
+| 2 | **Skipping to Phase 4** | Agent misbehaves, so you jump to diagnosing pathologies without fundamentals | The real problem is often a 150K context that should be 30K. Phases 1-3 fix bloat; Phase 4 fixes pathologies that survive. |
+| 3 | **Over-optimization** | Removed so much context the agent can't do its job | Phase 1's budget gives each component a minimum allocation. Phase 3's compression validation catches information loss. |
+| 4 | **Filesystem as dumping ground** | Persist everything to files but never clean up; filesystem becomes a second context problem | Phase 5 requires lifecycle definitions — every file has a creation trigger and a deletion trigger. |
+| 5 | **Treating context as a dump** | "Put everything in and hope the model figures it out" | Phase 1's context budget forces explicit allocation. Every token competes for attention; unused tokens degrade performance. |
+
 ## Gates and failure modes
 
 **Gate 1: the budget gate.** Phase 2 cannot start until Phase 1 has produced a context budget. Optimizing without knowing what's in the context and what each component costs is guesswork.

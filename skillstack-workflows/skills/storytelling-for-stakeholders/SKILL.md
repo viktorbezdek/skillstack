@@ -149,6 +149,44 @@ Output: the final narrative — memo, deck, or script — ready for delivery.
 
 ---
 
+## Decision Tree
+
+```
+What's the presentation context?
+│
+├─ Quarterly business review / all-hands
+│   └─ SCR framework → Phase 2 (find the angle) → Phase 3 (anchor outcomes) → Phase 4 (craft)
+│
+├─ Pitching a technical initiative to non-tech leadership
+│   └─ SparkLines framework → Phase 2 (inversion/analogy) → Phase 3 → Phase 4
+│
+├─ Customer case study
+│   └─ 3-act structure → Phase 2 (surprise angle) → Phase 3 → Phase 4
+│
+├─ Budget / headcount defense
+│   └─ SparkLines (loss framing) → Phase 2 (inversion) → Phase 3 (quantify honestly) → Phase 4
+│
+├─ Post-incident review
+│   └─ SCR → Phase 2 (contrast before/after) → Phase 3 (impact statement) → Phase 4
+│
+├─ Quick update to already-bought-in audience
+│   └─ Skip this workflow — send an email or Slack message
+│
+└─ Full investor pitch with research
+    └─ Use pitch-sprint workflow instead
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **The team-hero trap** | Story is about how hard the team worked and how clever the solution was | Phase 2's "kill the obvious angle" step. If the angle is "look what we built," it's the wrong angle. The audience cares about what changed for them. |
+| 2 | **Data without narrative** | Presentation is a spreadsheet with a title slide; numbers without causation don't stick | Phase 1's framework selection forces a narrative arc. Every number must live inside a beat. |
+| 3 | **Narrative without data** | Story is compelling but has no evidence; first skeptical question collapses it | Phase 3's outcome anchoring. Every claim has a number or an honest qualifier. Credibility compounds. |
+| 4 | **Wrong audience** | Story is perfect for CTO but you're presenting to CFO | The "so what?" chain in Phase 2 must be run from the audience's perspective, not the team's. |
+| 5 | **Saving the reveal for the end** | You build suspense and deliver the punchline on the last slide | This isn't fiction. Lead with the impact statement. Stakeholders are busy — conclusion first, then the story of how you got there. |
+| 6 | **Abstract language** | "Significant improvement", "several customers", "various stakeholders" | Edit pass 2: replace every abstract word with a specific one. "40% reduction", "Acme Corp and Bravo Inc", "VP of Engineering and CTO". |
+
 ## Gates and failure modes
 
 **Gate 1: the structure gate.** No writing until the beat sheet exists. Writing without structure produces rambling, and rambling loses stakeholders in the first paragraph.

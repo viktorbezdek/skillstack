@@ -143,6 +143,44 @@ Output: a verified, documented, containerized API with a passing CI/CD pipeline.
 
 ---
 
+## Decision Tree
+
+```
+What are you shipping?
+│
+├─ New API service from scratch
+│   └─ Run all 6 phases — this is the primary use case
+│
+├─ Prototype → production conversion
+│   └─ Phase 1 (contract) → Phase 2 (TDD) → Phase 3 (review) → Phase 4 (CI/CD) → Phase 5 (containerize)
+│      skip Phase 6 if prototype already has tests
+│
+├─ New endpoint on existing service
+│   └─ Phase 1 (design the endpoint) → Phase 2 (TDD) → Phase 3 (review)
+│      skip Phase 4-5 if pipeline and container already exist
+│
+├─ Rebuilding an API with manual deployment
+│   └─ Phase 4 (CI/CD) → Phase 5 (containerize) → Phase 6 (verify)
+│      skip Phase 1-3 if the API contract and tests already exist
+│
+├─ Serverless function
+│   └─ Phase 1-4, skip Phase 5 (containerization) — adapt Phase 4 for serverless deploy
+│
+└─ API design exploration only
+    └─ Use api-design skill directly, not this workflow
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Implementation-first** | Code is written, then the contract describes whatever was built | Gate 1: Phase 1 produces a machine-readable spec BEFORE Phase 2 writes code. The contract is the source of truth. |
+| 2 | **Testing the happy path only** | All tests pass, but first malformed request in production crashes the service | Phase 2 requires error case tests for every documented error code, plus edge cases (empty collections, boundary values). |
+| 3 | **"Works in Docker on my machine"** | Container builds and runs locally but fails in CI | Phase 6 runs tests INSIDE the container, not just alongside it. Environment differences surface before deploy. |
+| 4 | **Skipping code review to ship faster** | Pipeline is green but code has auth bypass or N+1 queries | Gate 2: Phase 3 cannot start until tests pass; Phase 4 cannot start until review is clean. Review catches what tests miss. |
+| 5 | **Contract drift** | Implementation diverges from Phase 1 spec over time | The API contract is the source of truth. If implementation diverges, the implementation is wrong — not the contract. Add contract tests in Phase 2. |
+| 6 | **Deploying without containerization** | "Works on my machine" is the deployment strategy | Phase 5 is non-negotiable for production. Multi-stage builds, health checks, and env-var config prevent deployment surprises. |
+
 ## Gates and failure modes
 
 **Gate 1: the contract gate.** Phase 2 cannot start until Phase 1's API spec exists. Writing tests without a contract means testing whatever the implementation happens to do.

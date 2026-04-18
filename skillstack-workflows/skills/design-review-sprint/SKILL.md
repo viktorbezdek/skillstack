@@ -133,6 +133,42 @@ For each finding: what it is, where it is, what standard it violates, suggested 
 
 ---
 
+## Decision Tree
+
+```
+What triggered the design review?
+│
+├─ Pre-launch quality gate
+│   └─ Run all 5 phases — this is the full audit use case
+│
+├─ User feedback says "something feels off"
+│   └─ Phase 3 (copy audit) → Phase 4 (journey validation) first
+│      these surface the friction; then Phase 5 (consistency) for root causes
+│
+├─ Design system adoption check
+│   └─ Phase 1 (visual audit) → Phase 5 (consistency) — skip journey validation
+│
+├─ Post-redesign sanity check
+│   └─ Phase 1 (visual) → Phase 2 (navigation) → Phase 5 (consistency)
+│
+├─ Accessibility / compliance prep
+│   └─ Phase 1 (visual, with accessibility checks) → Phase 3 (copy) → Phase 4 (journey)
+│
+└─ No design system or guidelines exist yet
+    └─ Stop. Build the standards first, then audit against them.
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Auditing without standards** | Findings are opinions ("it feels wrong") not actionable violations | If no design system or content guidelines exist, stop the audit. Build the standards first. The missing standard IS the finding. |
+| 2 | **Fixing during the audit** | You optimize locally and miss systemic patterns | Gate 2: complete all 5 phases before fixing anything. The audit produces a ranked list; fixing starts after the full picture is clear. |
+| 3 | **Audit fatigue** | Hundreds of findings, team overwhelmed, nothing gets fixed | Use priority tiers. Fix only Critical and High in the first sprint. Medium and Low go to the backlog. |
+| 4 | **Findings without references** | "This doesn't look right" with no cited standard | Gate 1: every finding must cite a specific standard. If no standard exists, the missing standard is the finding. |
+| 5 | **Design-by-committee from findings** | Group reviews of individual fixes slow everything down | One person or small team owns each fix. The audit produces findings, not design decisions. |
+| 6 | **Skipping the consistency phase** | Phase 5 seems redundant after Phases 1-4 | Phase 5 finds systemic root causes. Ten spacing violations may be one root cause: the team isn't using the spacing scale. |
+
 ## Gates and failure modes
 
 **Gate 1: the reference gate.** Every finding must cite a specific standard (design token, content guideline, journey map, pattern library). "It feels wrong" is not a finding. If the standard doesn't exist, document the missing standard as a finding — that's often more valuable than any single violation.

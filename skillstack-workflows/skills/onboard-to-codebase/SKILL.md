@@ -112,6 +112,37 @@ Output: a context strategy — what to keep close, what to retrieve, what to for
 
 ---
 
+## Decision Tree
+
+```
+Why are you onboarding?
+│
+├─ Joining a new team / inherited a codebase
+│   └─ Run all 4 phases sequentially
+│
+├─ Switching back after months away
+│   └─ Phase 1 (codemap) → Phase 2 (model) only — skip if prior model exists
+│
+├─ Onboarding an AI agent to the repo
+│   └─ Phase 1 → Phase 4 (context strategy) — agent needs structure, not flows
+│
+├─ Preparing to contribute to open source
+│   └─ Phase 1 → Phase 3 (trace the contribution flow) → Phase 4
+│
+└─ The codebase is trivial (<200 lines)
+    └─ Skip this workflow — read the code directly
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Reading files top-to-bottom** | You've read 50 files but can't explain how a request flows through the system | Build the codemap first (Phase 1), then trace flows (Phase 3). Structure before detail. |
+| 2 | **Diving into the most complex module first** | Deep knowledge of one module, zero context on the rest | Phase 1 forces breadth. Only go deep in Phase 3 on critical-path modules. |
+| 3 | **Building the model from static code only** | Your model misses feature flags, dynamic dispatch, config-driven behavior | Phase 3 includes "run it." Execute the system and observe actual behavior. |
+| 4 | **Trying to learn everything** | A week passes with no contribution | Phase 4's context strategy explicitly identifies what to forget. Ship what matters. |
+| 5 | **Skipping the codemap and going straight to tracing** | You trace flows but miss that the most important module wasn't on your list | Gate 1 enforces: no Phase 2 without Phase 1 output. |
+
 ## Gates and failure modes
 
 **Gate 1: the codemap gate.** Phase 2 cannot start until Phase 1's codemap exists. Building a system model without knowing what modules exist is speculation.

@@ -1,6 +1,6 @@
 # SkillStack Workflows
 
-> **v2.0.0** | Eighteen playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
+> **v2.0.1** | Eighteen playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
 > 18 workflow skills, no references | 234 trigger evals + 54 output evals (288 total)
 
 ## The Problem

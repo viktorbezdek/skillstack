@@ -139,6 +139,42 @@ Output: a prioritized backlog with scores, provenance chains, and a clear scope 
 
 ---
 
+## Decision Tree
+
+```
+Where are you in the product cycle?
+│
+├─ Starting from zero with user interviews planned
+│   └─ Run all 5 phases — this is the full funnel
+│
+├─ Interviews done, need to make sense of them
+│   └─ Phase 2 (journey) → Phase 3 (personas) → Phase 4 (outcomes) → Phase 5 (prioritize)
+│
+├─ Personas exist, need to prioritize work
+│   └─ Phase 4 (outcomes) → Phase 5 (prioritize)
+│
+├─ Backlog exists but no provenance to user needs
+│   └─ Phase 1 (elicit) → Phase 4 (outcomes) → Phase 5 (re-prioritize)
+│      audit existing stories against research
+│
+├─ "Features nobody asked for" problem
+│   └─ Phase 1 (elicit real needs) → Phase 5 (re-score existing backlog)
+│
+└─ Grooming backlog without new research
+    └─ Skip this workflow — use prioritization skill directly
+```
+
+## Anti-Patterns
+
+| # | Anti-Pattern | Symptom | Fix |
+|---|---|---|---|
+| 1 | **Stakeholder injection** | Senior person says "we need feature X" and it enters the backlog without provenance | The provenance requirement: if it can't trace to research, it's flagged as a hypothesis needing validation — not a story ready for engineering. |
+| 2 | **Persona sprawl** | Eight personas with overlapping needs; engineering can't tell who they're building for | Phase 3 limits to 3-5 personas and requires anti-personas. More than 5 means you haven't found meaningful clusters. |
+| 3 | **Outcome-free stories** | "As a user, I want a dashboard" — no measurable outcome, no success metric | Phase 4's outcome chain: every story needs a metric. If you can't measure it, you can't prioritize it. |
+| 4 | **Research theater** | Interviews conducted but findings cherry-picked to support pre-existing roadmap | Phase 1's discipline: record verbatim quotes and observed behaviors. Raw data should be available for anyone to review. |
+| 5 | **The infinite funnel** | More research, more personas, more scoring — and nothing ships | Phase 5 forces a scope boundary. Output is a FINITE backlog for a SPECIFIC cycle, not an ever-growing list. |
+| 6 | **Prioritizing features over outcomes** | Backlog is ranked by what sounds coolest, not by what moves the metric | Phase 4 separates outcome definition from implementation. Two features may achieve the same outcome — the cheaper one wins. |
+
 ## Gates and failure modes
 
 **Gate 1: the research gate.** Phase 2 cannot start until Phase 1 has produced real user research. Journey maps built from assumptions are fiction — they look professional but mislead.

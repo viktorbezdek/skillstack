@@ -1,6 +1,6 @@
 {
   "name": "skillstack-workflows",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
   "author": {
     "name": "Viktor Bezdek",
