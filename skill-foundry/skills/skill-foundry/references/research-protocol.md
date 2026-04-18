@@ -740,8 +740,8 @@ Research Phase Complete
 ## Resources
 
 - **Evaluation-Driven Development**: See evaluation_driven_development.md
-- **Comprehensive Checklist**: See comprehensive_checklist.md
-- **Token Efficiency**: See token_efficiency.md
+- **Comprehensive Checklist**: See comprehensive-checklist.md
+- **Token Efficiency**: See token-efficiency.md
 - **Research Log Template**: Above (copy to planning/research-logs/)
 
 ---

@@ -226,5 +226,5 @@ python scripts/migrate.py --from v2 --to v3
 ## Navigation
 
 - [Back to main SKILL.md](../SKILL.md)
-- [Core Principles](core_principles.md)
-- [Progressive Disclosure](progressive_disclosure.md)
+- [Core Principles](core-principles.md)
+- [Progressive Disclosure](progressive-disclosure.md)

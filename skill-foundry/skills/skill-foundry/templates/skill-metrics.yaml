@@ -310,7 +310,7 @@ meta_principles_coverage:
       v2_score: 0
       evidence: []
 
-    progressive_disclosure:
+    progressive-disclosure:
       v0_score: 0
       v1_score: 0
       v2_score: 0

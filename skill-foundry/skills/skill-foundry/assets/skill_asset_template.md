@@ -825,5 +825,5 @@ Integration:
 - [llmstxt_templates.md](./llmstxt_templates.md) - llms.txt file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
-- [skill_creation.md](../references/skill_creation.md) - Full skill creation workflow
+- [core-standards.md](../references/core-standards.md) - Document type rules
+- [skill-creation.md](../references/skill-creation.md) - Full skill creation workflow

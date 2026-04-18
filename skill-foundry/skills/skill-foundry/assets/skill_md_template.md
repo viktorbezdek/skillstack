@@ -1092,5 +1092,5 @@ python3 scripts/package_skill.py .opencode/skills/[skill-name]
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
-- [skill_creation.md](../references/skill_creation.md) - Complete skill creation workflow
+- [core-standards.md](../references/core-standards.md) - Document type rules
+- [skill-creation.md](../references/skill-creation.md) - Complete skill creation workflow

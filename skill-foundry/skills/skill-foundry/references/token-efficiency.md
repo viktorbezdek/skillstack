@@ -448,8 +448,8 @@ Before marking skill complete:
 ## Resources
 
 - **EDD Methodology**: See evaluation_driven_development.md
-- **Research Protocol**: See research_protocol.md
-- **Comprehensive Checklist**: See comprehensive_checklist.md
+- **Research Protocol**: See research-protocol.md
+- **Comprehensive Checklist**: See comprehensive-checklist.md
 - **Analysis Tool**: `python scripts/analyze_conciseness.py`
 
 ---

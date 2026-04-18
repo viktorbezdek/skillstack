@@ -552,7 +552,7 @@ Successful skills often combine multiple patterns:
 
 - **Skills Cookbook**: See `reference_docs/claude_code_skills/cookbook/`
 - **Pattern Library**: See `references/patterns.md`
-- **Best Practices**: See `references/best_practices_checklist.md`
+- **Best Practices**: See `references/best-practices-checklist.md`
 - **Examples**: `examples/` directory
 
 ---

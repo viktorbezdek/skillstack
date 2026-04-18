@@ -124,7 +124,7 @@ AI evaluates content based on extracted data and evaluation questions:
 
 ### Style Compliance (AI-Evaluated)
 
-AI checks style based on core_standards.md:
+AI checks style based on core-standards.md:
 
 **Key Style Checks**:
 - ✅ H2 numbered headings: ALL CAPS + emoji (e.g., `## 1. 🎯 WHEN TO USE`)
@@ -137,7 +137,7 @@ AI checks style based on core_standards.md:
 **Emoji style compliance**:
 - ✅ Semantic emojis on H3: `### ✅ ALWAYS Rules` (functional signal)
 - ❌ Decorative emojis on H3: `### 🔧 Pattern 1` (visual noise)
-- See [core_standards.md](./core_standards.md#6--emoji-usage-rules) for criteria
+- See [core-standards.md](./core-standards.md#6--emoji-usage-rules) for criteria
 
 ---
 
@@ -445,7 +445,7 @@ fi
 ## 10. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [core_standards.md](./core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](./core-standards.md) - Document type rules and structural requirements
 - [workflows.md](./workflows.md) - Execution modes and workflow details
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference

@@ -826,10 +826,10 @@ EOF
 ### Where to Find More Information
 
 **Documentation:**
-- Core principles: `references/core_principles.md`
+- Core principles: `references/core-principles.md`
 - Pattern library: `references/patterns.md`
-- Detailed steps: `references/detailed_process_steps.md`
-- Best practices: `references/best_practices_checklist.md`
+- Detailed steps: `references/detailed-process-steps.md`
+- Best practices: `references/best-practices-checklist.md`
 
 **Examples:**
 - Document processing: `examples/document-skills/pdf/`

@@ -480,3 +480,188 @@ Task: [description]
 ---
 
 **Next Steps**: Apply these research-backed techniques to your agent prompts and measure the quantitative improvements!
+
+---
+
+## 8. Plan-and-Solve Prompting
+
+**Paper**: Wang et al. (2023) - "Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models"
+
+**Principle**: Planning before execution reduces errors by 25-35% on complex workflows
+
+### Pattern
+
+```yaml
+workflow:
+  - name: "Planning Phase"
+    steps:
+      - "Understand requirements"
+      - "Identify constraints"
+      - "Outline solution approach"
+      - "Anticipate challenges"
+
+  - name: "Execution Phase"
+    steps:
+      - "Implement core functionality"
+      - "Handle edge cases"
+      - "Add error handling"
+
+  - name: "Validation Phase"
+    steps:
+      - "Test against requirements"
+      - "Verify edge cases"
+      - "Validate quality criteria"
+```
+
+### Application to Agent Design
+
+**When to Use**:
+- Complex multi-step workflows
+- Tasks with unclear initial requirements
+- Projects requiring phased delivery
+- Scenarios where upfront planning prevents costly rework
+
+**Implementation**:
+```
+First, plan your approach:
+1. [Identify all requirements and constraints]
+2. [Outline the solution architecture]
+3. [Anticipate potential challenges]
+
+Then, execute the plan:
+1. [Implement core functionality]
+2. [Handle edge cases and error handling]
+
+Finally, validate:
+1. [Test against original requirements]
+2. [Verify edge cases are handled]
+3. [Confirm quality criteria are met]
+```
+
+**Measured Impact**:
+- 25-35% reduction in errors on complex workflows
+- Improved requirement coverage
+- Reduced rework from missed requirements
+
+---
+
+## 9. Self-Consistency
+
+**Principle**: Multiple reasoning paths increase reliability for critical decisions
+
+### When to Use
+- High-stakes decisions
+- Ambiguous requirements
+- Novel problem domains
+- Safety-critical systems
+
+### Implementation
+
+```yaml
+prompting:
+  techniques:
+    - name: "self-consistency"
+      enabled: true
+      config:
+        num_samples: 3
+        aggregation: "majority_vote"
+```
+
+### Application to Agent Design
+
+**How It Works**:
+1. Generate multiple independent reasoning paths for the same prompt
+2. Sample different chain-of-thought trajectories (temperature > 0)
+3. Aggregate results using majority voting or other consensus methods
+4. Select the most consistent answer as the final output
+
+**Implementation Pattern**:
+```
+For critical decisions, reason through this problem 3 different ways:
+Path 1: [first reasoning approach]
+Path 2: [second reasoning approach]
+Path 3: [third reasoning approach]
+
+If paths converge on the same answer, proceed with confidence.
+If paths diverge, flag for human review and present all reasoning paths.
+```
+
+**Measured Impact**:
+- Increased reliability for critical decisions
+- Reduced hallucination on ambiguous inputs
+- Better calibration of confidence levels
+
+---
+
+## 10. Integration Patterns
+
+### Memory MCP Integration
+
+Persistent context across sessions using Memory MCP with structured tagging:
+
+```yaml
+integration:
+  memory_mcp:
+    enabled: true
+    tagging_protocol:
+      WHO: "agent-name"
+      WHEN: "timestamp"
+      PROJECT: "project-name"
+      WHY: "intent"
+```
+
+**Benefits**:
+- Maintains context across sessions and interactions
+- Enables agents to recall past decisions and reasoning
+- Supports collaborative memory between multiple agents
+- Tags provide structured retrieval and filtering
+
+### Claude-Flow Hooks
+
+Pre and post task hooks for resource management and context persistence:
+
+```yaml
+integration:
+  hooks:
+    pre_task:
+      - "Prepare resources"
+      - "Load context from memory"
+    post_task:
+      - "Store results in memory"
+      - "Update metrics"
+```
+
+**Benefits**:
+- Ensures context is loaded before task execution
+- Results are persisted after task completion
+- Metrics are tracked for quality measurement
+- Enables workflow continuity across task boundaries
+
+---
+
+## Quality Metrics
+
+### Success Criteria
+- Functional correctness > 95%
+- Output completeness > 90%
+- Response time < 30 seconds
+- Test coverage > 80%
+
+### Failure Modes
+1. Incomplete requirement analysis
+2. Missing edge case handling
+3. Poor error handling
+4. Insufficient testing
+
+---
+
+## Best Practices Summary
+
+1. **Define Clear Roles**: Specific identity and expertise
+2. **Use Chain-of-Thought**: For complex reasoning
+3. **Provide Examples**: 2-5 diverse, realistic examples
+4. **Plan Before Executing**: Reduce errors on complex tasks
+5. **Apply Self-Consistency**: For high-stakes decisions
+6. **Integrate Memory**: Persistent context across sessions
+7. **Measure Quality**: Track success criteria
+8. **Iterate Based on Results**: Continuous improvement

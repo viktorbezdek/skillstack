@@ -410,7 +410,7 @@ scripts/
   └── example_script.py       # DELETE
 
 references/
-  ├── core_standards.md       # Created
+  ├── core-standards.md       # Created
   ├── workflows.md            # Created
   ├── optimization.md         # Created
   ├── validation.md           # Created
@@ -472,7 +472,7 @@ Answer these questions in SKILL.md:
          │   └─► Load: assets/templates/
          │
          └─► Quality review requested
-             └─► Load: references/core_standards.md
+             └─► Load: references/core-standards.md
      ```
      
      ### Resource Router
@@ -680,7 +680,7 @@ Iteration 3:
 
 - **Structure checklist (script)**: Deterministic checks from `extract_structure.py` (frontmatter, headings, required sections, fenced code blocks).
 - **Content quality (AI)**: Judgement based on the extracted JSON + the actual text (clarity, completeness, examples).
-- **Style compliance (AI)**: Judgement against `core_standards.md` (headings format, bullets, emoji rules, consistency).
+- **Style compliance (AI)**: Judgement against `core-standards.md` (headings format, bullets, emoji rules, consistency).
 
 **Quality gate (qualitative)**:
 - **SKILL.md must have zero checklist failures**.
@@ -954,7 +954,7 @@ See `references/guide.md` for details...
 ### Navigation Guide
 | Resource | Path |
 |----------|------|
-| Standards | `references/core_standards.md` |
+| Standards | `references/core-standards.md` |
 
 ### Resource Router
 ...
@@ -972,7 +972,7 @@ See `references/guide.md` for details...
 TASK CONTEXT
     │
     ├─► Validation needed
-    │   └─► Load: references/core_standards.md
+    │   └─► Load: references/core-standards.md
     │
     └─► Quick task
         └─► Use SKILL.md only
@@ -986,7 +986,7 @@ def route_request(context):
     # Purpose: Document type rules and structural requirements
     # ──────────────────────────────────────────────────────────────────
     if context.needs_validation:
-        return load("references/core_standards.md")  # Validation rules
+        return load("references/core-standards.md")  # Validation rules
 ```
 ```
 
@@ -1346,7 +1346,7 @@ python scripts/quick_validate.py .opencode/skills/pdf-editor
 - [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
-- [core_standards.md](./core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](./core-standards.md) - Document type rules and structural requirements
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
 

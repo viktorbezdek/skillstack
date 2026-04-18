@@ -431,7 +431,7 @@ Before finalizing, verify each snippet:
 ## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [core_standards.md](./core_standards.md) - Document type rules and structural requirements
+- [core-standards.md](./core-standards.md) - Document type rules and structural requirements
 - [workflows.md](./workflows.md) - Execution modes and workflow details
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference

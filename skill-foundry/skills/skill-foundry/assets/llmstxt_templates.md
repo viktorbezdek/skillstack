@@ -243,7 +243,7 @@ The skill provides:
 
 - [Optimization Guide](https://github.com/example/doc-optimizer/blob/main/references/optimization.md): Transformation patterns
 - [Validation Guide](https://github.com/example/doc-optimizer/blob/main/references/validation.md): Structure checks and quality gates
-- [Core Standards](https://github.com/example/doc-optimizer/blob/main/references/core_standards.md): Document types and structural rules
+- [Core Standards](https://github.com/example/doc-optimizer/blob/main/references/core-standards.md): Document types and structural rules
 
 ## EXAMPLES
 
@@ -408,7 +408,7 @@ Don't paste entire documentation. Link to it.
 - [skill_md_template.md](./skill_md_template.md) - SKILL.md file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
+- [core-standards.md](../references/core-standards.md) - Document type rules
 
 ---
 

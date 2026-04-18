@@ -269,10 +269,10 @@ Phase-based checklist organizing all quality requirements for skill creation. Us
 - [ ] All validation checks pass
 
 ### Manual Validation
-- [ ] Compared against best_practices_checklist.md
-- [ ] Reviewed core_principles.md compliance
-- [ ] Checked progressive_disclosure.md (if >300 lines)
-- [ ] Verified degrees_of_freedom.md appropriate
+- [ ] Compared against best-practices-checklist.md
+- [ ] Reviewed core-principles.md compliance
+- [ ] Checked progressive-disclosure.md (if >300 lines)
+- [ ] Verified degrees-of-freedom.md appropriate
 
 ### Compliance Verification
 - [ ] Compared against official Anthropic standards (https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)
@@ -453,11 +453,11 @@ Mark each as `in_progress` when starting, `completed` when done.
 
 ## Resources
 
-- **Core Principles**: See references/core_principles.md
-- **Best Practices**: See references/best_practices_checklist.md
+- **Core Principles**: See references/core-principles.md
+- **Best Practices**: See references/best-practices-checklist.md
 - **EDD Methodology**: See references/evaluation_driven_development.md
-- **Token Efficiency**: See references/token_efficiency.md
-- **Research Protocol**: See references/research_protocol.md
+- **Token Efficiency**: See references/token-efficiency.md
+- **Research Protocol**: See references/research-protocol.md
 - **Validation**: `python scripts/validate_skill.py --help`
 
 ---

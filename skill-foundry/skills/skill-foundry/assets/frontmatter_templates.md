@@ -549,4 +549,4 @@ Document type?
 - [command_template.md](./command_template.md) - Command file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
+- [core-standards.md](../references/core-standards.md) - Document type rules

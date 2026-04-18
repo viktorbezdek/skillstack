@@ -291,7 +291,7 @@ Match the level of specificity to the task's fragility and variability.
 - Language: ⚠️ warnings, "MUST", "Do not modify", "In exact order"
 - Numbered sequential steps with validation checkpoints
 
-**Reference**: See `references/degrees_of_freedom.md` for detailed calibration guide
+**Reference**: See `references/degrees-of-freedom.md` for detailed calibration guide
 
 ---
 

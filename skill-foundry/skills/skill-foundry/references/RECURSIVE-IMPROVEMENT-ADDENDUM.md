@@ -312,7 +312,7 @@ skill_forge_regression:
 ```
 .claude/skills/skill-foundry/
   SKILL.md                           # Current version
-  RECURSIVE-IMPROVEMENT-ADDENDUM.md  # This file
+  recursive-improvement-addendum.md  # This file
   .archive/
     SKILL-v1.0.0.md                 # Previous versions
     SKILL-v1.1.0.md

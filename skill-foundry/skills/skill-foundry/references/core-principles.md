@@ -126,4 +126,4 @@ Test with all three to ensure broad compatibility.
 
 - [Back to main SKILL.md](../SKILL.md)
 - [Evaluation-Driven Development](evaluation_driven_development.md)
-- [Degrees of Freedom](degrees_of_freedom.md)
+- [Degrees of Freedom](degrees-of-freedom.md)

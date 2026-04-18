@@ -61,5 +61,5 @@ Skills use a three-level loading system to manage context efficiently:
 ## Navigation
 
 - [Back to main SKILL.md](../SKILL.md)
-- [Editing Guidance](editing_guidance.md)
-- [Core Principles](core_principles.md)
+- [Editing Guidance](editing-guidance.md)
+- [Core Principles](core-principles.md)

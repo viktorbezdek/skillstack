@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 
-SKILL_TEMPLATE = """---
+skill-template = """---
 name: {skill_name}
 description: [TODO: Complete and informative explanation of what the skill does and when to use it. Include WHEN to use this skill - specific scenarios, file types, or tasks that trigger it.]
 ---
@@ -220,7 +220,7 @@ def init_skill(skill_name, path):
 
     # Create SKILL.md from template
     skill_title = title_case_skill_name(skill_name)
-    skill_content = SKILL_TEMPLATE.format(
+    skill_content = skill-template.format(
         skill_name=skill_name,
         skill_title=skill_title
     )

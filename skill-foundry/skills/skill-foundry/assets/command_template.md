@@ -872,5 +872,5 @@ Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 - [skill_md_template.md](./skill_md_template.md) - If converting to skill
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
+- [core-standards.md](../references/core-standards.md) - Document type rules
 - [validation.md](../references/validation.md) - Quality scoring

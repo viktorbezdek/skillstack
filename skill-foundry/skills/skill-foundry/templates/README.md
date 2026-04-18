@@ -199,8 +199,8 @@ The universal `skill-skeleton` template replaces all previous variants and provi
 
 - **Main Guide**: [SKILL.md](../SKILL.md) - Complete skill creation process
 - **Quick Workflow**: [QUICK_WORKFLOW.md](../QUICK_WORKFLOW.md) - 5-minute workflow
-- **Best Practices**: [references/best_practices_checklist.md](../references/best_practices_checklist.md)
-- **Core Principles**: [references/core_principles.md](../references/core_principles.md)
+- **Best Practices**: [references/best-practices-checklist.md](../references/best-practices-checklist.md)
+- **Core Principles**: [references/core-principles.md](../references/core-principles.md)
 
 ---
 

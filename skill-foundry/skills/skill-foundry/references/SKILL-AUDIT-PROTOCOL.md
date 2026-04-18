@@ -15,7 +15,7 @@ This protocol defines how the meta-loop automatically audits and improves skill 
 
 ---
 
-## Tier Requirements (from REQUIRED-SECTIONS.md)
+## Tier Requirements (from required-sections.md)
 
 ### Tier 1: Critical (MUST HAVE - 100% required)
 | Section | Detection Pattern | Auto-Generate |

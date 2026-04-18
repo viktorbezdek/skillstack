@@ -471,8 +471,8 @@ Focus on high-impact, low-effort improvements first.
 ### Resources
 
 - **EDD Guide**: `references/evaluation_driven_development.md`
-- **Degrees of Freedom**: `references/degrees_of_freedom.md`
-- **Best Practices**: `references/best_practices_checklist.md`
+- **Degrees of Freedom**: `references/degrees-of-freedom.md`
+- **Best Practices**: `references/best-practices-checklist.md`
 
 ### Validation Scripts
 

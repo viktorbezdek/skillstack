@@ -21,82 +21,57 @@ allowed-tools:
 
 # Skill Creator
 
-A comprehensive framework for creating high-quality Claude Code skills that encode domain expertise, follow evidence-based prompting principles, and leverage progressive disclosure architecture.
+Framework for creating Claude Code skills that encode domain expertise through philosophy-first design, anti-pattern prevention, and progressive disclosure.
 
 ## Philosophy: Skills as Mental Frameworks
 
-Skills are not checklists or templates - they are **mental frameworks that guide creative problem-solving**.
+Skills are not checklists — they are **mental frameworks that guide creative problem-solving**.
 
-**Core Principle: Unlock vs. Constrain**
+**Unlock vs. Constrain:**
 
-| Constraining Approach | Unlocking Approach |
-|-----------------------|-------------------|
+| Constraining | Unlocking |
+|---|---|
 | Rigid templates | Flexible frameworks |
-| Strict rules | Guiding principles |
 | Fixed outputs | Context-appropriate results |
 | Limiting choices | Expanding possibilities |
 | Checklists | Mental models |
 
-### The Four Pillars of Effective Skills
+### The Four Pillars
 
-1. **Philosophy Before Procedure**: Establish "how to think" before "what to do"
+1. **Philosophy Before Procedure**: "How to think" before "what to do"
 2. **Anti-Patterns as Guidance**: What NOT to do is as important as what to do
-3. **Progressive Disclosure**: Core in SKILL.md (<500 lines), details in references/
+3. **Progressive Disclosure**: Core in SKILL.md (<500 lines), details in `references/`
 4. **Shibboleths**: Encode expert knowledge that separates novices from experts
 
 ---
 
-## When to Use This Skill
+## When to Use
 
 **Use for:**
 - Creating new skills from scratch or documentation
 - Reviewing/auditing existing skills for quality
 - Improving skill activation rates and precision
 - Adding domain expertise and shibboleths to skills
-- Building agent-powered skill workflows
 - Debugging why skills don't activate correctly
 - Transforming CLI/API documentation into skills
 
 **NOT for:**
-- General Claude Code features (slash commands, MCPs)
-- Non-skill coding advice
-- Simple script writing without skill abstraction
-- Debugging runtime errors (use domain-specific skills)
+- General prompt engineering (use prompt-engineering)
+- Full plugin development with hooks/MCP (use plugin-dev)
+- Non-skill coding advice or simple script writing
 
 ---
 
-## Quick Start: Creating a Skill
-
-### Minimal Workflow (Simple Skills)
+## Quick Start: Minimal Workflow (6 steps)
 
 1. **Define scope**: What expertise? What keywords? What NOT to handle?
 2. **Initialize**: `python scripts/init_skill.py <skill-name> --path <output-dir>`
-3. **Write description** with keywords AND NOT clause
+3. **Write description** with keywords AND NOT clause (see Description Engineering below)
 4. **Add 1-3 anti-patterns** you've observed
-5. **Test activation** - does it trigger when it should?
+5. **Test activation** — does it trigger when it should?
 6. **Validate**: `python scripts/quick_validate.py <skill-path>`
 
-### Full Workflow (Production Skills)
-
-Use the 8-phase methodology for complex, shared, or enterprise skills:
-
-| Phase | Name | Purpose | Time |
-|-------|------|---------|------|
-| 0 | Schema Definition | Define I/O contracts (Expert Track) | 5-10 min |
-| 0.5 | Cognitive Frame | Design cognitive patterns | 5-10 min |
-| 1 | Intent Archaeology | Deep analysis of true intent | 10-15 min |
-| 1b | Intent Verification | Chain-of-Verification | 5-10 min |
-| 2 | Use Case Crystallization | Concrete examples | 10-15 min |
-| 3 | Structural Architecture | Progressive disclosure design | 10-15 min |
-| 4 | Metadata Engineering | Name, description, triggers | 5-10 min |
-| 5 | Instruction Crafting | Write actual content | 20-30 min |
-| 5b | Instruction Verification | Adversarial testing | 10-15 min |
-| 6 | Resource Development | Scripts, references, assets | 15-30 min |
-| 7 | Validation & Iteration | Testing and refinement | 15-20 min |
-| 7a | Adversarial Testing | Red-team vulnerabilities | 25-40 min |
-| 8 | Metrics Tracking | Track revision gains | 10-15 min |
-
-**See**: `references/skill-foundry.md` for detailed phase descriptions.
+For complex/production skills, use the 8-phase methodology in `references/skill-foundry.md`.
 
 ---
 
@@ -108,7 +83,7 @@ your-skill/
 └── SKILL.md           # Core instructions (<500 lines)
 ```
 
-### Optional (add only what's needed)
+### Optional (add only what SKILL.md references)
 ```
 ├── scripts/           # Working code (not templates)
 ├── references/        # Deep dives (referenced from SKILL.md)
@@ -117,7 +92,7 @@ your-skill/
 └── examples/          # Concrete good/bad examples
 ```
 
-**Anti-pattern**: Creating structure "just in case" - only add files that SKILL.md references.
+**Anti-pattern**: Creating structure "just in case" — only add files that SKILL.md references.
 
 ---
 
@@ -138,12 +113,11 @@ allowed-tools: Read,Write  # Minimal only
 ❌ NOT for: [D, E, F]
 
 ## Philosophy: [Core Mental Framework]
-[Philosophy section establishing mental model BEFORE procedures]
+[Establish mental model BEFORE procedures]
 
 **Before [acting], ask**:
 - Question 1
 - Question 2
-- Question 3
 
 ## Core Instructions
 [Step-by-step, decision trees, not templates]
@@ -160,42 +134,40 @@ allowed-tools: Read,Write  # Minimal only
 - [Dimension 2 to vary]
 ```
 
+Full templates: `templates/skill-template.md` (comprehensive), `templates/skill-skeleton/SKILL.md` (with TODO markers), `templates/tool-skill-SKILL.md.template` (tool-wrapper skills).
+
 ---
 
 ## Description Field Engineering
 
 The description is your activation trigger. Formula: **[What] [Use for] [Keywords] NOT for [Exclusions]**
 
-**Progression from Bad to Good:**
-
 | Quality | Example | Issues |
-|---------|---------|--------|
+|---|---|---|
 | Bad | `Helps with images` | Too vague, no keywords |
 | Better | `Image processing with CLIP` | Has keyword but no exclusions |
 | Good | `CLIP semantic search. Use for image-text matching, zero-shot classification. Activate on "CLIP", "embeddings", "image search". NOT for counting, fine-grained classification, spatial reasoning.` | Complete |
 
 **Guidelines:**
-- Use third-person voice ("Use when..." not "You should use...")
+- Third-person voice ("Use when..." not "You should use...")
 - Include specific trigger keywords/phrases
 - State clear boundaries (what it does NOT do)
-- 100-200 characters recommended for core description
+- 100-200 characters recommended
 
 ---
 
 ## Core Principles
 
-### 1. Progressive Disclosure Architecture
+### Progressive Disclosure Architecture
 
 Skills load in three phases:
-- **Phase 1 (~100 tokens)**: Metadata (name, description) - "Should I activate?"
-- **Phase 2 (<5k tokens)**: Main instructions in SKILL.md - "How do I do this?"
-- **Phase 3 (as needed)**: Scripts, references, assets - "Show me the details"
+- **Phase 1 (~100 tokens)**: Metadata (name, description) — "Should I activate?"
+- **Phase 2 (<5k tokens)**: Main instructions in SKILL.md — "How do I do this?"
+- **Phase 3 (as needed)**: Scripts, references, assets — "Show me the details"
 
-**Critical**: Keep SKILL.md under 500 lines. Split details into `/references`.
+**Critical**: Keep SKILL.md under 500 lines. Split details into `references/`.
 
-### 2. Anti-Pattern Detection
-
-Great skills actively warn about common mistakes:
+### Anti-Pattern Detection
 
 ```markdown
 ## Common Anti-Patterns
@@ -207,131 +179,110 @@ Great skills actively warn about common mistakes:
 **How to detect**: [Validation rule]
 ```
 
-**See**: `references/anti-patterns.md` and `references/antipatterns.md` for comprehensive lists.
+See `references/skill-creation-anti-patterns.md` and `references/domain-shibboleths.md`.
 
-### 3. Shibboleth Encoding
+### Shibboleth Encoding
 
 Shibboleths = deep knowledge that separates novices from experts.
 
-**Novice skill creator**:
-- "I'll make a comprehensive skill that handles everything"
-- Focuses on templates and examples
-- Description: "Helps with many things"
+**Novice skill creator**: "I'll make a comprehensive skill that handles everything"
+**Expert skill creator**: "I'll encode THIS specific expertise" — focused scope, decision trees, anti-patterns, temporal knowledge
 
-**Expert skill creator**:
-- "I'll encode THIS specific expertise about X"
-- Focuses on decision trees and anti-patterns
-- Description with keywords AND NOT clause
-- Encodes temporal knowledge: "Pre-2024 pattern X, now use Y"
-
-### 4. Temporal Knowledge
+### Temporal Knowledge
 
 Technology evolves. Capture what changed and when:
 
 ```markdown
 ## Evolution Timeline
-
 ### Pre-2024: Old Approach
 [What people used to do]
-
 ### 2024-Present: Current Best Practice
 [What changed and why]
-
 ### Watch For
 [Deprecated patterns LLMs might still suggest]
 ```
 
 ---
 
-## Common Anti-Patterns in Skill Creation
+## Anti-Patterns in Skill Creation
 
-### Anti-Pattern: The Reference Illusion
-**What it looks like**: Skill references scripts/files that don't exist
-**Why it's wrong**: Claude will try to use non-existent files
-**Solution**: Only reference files that actually exist; use `find skill-dir/ -type f` to verify
+### The Reference Illusion
+Skill references scripts/files that don't exist → Claude tries to use non-existent files
+**Solution**: Only reference files that exist; use `python scripts/check_self_contained.py <skill-path>` to verify
 
-### Anti-Pattern: Description Soup
-**What it looks like**: `description: Helps with many things including X, Y, Z`
-**Why it's wrong**: Causes false activations and missed activations
+### Description Soup
+`description: Helps with many things including X, Y, Z` → false activations and missed activations
 **Solution**: Specific trigger keywords + clear exclusions
 
-### Anti-Pattern: Template Theater
-**What it looks like**: Skill is 90% templates, 10% instructions
-**Why it's wrong**: Claude needs expert knowledge and decision trees, not templates
+### Template Theater
+Skill is 90% templates, 10% instructions → Claude needs expert knowledge and decision trees, not templates
 **Solution**: Focus on WHEN to use patterns, encode decision logic
 
-### Anti-Pattern: The Everything Skill
-**What it looks like**: One skill handling entire domain
-**Why it's wrong**: Too broad to activate correctly, mixes concerns
+### The Everything Skill
+One skill handling entire domain → too broad to activate correctly
 **Solution**: Create focused, composable skills
 
-### Anti-Pattern: Orphaned Sections
-**What it looks like**: Files in `/references/` never referenced in SKILL.md
-**Why it's wrong**: Files exist but are never used
+### Orphaned Sections
+Files in `references/` never referenced in SKILL.md → files exist but are never loaded
 **Solution**: Explicit triggers in SKILL.md for each reference file
 
-**See**: `references/anti-patterns.md` for complete list with examples.
+See `references/skill-creation-anti-patterns.md` for complete list.
 
 ---
 
 ## Scripts Reference
 
-### Core Scripts
+### Core Workflow
 
 | Script | Purpose | Usage |
-|--------|---------|-------|
+|---|---|---|
 | `init_skill.py` | Initialize skill structure | `python scripts/init_skill.py <name> --path <dir>` |
-| `quick_validate.py` | Fast validation checks | `python scripts/quick_validate.py <skill-path>` |
-| `package_skill.py` | Validate + package to zip | `python scripts/package_skill.py <skill-path>` |
-| `validate_skill.py` | Full validation | `python scripts/validate_skill.py <skill-path>` |
+| `quick_validate.py` | Fast frontmatter validation | `python scripts/quick_validate.py <skill-path>` |
+| `validate_skill.py` | Full validation (structure, content, refs) | `python scripts/validate_skill.py <skill-path>` |
 | `analyze_skill.py` | Quality scoring (0-100) | `python scripts/analyze_skill.py <skill-path>` |
-| `upgrade_skill.py` | Generate improvements | `python scripts/upgrade_skill.py <skill-path>` |
+| `upgrade_skill.py` | Generate improvement suggestions | `python scripts/upgrade_skill.py <skill-path>` |
+| `package_skill.py` | Validate + package to zip | `python scripts/package_skill.py <skill-path>` |
 
-### Documentation Scripts
-
-| Script | Purpose | Usage |
-|--------|---------|-------|
-| `extract_structure.py` | Parse document to JSON | `python scripts/extract_structure.py doc.md` |
-| `doc_analyzer.py` | Analyze documentation | `python scripts/doc_analyzer.py <docs>` |
-| `doc_extractor.py` | Extract from URLs | `python scripts/doc_extractor.py <url>` |
-
-### Validation Scripts
+### Doc-to-Skill Pipeline
 
 | Script | Purpose | Usage |
-|--------|---------|-------|
-| `test_activation.py` | Test skill triggers | `python scripts/test_activation.py <skill-path>` |
-| `check_self_contained.py` | Verify all refs exist | `python scripts/check_self_contained.py <skill-path>` |
-| `validate_flowchart.sh` | Validate flowcharts | `./scripts/validate_flowchart.sh <file>` |
+|---|---|---|
+| `doc_extractor.py` | Extract docs from URLs or local files | `python scripts/doc_extractor.py <url-or-path>` |
+| `doc_analyzer.py` | Analyze doc structure for skill design | `python scripts/doc_analyzer.py <docs>` |
+| `create_skill.py` | Full doc-to-skill pipeline orchestrator | `python scripts/create_skill.py <docs>` |
+
+### Validation & Testing
+
+| Script | Purpose | Usage |
+|---|---|---|
+| `test_activation.py` | Test skill trigger keywords | `python scripts/test_activation.py <skill-path>` |
+| `check_self_contained.py` | Verify all refs exist, no phantom tools | `python scripts/check_self_contained.py <skill-path>` |
+| `validate_flowchart.sh` | Validate markdown flowcharts | `./scripts/validate_flowchart.sh <file>` |
+| `extract_structure.py` | Parse markdown to JSON structure | `python scripts/extract_structure.py doc.md` |
+| `analyze_conciseness.py` | Token counting + verbosity analysis | `python scripts/analyze_conciseness.py <skill-path>` |
+
+### Advanced
+
+| Script | Purpose | Usage |
+|---|---|---|
+| `init_project.py` | Interactive project initialization | `python scripts/init_project.py` |
+| `create_skill.py` | Full doc-to-skill pipeline orchestrator | `python scripts/create_skill.py <docs>` |
+| `skill-generator.py` | Agent-based skill scaffolding | `python scripts/skill-generator.py <name>` |
+| `generate_agent.sh` | Generate agent YAML spec | `./scripts/generate_agent.sh <name>` |
+| `generate_boilerplate.py` | Generate project boilerplate (Node/Python/Go) | `python scripts/generate_boilerplate.py <type>` |
+| `generate-structure.sh` | Skill directory with references/examples/scripts | `./scripts/generate-structure.sh <name>` |
+| `validate_agent.py` | Validate agent YAML specs | `python scripts/validate_agent.py <spec>` |
+| `validate_structure.sh` | Validate generated project templates | `./scripts/validate_structure.sh <path>` |
 
 ---
 
-## Quality Heuristics
-
-An effective skill should:
-
-- [ ] **Establish philosophy** before procedures
-- [ ] **Description has keywords AND NOT clause**
-- [ ] **SKILL.md under 500 lines**
-- [ ] **All referenced files exist**
-- [ ] **Prevent anti-patterns** with explicit examples
-- [ ] **Encourage variation** to avoid convergence
-- [ ] **Encode shibboleths** (expert vs novice knowledge)
-- [ ] **Has "When to Use" and "When NOT to Use" sections**
-- [ ] **allowed-tools is minimal**
-- [ ] **Test activation**: triggers when it should, doesn't when it shouldn't
-
-**Target score**: 70+/100 on `analyze_skill.py` for effective skills.
-
----
-
-## Skill Review Checklist
+## Quality Checklist
 
 ### CRITICAL (must-have)
 - [ ] Description has keywords AND NOT clause
 - [ ] SKILL.md under 500 lines
-- [ ] All referenced files exist (`find skill-dir/ -type f`)
-- [ ] Test activation: triggers when appropriate
-- [ ] Test non-activation: doesn't trigger when inappropriate
+- [ ] All referenced files exist
+- [ ] Test activation: triggers when appropriate, doesn't when inappropriate
 
 ### HIGH PRIORITY (should-have)
 - [ ] Has "When to Use" and "When NOT to Use" sections
@@ -345,105 +296,7 @@ An effective skill should:
 - [ ] References for deep dives
 - [ ] Bash restrictions if applicable
 
----
-
-## Creating Skills from Documentation
-
-### Workflow
-
-1. **Gather documentation** (markdown or URLs via crawl4ai)
-2. **Analyze** to extract tool overview, patterns, pitfalls, best practices
-3. **Design** components: scripts, templates, guardrails, references
-4. **Create** directory structure and artifacts
-5. **Write** SKILL.md with progressive disclosure
-6. **Test** activation and workflows
-7. **Iterate** based on feedback
-
-### What to Extract from Documentation
-
-- Tool overview and primary use cases
-- Command/API patterns and flag combinations
-- Multi-step workflows
-- Explicitly mentioned warnings and gotchas
-- Prerequisites and setup requirements
-- Best practices and security considerations
-
-**See**: `references/skill_creation.md` for detailed workflow.
-
----
-
-## Templates Available
-
-### SKILL.md Templates
-- `templates/SKILL_TEMPLATE.md` - Full featured template
-- `templates/SKILL-template.md` - Alternative template
-- `templates/minimal-skeleton/SKILL.md` - Minimal starter
-- `templates/skill-skeleton/SKILL.md` - Standard skeleton
-
-### Script Templates
-- `templates/helper-script.py.template` - Python helper
-- `templates/helper-script.sh.template` - Bash helper
-- `templates/scripts-template.sh` - Script boilerplate
-
-### Other Templates
-- `templates/skill-schema.json` - JSON schema for skill contracts
-- `templates/skill-metrics.yaml` - Metrics tracking template
-- `templates/cov-protocol.md` - Chain-of-Verification protocol
-- `templates/adversarial-testing-protocol.md` - Red-team testing
-
----
-
-## Reference Documentation
-
-### Core References
-| Reference | Purpose |
-|-----------|---------|
-| `references/skill-foundry.md` | 8-phase methodology |
-| `references/skill_creation.md` | 6-step workflow |
-| `references/progressive_disclosure.md` | Loading architecture |
-| `references/core_principles.md` | Fundamental principles |
-
-### Anti-Patterns & Best Practices
-| Reference | Purpose |
-|-----------|---------|
-| `references/anti-patterns.md` | Comprehensive anti-pattern list |
-| `references/antipatterns.md` | Additional anti-patterns |
-| `references/best_practices_checklist.md` | Quality checklist |
-| `references/shibboleths.md` | Expert vs novice knowledge |
-
-### Advanced Topics
-| Reference | Purpose |
-|-----------|---------|
-| `references/evidence-based-prompting.md` | Research-backed techniques |
-| `references/prompting-principles.md` | Prompting patterns |
-| `references/composability.md` | Skill composition patterns |
-| `references/variation-patterns.md` | Output diversity techniques |
-
-### Enterprise & Workflows
-| Reference | Purpose |
-|-----------|---------|
-| `references/skill-factory-workflow.md` | Enterprise workflows |
-| `references/SKILL-AUDIT-PROTOCOL.md` | Audit methodology |
-| `references/REQUIRED-SECTIONS.md` | Section requirements |
-| `references/validation.md` | Validation guidelines |
-
----
-
-## Examples
-
-### Example Skills
-- `examples/document-skills/` - PDF, DOCX, PPTX, XLSX skills
-- `examples/algorithmic-art/` - Creative coding skill
-- `examples/internal-comms/` - Communication skill
-- `examples/good-skills/clip-aware-embeddings/` - Exemplary skill
-
-### Transformation Examples
-- `examples/before-after/basic-to-effective.md` - Simple to effective
-- `examples/before-after/procedural-to-philosophical.md` - Checklist to framework
-- `examples/annotated/frontend-design-analysis.md` - Line-by-line analysis
-
-### Test Cases
-- `examples/tests/` - Validation test cases
+**Target score**: 70+/100 on `analyze_skill.py`.
 
 ---
 
@@ -453,8 +306,8 @@ An effective skill should:
 - ✅ You have domain expertise not in existing skills
 - ✅ Pattern repeats across 3+ projects
 - ✅ Anti-patterns you want to prevent
-- ❌ One-time task - just do it directly
-- ❌ Existing skill could be extended - improve that one
+- ❌ One-time task — just do it directly
+- ❌ Existing skill could be extended — improve that one
 
 ### Skill vs Subagent vs MCP?
 - **Skill**: Domain expertise, decision trees, anti-patterns (no runtime state)
@@ -462,8 +315,135 @@ An effective skill should:
 - **MCP**: External APIs, auth, stateful connections
 
 ### Quick Track vs Expert Track?
-- **Quick Track** (Phases 1-7): Simple skills with clear I/O
-- **Expert Track** (Phases 0-8): Complex skills, strict contracts, production use
+- **Quick Track** (6 steps): Simple skills with clear I/O
+- **Expert Track** (8 phases): Complex skills, strict contracts, production use
+
+---
+
+## Creating Skills from Documentation
+
+1. **Gather documentation** (markdown or URLs via `doc_extractor.py`)
+2. **Analyze** to extract tool overview, patterns, pitfalls, best practices (`doc_analyzer.py`)
+3. **Design** components: scripts, templates, guardrails, references
+4. **Create** directory structure and artifacts (`init_skill.py`)
+5. **Write** SKILL.md with progressive disclosure
+6. **Test** activation and workflows (`test_activation.py`)
+7. **Iterate** based on feedback (`analyze_skill.py`, `upgrade_skill.py`)
+
+See `references/skill-creation.md` for detailed workflow.
+
+---
+
+## Reference Documentation
+
+### Core Methodology
+| Reference | Purpose |
+|---|---|
+| `references/skill-foundry.md` | 8-phase methodology (Expert Track) |
+| `references/skill-creation.md` | 6-step creation workflow |
+| `references/skill-forge-quick-reference.md` | Condensed methodology cheat sheet |
+| `references/core-principles.md` | Five fundamental principles |
+| `references/progressive-disclosure.md` | Context loading architecture |
+
+### Anti-Patterns & Quality
+| Reference | Purpose |
+|---|---|
+| `references/skill-creation-anti-patterns.md` | Skill creation anti-pattern catalog |
+| `references/domain-shibboleths.md` | Domain expertise markers (novice vs expert) |
+| `references/best-practices-checklist.md` | Quality checklist |
+| `references/scoring-rubric.md` | Quantitative quality scoring |
+| `references/comprehensive-checklist.md` | Extended validation checklist |
+
+### Advanced Techniques
+| Reference | Purpose |
+|---|---|
+| `references/evidence-based-prompting.md` | Research-backed prompting (CoT, few-shot, plan-and-solve) |
+| `references/composability.md` | Skill composition + dependency patterns |
+| `references/variation-patterns.md` | Output diversity techniques |
+| `references/degrees-of-freedom.md` | Match specificity to task fragility |
+| `references/patterns.md` | Six common skill design patterns |
+
+### Enterprise & Specialized
+| Reference | Purpose |
+|---|---|
+| `references/skill-factory-workflow.md` | Enterprise skill factory workflow |
+| `references/enterprise-skill-factory-reference.md` | Enterprise standards and validation |
+| `references/skill-audit-protocol.md` | Audit methodology |
+| `references/required-sections.md` | Mandatory section requirements |
+| `references/validation.md` | Quality assessment framework |
+
+### Agents & Tools
+| Reference | Purpose |
+|---|---|
+| `references/agent-creator.md` | Agent-powered skill creation |
+| `references/agent-patterns.md` | Specialist/Coordinator/Hybrid patterns |
+| `references/mcp-vs-scripts.md` | Architecture decision: Skills vs Agents vs MCPs vs Scripts |
+| `references/self-contained-tools.md` | Implementation patterns for scripts/MCP/subagents |
+
+### Deep Dives
+| Reference | Purpose |
+|---|---|
+| `references/skill-creator-agent.md` | Agent-powered skill creation SOP |
+| `references/best-practices-for-reference-docs.md` | Writing effective reference docs |
+| `references/expertise-addendum.md` | Phase 0 domain expertise loading |
+| `references/recursive-improvement-addendum.md` | Recursive self-improvement integration |
+| `references/micro-skill-creator.md` | Atomic single-purpose skill workflow |
+| `references/skill-creation-meta-principles.md` | Counter-intuitive skill design principles |
+| `references/cookbook-patterns.md` | Practical patterns from Claude Code Skills Cookbook |
+| `references/token-efficiency.md` | Measuring skill value via token savings |
+| `references/troubleshooting.md` | Common issues and solutions |
+| `references/optimization.md` | Converting docs to AI-friendly Q&A format |
+| `references/research-protocol.md` | Structured domain research before building |
+| `references/auto-activation-patterns.md` | Hook/trigger patterns for auto-activation |
+| `references/interactive-discovery.md` | TUI-based requirement gathering |
+| `references/editing-guidance.md` | Frontmatter, descriptions, content style |
+| `references/philosophy-patterns.md` | Establishing philosophical foundations |
+| `references/skill-lifecycle.md` | DRAFT → ACTIVE → MATURE → DEPRECATED → ARCHIVED |
+| `references/cov-protocol.md` | Chain-of-Verification protocol |
+| `references/adversarial-testing-protocol.md` | Red-team testing protocol |
+| `references/detailed-process-steps.md` | In-depth process guidance |
+| `references/enterprise-checklist.md` | Pre-publication quality validation |
+| `references/file-structure-standards.md` | MECE directory/naming conventions |
+| `references/core-standards.md` | Structural validation rules |
+| `references/migration-guide.md` | Updating skills to latest best practices |
+
+---
+
+## Examples
+
+- `examples/annotated/frontend-design-analysis.md` — Line-by-line skill analysis
+- `examples/before-after/basic-to-effective.md` — Simple → effective transformation
+- `examples/before-after/procedural-to-philosophical.md` — Checklist → framework transformation
+- `examples/good-skills/clip-aware-embeddings/` — Exemplary skill with decision tree + validation script
+- `examples/example-1-basic-skill.md` — Minimal skill creation walkthrough
+- `examples/example-1-specialist.md` — Specialist agent creation (6 phases)
+- `examples/example-2-coordinator.md` — Multi-agent coordinator creation
+- `examples/example-3-multi-agent-orchestration.md` — Orchestration skill creation
+- `examples/enterprise-examples.md` — Full pipeline walkthrough (pytest skill)
+- `examples/example-analysis.md` — Research-to-skill workflow (jq skill from docs)
+- `examples/document-skills/` — PDF, DOCX, PPTX, XLSX functional skill examples
+
+---
+
+## Templates
+
+- `templates/skill-template.md` — Comprehensive skill template
+- `templates/skill-skeleton/` — Full skeleton with TODO markers
+- `templates/tool-skill-SKILL.md.template` — Tool-wrapper skill template
+- `templates/helper-script.py.template` — Python helper boilerplate
+- `templates/helper-script.sh.template` — Bash helper boilerplate
+- `templates/scripts-template.sh` — Production-ready Bash script template
+- `templates/instruction-template.md` — Step-by-step instruction pattern
+- `templates/examples-template.md` — Examples section pattern
+- `templates/reference-template.md` — Reference doc pattern
+- `templates/skill-schema.json` — JSON schema for skill I/O contracts
+- `templates/skill-metrics.yaml` — Revision tracking metrics
+- `templates/intake-template.yaml` — Phase 1 skill intake form
+- `templates/agent-spec.yaml` — Agent specification template
+- `templates/capabilities.json` — Agent capabilities schema
+- `templates/readme-template.md` — Project README template
+- `templates/research-log-template.md` — Research log for doc analysis
+- `templates/README.md` — Templates directory index
 
 ---
 
@@ -472,34 +452,18 @@ An effective skill should:
 - **Activation**: 90%+ when appropriate, <5% false positives
 - **Token efficiency**: <5k tokens typical invocation
 - **Error prevention**: Measurable reduction in common mistakes
-- **Quality score**: 70+/100 on analyze_skill.py
+- **Quality score**: 70+/100 on `analyze_skill.py`
 
 ---
 
 ## Remember
 
-**Skills are mental frameworks, not checklists.**
-
-The best skills:
-- Establish philosophies that guide thinking
-- Prevent mistakes through explicit anti-patterns
-- Encourage context-appropriate variation
-- Encode shibboleths (expert knowledge)
-- Stay under 500 lines with progressive disclosure
-- Empower Claude to do extraordinary work
-
-**Claude is capable of extraordinary work in skill creation. These guidelines illuminate the path - they don't fence it.**
+The best skills establish philosophies that guide thinking, prevent mistakes through anti-patterns, encourage context-appropriate variation, encode shibboleths, stay under 500 lines with progressive disclosure, and empower Claude to do extraordinary work.
 
 ---
 
 ## Related Skills
 
-- `prompt-engineering` - Prompt optimization
-- `hosted-agents` - Agent creation without skill wrapper
-- `agent-evaluation` - Benchmark testing
-
-
-
-
-
-
+- `prompt-engineering` — Prompt optimization
+- `hosted-agents` — Agent creation without skill wrapper
+- `agent-evaluation` — Benchmark testing
