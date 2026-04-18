@@ -1,6 +1,6 @@
 # Frontend Design
 
-> **v1.1.23** | Development | 25 iterations
+> **v1.1.24** | Development | 26 iterations
 
 > Build beautiful, accessible, production-grade user interfaces with Tailwind CSS, Radix UI, and shadcn/ui -- design systems, tokens, WCAG compliance, and Figma-to-code workflows in one plugin.
 
