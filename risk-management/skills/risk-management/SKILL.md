@@ -14,6 +14,45 @@ description: >-
 
 Identify, assess, and mitigate risks systematically.
 
+## When to use this skill
+
+- Starting a new project or initiative — before committing resources
+- Planning a migration, launch, or infrastructure change
+- Running a pre-mortem before a critical project begins
+- Assessing organizational risks from restructuring or strategic changes
+- Activating a contingency plan when a tracked risk materializes
+- Building a risk register from an existing list of concerns
+
+## When NOT to use this skill
+
+- **Security vulnerability scanning** → use dedicated security audit tools
+- **Financial risk modeling (Monte Carlo, VaR)** → use specialized quantitative tools
+- **Real-time incident response** → use debugging/troubleshooting workflows
+- **Finding conceptual flaws in ideas** → use `critical-intuition`
+- **Edge-case coverage in code** → use `edge-case-coverage`
+
+---
+
+## Decision tree
+
+```
+What are you trying to do?
+  │
+  ├─ Assess risks for a NEW project/initiative
+  │   └─ Full risk assessment: identify by category → score → mitigate → monitor
+  │
+  ├─ Imagine the project already FAILED and find out why
+  │   └─ Pre-mortem technique: assume failure → work backward → convert to risks
+  │
+  ├─ Score and prioritize an EXISTING list of concerns
+  │   └─ Apply 3x3 matrix → assign strategies → add owners and review dates
+  │
+  └─ A tracked risk has MATERIALIZED
+      └─ Contingency activation: execute response → update register → surface new risks
+```
+
+---
+
 ## Risk Assessment Matrix
 
 ```
@@ -50,15 +89,16 @@ Low        Low    Low    Med
 - Likelihood: 1 (Low) - 3 (High)
 - Impact: 1 (Low) - 3 (High)
 - Score = Likelihood x Impact
+- 1-2: Low priority (Accept/monitor), 3-4: Medium (Mitigate), 6-9: High/Critical (Avoid/Mitigate/Transfer)
 
 ## Mitigation Strategies
 
-| Strategy | When to Use |
-|----------|-------------|
-| **Avoid** | Eliminate the risk entirely |
-| **Transfer** | Shift to third party (insurance) |
-| **Mitigate** | Reduce likelihood or impact |
-| **Accept** | Acknowledge and monitor |
+| Strategy | When to Use | Example |
+|----------|-------------|---------|
+| **Avoid** | Risk is Critical (6-9) and can be eliminated by changing approach | Use open-source alternative to avoid vendor lock-in |
+| **Transfer** | Risk involves financial loss or liability that can be shifted | Cyber insurance for data breach risk |
+| **Mitigate** | Risk cannot be avoided but likelihood/impact can be reduced | Run load tests before migration to reduce performance regression risk |
+| **Accept** | Risk is Low (1-2) or mitigation cost exceeds expected impact | Minor UI change may confuse some users temporarily |
 
 ## Risk Response Template
 
@@ -97,3 +137,11 @@ Before project starts, imagine it failed.
 
 Convert answers to risks and mitigations.
 
+## Anti-Patterns
+
+1. **Medium-Medium everything** — every risk gets scored "Medium/Medium" without analysis, making the register useless for prioritization. Counter: for each "Medium," ask "what specific evidence supports this score? What would change it to High?"
+2. **Vague mitigations** — "Mitigate: reduce risk" without specific actions, triggers, or owners. Counter: every mitigation must answer: What action? Who owns it? By when? What triggers activation?
+3. **Register as checkbox exercise** — team fills it mechanically and never revisits. Counter: assign each risk a specific owner with a concrete check action; schedule quarterly reviews that close resolved risks and force Accept decisions on stale low-score items.
+4. **Optimism bias** — forward-looking analysis misses risks because "things usually work out." Counter: use the pre-mortem technique; it bypasses optimism bias by starting from assumed failure.
+5. **Infinite register growth** — every concern gets added, nothing is ever closed. Counter: cap at 20 items; at each review, close resolved risks, merge duplicates, and force decisions on items open for 2+ cycles.
+6. **Single-category tunnel vision** — only technical risks get identified, ignoring schedule, resource, external, and organizational risks. Counter: systematically walk all five categories during identification.

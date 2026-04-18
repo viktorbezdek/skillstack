@@ -198,6 +198,29 @@ This combination often outperforms semantic search for technical content (code, 
 
 Semantic search and filesystem search work well together: semantic search for conceptual queries, filesystem search for structural and exact-match queries.
 
+## Decision Tree: Which Filesystem Pattern?
+
+```
+What problem are you solving?
+├─ Tool output bloating context → Pattern 1: Scratch Pad
+├─ Agent losing track of plan → Pattern 2: Plan Persistence
+├─ Sub-agents need to share state → Pattern 3: Sub-Agent Communication
+├─ Too many skills in system prompt → Pattern 4: Dynamic Skill Loading
+├─ Terminal output too large for context → Pattern 5: Terminal/Log Persistence
+├─ Agent needs to learn across sessions → Pattern 6: Self-Modification
+└─ Need to search across many files → Filesystem Search Techniques
+```
+
+## Anti-Patterns
+
+- **Writing to context what belongs in a file** — if a tool returns more than 2000 tokens, offload it; carrying bulk in context wastes tokens and degrades attention
+- **Never cleaning scratch files** — scratch directories grow unbounded; implement cleanup on session end or after plan completion
+- **Self-modification without guardrails** — agents can accumulate incorrect or contradictory instructions; validate changes before writing
+- **Reading entire files when grep suffices** — `read_file` loads everything; `grep` + line-range reads are more token-efficient for targeted retrieval
+- **Treating filesystem as a database** — files lack transactions, indexing, and query optimization; use a real database for structured data at scale
+- **Synchronous file reads in hot paths** — file I/O adds latency; cache frequently-read files or load them once at session start
+- **Missing naming conventions** — without timestamps, IDs, or clear prefixes in scratch files, agents cannot find what they wrote
+
 ## Practical Guidance
 
 ### When to Use Filesystem Context

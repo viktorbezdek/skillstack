@@ -1,6 +1,6 @@
 # Risk Management
 
-> **v1.0.10** | Strategic Thinking | 11 iterations
+> **v1.0.11** | Strategic Thinking | 11 iterations
 
 > Systematic risk assessment, mitigation planning, and monitoring for projects, products, and organizations -- from identification through response planning to ongoing review.
 > Single skill, self-contained methodology

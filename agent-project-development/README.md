@@ -1,6 +1,6 @@
 # Agent Project Development
 
-> **v1.0.4** | Methodology for LLM-powered project development -- task-model fit analysis, pipeline architecture, file system state machines, cost estimation, and architectural reduction.
+> **v1.0.5** | Methodology for LLM-powered project development -- task-model fit analysis, pipeline architecture, file system state machines, cost estimation, and architectural reduction.
 > 1 skill | 2 references | 13 trigger evals, 3 output evals
 
 ## The Problem
