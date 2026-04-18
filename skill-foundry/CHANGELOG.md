@@ -8,9 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - update README and plugin.json for v2.2.0
 - v2.2.0 — restructure references, cleanup examples/templates
+
+### Fixed
+
+- rename UPPERCASE references to lowercase, sync plugin-dev validator
 
 ## [2.0.0] - 2026-04-16
 

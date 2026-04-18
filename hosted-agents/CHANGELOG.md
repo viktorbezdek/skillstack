@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add decision tree, anti-patterns with solutions, when-to-use/not sections, cut metadata footer
 

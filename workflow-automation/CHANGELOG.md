@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - compress verbose code sections (430→250 lines), add anti-patterns table (10 entries), add When NOT to Use, add decision tree header, trim trailing blanks, bump v1.1.22
 

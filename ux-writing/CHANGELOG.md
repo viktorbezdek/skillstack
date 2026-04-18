@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - fix anti-pattern numbering (1-10 sequential), expand to table format with examples/fixes/rationale, add personality-over-clarity anti-pattern, bump v1.0.11
 

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add decision trees and anti-patterns tables to 7 weakest workflows (onboard-to-codebase, context-engineering-pipeline, design-review-sprint, security-hardening-audit, api-to-production, product-story-to-ship, storytelling-for-stakeholders), bump v2.0.1
 

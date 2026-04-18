@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add BDI modeling decision tree, condense anti-patterns into table with solutions, add key insight, add missing anti-patterns (unidirectional properties, goals-as-mental-states), improve progressive disclosure
 

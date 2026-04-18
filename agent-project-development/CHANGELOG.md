@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add task-model fit decision tree, single-vs-multi-agent decision tree, condense anti-patterns into table, add architectural reduction anti-patterns, improve progressive disclosure
 
