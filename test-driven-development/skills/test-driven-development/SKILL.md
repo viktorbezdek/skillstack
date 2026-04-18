@@ -4,17 +4,51 @@ description: |
   Guides the Test-Driven Development methodology: the Red-Green-Refactor cycle of writing failing tests before implementation code, then making them pass with minimal code, then refactoring. Use when the user asks to do TDD, practice test-driven development, follow red-green-refactor, write tests first, apply test-first methodology, or implement a feature using TDD workflow with pytest, Vitest, ERT, or Zod. NOT for choosing or setting up test frameworks (use testing-framework), NOT for finding and fixing bugs or analyzing stack traces (use debugging), NOT for reviewing existing code or PRs (use code-review).
 ---
 
-# Test-Driven Development (TDD) Comprehensive Skill
+# Test-Driven Development (TDD)
 
-A unified, comprehensive skill for implementing Test-Driven Development across multiple languages, frameworks, and testing levels.
+Write failing tests before implementation, make them pass minimally, then refactor.
 
-## Overview
+## When to Use This Skill
 
-1. **Core TDD Workflow** - Red-Green-Refactor cycle
-2. **Multi-Language Support** - Python, TypeScript, Emacs Lisp
-3. **Testing Tiers** - Unit, Integration, E2E testing
-4. **Modern Frameworks** - pytest, Vitest, Playwright
-5. **Quality Assurance** - Coverage analysis, validation strategies
+- Implementing new features with test-first methodology
+- Adding tests to increase coverage (starting with highest-impact gaps)
+- Refactoring with a test safety net
+- Writing E2E tests that define expected UX before building
+- Practicing TDD in a new language or framework
+
+## When NOT to Use This Skill
+
+- **Choosing or setting up test frameworks** → use `testing-framework`
+- **Finding and fixing bugs** → use `debugging`
+- **Reviewing existing code or PRs** → use `code-review`
+- **Writing tests after code already exists** → test-after, not TDD; use coverage analysis instead
+
+---
+
+## Decision Tree
+
+```
+What are you doing?
+│
+├─ Building a NEW feature from scratch
+│   └─ Full TDD cycle: write failing test → minimal implementation → refactor
+│
+├─ Adding coverage to existing code
+│   └─ Identify highest-impact gaps first → write tests for business logic → error handling → edge cases
+│
+├─ Refactoring existing working code
+│   └─ Verify all tests green first → one extraction at a time → run tests after each change
+│
+├─ Writing E2E tests with Playwright
+│   └─ Define expected UX as tests before building → unit/integration for rapid cycles → E2E for workflow spec
+│
+└─ Working in a specific language/framework?
+    ├─ Python → pytest (references/python-tdd.md)
+    ├─ TypeScript → Vitest (references/vitest-patterns.md)
+    ├─ E2E browser → Playwright (references/playwright-e2e-patterns.md)
+    ├─ Emacs Lisp → ERT (references/elisp-tdd.md)
+    └─ Schema validation → Zod (references/zod-testing-patterns.md)
+```
 
 ---
 
@@ -129,6 +163,26 @@ assert result.status == "success", f"Expected success but got {result.status}"
 # Bad - generic assertion
 assert result
 ```
+
+## Anti-Patterns with Solutions
+
+1. **Tests coupled to implementation** — asserting mock call arguments instead of observable behavior.
+   - **Solution**: assert return values, side effects, and state changes — not which functions were called or in what order. If refactoring breaks your tests but behavior is unchanged, the tests are coupled.
+
+2. **Testing too much in one test** — a single test verifies an entire workflow instead of one behavior.
+   - **Solution**: one test = one behavior. `test_calculate_discount_returns_zero_for_empty_cart` not `test_discount_works`. Break large tests into named behaviors.
+
+3. **Skipping the REFACTOR phase** — moving to the next test immediately after GREEN.
+   - **Solution**: treat REFACTOR as mandatory. After every GREEN, ask: is the code clean? Are there duplicated patterns? Has the function grown too long? The test safety net exists precisely so you can refactor safely.
+
+4. **Test that passes before implementation** — the test doesn't actually test the right thing.
+   - **Solution**: verify the RED phase. The test must fail because the behavior is not implemented, not because of a syntax error. If the test passes immediately, the assertion is wrong.
+
+5. **Shared mutable state between tests** — test order affects results.
+   - **Solution**: each test runs in isolation. No shared mutable state. Use fixtures for setup/teardown. If `test_a` must run before `test_b`, you have shared state.
+
+6. **High coverage, shallow tests** — 90% line coverage but only happy paths.
+   - **Solution**: line coverage is necessary but not sufficient. After reaching coverage targets, audit for missing edge cases, error conditions, and boundary values.
 
 See [Extended Patterns](references/extended-patterns.md) for detailed language-specific guidance (Python/pytest, TypeScript/Vitest, Playwright E2E, Emacs Lisp/ERT), the 6-phase TDD workflow, quick reference commands, and troubleshooting.
 

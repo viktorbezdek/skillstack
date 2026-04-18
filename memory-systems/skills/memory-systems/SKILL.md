@@ -7,16 +7,53 @@ description: Guides implementation of agent memory systems, compares production 
 
 Memory provides the persistence layer that allows agents to maintain continuity across sessions and reason over accumulated knowledge. Simple agents rely entirely on context for memory, losing all state when sessions end. Sophisticated agents implement layered memory architectures that balance immediate context needs with long-term knowledge retention. The evolution from vector stores to knowledge graphs to temporal knowledge graphs represents increasing investment in structured memory for improved retrieval and reasoning.
 
-## When to Activate
+## When to Use
 
-Activate this skill when:
 - Building agents that must persist knowledge across sessions
 - Choosing between memory frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee)
 - Needing to maintain entity consistency across conversations
 - Implementing reasoning over accumulated knowledge
 - Designing memory architectures that scale in production
 - Evaluating memory systems against benchmarks (LoCoMo, LongMemEval, DMR)
-- Building dynamic memory with automatic entity/relationship extraction and self-improving(Cognee)
+- Building dynamic memory with automatic entity/relationship extraction and self-improving (Cognee)
+
+## When NOT to Use
+
+- Coordinating multiple agents or agent handoffs (use multi-agent-patterns)
+- Designing individual tools or tool interfaces (use tool-design)
+- Setting up hosted agent infrastructure or sandboxed VMs (use hosted-agents)
+- General database design or data modeling (not specific to agent memory)
+- Caching strategies for API responses (that's application-level caching, not agent memory)
+
+## Decision Tree
+
+```
+What memory problem are you solving?
+│
+├─ Agent loses state between sessions
+│  ├─ Simple facts/preferences? → File-system memory (JSON + timestamps)
+│  ├─ Need semantic search? → Mem0 or vector store with metadata
+│  ├─ Need entity tracking + relationships? → Zep/Graphiti (temporal KG)
+│  └─ Need agent self-management of memory? → Letta or Cognee
+│
+├─ Choosing a framework
+│  ├─ Fastest path to production? → Mem0 (managed infra, broad integrations)
+│  ├─ Enterprise + temporal reasoning? → Zep/Graphiti (bi-temporal model)
+│  ├─ Full agent introspection? → Letta (self-editing memory tiers)
+│  ├─ Multi-hop reasoning + customizable pipeline? → Cognee (semantic graph)
+│  └─ Already on LangGraph? → LangMem (tightest integration)
+│
+├─ Retrieval problems
+│  ├─ Direct factual queries? → Semantic (embedding similarity)
+│  ├─ "Tell me about X" queries? → Entity-based (graph traversal)
+│  ├─ Facts change over time? → Temporal (validity filter)
+│  └─ Best overall accuracy? → Hybrid (semantic + keyword + graph)
+│
+└─ Not sure if you need structured memory
+   ├─ Single-session agent? → No, context window is enough
+   ├─ Multi-session but simple facts? → File-system first, upgrade later
+   └─ Complex reasoning across sessions? → Yes, start with Mem0, add graph when needed
+```
 
 ## Core Concepts
 
@@ -76,6 +113,19 @@ Zep's hybrid approach achieves 90% latency reduction (2.58s vs 28.9s) by retriev
 
 Consolidate periodically to prevent unbounded growth. **Invalidate but don't discard** — preserving history matters for temporal queries. Trigger on memory count thresholds, degraded retrieval quality, or scheduled intervals. See [implementation reference](./references/implementation.md) for working consolidation code.
 
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Stuffing everything into context | Long inputs are expensive and degrade performance | Use just-in-time retrieval; load only relevant memories per prompt |
+| Ignoring temporal validity | Outdated facts poison context and cause contradictions | Track `valid_from`/`valid_until` on every fact; prefer most recent `valid_from` on conflict |
+| Over-engineering early | Complex memory tooling before proving simpler approaches work | Start with file-system memory; add sophistication only when retrieval fails |
+| No consolidation strategy | Unbounded memory growth degrades retrieval quality over time | Set memory count thresholds; consolidate on schedule; invalidate but don't discard |
+| Treating all memories equally | No priority or relevance ranking; noise drowns signal | Weight by recency, frequency, and confidence; surface high-signal memories first |
+| Skipping benchmark evaluation | Cannot tell if memory changes helped or hurt | Run LoCoMo/LongMemEval before and after architecture changes |
+| Blocking agent response on memory writes | Write latency adds to user-facing response time | Queue writes for async processing; never block the agent on a memory write |
+| Ignoring privacy implications | Persistent memory retains sensitive data indefinitely | Implement retention policies, deletion rights, and user-level memory controls |
+
 ## Practical Guidance
 
 ### Choosing a Memory Architecture
@@ -97,13 +147,6 @@ Memories must integrate with context systems to be useful. Use just-in-time memo
 - **Stale results**: Check `valid_until` timestamps. If most results are expired, trigger consolidation before retrying.
 - **Conflicting facts**: Prefer the fact with the most recent `valid_from`. Surface the conflict to the user if confidence is low.
 - **Storage failure**: Queue writes for retry. Never block the agent's response on a memory write.
-
-### Anti-Patterns
-
-- **Stuffing everything into context**: Long inputs are expensive and degrade performance. Use just-in-time retrieval.
-- **Ignoring temporal validity**: Facts go stale. Without validity tracking, outdated information poisons context.
-- **Over-engineering early**: A filesystem agent can outperform complex memory tooling. Add sophistication when simple approaches fail.
-- **No consolidation strategy**: Unbounded memory growth degrades retrieval quality over time.
 
 ## Examples
 
@@ -194,12 +237,3 @@ External resources:
 - Graphiti open-source temporal KG engine (github.com/getzep/graphiti)
 - Cognee open-source knowledge graph memory (github.com/topoteretes/cognee)
 - [Cognee comparison: Form vs Function](https://www.cognee.ai/blog/deep-dives/competition-comparison-form-vs-function) — graph structure comparison and HotPotQA benchmarks across Mem0, Graphiti, LightRAG, Cognee
-
----
-
-## Skill Metadata
-
-**Created**: 2025-12-20
-**Last Updated**: 2026-02-26
-**Author**: Agent Skills for Context Engineering Contributors
-**Version**: 3.0.0

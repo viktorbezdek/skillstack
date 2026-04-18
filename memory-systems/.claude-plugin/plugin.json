@@ -1,6 +1,6 @@
 {
   "name": "memory-systems",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
   "author": {
     "name": "Viktor Bezdek",

@@ -1,6 +1,6 @@
 # Memory Systems
 
-> **v1.0.5** | Agent Architecture | 6 iterations
+> **v1.0.6** | Agent Architecture | 6 iterations
 
 ---
 
