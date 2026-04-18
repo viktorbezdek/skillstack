@@ -1,25 +1,57 @@
 ---
 name: docker-containerization
-description: Docker and container development — use when the user mentions Dockerfiles, multi-stage builds, Docker Compose, container optimization, image size reduction, DDEV, containerization, or dev environment setup with containers. NOT for CI/CD pipeline YAML or pipeline configuration (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation).
+description: Docker and container development — use when the user mentions Dockerfiles, multi-stage builds, Docker Compose, container optimization, image size reduction, DDEV, containerization, or dev environment setup with containers. NOT for CI/CD pipeline YAML or pipeline configuration (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation), NOT for Kubernetes or container orchestration platforms (use cloud-native tooling).
 license: MIT
 ---
 
 # Docker Containerization Skill
 
-Comprehensive guide for Docker containerization covering core concepts, multi-stage builds, Docker Compose orchestration, development environment setup, and advanced patterns for isolated development workflows.
+Comprehensive guide for Docker containerization: Dockerfiles, multi-stage builds, Docker Compose orchestration, development environments, and advanced patterns.
 
-## When to Use This Skill
+## When to Use / Not Use
 
-Use this skill when:
+**Use when:**
+- Writing or optimizing Dockerfiles (multi-stage builds, layer caching, image size)
+- Setting up Docker Compose for multi-container apps (health checks, volumes, networks)
+- Creating isolated development environments with worktrees
+- Configuring DDEV for PHP/TYPO3 projects
+- Managing ports, browser isolation, and CORS in multi-worktree setups
+- Running container optimization analysis (`scripts/docker_optimize.py`)
 
-- **Containerization**: Building Docker images, writing Dockerfiles, multi-stage builds
-- **Docker Compose**: Setting up multi-container applications, local development environments
-- **Development Environments**: Setting up DDEV for TYPO3/PHP projects, creating isolated worktrees
-- **Container Optimization**: Analyzing and optimizing Dockerfile efficiency, image size reduction
-- **Port Management**: Allocating ports for multiple containers, avoiding conflicts
-- **Browser Automation**: Setting up isolated browser containers for testing
-- **CI/CD**: Building container images for deployment pipelines
-- **Meta-Configuration Systems**: Working with meta.json-driven Docker configurations (Ghostmind)
+**Do NOT use when:**
+- CI/CD pipeline YAML or pipeline configuration -> use `cicd-pipelines`
+- Workflow orchestration or release automation -> use `workflow-automation`
+- Kubernetes or container orchestration platforms -> use cloud-native tooling
+- Debugging containerized applications -> use `debugging` (but this skill helps with environment setup)
+
+## Decision Tree
+
+```
+What Docker task do you need?
+├── Write a Dockerfile
+│   ├── Single-language app, no build step -> Single-stage FROM + COPY + CMD
+│   ├── Compiled/bundled app (TypeScript, Go, wheel) -> Multi-stage build (build + production)
+│   ├── Need smallest image -> Alpine or distroless base, multi-stage
+│   └── PHP/TYPO3 project -> DDEV (see references/ddev-quickstart.md)
+├── Set up Docker Compose
+│   ├── Single app + DB -> 2 services, health check on DB, depends_on with condition
+│   ├── Multiple services (app + DB + cache + worker) -> Named volumes, health checks, resource limits
+│   ├── Need worktree isolation -> Port ranges per worktree, prefixed container names
+│   └── Environment-specific configs -> Override files: docker-compose.override.yml
+├── Optimize existing image
+│   ├── Image too large -> Run docker_optimize.py, add .dockerignore, reorder layers
+│   ├── Build too slow -> Reorder: COPY deps first, RUN install, then COPY source
+│   └── Security issues -> Non-root user, specific version tags, no build tools in production
+├── Development environment
+│   ├── Git worktree isolation -> references/docker-worktree-strategy.md + worktree-manager.sh
+│   ├── Browser isolation for E2E -> references/browser-isolation.md + setup-mcp-isolation.sh
+│   └── Port conflicts -> references/port-allocation.md (systematic ranges)
+└── Troubleshooting
+    ├── Build fails -> Check Dockerfile syntax, cache, .dockerignore
+    ├── Container can't connect -> Check network, service names, health checks
+    ├── Data lost on restart -> Use named volumes (not anonymous/binds)
+    └── DDEV issues -> references/ddev-troubleshooting.md
+```
 
 ## Quick Start
 
@@ -56,18 +88,28 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/app
+      - DATABASE_URL=postgresql://user:***@db:5432/app
 
   db:
     image: postgres:15-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 5s
+      retries: 5
 
   redis:
     image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
 
 volumes:
   postgres_data:
@@ -145,6 +187,22 @@ dist
 coverage
 ```
 
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Using `FROM:latest` tag | Non-reproducible builds; breakage when base image updates | Pin specific version: `node:20.11.0-alpine3.19` |
+| Running as root in production | Security vulnerability; container escape risk | Create non-root user: `RUN adduser -S appuser` then `USER appuser` |
+| Single-stage build for compiled apps | Build tools and dev deps in production image (1GB+ vs 200MB) | Multi-stage build: compile in build stage, copy artifacts to slim production stage |
+| No .dockerignore | `node_modules`, `.git`, build artifacts copied into image, bloating size | Create .dockerignore excluding `node_modules`, `.git`, `dist`, `coverage`, `.env` |
+| No health checks in Compose | Services start before dependencies ready; connection refused errors | Add `healthcheck` to each service, use `depends_on: condition: service_healthy` |
+| Anonymous volumes for data | `docker compose down` removes data; data loss on cleanup | Use named volumes: `volumes: { postgres_data: }` and reference by name |
+| COPY all files before RUN install | Any source change invalidates dependency cache; slow rebuilds | COPY `package*.json` first, RUN install, then COPY source (dependency layer caches) |
+| No restart policy in production | Container stays down after crash or host reboot | Add `restart: unless-stopped` to production services |
+| No resource limits | Runaway container starves host; OOM kills other services | Set `deploy.resources.limits.memory` and `cpus` per service |
+| Missing `EXPOSE` documentation | Unclear which ports the container uses; conflicts | Document with `EXPOSE` even though it doesn't publish ports |
+| Separate `RUN chown` after COPY | Creates extra layer; wastes image space | Use `COPY --chown=appuser:appgroup` in one step |
+
 ## Best Practices
 
 ### Dockerfiles
@@ -186,7 +244,17 @@ coverage
 | Compose down | `docker compose down` |
 | Clean all | `docker system prune -a --volumes` |
 
-See [Extended Patterns](references/extended-patterns.md) for Docker Compose patterns, DDEV setup, worktree isolation, container optimization, CI/CD pipelines, and troubleshooting.
+## Scripts Reference
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/docker_optimize.py` | Analyze and optimize Dockerfiles |
+| `scripts/validate-prerequisites.sh` | Check Docker, DDEV installation |
+| `scripts/worktree-manager.sh` | Manage isolated worktree environments |
+| `scripts/setup-mcp-isolation.sh` | Configure browser MCP isolation |
+| `scripts/validate-worktree-connectivity.sh` | Test worktree service connectivity |
+| `scripts/test-isolation.sh` | Test browser isolation |
+| `scripts/migrate-browser-isolation.sh` | Migrate to new isolation config |
 
 ## Reference Navigation
 
@@ -206,18 +274,6 @@ See [Extended Patterns](references/extended-patterns.md) for Docker Compose patt
 | DDEV prerequisites | `references/ddev-prerequisites.md` |
 | DDEV troubleshooting | `references/ddev-troubleshooting.md` |
 
-## Scripts Reference
-
-| Script | Purpose |
-|--------|---------|
-| `scripts/docker_optimize.py` | Analyze and optimize Dockerfiles |
-| `scripts/validate-prerequisites.sh` | Check Docker, DDEV installation |
-| `scripts/worktree-manager.sh` | Manage isolated worktree environments |
-| `scripts/setup-mcp-isolation.sh` | Configure browser MCP isolation |
-| `scripts/validate-worktree-connectivity.sh` | Test worktree service connectivity |
-| `scripts/test-isolation.sh` | Test browser isolation |
-| `scripts/migrate-browser-isolation.sh` | Migrate to new isolation config |
-
 ## Resources
 
 - **Docker Docs:** https://docs.docker.com
@@ -225,3 +281,10 @@ See [Extended Patterns](references/extended-patterns.md) for Docker Compose patt
 - **Dockerfile Reference:** https://docs.docker.com/engine/reference/builder/
 - **DDEV:** https://ddev.readthedocs.io/
 - **Docker Security:** https://docs.docker.com/engine/security/
+
+## Integration
+
+- **cicd-pipelines** -- Build and deploy Docker images this skill creates
+- **workflow-automation** -- Automate deployment workflows using Docker containers
+- **debugging** -- Debug containerized applications and CI/CD failures
+- **testing-framework** -- Set up testing infrastructure inside containers
