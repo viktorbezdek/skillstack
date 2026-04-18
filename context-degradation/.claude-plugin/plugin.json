@@ -1,6 +1,6 @@
 {
   "name": "context-degradation",
-  "version": "1.0.4",
+  "version": "1.0.11",
   "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
   "author": {
     "name": "Viktor Bezdek",
