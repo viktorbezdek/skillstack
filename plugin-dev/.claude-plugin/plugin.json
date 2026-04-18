@@ -1,6 +1,6 @@
 {
   "name": "plugin-dev",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
   "author": {
     "name": "Viktor Bezdek",

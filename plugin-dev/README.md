@@ -1,6 +1,6 @@
 # Plugin Dev
 
-> **v1.1.0** | Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
+> **v1.1.1** | Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
 > 8 skills + 4 scripts + 18 references | 109 trigger evals + 24 output evals (133 total)
 
 ## The Problem

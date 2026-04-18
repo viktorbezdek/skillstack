@@ -110,4 +110,37 @@ See `references/validation-checklist.md` for the full pre-ship checklist.
 
 ---
 
+## Anti-patterns
+
+1. **Treating validation as sufficient** — passing validation does not mean the plugin works. It means the structure is correct. You still need `plugin-evaluation` to verify activation and output quality.
+2. **Skipping strict mode in CI** — `--strict` catches warnings that become errors in future Claude Code versions. Run without `--strict` only during active development; always run strict in CI.
+3. **Fixing symptoms instead of root causes** — a `name` mismatch between frontmatter and directory isn't fixed by renaming the directory. It's fixed by deciding which name is correct and aligning both.
+4. **Validating only once before shipping** — every structural change (adding a reference, renaming a skill, updating plugin.json) can introduce new errors. Validate after every change.
+5. **Ignoring dead reference warnings** — a SKILL.md that cites `references/foo.md` but the file doesn't exist means Claude will see a broken reference path. This silently degrades skill quality.
+6. **Not validating third-party plugins before use** — run `validate_plugin.py` on any plugin you're considering installing. Structural errors predict runtime failures.
+
+---
+
+## Decision tree
+
+```
+Plugin won't load at all?
+  → Run `claude plugin validate .` → fix plugin.json syntax errors first
+
+Plugin loads but skill doesn't activate?
+  → Run validate_plugin.py --strict → check frontmatter name/description issues
+  → If structure is clean → problem is description quality, use plugin-evaluation
+
+Plugin works locally but fails on another machine?
+  → Check for hardcoded paths (should use ${CLAUDE_PLUGIN_ROOT})
+  → Check for missing dependencies in scripts/
+  → Run validate_plugin.py on the installed copy
+
+Plugin has multiple skills and some don't appear?
+  → Verify each SKILL.md frontmatter name matches its directory
+  → Check for duplicate skill names across the plugin
+```
+
+---
+
 > *Plugin-Dev Authoring Toolkit by [Viktor Bezdek](https://github.com/viktorbezdek) — licensed under MIT.*
