@@ -167,4 +167,19 @@ premature - they risk committing to waste.
 
 ---
 
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|-------------|---------|----------|
+| Optimizing before allocating | Committing to discounts on unattributed spend | Get to 80%+ allocation before buying commitments |
+| Chasing unit savings over coverage gaps | Saving $0.02/hour on 10 instances while 200 run on-demand | Prioritize commitment coverage over per-unit optimization |
+| Ignoring spillover costs | Provisioned capacity with unchecked spillover to pay-per-token | Model total cost including spillover; set alerts |
+| Tagging as afterthought | <60% of resources tagged, can't attribute spend | Enforce tagging via IaC; block untagged deployments |
+| Annual commitment on new workloads | Committing before usage patterns stabilize | Start with pay-per-use; commit after 3 months of data |
+| Single-cloud cost view | Multi-cloud spend unnormalized | Adopt FOCUS spec for cross-cloud normalization |
+| Ignoring SaaS sprawl | Shadow IT SaaS spend exceeds infrastructure | Implement SMP; discover and rationalize SaaS portfolio |
+| FinOps as finance-only | Engineering excluded from cost decisions | Embed FinOps in engineering workflows; distribute accountability |
+
+---
+
 > *FinOps Skill by [OptimNow](https://optimnow.io) (James Barney) and [Viktor Bezdek](https://github.com/viktorbezdek) - licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).*
