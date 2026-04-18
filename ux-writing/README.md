@@ -1,6 +1,6 @@
 # UX Writing
 
-> **v1.0.10** | Turn "Submit", "Error 404", and "Click here" into interface text that actually helps users succeed.
+> **v1.0.11** | Turn "Submit", "Error 404", and "Click here" into interface text that actually helps users succeed.
 > Single skill, no references | 13 trigger evals + 3 output evals
 
 ## Context to Provide

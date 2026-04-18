@@ -112,12 +112,15 @@ We'll send a confirmation link.
 
 ## Anti-Patterns
 
-1. **Blaming the user** — "You entered an invalid email" implies the user did something wrong. Fix: "Please enter a valid email address" — the system needs valid input, the user isn't at fault.
-2. **Jargon and system language** — "Error 500: Internal Server Error" exposes backend terminology. Fix: "Something went wrong on our end. Try again in a moment."
-3. **Dead-end messages** — errors or empty states with no next step. Fix: every message should include what the user can do next (retry, search, contact support).
-4. **Vague button labels** — "OK", "Submit", "Cancel" without context. Fix: label buttons with the specific action — "Delete project", "Send invitation", "Save changes".
-5. **Overly formal tone** — "Your request has been processed successfully" in a consumer product. Fix: "Done!" unless the context demands formality (legal, financial).
-7. **Inconsistent terminology** — "Delete" in one place, "Remove" in another for the same action. Fix: pick one term and use it everywhere; create a microcopy glossary.
-8. **Silent loading states** — showing a spinner with no text while the user waits. Fix: always describe what's happening ("Finding your files...") and add estimated time if known ("This takes about 30 seconds").
-9. **Progressive disclosure overload** — revealing too many options at once in tooltips or helper text. Fix: show the essential instruction; link or collapse deeper details. Helper text is for the next step, not the whole manual.
-7. **Confirmations without consequences** — "Are you sure?" without explaining what will happen. Fix: "Delete this project? All 23 tasks will be permanently removed."
+| # | Anti-Pattern | Example | Fix | Why it matters |
+|---|---|---|---|---|
+| 1 | **Blaming the user** | "You entered an invalid email" | "Please enter a valid email address" | Implies fault; users feel accused instead of guided |
+| 2 | **Jargon and system language** | "Error 500: Internal Server Error" | "Something went wrong on our end. Try again in a moment." | Users do not know what a 500 is; they need a human-readable explanation |
+| 3 | **Dead-end messages** | "Error 404" | "Page not found. Try searching or go to homepage." | Without a next step, users are stranded and must guess what to do |
+| 4 | **Vague button labels** | "OK", "Submit", "Cancel" | "Delete project", "Send invitation", "Save changes" | Generic labels force users to re-read surrounding context to infer what will happen |
+| 5 | **Overly formal tone** | "Your request has been processed successfully" | "Done!" (unless context demands formality: legal, financial) | Robotic copy erodes trust and increases cognitive load for no added clarity |
+| 6 | **Inconsistent terminology** | "Delete" in one place, "Remove" in another for the same action | Pick one term and use it everywhere; maintain a microcopy glossary | Inconsistent terms make users wonder if "delete" and "remove" do different things |
+| 7 | **Silent loading states** | Spinner with no text | "Finding your files..." (+ time estimate if known: "This takes about 30 seconds") | Silent spinners feel broken; users refresh or abandon, making the wait worse |
+| 8 | **Progressive disclosure overload** | Tooltip with 3 paragraphs of detail | Show the essential instruction; link or collapse deeper details | Helper text is for the next step, not the whole manual |
+| 9 | **Confirmations without consequences** | "Are you sure?" | "Delete this project? All 23 tasks will be permanently removed." | Without consequences, users click through on autopilot; the confirmation is theater |
+| 10 | **Personality over clarity** | "Oopsie-daisy, something borked!" | "Something went wrong. Try again or contact support." | The Clear principle always outranks Human. Users in error states need help, not humor |
