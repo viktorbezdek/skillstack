@@ -1,6 +1,6 @@
 # Next.js Development
 
-> **v2.0.23** | Development | 26 iterations
+> **v2.0.24** | Development | 26 iterations
 
 ---
 

@@ -37,8 +37,6 @@ A unified skill merging best practices for Next.js development, covering App Rou
 
 ## When to Use This Skill
 
-Use this skill when:
-
 - Creating new Next.js pages, layouts, or components
 - Implementing data fetching (Server Components, TanStack Query, SWR)
 - Deciding between Server and Client Components
@@ -49,6 +47,51 @@ Use this skill when:
 - Building complete feature modules with CRUD operations
 - Optimizing metadata and SEO
 - Styling with Tailwind CSS
+
+## When NOT to Use
+
+- Generic React patterns, hooks, or component logic (use react-development)
+- UI/CSS design systems or visual styling (use frontend-design)
+- Backend API development without Next.js (use python-development or relevant backend skill)
+- Build tool configuration unrelated to Next.js (use relevant bundler skill)
+
+## Decision Tree
+
+```
+What Next.js problem are you solving?
+│
+├─ Server vs Client Component?
+│  ├─ Needs interactivity (onClick, onChange)? → Client Component ('use client')
+│  ├─ Needs React hooks (useState, useEffect)? → Client Component
+│  ├─ Needs browser APIs (window, localStorage)? → Client Component
+│  ├─ Needs to fetch data? → Server Component (preferred)
+│  └─ None of the above? → Server Component (default)
+│
+├─ Data fetching strategy?
+│  ├─ Data needed at build time? → SSG (generateStaticParams + fetch with force-cache)
+│  ├─ Data needed at request time? → SSR (fetch with no-store)
+│  ├─ Data revalidated periodically? → ISR (next: { revalidate: N })
+│  ├─ Data fetched on client? → TanStack Query with useSuspenseQuery
+│  └─ Streaming/progressive loading? → <Suspense> boundary wrapping async component
+│
+├─ Caching strategy?
+│  ├─ Static page, rarely changes? → 'force-cache' or SSG
+│  ├─ Dynamic page, always fresh? → 'no-store'
+│  ├─ Revalidate on a schedule? → next: { revalidate: N }
+│  ├─ Revalidate on demand? → next: { tags: [...] } + revalidateTag()
+│  └─ Cache component output? → 'use cache' directive (Next.js 16)
+│
+├─ Form/mutation handling?
+│  ├─ Simple form submit? → Server Action with 'use server'
+│  ├─ Need loading state? → useFormStatus()
+│  ├─ Need optimistic UI? → useOptimistic()
+│  └─ Need client validation? → Zod schema + client-side validation before submit
+│
+└─ Next.js version concerns?
+   ├─ Using Next.js 16? → Use async params, proxy.ts, "use cache"
+   ├─ Migrating 15→16? → See Next.js 16 Breaking Changes below
+   └─ Using Next.js 13/14/15? → Use sync params, middleware.ts
+```
 
 ---
 
@@ -234,6 +277,24 @@ app/
 
 ---
 
+## Anti-Patterns
+
+| Anti-Pattern | Problem | Solution |
+|---|---|---|
+| Adding `'use client'` to every component | Loses Server Component benefits; larger JS bundle | Only add `'use client'` when hooks, events, or browser APIs are needed |
+| Using `<img>` instead of `<Image>` | Build fails; no optimization | Always import from `next/image` |
+| Fetching data in Client Components by default | Unnecessary client-side waterfall | Prefer Server Component data fetching; only use client fetch for dynamic user-driven queries |
+| Missing cache strategy on fetch() | Default varies by Next.js version; unpredictable | Always specify `cache` or `next.revalidate` explicitly |
+| Not awaiting params in Next.js 16 | Runtime error: params is a Promise | `const { id } = await params` — always await in Next.js 16 |
+| Making Client Components async | Runtime error — async client components are not supported | Fetch data in Server Component, pass as props to Client Component |
+| Missing `default.tsx` for parallel routes | Error when parallel route has no match | Always create `default.tsx` alongside parallel route `page.tsx` |
+| Server Actions without input validation | Malformed data reaches your server | Always validate with Zod before processing |
+| Using `middleware.ts` in Next.js 16 | Deprecated; will be removed | Migrate to `proxy.ts` |
+| Skipping `revalidateTag`/`revalidatePath` after mutations | Stale data shown after form submit | Always call revalidation after Server Action mutations |
+| Deep component trees of Client Components | Heavy JS bundle, slow hydration | Push `'use client'` down to leaf components; keep parents as Server Components |
+
+---
+
 ## Module Architecture (5-Layer Pattern)
 
 ```
@@ -297,9 +358,3 @@ See [Extended Patterns](references/extended-patterns.md) for detailed code examp
 - [Next.js Docs](https://nextjs.org/docs)
 - [React Docs](https://react.dev)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
-
----
-
-**Skill Version**: 1.0.0
-**Next.js Versions**: 13+, 15, 16
-**Last Updated**: January 2026
