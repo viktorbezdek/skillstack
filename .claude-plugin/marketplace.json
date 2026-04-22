@@ -1,12 +1,10 @@
 {
   "name": "skillstack",
+  "version": "3.0.0",
+  "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
   "owner": {
     "name": "Viktor Bezdek",
-    "url": "https://github.com/viktorbezdek"
-  },
-  "metadata": {
-    "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
-    "version": "3.0.0"
+    "email": "vbezdek@groupon.com"
   },
   "plugins": [
     {
