@@ -1,0 +1,67 @@
+[
+  {
+    "query": "I need to add a new skill to my existing Claude Code plugin",
+    "should_trigger": true,
+    "note": "Core use case — adding a skill to an existing plugin"
+  },
+  {
+    "query": "my plugin's skill is activating on queries it shouldn't — how do I fix it?",
+    "should_trigger": true,
+    "note": "Activation fix use case"
+  },
+  {
+    "query": "I want to add a hook to my existing plugin that already has skills",
+    "should_trigger": true,
+    "note": "Adding a hook to an existing plugin"
+  },
+  {
+    "query": "how do I update an existing Claude Code plugin and bump its version?",
+    "should_trigger": true,
+    "note": "Version bump and update workflow"
+  },
+  {
+    "query": "my plugin has three skills and I need to add a fourth — what's the process?",
+    "should_trigger": true,
+    "note": "Extending an existing plugin with a new component"
+  },
+  {
+    "query": "I need to modify my plugin to add an MCP server alongside the existing skills",
+    "should_trigger": true,
+    "note": "High-risk structural change to existing plugin"
+  },
+  {
+    "query": "the content quality of my plugin's skills is poor — help me improve them without breaking anything",
+    "should_trigger": true,
+    "note": "Content improvement with regression concern"
+  },
+  {
+    "query": "I want to restructure my plugin — split one big skill into two focused ones",
+    "should_trigger": true,
+    "note": "Restructure use case"
+  },
+  {
+    "query": "I want to build a brand new plugin from scratch with hooks and skills",
+    "should_trigger": false,
+    "note": "Near-miss — new plugin from scratch; use build-a-plugin"
+  },
+  {
+    "query": "help me write a single SKILL.md for Python best practices",
+    "should_trigger": false,
+    "note": "Near-miss — single skill not in a plugin; use write-your-own-skill"
+  },
+  {
+    "query": "build me an MCP server that queries Postgres",
+    "should_trigger": false,
+    "note": "Near-miss — standalone MCP server, not a plugin update; use mcp-server skill"
+  },
+  {
+    "query": "how do I publish my plugin to the marketplace?",
+    "should_trigger": false,
+    "note": "Near-miss — marketplace publication, not plugin modification"
+  },
+  {
+    "query": "review my code for security issues",
+    "should_trigger": false,
+    "note": "Off-topic — code review, not plugin modification"
+  }
+]

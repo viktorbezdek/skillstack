@@ -1,0 +1,14 @@
+[
+  {
+    "scenario": "User wants to add a new skill to an existing plugin",
+    "expected_behavior": "Skill loads plugin-validation and plugin-evaluation first to audit current state, records baseline eval pass rates, then guides through skill-foundry to write the new skill, wires it into plugin.json via plugin-composition, and runs regression check before declaring done"
+  },
+  {
+    "scenario": "User has a plugin skill that activates on wrong queries",
+    "expected_behavior": "Skill identifies this as an activation fix (low-medium risk), loads skill-foundry for frontmatter rewrite, explains the NOT-clause pattern for description fields, advises running trigger evals after each rewrite to measure change, and confirms regression check on existing evals"
+  },
+  {
+    "scenario": "User wants to add a hook to a plugin that currently has only skills",
+    "expected_behavior": "Skill classifies this as medium risk (hook scope creep warning), loads plugin-hooks for event model and matcher patterns, loads plugin-composition for manifest wiring, warns that hooks must be declared in plugin.json and do not auto-discover, and runs full regression check after"
+  }
+]
