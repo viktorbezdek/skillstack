@@ -1,0 +1,92 @@
+[
+  {
+    "query": "evaluate my plugin and tell me if it's good enough to share",
+    "should_trigger": true,
+    "note": "Direct trigger phrase from description"
+  },
+  {
+    "query": "review my SKILL.md — is the description going to trigger reliably?",
+    "should_trigger": true,
+    "note": "Activation-quality review request"
+  },
+  {
+    "query": "I just finished a Claude Code plugin — can you audit it before I publish?",
+    "should_trigger": true,
+    "note": "Pre-publication audit request"
+  },
+  {
+    "query": "give me feedback on this plugin: what's missing, what's broken, what would you fix",
+    "should_trigger": true,
+    "note": "Open-ended feedback request on a plugin artifact"
+  },
+  {
+    "query": "is this skill ready to ship to the marketplace or does it need more work?",
+    "should_trigger": true,
+    "note": "Ship-readiness verdict request"
+  },
+  {
+    "query": "check the quality of this third-party plugin before I install it for my team",
+    "should_trigger": true,
+    "note": "Third-party plugin quality review"
+  },
+  {
+    "query": "I want a structured second opinion on this skill — quality, gaps, anti-patterns",
+    "should_trigger": true,
+    "note": "Structured-review framing matching workflow's value prop"
+  },
+  {
+    "query": "audit my SKILL.md for skill-foundry anti-patterns and tell me what to fix",
+    "should_trigger": true,
+    "note": "Anti-pattern audit, central to the workflow"
+  },
+  {
+    "query": "score this plugin across structure, activation, content, output, and docs",
+    "should_trigger": true,
+    "note": "Five-dimension scoring matches the workflow's verdict synthesis"
+  },
+  {
+    "query": "should I share this skill publicly or keep iterating on it?",
+    "should_trigger": true,
+    "note": "Ship/improve/rework verdict request"
+  },
+  {
+    "query": "build me a new Claude Code plugin from scratch for managing GitHub issues",
+    "should_trigger": false,
+    "note": "Net-new build request — belongs to build-a-plugin"
+  },
+  {
+    "query": "fix the broken hook in my existing skillstack plugin",
+    "should_trigger": false,
+    "note": "Targeted fix in a known plugin — belongs to update-a-plugin"
+  },
+  {
+    "query": "write me a new SKILL.md for code review",
+    "should_trigger": false,
+    "note": "Authoring a new skill from scratch — belongs to write-your-own-skill"
+  },
+  {
+    "query": "my AI agent is producing bad outputs in production — help me improve it",
+    "should_trigger": false,
+    "note": "Runtime agent quality — belongs to evaluate-and-improve-agent"
+  },
+  {
+    "query": "validate my plugin manifest schema",
+    "should_trigger": false,
+    "note": "Single structural check — invoke plugin-validation directly"
+  },
+  {
+    "query": "set up trigger evals for my skill",
+    "should_trigger": false,
+    "note": "Setting up eval infrastructure — invoke plugin-evaluation directly"
+  },
+  {
+    "query": "how do I publish a Claude Code plugin to a marketplace?",
+    "should_trigger": false,
+    "note": "Publishing how-to question, not a quality audit request"
+  },
+  {
+    "query": "review this React component for bugs",
+    "should_trigger": false,
+    "note": "Generic code review — not a plugin/skill artifact"
+  }
+]

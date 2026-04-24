@@ -1,7 +1,7 @@
 # SkillStack Workflows
 
-> **v2.0.1** | Eighteen playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
-> 18 workflow skills, no references | 234 trigger evals + 54 output evals (288 total)
+> **v2.2.0** | Twenty playbooks that chain SkillStack plugins into multi-stage workflows for real problems -- from debugging a three-hour bug to shipping an API to production.
+> 20 workflow skills, no references | 234 trigger evals + 54 output evals (288 total)
 
 ## The Problem
 
@@ -39,6 +39,7 @@ Workflows activate on natural language problem descriptions -- not workflow name
 | `product-story-to-ship` | Number of interviews conducted, what you learned, team capacity, timeline to ship |
 | `legacy-rescue` | Why the codebase is scary to touch, what happened last time someone changed it, what you need to change now |
 | `security-hardening-audit` | What data the system handles, compliance requirements, any known vulnerabilities or past incidents |
+| `evaluate-plugin-or-skill` | Whether the input is a plugin or a single SKILL.md, the path or GitHub URL, whether trigger/output evals already exist, who the audience is (you, your team, public marketplace) |
 
 **Template prompt:**
 ```
@@ -55,11 +56,11 @@ Walk me through the full process.
 
 ## The Solution
 
-This plugin provides eighteen composable workflow playbooks that orchestrate existing SkillStack plugins for multi-stage problems. Each workflow is a self-contained playbook with phase-by-phase guidance, explicit gates (conditions that must be met before proceeding), loops (steps that repeat until a quality bar is met), and references to the underlying skills by name.
+This plugin provides twenty composable workflow playbooks that orchestrate existing SkillStack plugins for multi-stage problems. Each workflow is a self-contained playbook with phase-by-phase guidance, explicit gates (conditions that must be met before proceeding), loops (steps that repeat until a quality bar is met), and references to the underlying skills by name.
 
 The workflows are not programmatic chains -- they are playbooks Claude reads and follows. When you describe a problem that matches a workflow, Claude loads the playbook, follows the phases in order, draws on the underlying skills you have installed for domain depth, respects the gates, and produces the expected output artifacts.
 
-The eighteen workflows span engineering (API to production, debugging, legacy rescue, security audit), product (user research to insight, product stories, design review), AI (build an agent, improve an agent, LLM cost optimization, context engineering), strategy (strategic decisions, pitch sprints, stakeholder storytelling), content (content platform build), and meta (build a plugin, write a skill, codebase onboarding).
+The twenty workflows span engineering (API to production, debugging, legacy rescue, security audit), product (user research to insight, product stories, design review), AI (build an agent, improve an agent, LLM cost optimization, context engineering), strategy (strategic decisions, pitch sprints, stakeholder storytelling), content (content platform build), and meta (build a plugin, update a plugin, evaluate a plugin or skill, write a skill, codebase onboarding).
 
 ## Before vs After
 
@@ -96,7 +97,7 @@ The workflows reference specific SkillStack skills by name. Without those skills
 /plugin install memory-systems@skillstack
 ```
 
-Or install the full SkillStack collection for complete coverage across all 18 workflows.
+Or install the full SkillStack collection for complete coverage across all 20 workflows.
 
 ### Verify installation
 
@@ -122,7 +123,7 @@ I've been stuck on this race condition for 3 hours -- help me debug it systemati
 User prompt (multi-stage problem description)
         |
         v
-   Skill activation: matches against 18 workflow descriptions
+   Skill activation: matches against 20 workflow descriptions
         |
         v
 +------------------------------------------------------------------+
@@ -148,7 +149,7 @@ Each workflow is a standalone SKILL.md with its own activation triggers. There a
 
 ## What's Inside
 
-### The 18 Workflows
+### The 20 Workflows
 
 #### Engineering
 
@@ -191,6 +192,8 @@ Each workflow is a standalone SKILL.md with its own activation triggers. There a
 | Workflow | Type | What it does |
 |---|---|---|
 | `build-a-plugin` | End-to-end lifecycle | Ideation (7-criteria check), research (marketplace survey), architecture (component decomposition), build (hooks + composition + skills), validation, evaluation. |
+| `update-a-plugin` | Five-phase change cycle | Audit current state, classify the change, implement with the right plugin-dev skill, regression-check via re-validation and re-evaluation, version bump and docs update. |
+| `evaluate-plugin-or-skill` | Multi-pass audit + verdict | Structural validation, content audit (skill-foundry anti-patterns), trigger and output evals (plugin-evaluation), documentation completeness — aggregated into a single verdict: SHIP, IMPROVE, or REWORK. |
 | `write-your-own-skill` | Meta-workflow | Spec first, elicit domain depth, design examples before prose, validate against anti-patterns, ship with structural tests. |
 
 ### Component Spotlights
@@ -513,7 +516,7 @@ Third: model routing. Classification steps use Haiku. The `agent-project-develop
 
 **How does the right workflow get activated?**
 
-Each of the 18 workflows has its own SKILL.md with distinct activation triggers in the frontmatter description. When you describe a problem, Claude matches your description against all active skill descriptions. The match is based on natural language similarity, not keywords. Describe the problem you face, not the workflow name.
+Each of the 20 workflows has its own SKILL.md with distinct activation triggers in the frontmatter description. When you describe a problem, Claude matches your description against all active skill descriptions. The match is based on natural language similarity, not keywords. Describe the problem you face, not the workflow name.
 
 **When multiple workflows could apply:**
 

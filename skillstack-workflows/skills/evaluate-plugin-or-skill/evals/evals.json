@@ -1,0 +1,27 @@
+[
+  {
+    "query": "Audit the plugin at ./my-plugin and tell me whether it's ready to publish.",
+    "files": [],
+    "expected_behavior": "Agent activates the evaluate-plugin-or-skill workflow and runs the seven phases in order: classifies the artifact (plugin vs single skill), checks structural validity, audits each SKILL.md against skill-foundry anti-patterns, evaluates trigger reliability (running existing trigger-evals or generating seed cases), checks output evals if present, audits documentation completeness, and synthesizes a single verdict (SHIP, IMPROVE, or REWORK) with dimension scores and ranked actions. Response leads with the verdict and gives at most three top actions, not a flat list of nitpicks."
+  },
+  {
+    "query": "Review this SKILL.md file and tell me what to fix before I share it.",
+    "files": [],
+    "expected_behavior": "Agent activates the evaluate-plugin-or-skill workflow but skips the plugin-only phases (manifest checks). It still runs frontmatter validation, anti-pattern audit (Reference Illusion, Description Soup, Template Theater, Everything Skill, Orphaned Sections), trigger evaluation (using existing or generated cases), and documentation completeness for the skill scope. Returns a verdict and ranked actions. Distinguishes between blockers, gaps, and polish."
+  },
+  {
+    "query": "I'm evaluating a third-party plugin from GitHub before installing it on my team's machines — give me a quality assessment.",
+    "files": [],
+    "expected_behavior": "Agent activates the workflow with extra emphasis on Phase 2 (structural validation) and Phase 4 (activation evaluation, since the team will rely on activation in real workflows). Calls out blockers that would affect installation or stability. Synthesizes verdict from the install/team-trust angle, not just author-facing improvement. Names which underlying plugin-dev skills it composed to reach the verdict."
+  },
+  {
+    "query": "Score this plugin across structure, activation, content, output, and documentation, and tell me whether to ship it.",
+    "files": [],
+    "expected_behavior": "Agent runs the full five-dimension scoring (each 0–3) defined in the workflow's Phase 7. Reports the per-dimension score and a one-sentence reason per dimension. Aggregates to one of SHIP / IMPROVE / REWORK using the documented thresholds. If activation evals don't exist, generates seed cases before scoring activation; does not assign a high score for unmeasured dimensions."
+  },
+  {
+    "query": "Just tell me — is this plugin good enough to publish or not?",
+    "files": [],
+    "expected_behavior": "Agent does NOT skip phases despite the user's brevity request. It explains briefly that a credible verdict requires all five dimensions to be checked, runs the workflow, and returns the verdict with the minimum supporting evidence (dimension scores and at most three ranked actions). Does not produce a SHIP verdict without trigger-evidence; downgrades to IMPROVE if activation could not be measured."
+  }
+]
