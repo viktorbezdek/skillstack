@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - add evaluate-plugin-or-skill workflow
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ## [2.1.0] - 2026-04-22
 
 ### Added
