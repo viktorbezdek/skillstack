@@ -990,10 +990,10 @@
       "name": "Skillstack Workflows",
       "type": "skill",
       "category": "thinking",
-      "description": "Nineteen composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, plugin updating, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
+      "description": "Twenty composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, plugin updating, plugin/skill evaluation, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "skillstack-workflows",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "tags": [
         "workflow",
         "composition",
