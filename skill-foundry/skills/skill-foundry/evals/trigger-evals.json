@@ -1,67 +1,77 @@
 [
   {
-    "query": "can you help me with skill creator?",
+    "query": "write a SKILL.md for PostgreSQL query optimization in Django",
     "should_trigger": true,
-    "note": "Direct domain reference using skill topic"
+    "note": "Primary trigger phrase: 'write a skill file' + concrete domain"
   },
   {
-    "query": "what's the best approach to skill creator?",
+    "query": "help me create a new Claude Code skill for Kubernetes debugging",
     "should_trigger": true,
-    "note": "Advisory query in the skill's domain"
+    "note": "Primary trigger phrase: 'create a new Claude Code skill'"
   },
   {
-    "query": "I'm struggling with skill creator on my project",
+    "query": "my skill description isn't triggering — rewrite it with NOT clauses and keywords",
     "should_trigger": true,
-    "note": "Problem statement in the skill's domain"
+    "note": "Primary trigger phrase: 'review whether a skill's description will trigger'"
   },
   {
-    "query": "show me the patterns for skill creator",
+    "query": "convert this 6-step onboarding workflow into a reusable skill",
     "should_trigger": true,
-    "note": "Pattern/architecture query"
+    "note": "Primary trigger phrase: 'convert a workflow into a reusable skill'"
   },
   {
-    "query": "what are the best practices for skill creator?",
+    "query": "design a SKILL.md that encodes our team's incident-response playbook",
     "should_trigger": true,
-    "note": "Best practices query"
+    "note": "Primary trigger phrase: 'design a SKILL.md'"
   },
   {
-    "query": "help me set up skill creator for my team's project",
+    "query": "my SKILL.md is 900 lines — how do I apply progressive disclosure to split it?",
     "should_trigger": true,
-    "note": "Setup/onboarding query"
+    "note": "Domain-specific: progressive disclosure is a core pillar"
   },
   {
-    "query": "review my approach to skill creator",
+    "query": "add anti-patterns and shibboleths to this skill to make it expert-level",
     "should_trigger": true,
-    "note": "Review/critique query"
+    "note": "Domain-specific: anti-patterns + shibboleths are signature concepts"
   },
   {
-    "query": "I need guidance on skill creator \u2014 where should I start?",
+    "query": "audit my existing skill file and score its activation quality",
     "should_trigger": true,
-    "note": "Getting-started query"
+    "note": "Skill review/audit query"
   },
   {
-    "query": "help me with prompt engineering",
+    "query": "what's the difference between a skill, a subagent, and an MCP server?",
+    "should_trigger": true,
+    "note": "Architectural decision — covered by the 'Skill vs Subagent vs MCP' decision tree in SKILL.md"
+  },
+  {
+    "query": "help me with prompt engineering for our chatbot",
     "should_trigger": false,
-    "note": "Near-miss \u2014 NOT-for clause from description: prompt engineering"
+    "note": "NOT-for clause: prompt-engineering is explicitly excluded"
   },
   {
-    "query": "make my button blue",
+    "query": "build a Claude Code plugin with hooks and an MCP server",
     "should_trigger": false,
-    "note": "Near-miss \u2014 CSS styling, not design methodology"
+    "note": "NOT-for clause: full plugin dev with hooks/MCP is plugin-architecture"
   },
   {
-    "query": "write a marketing email",
+    "query": "generate API documentation for my Python library",
     "should_trigger": false,
-    "note": "Near-miss \u2014 content writing, not prompt engineering"
+    "note": "NOT-for clause: code documentation is documentation-generator"
   },
   {
-    "query": "I want to learn about skill creator in general \u2014 any good books?",
+    "query": "write a system prompt for a customer-support voice agent",
     "should_trigger": false,
-    "note": "Near-miss \u2014 learning resources, not actionable skill guidance"
+    "note": "Near-miss: system prompts overlap with prompt-engineering, not SKILL.md authoring"
   },
   {
-    "query": "create a presentation about our quarterly results",
+    "query": "review my pull request for style issues",
     "should_trigger": false,
-    "note": "Near-miss \u2014 content creation, not this skill's domain"
+    "note": "Near-miss: 'review' verb but target is code style, not a skill file"
+  },
+  {
+    "query": "how do I write good markdown documentation in general?",
+    "should_trigger": false,
+    "note": "Near-miss: general markdown writing, not SKILL.md authoring"
   }
 ]

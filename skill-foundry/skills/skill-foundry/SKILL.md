@@ -334,78 +334,24 @@ See `references/skill-creation.md` for detailed workflow.
 
 ---
 
-## Reference Documentation
+## Reference Dispatch
 
-### Core Methodology
-| Reference | Purpose |
-|---|---|
-| `references/skill-foundry.md` | 8-phase methodology (Expert Track) |
-| `references/skill-creation.md` | 6-step creation workflow |
-| `references/skill-forge-quick-reference.md` | Condensed methodology cheat sheet |
-| `references/core-principles.md` | Five fundamental principles |
-| `references/progressive-disclosure.md` | Context loading architecture |
+Load a reference **only when the situation calls for it** — do not preload the catalog. If none of these conditions match, stay in this file.
 
-### Anti-Patterns & Quality
-| Reference | Purpose |
+| When you are... | Load |
 |---|---|
-| `references/skill-creation-anti-patterns.md` | Skill creation anti-pattern catalog |
-| `references/domain-shibboleths.md` | Domain expertise markers (novice vs expert) |
-| `references/best-practices-checklist.md` | Quality checklist |
-| `references/scoring-rubric.md` | Quantitative quality scoring |
-| `references/comprehensive-checklist.md` | Extended validation checklist |
+| Building a production skill needing strict I/O contracts and adversarial testing | `references/skill-foundry.md` (8-phase methodology) |
+| Scoping a skill from scratch with unclear requirements | `references/skill-creation.md` (6-step workflow) + `references/interactive-discovery.md` |
+| Diagnosing why a skill activates too broadly or too narrowly | `references/editing-guidance.md` + `references/auto-activation-patterns.md` |
+| Auditing an existing skill for quality or scoring it | `references/skill-audit-protocol.md` + `references/scoring-rubric.md` |
+| Splitting a 500+ line SKILL.md | `references/progressive-disclosure.md` |
+| Writing anti-patterns or encoding expert-vs-novice knowledge | `references/skill-creation-anti-patterns.md` + `references/domain-shibboleths.md` |
+| Deciding between skill / subagent / MCP / script | `references/mcp-vs-scripts.md` |
+| Turning external documentation (URLs, PDFs, markdown) into a skill | `references/research-protocol.md` + `references/optimization.md` |
+| Composing multiple skills with dependencies | `references/composability.md` + `references/agent-patterns.md` |
+| Adding research-backed prompting techniques (CoT, few-shot, plan-and-solve) | `references/evidence-based-prompting.md` |
 
-### Advanced Techniques
-| Reference | Purpose |
-|---|---|
-| `references/evidence-based-prompting.md` | Research-backed prompting (CoT, few-shot, plan-and-solve) |
-| `references/composability.md` | Skill composition + dependency patterns |
-| `references/variation-patterns.md` | Output diversity techniques |
-| `references/degrees-of-freedom.md` | Match specificity to task fragility |
-| `references/patterns.md` | Six common skill design patterns |
-
-### Enterprise & Specialized
-| Reference | Purpose |
-|---|---|
-| `references/skill-factory-workflow.md` | Enterprise skill factory workflow |
-| `references/enterprise-skill-factory-reference.md` | Enterprise standards and validation |
-| `references/skill-audit-protocol.md` | Audit methodology |
-| `references/required-sections.md` | Mandatory section requirements |
-| `references/validation.md` | Quality assessment framework |
-
-### Agents & Tools
-| Reference | Purpose |
-|---|---|
-| `references/agent-creator.md` | Agent-powered skill creation |
-| `references/agent-patterns.md` | Specialist/Coordinator/Hybrid patterns |
-| `references/mcp-vs-scripts.md` | Architecture decision: Skills vs Agents vs MCPs vs Scripts |
-| `references/self-contained-tools.md` | Implementation patterns for scripts/MCP/subagents |
-
-### Deep Dives
-| Reference | Purpose |
-|---|---|
-| `references/skill-creator-agent.md` | Agent-powered skill creation SOP |
-| `references/best-practices-for-reference-docs.md` | Writing effective reference docs |
-| `references/expertise-addendum.md` | Phase 0 domain expertise loading |
-| `references/recursive-improvement-addendum.md` | Recursive self-improvement integration |
-| `references/micro-skill-creator.md` | Atomic single-purpose skill workflow |
-| `references/skill-creation-meta-principles.md` | Counter-intuitive skill design principles |
-| `references/cookbook-patterns.md` | Practical patterns from Claude Code Skills Cookbook |
-| `references/token-efficiency.md` | Measuring skill value via token savings |
-| `references/troubleshooting.md` | Common issues and solutions |
-| `references/optimization.md` | Converting docs to AI-friendly Q&A format |
-| `references/research-protocol.md` | Structured domain research before building |
-| `references/auto-activation-patterns.md` | Hook/trigger patterns for auto-activation |
-| `references/interactive-discovery.md` | TUI-based requirement gathering |
-| `references/editing-guidance.md` | Frontmatter, descriptions, content style |
-| `references/philosophy-patterns.md` | Establishing philosophical foundations |
-| `references/skill-lifecycle.md` | DRAFT → ACTIVE → MATURE → DEPRECATED → ARCHIVED |
-| `references/cov-protocol.md` | Chain-of-Verification protocol |
-| `references/adversarial-testing-protocol.md` | Red-team testing protocol |
-| `references/detailed-process-steps.md` | In-depth process guidance |
-| `references/enterprise-checklist.md` | Pre-publication quality validation |
-| `references/file-structure-standards.md` | MECE directory/naming conventions |
-| `references/core-standards.md` | Structural validation rules |
-| `references/migration-guide.md` | Updating skills to latest best practices |
+**Complete catalog of all 47 references** — including enterprise/lifecycle/cookbook material — lives in `references/README.md`. Consult it when the situation above doesn't match.
 
 ---
 

@@ -1,17 +1,32 @@
 [
   {
-    "query": "I need to skill creator \u2014 walk me through the approach",
+    "query": "Write a SKILL.md for PostgreSQL query optimization in Django. Include N+1 detection, EXPLAIN ANALYZE interpretation, and index selection. It should NOT cover schema migrations.",
     "files": [],
-    "expected_behavior": "Agent activates the skill-creator skill and provides a structured, actionable response covering the methodology or framework from the skill's references. Response includes concrete steps, not just abstract advice. If the skill has references, it should cite or draw from them."
+    "expected_behavior": "Output is a valid SKILL.md file. Frontmatter contains 'name' and 'description' fields. Description follows the [What] [Use for] [Keywords] NOT for [Exclusions] formula and explicitly excludes schema migrations. Body includes at least one anti-pattern with Symptom/Problem/Solution structure and at least one decision table or decision tree. SKILL.md body is under 500 lines. References to any external files (scripts/references/examples) are only made if the skill actually includes those files."
   },
   {
-    "query": "review my current approach to skill creator and suggest improvements",
+    "query": "My skill description is 'Helps with images' — it's activating on everything and nothing. Rewrite it.",
     "files": [],
-    "expected_behavior": "Agent asks for context about the current approach (or works with what's available), then provides specific, actionable feedback grounded in the skill-creator skill's methodology. Feedback should be structured (numbered or categorized) and reference concrete patterns or anti-patterns from the domain."
+    "expected_behavior": "Output is a rewritten frontmatter description that: (1) names a specific capability rather than generic 'helps with', (2) contains at least 3 trigger keywords or phrases that match real user queries, (3) contains an explicit 'NOT for' clause listing at least 2 adjacent domains the skill should NOT handle, (4) stays within 100–300 characters. Agent also explains WHY the original failed (Description Soup anti-pattern) and names the fix (specific triggers + NOT clauses)."
   },
   {
-    "query": "we're starting a new project and need to set up skill creator from scratch \u2014 what's the best approach?",
+    "query": "My SKILL.md is 920 lines. Split it using progressive disclosure.",
     "files": [],
-    "expected_behavior": "Agent provides a step-by-step getting-started guide for skill creator, appropriate to the project context. Steps are concrete and ordered (not a generic list of principles). If the skill covers multiple sub-topics, agent focuses on the foundational ones first."
+    "expected_behavior": "Agent identifies what belongs in SKILL.md (philosophy, decision trees, anti-patterns, 'when to use') vs. references/ (deep dives, exhaustive catalogs, worked examples, edge cases). Agent proposes a concrete file split with target line counts per file, keeping SKILL.md under 500 lines. Agent warns about the Orphaned Sections anti-pattern and requires each new reference file to be triggered from SKILL.md with a conditional 'when X → see Y' statement, not just listed in an index."
+  },
+  {
+    "query": "Convert our 6-step incident-response runbook into a reusable Claude Code skill.",
+    "files": [],
+    "expected_behavior": "Agent first asks scope questions (what the runbook covers, what it should NOT cover, target user expertise level) OR makes those assumptions explicit. Output includes: (1) a SKILL.md skeleton with name, description using the required formula, and sections for Philosophy/When to Use/Decision Trees/Anti-Patterns/Scripts, (2) a mapping from the 6 original steps to philosophy-first framing (not a 6-item checklist), (3) at least 2 anti-patterns drawn from common runbook-execution mistakes."
+  },
+  {
+    "query": "Review this SKILL.md and tell me if it will ship.",
+    "files": [],
+    "expected_behavior": "Agent audits against at least 4 of the 5 canonical anti-patterns (Reference Illusion, Description Soup, Template Theater, Everything Skill, Orphaned Sections) AND the structural bar (line count < 500, description has triggers + NOT clause, all referenced files exist). Output is ranked by severity (blocker / gap / polish), not a flat list. Verdict is one of: SHIP / IMPROVE / REWORK, with concrete next actions for IMPROVE or REWORK."
+  },
+  {
+    "query": "Should I build this as a skill, a subagent, or an MCP server? I want to wrap the GitHub API so my team can search issues.",
+    "files": [],
+    "expected_behavior": "Agent applies the Skill-vs-Subagent-vs-MCP decision tree. Recommends MCP (external API, auth, stateful) with clear reasoning tied to the decision criteria. Explains why Skill is wrong (no runtime state / no API auth) and why Subagent is wrong (API wrapper is not multi-step orchestration). If the agent recommends something other than MCP, it must cite which criterion from the decision tree supports that choice."
   }
 ]
