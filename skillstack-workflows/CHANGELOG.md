@@ -8,19 +8,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- new workflow `evaluate-plugin-or-skill` — multi-pass audit that grades a user-provided plugin or single SKILL.md across five dimensions (structure, activation, content, output, documentation) and returns a single verdict: SHIP, IMPROVE, or REWORK. Composes plugin-validation, plugin-evaluation, and skill-foundry.
-
-### Changed
-
-- bump workflow count to twenty (added `evaluate-plugin-or-skill`)
-- add `update-a-plugin` row to the README Meta workflows table (was already in the skills tree but missing from the catalog)
-- plugin manifest description updated, version bumped to 2.2.0
+- add evaluate-plugin-or-skill workflow
 
 ## [2.1.0] - 2026-04-22
 
 ### Added
 
 - add update-a-plugin workflow skill
+
+### Changed
+
+- update plugin changelogs [skip ci]
 
 ## [2.0.1] - 2026-04-18
 
