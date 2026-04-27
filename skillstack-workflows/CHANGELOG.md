@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [2.2.1] - 2026-04-27
 
-### Changed
+### Fixed
 
-- Capitalize `Not for` → `NOT for` in 12 workflow skill descriptions (router and auditors look for the literal capitalized phrase per skill-foundry v2.2.2 convention). Affected: build-ai-agent, content-platform-build, debug-complex-issue, design-review-sprint, evaluate-and-improve-agent, legacy-rescue, llm-cost-optimization, pitch-sprint, storytelling-for-stakeholders, strategic-decision, user-research-to-insight, write-your-own-skill. The exclusion content was already present — this is purely a casing fix to satisfy literal-string lookups.
+- bump to v2.2.1 — capitalize Not for to NOT for
 
 ## [2.2.0] - 2026-04-24
 
