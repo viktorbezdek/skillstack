@@ -12,7 +12,9 @@ description: >
   Snowflake, OCI, and GreenOps. Use for any query about technology cost, commitment portfolio
   management, rightsizing, cost allocation, SaaS sprawl, AI dev tool spend, container cost
   attribution, serverless optimization, multi-cloud strategy, or connecting spend to business
-  value. Built by OptimNow and Viktor Bezdek.
+  value. NOT for general cloud architecture decisions, application performance tuning, or
+  security/compliance reviews — use the relevant architecture, performance, or security skills
+  for those. Built by OptimNow and Viktor Bezdek.
 ---
 
 # FinOps - Expert Guidance

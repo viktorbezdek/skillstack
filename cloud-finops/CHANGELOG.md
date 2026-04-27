@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.1.2] - 2026-04-27
+
+### Changed
+
+- Add literal `NOT for` exclusion clause to skill description (router/auditor lookups for the exact phrase). Excludes general cloud architecture, application performance tuning, and security/compliance reviews — directing those to the relevant skills instead. Improves activation precision per skill-foundry v2.2.2 description-engineering convention.
+
 ## [2.1.1] - 2026-04-18
 
 ### Changed

@@ -140,7 +140,7 @@
       "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "cloud-finops/skills/cloud-finops",
-      "version": "2.1.1",
+      "version": "2.1.2",
       "tags": [
         "finops",
         "cloud-cost",
