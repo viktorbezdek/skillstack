@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "fix.md YAML description includes 'OpenAPI/Swagger spec files', 'function and method signature blocks', 'parameter tables', 'type signatures', and 'SDK reference pages' (all from the trigger keyword list). The explicit exclusion clause reads: 'Does NOT handle blog posts, README prose, marketing copy, tutorials, changelogs, or general writing tasks.' — naming 'blog posts', 'README prose', 'marketing copy', and 'general writing tasks' from the excluded categories list."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md includes a 'Test battery' section with 6 true-positive prompts (TP-1 through TP-6) and 8 false-positive guard prompts (FP-1 through FP-8), satisfying option (b). Example TPs: 'Generate an OpenAPI 3.1 spec for our /users/{id} endpoint', 'Write function signatures with JSDoc parameter tables for our auth module'. Example FPs: 'Write a blog post about our new authentication system', 'Create a README for this repository'."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "The full fix.md content was examined. None of the required skill-foundry concept names appear: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'. The document uses its own vocabulary ('domain vocabulary', 'concrete artifact names', 'explicit exclusions', 'action verbs tied to the domain') but does not reference any named skill-foundry concepts."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 491,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 50.448,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 50.448
+  },
+  "claims": [
+    {
+      "claim": "fix.md was written with a rewritten description and a 14-prompt test battery",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call found in transcript targeting /private/tmp/pilot-bench-wu6ysgh4/with/fix.md. Content confirmed: YAML frontmatter with rewritten description, 6 TP prompts, 8 FP guard prompts."
+    },
+    {
+      "claim": "The test battery has 6 true positives and 8 false-positive guards (14 prompts total)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted in fix.md: TP-1 through TP-6 (6 prompts), FP-1 through FP-8 (8 prompts) = 14 total."
+    },
+    {
+      "claim": "Pass criteria set as 6/6 TPs and 0/8 FPs",
+      "type": "factual",
+      "verified": true,
+      "evidence": "fix.md states 'TP score: 6 / 6 (any miss = description is still too narrow)' and 'FP score: 0 / 8 (any hit = description is still too broad)'."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This is the most discriminating assertion of the three — it directly tests whether the executor drew on skill-foundry's conceptual vocabulary rather than solving the problem from first principles. A strong executor using the skill would have encountered 'shibboleth' or 'Description Field Engineering' as the named framework for exactly this kind of trigger-keyword selection. The FAIL here is meaningful signal, not a pedantic miss."
+      },
+      {
+        "reason": "No assertion checks whether the rewritten description actually improves on the original's specificity (i.e., is quantifiably less likely to false-positive on non-API writing tasks). An assertion like 'the description does not contain any of the original high-frequency generic terms (documentation, content, writing)' would add discriminating power."
+      }
+    ],
+    "overall": "Expectations 1 and 2 are well-calibrated — they check substantive content, not just file existence. Expectation 3 is the most discriminating and the one that failed, which is meaningful: the executor solved the problem competently but without using the skill's conceptual framework. Consider adding an assertion that verifies the original generic terms were removed from the description."
+  }
+}

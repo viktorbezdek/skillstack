@@ -1,0 +1,22 @@
+`fix.md` written. Here's the summary:
+
+**Rewritten description (key changes):**
+```yaml
+description: >
+  Generates structured API reference documentation as machine-readable artifacts:
+  OpenAPI/Swagger specs, endpoint parameter tables, request/response schema
+  definitions, function signatures with type annotations, and JSDoc/docstring stubs
+  derived from source code or endpoint descriptions.
+  Does NOT apply to: blog posts, README prose, tutorials, marketing copy,
+  changelogs, or general writing tasks.
+```
+
+**Why the original fails:** "documentation and content creation" is an intent category — the router matches it against everything from blog posts to release notes. There's no artifact specificity and no negative signal.
+
+**Four techniques applied to fix it:**
+1. **Concrete artifact names** — OpenAPI specs, JSDoc stubs, parameter tables. These share token space with API tooling prompts, not prose prompts.
+2. **"Machine-readable artifacts" framing** — pushes similarity score away from writing-intent prompts.
+3. **Domain vocabulary** — endpoint, schema, type annotations narrow the semantic neighborhood.
+4. **Explicit NOT list** — gives the router a direct negative gate rather than relying on what's absent.
+
+**Testing:** 6 true-positive prompts + 8 false-positive guards. Pass bar is 6/6 and 0/8 respectively. The file includes a diagnostic guide for tuning if any bucket fails.

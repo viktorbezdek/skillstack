@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "skill_name": "skill-foundry",
+    "skill_path": "skill-foundry/skills/skill-foundry",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-27T08:30:57Z",
+    "evals_run": [],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "skill-foundry",
+    "target_path": "skill-foundry/skills/skill-foundry"
+  },
+  "runs": [],
+  "run_summary": {
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+0.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": []
+}

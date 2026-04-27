@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": false,
+      "evidence": "Issue 3 ('Circular description') flags the description as 'self-referential' and says it 'restates the skill name instead of defining the invocation trigger' — but none of the required phrases appear ('NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', 'too vague to trigger reliably'). Issue 6 ('Missing exclusion clause') uses 'no exclusion guidance present' language but is attributed to the overall skill file, not the description field. The two problems are treated as separate issues and neither explicitly ties the description to a missing exclusion/NOT-for clause."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 ('Dead file reference') explicitly quotes 'See `references/full-guide.md` for the detailed checklist.' and states 'a file that does not exist on disk' — 'does not exist' satisfies the 'doesn't exist' criterion."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "The word 'anti-patterns' appears in Issue 4's recommended fix ('performance anti-patterns (N+1 queries, unbounded loops)') but only as a category of things to check for, not as a recommendation to add an anti-pattern section to the skill with Symptom/Problem/Solution structure. 'philosophy' and 'shibboleth' do not appear anywhere in audit.md."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 392,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 34.488,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 34.488
+  },
+  "claims": [
+    {
+      "claim": "Six issues found in the SKILL.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "audit.md contains exactly 6 numbered issues: dead file reference, blocked tools, circular description, non-actionable steps, generic tips, missing exclusion clause."
+    },
+    {
+      "claim": "`references/full-guide.md` doesn't exist",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 identifies it as a dead reference. The file is referenced in the SKILL.md's How to use section step 4."
+    },
+    {
+      "claim": "The description field is the primary signal used to decide when to invoke the skill",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Issue 3 correctly identifies that the description field drives invocation decisions."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like ...)",
+        "reason": "This expectation conflates two distinct design weaknesses (missing NOT-for clause vs. vague trigger wording) into a single assertion requiring both to be attributed to the description field. The with_skill executor correctly identified both problems but as separate, equally-important issues. The assertion would be stronger and more discriminating if split into two independent expectations: one for the exclusion clause and one for the trigger keyword vagueness."
+      },
+      {
+        "reason": "No assertion checks whether the audit produces actionable fixes (not just identifies problems). The with_skill run provided concrete replacement text for every issue — a meaningfully better outcome than simply listing problems — but this quality difference is invisible to the current grading criteria."
+      }
+    ],
+    "overall": "Expectation 2 is well-targeted and discriminating. Expectation 1 is over-specified (requires specific phrasing that reasonable audits wouldn't use) and conflates two orthogonal issues. Expectation 3 is testing for structural meta-recommendations (anti-pattern sections, philosophy sections) that are higher-order skill-design concerns — valid but narrow; the executor produced high-quality actionable output without them."
+  }
+}

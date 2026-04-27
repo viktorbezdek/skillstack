@@ -1,0 +1,9 @@
+Written to `/private/tmp/pilot-bench-zoyf32an/without/fix.md`.
+
+**Key changes in the rewrite:**
+
+- Replaced `"documentation and content creation"` with `"machine-readable API reference artifacts"` — the domain term that uniquely identifies this skill's scope.
+- Added a concrete artifact list: OpenAPI, Swagger, JSDoc, function signatures, parameter tables. These terms don't appear in blog/README/marketing prompts.
+- Added an explicit negative list. Skill routers respond to exclusion signals — without them, the description only says *what the skill does*, not *what it refuses*.
+
+**Testing logic:** 6 true-positive prompts all use the vocabulary now in the description (OpenAPI, JSDoc, parameter table, type signatures). The 8 guard prompts deliberately use vocabulary the old description matched (blog, README, tutorial, content, documentation) — if any of those fire, the description still has a leaky term to remove.

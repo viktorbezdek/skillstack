@@ -1,0 +1,8 @@
+Saved to `audit.md`. Six issues found:
+
+1. **Dead reference** — `references/full-guide.md` doesn't exist; step 4 breaks for every executor that follows it.
+2. **Blocked tools** — `WebFetch` and `WebSearch` are hook-blocked in this environment; they'll cause silent failures.
+3. **Circular description** — the `description` field restates the skill name instead of defining the invocation trigger.
+4. **Non-actionable steps** — "Look at the code / Suggest improvements" gives executors nothing to act on; replaced with a structured, categorised review procedure.
+5. **Generic tips** — "Be thorough / Consider edge cases / Check tests" are platitudes with no skill-specific content; replaced with reviewer-specific guidance.
+6. **Missing exclusion clause** — no guidance on when to skip the skill (generated files, vendored code, lock files, migration files), so executors will waste turns reviewing irrelevant content.

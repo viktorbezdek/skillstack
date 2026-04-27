@@ -1,0 +1,79 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Reports all validation errors with paths, expected types, and actual values. Use when a user wants to check config files, API payloads, or data exports against a schema.' The phrase 'NOT for' (or any exclusion clause) is absent. The description is entirely positive/descriptive."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains sections: 'When to invoke', 'When NOT to invoke', 'Implementation' (Steps 1-6), 'Output format', and 'Edge cases'. None of these contain an anti-pattern block with the prescribed three-subheading structure. The 'Edge cases' section touches on some pitfalls (invalid JSON syntax, large files, $ref resolution) but as flat bullet points, not as labeled Symptom/Problem/Solution or What-it-looks-like/Why-it's-wrong/What-to-do-instead blocks."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": true,
+      "evidence": "The SKILL.md has a '## When to invoke' section with four positive bullets (validate JSON file against schema, check config/payload conformance, find schema violations, triggered by keywords) and a separate '## When NOT to invoke' section with three negative bullets (generating schema from JSON example, linting JSON syntax only, producing API documentation from schema). These are two clearly distinct sections, not a single paragraph."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 200,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 54.314,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 54.314
+  },
+  "claims": [
+    {
+      "claim": "The skill includes 'Clear invoke/skip guidance (distinguishes validation from schema generation and API docs)'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The 'When NOT to invoke' section explicitly lists: schema generation, JSON syntax linting, and API documentation generation — matching the executor's claim."
+    },
+    {
+      "claim": "The skill includes 'Dual-runtime code samples supporting schema drafts 7, 2019-09, and 2020-12'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Both Node.js/Bun (Ajv) and Python (jsonschema) code samples are present. The Ajv code picks 2020-12 vs draft-07 based on $schema field; Python similarly branches for 2020-12 vs Draft7Validator. Draft 2019-09 is mentioned in the runtime table but not explicitly handled in code — partial."
+    },
+    {
+      "claim": "The skill includes 'Edge case handling: multiple files, $ref resolution, large files, and invalid JSON syntax'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All four edge cases are present in the '## Edge cases' section as labeled bullets."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for'",
+        "reason": "This is a well-targeted assertion — it tests a specific structural requirement that adds real value (a reader scanning frontmatter gets exclusion context immediately). It correctly FAILS here, which is discriminating. No change needed."
+      },
+      {
+        "assertion": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings",
+        "reason": "This assertion is very specific and discriminating — it fails correctly here even though the skill has reasonable edge-case content. Consider also asserting that the anti-pattern names a pitfall that is non-obvious or specific to the JSON validation domain (not just generic 'missing required fields'), to avoid trivially satisfied anti-patterns."
+      },
+      {
+        "reason": "No assertion checks the quality of the frontmatter 'triggers' list — e.g., that it contains regex-style patterns covering both validation and schema keywords. A skill with empty or too-broad triggers would still pass all three assertions."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating. Expectation 1 (literal 'NOT for' in description) and Expectation 2 (anti-pattern blocks) both fail correctly — they represent genuine gaps in the generated skill, not false negatives. Expectation 3 passes correctly. The evals are doing useful work."
+  }
+}

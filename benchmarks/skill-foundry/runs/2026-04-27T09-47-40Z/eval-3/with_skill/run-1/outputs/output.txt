@@ -1,0 +1,11 @@
+Saved to `fix.md`. Here's the core reasoning:
+
+**Why the original fails:** "documentation and content creation" are high-frequency terms that match nearly any writing task. The router has no signal to distinguish API specs from blog posts.
+
+**What the rewrite does:**
+
+1. **Domain-specific anchor** — "machine-readable API reference artifacts" immediately narrows scope. Generic writing tasks don't match any of those words.
+2. **Concrete artifact names** — OpenAPI, Swagger, JSON Schema, parameter table, type signature. These are precise enough that a blog post prompt can't accidentally match.
+3. **Explicit NOT-for clause** — listing prose, blog, marketing, README, and tutorial gives the router a direct rejection signal, not just a weaker positive signal.
+
+**Testing logic:** The 6 true-positive prompts cover all intended artifact types (OpenAPI YAML, parameter tables, type signatures, JSON Schema, Swagger, SDK reference). The 8 false-positive guards cover every category the original description was incorrectly triggering on. If any FP still triggers, the specific category it falls into tells you exactly which exclusion phrase to add.

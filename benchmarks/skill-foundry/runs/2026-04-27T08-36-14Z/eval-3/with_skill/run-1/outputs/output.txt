@@ -1,0 +1,10 @@
+`fix.md` written. Here's what's in it:
+
+**Rewritten description (key changes):**
+- Replaced "documentation and content creation" with a concrete artifact list: *OpenAPI/Swagger spec blocks, function/method signatures, parameter tables, return-type tables, type signatures*
+- Added output framing: "machine-readable … structured contract or reference table" — strong signal words absent from general writing prompts
+- Added explicit `NOT` clause covering all five false-positive categories: blog posts, marketing copy, README prose, tutorials, changelogs
+
+**Why this fixes it:** LLM classifiers match on surface similarity. Broad nouns like "documentation" and "content" are high-frequency across all writing tasks. Replacing them with artifact names (OpenAPI spec, parameter table) and suppressing the FP categories forces a structural match rather than a topical one.
+
+**Test battery:** 14 prompts — 6 true positives (must fire), 8 false-positive guards (must not fire). Pass bar is 6/6 TP and 0/8 FP. The file includes a per-failure diagnostic table so you know exactly which clause to tighten if any guard fails.

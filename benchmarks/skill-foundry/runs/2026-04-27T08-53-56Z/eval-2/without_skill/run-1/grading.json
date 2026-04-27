@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": false,
+      "evidence": "Issue 3 flags the description as 'self-referential and tells the routing system nothing useful' and says it must name 'what signals should trigger it' — this partially covers the 'lacks specific trigger keywords' prong. However, Issue 3 never attributes a missing exclusion/NOT-for clause to the description field itself. Issue 6 flags a missing 'skip when' section at the document level, not the description field. The expectation requires BOTH prongs to be attributed specifically to the description; only one is."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 names the path exactly: 'The step references a file that does not exist on disk' → '4. See `references/full-guide.md` for the detailed checklist.' The output.txt summary also states: 'Dead reference — `references/full-guide.md` doesn't exist'. The phrase 'doesn't exist' matches the required label list."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "The full audit.md content was extracted from the Write tool call. Neither 'anti-pattern', 'philosophy', nor 'shibboleth' appears anywhere in the document. The audit recommends structural improvements (ordered checklist, exclusion block, severity ratings) but does not suggest any of the three specific structural additions the assertion requires."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 481,
+    "transcript_chars": 30340
+  },
+  "timing": {
+    "executor_duration_seconds": 45.356,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 45.356
+  },
+  "claims": [
+    {
+      "claim": "audit.md was written with 6 concrete issues",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The Write tool produced an audit.md with exactly 6 numbered issues: dead file reference, blocked tools, circular description, non-actionable steps, generic tips, missing exclusion clause."
+    },
+    {
+      "claim": "references/full-guide.md doesn't exist",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 confirms the file is 'confirmed absent'. The Bash ls command ran first to inspect the directory, supporting the absence claim."
+    },
+    {
+      "claim": "The description is circular/self-referential",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The original description 'Use this skill to review code' is cited verbatim in Issue 3 and correctly identified as self-referential."
+    },
+    {
+      "claim": "WebFetch and WebSearch are blocked by the active hook",
+      "type": "process",
+      "verified": true,
+      "evidence": "Issue 2 references context-mode.md hook correctly. This is an accurate statement about the environment."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+        "reason": "The AND requirement is strict but the two prongs map to different issues in the audit (Issue 3 = trigger keywords, Issue 6 = exclusions). A model that correctly identifies both issues but splits them across separate numbered items will fail this assertion. Consider splitting into two separate assertions, or loosening to require either prong to be flagged anywhere in the audit."
+      },
+      {
+        "reason": "No assertion checks whether the audit flagged the 'allowed-tools' / blocked-tools issue (Issue 2). This is a meaningful, environment-specific finding that distinguishes an executor with real context awareness — worth asserting on."
+      }
+    ],
+    "overall": "Assertion 2 is well-designed — specific label vocabulary, specific filename. Assertions 1 and 3 are discriminating but may be too structural: they test whether the executor uses a particular framework vocabulary (NOT-for clause on the description, anti-pattern/philosophy/shibboleth), which is more of a skill-guided style than a correctness indicator. An executor that correctly diagnoses the same problems with different terminology will fail both."
+  }
+}

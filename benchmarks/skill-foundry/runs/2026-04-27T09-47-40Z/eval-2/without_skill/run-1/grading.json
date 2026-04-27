@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": false,
+      "evidence": "Issue 6 ('Missing exclusion clause') covers the exclusion/NOT-for aspect: 'There is no guidance on when *not* to invoke this skill'. However, the 'missing specific trigger keywords' part is addressed via Issue 3 ('Circular description') which says 'Neither tells an executor *when* to trigger the skill' — but this uses framing around 'circular' and 'trigger-oriented', not any of the required phrases ('NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', 'too vague to trigger reliably'). The AND condition is not fully met: the exclusion half passes but the trigger-keywords half uses different language. Neither of the required phrases appears in audit.md."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 in audit.md is titled 'Dead file reference' and explicitly names the path: '4. See `references/full-guide.md` for the detailed checklist.' The Problem statement reads: 'References a file that does not exist on disk.' — 'does not exist' is semantically equivalent to 'doesn't exist', one of the required labels. The filename and the non-existence are both explicitly called out."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "Searched the full transcript and audit.md content for 'anti-pattern', 'philosophy', and 'shibboleth'. No matches found. The audit's six issues cover dead references, blocked tools, circular description, non-actionable steps, generic tips, and missing exclusion clause — none recommend structural additions like anti-pattern sections, a philosophy section, or shibboleth framing."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 7,
+    "errors_encountered": 0,
+    "output_chars": 861,
+    "transcript_chars": 82238
+  },
+  "timing": {
+    "executor_duration_seconds": 32.852,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 32.852
+  },
+  "claims": [
+    {
+      "claim": "Six issues found in the SKILL.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "audit.md lists exactly six issues: dead reference, blocked tools, circular description, non-actionable steps, generic tips, missing exclusion clause. Consistent with output.txt summary."
+    },
+    {
+      "claim": "references/full-guide.md is a dead/non-existent reference",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 of audit.md: 'References a file that does not exist on disk.' This matches the eval scenario specification."
+    },
+    {
+      "claim": "The description is circular — both frontmatter and body say the same thing",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 3 quotes both: 'description: Helps with code review and quality. Use this skill to review code.' and 'This skill helps you review code.' — accurate identification of the circular pattern."
+    },
+    {
+      "claim": "WebFetch and WebSearch are blocked tools that should be removed from allowed-tools",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 2 correctly identifies these as blocked per hook configuration. The skill's allowed-tools includes both."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+        "reason": "The assertion bundles two distinct issues into one AND condition and requires very specific phrasing. The executor correctly identified the exclusion gap (Issue 6: 'Missing exclusion clause') and the trigger-orientation gap (Issue 3: 'Neither tells an executor *when* to trigger the skill') — substantively correct — but fails because it uses 'circular' framing instead of the required phrases. This makes the assertion more of a vocabulary test than a correctness test. Consider splitting into two separate assertions, and widening the accepted language to include 'circular', 'redundant', 'not trigger-oriented', or 'no when-not-to-use'."
+      },
+      {
+        "reason": "No assertion checks whether the audit correctly identified the blocked-tools issue (WebFetch/WebSearch in allowed-tools). This was caught by the executor and is a substantive, non-obvious finding that distinguishes a thorough audit from a shallow one."
+      }
+    ],
+    "overall": "Assertions 2 and 3 are well-targeted. Assertion 1 is too vocabulary-strict — the executor identified both underlying issues correctly but with different phrasing and would benefit from wider accepted-language matching or being split into two assertions."
+  }
+}

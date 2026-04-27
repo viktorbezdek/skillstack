@@ -1,0 +1,87 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": true,
+      "evidence": "Issue 3 states: 'It also lacks an exclusion clause, which is required for unambiguous dispatch.' and 'has no trigger condition'. Issue 6 is titled 'Missing exclusion clause (structural gap)' with 'The skill has no \"when NOT to use\" section.' The proposed replacement description includes 'Do NOT trigger for explain-only or refactor requests.' Both the missing exclusion clause AND missing trigger conditions are called out explicitly."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 quotes the exact path 'references/full-guide.md' and states it is 'a file that does not exist on disk'. The output summary also reads '`references/full-guide.md` doesn't exist'. Both filename/path identification and a qualifying label ('does not exist' / 'doesn't exist') are present."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "The word 'anti-pattern' appears once in Issue 4 as 'performance anti-patterns' — a list of things to check for in code reviews, not a recommendation to add an anti-pattern section to the skill itself. 'philosophy' and 'shibboleth' do not appear anywhere in the audit. No recommendation is made to add a Philosophy section, an anti-pattern block with Symptom/Problem/Solution structure, or expert-vs-novice framing."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 731,
+    "transcript_chars": 80469
+  },
+  "timing": {
+    "executor_duration_seconds": 50.863,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 50.863
+  },
+  "claims": [
+    {
+      "claim": "Six issues were found in the skill",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists exactly 6 numbered issues, matching the audit.md which has Issues 1–6 with a summary table."
+    },
+    {
+      "claim": "`references/full-guide.md` is a dead reference",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 quotes the exact problematic line from the skill and identifies it as a non-existent file."
+    },
+    {
+      "claim": "The description field is circular",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 3 quotes 'Helps with code review and quality. Use this skill to review code.' — a valid example of circular self-definition."
+    },
+    {
+      "claim": "WebFetch and WebSearch are blocked by the harness",
+      "type": "process",
+      "verified": true,
+      "evidence": "Issue 2 states these tools 'are blocked by context-mode rules'. This is consistent with the harness configuration described in context-mode rules."
+    },
+    {
+      "claim": "The audit recommends structural additions like anti-pattern sections or philosophy sections",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The audit focuses on fixing existing defects (dead refs, blocked tools, circular description, vague steps, platitude tips, missing exclusion). No recommendation for anti-pattern blocks, Philosophy sections, or shibboleth framing was made."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+        "reason": "This assertion tests for a specific structural recommendation (anti-pattern/philosophy/shibboleth sections) that the skill-foundry skill itself may or may not emphasize for every audit. The executor produced a thorough, high-quality audit covering six real issues without using those specific words. The assertion may be too narrowly tied to skill-foundry's internal vocabulary rather than to observable audit quality. Consider whether the assertion should instead check for 'the audit recommends improving skill structure beyond fixing broken content' — which this audit clearly does via Issues 4, 5, and 6."
+      },
+      {
+        "reason": "No assertion checks whether the recommended replacement description is actually better (i.e., specific, dispatchable, non-circular). The executor produced a high-quality replacement in Issue 3 that would be worth validating explicitly."
+      }
+    ],
+    "overall": "Two of three assertions are well-targeted and discriminating. The third (anti-pattern/philosophy/shibboleth) is gated on specific vocabulary that the executor may not use even when the underlying recommendation is present. The audit itself is high quality — six concrete, actionable issues with before/after diffs."
+  }
+}

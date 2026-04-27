@@ -1,0 +1,11 @@
+`fix.md` written. Here's the gist:
+
+**The core problem** — "documentation and content creation" matches everything. LLM classifiers weight on surface terms, so any writing request becomes a candidate.
+
+**Three fixes applied to the description:**
+
+1. **Concrete artifact names** — `OpenAPI`, `parameter tables`, `type signatures`. These terms never appear in blog or marketing requests, so they act as structural filters.
+2. **Intent framing** — "when the output is a structured API contract" shifts matching toward goal, not topic.
+3. **Explicit exclusion list** — `blog posts`, `README files`, `marketing copy`, `tutorials`. Positive examples alone don't teach a classifier what to reject; you have to name the anti-patterns.
+
+**Test battery** — 6 true-positive prompts (all should trigger) + 8 false-positive guards (none should trigger). Pass bar is 6/6 and 0/8. The file includes both manual and automated testing procedures, plus a remediation loop if any prompt still misfires.

@@ -1,0 +1,8 @@
+Created `json-validator/SKILL.md` with:
+
+- **YAML frontmatter** — `name`, `description` (includes negative examples to reduce false-positive triggers), and keyword `triggers`
+- **8-step implementation** covering runtime detection, dependency install, validation, and reporting
+- **Dual-runtime code samples** — Node.js/Bun (Ajv) and Python (jsonschema), both supporting schema draft 2020-12
+- **Batch validation** snippet for directory-level checks
+- **Error handling table** for common failure modes (missing files, parse errors, unknown draft, missing deps)
+- **Concrete output format** showing both failure and success cases

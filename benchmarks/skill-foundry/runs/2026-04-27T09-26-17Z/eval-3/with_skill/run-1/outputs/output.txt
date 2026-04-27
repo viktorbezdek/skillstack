@@ -1,0 +1,12 @@
+`fix.md` written. Here's the core of what changed and why:
+
+**Rewritten description (key moves):**
+1. **Lead with artifact names** — "OpenAPI/Swagger spec files", "parameter tables", "endpoint schema definitions" are rare enough that false-positive prompts won't contain them.
+2. **Anchor general terms** — `"documentation"` alone is a false-positive magnet; `"machine-readable API reference artifacts"` is not.
+3. **Explicit negative list** — names blog posts, READMEs, marketing copy, and tutorials directly, so the router knows to deactivate on those.
+
+**Test battery (14 prompts):**
+- 6 true positives — all involve OpenAPI specs, function signatures, parameter/type tables, or endpoint schemas.
+- 8 false-positive guards — cover blog posts, READMEs, marketing copy, tutorials, changelogs, explanatory prose, slide decks, and editing tasks.
+
+Pass criteria: **6/6 TPs, 0/8 FPs**. The iterative tuning heuristic at the bottom of the file tells you exactly how to tighten if a prompt still misfires.

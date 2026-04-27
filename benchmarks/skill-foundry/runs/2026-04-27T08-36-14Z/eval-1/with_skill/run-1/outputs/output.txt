@@ -1,0 +1,9 @@
+Created `json-validator/SKILL.md` at `/private/tmp/pilot-bench-eb3ld1rl/with/json-validator/SKILL.md`.
+
+The skill includes:
+- YAML frontmatter with `name`, `description`, `triggers`, and `tools`
+- 8-step implementation (runtime detection → file glob → schema discovery → validator install → validation → result collection → structured report → edge cases)
+- Node.js/Ajv and Python/jsonschema paths with code examples
+- Schema auto-discovery (4-level fallback chain)
+- Structured `PASS`/`FAIL`/`SKIP` output with exit codes
+- Error handling table covering parse errors, empty files, remote `$schema` URIs, and draft auto-detection

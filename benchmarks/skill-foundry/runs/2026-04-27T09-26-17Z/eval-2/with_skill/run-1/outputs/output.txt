@@ -1,0 +1,8 @@
+Saved to `audit.md`. Six issues found:
+
+1. **Dead reference** — `references/full-guide.md` doesn't exist; step 4 is a dead end. Replace with an inline checklist.
+2. **Blocked tools** — `WebFetch` and `WebSearch` are hook-intercepted and will fail at runtime. Remove them from `allowed-tools`.
+3. **Circular description** — "Use this skill to review code" restates the description. Rewrite to give the dispatcher a trigger signal.
+4. **Non-actionable steps** — Steps 1–3 describe obvious reading behavior, not executor instructions. Replace with concrete tool calls and criteria.
+5. **Generic tips** — "Be thorough / Consider edge cases / Check tests" apply to everything. Replace with code-review-specific heuristics.
+6. **Missing exclusion clause** — No "when NOT to use" section; dispatcher will over-trigger on docs/config/formatting changes.

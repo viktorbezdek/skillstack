@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": true,
+      "evidence": "Issue 6 is titled 'Missing Exclusion Clause' and states: 'There is no guidance on when *not* to invoke this skill. Without an exclusion clause, the skill may be triggered for non-code content.' The fix includes 'Do NOT invoke for documentation-only changes...' covering the NOT-for clause. Issue 3 flags the description as 'self-referential and gives no trigger signal' and 'without explaining *when* to invoke it' — semantically equivalent to 'lacks specific keywords' / 'too vague to trigger reliably'."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 is titled 'Dead File Reference' and explicitly quotes the path '`references/full-guide.md`'. The body states: 'references a file that does not exist' and '`references/full-guide.md` is absent from disk.' The phrase 'does not exist' matches the allowed label \"doesn't exist\"."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "The words 'anti-pattern', 'philosophy', and 'shibboleth' do not appear anywhere in audit.md. The six issues address dead references, blocked tools, circular description, non-actionable steps, generic tips, and missing exclusion. None of the recommendations suggest adding a Philosophy section, an anti-pattern section with Symptom/Problem/Solution structure, or shibboleth/expert-vs-novice framing."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 497,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 36.228,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 36.228
+  },
+  "claims": [
+    {
+      "claim": "Six issues were found in the SKILL.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "audit.md lists exactly 6 numbered issues with detailed Problem and Fix sections for each."
+    },
+    {
+      "claim": "The dead reference to references/full-guide.md is in step 4 of 'How to use'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 location states: '`## How to use`, step 4' and quotes the reference exactly."
+    },
+    {
+      "claim": "WebFetch and WebSearch are hook-intercepted and must not be used",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 2 cites context-mode.md as the source and correctly identifies the tools as blocked."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+        "reason": "This expectation tests for structural recommendations (anti-pattern section, philosophy, shibboleths) that are advanced skill-design concepts. An executor producing a solid, accurate audit that fixes real problems (dead reference, circular description, missing exclusion) will fail this assertion even when the work is genuinely high quality. The assertion may be better framed as checking whether the audit goes beyond surface defects to address skill-design patterns — but requiring specific words like 'shibboleth' creates a high false-negative rate for otherwise correct audits."
+      }
+    ],
+    "overall": "Two of three assertions are well-calibrated and discriminating. The third (structural recommendations) requires exact vocabulary that a rigorous auditor is unlikely to use without the skill explicitly guiding them to — consider whether this should be a 'with_skill' differentiator rather than a baseline expectation."
+  }
+}

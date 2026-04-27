@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The frontmatter description reads: 'Validates JSON files against JSON Schema specifications. Detects schema violations, missing required fields, type mismatches, and format errors. Supports draft-07, draft-2019-09, and draft-2020-12.' The phrase 'NOT for' does not appear anywhere in the description field. It is a purely affirmative description of the skill's capabilities with no exclusion clause."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains sections: Usage, What the skill does, Validation rules enforced, Implementation steps (Steps 1–8), Example output, Error handling (a table), and Notes. None of these sections contain an anti-pattern block with the required three-label structure (Symptom/Problem/Solution or What it looks like/Why it's wrong/What to do instead). The 'Error handling' table lists situations and behaviours but does not follow the required anti-pattern format with labeled bold subheadings."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": false,
+      "evidence": "The SKILL.md has no 'When to Use' section, no '✅ Use for:' or '❌ NOT for:' bullets, and no 'When NOT to Use' section. The document goes directly from the title/intro into Usage, then implementation details. There is no positive/negative use list of any kind — not even a single 'Use this for X' paragraph. Neither the positive nor the negative list is present."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tokens": 227240,
+    "input_tokens": 36,
+    "output_tokens": 2725,
+    "cache_creation_input_tokens": 58358,
+    "cache_read_input_tokens": 166121,
+    "total_cost_usd": 0.30966180000000004,
+    "output_chars": 183,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 50.594,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 50.594
+  },
+  "claims": [
+    {
+      "claim": "SKILL.md was created at /private/tmp/pilot-bench-qrsqho4s/without/json-validator/SKILL.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "File exists at that path and was successfully read with full SKILL.md content."
+    },
+    {
+      "claim": "The skill includes YAML frontmatter with name, description, version, tags, and trigger phrases",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Frontmatter confirmed: name: json-validator, description: (present), version: 1.0.0, author: claude, tags: [json, validation, schema, tooling], triggers: [validate json, json schema, check json, validate against schema]."
+    },
+    {
+      "claim": "The skill has an 8-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Steps 1–8 are present: Parse arguments, Detect runtime, Install validator, Resolve file list, Locate schema, Run validation, Collect and display results, Exit code."
+    },
+    {
+      "claim": "The skill covers all major JSON Schema keywords",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The 'Validation rules enforced' section lists type checking, required properties, enum/const, string formats, numeric constraints, array constraints, object constraints, composition keywords (allOf/anyOf/oneOf/not), and $ref/$defs resolution."
+    },
+    {
+      "claim": "The skill has an error handling table",
+      "type": "factual",
+      "verified": true,
+      "evidence": "An 'Error handling' table is present with 5 rows covering parse errors, missing schema, unresolvable $ref, zero-match globs, and network $schema URIs."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions test structural elements that the skill-foundry guidance prescribes (NOT for clause, anti-pattern blocks, When to Use/NOT sections). The without_skill executor produced a technically competent SKILL.md but omitted all three structural conventions — which is exactly what the assertions are designed to catch. This is a good discriminating result: the assertions are working correctly. No structural improvements needed."
+      },
+      {
+        "assertion": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings...",
+        "reason": "The assertion is specific and discriminating. However, it could be made even stronger by also requiring the anti-pattern block appear under a heading named 'Anti-patterns', 'Common Mistakes', or similar — without that, a future executor could satisfy it by embedding the three labels anywhere in the document, even in an unrelated section."
+      }
+    ],
+    "overall": "The three assertions are well-targeted: they check for structural patterns that distinguish a skill-foundry-guided output from an ad-hoc SKILL.md. The without_skill executor produced a high-quality implementation document but missed all three required structural conventions, demonstrating that the assertions successfully discriminate against uninstructed output."
+  }
+}

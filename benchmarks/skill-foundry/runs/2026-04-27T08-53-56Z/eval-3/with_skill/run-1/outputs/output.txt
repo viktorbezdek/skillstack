@@ -1,0 +1,12 @@
+`fix.md` written. Here's the summary:
+
+**The rewrite uses three techniques:**
+1. **Concrete artifact names** — "OpenAPI/Swagger specs", "parameter tables", "type-signature documentation" — terms that only appear in API reference contexts, not general writing
+2. **Domain vocabulary** — "REST endpoints", "SDKs", "return-type" — raises true-positive scores by using rare, domain-specific language
+3. **Explicit negative list** — `NOT for blog posts, marketing copy, README prose, tutorials, or general writing` — gives the router a hard rejection signal for the exact false-positive categories you listed
+
+**Testing approach:**
+- 6 true-positive prompts that all use specific API reference language (OpenAPI, parameter tables, type signatures)
+- 8 false-positive guards covering the exact categories you want to exclude
+- Pass bar: 6/6 TP fires, 0/8 FP fires
+- The file includes a Python script using `claude-haiku-4-5-20251001` as the classifier so you can run this programmatically in CI

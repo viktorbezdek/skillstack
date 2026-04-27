@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "The Write tool wrote fix.md to /private/tmp/pilot-bench-ggtlmdjn/without/fix.md. The YAML description reads: 'Generates API reference artifacts: OpenAPI/Swagger specs, function signatures, parameter tables, JSON Schema definitions, and HTTP endpoint documentation with request/response types. Use for machine-readable API contracts and code interface specs. Not for READMEs, blog posts, or general writing.' Contains at least 3 keywords from the list: 'OpenAPI' (as 'OpenAPI/Swagger'), 'function signatures', and 'parameter tables'. NOT for clause names: 'READMEs' (README) and 'blog posts' — satisfies at least 2 excluded categories."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md includes a 'True-Positive Battery (must ALL trigger — 6/6)' with 6 labeled prompts (e.g., 'Generate an OpenAPI 3.1 spec for a POST /users endpoint...', 'Write function signatures and parameter tables for our Python SDK...') and a 'False-Positive Guard Battery (must NONE trigger — 0/8)' with 8 labeled prompts (e.g., 'Write a blog post introducing our new API to developers.', 'Draft a README for our open-source project.'). Satisfies option (b): 6 positive prompts ≥ 3, 8 negative prompts ≥ 2."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "Full fix.md content searched exhaustively — none of the listed skill-foundry terms appear. The document uses general terminology: 'broad-match trap', 'Positive signals', 'Negative clause', 'false positives', 'high-frequency term'. None of 'progressive disclosure', 'shibboleth', 'philosophy-first', 'description engineering', or 'Description Field Engineering' are present."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Glob": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 535,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 101.8,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 101.8
+  },
+  "claims": [
+    {
+      "claim": "Saved to fix.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call confirmed: file_path='/private/tmp/pilot-bench-ggtlmdjn/without/fix.md', tool result: 'File created successfully'. Note: file is in a temp sandbox dir, not captured in outputs_dir."
+    },
+    {
+      "claim": "fix.md includes a 6-prompt true-positive battery",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Exactly 6 numbered prompts under 'True-Positive Battery (must ALL trigger — 6/6)' section in fix.md."
+    },
+    {
+      "claim": "fix.md includes an 8-prompt false-positive guard battery",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Exactly 8 numbered prompts under 'False-Positive Guard Battery (must NONE trigger — 0/8)' section in fix.md."
+    },
+    {
+      "claim": "fix.md includes step-by-step instructions for observing activation in Claude Code transcripts",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Section 'How to Observe Activation' provides 4-step procedure: open fresh session, paste prompt, check for 'Skill({ skill: \"documentation-generator\" })' in transcript, record result. Practical and correct."
+    },
+    {
+      "claim": "Negative clause is one short line — listing too many false-positive categories would embed those terms as fuzzy match signals and can backfire",
+      "type": "quality",
+      "verified": true,
+      "evidence": "NOT for clause is a single sentence: 'Not for READMEs, blog posts, or general writing.' Consistent with stated rationale in the Diagnosis section."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name",
+        "reason": "This is the right discriminating check: a without_skill run produces a correct, professional fix but has no exposure to skill-foundry vocabulary ('shibboleth', 'progressive disclosure', etc.). It cleanly distinguishes outputs that absorbed the skill's framing from those that independently arrived at good practice. The failure here is informative — not noise."
+      },
+      {
+        "reason": "No assertion checks that the NOT for clause is in the rewritten YAML description specifically (vs. appearing elsewhere in fix.md). The current wording passes even if the clause is only in prose commentary, not in the machine-read description field. Consider requiring the clause to appear inside the yaml code block."
+      }
+    ],
+    "overall": "Assertions are well-targeted. Expectations 1 and 2 test substance (correct content, concrete prompts) and expectation 3 tests skill adoption (skill-foundry vocabulary). The without_skill run passes 2/3, which is the expected pattern: a capable executor can produce good content without the skill but will miss the domain-specific framing concepts the skill teaches."
+  }
+}

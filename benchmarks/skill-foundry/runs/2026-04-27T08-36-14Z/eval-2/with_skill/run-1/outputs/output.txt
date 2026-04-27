@@ -1,0 +1,8 @@
+Audit saved to `audit.md`. Six issues found:
+
+1. **Dead reference** — `references/full-guide.md` doesn't exist; step 4 of How to use must be replaced with inline guidance.
+2. **Blocked tools** — `WebFetch` and `WebSearch` are in `allowed-tools` but are denied by the harness; both must be removed.
+3. **Circular description** — the `description` field defines "code review" with "code review", has no trigger condition, and no exclusion clause; replaced with a specific, dispatchable description.
+4. **Non-actionable steps** — steps 1–3 ("Read the file", "Look at the code", "Suggest improvements") give the executor nothing concrete; replaced with specific checks and output format.
+5. **Generic tips** — "Be thorough", "Consider edge cases", "Check tests" are platitudes; replaced with executable sub-points per area.
+6. **Missing exclusion clause** — no "when NOT to use" section; added to prevent incorrect dispatch for explain/refactor/docs requests.

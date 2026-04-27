@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Use when asked to validate JSON, check schema compliance, verify data structure, or confirm a JSON file matches a schema. Produces a structured report of violations with file path, schema path, and error message. Does NOT generate schemas — only validates existing JSON against existing schemas.' It contains 'Does NOT generate schemas' but not the literal phrase 'NOT for' (capitalized exactly that way). The exclusion is expressed as a sentence-embedded negative ('Does NOT'), not as the required 'NOT for' clause."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The full SKILL.md body contains: When to Use, Implementation (Steps 1–8), Error Handling, Output Format, and Examples sections. There is no anti-pattern block whatsoever — no Symptom/Problem/Solution headings, no 'What it looks like / Why it's wrong / What to do instead' structure, and no named JSON-validation pitfalls."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": false,
+      "evidence": "The SKILL.md has a '## When to Use' section with four bullet points (positive cases). There is no corresponding 'When NOT to Use' section, no '❌ NOT for:' bullets, and no negative use list anywhere in the document. The only exclusion appears in the frontmatter description as a prose sentence, not as a structured negative list."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tokens": 226203,
+    "input_tokens": 36,
+    "output_tokens": 2382,
+    "cache_creation_input_tokens": 44431,
+    "cache_read_input_tokens": 179354,
+    "total_cost_usd": 0.25626045
+  },
+  "timing": {
+    "executor_duration_seconds": 41.328,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 41.328
+  },
+  "claims": [
+    {
+      "claim": "description is written to help an LLM classifier distinguish 'validate JSON against schema' from 'generate schemas' or 'create API docs'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Description does mention what it does (validate) and includes one embedded exclusion ('Does NOT generate schemas'). It partially achieves classifier-discrimination but falls short of the 'NOT for' pattern the evals require."
+    },
+    {
+      "claim": "SKILL.md includes an 8-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Steps 1–8 are present in the Implementation section (Resolve Inputs, Detect Runtime, Install Dependencies, Run Validation, Detect Schema Draft, Parse and Report Results, Multiple Files, Clean Up)."
+    },
+    {
+      "claim": "SKILL.md covers schema draft auto-detection (7 / 2019-09 / 2020-12)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Step 5 contains a table mapping $schema values to Ajv options and Python validator classes for draft-07, 2019-09, and 2020-12."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for'",
+        "reason": "This assertion is appropriately strict and discriminating — it failed correctly here because the executor used 'Does NOT generate schemas' rather than the required literal phrase. However, consider whether 'NOT for' is too brittle a test; an executor could satisfy it by adding 'NOT for: generating schemas' as a throwaway bullet without improving actual classifier precision. The assertion could be strengthened by also requiring the description to stay under a word limit (forcing economy of language) or verifying the exclusion is domain-meaningful."
+      },
+      {
+        "reason": "No assertion checks that the 'When to Use' bullets actually match the skill's trigger patterns — the bullets could be generic and still pass expectation 3. Consider adding an assertion that each positive bullet corresponds to a concrete invocation trigger."
+      }
+    ],
+    "overall": "All three assertions failed cleanly and for the right reasons — the executor produced a solid technical SKILL.md but made no attempt to include the required exclusion patterns (NOT for in frontmatter, anti-pattern blocks, dual positive/negative lists). The evals are discriminating and working as intended."
+  }
+}

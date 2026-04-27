@@ -1,0 +1,9 @@
+`json-validator/SKILL.md` created at `/private/tmp/pilot-bench-qrsqho4s/without/json-validator/SKILL.md`.
+
+The skill includes:
+- **YAML frontmatter** — name, description, version, tags, and trigger phrases
+- **CLI interface** — glob input, `--schema`, and `--draft` flags with auto-discovery fallback
+- **8-step implementation** — runtime detection (Node.js → Python fallback), Ajv/jsonschema integration, glob expansion, schema resolution, full error collection
+- **Coverage** — all major JSON Schema keywords (types, formats, required, composition, `$ref`)
+- **Output format** — per-file PASS/FAIL with a JSON Pointer path table and a summary line
+- **Error handling table** — parse errors, missing schema, zero-match globs, network `$schema` URIs

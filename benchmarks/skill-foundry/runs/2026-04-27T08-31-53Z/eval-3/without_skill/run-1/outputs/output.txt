@@ -1,0 +1,10 @@
+Saved to `fix.md`. Here's the short version of the reasoning:
+
+**Root cause of false positives:** "documentation and content creation" matches any writing intent — the LLM has no signal to distinguish API reference from a blog post.
+
+**Two-part fix in the rewritten description:**
+
+1. **Replace the category with specific artifacts** — "OpenAPI/Swagger specs", "parameter tables", "type signatures". A prompt about marketing copy will never contain these terms.
+2. **Add explicit negative examples** — "Not for blog posts, marketing copy, README introductions." This directly suppresses the known false-positive triggers.
+
+**Testing approach in `fix.md`:** a 14-prompt battery split into true positives (API reference tasks) and false-positive guards (blog, README, marketing, generic "docs"). The pass bar is 6/6 true positives triggered, 0/8 false-positive guards triggered. The file also includes a tighter fallback description (drops the word "documentation" entirely) in case prompt 8 still fires after the first revision.

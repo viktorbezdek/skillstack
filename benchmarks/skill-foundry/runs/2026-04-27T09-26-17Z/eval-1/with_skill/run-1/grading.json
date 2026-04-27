@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: '...Do NOT use for: generating schemas from data, documenting APIs, or converting between data formats.' The phrase present is 'NOT use for' (with 'use' between NOT and for), not the literal consecutive phrase 'NOT for'. The assertion requires 'NOT for' capitalized exactly that way as a consecutive phrase."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains sections: 'When to Use', 'When NOT to Use', 'Implementation' (8 steps with code), 'Error Handling' (a markdown table with columns Error | Cause | Fix), and 'Example Invocations'. The Error Handling table lists scenarios like 'SyntaxError: Unexpected token', 'schema $schema unknown', etc., but these are table rows, not labeled subheadings on their own bold lines. No anti-pattern block using the required {Symptom/Problem/Solution} or {What it looks like/Why it's wrong/What to do instead} format exists anywhere in the body."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": true,
+      "evidence": "The body contains a distinct '## When to Use' section with four bullet points (validating config files, API payloads, data exports, CI gate) and a separate '## When NOT to Use' section with three bullet points (generating schemas from data, writing API reference docs, converting JSON to another format). These are clearly distinct sections, not a single paragraph."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 383,
+    "transcript_chars": 29
+  },
+  "timing": {
+    "executor_duration_seconds": 44.607,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 44.607
+  },
+  "claims": [
+    {
+      "claim": "SKILL.md was created with YAML frontmatter including name, description, and triggers",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The Write tool call in the transcript shows a complete YAML frontmatter block with name: json-validator, description, and triggers fields."
+    },
+    {
+      "claim": "The description contains explicit do-NOT-use guidance to reduce false positives",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The description ends with 'Do NOT use for: generating schemas from data, documenting APIs, or converting between data formats.' — exclusions are present, though the exact phrase 'NOT for' (without 'use') is absent."
+    },
+    {
+      "claim": "Both Node/Bun and Python validator scripts were included",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The SKILL.md body contains both a validate.mjs (Ajv-based, Node/Bun) and a validate.py (jsonschema-based, Python) script."
+    },
+    {
+      "claim": "An 8-step implementation was provided",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The body lists Steps 1-8: detect runtime, install validator, write validator script, run validation, interpret output, fix violations, report results, cleanup."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case",
+        "reason": "The executor produced 'Do NOT use for:' which satisfies the spirit of the exclusion requirement and is a natural phrasing. The assertion requires 'NOT for' as a consecutive two-word phrase, but 'NOT use for' is a more natural English construction. Consider whether 'NOT for' or 'NOT use for' (or both) are acceptable — or whether the skill template should prescribe the exact phrasing to eliminate ambiguity."
+      },
+      {
+        "reason": "Expectation 2 tests for a very specific anti-pattern block format (Symptom/Problem/Solution labeling) that the skill template may not explicitly mandate. The executor produced an Error Handling table that covers similar ground (error, cause, fix) but in tabular form. Consider whether the eval should accept table-format anti-pattern coverage, or whether the skill template should require the three-subheading prose format explicitly."
+      }
+    ],
+    "overall": "Assertions 1 and 2 fail on narrow formatting requirements (exact phrase 'NOT for' vs 'NOT use for'; prose subheadings vs table rows) rather than missing substance. The executor did include exclusion guidance and error-cause-fix coverage. The evals are discriminating but may be too strict on surface form rather than outcome — worth reviewing whether the underlying SKILL.md template prescribes these exact formats so the executor can follow them."
+  }
+}

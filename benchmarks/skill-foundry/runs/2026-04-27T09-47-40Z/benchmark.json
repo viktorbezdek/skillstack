@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "skill-foundry",
+    "skill_path": "skill-foundry/skills/skill-foundry",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-27T09:53:31Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "skill-foundry",
+    "target_path": "skill-foundry/skills/skill-foundry"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 54.314,
+        "tokens": 169787,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case \u2014 not just a description of what the skill does.",
+          "passed": false,
+          "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Reports all validation errors with paths, expected types, and actual values. Use when a user wants to check config files, API payloads, or data exports against a schema.' The phrase 'NOT for' (or any exclusion clause) is absent. The description is entirely positive/descriptive."
+        },
+        {
+          "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} \u2014 each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+          "passed": false,
+          "evidence": "The SKILL.md body contains sections: 'When to invoke', 'When NOT to invoke', 'Implementation' (Steps 1-6), 'Output format', and 'Edge cases'. None of these contain an anti-pattern block with the prescribed three-subheading structure. The 'Edge cases' section touches on some pitfalls (invalid JSON syntax, large files, $ref resolution) but as flat bullet points, not as labeled Symptom/Problem/Solution or What-it-looks-like/Why-it's-wrong/What-to-do-instead blocks."
+        },
+        {
+          "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '\u2705 Use for:' and '\u274c NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) \u2014 not merely a single 'Use this for X' paragraph.",
+          "passed": true,
+          "evidence": "The SKILL.md has a '## When to invoke' section with four positive bullets (validate JSON file against schema, check config/payload conformance, find schema violations, triggered by keywords) and a separate '## When NOT to invoke' section with three negative bullets (generating schema from JSON example, linting JSON syntax only, producing API documentation from schema). These are two clearly distinct sections, not a single paragraph."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 34.488,
+        "tokens": 113760,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+          "passed": false,
+          "evidence": "Issue 3 ('Circular description') flags the description as 'self-referential' and says it 'restates the skill name instead of defining the invocation trigger' \u2014 but none of the required phrases appear ('NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', 'too vague to trigger reliably'). Issue 6 ('Missing exclusion clause') uses 'no exclusion guidance present' language but is attributed to the overall skill file, not the description field. The two problems are treated as separate issues and neither explicitly ties the description to a missing exclusion/NOT-for clause."
+        },
+        {
+          "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+          "passed": true,
+          "evidence": "Issue 1 ('Dead file reference') explicitly quotes 'See `references/full-guide.md` for the detailed checklist.' and states 'a file that does not exist on disk' \u2014 'does not exist' satisfies the 'doesn't exist' criterion."
+        },
+        {
+          "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing \u2014 named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+          "passed": false,
+          "evidence": "The word 'anti-patterns' appears in Issue 4's recommended fix ('performance anti-patterns (N+1 queries, unbounded loops)') but only as a category of things to check for, not as a recommendation to add an anti-pattern section to the skill with Symptom/Problem/Solution structure. 'philosophy' and 'shibboleth' do not appear anywhere in audit.md."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 49.684,
+        "tokens": 114110,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+          "passed": true,
+          "evidence": "The rewritten YAML description includes: 'OpenAPI/Swagger specs, function signatures, parameter tables, type signatures' \u2014 all four trigger keywords present. The description also contains: 'NOT for prose writing, blog posts, marketing copy, README files, changelogs, tutorials' \u2014 explicitly names blog posts, marketing copy, and README files (three of the five required exclusion categories)."
+        },
+        {
+          "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename \u2014 one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` \u2014 OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+          "passed": true,
+          "evidence": "fix.md includes a 'Testing Protocol' section with a 'True-Positive Battery' of 6 prompts (TP1\u2013TP6, e.g. 'Generate an OpenAPI 3.1 spec for my user authentication endpoints.') and a 'False-Positive Guard Battery' of 8 prompts (FP1\u2013FP8, e.g. 'Write a blog post about why we migrated from REST to GraphQL.'). Satisfies criterion (b): \u22653 positive and \u22652 negative prompts."
+        },
+        {
+          "text": "fix.md uses at least one skill-foundry concept by name \u2014 one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+          "passed": false,
+          "evidence": "The full text of fix.md was retrieved. None of the required concept names appear: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'. The document explains description improvement techniques in its own language ('domain vocabulary', 'scope anchor', 'explicit exclusions') without using any skill-foundry terminology."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 42.787,
+        "tokens": 225508,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case \u2014 not just a description of what the skill does.",
+          "passed": false,
+          "evidence": "The frontmatter description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Reports all violations with paths and messages.' \u2014 purely descriptive, no 'NOT for' phrase present anywhere in the description field."
+        },
+        {
+          "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} \u2014 each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+          "passed": false,
+          "evidence": "The SKILL.md body contains no anti-pattern section. Sections present are: When to invoke, When NOT to invoke, Parameters, Implementation steps, Validation snippets (Node/Bun and Python), and Output format. None use the required labeled subheading structure (Symptom/Problem/Solution or What it looks like/Why it's wrong/What to do instead)."
+        },
+        {
+          "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '\u2705 Use for:' and '\u274c NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) \u2014 not merely a single 'Use this for X' paragraph.",
+          "passed": true,
+          "evidence": "The SKILL.md has two distinct sections: '## When to invoke' with 4 positive bullet points (e.g., 'User says \"validate this JSON against the schema\"') and '## When NOT to invoke' with 3 negative bullet points (e.g., 'Generating a JSON Schema from a JSON sample'). Both are proper bulleted lists, not single paragraphs."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 32.852,
+        "tokens": 169397,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+          "passed": false,
+          "evidence": "Issue 6 ('Missing exclusion clause') covers the exclusion/NOT-for aspect: 'There is no guidance on when *not* to invoke this skill'. However, the 'missing specific trigger keywords' part is addressed via Issue 3 ('Circular description') which says 'Neither tells an executor *when* to trigger the skill' \u2014 but this uses framing around 'circular' and 'trigger-oriented', not any of the required phrases ('NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', 'too vague to trigger reliably'). The AND condition is not fully met: the exclusion half passes but the trigger-keywords half uses different language. Neither of the required phrases appears in audit.md."
+        },
+        {
+          "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+          "passed": true,
+          "evidence": "Issue 1 in audit.md is titled 'Dead file reference' and explicitly names the path: '4. See `references/full-guide.md` for the detailed checklist.' The Problem statement reads: 'References a file that does not exist on disk.' \u2014 'does not exist' is semantically equivalent to 'doesn't exist', one of the required labels. The filename and the non-existence are both explicitly called out."
+        },
+        {
+          "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing \u2014 named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+          "passed": false,
+          "evidence": "Searched the full transcript and audit.md content for 'anti-pattern', 'philosophy', and 'shibboleth'. No matches found. The audit's six issues cover dead references, blocked tools, circular description, non-actionable steps, generic tips, and missing exclusion clause \u2014 none recommend structural additions like anti-pattern sections, a philosophy section, or shibboleth framing."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 101.8,
+        "tokens": 227958,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+          "passed": true,
+          "evidence": "The Write tool wrote fix.md to /private/tmp/pilot-bench-ggtlmdjn/without/fix.md. The YAML description reads: 'Generates API reference artifacts: OpenAPI/Swagger specs, function signatures, parameter tables, JSON Schema definitions, and HTTP endpoint documentation with request/response types. Use for machine-readable API contracts and code interface specs. Not for READMEs, blog posts, or general writing.' Contains at least 3 keywords from the list: 'OpenAPI' (as 'OpenAPI/Swagger'), 'function signatures', and 'parameter tables'. NOT for clause names: 'READMEs' (README) and 'blog posts' \u2014 satisfies at least 2 excluded categories."
+        },
+        {
+          "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename \u2014 one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` \u2014 OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+          "passed": true,
+          "evidence": "fix.md includes a 'True-Positive Battery (must ALL trigger \u2014 6/6)' with 6 labeled prompts (e.g., 'Generate an OpenAPI 3.1 spec for a POST /users endpoint...', 'Write function signatures and parameter tables for our Python SDK...') and a 'False-Positive Guard Battery (must NONE trigger \u2014 0/8)' with 8 labeled prompts (e.g., 'Write a blog post introducing our new API to developers.', 'Draft a README for our open-source project.'). Satisfies option (b): 6 positive prompts \u2265 3, 8 negative prompts \u2265 2."
+        },
+        {
+          "text": "fix.md uses at least one skill-foundry concept by name \u2014 one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+          "passed": false,
+          "evidence": "Full fix.md content searched exhaustively \u2014 none of the listed skill-foundry terms appear. The document uses general terminology: 'broad-match trap', 'Positive signals', 'Negative clause', 'false positives', 'high-frequency term'. None of 'progressive disclosure', 'shibboleth', 'philosophy-first', 'description engineering', or 'Description Field Engineering' are present."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.4433,
+        "stddev": 0.1963,
+        "min": 0.33,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 46.162,
+        "stddev": 10.3716,
+        "min": 34.488,
+        "max": 54.314
+      },
+      "tokens": {
+        "mean": 132552.3333,
+        "stddev": 32246.6421,
+        "min": 113760.0,
+        "max": 169787.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4433,
+        "stddev": 0.1963,
+        "min": 0.33,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 59.1463,
+        "stddev": 37.2717,
+        "min": 32.852,
+        "max": 101.8
+      },
+      "tokens": {
+        "mean": 207621.0,
+        "stddev": 33125.6133,
+        "min": 169397.0,
+        "max": 227958.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-13.0",
+      "tokens": "-75069"
+    }
+  },
+  "notes": []
+}

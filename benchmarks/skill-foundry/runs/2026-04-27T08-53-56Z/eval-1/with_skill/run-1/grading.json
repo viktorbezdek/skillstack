@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Resolves $ref, reports all violations with paths and messages, exits non-zero on failure. Use when the user asks to validate, check, or verify a JSON file against a schema.' The phrase 'NOT for' does not appear anywhere in the frontmatter description."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains an 'Error Handling Reference' table and implementation steps, but no anti-pattern block with subheadings matching {Symptom/Problem/Solution} or {What it looks like/Why it's wrong/What to do instead}. No JSON-validation pitfall is structured in that three-part format."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": false,
+      "evidence": "The SKILL.md has no 'When to Use' or 'When NOT to Use' sections in the body, and no ✅/❌ bullet lists. The only use guidance is the single sentence in the frontmatter description: 'Use when the user asks to validate, check, or verify a JSON file against a schema.' This is exactly the 'single Use this for X paragraph' the assertion forbids."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 2,
+      "Write": 1
+    },
+    "total_tool_calls": 3,
+    "total_steps": 4,
+    "errors_encountered": 0,
+    "output_chars": 457,
+    "transcript_chars": 28964
+  },
+  "timing": {
+    "executor_duration_seconds": 47.049,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 47.049
+  },
+  "claims": [
+    {
+      "claim": "Created SKILL.md with 8-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "SKILL.md body contains exactly Steps 1–8 (Identify inputs, Choose runtime, Load and parse the schema, Compile the schema, Validate each data file, Format output, Exit code, Verify)"
+    },
+    {
+      "claim": "Error handling table — 7 error types",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Table has 7 rows: Schema file not found, Schema parse error, Unknown $schema, $ref resolution failure, Data file not found, Data parse error, Validation error"
+    },
+    {
+      "claim": "Dual-runtime code samples — concrete Ajv (Node/Bun) and jsonschema (Python) snippets",
+      "type": "process",
+      "verified": true,
+      "evidence": "Step 4 contains both a Node.js/Bun Ajv code block and a Python jsonschema code block"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions address structural/wording requirements (exact phrase 'NOT for', specific subheading labels, dual-list format) that the skill-foundry skill is supposed to encourage. The executor produced a technically solid SKILL.md with good implementation detail but zero of the exclusion/anti-pattern/dual-list structure. This is a genuine, discriminating result — the assertions are working correctly as a falsifiability test."
+      },
+      {
+        "assertion": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings…",
+        "reason": "Consider also checking that the anti-pattern names a *specific* pitfall relevant to JSON validation (e.g., 'silent parse errors', 'schema drift') and not a generic programming anti-pattern — otherwise a skill that copies boilerplate headings with off-topic content would pass."
+      }
+    ],
+    "overall": "The assertions are well-constructed and correctly catch a real gap: the executor generated technically correct implementation content but omitted all the exclusion/anti-pattern/dual-use-list structure that the skill-foundry skill is supposed to inject. Zero false positives."
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": true,
+      "evidence": "Issue 6 in output.txt: 'Missing exclusion clause — No \"when NOT to use\" section; dispatcher will over-trigger on docs/config/formatting changes.' covers the exclusion/NOT-for clause. Issue 3: 'Circular description — \"Use this skill to review code\" restates the description. Rewrite to give the dispatcher a trigger signal.' covers the missing-trigger-keywords dimension (implies description is too vague to trigger reliably)."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 in output.txt: 'Dead reference — `references/full-guide.md` doesn't exist; step 4 is a dead end.' Names the path explicitly and uses 'doesn't exist', which is on the required-label list."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "The six issues in output.txt address dead references, blocked tools, circular description, non-actionable steps, generic tips, and missing exclusion clause. None use the words 'anti-pattern', 'philosophy', or 'shibboleth'. The closest is Issue 5 ('Generic tips — \"Be thorough / Consider edge cases / Check tests\" apply to everything. Replace with code-review-specific heuristics.') but it does not recommend the specifically named structural improvements required."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "output_chars": 598,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 30.241,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 30.241
+  },
+  "claims": [
+    {
+      "claim": "Six issues were found and saved to audit.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists exactly 6 numbered issues matching the stated count"
+    },
+    {
+      "claim": "references/full-guide.md is a dead end (step 4)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 explicitly states the path and that step 4 is a dead end — consistent with a reference to a non-existent file"
+    },
+    {
+      "claim": "WebFetch and WebSearch are hook-intercepted",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Consistent with project rules documented in context-mode.md which blocks WebFetch and WebSearch"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords",
+        "reason": "The two sub-conditions (exclusion clause + trigger keywords) are conflated into one assertion. Issue 3 only implies 'too vague' via 'needs trigger signal' without using any of the required phrases. Splitting into two separate assertions — one for the exclusion clause, one for trigger-keyword specificity — would make grading more precise and prevent a vague reference from carrying the second half."
+      },
+      {
+        "reason": "No assertion checks whether the audit recommends concrete remediation (e.g., rewrite the description to include an explicit trigger phrase). The executor correctly identified problems but providing actionable fixes is at least as important as identifying them. An assertion on fix quality would raise the bar."
+      }
+    ],
+    "overall": "Assertions 1 and 2 are well-targeted. Assertion 3 (anti-pattern/philosophy/shibboleth) sets a high and specific bar that this executor missed — good discriminating power. Assertion 1 is slightly lenient because 'needs trigger signal' loosely covers the required language."
+  }
+}

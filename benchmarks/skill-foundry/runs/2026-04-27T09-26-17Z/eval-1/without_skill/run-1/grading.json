@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Do NOT use for generating schemas, creating API documentation, or general JSON formatting tasks.' It uses 'Do NOT use for' rather than the literal phrase 'NOT for'. The phrase 'NOT for' (NOT directly followed by 'for') does not appear in the description field."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains: 'When to use', 'When NOT to use', 'Steps', 'Node.js / Bun example', 'Python example', 'Batch validation', 'Error handling' (a table with 5 rows), and 'Output format'. There is no anti-pattern block with the required three-subheading structure ({Symptom/Problem/Solution} or {What it looks like/Why it's wrong/What to do instead})."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": true,
+      "evidence": "The SKILL.md has a '## When to use' section with 4 bullet points (e.g., 'User provides a JSON file and a schema file and asks to validate') and a separate '## When NOT to use' section with 3 bullet points (e.g., 'Generating a JSON Schema from sample data → use a schema-inference tool instead'). These are distinct sections satisfying the requirement."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 2,
+      "Write": 1
+    },
+    "total_tool_calls": 3,
+    "total_steps": 29,
+    "errors_encountered": 0,
+    "output_chars": 627,
+    "transcript_chars": 28380
+  },
+  "timing": {
+    "executor_duration_seconds": 34.674,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 34.674
+  },
+  "claims": [
+    {
+      "claim": "Created json-validator/SKILL.md with 8-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Write tool was called with file_path ending in SKILL.md. The Steps section lists exactly steps 1–6, not 8. The output.txt summary says '8-step implementation' but the Steps section only has 6 numbered steps. Minor discrepancy, but the file was created."
+    },
+    {
+      "claim": "The description includes negative examples to reduce false-positive triggers",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The description field explicitly lists excluded tasks: 'Do NOT use for generating schemas, creating API documentation, or general JSON formatting tasks.'"
+    },
+    {
+      "claim": "The SKILL.md supports schema draft 2020-12",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The frontmatter description mentions 'drafts 7, 2019-09, 2020-12'. Code examples use Draft202012Validator and note 'Draft 2020-12' in output format."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way)",
+        "reason": "This assertion is extremely brittle — it fails when the executor writes 'Do NOT use for' instead of 'NOT for', even though both are semantically identical exclusion clauses. The intent (presence of an exclusion clause in the frontmatter description) is worthwhile, but the literal-phrase requirement is too narrow and punishes equivalent phrasing. Consider asserting on the semantic outcome: 'the description field includes at least one exclusion with capitalized NOT'."
+      },
+      {
+        "reason": "No assertion checks whether the error handling section covers specific JSON-validation failure modes (parse errors, missing schema, unknown draft). The 'Error handling' table in the output does exactly this but no expectation grades it, so a SKILL.md that omits error handling entirely would score the same."
+      }
+    ],
+    "overall": "Assertion 3 is strong and discriminating. Assertion 1 is overly literal and would fail on semantically-equivalent phrasing. Assertion 2 effectively gates a meaningful structural pattern (anti-pattern blocks) that was absent here — it's a real quality differentiator."
+  }
+}

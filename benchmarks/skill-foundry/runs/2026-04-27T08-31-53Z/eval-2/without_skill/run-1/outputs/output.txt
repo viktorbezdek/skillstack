@@ -1,0 +1,11 @@
+Saved to `audit.md`. Five issues found:
+
+1. **MUST FIX — Dead reference.** `references/full-guide.md` doesn't exist; the checklist step is unreachable. Fix: inline a concrete checklist.
+
+2. **MUST FIX — Blocked tools.** `WebFetch` is denied by hook; `WebSearch` is also blocked (correct alternative is the `web-search` MCP tool, not declarable in `allowed-tools`). Fix: remove both from the frontmatter.
+
+3. **SHOULD FIX — Vague description.** "Use this skill to review code" is circular and gives no routing signal. Fix: name the trigger context, output format, and coverage areas (SOLID, OWASP, severity tiers).
+
+4. **SHOULD FIX — Non-actionable steps.** "Look at the code / Suggest improvements" names intent, not procedure. Fix: ground each step in a specific tool call and output structure.
+
+5. **MINOR — Generic tips.** "Be thorough" etc. add no information. Fix: replace with non-obvious, skill-specific reminders (assertion-correctness check, ghost constraints, scope discipline).

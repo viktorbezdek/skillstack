@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The frontmatter description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Reports all violations with paths and messages.' — purely descriptive, no 'NOT for' phrase present anywhere in the description field."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains no anti-pattern section. Sections present are: When to invoke, When NOT to invoke, Parameters, Implementation steps, Validation snippets (Node/Bun and Python), and Output format. None use the required labeled subheading structure (Symptom/Problem/Solution or What it looks like/Why it's wrong/What to do instead)."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": true,
+      "evidence": "The SKILL.md has two distinct sections: '## When to invoke' with 4 positive bullet points (e.g., 'User says \"validate this JSON against the schema\"') and '## When NOT to invoke' with 3 negative bullet points (e.g., 'Generating a JSON Schema from a JSON sample'). Both are proper bulleted lists, not single paragraphs."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 2,
+      "Write": 1
+    },
+    "total_tool_calls": 3,
+    "total_steps": 4,
+    "errors_encountered": 0,
+    "output_chars": 485,
+    "transcript_chars": 85364
+  },
+  "timing": {
+    "executor_duration_seconds": 42.787,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 42.787
+  },
+  "claims": [
+    {
+      "claim": "SKILL.md includes YAML frontmatter with name, description, trigger phrases, and version",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Frontmatter present with name: json-validator, description, triggers array, version: 1.0.0"
+    },
+    {
+      "claim": "SKILL.md includes classifier guidance (when to invoke vs. skip)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'## When to invoke' and '## When NOT to invoke' sections both present with bullet lists"
+    },
+    {
+      "claim": "SKILL.md includes 6-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'## Implementation steps' section contains steps 1–6 covering file reading, draft detection, runtime selection, validation execution, result reporting, and exit"
+    },
+    {
+      "claim": "SKILL.md includes two runtime snippets (Ajv and jsonschema)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'### Node.js / Bun (Ajv)' and 'Python (jsonschema)' code blocks both present under '## Validation snippets'"
+    },
+    {
+      "claim": "SKILL.md includes formatted output spec with pass/fail/parse-error templates",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'## Output format' section has three code block templates: Pass (✓), Fail (✗ with errors), and Parse error (✗ Could not parse)"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for'",
+        "reason": "This is a very specific stylistic requirement (exact capitalization 'NOT for' in the frontmatter description field) that tests formatting convention rather than meaningful skill quality. The executor produced a perfectly functional skill with exclusions in a dedicated '## When NOT to invoke' section, which is arguably better practice than embedding exclusions in the description field. Consider whether the frontmatter description is the right place for exclusion clauses, or whether the body section is sufficient."
+      },
+      {
+        "assertion": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings",
+        "reason": "The executor produced a solid skill without an anti-pattern section. Whether an anti-pattern section adds value for a json-validator skill is debatable — a skill that focuses on when to invoke vs. not invoke may be more useful than one that catalogs JSON pitfalls. The assertion tests a structural requirement but doesn't verify whether the overall skill is well-designed for its purpose."
+      },
+      {
+        "reason": "No assertion checks whether the implementation steps are technically accurate or executable. The validation snippets could be wrong (e.g., incorrect Ajv import paths, wrong method names) and would still pass all three assertions. Adding an assertion that verifies a key implementation detail (e.g., the script uses Ajv or jsonschema, runtime fallback order is specified) would improve discrimination."
+      }
+    ],
+    "overall": "The executor produced a technically solid, well-structured skill with working code snippets — but missed two of the three style/structure requirements (no 'NOT for' in the description field, no anti-pattern section). The assertions test specific formatting conventions; two of three are strict pattern requirements that the executor did not anticipate without the skill guidance."
+  }
+}

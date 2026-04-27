@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Use when asked to validate JSON, check schema compliance, or verify data files against a schema. Supports glob patterns, auto-discovers schemas, and reports detailed violations with paths and expected vs actual values.' The phrase 'NOT for' does not appear anywhere in the description or anywhere else in the SKILL.md."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "No anti-pattern block exists in the SKILL.md body. The document contains a Usage section, an Implementation section (Steps 1–8), a Supported JSON Schema Keywords table, and an Error Handling table. The Error Handling table lists situations and behaviors but is not structured with Symptom/Problem/Solution or What it looks like/Why it's wrong/What to do instead labeled subheadings."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": false,
+      "evidence": "The SKILL.md has no 'When to Use' or 'When NOT to Use' section, no ✅/❌ bullet lists, and no dual positive/negative structure. The document opens with a one-paragraph description in the frontmatter and then moves directly to Usage (command syntax + examples) and Implementation steps."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 371,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 43.072,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 43.072
+  },
+  "claims": [
+    {
+      "claim": "The skill includes YAML frontmatter with name, description, and triggers",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed: frontmatter contains name: json-validator, description: (one sentence), and triggers: list with 5 entries."
+    },
+    {
+      "claim": "The skill covers 8 implementation steps",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Steps 1–8 are present: runtime detection, file discovery, schema resolution, validator installation, validation scripts, result collection, structured output, and exit codes."
+    },
+    {
+      "claim": "Full keyword coverage table for JSON Schema drafts 7, 2019-09, 2020-12",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The Supported JSON Schema Keywords table exists but does not differentiate by draft version — it is a single unified table covering common keywords without indicating which draft introduced them or applies per draft."
+    },
+    {
+      "claim": "Error handling table for common failure cases (missing files, parse errors, missing schema, network refs, permissions)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Error Handling table contains exactly these cases: File not found, Invalid JSON, Schema not found, Invalid schema, Network $ref, Permission denied."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions test for skill-foundry structural conventions (exclusion clauses, anti-pattern blocks, dual use/not-use lists) that a naive skill author would omit entirely — which is exactly what happened here. This is a strong signal the assertions are genuinely discriminating and not trivially satisfied. No changes needed on discriminability."
+      },
+      {
+        "assertion": "The SKILL.md body contains at least one explicit anti-pattern block...",
+        "reason": "The assertion specifies two valid label sets ({Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead}) but doesn't mention other plausible structural variants a skill author might use (e.g., 'Pitfall / Root cause / Fix'). If the intent is strict, the assertion is clear; if partial credit for close-but-different structures is intended, the assertion should enumerate or prohibit those alternatives explicitly."
+      }
+    ],
+    "overall": "Assertions are well-targeted: all three check structural conventions that only appear in skills written with the skill-foundry framework in mind. A without-skill run correctly fails all three. No false-confidence risk."
+  }
+}

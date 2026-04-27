@@ -1,0 +1,19 @@
+Saved to `fix.md`. Here's the key change:
+
+**Old:** `"Helps with documentation and content creation."` — triggers on any writing task.
+
+**New (drop-in replacement):**
+```yaml
+description: >
+  Generates API reference artifacts: OpenAPI/Swagger specs, function signatures, parameter
+  tables, JSON Schema definitions, and HTTP endpoint documentation with request/response
+  types. Use for machine-readable API contracts and code interface specs.
+  Not for READMEs, blog posts, or general writing.
+```
+
+**Why it's better:**
+- Positive signals (`OpenAPI/Swagger`, `function signatures`, `JSON Schema`, `request/response types`) are API-specific jargon that won't appear in blog/README/marketing prompts.
+- Negative clause is one short line — listing too many false-positive categories would embed those terms as fuzzy match targets.
+- `machine-readable API contracts` frames the *output artifact*, not the writing act, which further narrows routing.
+
+`fix.md` includes the full YAML frontmatter block, a 6-prompt true-positive battery, an 8-prompt false-positive guard battery, and step-by-step instructions for observing activation in Claude Code transcripts (`Skill({ skill: "documentation-generator" })` appearing is the signal).

@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "The rewritten YAML description includes: 'OpenAPI/Swagger specs, function signatures, parameter tables, type signatures' — all four trigger keywords present. The description also contains: 'NOT for prose writing, blog posts, marketing copy, README files, changelogs, tutorials' — explicitly names blog posts, marketing copy, and README files (three of the five required exclusion categories)."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md includes a 'Testing Protocol' section with a 'True-Positive Battery' of 6 prompts (TP1–TP6, e.g. 'Generate an OpenAPI 3.1 spec for my user authentication endpoints.') and a 'False-Positive Guard Battery' of 8 prompts (FP1–FP8, e.g. 'Write a blog post about why we migrated from REST to GraphQL.'). Satisfies criterion (b): ≥3 positive and ≥2 negative prompts."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "The full text of fix.md was retrieved. None of the required concept names appear: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'. The document explains description improvement techniques in its own language ('domain vocabulary', 'scope anchor', 'explicit exclusions') without using any skill-foundry terminology."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 578,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 49.684,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 49.684
+  },
+  "claims": [
+    {
+      "claim": "Saved to fix.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call confirmed at /private/tmp/pilot-bench-bc4rpp9h/with/fix.md with full content; output.txt also states 'Saved to `fix.md`'"
+    },
+    {
+      "claim": "The rewrite uses domain-specific vocabulary that prevents false positives",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Description anchors on 'machine-readable API reference artifacts' with specific terms: OpenAPI, Swagger, JSON Schema, parameter table, type signature. The NOT-for clause explicitly names blog posts, marketing copy, README files, tutorials, changelogs."
+    },
+    {
+      "claim": "6 true-positive prompts and 8 false-positive guard prompts are included",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted TP1–TP6 (6 entries) and FP1–FP8 (8 entries) in the Testing Protocol section of fix.md."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This assertion is a strong discriminator — the executor produced genuinely high-quality output (correct rewrite, thorough testing protocol) but failed because it didn't use skill-foundry terminology. This is exactly the right kind of assertion for testing whether the skill transmitted its conceptual vocabulary, not just its output pattern."
+      }
+    ],
+    "overall": "Assertions are well-calibrated. Expectation 3 (concept names) is the sharpest discriminator — a with_skill run that doesn't use skill-foundry vocabulary suggests the skill's philosophy section isn't being activated. No weak assertions detected."
+  }
+}

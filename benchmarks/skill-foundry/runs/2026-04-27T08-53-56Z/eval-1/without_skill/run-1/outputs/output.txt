@@ -1,0 +1,6 @@
+Created `json-validator/SKILL.md` with:
+
+- **YAML frontmatter** — name, description, version, tags; description is written to help an LLM classifier distinguish "validate JSON against schema" from "generate schemas" or "create API docs"
+- **8-step implementation** — runtime detection, dependency install, validation scripts for both Node.js/Ajv and Python/jsonschema, schema draft auto-detection (7 / 2019-09 / 2020-12), human-readable and `--json` output modes, multi-file glob support, cleanup
+- **Error handling table** — covers missing files, bad JSON, unresolvable `$ref`, no runtime
+- **Example invocations** — both slash-command style and natural language triggers

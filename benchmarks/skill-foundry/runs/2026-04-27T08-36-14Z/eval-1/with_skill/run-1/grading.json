@@ -1,0 +1,99 @@
+{
+  "expectations": [
+    {
+      "text": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+      "passed": false,
+      "evidence": "The description field reads: 'Validates JSON files against JSON Schema specifications (drafts 7, 2019-09, 2020-12). Use when asked to validate JSON, check schema compliance, or verify JSON files match a schema. Triggers on: \"validate json\", \"check schema\", \"json schema\", \"validate against schema\".' No exclusion clause and no 'NOT for' phrase anywhere in the frontmatter."
+    },
+    {
+      "text": "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+      "passed": false,
+      "evidence": "The SKILL.md body contains sections: Usage, Implementation (Steps 1–8), Supported JSON Schema Keywords, Error Output Format. None include an anti-pattern block with the required labeled subheadings. The 'Handle Edge Cases' table in Step 8 lists scenarios and actions in tabular form, but this is not an anti-pattern block with Symptom/Problem/Solution or What it looks like/Why it's wrong/What to do instead labeling."
+    },
+    {
+      "text": "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph.",
+      "passed": false,
+      "evidence": "The SKILL.md has a 'Usage' section with command examples and a description, but no 'When to Use' or 'When NOT to Use' sections, and no ✅/❌ bullet structure. The document contains only positive guidance with no explicit exclusion list."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 2,
+      "Write": 1
+    },
+    "total_tool_calls": 3,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 409,
+    "transcript_chars": 84792
+  },
+  "timing": {
+    "executor_duration_seconds": 38.86,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 38.86
+  },
+  "claims": [
+    {
+      "claim": "Created SKILL.md at /private/tmp/pilot-bench-eb3ld1rl/with/json-validator/SKILL.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call in transcript targets 'json-validator/SKILL.md'; output.txt confirms creation."
+    },
+    {
+      "claim": "YAML frontmatter with name, description, triggers, and tools",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Frontmatter present with all four fields: name: json-validator, description, triggers (5 items), tools (4 items)."
+    },
+    {
+      "claim": "8-step implementation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Steps 1–8 present: Detect Runtime, Resolve Files, Resolve Schema, Install Validator, Run Validation, Collect Results, Report, Handle Edge Cases."
+    },
+    {
+      "claim": "Schema auto-discovery (4-level fallback chain)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Step 3 defines 5 discovery levels (explicit --schema arg, $schema key in file, adjacent .schema.json, schema.json in same dir, schema.json in project root), not 4. The output.txt claim of '4-level fallback chain' is inaccurate."
+    },
+    {
+      "claim": "Structured PASS/FAIL/SKIP output with exit codes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Step 7 shows a report template with PASS/FAIL/SKIP labels. Step 7 specifies exit code 0 for all-pass, 1 for any failure."
+    },
+    {
+      "claim": "Error handling table covering parse errors, empty files, remote $schema URIs, and draft auto-detection",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Step 8 table includes all four: 'File is not valid JSON (parse error)', 'File is empty', '$schema URI is a remote URL', 'Schema draft auto-detection'."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for'",
+        "reason": "This assertion is discriminating and appropriate. The literal phrase check prevents surface-level compliance (e.g., a description that says 'not suitable for X' without the exact casing). No change needed."
+      },
+      {
+        "reason": "No assertion checks whether the skill frontmatter triggers are coherent and non-overlapping, or whether the Implementation steps produce executable code. The executor generated syntactically valid examples, but an assertion on e.g. code correctness or trigger specificity would catch lower-quality submissions that technically satisfy the structural checks."
+      },
+      {
+        "reason": "The three assertions all failed for the 'with_skill' run, the same as the 'without_skill' baseline pattern. This suggests the skill being evaluated (skill-foundry) either did not trigger or did not improve the output toward these structural conventions. Consider adding a 'meta' assertion that checks whether the generated skill references the skill-foundry conventions document, which would detect whether the skill was even consulted."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating. All three failed because the executor produced a technically competent JSON-validator skill that follows a different documentation style than what skill-foundry mandates. The eval correctly surfaces this gap. The main risk is that all three assertions test the same structural dimension (exclusion/negative guidance), so a skill that nails that one pattern could pass all three while still being low quality in other respects."
+  }
+}

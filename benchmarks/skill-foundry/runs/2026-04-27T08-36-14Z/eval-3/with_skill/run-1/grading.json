@@ -1,0 +1,87 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "Rewritten description in fix.md contains: 'OpenAPI/Swagger spec blocks, function/method signatures, parameter tables (name, type, required, description columns), return-type tables, and TypeScript/Python/Go type signatures' (covers OpenAPI, function signatures, parameter tables, type signatures, API reference) AND 'NOT for blog posts, marketing copy, README prose, tutorials, changelogs, or general writing tasks' (covers blog posts, marketing copy, README, general writing)."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md contains a 'Test Battery' section with 6 labeled true-positive prompts (TP-1 through TP-6, e.g., 'Generate an OpenAPI 3.1 spec for a POST /users endpoint…') and 8 false-positive guard prompts (FP-1 through FP-8, e.g., 'Write a blog post about REST API best practices'). Satisfies option (b): ≥3 positive + ≥2 negative prompts. No skill-foundry script filename was mentioned."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "Full fix.md content reviewed. None of the required terms appear: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'. The document uses its own framing ('Concrete deliverables', 'Domain vocabulary', 'Negative examples', 'Output framing') and a 'How LLM Skill Activation Works' section — none map to the named skill-foundry concepts."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 770,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 56.341,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 56.341
+  },
+  "claims": [
+    {
+      "claim": "The rewritten description uses machine-readable artifact framing to force structural rather than topical matching",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Description opens with 'Generates machine-readable API reference artifacts' and closes with 'Triggers when the output is a structured contract or reference table' — both are output-framing constructs, not topic-framing."
+    },
+    {
+      "claim": "14 test prompts are provided (6 true positives, 8 false-positive guards)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted TP-1 through TP-6 (6 rows) and FP-1 through FP-8 (8 rows) in the Test Battery section."
+    },
+    {
+      "claim": "Pass bar is 6/6 TP and 0/8 FP",
+      "type": "factual",
+      "verified": true,
+      "evidence": "fix.md states: 'Pass bar: 6 / 6 true positives · 0 / 8 false-positive guards'"
+    },
+    {
+      "claim": "A per-failure diagnostic table is included so the reader knows which clause to tighten",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Interpreting Failures' table in fix.md maps failure types (TP misses, FP on README, FP on tutorial, FP on blog post) to likely causes and specific fixes."
+    },
+    {
+      "claim": "The skill used skill-foundry vocabulary in its fix",
+      "type": "process",
+      "verified": false,
+      "evidence": "No skill-foundry named concepts (shibboleth, progressive disclosure, description engineering, etc.) appear in fix.md."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This assertion tests whether the skill author named a skill-foundry concept, but it's actually possible to produce a correct, high-quality fix without using the specific vocabulary. The assertion could be split: one checking whether the fix demonstrates the concept (e.g., uses shibboleth-style exclusion terms), and one checking whether it names the concept. As written, it penalizes correct execution that lacks jargon."
+      },
+      {
+        "reason": "No assertion checks whether the rewritten description would actually discriminate correctly on the test prompts — i.e., whether a live LLM classifier using the new description would fire on all TPs and none of the FPs. The test battery exists in fix.md but no assertion requires it to be non-trivial (e.g., 'test prompts cover at least 3 distinct false-positive categories')."
+      }
+    ],
+    "overall": "Expectations 1 and 2 are well-designed: they require specific, non-trivially-satisfied content. Expectation 3 is the weakest — it conflates 'used the concept' with 'named the concept', and a skilled author who applies the idea without the label fails it."
+  }
+}

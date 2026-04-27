@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "fix.md YAML frontmatter contains: 'OpenAPI/Swagger specs, function signatures, parameter tables, type signatures' (4 of 5 required keywords). Explicit NOT clause reads: 'Do NOT trigger for blog posts, marketing copy, README files, prose guides, tutorials, changelogs, or general writing tasks.' — covers blog posts, marketing copy, README files, and general writing (4 of 5 required exclusions)."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "No skill-foundry script is named by filename. However, fix.md lists 6 labeled 'True-Positive Prompts (must trigger — 6/6 required)' and 8 labeled 'False-Positive Guard Prompts (must NOT trigger — 0/8 allowed)'. This satisfies option (b): ≥3 positive AND ≥2 negative trigger prompts."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "None of the required skill-foundry concept names appear in fix.md. The document uses its own framing ('false-positive magnet', 'semantic similarity', 'skill routers') but never invokes 'progressive disclosure', 'shibboleth'/'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 2862,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 43.04,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 43.04
+  },
+  "claims": [
+    {
+      "claim": "6 true-positive prompts all use the vocabulary now in the description (OpenAPI, JSDoc, parameter table, type signatures)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The 6 listed true-positive prompts reference: 'OpenAPI 3.0 spec', 'function signatures', 'parameter table', 'JSDoc comments', 'Swagger YAML definition', 'type signatures' — all drawn directly from the new description vocabulary."
+    },
+    {
+      "claim": "8 guard prompts deliberately use vocabulary the old description matched (blog, README, tutorial, content, documentation)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Guard prompts reference: 'blog post', 'marketing copy', 'README', 'tutorial', 'documentation', 'release notes', 'architectural overview', 'FAQ content' — all vocabulary from the old generic description."
+    },
+    {
+      "claim": "The rewritten description targets 'machine-readable API reference artifacts'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "YAML description begins: 'Generates machine-readable API reference artifacts: OpenAPI/Swagger specs, function signatures, parameter tables, type signatures, JSDoc/docstring blocks, and endpoint reference docs.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This assertion is the right one to distinguish runs that actually engage with skill-foundry methodology vs. those that produce a good description from general knowledge. The without_skill run produced a high-quality, well-structured fix but without invoking any skill-foundry vocabulary — suggesting this assertion successfully discriminates skill-influenced runs from independently competent ones. The eval design is sound here."
+      },
+      {
+        "reason": "No assertion checks whether the rewritten description is actually an improvement in precision — e.g., verifying it doesn't still contain generic terms like 'documentation' that the old description had. The without_skill run successfully removed the generic term but an assertion verifying absence of known leaky terms would add robustness."
+      }
+    ],
+    "overall": "Two of three assertions are well-calibrated. The third (skill-foundry concept naming) is the key discriminator and correctly identifies the without_skill gap. Consider adding a negative-vocabulary check (no residual generic terms in the description) to tighten the quality bar."
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "The rewritten YAML description contains 'OpenAPI/Swagger specs', 'function signature tables', 'parameter and return-type tables', 'type-signature documentation', and 'API reference artifacts' — multiple trigger keywords. It also ends with 'NOT for blog posts, marketing copy, README prose, tutorials, or general writing' — explicitly naming blog posts, marketing copy, and README (3+ excluded categories from the required list)."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md includes a full 'Testing Procedure' section with 6 named true-positive prompts (TP-1 through TP-6) and 8 named false-positive guard prompts (FP-1 through FP-8), satisfying option (b). None of the four named skill-foundry scripts appear, but the prompt-list approach fully satisfies the OR condition."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "Searched the full fix.md content for all six required terms: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', 'Description Field Engineering'. None appear. The file uses generic ML/classification vocabulary ('true positives', 'false positives', 'LLM classifiers', 'word overlap') but does not name any skill-foundry-specific concept."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 862,
+    "transcript_chars": 23
+  },
+  "timing": {
+    "executor_duration_seconds": 44.268,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 44.268
+  },
+  "claims": [
+    {
+      "claim": "The rewrite uses concrete artifact names only found in API reference contexts",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'OpenAPI/Swagger specs', 'parameter tables', 'type-signature documentation' are highly domain-specific terms that would not appear in blog posts or marketing copy contexts"
+    },
+    {
+      "claim": "The file includes a Python script using claude-haiku-4-5-20251001 as the classifier so you can run this programmatically in CI",
+      "type": "factual",
+      "verified": true,
+      "evidence": "fix.md contains a complete Python script under '### Automated (recommended)' that uses anthropic client with model='claude-haiku-4-5-20251001' to classify prompts as YES/NO"
+    },
+    {
+      "claim": "Pass bar: 6/6 TP fires, 0/8 FP fires",
+      "type": "factual",
+      "verified": true,
+      "evidence": "fix.md explicitly states 'Acceptable bar: 6/6 true positives, 0/8 false positives' and the Python script's pass condition confirms this"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This assertion usefully discriminates: the with_skill run produced a high-quality, technically sound fix.md but still failed because it never internalized the skill-foundry vocabulary. This is a real signal — a practitioner who absorbed the skill's philosophy would naturally reach for 'shibboleth' or 'Description Field Engineering' when describing what they did. The assertion is working as intended."
+      },
+      {
+        "reason": "No assertion checks that the NOT-for clause in the rewritten description specifically excludes categories the user listed (not just any arbitrary categories). The executor correctly used the user's categories, but an assertion verifying exact categorical overlap with the user's exclusion list would be more discriminating."
+      }
+    ],
+    "overall": "Assertions are well-calibrated. The third assertion (skill-foundry vocabulary) is the hardest to satisfy and correctly identifies a genuine gap even in an otherwise strong output. First two assertions check meaningful, verifiable outcomes."
+  }
+}

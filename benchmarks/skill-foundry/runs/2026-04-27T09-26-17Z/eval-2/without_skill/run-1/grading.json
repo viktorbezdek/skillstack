@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": false,
+      "evidence": "Issue 6 in output.txt says '**Missing exclusion clause** — no guidance on when to skip the skill. Fix: add a \"When NOT to use\" section' — this covers the exclusion/NOT-for clause part. However, the audit does NOT explicitly flag the description as missing specific trigger keywords. Issue 3 says '**Circular description** — both the frontmatter and body just restate the skill name. Fix: describe the six review dimensions and the trigger condition.' While it mentions 'trigger condition' in the fix, it does not use any of the required language ('lacks specific keywords', 'too vague to trigger reliably', 'no boundaries', etc.) to call out missing trigger keywords as a distinct problem. The AND condition fails."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 in output.txt: '**Dead reference** — `references/full-guide.md` doesn't exist; step 4 is a dead end.' The path `references/full-guide.md` is cited explicitly, and the phrase \"doesn't exist\" is one of the accepted labels."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "Grep for 'anti-pattern', 'philosophy', and 'shibboleth' in the transcript returned no matches. The output.txt lists six issues and none of them mention anti-patterns, a philosophy section, or shibboleths. The recommendations focus on dead references, blocked tools, circular description, non-actionable steps, generic tips, and a missing exclusion clause."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 633,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 47.524,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 47.524
+  },
+  "claims": [
+    {
+      "claim": "Six issues found in the audit",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists exactly six numbered issues (dead reference, blocked tools, circular description, non-actionable steps, generic tips, missing exclusion clause)"
+    },
+    {
+      "claim": "`references/full-guide.md` doesn't exist and causes a dead end",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Issue 1 directly states this and the path is quoted accurately"
+    },
+    {
+      "claim": "The description is circular",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Issue 3 calls out 'both the frontmatter and body just restate the skill name', which is a meaningful structural observation, not just a label"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+        "reason": "This assertion bundles two distinct problems (missing exclusion clause + missing trigger keywords) with an AND. A good audit might address one without the other. Consider splitting into two separate expectations so each can be graded independently."
+      },
+      {
+        "reason": "No assertion checks whether the audit identifies the non-actionable procedural steps (Issue 4) or the blocked-tools problem (Issue 2) — both are substantive findings that a skilled reviewer should catch. Adding assertions for these would better discriminate thorough audits from superficial ones."
+      }
+    ],
+    "overall": "The assertion set targets structural/format problems (broken reference, exclusion clause, structural recommendations like anti-patterns/philosophy). The executor correctly caught the broken reference but missed the trigger-keyword aspect of assertion 1 and produced no anti-pattern/philosophy/shibboleth language for assertion 3. The evals would benefit from splitting the compound assertion and adding coverage for the non-actionable steps and tool issues."
+  }
+}

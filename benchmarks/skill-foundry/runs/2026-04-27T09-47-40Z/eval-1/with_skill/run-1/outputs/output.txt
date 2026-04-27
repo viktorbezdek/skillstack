@@ -1,0 +1,8 @@
+Done. Created `json-validator/SKILL.md` at `/private/tmp/pilot-bench-tmlzoolo/with/json-validator/SKILL.md`.
+
+The skill includes:
+- YAML frontmatter with name, description, and regex trigger patterns
+- Clear invoke/skip guidance (distinguishes validation from schema generation and API docs)
+- 6-step implementation guide covering input identification, runtime detection, dependency install, validation code for both Node/Bun (Ajv) and Python (jsonschema), result reporting, and optional fix suggestions
+- Dual-runtime code samples supporting schema drafts 7, 2019-09, and 2020-12
+- Edge case handling: multiple files, `$ref` resolution, large files, and invalid JSON syntax

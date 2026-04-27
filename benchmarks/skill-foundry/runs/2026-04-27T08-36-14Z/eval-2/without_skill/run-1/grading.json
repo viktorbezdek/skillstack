@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": true,
+      "evidence": "Issue 3 in audit.md states the description 'gives no shibboleth — no concrete trigger phrase an orchestrator or user would match against' — directly equivalent to 'lacks specific keywords'. Issue 5 identifies the absence of a 'When NOT to use' exclusion clause (the fix adds it explicitly), with the problem framed as platitude tips that 'add noise without adding signal'. Both concerns are addressed though in separate issues: trigger keywords in Issue 3 (description field), exclusion clause in Issue 5 (Tips section)."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Issue 1 in audit.md explicitly quotes `references/full-guide.md` and states '`references/full-guide.md` does not exist on disk.' The phrase 'does not exist' maps directly to the required label 'doesn't exist'. output.txt summary also echoes: 'Dead reference — `references/full-guide.md` doesn't exist'."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": true,
+      "evidence": "Issue 3 uses the word 'shibboleth' explicitly: 'It gives no shibboleth — no concrete trigger phrase an orchestrator or user would match against.' Issue 5 fix adds an '## Anti-patterns to flag' section listing five specific anti-patterns (wrong-field assertions, partial mocks, silent fallbacks, test-only production methods, hardcoded timeouts). Both 'shibboleth' and 'anti-pattern' appear in the audit."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 5500,
+    "transcript_chars": 51577
+  },
+  "timing": {
+    "executor_duration_seconds": 51.577,
+    "grader_duration_seconds": 45.0,
+    "total_duration_seconds": 96.577
+  },
+  "claims": [
+    {
+      "claim": "Five issues found in the skill",
+      "type": "factual",
+      "verified": true,
+      "evidence": "audit.md contains exactly five numbered issues: dead file reference, blocked tools, circular description, non-actionable steps, and generic tips."
+    },
+    {
+      "claim": "`references/full-guide.md` does not exist on disk",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Consistent with the benchmark setup — the audit correctly identifies this as a phantom reference. The benchmark task was designed with this as a known defect."
+    },
+    {
+      "claim": "WebFetch is blocked by the runtime hook",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Multiple system-reminder injections in the transcript confirm WebFetch is denied: 'WebFetch calls are denied entirely.' Issue 2 in audit.md correctly identifies this as a problem with the skill's allowed-tools list."
+    },
+    {
+      "claim": "Each issue includes a ready-to-paste fix",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All five issues in audit.md include a 'Fix:' section with concrete replacement code/text in fenced blocks."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+        "reason": "The exclusion clause and trigger keyword gaps are identified in separate issues (5 and 3 respectively), and Issue 5 addresses the Tips section rather than the frontmatter description field. A grader could reasonably argue this expectation is unsatisfied because no single issue flags 'the description' as missing both. Consider splitting into two assertions, or making the scope explicit ('the skill as a whole lacks an exclusion clause')."
+      }
+    ],
+    "overall": "Strong evals overall. All three assertions require non-trivial outputs that could only be satisfied by a substantive audit. The broken reference detection and shibboleth/anti-pattern requirements are especially discriminating — a surface-level audit would miss both."
+  }
+}

@@ -1,0 +1,8 @@
+`audit.md` written with 6 concrete issues:
+
+1. **Dead reference** — `references/full-guide.md` doesn't exist; step 4 must be deleted.
+2. **Blocked tools** — `WebFetch` and `WebSearch` are intercepted by the hook and will fail; remove them from `allowed-tools`.
+3. **Circular description** — "Use this skill to review code" is self-referential; replaced with a trigger-oriented description naming the input signals.
+4. **Non-actionable steps** — "Read the file / Look at the code / Suggest improvements" gives no structure; replaced with an ordered checklist covering correctness → security → SOLID → tests → style.
+5. **Generic tips** — "Be thorough / Consider edge cases / Check tests" apply to any task; replaced with code-review-specific heuristics.
+6. **Missing exclusion clause** — no "skip when" section, so the skill may trigger on docs/config/prose reviews; added an explicit exclusion block.

@@ -1,0 +1,7 @@
+Created `json-validator/SKILL.md` with:
+
+- **YAML frontmatter** — name, description, trigger phrases, version
+- **Classifier guidance** — when to invoke vs. skip
+- **6-step implementation** — parse both files, auto-detect draft, pick runtime (Bun → Node → Python fallback), validate, report
+- **Two runtime snippets** — Ajv (Node/Bun) and `jsonschema` (Python), both output structured JSON
+- **Formatted output spec** — pass/fail/parse-error templates for the LLM to render to the user

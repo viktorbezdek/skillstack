@@ -1,0 +1,74 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+      "passed": false,
+      "evidence": "Item 3 in audit.md says the description is 'circular and gives no routing signal' and recommends naming 'the trigger context, output format, and coverage areas'. This hints at missing trigger keywords but does not use any of the required phrasings ('NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', 'too vague to trigger reliably'). More critically, the audit never mentions a missing NOT-for / exclusion clause — the two-part AND requirement is not satisfied."
+    },
+    {
+      "text": "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+      "passed": true,
+      "evidence": "Item 1 reads: 'Dead reference. `references/full-guide.md` doesn't exist; the checklist step is unreachable.' The path is cited verbatim and the label 'doesn't exist' matches the approved vocabulary."
+    },
+    {
+      "text": "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear).",
+      "passed": false,
+      "evidence": "None of the five audit items use the words 'anti-pattern', 'philosophy', or 'shibboleth'. Item 5 recommends replacing 'generic tips' with 'non-obvious, skill-specific reminders (assertion-correctness check, ghost constraints, scope discipline)' but does not name any of the required structural elements."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 637,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 59.187,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 59.187
+  },
+  "claims": [
+    {
+      "claim": "Audit saved to `audit.md`",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt begins 'Saved to `audit.md`.' and contains five numbered issues."
+    },
+    {
+      "claim": "Five issues found",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists exactly five numbered findings: Dead reference, Blocked tools, Vague description, Non-actionable steps, Generic tips."
+    },
+    {
+      "claim": "WebFetch and WebSearch are flagged as blocked",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Item 2: 'WebFetch is denied by hook; WebSearch is also blocked' — correct per project rules."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords...",
+        "reason": "The two-part AND makes this assertion stringent, but the required language list ('NOT for', 'no exclusion', etc.) is very specific. An executor that correctly identifies the same problem with different wording (e.g. 'gives no routing signal', 'circular') will fail even though the substance is correct. Consider whether vocabulary-matching is the right discriminator, or whether a semantic check on concept presence would be more meaningful."
+      },
+      {
+        "reason": "No assertion checks whether the audit correctly identifies the 'Blocked tools' finding (WebFetch/WebSearch), which is a distinctive, testable fact about the SKILL.md under review. This is a strong discriminating signal that went uncovered."
+      }
+    ],
+    "overall": "Assertions are meaningfully discriminating for the broken-reference case (exp 2 passes cleanly), but the vocabulary-matching constraint on exp 1 may reject valid audits that identify the same problem in different words. Exp 3 tests for structural recommendations that require deeper skill knowledge — without the skill, the executor produced a competent surface-level audit that missed these concepts entirely, which is appropriate behavior for a 'without_skill' run."
+  }
+}

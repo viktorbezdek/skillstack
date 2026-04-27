@@ -1,0 +1,7 @@
+Created `json-validator/SKILL.md` with:
+
+- **YAML frontmatter** — `name`, `description`, `type`, and `triggers` fields
+- **8-step implementation** — covers input resolution, runtime detection (Node/Ajv or Python/jsonschema), schema loading (including YAML schemas), compilation with `allErrors`, per-file validation, structured output formatting, exit codes, and verification
+- **Error handling table** — 7 error types with detection and message
+- **Common keywords** — full list of JSON Schema keywords the implementation must handle
+- **Dual-runtime code samples** — concrete Ajv (Node/Bun) and jsonschema (Python) snippets

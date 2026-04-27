@@ -1,0 +1,42 @@
+{
+  "target": {
+    "type": "skill",
+    "path": "skill-foundry/skills/skill-foundry",
+    "name": "skill-foundry"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "create-new-skill-from-scratch",
+      "prompt": "Create a new Claude Code skill called 'json-validator' that validates JSON files against JSON Schema specifications. Save the skill structure to a directory called json-validator/ in the current working directory. The directory must contain a SKILL.md file with proper YAML frontmatter and content. Don't ask follow-up questions — make reasonable defaults and produce a complete file.",
+      "expected_output": "A complete json-validator/SKILL.md with foundry-style frontmatter (description with NOT-for clause), a When to Use section with positive AND negative lists, and at least one anti-pattern block with three labeled subheadings.",
+      "expectations": [
+        "The 'description:' field in the SKILL.md frontmatter contains an explicit exclusion clause using the literal phrase 'NOT for' (capitalized exactly that way) followed by at least one excluded use case — not just a description of what the skill does.",
+        "The SKILL.md body contains at least one explicit anti-pattern block with three labeled subheadings drawn from {Symptom, Problem, Solution} OR {What it looks like, Why it's wrong, What to do instead} — each labeled and on its own line/bold heading, naming a specific JSON-validation pitfall (e.g., schema drift, silent parse errors, validating untrusted input, missing required fields).",
+        "The SKILL.md contains BOTH a positive use list AND a separate negative list (e.g., a 'When to Use' section with '✅ Use for:' and '❌ NOT for:' bullets, OR distinct 'When to Use' and 'When NOT to Use' sections) — not merely a single 'Use this for X' paragraph."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "audit-low-quality-skill",
+      "prompt": "Audit the SKILL.md below and produce a concrete list of fixes. Save your audit report to audit.md in the current working directory. Be specific — quote the exact problems and propose exact replacements.\n\nAssume `references/full-guide.md` does NOT exist anywhere on disk.\n\n```\n---\nname: code-reviewer\ndescription: Helps with code review and quality. Use this skill to review code.\nallowed-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch\n---\n\n# Code Reviewer\n\nThis skill helps you review code.\n\n## How to use\n\n1. Read the file\n2. Look at the code\n3. Suggest improvements\n4. See `references/full-guide.md` for the detailed checklist.\n\n## Tips\n\n- Be thorough\n- Consider edge cases\n- Check tests\n```",
+      "expected_output": "An audit.md identifying: vague description without exclusion clause, missing trigger keywords, broken reference to references/full-guide.md, no anti-patterns section, no philosophy/when-to-use boundaries, and over-broad allowed-tools.",
+      "expectations": [
+        "audit.md explicitly flags the description as missing an exclusion / NOT-for clause AND as missing specific trigger keywords (using language like 'NOT for', 'no exclusion', 'no boundaries', 'lacks specific keywords', or 'too vague to trigger reliably').",
+        "audit.md identifies the broken reference to `references/full-guide.md` by filename or path AND labels it with one of: 'phantom', 'orphaned', 'broken', 'non-existent', 'dangling', 'doesn't exist', or 'reference illusion'.",
+        "audit.md recommends adding at least one of: an explicit anti-pattern section with Symptom/Problem/Solution (or What/Why/Instead) structure, a Philosophy section that comes before the procedural steps, OR shibboleths / expert-vs-novice framing — named explicitly (the words 'anti-pattern', 'philosophy', or 'shibboleth' must appear)."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "fix-overactivating-description",
+      "prompt": "I have a skill description that activates on too many false positives. Help me rewrite it and explain how to test that the rewrite actually fixes activation. Save the rewritten YAML frontmatter and your testing recommendations to fix.md in the current working directory.\n\nCurrent description: 'Helps with documentation and content creation.'\n\nThe skill is supposed to handle ONLY: generating API reference docs (OpenAPI specs, function signatures, parameter tables, type signatures).\n\nIt should NOT trigger for: blog posts, marketing copy, README files, or general writing.",
+      "expected_output": "fix.md with a rewritten description containing specific API-reference trigger keywords + explicit NOT-for clause naming excluded categories, plus a concrete activation-testing approach.",
+      "expectations": [
+        "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+        "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+        "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'."
+      ]
+    }
+  ]
+}

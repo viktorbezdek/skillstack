@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "fix.md contains a rewritten description that includes at least TWO specific trigger keywords from the user's stated scope (any two of: 'OpenAPI', 'function signatures', 'parameter tables', 'type signatures', 'API reference') AND an explicit 'NOT for' clause naming at least TWO excluded categories from the user's list (any two of: blog posts, marketing copy, README, README files, general writing).",
+      "passed": true,
+      "evidence": "The rewritten YAML in fix.md reads: 'Generates machine-readable API reference artifacts: OpenAPI/Swagger specs, function signatures with parameter tables, type-signature docs, and endpoint reference pages. ... Does NOT handle blog posts, README files, marketing copy, tutorials, release notes, or general writing.' Trigger keywords present: 'OpenAPI', 'function signatures', 'parameter tables', 'type-signature' (≥2). Excluded categories named: 'blog posts', 'README files', 'marketing copy', 'general writing' (≥2)."
+    },
+    {
+      "text": "fix.md recommends a concrete activation-testing approach, satisfied by EITHER (a) naming a skill-foundry script by filename — one of `test_activation.py`, `quick_validate.py`, `validate_skill.py`, `analyze_skill.py` — OR (b) listing at least 3 positive trigger prompts AND at least 2 negative trigger prompts to test against.",
+      "passed": true,
+      "evidence": "fix.md contains a 'Test Battery' section listing 6 labeled true-positive prompts (TP-1 through TP-6, e.g. 'Generate an OpenAPI 3.1 spec...', 'Write the function signature and parameter table for createOrder()...') and 8 false-positive guard prompts (FP-1 through FP-8, e.g. 'Write a blog post explaining what REST APIs are...', 'Draft a README for my open-source HTTP client library.'). This satisfies option (b): ≥3 positive AND ≥2 negative prompts."
+    },
+    {
+      "text": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+      "passed": false,
+      "evidence": "Neither fix.md nor the transcript contains any of the required skill-foundry concept names. The file uses general ML/NLP terminology ('false positives', 'structural matching', 'negative weights', 'classifier') but none of the six skill-foundry-specific terms. grep across both files returned no matches."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 524,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 51.602,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 51.602
+  },
+  "claims": [
+    {
+      "claim": "fix.md applies three fixes: concrete artifact names, intent framing, explicit exclusion list",
+      "type": "quality",
+      "verified": true,
+      "evidence": "fix.md confirms all three: 'OpenAPI', 'parameter tables', 'type signatures' as concrete artifact names; 'Use when the output is a structured API contract' as intent framing; 'Does NOT handle blog posts, README files, marketing copy...' as explicit exclusion list."
+    },
+    {
+      "claim": "Test battery targets 6/6 true positives and 0/8 false-positive guards",
+      "type": "factual",
+      "verified": true,
+      "evidence": "fix.md lists exactly 6 TP prompts and 8 FP prompts with stated pass bars of '6/6 TP' and '0/8 FP'."
+    },
+    {
+      "claim": "fix.md includes an automated bash testing procedure",
+      "type": "process",
+      "verified": true,
+      "evidence": "fix.md contains a 'Automated (shell loop)' section with a bash script using a run_prompt() function that calls claude with --skill-debug and checks activation via grep."
+    },
+    {
+      "claim": "The executor used skill-foundry-specific conceptual vocabulary",
+      "type": "quality",
+      "verified": false,
+      "evidence": "No skill-foundry concept names (shibboleth, progressive disclosure, philosophy-first, description engineering, Description Field Engineering) appear anywhere in the outputs. The executor solved the problem correctly using general ML reasoning, not skill-foundry methodology."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fix.md uses at least one skill-foundry concept by name — one of: 'progressive disclosure', 'shibboleth', 'shibboleths', 'philosophy-first', 'description engineering', or 'Description Field Engineering'.",
+        "reason": "This is the most discriminating assertion in the eval — it tests whether the executor was influenced by skill-foundry's specific conceptual vocabulary, which a skilled but unaided LLM would not produce. The without_skill run correctly fails here. Consider also allowing 'false-positive guard' as a near-canonical term (skill-foundry uses it), but the current 6-term list is otherwise well-chosen and hard to satisfy by coincidence."
+      }
+    ],
+    "overall": "The three assertions are well-calibrated: assertion 1 and 2 test substantive output quality (both passable without the skill by a capable LLM), while assertion 3 is the genuine discriminator that only fires when skill-foundry vocabulary is present. The 2/3 pass rate accurately reflects a high-quality output that nonetheless lacks skill-specific framing — exactly the expected without_skill result."
+  }
+}

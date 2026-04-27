@@ -1,0 +1,6 @@
+`json-validator/SKILL.md` created with:
+
+- **YAML frontmatter** — `name`, `description` (with explicit do-NOT-use guidance to reduce false positives), and `triggers`
+- **8-step implementation** — runtime detection → install (Ajv for Node/Bun, `jsonschema` for Python) → validator scripts for both runtimes → run → interpret output → fix violations → report → cleanup
+- **Both runtime scripts** — fully functional Node/Bun (`validate.mjs` using Ajv with draft auto-detection) and Python fallback (`validate.py` using `jsonschema`)
+- **Error handling table** and **example invocations**

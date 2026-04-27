@@ -1,0 +1,7 @@
+Saved to `audit.md`. Five issues found:
+
+1. **Dead reference** — `references/full-guide.md` doesn't exist; step 4 removed and replaced with an inline checklist.
+2. **Blocked tools** — `WebFetch` and `WebSearch` removed from `allowed-tools`; both are intercepted by the runtime hook.
+3. **Circular description** — "Use this skill to review code" replaced with a concrete trigger phrase and a statement of what the skill actually does (the shibboleth an orchestrator matches against).
+4. **Non-actionable steps** — Generic "Look at the code / Suggest improvements" replaced with a prioritized rubric covering correctness, edge cases, error handling, tests, naming, performance, and SOLID.
+5. **Platitude tips** — "Be thorough / Consider edge cases" replaced with an exclusion clause (when NOT to use) and an anti-pattern block (specific failure modes to flag during review).
