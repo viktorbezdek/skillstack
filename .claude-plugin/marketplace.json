@@ -606,7 +606,7 @@
       "name": "skill-foundry",
       "source": "./skill-foundry",
       "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
-      "version": "2.2.1",
+      "version": "2.2.2",
       "category": "development",
       "tags": [
         "skill",

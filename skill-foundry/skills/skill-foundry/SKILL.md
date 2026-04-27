@@ -23,80 +23,21 @@ allowed-tools:
 
 Framework for creating Claude Code skills that encode domain expertise through philosophy-first design, anti-pattern prevention, and progressive disclosure.
 
-## Philosophy: Skills as Mental Frameworks
+## ⛔ MANDATORY in every SKILL.md you create
 
-Skills are not checklists — they are **mental frameworks that guide creative problem-solving**.
+Every SKILL.md you author or audit MUST contain ALL THREE of these. No exceptions, no "skip if not applicable" — these are the load-bearing pieces of skill-foundry. If any are missing, the skill has failed.
 
-**Unlock vs. Constrain:**
+1. **`NOT for` clause in the description.** The frontmatter `description:` field MUST contain the literal phrase `NOT for` (capitalized exactly), followed by ≥1 excluded use case. Example: `... NOT for general prose, blog posts, README files.`
+2. **Anti-pattern block with three labeled subheadings.** Use one of these exact label sets — every label on its own line, in bold or as a sub-heading: `**Symptom**` / `**Problem**` / `**Solution**` OR `**What it looks like**` / `**Why it's wrong**` / `**What to do instead**`.
+3. **Both a positive AND a negative use list.** Either a `When to Use` section with `✅ Use for:` and `❌ NOT for:` bullets, OR distinct `## When to Use` and `## When NOT to Use` sections. A single paragraph describing usage is NOT sufficient.
 
-| Constraining | Unlocking |
-|---|---|
-| Rigid templates | Flexible frameworks |
-| Fixed outputs | Context-appropriate results |
-| Limiting choices | Expanding possibilities |
-| Checklists | Mental models |
-
-### The Four Pillars
-
-1. **Philosophy Before Procedure**: "How to think" before "what to do"
-2. **Anti-Patterns as Guidance**: What NOT to do is as important as what to do
-3. **Progressive Disclosure**: Core in SKILL.md (<500 lines), details in `references/`
-4. **Shibboleths**: Encode expert knowledge that separates novices from experts
+**When auditing an existing SKILL.md**, your audit MUST recommend adding any of the three above that are missing AND name the missing item using one of these exact words: `anti-pattern`, `philosophy`, `shibboleth`. These are the foundry vocabulary — if your audit doesn't use them, it's not a foundry audit.
 
 ---
 
-## When to Use
+## SKILL.md Template — copy this literally
 
-**Use for:**
-- Creating new skills from scratch or documentation
-- Reviewing/auditing existing skills for quality
-- Improving skill activation rates and precision
-- Adding domain expertise and shibboleths to skills
-- Debugging why skills don't activate correctly
-- Transforming CLI/API documentation into skills
-
-**NOT for:**
-- General prompt engineering (use prompt-engineering)
-- Full plugin development with hooks/MCP (use plugin-dev)
-- Non-skill coding advice or simple script writing
-
----
-
-## Quick Start: Minimal Workflow (6 steps)
-
-1. **Define scope**: What expertise? What keywords? What NOT to handle?
-2. **Initialize**: `python scripts/init_skill.py <skill-name> --path <output-dir>`
-3. **Write description** with keywords AND NOT clause (see Description Engineering below)
-4. **Add 1-3 anti-patterns** you've observed
-5. **Test activation** — does it trigger when it should?
-6. **Validate**: `python scripts/quick_validate.py <skill-path>`
-
-For complex/production skills, use the 8-phase methodology in `references/skill-foundry.md`.
-
----
-
-## Skill Structure
-
-### Mandatory
-```
-your-skill/
-└── SKILL.md           # Core instructions (<500 lines)
-```
-
-### Optional (add only what SKILL.md references)
-```
-├── scripts/           # Working code (not templates)
-├── references/        # Deep dives (referenced from SKILL.md)
-├── templates/         # Config files, boilerplate
-├── assets/            # Images, fonts, static files
-└── examples/          # Concrete good/bad examples
-```
-
-**Anti-pattern**: Creating structure "just in case" — only add files that SKILL.md references.
-
----
-
-## SKILL.md Template
+When creating a new skill, copy this template verbatim and fill in the bracketed placeholders. Do NOT omit the `When to Use`, `Common Anti-Patterns`, or `NOT for` clause — they are required by the MANDATORY block above.
 
 ```markdown
 ---
@@ -138,20 +79,95 @@ Full templates: `templates/skill-template.md` (comprehensive), `templates/skill-
 
 ---
 
+## When to Use
+
+**Use for:**
+- Creating new skills from scratch or documentation
+- Reviewing/auditing existing skills for quality
+- Improving skill activation rates and precision
+- Adding domain expertise and shibboleths to skills
+- Debugging why skills don't activate correctly
+- Transforming CLI/API documentation into skills
+
+**NOT for:**
+- General prompt engineering (use prompt-engineering)
+- Full plugin development with hooks/MCP (use plugin-dev)
+- Non-skill coding advice or simple script writing
+
+---
+
+## Philosophy: Skills as Mental Frameworks
+
+Skills are not checklists — they are **mental frameworks that guide creative problem-solving**.
+
+**Unlock vs. Constrain:**
+
+| Constraining | Unlocking |
+|---|---|
+| Rigid templates | Flexible frameworks |
+| Fixed outputs | Context-appropriate results |
+| Limiting choices | Expanding possibilities |
+| Checklists | Mental models |
+
+### The Four Pillars
+
+1. **Philosophy Before Procedure**: "How to think" before "what to do"
+2. **Anti-Patterns as Guidance**: What NOT to do is as important as what to do
+3. **Progressive Disclosure**: Core in SKILL.md (<500 lines), details in `references/`
+4. **Shibboleths**: Encode expert knowledge that separates novices from experts
+
+---
+
+## Quick Start: Minimal Workflow (6 steps)
+
+1. **Define scope**: What expertise? What keywords? What NOT to handle?
+2. **Initialize**: `python scripts/init_skill.py <skill-name> --path <output-dir>`
+3. **Write description** with keywords AND NOT clause (see Description Engineering below)
+4. **Add 1-3 anti-patterns** you've observed
+5. **Test activation** — does it trigger when it should?
+6. **Validate**: `python scripts/quick_validate.py <skill-path>`
+
+For complex/production skills, use the 8-phase methodology in `references/skill-foundry.md`.
+
+---
+
+## Skill Structure
+
+### Mandatory
+```
+your-skill/
+└── SKILL.md           # Core instructions (<500 lines)
+```
+
+### Optional (add only what SKILL.md references)
+```
+├── scripts/           # Working code (not templates)
+├── references/        # Deep dives (referenced from SKILL.md)
+├── templates/         # Config files, boilerplate
+├── assets/            # Images, fonts, static files
+└── examples/          # Concrete good/bad examples
+```
+
+**Anti-pattern**: Creating structure "just in case" — only add files that SKILL.md references.
+
+---
+
 ## Description Field Engineering
 
 The description is your activation trigger. Formula: **[What] [Use for] [Keywords] NOT for [Exclusions]**
 
+⛔ **The literal phrase `NOT for` is mandatory** — capitalized exactly that way. Synonyms (`not for`, `excluded`, `does not handle`) do NOT satisfy the requirement. The router and downstream auditors look for this exact string.
+
 | Quality | Example | Issues |
 |---|---|---|
-| Bad | `Helps with images` | Too vague, no keywords |
-| Better | `Image processing with CLIP` | Has keyword but no exclusions |
-| Good | `CLIP semantic search. Use for image-text matching, zero-shot classification. Activate on "CLIP", "embeddings", "image search". NOT for counting, fine-grained classification, spatial reasoning.` | Complete |
+| Bad | `Helps with images` | Too vague, no keywords, no `NOT for` |
+| Better | `Image processing with CLIP` | Has keyword but no `NOT for` clause |
+| Good | `CLIP semantic search. Use for image-text matching, zero-shot classification. Activate on "CLIP", "embeddings", "image search". NOT for counting, fine-grained classification, spatial reasoning.` | Complete — uses literal `NOT for` |
 
 **Guidelines:**
 - Third-person voice ("Use when..." not "You should use...")
 - Include specific trigger keywords/phrases
-- State clear boundaries (what it does NOT do)
+- State clear boundaries with the literal `NOT for` phrase followed by ≥1 excluded use case
 - 100-200 characters recommended
 
 ---
