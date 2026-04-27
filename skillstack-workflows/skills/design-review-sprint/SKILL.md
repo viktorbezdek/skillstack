@@ -1,6 +1,6 @@
 ---
 name: design-review-sprint
-description: Sequential-audit workflow for running a full UX review pass across an application or product. Walks through five phases — visual audit of design system adherence (frontend-design), navigation and information architecture review (navigation-design), microcopy and error-message audit (ux-writing), end-to-end journey validation (user-journey-design), and cross-product consistency check (consistency-standards). Use when launching a new product version, onboarding a design system, preparing for an accessibility audit, or when user feedback signals "something feels off" but nobody can pinpoint what. Not for single-component fixes — use frontend-design directly. Not for greenfield design — design the system first, then audit it.
+description: Sequential-audit workflow for running a full UX review pass across an application or product. Walks through five phases — visual audit of design system adherence (frontend-design), navigation and information architecture review (navigation-design), microcopy and error-message audit (ux-writing), end-to-end journey validation (user-journey-design), and cross-product consistency check (consistency-standards). Use when launching a new product version, onboarding a design system, preparing for an accessibility audit, or when user feedback signals "something feels off" but nobody can pinpoint what. NOT for single-component fixes — use frontend-design directly. NOT for greenfield design — design the system first, then audit it.
 ---
 
 # Design Review Sprint

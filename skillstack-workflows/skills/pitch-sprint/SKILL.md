@@ -1,6 +1,6 @@
 ---
 name: pitch-sprint
-description: Parallel-merge workflow for producing a pitch (investor deck, board proposal, internal funding request, customer sales narrative) in roughly a week. Runs three parallel streams (deep interviews via elicitation, market dynamics via systems-thinking, audience sharpening via persona-definition), merges them into a single storytelling spine, audits via critical-intuition, and polishes every line with ux-writing. Use when you have one week to produce a pitch that must actually land with a specific, named audience and every claim must be grounded in something real. Not for internal status updates, factual reports, or quick sales emails — use plain writing for those.
+description: Parallel-merge workflow for producing a pitch (investor deck, board proposal, internal funding request, customer sales narrative) in roughly a week. Runs three parallel streams (deep interviews via elicitation, market dynamics via systems-thinking, audience sharpening via persona-definition), merges them into a single storytelling spine, audits via critical-intuition, and polishes every line with ux-writing. Use when you have one week to produce a pitch that must actually land with a specific, named audience and every claim must be grounded in something real. NOT for internal status updates, factual reports, or quick sales emails — use plain writing for those.
 ---
 
 # Pitch Sprint

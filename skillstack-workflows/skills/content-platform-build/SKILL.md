@@ -1,6 +1,6 @@
 ---
 name: content-platform-build
-description: Layering workflow for building a knowledge base, CMS, documentation site, or structured content platform from scratch. Builds the data model first (content-modelling), adds a formal knowledge-graph layer if needed (ontology-design), establishes naming and taxonomy conventions (consistency-standards), designs information architecture (navigation-design), fine-tunes voice and microcopy (ux-writing), fills the structure with examples (example-design), and adds tooling for scale (documentation-generator). Use when starting a content or docs system from scratch, migrating one to a structured model, or rescuing one that has drifted into inconsistency. Not for small single-page docs — use documentation-generator alone.
+description: Layering workflow for building a knowledge base, CMS, documentation site, or structured content platform from scratch. Builds the data model first (content-modelling), adds a formal knowledge-graph layer if needed (ontology-design), establishes naming and taxonomy conventions (consistency-standards), designs information architecture (navigation-design), fine-tunes voice and microcopy (ux-writing), fills the structure with examples (example-design), and adds tooling for scale (documentation-generator). Use when starting a content or docs system from scratch, migrating one to a structured model, or rescuing one that has drifted into inconsistency. NOT for small single-page docs — use documentation-generator alone.
 ---
 
 # Content Platform Build
