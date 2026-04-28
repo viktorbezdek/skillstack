@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the rules knows generic persona archetypes but not the specific brainstorm-swarm canonical names.",
+      "passed": false,
+      "evidence": "output.txt lists these personas: 'PM, Engineer, Designer, Researcher, Analyst, Security, Strategist, Devil'. Of the canonical brainstorm-swarm names, only 3 appear: PM, Engineer, Designer. The remaining 5 (Researcher, Analyst, Security, Strategist, Devil) are generic archetypes invented by the executor, NOT in the canonical list. Requirement was >= 4 canonical names; only 3 found."
+    },
+    {
+      "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count.",
+      "passed": false,
+      "evidence": "output.txt says 'Phase 1: all 8 in **one parallel message** — prevents anchoring'. Condition (b) is satisfied — multiple personas spawned together is implied. However, condition (a) FAILS: 'one parallel message' does NOT contain 'one message', 'single message', or 'same message' as a consecutive literal substring ('parallel' interrupts the sequence). Both conditions must be met; (a) is not satisfied."
+    },
+    {
+      "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'divergent opening', 'convergent closing', 'probing round'.",
+      "passed": true,
+      "evidence": "output.txt explicitly contains 'Phase 1:', 'Phase 2:', and 'Phase 3:' as section headers for the spawning strategy. The literal phrase 'Phase 1' (and Phase 2, Phase 3) appears in the text, satisfying the requirement for at least one of the listed phrases. Note: the executor invented its own 3-phase structure rather than referencing the brainstorm-swarm arc framework by name, but the assertion only requires the literal phrases to be present."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "total_tokens": 113005,
+    "input_tokens": 18,
+    "output_tokens": 3937,
+    "cache_creation_input_tokens": 43210,
+    "cache_read_input_tokens": 65840,
+    "total_cost_usd": 0.24089850000000002
+  },
+  "timing": {
+    "executor_duration_seconds": 84.546,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 84.546
+  },
+  "claims": [
+    {
+      "claim": "Plan was saved to plan.md",
+      "type": "process",
+      "verified": false,
+      "evidence": "output.txt says 'Plan saved to `plan.md`' but plan.md is not present in outputs_dir. Only output.txt and transcript.jsonl exist. The summary in output.txt is the only available evidence of plan.md content."
+    },
+    {
+      "claim": "8 of 12 personas were selected",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt explicitly states 'Personas (8 of 12): PM, Engineer, Designer, Researcher, Analyst, Security, Strategist, Devil' and lists 4 excluded personas: Finance, Marketing, Ops, Customer Success — totaling 12."
+    },
+    {
+      "claim": "Phase 1 spawns all 8 personas in parallel to prevent anchoring",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt states 'Phase 1: all 8 in **one parallel message** — prevents anchoring'. This is consistent with the stated design goal."
+    },
+    {
+      "claim": "11 total agent calls with critical path depth of 3",
+      "type": "factual",
+      "verified": false,
+      "evidence": "output.txt states '11 total agent calls, critical path depth of 3' but plan.md is not available to confirm this breakdown across phases."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases...",
+        "reason": "The assertion passes for this without_skill run because the executor happened to use generic 'Phase 1/2/3' labels — the same literals used in the canonical arc framework. This makes the assertion a poor discriminator: a naive baseline that invents any 3-phase structure will pass. Consider requiring the arc framework to be named explicitly (e.g., 'brainstorm-swarm arc', 'Arc 1: divergent', etc.) or requiring the specific arc names ('divergent opening', 'convergent closing') that a baseline without the skill would not know."
+      },
+      {
+        "reason": "plan.md is not captured in outputs_dir — only a text summary (output.txt) is available. The grader must rely on the summary rather than the actual plan file. If expectations check plan.md content, the benchmark runner should capture plan.md as an output artifact to enable authoritative grading."
+      }
+    ],
+    "overall": "The Phase 1/2/3 literal match is a weak discriminator for the arc framework expectation — baseline Claude guesses the same label pattern. The canonical persona check is effective: without the skill, the executor uses generic archetypes (Researcher, Analyst, Security) rather than the brainstorm-swarm names. The single-message rule assertion is well-designed; the executor got close ('one parallel message') but missed the exact phrasing, correctly failing."
+  }
+}

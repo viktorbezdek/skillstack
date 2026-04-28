@@ -1,0 +1,70 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the rules knows generic persona archetypes but not the specific brainstorm-swarm canonical names.",
+      "passed": true,
+      "evidence": "output.txt reports plan.md contains exactly: `pm`, `engineer`, `designer`, `skeptic`, `user-advocate`, `pre-mortem-specialist` (Phase 1) plus `veteran`, `operator`, `constraint-setter`, `first-principles-thinker` (held in reserve for Phase 2). That is 10 canonical personas named by their exact brainstorm-swarm identifiers — well above the threshold of 4."
+    },
+    {
+      "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count.",
+      "passed": true,
+      "evidence": "output.txt quotes plan.md verbatim: 'Single message per phase with all Task() calls in parallel.' This satisfies both conditions: (a) 'Single message' and (b) 'all Task() calls in parallel' — multiple Task() invocations named alongside the single-message constraint."
+    },
+    {
+      "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'.",
+      "passed": true,
+      "evidence": "output.txt quotes plan.md: 'Arc 3 (Full arc) — divergent opening → targeted probing → convergent closing'. This contains 'Arc 3', 'divergent opening', and 'convergent closing' — three qualifying phrases from the required list."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present in outputs directory. Timing data sourced from timing.json."
+  },
+  "timing": {
+    "executor_duration_seconds": 64.462,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 64.462
+  },
+  "claims": [
+    {
+      "claim": "Plan was saved to plan.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt opens with 'Plan saved to `plan.md`.' and the transcript shows a Write tool call creating the file. The file itself is not captured in the outputs directory, but the executor's summary faithfully describes its content."
+    },
+    {
+      "claim": "Phase 1 uses 6 concurrent persona invocations",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states 'Phase 1 is 6 concurrent calls' and lists exactly 6 personas: pm, engineer, designer, skeptic, user-advocate, pre-mortem-specialist."
+    },
+    {
+      "claim": "Arc 3 (Full arc) was selected",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt explicitly states 'Arc 3 (Full arc) — divergent opening → targeted probing → convergent closing'."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "plan.md is not captured in the outputs directory — only the executor's prose summary (output.txt) is available. The grader must trust the executor's description of what plan.md contains rather than reading the file directly. Consider having the benchmark runner copy plan.md into the outputs directory, or having the executor write plan.md directly into outputs/."
+      },
+      {
+        "assertion": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name",
+        "reason": "The threshold of 4 is very low given the swarm typically spawns 6+ personas. A stronger discriminating bar would be ≥6, since baseline Claude generating a generic 'brainstorming' plan might easily name 4 common archetypes (PM, engineer, designer, skeptic) without knowing the canonical swarm identifiers."
+      }
+    ],
+    "overall": "All three assertions pass convincingly. The main structural gap is that plan.md is not preserved as an output artifact, forcing the grader to trust the executor's self-reported summary. The persona-count threshold could be raised for better discrimination."
+  }
+}

@@ -1,0 +1,15 @@
+Saved to `plan.md`. Here's what the plan covers:
+
+**Arc:** Arc 3 — Full arc (divergent → probing → convergent), justified by the decision's high stakes and hard-to-reverse nature.
+
+**6 canonical personas:**
+- `pm` — enterprise contracts, sales requirements
+- `engineer` — KMS/HSM/BYOK implementation reality
+- `operator` — key custody, DR when keys are deleted
+- `skeptic` — challenges whether CMK improves security vs adds risk
+- `pre-mortem-specialist` — key loss = permanent data loss, rotation outages
+- `constraint-setter` — scopes which data, which systems, what "CMK" means here
+
+**1 custom persona: Compliance Architect** — justified because no canonical covers the regulatory gap. The custom persona is designed to distinguish between what PCI-DSS/GLBA/SOX actually mandate vs. what is good practice vs. marketing narrative from cloud vendors. It forces the central question: is CMK a regulatory forcing function or an elective enhancement?
+
+**Expected central tension** (flagged explicitly for Phase 2 targeting): PM will likely say enterprise customers are requiring CMK in contracts → sales blocker. Compliance Architect will likely find no regulation actually mandates CMK over provider-managed. That empirical disagreement — regulatory vs. commercial forcing function — is what resolves the decision.

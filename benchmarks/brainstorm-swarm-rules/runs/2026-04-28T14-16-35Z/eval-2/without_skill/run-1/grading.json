@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided. Plan should explicitly note that Phase 1 divergent is NOT what's needed here.",
+      "passed": false,
+      "evidence": "The plan contains 'Phase 3' literally but only as the final phase of a full 3-phase arc (Phase 1 Isolated Analysis → Phase 2 Cross-Persona Debate → Phase 3 Synthesis). The plan explicitly designs Phase 1 as 'Isolated Analysis — each persona reasons independently,' which IS the divergent opening the expectation prohibits. The plan never identifies Phase 3 / Arc 4 as the appropriate arc to jump to, and never states that Phase 1 divergent is not needed. The compound condition fails on the 'Must NOT plan a full Arc 1' criterion."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas. Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset.",
+      "passed": false,
+      "evidence": "The plan defines exactly 7 personas (CFO, Revenue Leader, Head of Customer Success, Competitive Intel, Product Strategist, Operator, Red Team). This is a full divergent set, not a tight 3-5 convergent subset. There is no mention of a Skeptic persona. The plan makes no comparison to a Phase 1 subset — it simply runs all 7 through Phase 1."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping.",
+      "passed": false,
+      "evidence": "Zero matches for any of the required structural phrases across the entire plan.md. Each persona prompt asks for 'failure modes' with severity ratings (critical/serious/watch) and detection signals — a divergent failure-hunting format, not the convergent for/against/decisive-factor structure. For example, CFO prompt: 'Output: a numbered list of failure modes, each with a severity (critical / serious / watch) and a detection signal.' None of the 7 persona prompts use 'strongest argument for/against,' 'argument FOR/AGAINST,' 'decisive consideration,' or 'deciding factor.'"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 419,
+    "transcript_chars": 29181
+  },
+  "timing": {
+    "executor_duration_seconds": 77.0,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 77.0
+  },
+  "claims": [
+    {
+      "claim": "Plan saved to plan.md with 7 personas in Phase 1 — isolated mode",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call confirmed: file_path=/private/tmp/pilot-bench-rp0eqct7/without/plan.md, content 10693 chars, 7 personas defined with Phase 1 Isolated Analysis structure"
+    },
+    {
+      "claim": "Each persona prompt is written so the model stays in role and doesn't relitigate the decision",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Persona prompts consistently include 'The decision is final' framing and explicitly redirect to failure-mode hunting. This is correct pressure-test framing but uses the wrong output structure (failure modes list vs. convergent for/against format)."
+    },
+    {
+      "claim": "Phase 3 produces a Sunday-night checklist and Week-1 dashboard",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt confirms: 'Phase 3 produces a Sunday-night checklist, a five-metric Week-1 dashboard with explicit tripwires, and three rollback/correction triggers.' This is a synthesis/operational output, not a convergent argument format."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing)...",
+        "reason": "The 'Phase 3' literal match criterion is too easy to satisfy by accident — any plan that runs a 3-phase arc will contain 'Phase 3' as a label. The compound condition (literal match AND must not plan Arc 1) is sound but the literal check alone would give a false PASS. Consider requiring the plan to explicitly say it is STARTING at Phase 3 / Arc 4 rather than running through all phases."
+      },
+      {
+        "reason": "No assertion checks whether the plan explicitly contrasts Arc 4 vs Arc 1 behavior (e.g., says 'skip Phase 1', 'decision already made — no divergent exploration needed'). This is the key discriminating behavior and goes unchecked."
+      }
+    ],
+    "overall": "All three assertions are well-targeted and clearly fail on this without-skill run. The one gap is that the literal 'Phase 3' check could produce a false pass on any multi-phase plan — consider tightening to require the phrase to appear as the selected starting arc, not just as a label inside a table."
+  }
+}

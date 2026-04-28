@@ -1,0 +1,16 @@
+Saved to `plan.md`. Here's the structure:
+
+**7 Personas** (Phase 1 — isolated):
+1. **CFO** — margin math, break-even volume, MFN clause exposure, cash timing
+2. **Revenue Leader** — sales team floor risk, in-flight deal stalling, Monday messaging
+3. **Head of CS** — loyalty backlash by segment, renewal anchoring, proactive outreach script
+4. **Competitive Intel** — which competitor matches first and how fast, second-order entrant risk
+5. **Product Strategist** — price-quality perception, tier coherence, value-reinforcement bundle
+6. **Operator** — 96-hour go/no-go checklist, billing QA, rollback plan
+7. **Red Team** — irreversible failure paths, earliest correction window, soft-launch tripwire
+
+**Phase 2** pairs the sharpest conflicts: CFO ↔ Revenue Leader on volume math vs. deal psychology; CS ↔ Product on which negative reaction hits first; CI ↔ Operator on whether the competitive window closes before you get signal; Red Team fires at everyone.
+
+**Phase 3** produces a Sunday-night checklist, a five-metric Week-1 dashboard with explicit tripwires, and three rollback/correction triggers.
+
+Each persona prompt is written so the model stays in role and doesn't relitigate the decision — it hunts for failure modes, not justifications to cancel.

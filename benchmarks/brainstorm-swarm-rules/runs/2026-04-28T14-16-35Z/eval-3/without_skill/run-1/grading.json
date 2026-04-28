@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context).",
+      "passed": false,
+      "evidence": "Part (a) passes: plan.md designs a custom persona named 'Compliance Architect' for the regulatory/compliance perspective, with explicit 'Why custom?' justification. Part (b) fails: neither 'brief', 'briefing', 'brief vs fork', 'brief the canonical', nor any mention of augmenting the canonical Operator with regulatory context appears anywhere in plan.md. The 'Why custom?' section argues from capability gap ('Neither role has the operational depth...') but does not contrast forking with briefing — the brief-vs-fork decision framework is entirely absent."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter.",
+      "passed": false,
+      "evidence": "The plan selects 8 personas: Security Architect, Regulatory/Legal Counsel, Platform Engineer, Product Manager, CISO, Skeptic/Devil's Advocate, Finance/CFO Proxy, Customer/Enterprise Buyer Proxy. 'Operator' does not appear as a canonical persona name. While PM (Product Manager), Engineer (Platform Engineer), and Skeptic (Skeptic/Devil's Advocate) are present — satisfying the '2 of' clause — the mandatory 'Operator' is absent, so the conjunction fails. Pre-Mortem, Veteran, First-Principles, and Constraint-Setter are also absent."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words).",
+      "passed": false,
+      "evidence": "The Compliance Architect persona uses: Name, Background, Lens, and 'Key questions this persona asks' (6 questions). None of the 5 template elements are present: (a) no voice/tone description with 3+ characteristics; (b) only a 'questions' slot — no 'concerns', 'reframe', or 'veto' slots; (c) no discipline/do-don't section; (d) no output format specification with Markdown headings; (e) no explicit length budget. 0 of the required 3 elements are satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tokens": 166500,
+    "input_tokens": 26,
+    "output_tokens": 3073,
+    "cache_creation_input_tokens": 44775,
+    "cache_read_input_tokens": 118626,
+    "total_cost_usd": 0.24966705
+  },
+  "timing": {
+    "executor_duration_seconds": 82.3,
+    "total_duration_seconds": 82.3
+  },
+  "claims": [
+    {
+      "claim": "8 canonical personas were selected from the 12",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md lists exactly 8 personas: Security Architect, Regulatory/Legal Counsel, Platform Engineer, Product Manager, CISO, Skeptic/Devil's Advocate, Finance/CFO Proxy, Customer/Enterprise Buyer Proxy"
+    },
+    {
+      "claim": "1 custom persona was designed: Compliance Architect",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md contains '## Custom Persona: Compliance Architect' with Background, Lens, and 6 Key questions"
+    },
+    {
+      "claim": "The Compliance Architect is justified because canonical personas lack operational compliance depth",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Why custom?' section states: 'Neither role has the operational depth to evaluate whether a specific regulation actually forces CMK versus recommending encryption at rest generally'"
+    },
+    {
+      "claim": "The custom persona uses the 4-slot template structure",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The persona only has Background/Lens/Key-questions. No voice/tone, concerns, reframe, veto, discipline, output-format, or length-budget elements are present."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas.",
+        "reason": "The without_skill executor selected domain-appropriate security/compliance personas (Security Architect, CISO, Regulatory/Legal Counsel) which are reasonable substitutes for 'Operator' in a technical security decision context. The assertion's reliance on the exact string 'Operator' may be testing the skill's vocabulary rather than the underlying reasoning quality. Consider whether the spirit of the expectation (canonical swarm coverage) is better tested by checking for a 'devil's advocate / challenge' persona, a 'technical feasibility' persona, and a 'business impact' persona — all of which are present — rather than the exact label 'Operator'."
+      },
+      {
+        "reason": "No assertion checks whether the 'Why custom?' reasoning is coherent and discriminating — the executor produced strong justification (capability gap in audit-evidence chain, specific control citations) that went uncaptured. A positive assertion like 'plan.md cites at least one specific regulatory control (PCI-DSS, SOC 2, GDPR, etc.) as motivation for the custom persona' would reward substantive compliance reasoning without being satisfied by a superficial compliance mention."
+      }
+    ],
+    "overall": "The brief-vs-fork and Operator expectations are the primary skill discriminators — the executor (without_skill) produced a well-reasoned plan that partially overlaps with the skill's output but misses the specific swarm vocabulary (Operator canonical name, brief-vs-fork framework, 4-slot persona template). The assertions are effective discriminators for this run."
+  }
+}

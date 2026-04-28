@@ -1,0 +1,9 @@
+Plan saved to `plan.md`. Here's what it covers:
+
+**Personas (6 for Phase 1):** `pm`, `engineer`, `designer`, `skeptic`, `user-advocate`, `pre-mortem-specialist` — the standard Feature design subset. `veteran`, `operator`, `constraint-setter`, and `first-principles-thinker` are held in reserve for Phase 2 depending on what tensions surface.
+
+**Spawning:** Single message per phase with all Task() calls in parallel. Phase 1 is 6 concurrent calls; Phase 2 would be 2-3 focused on the specific tension; Phase 3 would be 3-4 pressure-testing the tentative direction.
+
+**Prompt structure:** All personas in a phase receive the same shared template (topic + context + constraints + open questions + length budget). Phase 2 prompts are persona-specific, naming the exact tension from Phase 1 and asking for defense, concession conditions, and the evidence that would resolve it.
+
+**Arc:** Arc 3 (Full arc) — divergent opening → targeted probing → convergent closing — with check-ins between each phase so the user can stop early if they have enough to decide. Phase 2 and 3 are conditional, not automatic.

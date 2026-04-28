@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided. Plan should explicitly note that Phase 1 divergent is NOT what's needed here.",
+      "passed": true,
+      "evidence": "plan.md opens with '**Arc 4 — Decision pressure-test** (Phase 3 only)' — satisfies both 'Arc 4' and 'Phase 3' literals. Divergent is explicitly rejected: 'Arc 4 is the correct arc: skip divergent exploration, go straight to convergent closing.' Excluded personas section states 'User Advocate — Phase 1 job' and 'Junior / Veteran / First-Principles / Constraint-Setter — useful in Arc 1-2; lower signal in Phase 3 for this topic', making the Phase 1 exclusion explicit."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas. Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset.",
+      "passed": true,
+      "evidence": "4 personas selected: Skeptic, Pre-Mortem Specialist, Operator, and custom CFO — within the 3-5 range and includes Skeptic. The 'Excluded canonicals and why' section lists 9+ excluded personas (PM, Engineer, User Advocate, Optimist, Designer, Junior, Veteran, First-Principles, Constraint-Setter) with explicit rationales like 'Phase 1 job' and 'useful in Arc 1-2; lower signal in Phase 3', clearly implying the Phase 3 subset is intentionally narrower."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping.",
+      "passed": true,
+      "evidence": "All four persona prompts contain all three structural elements. Skeptic, Pre-Mortem, and Operator prompts each enumerate: '1. Strongest argument FOR this price cut (one paragraph)', '2. Strongest argument AGAINST (one paragraph)', '3. The decisive consideration in your view (one sentence).' The CFO persona's contribution format header in the system prompt explicitly lists '### Strongest argument FOR', '### Strongest argument AGAINST', and '### Decisive consideration'. All three required elements are present in each prompt."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Glob": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 514,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 76.111,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 76.111
+  },
+  "claims": [
+    {
+      "claim": "The plan selects Arc 4 (Decision pressure-test) as the appropriate arc",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md header: '**Arc 4 — Decision pressure-test** (Phase 3 only)' — unambiguous."
+    },
+    {
+      "claim": "Each persona receives the standard Phase 3 convergent-closing format: strongest FOR → strongest AGAINST → decisive consideration",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed in full plan.md content: all four persona prompts (Skeptic, Pre-Mortem Specialist, Operator, CFO) contain the three-part structure verbatim."
+    },
+    {
+      "claim": "The plan includes a custom CFO persona not in the canonical set",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Persona 4 is labeled 'Custom: CFO' in the table, with a full custom system prompt written inline."
+    },
+    {
+      "claim": "The plan explicitly excludes Phase 1 divergent personas",
+      "type": "process",
+      "verified": true,
+      "evidence": "'Excluded canonicals and why' section lists User Advocate, Optimist, and six others with rationales referencing Phase 1 / Arc 1-2 inapplicability."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md's prompt design for each persona follows the Phase 3 convergent format...",
+        "reason": "The assertion checks that each persona prompt *asks for* all three structural elements, but does not verify that all four personas' prompts appear in the plan (as opposed to only a subset). A plan that wrote prompts for 2 of 4 personas could technically pass if those 2 prompts have all three elements. Consider adding an assertion that all selected personas have prompts written."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating. The three expectations map cleanly to the brainstorm-swarm Phase 3 rules. The only minor gap is not verifying prompt completeness across all selected personas."
+  }
+}

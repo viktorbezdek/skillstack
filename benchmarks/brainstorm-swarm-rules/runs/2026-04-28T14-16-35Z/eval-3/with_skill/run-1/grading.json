@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context).",
+      "passed": false,
+      "evidence": "Criterion (a) PASSES: plan.md contains '## Custom persona: Compliance Architect' — a custom persona with a regulatory focus. Criterion (b) FAILS: searched plan.md exhaustively for 'brief', 'briefing', 'brief vs fork', 'brief the canonical', and 'augmenting the canonical Operator' — none found. The justification reads: 'The Security Expert voice (closest canonical analog) lives inside Engineer/Operator, but neither carries the regulatory audit and framework-interpretation expertise this question demands.' This notes why canonical personas are insufficient but does not invoke the brief-vs-fork decision framework. Both criteria must pass; (b) is absent."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter.",
+      "passed": true,
+      "evidence": "plan.md persona table contains: 'Operator' (brainstorm-swarm:operator), 'PM' (brainstorm-swarm:pm), 'Engineer' (brainstorm-swarm:engineer), 'Skeptic' (brainstorm-swarm:skeptic), 'Pre-Mortem Specialist' (brainstorm-swarm:pre-mortem-specialist), and 'Constraint-Setter' (brainstorm-swarm:constraint-setter). All 6 are canonical personas. Operator is present plus 5 others from the required list — far exceeds the minimum of 2."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words).",
+      "passed": true,
+      "evidence": "At least 4 of 5 structural elements are present: (a) '## Your voice' section with 5 bullet characteristics (precise, distinguishes regulatory requirement levels, familiar with Big 4 audit testing, skeptical of compliance theater, knows the failure mode) — PRESENT; (b) 4 numbered contribution sections are present but use domain-specific names ('Regulatory reality check', 'Compliance gap analysis', 'Audit implications in practice', 'The forcing function question') rather than the canonical questions/concerns/reframe/veto labels — PARTIAL; (c) '## Discipline' section with DO/DO NOT rules — PRESENT; (d) '## Output format' with fenced markdown block containing structured headings (## Compliance Architect perspective, ### Regulatory reality check, ### Compliance gap analysis, ### Audit implications, ### The forcing function question) — PRESENT; (e) 'Length: under 450 words.' — PRESENT. Elements (a), (c), (d), (e) satisfy the ≥3 threshold clearly."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "total_tokens": 208525,
+    "input_tokens": 28,
+    "output_tokens": 5153,
+    "cache_creation_input_tokens": 59374,
+    "cache_read_input_tokens": 143970,
+    "total_cost_usd": 0.3432225
+  },
+  "timing": {
+    "executor_duration_seconds": 109.142,
+    "total_duration_seconds": 109.142
+  },
+  "claims": [
+    {
+      "claim": "The executor selected Arc 3 (full divergent → probing → convergent arc) for this question",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md opens with 'Arc: Arc 3 — Full arc (divergent → probing → convergent), justified by the decision's high stakes and hard-to-reverse nature.'"
+    },
+    {
+      "claim": "The Compliance Architect custom persona is justified because no canonical persona covers the regulatory gap",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justification explicitly states: 'The canonical 12 don't have a regulatory specialist.' and explains neither Engineer nor Operator carries regulatory audit and framework-interpretation expertise."
+    },
+    {
+      "claim": "Phase 2 targeting is conditioned on specific empirical disagreement between PM and Compliance Architect",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Phase 2 prompt says: 'Trigger: if Phase 1 synthesis surfaces disagreement between the Compliance Architect's regulatory finding and the PM's position.' The plan anticipates PM will cite customer contracts while Compliance Architect will find no regulation mandates CMK."
+    },
+    {
+      "claim": "The brief-vs-fork decision framework was applied when deciding whether to create a custom persona",
+      "type": "process",
+      "verified": false,
+      "evidence": "No instance of 'brief', 'briefing', 'brief vs fork', or 'augmenting the canonical Operator' found in plan.md. The justification reasons from a gap in the canonical 12, not from an explicit fork-vs-brief evaluation."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework...",
+        "reason": "The brief-vs-fork framework is a meaningful discriminator — but the current phrasing is quite strict about specific words ('brief', 'briefing', etc.). A plan that thoughtfully reasons 'the Operator could be given extra context, but that would still miss regulatory depth' satisfies the spirit without using the keyword. Consider relaxing (b) to also accept reasoning that explicitly compares augmenting a canonical persona vs. creating a new one, even without the exact 'brief' terminology. Alternatively, if the skill's custom-personas SKILL.md uses that vocabulary heavily, the current strictness is appropriate and the finding stands."
+      },
+      {
+        "reason": "No assertion checks whether the phase structure is valid (e.g., does Phase 2 correctly target the central tension identified in the plan?). The executor produced a detailed conditional-trigger Phase 2 and a Phase 3 structure — no expectation covers whether this is coherent or appropriate for the topic."
+      }
+    ],
+    "overall": "Two of three assertions are clear and discriminating. The brief-vs-fork assertion is well-motivated but the required vocabulary is narrow enough that a qualitatively correct plan can fail on a word-level check. The failing result here is likely a genuine gap — the executor designed a good persona but didn't invoke the canonical framework terminology."
+  }
+}

@@ -120,6 +120,29 @@ A typical run produces a synthesis document with:
 - The synthesis skill explicitly preserves dissent — the swarm's value is in the disagreement, not just the consensus
 - Custom personas are encouraged when a domain calls for it (the `custom-personas` skill teaches the design discipline)
 
+## Benchmark evidence
+
+Three benchmark rounds (sonnet-4-6 executor + grader, planning evals where the
+plan must use the canonical 12 persona names, the named arc taxonomy, the
+single-message parallel-spawn rule, the Phase 3 FOR/AGAINST prompt format, and
+the brief-vs-fork custom-persona framework):
+
+| Round | Format | Δ pass-rate | Verdict |
+|---|---|---|---|
+| 1 | skill v1.0.0 (only `swarm-protocol` loaded) | +0.00 | ⚪ Indistinguishable — the skill content was buried in `references/`; the executor invented its own persona names ("Visionary, Pragmatist, Synthesizer") and arc labels ("Pre-Mortem Arc / Red-Team Phase") |
+| 2 | skill v1.1.0 (canonical names + Arc taxonomy elevated to top of `swarm-protocol/SKILL.md`) | +0.11 | 🟡 Weak signal — the targeted fix landed: with-skill plans now use `pm`, `engineer`, `pre-mortem-specialist`, etc. literally. Cross-skill assertions (Phase 3 prompt format, custom-persona template) remained unreachable because their content lives in sibling SKILL.md files the single-skill benchmark didn't load |
+| 3 | rules v1.1.0 (all 4 SKILL.md files loaded together) | **+0.78** | 🟢 **Strong signal** — 7 of 9 assertions converted to Signal. Sonnet baseline scored 1/9; with-rules scored 8/9. The plugin's value lands when its skills work together |
+
+Honest reading: **the plugin is multi-skill by design.** The `swarm-protocol`
+skill alone teaches orchestration; `interview-facilitation` teaches the Phase 3
+prompt format; `swarm-synthesis` teaches the artifact structure; `custom-personas`
+teaches the brief-vs-fork framework and 4-slot template. When the slash command
+invokes the workflow, all four skills are in scope — that's the supported
+usage pattern, and that's where the +0.78 lift is real.
+
+Benchmark snapshots are committed under `benchmarks/brainstorm-swarm/` (single-skill
+rounds) and `benchmarks/brainstorm-swarm-rules/` (full-plugin round) for reproduction.
+
 ## Author
 
 Viktor Bezdek — https://github.com/viktorbezdek

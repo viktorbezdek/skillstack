@@ -1,0 +1,42 @@
+{
+  "target": {
+    "type": "skill",
+    "path": "brainstorm-swarm/skills/swarm-protocol",
+    "name": "swarm-protocol"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "feature-design-swarm-plan",
+      "prompt": "Plan how you would run a brainstorm-swarm session on the topic 'should we add offline mode to our mobile project management app?' Don't actually invoke subagents in this sandbox — they aren't available. Just produce a written plan covering: (1) which personas you'd spawn (use the canonical brainstorm-swarm persona names), (2) how you'd spawn them (parallel vs sequential, single message vs multiple), (3) what the prompt to each persona would look like (template structure), (4) what arc/phases you'd run. Save the plan to plan.md in the current working directory. Don't ask follow-up questions.",
+      "expected_output": "A plan.md naming the canonical brainstorm-swarm personas literally, stating the single-message parallel-spawn rule explicitly, referencing the named arc framework, and showing a structured prompt template.",
+      "expectations": [
+        "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names — particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+        "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count — the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+        "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pressure-test-arc-selection",
+      "prompt": "Context: our team has DECIDED to ship a 30% price cut next Monday. The decision is made; we just want a final pressure-test before commit. Plan the brainstorm-swarm session — which personas you'd spawn, what arc/phase this is, and what prompt each persona receives. Don't actually spawn anything; just plan. Save to plan.md in the current working directory. Don't ask follow-up questions.",
+      "expected_output": "A plan.md correctly identifying this as Arc 4 / Phase 3 (decision pressure-test, not divergent opening), picking a tighter subset (3-5 personas), and designing a Phase-3-shaped prompt with FOR / AGAINST / decisive consideration structure.",
+      "expectations": [
+        "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+        "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+        "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "custom-persona-fork-decision",
+      "prompt": "We're brainstorming a fintech compliance question: 'Should we encrypt user financial data at rest with customer-managed keys (CMK) instead of provider-managed?' This requires a regulatory/compliance specialist perspective that the canonical brainstorm-swarm 12 personas don't directly cover. Plan the brainstorm — which canonical personas to use, whether to design a custom persona, and if so, the custom persona's design. Save to plan.md in the current working directory. Don't ask follow-up questions.",
+      "expected_output": "A plan.md that recommends designing a custom Compliance Officer / Privacy Officer / Security Engineer persona with the structured 4-slot template, explains the brief-vs-fork reasoning, and includes the canonical Operator alongside other relevant canonicals.",
+      "expectations": [
+        "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+        "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+        "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure."
+      ]
+    }
+  ]
+}

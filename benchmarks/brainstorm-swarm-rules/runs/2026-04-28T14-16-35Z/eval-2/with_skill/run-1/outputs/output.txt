@@ -1,0 +1,16 @@
+Saved to `plan.md`. Here's the summary:
+
+**Arc 4 — Decision pressure-test** (Phase 3 only). Decision is made → skip divergent opening, go straight to convergent closing.
+
+**4 personas selected:**
+
+| Persona | Rationale |
+|---|---|
+| `brainstorm-swarm:skeptic` | Hardest challenge to the decision itself |
+| `brainstorm-swarm:pre-mortem-specialist` | Specific failure narrative 90 days post-launch |
+| `brainstorm-swarm:operator` | Execution reality: billing, margin, support surge in first 96h |
+| Custom CFO | Financial rigor the canonical set doesn't carry: LTV, CAC, runway math |
+
+Each persona receives the standard Phase 3 convergent-closing format: **strongest FOR → strongest AGAINST → decisive consideration (one sentence)**. The prompts are calibrated so the AGAINST contributions target distinct failure modes (skeptic: decision logic; pre-mortem: causal failure chain; operator: execution gaps; CFO: unit economics).
+
+When you're ready to run it, the spawn block and synthesis handoff instructions are at the bottom of the plan.

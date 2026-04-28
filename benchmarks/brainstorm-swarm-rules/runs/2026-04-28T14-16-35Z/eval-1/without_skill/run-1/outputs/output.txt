@@ -1,0 +1,12 @@
+Plan saved to `plan.md`. Here's the summary:
+
+**Personas (8 of 12):** PM, Engineer, Designer, Researcher, Analyst, Security, Strategist, Devil. Excluded Finance, Marketing, Ops, Customer Success — low marginal signal for this specific question.
+
+**Spawning strategy:**
+- Phase 1: all 8 in **one parallel message** — prevents anchoring
+- Phase 2: Devil (attacks Phase 1 consensus) → PM (synthesizes) — sequential, two calls
+- Phase 3: Strategist (final framing) — single call
+
+**Prompt structure:** every persona gets a shared base context block (app background, team size, user base, decision status) plus a role-specific instruction that forces a concrete output (not "here are considerations") and a word-limited deliverable.
+
+**Arc:** 3 phases, 11 total agent calls, critical path depth of 3. The session succeeds when Phase 3 names a clear verdict, the crux disagreement, and the one signal that would flip the decision. If the output is "it depends," the session failed.

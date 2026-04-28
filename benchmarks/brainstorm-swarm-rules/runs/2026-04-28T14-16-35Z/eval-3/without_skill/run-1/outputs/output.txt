@@ -1,0 +1,11 @@
+Saved to `plan.md`. Here's the summary:
+
+**8 canonical personas selected:** Security Architect, Regulatory/Legal Counsel, Platform Engineer, Product Manager, CISO, Skeptic/Devil's Advocate, Finance/CFO Proxy, Customer/Enterprise Buyer Proxy.
+
+**Excluded from the 12:** UX Designer, Data Scientist, Optimist/Advocate, DevOps/SRE — irrelevant to a key custody decision.
+
+**1 custom persona designed: Compliance Architect**
+
+The gap the canonical set leaves: Legal Counsel knows the law exists; Security knows encryption matters. Neither has the operational depth to distinguish *"regulation requires encryption at rest"* (broad) from *"regulation requires customer-managed key custody"* (narrow and often false). The Compliance Architect reads the actual control text (PCI-DSS Req 3.5, SOC 2 CC6.1, GDPR Art. 17) and maps it to audit evidence, crypto-shredding scope, and CDE scope reduction — the technical compliance layer no canonical persona owns.
+
+**Execution order:** Compliance Architect goes first to establish whether CMK is mandatory or elective — this anchors every other persona's stakes. Skeptic goes third to prevent the compliance and security findings from hardening prematurely into assumptions. Decision matrix at the end triggers a clean recommendation based on whether a hard regulatory forcing function exists.
