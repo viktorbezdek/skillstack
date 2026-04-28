@@ -8,9 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- `scaffold_plugin.py` now bundles `run_eval.py` into every scaffolded plugin's `scripts/` directory so authors can run trigger/output evals immediately without depending on plugin-dev being on PATH
-- README template gains a "Running Evals" section with the offline command
-- Two new scaffold tests: `test_eval_runner_bundled` (byte-equality) and `test_eval_runner_executes_smoke` (subprocess invocation against scaffolded plugin)
+- bump to v1.2.0 — bundle run_eval.py into scaffolded plugins
 
 ## [1.1.1] - 2026-04-18
 

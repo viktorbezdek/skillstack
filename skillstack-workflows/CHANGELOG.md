@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [2.2.1] - 2026-04-27
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ### Fixed
 
 - bump to v2.2.1 — capitalize Not for to NOT for

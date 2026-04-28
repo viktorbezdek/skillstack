@@ -4,10 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.27] - 2026-04-18
+## [1.1.27] - 2026-04-28
 
 ### Changed
 
+- misc cleanup and add .nvmrc
 - update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add NOT clause for feature dev/refactoring, add 3 anti-patterns (one-test-pass, no-failing-test, ignore-env), refine description keywords with test pollution/flaky/E2E
