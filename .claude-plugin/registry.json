@@ -6,9 +6,9 @@
     "url": "https://github.com/viktorbezdek"
   },
   "metadata": {
-    "version": "3.0.0",
+    "version": "3.1.0",
     "schema_version": 2,
-    "last_full_sync": "2026-04-16T06:32:37Z"
+    "last_full_sync": "2026-04-28T14:34:00Z"
   },
   "repositories": [
     {
@@ -16,10 +16,10 @@
       "url": "https://github.com/viktorbezdek/skillstack",
       "added_by": "viktorbezdek",
       "added_date": "2025-01-01",
-      "last_synced_sha": "83775f762698675649f4eb6fab29e36b12d5034c",
-      "last_synced_at": "2026-04-16T06:32:37Z",
+      "last_synced_sha": "edd3b891d0e8cf3b9455c6dc851d8201c1e37c4a",
+      "last_synced_at": "2026-04-28T14:34:00Z",
       "integration_status": "active",
-      "context": "54 battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
+      "context": "56 battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
     }
   ],
   "plugins": [
