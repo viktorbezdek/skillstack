@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"agent-browser open https://ainative.builders/sitemap.xml && agent-browser get text\",\"description\":\"Fetch sitemap.xml from ainative.builders\"}",
-  "error": "Exit code 1\n✓ \n  https://www.ainative.builders/sitemap.xml\nMissing arguments for: get text\nUsage: agent-browser get text <selector>",
-  "timestamp": "2026-04-16T10:48:29.648Z",
-  "retry_count": 1
+  "tool_input_preview": "{\"command\":\"git check-ignore -v /Users/vbezdek/Work/skillstack/technical-copywriting/.claude-plugin/plugin.json 2>&1\",\"description\":\"Why is tc ignored?\"}",
+  "error": "Exit code 1",
+  "timestamp": "2026-04-28T09:25:48.820Z",
+  "retry_count": 2
 }
