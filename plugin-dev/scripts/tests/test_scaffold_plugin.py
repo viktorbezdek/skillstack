@@ -88,6 +88,60 @@ class TestScaffoldGeneration:
         content = (plugin_dir / "README.md").read_text()
         assert "Test-Plugin" in content or "test-plugin" in content.lower()
 
+    def test_eval_runner_bundled(self, tmp_path: Path) -> None:
+        """run_eval.py must ship with every scaffolded plugin so authors can run evals immediately."""
+        plugin_dir = scaffold_to_tmp("with-evals", tmp_path)
+        scaffolded_runner = plugin_dir / "scripts" / "run_eval.py"
+        assert scaffolded_runner.is_file(), "Scaffolded plugin missing scripts/run_eval.py"
+
+        # Bytes must match the source runner exactly.
+        source_runner = SCRIPTS_DIR / "run_eval.py"
+        assert scaffolded_runner.read_bytes() == source_runner.read_bytes()
+
+    def test_eval_runner_executes_smoke(self, tmp_path: Path) -> None:
+        """The bundled run_eval.py must be invokable against the scaffolded plugin (offline smoke)."""
+        plugin_dir = scaffold_to_tmp("evalable", tmp_path, skills=["primary"])
+        # Provide eval files that meet the smoke runner's minimum thresholds
+        # (≥8 positive triggers, ≥5 negative triggers, ≥3 output cases).
+        evals_dir = plugin_dir / "skills" / "primary" / "evals"
+        evals_dir.mkdir(parents=True, exist_ok=True)
+        triggers = [
+            {"query": f"positive query {i}", "should_trigger": True} for i in range(8)
+        ] + [
+            {"query": f"negative query {i}", "should_trigger": False} for i in range(5)
+        ]
+        (evals_dir / "trigger-evals.json").write_text(
+            json.dumps(triggers) + "\n", encoding="utf-8"
+        )
+        outputs = [
+            {"query": f"scenario {i}", "files": [], "expected_behavior": [f"behavior {i}"]}
+            for i in range(3)
+        ]
+        (evals_dir / "evals.json").write_text(
+            json.dumps(outputs) + "\n", encoding="utf-8"
+        )
+
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(plugin_dir / "scripts" / "run_eval.py"),
+                "--plugin-dir",
+                str(plugin_dir),
+                "--skill",
+                "primary",
+                "--offline",
+                "--workspace",
+                str(tmp_path / "eval-workspace"),
+            ],
+            capture_output=True,
+            text=True,
+        )
+        assert result.returncode == 0, (
+            f"Bundled runner failed:\nSTDOUT:{result.stdout}\nSTDERR:{result.stderr}"
+        )
+        # Smoke report should land in the workspace.
+        assert (tmp_path / "eval-workspace" / "skill-primary" / "benchmark.md").is_file()
+
     def test_refuses_to_overwrite_without_force(self, tmp_path: Path) -> None:
         scaffold_to_tmp("test-plugin", tmp_path)
         with pytest.raises(SystemExit) as exc_info:

@@ -502,8 +502,8 @@
     {
       "name": "plugin-dev",
       "source": "./plugin-dev",
-      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
-      "version": "1.1.1",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Scaffolded plugins now ship with run_eval.py bundled so authors can run evals out of the box. Document any plugin by URL or local path with comprehensive README generation.",
+      "version": "1.2.0",
       "category": "development",
       "tags": [
         "plugin-development",
@@ -641,7 +641,7 @@
     {
       "name": "storytelling",
       "source": "./storytelling",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "version": "1.0.1",
       "category": "design",
       "tags": [

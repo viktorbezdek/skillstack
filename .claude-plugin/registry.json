@@ -808,10 +808,10 @@
       "name": "Plugin Dev",
       "type": "skill",
       "category": "development",
-      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Scaffolded plugins now ship with run_eval.py bundled so authors can run evals out of the box. Document any plugin by URL or local path with comprehensive README generation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "plugin-dev",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "tags": [
         "plugin-development",
         "plugin-authoring",
@@ -1019,7 +1019,7 @@
       "name": "Storytelling",
       "type": "skill",
       "category": "design",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "storytelling/skills/storytelling",
       "version": "1.0.1",
@@ -1214,7 +1214,7 @@
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library — 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
+      "description": "The complete SkillStack library \u2014 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [

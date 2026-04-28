@@ -1,6 +1,6 @@
 # Plugin Dev
 
-> **v1.1.1** | Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
+> **v1.2.0** | Build Claude Code plugins that actually work -- from validating the idea to measuring activation rate in production.
 > 8 skills + 4 scripts + 18 references | 109 trigger evals + 24 output evals (133 total)
 
 ## The Problem
@@ -121,7 +121,7 @@ All at `plugin-dev/scripts/`. 48 pytest cases cover all four scripts.
 
 | Script | CLI | What it does |
 |---|---|---|
-| `scaffold_plugin.py` | `--name --skills --hooks --mcp --author` | Generates a plugin skeleton with plugin.json, SKILL.md per skill, optional hooks.json, optional .mcp.json. Runs validator on output. |
+| `scaffold_plugin.py` | `--name --skills --hooks --mcp --author` | Generates a plugin skeleton with plugin.json, SKILL.md per skill, optional hooks.json, optional .mcp.json. Bundles `run_eval.py` into the new plugin's `scripts/` so authors can run evals without external tooling. Runs validator on output. |
 | `validate_plugin.py` | `--plugin-dir PATH [--strict] [--json]` | Structural validation: plugin.json schema, SKILL.md frontmatter, dead references, multi-skill walk. Exit codes: 0=clean, 1=errors, 2=crash, 3=strict warnings. |
 | `run_eval.py` | `--plugin-dir --skill [--mode trigger\|output] [--offline]` | Eval harness with offline smoke mode (structural checks without API key) and live mode for measuring activation rate. |
 | `test_hook.sh` | `SCRIPT_PATH EVENT_JSON --expect-exit N` | Mock-stdin hook tester. Tests hook scripts with canned JSON, asserts exit code, stdout, stderr, and timeout. |
@@ -331,7 +331,7 @@ Set up CI to validate our plugin structure on every PR
 #### scaffold_plugin.py (script)
 
 **CLI:** `python scripts/scaffold_plugin.py --name my-plugin --skills skill-a skill-b --hooks --author "Name"`
-**What it produces:** A complete plugin directory with `plugin.json`, `SKILL.md` per skill, `hooks/hooks.json` (if `--hooks`), `.mcp.json` (if `--mcp`), and eval templates.
+**What it produces:** A complete plugin directory with `plugin.json`, `SKILL.md` per skill, `hooks/hooks.json` (if `--hooks`), `.mcp.json` (if `--mcp`), eval templates, and `scripts/run_eval.py` bundled so the new plugin can run its own offline smoke evals immediately.
 **Typical workflow:** Run once at the start of a new plugin project, then customize the generated files.
 
 #### validate_plugin.py (script)

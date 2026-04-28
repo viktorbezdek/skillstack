@@ -20,9 +20,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+EVAL_RUNNER_NAME = "run_eval.py"
 
 
 # ---------------------------------------------------------------------------
@@ -113,6 +116,19 @@ def _mcp_json(plugin_name: str) -> dict:
     }
 
 
+def _copy_eval_runner(plugin_dir: Path) -> Path:
+    """Copy run_eval.py from this scripts dir into the scaffolded plugin's scripts dir."""
+    source = Path(__file__).parent / EVAL_RUNNER_NAME
+    target = plugin_dir / "scripts" / EVAL_RUNNER_NAME
+    if not source.exists():
+        raise FileNotFoundError(
+            f"Eval runner source not found at {source}. "
+            "scaffold_plugin.py expects to be co-located with run_eval.py."
+        )
+    shutil.copy2(source, target)
+    return target
+
+
 def _readme(plugin_name: str, skills: list[str]) -> str:
     skills_list = "\n".join(f"- `{s}` — [describe what this skill does]" for s in skills)
     return f"""# {plugin_name.replace("-", " ").title()}
@@ -152,6 +168,20 @@ Add the SkillStack marketplace, then install this plugin:
 ```
 Use the {skills[0] if skills else plugin_name} skill to ...
 ```
+
+## Running Evals
+
+This plugin ships with `scripts/run_eval.py` so you can validate your skills
+without depending on an external harness. Offline mode (default) does
+structural checks only and needs no API key:
+
+```bash
+uv run --with anthropic python scripts/run_eval.py \\
+    --plugin-dir . --skill {skills[0] if skills else plugin_name} --offline
+```
+
+For online activation/output evals, set `ANTHROPIC_API_KEY` and drop
+`--offline`.
 
 ## What's Inside
 
@@ -196,6 +226,9 @@ def scaffold(
     (plugin_dir / ".claude-plugin").mkdir(parents=True, exist_ok=True)
     (plugin_dir / "scripts").mkdir(exist_ok=True)
     (plugin_dir / "assets").mkdir(exist_ok=True)
+
+    # Bundle the eval runner so the new plugin can run its own evals out of the box.
+    _copy_eval_runner(plugin_dir)
 
     # plugin.json
     manifest_path = plugin_dir / ".claude-plugin" / "plugin.json"
@@ -329,6 +362,7 @@ Examples:
         print(f"  Hooks:   {', '.join(hooks)}")
     if args.mcp:
         print("  MCP:     .mcp.json stub created")
+    print(f"  Evals:   scripts/{EVAL_RUNNER_NAME} bundled (offline mode runs without API key)")
 
     if not run_validator(plugin_dir):
         return 1
@@ -337,8 +371,14 @@ Examples:
     print(f"  1. Edit {plugin_dir}/.claude-plugin/plugin.json — fill in description")
     print(f"  2. Edit each SKILL.md in {plugin_dir}/skills/ — replace placeholder content")
     print("  3. Add references/ files for progressive disclosure")
+    next_step = 4
     if hooks:
-        print(f"  4. Implement hook scripts referenced in {plugin_dir}/hooks/hooks.json")
+        print(f"  {next_step}. Implement hook scripts referenced in {plugin_dir}/hooks/hooks.json")
+        next_step += 1
+    print(
+        f"  {next_step}. Author trigger-evals.json + evals.json under skills/<skill>/evals/ "
+        f"and run scripts/{EVAL_RUNNER_NAME} (offline by default, no API key required)"
+    )
     return 0
 
 
