@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains at least TWO specific numeric measurements (e.g. '120ms', '3x', '40%', 'P99', or similar) — replacing the abstract adjectives in the original ('significantly', 'much', 'many'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits.",
+      "passed": true,
+      "evidence": "rewrite.md contains three numeric measurements: '60–80%' (latency drop), 'sub-200ms' (response time), and '40ms' (join completion time). All contain actual digits as required."
+    },
+    {
+      "text": "rewrite.md names at least ONE specific concrete entity that didn't appear in the original — examples: a database (Postgres, MySQL), an endpoint (/orders, /search, the checkout API), a system component, a tool, or a measurement context. Generic terms ('queries', 'the system', 'our app', 'users') do NOT count — the assertion requires a proper noun, an endpoint path, or a versioned tool name.",
+      "passed": false,
+      "evidence": "The rewrite contains no proper noun database names, no endpoint paths, and no versioned tool names. The concrete-sounding terms present — 'most-trafficked endpoints', 'join', 'metrics dashboard', 'connection pooling', 'index tuning', 'on-call team' — are all generic phrases, not specific named entities. The assertion requires a proper noun or endpoint path; none are present."
+    },
+    {
+      "text": "The rewrite avoids the AI-prose tell: the literal words 'significantly', 'much faster', 'positive impact', and 'happy with the results' do NOT appear anywhere in rewrite.md (case-insensitive). At least one of those four phrases would survive a baseline rewrite that just polishes; this assertion fails when the rewrite is cosmetic instead of substantive.",
+      "passed": true,
+      "evidence": "None of the four banned phrases ('significantly', 'much faster', 'positive impact', 'happy with the results') appear anywhere in rewrite.md. The text is substantively rewritten with concrete numbers rather than cosmetically polished."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 168,
+    "transcript_chars": 24000
+  },
+  "timing": {
+    "executor_duration_seconds": 14.13,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 14.13
+  },
+  "claims": [
+    {
+      "claim": "Query latency dropped by 60–80% on most-trafficked endpoints",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Stated in rewrite.md; no original data provided to verify against. The claim is internally consistent with the other metrics but cannot be confirmed from available outputs."
+    },
+    {
+      "claim": "The notorious join now completes in 40ms",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Stated in rewrite.md; no benchmark results included in the outputs to validate the 40ms figure."
+    },
+    {
+      "claim": "The original had abstract adjectives ('significantly', 'much', 'many') that were replaced",
+      "type": "process",
+      "verified": false,
+      "evidence": "The executor summary asserts this, but the original paragraph is not present in the outputs directory, so the claim cannot be verified against the source."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "rewrite.md names at least ONE specific concrete entity that didn't appear in the original — examples: a database (Postgres, MySQL), an endpoint (/orders, /search, the checkout API), a system component, a tool, or a measurement context.",
+        "reason": "The original input paragraph is not preserved in the outputs directory, making it impossible to verify that the named entity is genuinely new vs. carried over from the original. Consider saving the input paragraph to the outputs dir so graders can do a proper diff."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite maintains the same topic and factual scope as the original (i.e., didn't hallucinate a migration that wasn't in the source). A rewrite that invents an entirely different story can satisfy all three assertions while being unusable. Adding an assertion like 'rewrite.md is recognizably about the same technical event as the original paragraph' would close this gap."
+      }
+    ],
+    "overall": "Two of three assertions check for the most important qualities (concrete numbers, absence of AI-prose tells). The concrete-entity assertion (E2) is the weakest because the example list is narrow (it biases toward database names and endpoint paths) and the bar — 'proper noun or versioned tool name' — rules out plausible good rewrites that use system-component names like 'the query planner' or 'the connection pool'. Consider broadening the examples or relaxing the criterion to include named architectural components."
+  }
+}

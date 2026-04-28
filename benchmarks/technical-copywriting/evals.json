@@ -1,0 +1,42 @@
+{
+  "target": {
+    "type": "skill",
+    "path": "technical-copywriting/skills/engaging-craft",
+    "name": "engaging-craft"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "humanize-ai-prose",
+      "prompt": "Humanize the following AI-generated paragraph from a technical blog post. Make it sound like a real engineer wrote it — specific, voiced, and free of generic AI vocabulary. Save the humanized version to humanized.md in the current working directory. Don't ask follow-up questions; commit to a rewrite of similar length.\n\nOriginal:\n'In today's rapidly evolving software landscape, performance optimization has emerged as a pivotal concern for engineering teams looking to deliver seamless user experiences. To put it simply, the importance of streamlined database queries cannot be overstated. Generally speaking, teams that leverage modern caching strategies tend to facilitate significantly improved response times. That being said, it is important to note that there are myriad approaches, and the cutting-edge solutions of today may not be the best fit for every use case. From a broader perspective, the key takeaway is that businesses must carefully navigate this complex realm to harness the full potential of their infrastructure.'",
+      "expected_output": "A humanized.md whose rewrite removes all the high-frequency AI words, AI transitions, hedges, and buzzwords from the original — replacing generic claims with specific demonstrations.",
+      "expectations": [
+        "humanized.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate' (figurative), 'leverage' (as a verb), 'navigate' (figurative — i.e. not literal navigation), 'myriad', 'plethora', 'landscape' (figurative), 'paradigm'. The original has 5 of these (pivotal, leverage, navigate, harness, realm, myriad). Baseline rewrites typically retain or substitute 2-3 of these by reflex; the skill teaches removal of all of them.",
+        "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transition phrases: 'In today's', 'In the rapidly evolving', 'In recent years', 'That being said', 'At its core', 'To put it simply', 'A key takeaway is', 'This underscores the importance', 'It's important to note', 'It is important to note', 'From a broader perspective', 'cannot be overstated', 'tends to facilitate'. The original has 5 of these phrases. Baseline rewrites typically reduce but do not zero them out.",
+        "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI buzzwords: 'revolutionize', 'innovative', 'cutting-edge', 'state-of-the-art', 'game-changing', 'transformative', 'seamless integration', 'scalable solution' AND ZERO occurrences of these reflex-hedge phrases: 'Generally speaking', 'Broadly speaking', 'tends to', 'tend to' (when followed by a verb), 'arguably', 'to some extent'. The original has 4+ of these. The full count must be zero — not 'reduced' — for the assertion to pass."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "write-fresh-with-discipline",
+      "prompt": "Write a 200-word opening paragraph for a technical blog post arguing that most teams should write integration tests rather than unit tests for their API code. Audience: engineering managers and tech leads. Make it specific, voiced, and grounded in real engineering experience. Save the paragraph to opener.md in the current working directory. Just the 200-word opener — no headings, no lists, no closing. Don't ask follow-up questions.",
+      "expected_output": "An opener.md that uses concrete language and avoids the AI-prose vocabulary even in fresh generation.",
+      "expectations": [
+        "opener.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate', 'leverage' (verb), 'myriad', 'plethora', 'paradigm', 'ecosystem' (figurative). When writing fresh prose about a technical topic, baseline LLMs commonly reach for at least one of these — 'leverage' and 'pivotal' especially. The skill explicitly teaches their removal.",
+        "opener.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transitions or filler phrases: 'In today's', 'In the modern', 'It's important to note', 'It is important to note', 'That being said', 'At its core', 'To put it simply', 'From a broader perspective', 'Moreover,', 'Furthermore,', 'In essence,'. Baseline tends to use 'Moreover' or 'It's important to note' as a structural connective.",
+        "opener.md contains AT LEAST ONE of: a first-person pronoun ('I', 'we', 'our', 'my', 'I've', 'we've'), OR a specific number with a unit (e.g. '40% fewer', '12 incidents', '6 months', '3 services'), OR a named entity (a specific framework, language, tool by name — pytest, Jest, Postgres, Stripe API, Postman, etc.). Baseline 200-word opinion openers tend to stay third-person abstract; the skill teaches stake and specificity."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "diagnostic-audit-of-ai-prose",
+      "prompt": "Audit the following paragraph for AI-prose tells. Produce a list identifying every AI-prose vocabulary tell (specific words and phrases) and propose concrete plain-English substitutions. Save your audit to audit.md in the current working directory. Be specific — quote the exact words you flag and propose specific replacements. Don't ask follow-up questions.\n\nParagraph to audit:\n'Software development is undergoing a transformative shift, and engineering teams must carefully navigate this rapidly evolving landscape. From a broader perspective, the ability to leverage cutting-edge technologies has become pivotal for organizations seeking to deliver innovative solutions at scale. It's important to note that successful teams typically harness comprehensive testing frameworks to bolster their development workflows. To put it simply, those who fail to refine their approaches risk falling behind in this competitive realm.'",
+      "expected_output": "An audit.md that names specific AI words from the paragraph, categorizes them, and proposes plain-English substitutions.",
+      "expectations": [
+        "audit.md explicitly names AT LEAST 6 of these specific words or phrases from the audited paragraph as AI-prose tells: 'transformative' (or 'transformative shift'), 'navigate' (figurative), 'rapidly evolving landscape' (or 'landscape'), 'From a broader perspective', 'leverage', 'cutting-edge', 'pivotal', 'innovative', 'It's important to note' (or 'It is important to note'), 'harness', 'comprehensive', 'bolster', 'To put it simply', 'refine', 'realm'. The audit must call out at least 6 of these by literal quotation or unambiguous reference (the literal word in the audit.md text, not a paraphrase). Baseline audits tend to produce 2-4 specific callouts; the skill's catalog should produce 6+.",
+        "audit.md uses skill-specific category vocabulary — must contain AT LEAST ONE of these phrases (case-insensitive): 'AI-prose tell', 'AI prose', 'AI vocabulary', 'AI-generated', 'high-frequency AI word', 'AI transition', 'AI buzzword', 'sounds like AI', 'humanize', 'humanization', 'reflex hedge', 'academic filler', 'sniff test', 'reads as generic'. Bare descriptions like 'this is jargon' or 'this is overused' do NOT satisfy. The skill teaches an explicit named diagnostic vocabulary; baseline lacks the named taxonomy.",
+        "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms — substitution pattern is 'X → Y' or 'X → use Y' or 'replace X with Y' or '\"X\" should be Y' (any clear pairing of an AI word/phrase with a specific simpler replacement). Example accepted forms: 'leverage → use', 'pivotal → important', 'harness → take advantage of', 'utilize → use', 'cutting-edge → modern' or 'cut entirely'. Generic advice like 'use simpler language' without proposing specific replacements does NOT count. The skill teaches the specific substitution table; baseline proposes vague rewrite advice."
+      ]
+    }
+  ]
+}

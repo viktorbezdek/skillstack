@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "opener.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate', 'leverage' (verb), 'myriad', 'plethora', 'paradigm', 'ecosystem' (figurative). When writing fresh prose about a technical topic, baseline LLMs commonly reach for at least one of these — 'leverage' and 'pivotal' especially. The skill explicitly teaches their removal.",
+      "passed": true,
+      "evidence": "Full text extracted from transcript (Write tool call, line 18). Verified absence of all 11 words: delve, underscore, pivotal, realm, harness, illuminate, leverage, myriad, plethora, paradigm, ecosystem — none appear in the text."
+    },
+    {
+      "text": "opener.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transitions or filler phrases: 'In today's', 'In the modern', 'It's important to note', 'It is important to note', 'That being said', 'At its core', 'To put it simply', 'From a broader perspective', 'Moreover,', 'Furthermore,', 'In essence,'. Baseline tends to use 'Moreover' or 'It's important to note' as a structural connective.",
+      "passed": true,
+      "evidence": "Full text verified from transcript. None of the 11 filler phrases appear. The text uses concrete narrative connectives ('Then they ship the change', 'Not because', 'Because', 'But most API code') rather than the formulaic transitions listed."
+    },
+    {
+      "text": "opener.md contains AT LEAST ONE of: a first-person pronoun ('I', 'we', 'our', 'my', 'I've', 'we've'), OR a specific number with a unit (e.g. '40% fewer', '12 incidents', '6 months', '3 services'), OR a named entity (a specific framework, language, tool by name — pytest, Jest, Postgres, Stripe API, Postman, etc.). Baseline 200-word opinion openers tend to stay third-person abstract; the skill teaches stake and specificity.",
+      "passed": true,
+      "evidence": "The text contains 'thirty unit tests' — a specific number ('thirty') with a countable noun ('unit tests'), structurally identical to the listed examples '12 incidents' and '3 services'. No first-person pronouns and no specific named tools (ORM is generic), but the number criterion is satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 139,
+    "transcript_chars": 24000
+  },
+  "timing": {
+    "executor_duration_seconds": 17.816,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 17.816
+  },
+  "claims": [
+    {
+      "claim": "The paragraph opens with a concrete failure scenario (the green-test/broken-production gap)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The opener begins: 'Here is a pattern that plays out on engineering teams with uncomfortable regularity: a developer mocks the database... Then they ship the change, and within an hour something is broken in production.' This is a concrete failure scenario."
+    },
+    {
+      "claim": "The paragraph names the mechanism (mock drift)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The text explicitly identifies mock drift: 'the real database returns a slightly different shape than the mock, or the middleware rejects a header the mock accepted without complaint, or the ORM generates a query the mock never had an opinion about.'"
+    },
+    {
+      "claim": "The paragraph closes with the affirmative case for integration tests — grounded rather than prescriptive",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Final sentence: 'Integration tests, run against a real database and a real request stack, test the actual contract: what comes in, what happens, what goes out. That is the contract your users depend on, and it is the only one worth verifying.' Affirmative, grounded, not prescriptive."
+    },
+    {
+      "claim": "Saved to opener.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool result (line 20): 'File created successfully at: /private/tmp/pilot-bench-5isrtilo/without/opener.md'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "opener.md contains AT LEAST ONE of: a first-person pronoun, a specific number with a unit, or a named entity.",
+        "reason": "The assertion passed via 'thirty unit tests', which is a bare count rather than a measurement with stakes ('40% fewer incidents', '3 services went down'). A strong without_skill baseline can satisfy this assertion with any incidental number. The discriminating signal the skill is meant to create — first-person grounding or high-stakes named-system specificity — was not actually demonstrated. Consider tightening: require a first-person pronoun OR a named specific tool/system, not just any number-noun pair."
+      },
+      {
+        "reason": "All three assertions passed for the without_skill run, which means they have low discriminating power for this eval. The baseline model on this prompt already avoids slop words and filler phrases, and happens to include a number. If with_skill also passes, these assertions produce no signal. Consider adding an assertion that checks for something the skill specifically teaches that baseline reliably misses on this prompt type — e.g., first-person stake ('I shipped this', 'we burned two hours') or a specific named system reference."
+      }
+    ],
+    "overall": "All three assertions passed cleanly, but the 100% pass rate on the without_skill condition indicates the assertions may not discriminate between baseline and skill behavior on this particular prompt. The prose quality is genuinely good — concrete, specific, narrative — but that strength is intrinsic to this baseline model's response to a well-framed prompt, not a skill-induced change."
+  }
+}

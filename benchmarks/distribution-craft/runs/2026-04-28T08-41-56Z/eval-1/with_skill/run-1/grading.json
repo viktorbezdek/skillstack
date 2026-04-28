@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "titles.md contains exactly 10 numbered title candidates AND none of them contains any of these anti-pattern phrases (case-insensitive substring match): 'ultimate guide', 'everything you need', 'complete guide', 'complete tutorial', 'mastering', 'is dead', 'will change everything', 'will revolutionize', '101 guide', '101:', 'beyond ', 'the truth about', 'shocking', 'secret of', 'one weird trick', 'mind-blow', 'game-chang'. The skill teaches these as anti-patterns; baseline reaches for at least one of them across 10 candidates by default. Failing condition: even ONE candidate contains any banned phrase.",
+      "passed": true,
+      "evidence": "Transcript line 17-19 shows the Write tool created titles.md with exactly 10 numbered entries. Checked all 10 against every banned phrase (case-insensitive): none present. Titles use concrete technical vocabulary ('Postgres', 'P99 Latency', 'Index') with no clickbait patterns."
+    },
+    {
+      "text": "AT LEAST 6 of the 10 candidates have a word count in the 8-12 word range (inclusive on both ends; words separated by whitespace, hyphenated compounds count as one word, numbers count as words). Candidates of 1-7 words are too vague; candidates of 13+ words read as subtitles. Baseline tends to produce a mix skewed toward shorter (4-7 word) titles or longer SEO-padded ones. The skill explicitly teaches the 8-12 word band.",
+      "passed": false,
+      "evidence": "Whitespace-split word counts (hyphens merged, em-dashes without surrounding spaces not split): (1) 9 ✓, (2) 13 ✗, (3) 14 ✗ [Two-Week=1], (4) 13 ✗ [Low-Traffic=1], (5) 10 ✓, (6) 15 ✗, (7) 12 ✓, (8) 12 ✓ [Two-Week=1], (9) 10 ✓ [Index—Not=1, One—Fixed=1], (10) 15 ✗. Only 5 of 10 titles (1,5,7,8,9) fall in the 8-12 word band. Titles 2, 3, 4, 6, 10 all exceed 12 words with colons introducing subtitle-length phrases."
+    },
+    {
+      "text": "The 10 candidates collectively represent AT LEAST 3 DISTINCT title-formula shapes from the skill's named library — identifiable by these structural patterns: (a) HOW-WE — starts with 'How we' or 'How [team/company] '; (b) WHY-X-IS — starts with 'Why' AND contains a value verb (is, doesn't, won't, can't); (c) THE-X-THAT — starts with 'The' and is followed by a noun phrase ending with 'that' + verb clause; (d) N-LESSONS — starts with a digit/numeral followed by 'lessons', 'things', 'mistakes', 'rules', 'truths' — or 'What [N] [time/events] taught'; (e) ARTIFACT-FORMS — title is mostly a specific number paired with a specific result (e.g. 'P99 latency 480→120ms: a Postgres case study'). The 10 candidates must collectively cover at least 3 of {a, b, c, d, e}; using only 1-2 patterns repeatedly does NOT satisfy this.",
+      "passed": true,
+      "evidence": "Three distinct shapes identified: (a) HOW-WE — Title 2: 'How We Cut P99 Latency from 480ms to 120ms by Deleting an Index' starts with 'How We'. (c) THE-X-THAT — Title 8: 'The Two-Week Hunt That Led Us to Delete One Line of Schema' starts with 'The', noun phrase 'Two-Week Hunt', then 'That Led Us to Delete One Line of Schema' (explicit 'that' + verb clause). (e) ARTIFACT-FORMS — Title 1: 'One Index Removed, 80% Latency Gone: A Postgres Retrospective' (specific percentage + result); Title 6: '480ms to 120ms: What Happened...' (specific before/after numbers as the dominant element). Shapes (b) WHY-X-IS and (d) N-LESSONS are absent."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 40,
+    "transcript_chars": 23945
+  },
+  "timing": {
+    "executor_duration_seconds": 20.33,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 20.33
+  },
+  "claims": [
+    {
+      "claim": "Saved 10 candidates to titles.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript line 17-19 confirms Write tool created the file with exactly 10 numbered entries. Full content visible in tool_use_result."
+    },
+    {
+      "claim": "The titles avoid clickbait and anti-pattern language",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All 10 titles use specific technical vocabulary. No banned phrase found in any candidate."
+    },
+    {
+      "claim": "The titles demonstrate formula variety",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Three formula shapes confirmed (HOW-WE, THE-X-THAT, ARTIFACT-FORMS). However, 5 of 10 titles use the subtitle colon pattern (X: Y) heavily, showing some structural repetition."
+    },
+    {
+      "claim": "Titles are appropriately concise",
+      "type": "quality",
+      "verified": false,
+      "evidence": "5 of 10 titles exceed 12 words due to colon-separated subtitle structures (titles 2, 3, 4, 6, 10 range from 13-15 words). The skill's 8-12 word band is satisfied by only 5 candidates."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "AT LEAST 6 of the 10 candidates have a word count in the 8-12 word range",
+        "reason": "The em-dash handling creates a minor ambiguity: 'Index—Not' and 'One—Fixed' in title 9 have no whitespace, so strict whitespace-split counts them as single tokens. This is edge-case enough that the grader rule ('words separated by whitespace') could be read either way. The spec should clarify whether em-dashes act as word boundaries, or provide a canonical counter example."
+      },
+      {
+        "reason": "No assertion checks that the 10 titles are topically coherent with the provided input (i.e., that they are actually about a Postgres index removal case study). A hallucinated set of 10 perfectly-structured titles about a completely different topic would pass all three assertions. Adding one assertion like 'at least 8 titles contain at least one of: Postgres, index, latency, P99' would close this gap."
+      }
+    ],
+    "overall": "The three assertions are well-calibrated and discriminating. Expectation 1 (anti-pattern ban) correctly fires on baseline behavior. Expectation 2 (word count band) correctly caught that the model over-used colon-subtitle structures producing 13-15 word titles. Expectation 3 (formula shapes) correctly rewarded structural variety. Minor gaps: em-dash boundary ambiguity in E2, and no topicality anchor."
+  }
+}

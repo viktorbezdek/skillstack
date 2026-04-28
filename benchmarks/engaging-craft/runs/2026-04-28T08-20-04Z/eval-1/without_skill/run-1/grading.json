@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+      "passed": true,
+      "evidence": "rewrite.md contains six distinct numeric measurements: '840ms', '120ms', '7x', '22%', 'three queries', '2 seconds'. Full text: 'P99 query latency dropped from 840ms to under 120ms overnight — a 7x improvement that immediately showed up as a 22% reduction in bounce rate on our dashboard pages... three queries still routinely blow past 2 seconds under load.'"
+    },
+    {
+      "text": "rewrite.md names AT LEAST TWO specific named entities — proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+      "passed": false,
+      "evidence": "rewrite.md contains zero qualifying named entities. The text references 'index restructuring', 'connection pool tuning', 'the reporting pipeline', 'dashboard pages', and 'the new stack' — all generic terms explicitly excluded by the assertion. No database product (Postgres/MySQL/Redis), no tool name (pgBouncer/Datadog), no endpoint path (/orders etc.), and no framework or library name appears anywhere in the output."
+    },
+    {
+      "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step — examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count — those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+      "passed": true,
+      "evidence": "'22% reduction in bounce rate on our dashboard pages' is a measured user-behavior outcome with a specific percentage, matching the 'support tickets fell 40%' pattern listed as a qualifying example. It quantifies an observed user behavior change (bounce rate) in a specific context (dashboard pages) rather than using abstract phrasing like 'improved user experience'."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 250,
+    "transcript_chars": 60939
+  },
+  "timing": {
+    "executor_duration_seconds": 21.855,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 21.855
+  },
+  "claims": [
+    {
+      "claim": "The rewrite trades vague superlatives for specific numbers (840ms → 120ms, 7x, 22% bounce rate drop)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed in rewrite.md content: all three numbers appear as stated"
+    },
+    {
+      "claim": "The rewrite names the actual causes of the slowdown",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'index restructuring and connection pool tuning' are named as causes, though these are generic technical terms rather than proper-noun tooling"
+    },
+    {
+      "claim": "The rewrite ends with a concrete next target rather than a generic promise",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'next up is the reporting pipeline, where three queries still routinely blow past 2 seconds under load' — specific scope (reporting pipeline) and measurable condition (2 seconds)"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "rewrite.md names AT LEAST TWO specific named entities...",
+        "reason": "This is the most discriminating assertion in the set and correctly failed here — the without_skill executor produced good numbers but zero proper nouns. Worth noting: the source prompt likely contained no named entities, so the assertion tests whether the executor invents them. Consider whether the eval prompt should seed one named entity (e.g. 'our Aurora cluster') so the assertion tests whether the rewriter picks it up versus whether the executor hallucinates proper nouns from nothing."
+      },
+      {
+        "reason": "Expectation 3 passed but with a mild edge case: '22% reduction in bounce rate' gives a relative percentage but no absolute before/after values (unlike 'dropped from 12% to 4%'). The assertion examples include both relative ('fell 40%') and absolute ('from 71% to 79%') forms, so a relative-only percentage correctly passes — but the eval could be strengthened by requiring the before/after absolute pair to push executors to source or invent baseline data."
+      }
+    ],
+    "overall": "Assertions are well-differentiated: numeric density (1), named-entity specificity (2), and user-side framing (3) each test a distinct skill dimension. The named-entity assertion is the hardest to satisfy without the skill and correctly separates this without_skill run (0 entities) from what a skill-guided rewrite would produce."
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "The opening sentence of hook.md does NOT begin with any of these baseline-default openers (case-insensitive substring match against the first 80 characters): 'in today', 'in this article', 'in this post', 'have you ever', 'we all know', \"it's no secret\", 'imagine you', 'imagine a', 'picture this', 'for years', 'for decades', 'in the world of', 'in the modern', 'as developers', 'as engineers'.",
+      "passed": true,
+      "evidence": "First 80 chars: \"Your engineers aren't waiting on code reviews. They're waiting on CI. That 22-m\". None of the forbidden openers appear. Opens with a direct reframe addressed to the reader's engineers."
+    },
+    {
+      "text": "hook.md contains at least ONE specific number or quantitative claim (a duration like '12 minutes', '8 seconds'; a count like '80 PRs/week'; a percentage; a dollar amount; or a specific year/date) — generic adjectives like 'long' or 'expensive' do NOT count.",
+      "passed": true,
+      "evidence": "Multiple quantitative claims present: '22-minute pipeline', '$400,000-a-year tax', '100 engineers', '15-minute average wait', 'twice a day'. All are specific and concrete."
+    },
+    {
+      "text": "hook.md ends with a clear question, claim, or transition that creates a specific reason to read further — at minimum it must contain one of: a contrarian reversal (the literal words 'but', 'however', 'actually', 'turns out', 'except'), a forward-pointing transition (the literal words 'here\\'s', 'here is', 'this article', 'we\\'ll', 'we will'), or end with a question mark — and the hook must NOT end with a generic summary sentence.",
+      "passed": false,
+      "evidence": "Hook ends with: 'The fixes are rarely exotic. They're a handful of structural decisions made years ago that nobody has had the mandate to revisit. Until now.' None of the required literal words ('but', 'however', 'actually', 'turns out', 'except', 'here\\'s', 'here is', 'this article', 'we\\'ll', 'we will') appear anywhere in the hook, and it does not end with a question mark. 'Until now.' is a punchy close but does not satisfy any of the literal-word criteria specified."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 159,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 20.169,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 20.169
+  },
+  "claims": [
+    {
+      "claim": "The hook runs ~121 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual count of the hook content yields approximately 121 words, consistent with the executor's claim."
+    },
+    {
+      "claim": "Opens with a reframe (the wait isn't reviews, it's CI)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "First two sentences: 'Your engineers aren't waiting on code reviews. They're waiting on CI.' — clear contrarian reframe."
+    },
+    {
+      "claim": "Quantifies the cost in terms EMs care about (dollars and flow state)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'$400,000-a-year tax on your engineering organization' and 'thousands of hours of broken flow state annually' both appear in the hook."
+    },
+    {
+      "claim": "Lands on the implicit promise that there's a fix",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Until now.' closes the hook implying a fix is coming. However, this close lacks any of the literal forward-pointing transition words required by expectation 3."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "hook.md ends with a clear question, claim, or transition that creates a specific reason to read further — at minimum it must contain one of: a contrarian reversal (the literal words 'but', 'however', 'actually', 'turns out', 'except'), a forward-pointing transition (the literal words 'here\\'s', 'here is', 'this article', 'we\\'ll', 'we will'), or end with a question mark — and the hook must NOT end with a generic summary sentence.",
+        "reason": "'Until now.' is a legitimate, effective rhetorical close that creates forward momentum — it is not a generic summary sentence. The literal-word requirement is overly narrow and will fail high-quality hooks that use elliptical or punchy closes. Consider expanding the allowed patterns to include sentence-final fragments that imply continuation (e.g., 'Until now.', 'That changes.', 'Not anymore.'), or softening to semantic evaluation rather than literal-word matching."
+      }
+    ],
+    "overall": "Two strong assertions that are well-calibrated. The third assertion's literal-word list is too restrictive — it fails a hook that is rhetorically effective and genuinely forward-pointing, simply because it uses a punchy fragment ('Until now.') rather than one of the enumerated signal words."
+  }
+}

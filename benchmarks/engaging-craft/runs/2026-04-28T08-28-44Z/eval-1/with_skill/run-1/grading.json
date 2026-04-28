@@ -1,0 +1,59 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. The executor aborted with 'Prompt is too long' (output.txt contains only that string). Timing shows 0 tokens used, confirming the run never executed."
+    },
+    {
+      "text": "rewrite.md names AT LEAST TWO specific named entities — proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. Run failed before any output was generated."
+    },
+    {
+      "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step — examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count — those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. Run failed before any output was generated."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 0,
+    "errors_encountered": 1,
+    "output_chars": 21,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 4.258,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 4.258
+  },
+  "claims": [
+    {
+      "claim": "The run completed successfully",
+      "type": "process",
+      "verified": false,
+      "evidence": "output.txt contains only 'Prompt is too long'; timing shows 0 tokens used; no rewrite.md was created."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Eval prompt exceeds model context limit — the with_skill run includes the full skill text which may push the prompt over the token limit. Consider trimming the eval prompt or the skill body."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The eval prompt is too long to fit in the model context window (evidenced by the 'Prompt is too long' error). This is a benchmark infrastructure issue: the with_skill variant includes the full skill text, which combined with the task prompt exceeds the limit. The eval suite should either trim the injected skill or use a model with a larger context window."
+      }
+    ],
+    "overall": "Run aborted before producing any output. All assertions are vacuously false. The core issue is prompt length, not skill quality — fix the benchmark prompt construction before drawing conclusions from this eval."
+  }
+}

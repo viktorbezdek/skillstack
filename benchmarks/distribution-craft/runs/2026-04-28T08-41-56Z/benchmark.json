@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "distribution-craft",
+    "skill_path": "technical-copywriting/skills/distribution-craft",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-28T08:45:42Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "distribution-craft",
+    "target_path": "technical-copywriting/skills/distribution-craft"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 20.33,
+        "tokens": 111352,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "titles.md contains exactly 10 numbered title candidates AND none of them contains any of these anti-pattern phrases (case-insensitive substring match): 'ultimate guide', 'everything you need', 'complete guide', 'complete tutorial', 'mastering', 'is dead', 'will change everything', 'will revolutionize', '101 guide', '101:', 'beyond ', 'the truth about', 'shocking', 'secret of', 'one weird trick', 'mind-blow', 'game-chang'. The skill teaches these as anti-patterns; baseline reaches for at least one of them across 10 candidates by default. Failing condition: even ONE candidate contains any banned phrase.",
+          "passed": true,
+          "evidence": "Transcript line 17-19 shows the Write tool created titles.md with exactly 10 numbered entries. Checked all 10 against every banned phrase (case-insensitive): none present. Titles use concrete technical vocabulary ('Postgres', 'P99 Latency', 'Index') with no clickbait patterns."
+        },
+        {
+          "text": "AT LEAST 6 of the 10 candidates have a word count in the 8-12 word range (inclusive on both ends; words separated by whitespace, hyphenated compounds count as one word, numbers count as words). Candidates of 1-7 words are too vague; candidates of 13+ words read as subtitles. Baseline tends to produce a mix skewed toward shorter (4-7 word) titles or longer SEO-padded ones. The skill explicitly teaches the 8-12 word band.",
+          "passed": false,
+          "evidence": "Whitespace-split word counts (hyphens merged, em-dashes without surrounding spaces not split): (1) 9 \u2713, (2) 13 \u2717, (3) 14 \u2717 [Two-Week=1], (4) 13 \u2717 [Low-Traffic=1], (5) 10 \u2713, (6) 15 \u2717, (7) 12 \u2713, (8) 12 \u2713 [Two-Week=1], (9) 10 \u2713 [Index\u2014Not=1, One\u2014Fixed=1], (10) 15 \u2717. Only 5 of 10 titles (1,5,7,8,9) fall in the 8-12 word band. Titles 2, 3, 4, 6, 10 all exceed 12 words with colons introducing subtitle-length phrases."
+        },
+        {
+          "text": "The 10 candidates collectively represent AT LEAST 3 DISTINCT title-formula shapes from the skill's named library \u2014 identifiable by these structural patterns: (a) HOW-WE \u2014 starts with 'How we' or 'How [team/company] '; (b) WHY-X-IS \u2014 starts with 'Why' AND contains a value verb (is, doesn't, won't, can't); (c) THE-X-THAT \u2014 starts with 'The' and is followed by a noun phrase ending with 'that' + verb clause; (d) N-LESSONS \u2014 starts with a digit/numeral followed by 'lessons', 'things', 'mistakes', 'rules', 'truths' \u2014 or 'What [N] [time/events] taught'; (e) ARTIFACT-FORMS \u2014 title is mostly a specific number paired with a specific result (e.g. 'P99 latency 480\u2192120ms: a Postgres case study'). The 10 candidates must collectively cover at least 3 of {a, b, c, d, e}; using only 1-2 patterns repeatedly does NOT satisfy this.",
+          "passed": true,
+          "evidence": "Three distinct shapes identified: (a) HOW-WE \u2014 Title 2: 'How We Cut P99 Latency from 480ms to 120ms by Deleting an Index' starts with 'How We'. (c) THE-X-THAT \u2014 Title 8: 'The Two-Week Hunt That Led Us to Delete One Line of Schema' starts with 'The', noun phrase 'Two-Week Hunt', then 'That Led Us to Delete One Line of Schema' (explicit 'that' + verb clause). (e) ARTIFACT-FORMS \u2014 Title 1: 'One Index Removed, 80% Latency Gone: A Postgres Retrospective' (specific percentage + result); Title 6: '480ms to 120ms: What Happened...' (specific before/after numbers as the dominant element). Shapes (b) WHY-X-IS and (d) N-LESSONS are absent."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 46.749,
+        "tokens": 116881,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The Dek section in package.md does NOT repeat the title \u2014 measured by: NO consecutive substring of 5+ words from the title appears in the dek. Specifically, the dek must NOT contain the exact phrase 'VACUUM blocks during long transactions' or 'Why VACUUM blocks' anywhere in the dek body. The skill explicitly teaches 'dek extends, doesn't repeat'; baseline often opens the dek by restating the title. Lowercased substring comparison; punctuation differences ignored.",
+          "passed": true,
+          "evidence": "Dek text: 'VACUUM is designed to reclaim dead rows and keep your tables healthy \u2014 but open a long transaction and it stalls completely. Here's why Postgres can't clean up what an active snapshot might still need to read.' Neither forbidden phrase ('vacuum blocks during long transactions', 'why vacuum blocks') appears. The dek opens with VACUUM's purpose, not a restatement of the title \u2014 it extends the concept rather than repeating it."
+        },
+        {
+          "text": "The Meta description section in package.md has a character count between 140 and 165 characters inclusive (giving slight tolerance around the 150-160 band) AND contains AT LEAST 2 mechanism words connecting concrete deliverables \u2014 mechanism words: 'how', 'why', 'what', 'and', 'plus', 'including', 'because', 'so', '+'. Examples that pass: 'How dead tuples accumulate, why VACUUM stalls, and the alert that catches it'. Examples that fail: 'Learn about Postgres VACUUM' (too short, no mechanism), generic 200+ char marketing prose. Baseline tends to either overflow or write 60-100 char generic descriptions.",
+          "passed": true,
+          "evidence": "Meta description: 'Long-running transactions silently prevent VACUUM from reclaiming dead rows in Postgres. Learn why transaction IDs create a visibility floor and how to fix it.' Character count: 159 (within 140\u2013165 range). Mechanism words found: 'why' ('Learn why transaction IDs\u2026'), 'how' ('and how to fix it'), 'and' \u2014 3 of the required 2."
+        },
+        {
+          "text": "The OG image section in package.md describes a SPECIFIC non-generic visual concept. The description must NOT consist solely of any of these baseline-default placeholder ideas (case-insensitive): 'stock photo', 'a developer at a computer', 'a database server', 'the company logo', 'a generic image', 'a person typing', 'an abstract design'. The description MUST mention AT LEAST ONE of: rendered typography of the title, a specific chart/diagram concept tied to the article (e.g. timeline, transaction-state graph, before/after metric), a code/terminal-output visualization, or a specific contextual photograph (with subject named \u2014 not 'a developer' but 'a postgres terminal output' or 'a chart of dead-tuple growth over time'). The skill teaches that OG images extend the article's promise; generic stock images are explicitly named as anti-patterns.",
+          "passed": true,
+          "evidence": "OG image describes a three-zone technical blueprint diagram: (1) Postgres table icon with growing 'dead tuples' blocks on the left, (2) VACUUM progress bar frozen at 40% with a red 'BLOCKED' badge in center, (3) amber 'open transaction \u00b7 xmin 482901' timeline with padlock on right. Includes a dashed causal arrow, monospace caption ('VACUUM cannot advance past the oldest open transaction's snapshot horizon'), and specific hex colors (#1e1e2e, #336791). No generic placeholder phrases present. Satisfies the 'specific chart/diagram concept' and 'code/terminal-output visualization' criteria."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 45.433,
+        "tokens": 113546,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The three sections in launch.md are structurally distinct, NOT minor variants of the same prose. Specifically: (a) the X/Twitter section's first 60 characters must contain a specific number (digits) OR a contrarian reversal word ('but', 'actually', 'turns out', 'surprisingly', 'not'); (b) the LinkedIn section's first sentence must contain at least one first-person pronoun ('I', 'we', 'our', 'my') OR a specific scene/moment marker (a date, time, or named team event); (c) the Hacker News section must contain BOTH a submission title AND a first-comment subsection. ALL THREE must hold. The skill teaches per-channel framing; baseline tends to copy the same intro across all three.",
+          "passed": true,
+          "evidence": "(a) X first 60 chars: 'We spent 2 weeks hunting a Postgres latency spike. The fix w' \u2014 contains '2' (digit). (b) LinkedIn first sentence: 'Two weeks ago our on-call rotation kept getting paged for the same hot path.' \u2014 contains 'our' (first-person pronoun); also 'Two weeks ago' is a scene/moment marker. (c) HN has '### Submission title' and '### Author comment' subsections, structurally distinct from the other two sections."
+        },
+        {
+          "text": "The LinkedIn section is between 100 and 320 words inclusive AND uses at least 3 paragraph breaks (i.e. at least 4 paragraphs separated by blank lines) AND does NOT contain any of these LinkedIn-cliche phrases (case-insensitive substring match): 'excited to share', 'thrilled to announce', 'honored to', 'humbled to', 'proud to', 'thoughts?', 'what do you think?', 'would love to hear', 'let me know in the comments', 'agree or disagree', 'drop a \ud83d\ude4c'. Baseline LinkedIn posts reach for at least one of these by default; the skill explicitly names them as anti-patterns.",
+          "passed": true,
+          "evidence": "Word count: approximately 218 words (8 paragraphs: 'Two weeks ago\u2026' / 'We did what most teams\u2026' / 'Then a junior engineer\u2026' / 'That index wasn't hurting us\u2026' / 'We removed it\u2026' / 'The lesson isn't\u2026' / 'I wrote up the full\u2026' / 'Link in comments.') \u2014 comfortably within 100\u2013320. 8 paragraphs separated by blank lines satisfies \u22654 paragraphs. No prohibited cliche phrases found in the text."
+        },
+        {
+          "text": "The Hacker News first-comment section adds substantive non-promotional context AND does NOT contain any of these promotional phrases (case-insensitive): 'excited to share', 'we built', 'check it out', 'learn more', 'would love your feedback', 'happy to answer questions about [our product]', 'shameless plug'. The comment must include at least ONE of: a reference to a specific Postgres version or query-planner behavior, a related-work reference (citing another tool/paper/post by name), an explicit acknowledged limitation of the approach, OR an invitation to disagree on a specific named technical point. Generic 'happy to discuss' without a specific point does NOT count. The skill teaches HN first-comments must be substantive context, not promotion.",
+          "passed": true,
+          "evidence": "No prohibited promotional phrases found. The comment contains explicit specific planner behavior: 'stale statistics as an input to a broader cost estimate', 'That threw off the join order the planner chose for a multi-table query on the hot path', and 'EXPLAIN (ANALYZE, BUFFERS) gave us the \"what\" but not the \"why\"' \u2014 all specific named query-planner behaviors satisfying the required element. Also includes 'What I'd do differently' as an acknowledged limitation and the surviving-index organizational backstory as non-promotional context."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 16.594,
+        "tokens": 111249,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "titles.md contains exactly 10 numbered title candidates AND none of them contains any of these anti-pattern phrases (case-insensitive substring match): 'ultimate guide', 'everything you need', 'complete guide', 'complete tutorial', 'mastering', 'is dead', 'will change everything', 'will revolutionize', '101 guide', '101:', 'beyond ', 'the truth about', 'shocking', 'secret of', 'one weird trick', 'mind-blow', 'game-chang'. The skill teaches these as anti-patterns; baseline reaches for at least one of them across 10 candidates by default. Failing condition: even ONE candidate contains any banned phrase.",
+          "passed": true,
+          "evidence": "Transcript line 17 (Write tool call) shows exactly 10 numbered titles written to titles.md. None of the 10 candidates contains any banned phrase: (1) 'One Index Removed, 80% Latency Gone: A Postgres Retrospective', (2) 'The Index We Never Should Have Kept: How We Cut P99 Latency from 480ms to 120ms', (3) 'Deleting Our Way to Speed: A Two-Week Investigation Into Postgres Over-Indexing', (4) 'How a Rarely Used Index Was Costing Us 360ms on Every Request', (5) 'The 100-Queries-Per-Day Index That Quietly Wrecked Our P99', (6) 'Less Is More: Removing One Postgres Index to Achieve an 80% Latency Reduction', (7) 'The Two-Week Hunt That Ended With DROP INDEX: A Backend Team\\'s Retrospective', (8) 'Our Costliest Postgres Mistake Was an Index We Thought Was Helping', (9) '480ms to 120ms: What Two Weeks of Investigation and One Index Drop Taught Our Team', (10) 'When the Fix Is Subtraction: Diagnosing and Resolving a Postgres Index Drag'. Verified no matches for all 17 banned substrings."
+        },
+        {
+          "text": "AT LEAST 6 of the 10 candidates have a word count in the 8-12 word range (inclusive on both ends; words separated by whitespace, hyphenated compounds count as one word, numbers count as words). Candidates of 1-7 words are too vague; candidates of 13+ words read as subtitles. Baseline tends to produce a mix skewed toward shorter (4-7 word) titles or longer SEO-padded ones. The skill explicitly teaches the 8-12 word band.",
+          "passed": true,
+          "evidence": "Word counts per title (hyphenated compounds as one word): (1) 9 words \u2713, (2) 16 words \u2717, (3) 11 words \u2713, (4) 12 words \u2713, (5) 8 words \u2713 ('The/100-Queries-Per-Day/Index/That/Quietly/Wrecked/Our/P99'), (6) 13 words \u2717, (7) 12 words \u2713 ('The/Two-Week/Hunt/That/Ended/With/`DROP/INDEX`:/A/Backend/Team\\'s/Retrospective'), (8) 11 words \u2713, (9) 15 words \u2717, (10) 12 words \u2713. Titles in 8-12 range: 1, 3, 4, 5, 7, 8, 10 = 7 titles. Exceeds the minimum of 6."
+        },
+        {
+          "text": "The 10 candidates collectively represent AT LEAST 3 DISTINCT title-formula shapes from the skill's named library \u2014 identifiable by these structural patterns: (a) HOW-WE \u2014 starts with 'How we' or 'How [team/company] '; (b) WHY-X-IS \u2014 starts with 'Why' AND contains a value verb (is, doesn't, won't, can't); (c) THE-X-THAT \u2014 starts with 'The' and is followed by a noun phrase ending with 'that' + verb clause; (d) N-LESSONS \u2014 starts with a digit/numeral followed by 'lessons', 'things', 'mistakes', 'rules', 'truths' \u2014 or 'What [N] [time/events] taught'; (e) ARTIFACT-FORMS \u2014 title is mostly a specific number paired with a specific result (e.g. 'P99 latency 480\u2192120ms: a Postgres case study'). The 10 candidates must collectively cover at least 3 of {a, b, c, d, e}; using only 1-2 patterns repeatedly does NOT satisfy this.",
+          "passed": true,
+          "evidence": "Three distinct patterns are present: (c) THE-X-THAT \u2014 title 5 'The 100-Queries-Per-Day Index That Quietly Wrecked Our P99' (noun phrase + 'that' + verb clause) and title 7 'The Two-Week Hunt That Ended With DROP INDEX' (same structure); (e) ARTIFACT-FORMS \u2014 title 9 '480ms to 120ms: What Two Weeks...' opens with a specific number paired with a specific result (480ms\u2192120ms reduction); (d) N-LESSONS \u2014 title 9's subtitle clause 'What Two Weeks of Investigation and One Index Drop Taught Our Team' matches the 'What [N] [time/events] taught' sub-variant. Patterns (a) HOW-WE and (b) WHY-X-IS are absent. The three covered patterns {c, d, e} satisfy the minimum of 3. Note: the (d) match relies on title 9's subtitle portion rather than the leading clause, which is borderline but structurally present in the full title text."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 44.966,
+        "tokens": 114734,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The Dek section in package.md does NOT repeat the title \u2014 measured by: NO consecutive substring of 5+ words from the title appears in the dek. Specifically, the dek must NOT contain the exact phrase 'VACUUM blocks during long transactions' or 'Why VACUUM blocks' anywhere in the dek body. The skill explicitly teaches 'dek extends, doesn't repeat'; baseline often opens the dek by restating the title. Lowercased substring comparison; punctuation differences ignored.",
+          "passed": true,
+          "evidence": "Dek text: 'PostgreSQL's VACUUM can't reclaim dead rows while an old transaction holds a snapshot that still needs to see them. Here's the exact xmin horizon mechanism that stalls autovacuum \u2014 and the two levers that fix it.' Title is 'Why VACUUM blocks during long transactions in Postgres'. No 5-word consecutive title substring appears in the dek. Neither 'VACUUM blocks during long transactions' nor 'Why VACUUM blocks' is present. The dek extends the title premise with mechanism-first framing rather than restating it."
+        },
+        {
+          "text": "The Meta description section in package.md has a character count between 140 and 165 characters inclusive (giving slight tolerance around the 150-160 band) AND contains AT LEAST 2 mechanism words connecting concrete deliverables \u2014 mechanism words: 'how', 'why', 'what', 'and', 'plus', 'including', 'because', 'so', '+'. Examples that pass: 'How dead tuples accumulate, why VACUUM stalls, and the alert that catches it'. Examples that fail: 'Learn about Postgres VACUUM' (too short, no mechanism), generic 200+ char marketing prose. Baseline tends to either overflow or write 60-100 char generic descriptions.",
+          "passed": true,
+          "evidence": "Meta description: 'Long-running transactions silently block VACUUM from reclaiming dead rows. Learn the xmin horizon mechanism and how to diagnose and fix autovacuum stalls.' Character count: 154 characters (within 140-165 range). Mechanism words present: 'and' appears twice ('mechanism and how', 'diagnose and fix') and 'how' appears once \u2014 3 mechanism words total, satisfying the \u22652 requirement."
+        },
+        {
+          "text": "The OG image section in package.md describes a SPECIFIC non-generic visual concept. The description must NOT consist solely of any of these baseline-default placeholder ideas (case-insensitive): 'stock photo', 'a developer at a computer', 'a database server', 'the company logo', 'a generic image', 'a person typing', 'an abstract design'. The description MUST mention AT LEAST ONE of: rendered typography of the title, a specific chart/diagram concept tied to the article (e.g. timeline, transaction-state graph, before/after metric), a code/terminal-output visualization, or a specific contextual photograph (with subject named \u2014 not 'a developer' but 'a postgres terminal output' or 'a chart of dead-tuple growth over time'). The skill teaches that OG images extend the article's promise; generic stock images are explicitly named as anti-patterns.",
+          "passed": true,
+          "evidence": "OG image description: 'A dark terminal split into two vertical panels on a deep-charcoal background. The left panel shows the output of `SELECT pid, now() - xact_start AS age, xmin FROM pg_stat_activity` with one row highlighted in amber... The right panel shows an `autovacuum` log excerpt... a simplified heap-page diagram shows dead tuples (rendered as faded gray rows with strikethroughs) accumulating without being reclaimed... Title text \"Why VACUUM waits\" appears in large white monospace at the top.' This is highly specific: contains code/terminal-output visualization (SQL query panel, autovacuum log panel), a specific diagram concept tied to the article (heap-page dead-tuple accumulation diagram, xmin horizon arrow), and rendered title typography. None of the generic placeholder patterns are present."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 47.308,
+        "tokens": 113377,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The three sections in launch.md are structurally distinct, NOT minor variants of the same prose. Specifically: (a) the X/Twitter section's first 60 characters must contain a specific number (digits) OR a contrarian reversal word ('but', 'actually', 'turns out', 'surprisingly', 'not'); (b) the LinkedIn section's first sentence must contain at least one first-person pronoun ('I', 'we', 'our', 'my') OR a specific scene/moment marker (a date, time, or named team event); (c) the Hacker News section must contain BOTH a submission title AND a first-comment subsection. ALL THREE must hold.",
+          "passed": true,
+          "evidence": "(a) X first 60 chars: 'We spent 2 weeks hunting a Postgres latency spike. The culpr' \u2014 contains digit '2'. (b) LinkedIn first sentence: 'Two weeks ago our team was staring at a P99 latency graph that looked like a cliff.' \u2014 contains first-person pronoun 'our'. (c) HN section contains '**Submission title:** Removing a single Postgres index dropped our P99 from 480ms to 120ms' and '**Author first comment:**' as a labeled subsection. All three sub-conditions pass."
+        },
+        {
+          "text": "The LinkedIn section is between 100 and 320 words inclusive AND uses at least 3 paragraph breaks (i.e. at least 4 paragraphs separated by blank lines) AND does NOT contain any of these LinkedIn-cliche phrases (case-insensitive substring match): 'excited to share', 'thrilled to announce', 'honored to', 'humbled to', 'proud to', 'thoughts?', 'what do you think?', 'would love to hear', 'let me know in the comments', 'agree or disagree', 'drop a \ud83d\ude4c'.",
+          "passed": true,
+          "evidence": "LinkedIn section is 197 words (within 100\u2013320 range). Contains 6 paragraphs separated by blank lines (exceeds the \u22654 requirement). None of the 11 cliche phrases found: the section ends with 'Link in the comments.' (not 'let me know in the comments'), uses no hype openers, and has no engagement-bait closers."
+        },
+        {
+          "text": "The Hacker News first-comment section adds substantive non-promotional context AND does NOT contain any of these promotional phrases (case-insensitive): 'excited to share', 'we built', 'check it out', 'learn more', 'would love your feedback', 'happy to answer questions about [our product]', 'shameless plug'. The comment must include at least ONE of: a reference to a specific Postgres version or query-planner behavior, a related-work reference (citing another tool/paper/post by name), an explicit acknowledged limitation of the approach, OR an invitation to disagree on a specific named technical point.",
+          "passed": true,
+          "evidence": "No promotional phrases found. Substantive criteria met on multiple counts: (1) specific Postgres version 'PG14+' referenced with query plan hash splitting; (2) explicit planner behavior described \u2014 nested loop join vs hash join, EXPLAIN (ANALYZE, BUFFERS), pg_stat_user_indexes, pg_stat_statements; (3) acknowledged limitation \u2014 'Why it took two weeks' section explicitly explains 'We kept looking at application-layer causes first' and how aggregated stats masked the plan regression. The comment is structured as four labeled technical sub-points, not a product pitch."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.89,
+        "stddev": 0.1905,
+        "min": 0.67,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 37.504,
+        "stddev": 14.8877,
+        "min": 20.33,
+        "max": 46.749
+      },
+      "tokens": {
+        "mean": 113926.3333,
+        "stddev": 2784.0529,
+        "min": 111352.0,
+        "max": 116881.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 36.2893,
+        "stddev": 17.0968,
+        "min": 16.594,
+        "max": 47.308
+      },
+      "tokens": {
+        "mean": 113120.0,
+        "stddev": 1756.6568,
+        "min": 111249.0,
+        "max": 114734.0
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.11",
+      "time_seconds": "+1.2",
+      "tokens": "+806"
+    }
+  },
+  "notes": []
+}

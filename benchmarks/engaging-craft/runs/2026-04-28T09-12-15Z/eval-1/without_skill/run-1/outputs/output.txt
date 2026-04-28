@@ -1,0 +1,1 @@
+Saved to `humanized.md`. The rewrite swaps the generic framing for concrete specifics — N+1 queries, Redis with a real TTL, p99 latency — and ends with the kind of pushback a real engineer would give rather than a hedge-everything conclusion.

@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md contains an Agitate phase with at least ONE specific quantified cost — a number paired with a unit and an implication. Examples that count: 'engineers spending 6 hours per week on dashboards', '$X per month for tools nobody opens', 'a 3-month onboarding tax'. Pure adjectives ('expensive', 'time-consuming', 'overwhelming') without numbers do NOT count, AND the Agitate phase must mention at least one mechanism for the cost (e.g. 'compounds', 'because', 'leads to', 'on top of', 'pulls engineers from') — not just a one-line cost claim.",
+      "passed": true,
+      "evidence": "Agitate paragraph (¶2) contains: 'a 20-engineer team can spend $40,000–$60,000 annually staring at dashboards that answer questions no one is actually asking.' — number ($40,000–$60,000) + unit (annually) + implication (wasted on unused dashboards). Mechanism is present: 'they consume your team's scarcest resource: attention' and the enumeration 'Someone owns the stack. Someone writes the runbooks. Someone fields the 2 a.m. alert storm' — together these show how the cost materializes, satisfying the mechanism requirement."
+    },
+    {
+      "text": "opening.md uses first-person stake or named-team specificity at least once — the literal words 'I', 'we', 'our', 'I've seen', 'in my experience', or a named company/team — to signal lived authority. A purely third-person detached opening ('many teams find that...', 'the industry has long believed') does NOT satisfy this.",
+      "passed": false,
+      "evidence": "The entire opening uses second-person address ('Your team', 'you're debating', 'you realize') and generic third-person references ('small engineering orgs', 'teams ship slower', 'someone owns the stack'). The words 'I', 'we', 'our', 'I've seen', and 'in my experience' do not appear anywhere. No named company or team is cited. The voice is a detached observer addressing the reader, not an author with personal stake."
+    },
+    {
+      "text": "opening.md AVOIDS dishonest agitation: it must NOT contain ALL CAPS WORDS for emphasis (any word ≥4 characters in all uppercase, excluding obvious acronyms like 'PAS', 'CI', 'CEO', 'OKR', 'SaaS', 'AWS', 'GCP', 'OSS', 'FAANG'), AND it must NOT contain any of these manipulation phrases (case-insensitive): 'shocking', 'you won't believe', 'the truth that', 'experts hate', 'industry secret', 'never recover', 'one weird trick', 'this changes everything'.",
+      "passed": true,
+      "evidence": "No ALL CAPS words ≥4 characters appear in the text — all words are normally cased. None of the banned manipulation phrases appear: 'shocking', 'you won't believe', 'the truth that', 'experts hate', 'industry secret', 'never recover', 'one weird trick', 'this changes everything' are all absent. Note: 'The uncomfortable truth is that' appears but this is 'truth is that' not 'the truth that', so it does not match the banned phrase."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1590,
+    "transcript_chars": 23
+  },
+  "timing": {
+    "executor_duration_seconds": 27.69,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 27.69
+  },
+  "claims": [
+    {
+      "claim": "The output is approximately 290 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states 'Saved to opening.md (~290 words)'. The extracted content is approximately 290 words, consistent with this claim."
+    },
+    {
+      "claim": "The Agitate phase 'quantifies the real cost — money, attention, alert fatigue, false confidence, and slower shipping'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "¶2 covers: money ($40k–$60k annually), attention ('scarcest resource'), alert fatigue ('2 a.m. alert storm'), false confidence ('appearance of operational maturity without the substance'), and slower shipping ('Teams ship slower'). All five items are present."
+    },
+    {
+      "claim": "The opening follows the PAS (Problem-Agitate-Solve) structure",
+      "type": "process",
+      "verified": true,
+      "evidence": "¶1 = Problem (debugging debate instead of fixing the bug). ¶2 = Agitate (cost, attention drain, false maturity). ¶3 = Solve (structured logging + basic metrics + error tracker covers 90% of incidents)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "opening.md uses first-person stake or named-team specificity at least once...",
+        "reason": "This assertion is well-calibrated and correctly catches the missing lived-authority signal. The without_skill run defaulted to a clean second-person voice which is technically competent but lacks the personal credibility marker the assertion checks for. No changes needed — it discriminates as intended."
+      },
+      {
+        "reason": "No assertion checks whether the Solve phase actually resolves the specific cost claimed in Agitate. The $40k–$60k figure is raised in Agitate but the Solve paragraph makes no reference to cost savings or ROI — it argues correctness ('covers 90% of incidents') but not economy. An assertion like 'Solve phase addresses the quantified cost raised in Agitate (e.g., mentions reduced cost, savings, or lower overhead)' would add meaningful signal."
+      }
+    ],
+    "overall": "Assertions are well-targeted. The first-person stake check correctly fails this run. The dishonest-agitation check is thorough and correctly passes. Consider adding a Solve-closes-the-loop assertion to catch openings that raise costs in Agitate but never promise relief."
+  }
+}

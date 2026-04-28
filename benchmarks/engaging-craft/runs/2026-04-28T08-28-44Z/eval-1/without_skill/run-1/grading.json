@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). The only output file contains the single string 'Prompt is too long'."
+    },
+    {
+      "text": "rewrite.md names AT LEAST TWO specific named entities — proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). No named entities of any kind appear in the outputs."
+    },
+    {
+      "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step — examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count — those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+      "passed": false,
+      "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). No user-side content of any kind was generated."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 1,
+    "output_chars": 20,
+    "transcript_chars": 28000
+  },
+  "timing": {
+    "executor_duration_seconds": 4.273,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 4.273
+  },
+  "claims": [
+    {
+      "claim": "The run produced a rewrite.md output",
+      "type": "factual",
+      "verified": false,
+      "evidence": "outputs/ contains only output.txt (content: 'Prompt is too long') and transcript.jsonl. No rewrite.md exists."
+    },
+    {
+      "claim": "The model processed the eval prompt",
+      "type": "process",
+      "verified": false,
+      "evidence": "Transcript line 16 shows the assistant message content is 'Prompt is too long' with error 'invalid_request'. Zero API tokens were consumed (input_tokens=0, output_tokens=0). The prompt was rejected before any inference occurred."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Run aborted due to prompt-too-long error — the eval prompt itself exceeds the model's context limit. This is a harness/configuration issue, not an executor behavior issue. Results are not informative about the skill vs. no-skill comparison."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "This run used claude-haiku-4-5-20251001 and the prompt exceeded its context limit. The benchmark harness injected the full tool list (~300 tools) into the system prompt, making the total context too large for Haiku. Consider using a model with a larger context window, or configure the harness to exclude the bulk tool list injection when running on smaller models. This failure mode produces zero signal on all three assertions."
+      }
+    ],
+    "overall": "All three assertions are unverifiable because the run failed at the API level before any inference. The assertions themselves are well-designed — they require specific, measurable content that would genuinely discriminate between a skill-guided and baseline rewrite. The failure is a harness/model-selection issue."
+  }
+}

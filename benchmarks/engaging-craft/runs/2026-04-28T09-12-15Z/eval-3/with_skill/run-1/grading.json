@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly names AT LEAST 6 of these specific words or phrases from the audited paragraph as AI-prose tells: 'transformative' (or 'transformative shift'), 'navigate' (figurative), 'rapidly evolving landscape' (or 'landscape'), 'From a broader perspective', 'leverage', 'cutting-edge', 'pivotal', 'innovative', 'It's important to note' (or 'It is important to note'), 'harness', 'comprehensive', 'bolster', 'To put it simply', 'refine', 'realm'. The audit must call out at least 6 of these by literal quotation or unambiguous reference (the literal word in the audit.md text, not a paraphrase). Baseline audits tend to produce 2-4 specific callouts; the skill's catalog should produce 6+.",
+      "passed": true,
+      "evidence": "The audit flags all 15 terms from the list by literal quotation in a structured table: #1 'transformative shift', #2 'carefully navigate' (contains 'navigate'), #3 'rapidly evolving landscape', #4 'From a broader perspective', #5 'leverage', #6 'cutting-edge', #7 'pivotal', #8 'innovative solutions' (contains 'innovative'), #10 'It's important to note that', #11 'harness', #12 'comprehensive', #13 'bolster', #14 'refine their approaches' (contains 'refine'), #15 'competitive realm' (contains 'realm'). 'To put it simply' also appears in the summary section. That is 14–15 direct hits, far exceeding the threshold of 6."
+    },
+    {
+      "text": "audit.md uses skill-specific category vocabulary — must contain AT LEAST ONE of these phrases (case-insensitive): 'AI-prose tell', 'AI prose', 'AI vocabulary', 'AI-generated', 'high-frequency AI word', 'AI transition', 'AI buzzword', 'sounds like AI', 'humanize', 'humanization', 'reflex hedge', 'academic filler', 'sniff test', 'reads as generic'. Bare descriptions like 'this is jargon' or 'this is overused' do NOT satisfy. The skill teaches an explicit named diagnostic vocabulary; baseline lacks the named taxonomy.",
+      "passed": true,
+      "evidence": "The file is titled '# AI-Prose Vocabulary Audit' (matching 'AI prose' / 'AI-Prose'), and row #3 in the table explicitly reads 'The single most over-used AI-generated metaphor in tech writing.' — satisfying the 'AI-generated' criterion. The phrase 'AI amplification' also appears in row #1 ('Signature AI amplification'). Multiple named-taxonomy hits are present."
+    },
+    {
+      "text": "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms — substitution pattern is 'X → Y' or 'X → use Y' or 'replace X with Y' or '\"X\" should be Y' (any clear pairing of an AI word/phrase with a specific simpler replacement). Example accepted forms: 'leverage → use', 'pivotal → important', 'harness → take advantage of', 'utilize → use', 'cutting-edge → modern' or 'cut entirely'. Generic advice like 'use simpler language' without proposing specific replacements does NOT count. The skill teaches the specific substitution table; baseline proposes vague rewrite advice.",
+      "passed": true,
+      "evidence": "The audit uses a 'Suggested replacement' column in its table providing concrete mappings for all 15 tells. Concrete pairings include: 'transformative shift' → 'a major change' or 'changing fast'; 'leverage' → 'use'; 'cutting-edge' → 'new' / 'modern'; 'pivotal' → 'essential' / 'critical'; 'harness' → 'use'; 'bolster' → 'improve' / 'speed up' / 'strengthen'; 'competitive realm' → 'industry' / 'market' / 'field'; 'It's important to note that' → delete (state the fact directly); 'carefully navigate' → 'adapt to'. That is at least 9 concrete X→Y pairings, well above the threshold of 4."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 21,
+    "errors_encountered": 1,
+    "output_chars": 30,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 30.57,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 30.57
+  },
+  "claims": [
+    {
+      "claim": "The paragraph contains 15 AI-prose tells (roughly one per clause)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The table lists 15 flagged phrases, all of which are present verbatim in the source paragraph quoted in the audit."
+    },
+    {
+      "claim": "output.txt contains 'Not logged in · Please run /login'",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt reads exactly 'Not logged in · Please run /login' — the claude CLI session was not authenticated when the benchmark ran. The audit.md was written by the Write tool call but the CLI session error is logged as the final output. This did not prevent the audit from being produced (it was written via Write tool before the session error)."
+    },
+    {
+      "claim": "The dominant patterns are redundant intensifiers, filler openers, dramatic verb swaps, and vague metaphors",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The summary section of audit.md groups the 15 tells into exactly these four named pattern categories with examples from the table, confirming the claim."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["output.txt shows 'Not logged in · Please run /login' — CLI session authentication failed. The audit.md was successfully written via Write tool earlier in the run, so the audit content is complete. The auth error is a benchmark harness issue, not a content quality issue."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks whether 'To put it simply' is called out — it appears in the source paragraph and the skill's catalog should flag it. The audit mentions it only in the summary narrative, not in the flagged-tells table. An assertion requiring it to appear in the table (not just the prose) would be more discriminating."
+      },
+      {
+        "assertion": "audit.md uses skill-specific category vocabulary",
+        "reason": "The assertion passes on 'AI-generated' (one word in a descriptive clause) rather than a dedicated category label like 'AI-prose tell' or 'sniff test'. A stronger assertion would require the vocabulary to appear as a structural label (e.g., column header, section heading, or bracketed tag) rather than incidentally in prose."
+      }
+    ],
+    "overall": "Assertions are well-calibrated for discriminating skill vs. baseline. Expectation 1 (6+ named tells) is the strongest signal — a baseline would realistically produce 2-4. Expectation 3 (4+ concrete substitutions in X→Y form) is also highly discriminating. Expectation 2 (named taxonomy vocabulary) is the weakest because a single incidental use of 'AI-generated' satisfies it; tightening to require structural use of the vocabulary would raise the bar."
+  }
+}

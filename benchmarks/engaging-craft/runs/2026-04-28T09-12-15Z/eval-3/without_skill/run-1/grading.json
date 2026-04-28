@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "audit.md explicitly names AT LEAST 6 of these specific words or phrases from the audited paragraph as AI-prose tells: 'transformative' (or 'transformative shift'), 'navigate' (figurative), 'rapidly evolving landscape' (or 'landscape'), 'From a broader perspective', 'leverage', 'cutting-edge', 'pivotal', 'innovative', 'It's important to note' (or 'It is important to note'), 'harness', 'comprehensive', 'bolster', 'To put it simply', 'refine', 'realm'. The audit must call out at least 6 of these by literal quotation or unambiguous reference (the literal word in the audit.md text, not a paraphrase). Baseline audits tend to produce 2-4 specific callouts; the skill's catalog should produce 6+.",
+      "passed": true,
+      "evidence": "The audit flags ALL 15 target phrases as literal quotations in a table: row 1 '\"transformative shift\"', row 2 '\"carefully navigate\"' (figurative use flagged explicitly), row 3 '\"rapidly evolving landscape\"', row 4 '\"From a broader perspective\"', row 5 '\"leverage\"', row 6 '\"cutting-edge\"', row 7 '\"pivotal\"', row 8 '\"innovative solutions at scale\"', row 9 '\"It's important to note that\"', row 10 '\"harness\"', row 11 '\"comprehensive\"', row 12 '\"bolster\"', row 13 '\"To put it simply\"', row 14 '\"refine their approaches\"', row 15 '\"competitive realm\"'. 15/15 target items called out by literal quotation — far exceeds the 6+ threshold. Notably, this baseline (without skill) still exceeds the threshold, meaning expectation 1 does not discriminate between with/without-skill runs."
+    },
+    {
+      "text": "audit.md uses skill-specific category vocabulary — must contain AT LEAST ONE of these phrases (case-insensitive): 'AI-prose tell', 'AI prose', 'AI vocabulary', 'AI-generated', 'high-frequency AI word', 'AI transition', 'AI buzzword', 'sounds like AI', 'humanize', 'humanization', 'reflex hedge', 'academic filler', 'sniff test', 'reads as generic'. Bare descriptions like 'this is jargon' or 'this is overused' do NOT satisfy. The skill teaches an explicit named diagnostic vocabulary; baseline lacks the named taxonomy.",
+      "passed": false,
+      "evidence": "None of the 14 required phrases appear in the audit. The audit title is '# AI-Prose Audit' (contains 'AI-Prose' with a hyphen, not 'AI prose' or 'AI-prose tell'). In the 'Why it's a tell' column the audit uses its own ad-hoc terms: 'AI filler move' (row 2), 'an AI go-to word' (row 7), 'AI-favored elevated synonym' (row 10), and category labels like 'Filler signposts', 'Elevated synonyms', 'Vague intensifiers'. None of these match any required phrase. The skill's named taxonomy (AI-prose tell, reflex hedge, sniff test, humanize, etc.) is entirely absent."
+    },
+    {
+      "text": "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms — substitution pattern is 'X → Y' or 'X → use Y' or 'replace X with Y' or '\"X\" should be Y' (any clear pairing of an AI word/phrase with a specific simpler replacement). Example accepted forms: 'leverage → use', 'pivotal → important', 'harness → take advantage of', 'utilize → use', 'cutting-edge → modern' or 'cut entirely'. Generic advice like 'use simpler language' without proposing specific replacements does NOT count. The skill teaches the specific substitution table; baseline proposes vague rewrite advice.",
+      "passed": true,
+      "evidence": "The audit has a dedicated 'Proposed substitution' column in the table providing explicit replacements for all 15 flagged terms. Each row clearly pairs a flagged phrase with a specific simpler replacement. Examples: 'leverage' → '\"use\" or \"adopt\"'; 'pivotal' → '\"critical\" or \"important\"'; 'harness' → '\"use\" or \"rely on\"'; 'bolster' → '\"improve\" or \"speed up\"'; 'cutting-edge' → '\"new\" or \"modern\"'; 'rapidly evolving landscape' → '\"a fast-moving field\" or \"this field\"'; 'transformative shift' → '\"a major change\"'. The table format qualifies under the expectation's parenthetical 'any clear pairing' clause. 15 pairings provided, far exceeding the 4+ threshold."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 3,
+    "errors_encountered": 1,
+    "output_chars": 3588,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 32.44,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 32.44
+  },
+  "claims": [
+    {
+      "claim": "15 tells in 4 sentences",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The source paragraph has exactly 4 sentences ('Software development is undergoing...', 'From a broader perspective...', 'It's important to note that...', 'To put it simply...'). The audit table has 15 rows. Both counts check out."
+    },
+    {
+      "claim": "roughly one [tell] every 8 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The paragraph is approximately 100 words and has 15 flagged tells, giving ~6.7 words per tell. 'Roughly one every 8 words' is approximately accurate."
+    },
+    {
+      "claim": "The audit identifies four dominant AI-prose patterns: filler signposts, elevated synonyms, vague intensifiers, and landscape/realm clichés",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The Summary section groups all 15 tells into exactly these four named categories, with correct examples cited for each. The categorization is accurate and meaningful."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "audit.md explicitly names AT LEAST 6 of these specific words or phrases...",
+        "reason": "This assertion does NOT discriminate between with/without-skill runs. The baseline (without skill) identified all 15 target phrases — far above the 6+ threshold. If a baseline exceeds the threshold that was supposed to separate 'with skill' behavior, the threshold is too low. Consider requiring 10+ or checking for coverage of the harder/less-obvious terms (e.g., 'realm', 'bolster', 'refine') rather than just any 6 of 15."
+      },
+      {
+        "assertion": "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms...",
+        "reason": "Also does not discriminate here. The baseline produced 15 specific substitutions in a well-structured table, easily clearing the 4+ bar. Consider requiring 8+ substitutions, or requiring that the substitutions appear in 'X → Y' inline format (not just a table column) which is more characteristic of the skill's training output, or verifying substitutions use the skill's specific recommended words (e.g., 'use' for 'leverage', 'important' for 'pivotal')."
+      }
+    ],
+    "overall": "Expectation 2 (skill vocabulary) is the only discriminating assertion for this eval — it correctly fails for the without_skill run. Expectations 1 and 3 both pass at the without_skill baseline level, meaning they add no discriminative value. The eval would be strengthened by raising the thresholds or tightening the criteria for expectations 1 and 3."
+  }
+}

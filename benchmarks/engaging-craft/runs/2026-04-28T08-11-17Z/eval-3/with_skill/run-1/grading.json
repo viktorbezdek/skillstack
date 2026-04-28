@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md contains an Agitate phase with at least ONE specific quantified cost — a number paired with a unit and an implication. Examples that count: 'engineers spending 6 hours per week on dashboards', '$X per month for tools nobody opens', 'a 3-month onboarding tax'. Pure adjectives ('expensive', 'time-consuming', 'overwhelming') without numbers do NOT count, AND the Agitate phase must mention at least one mechanism for the cost (e.g. 'compounds', 'because', 'leads to', 'on top of', 'pulls engineers from') — not just a one-line cost claim.",
+      "passed": false,
+      "evidence": "The only quantified cost with a unit in the piece is '$4,000 a month' — but it appears in the **Problem** section ('you're paying $4,000 a month'), not the Agitate section. The Agitate section contains 'your 12-person team has three services' (team/service size, not a cost) and 'operational theater' (qualitative). No dollar amount, hour count, or time-unit cost paired with a mechanism word (compounds, because, leads to, etc.) appears inside the Agitate phase itself."
+    },
+    {
+      "text": "opening.md uses first-person stake or named-team specificity at least once — the literal words 'I', 'we', 'our', 'I've seen', 'in my experience', or a named company/team — to signal lived authority. A purely third-person detached opening ('many teams find that...', 'the industry has long believed') does NOT satisfy this.",
+      "passed": true,
+      "evidence": "The Agitate section explicitly names 'Stripe or Datadog runs internally' — two specific named companies. The assertion accepts 'a named company/team' as satisfying the criterion. No first-person pronouns (I/we/our) are used; the piece is written in second person ('your on-call engineer', 'you bought'). Satisfaction is on the letter of the criterion (named companies), not the spirit (personal lived authority)."
+    },
+    {
+      "text": "opening.md AVOIDS dishonest agitation: it must NOT contain ALL CAPS WORDS for emphasis (any word ≥4 characters in all uppercase, excluding obvious acronyms like 'PAS', 'CI', 'CEO', 'OKR', 'SaaS', 'AWS', 'GCP', 'OSS', 'FAANG'), AND it must NOT contain any of these manipulation phrases (case-insensitive): 'shocking', 'you won't believe', 'the truth that', 'experts hate', 'industry secret', 'never recover', 'one weird trick', 'this changes everything'.",
+      "passed": true,
+      "evidence": "Full text of opening.md reviewed. No ALL CAPS words ≥4 characters used for emphasis (only standard title/heading capitalization and 'SDKs' which is a 4-letter acronym — excluded by the acronym clause). None of the eight banned manipulation phrases appear anywhere in the text."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 302,
+    "transcript_chars": 24000
+  },
+  "timing": {
+    "executor_duration_seconds": 23.392,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 23.392
+  },
+  "claims": [
+    {
+      "claim": "Word count lands at ~295",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted the three sections: Problem (~95 words), Agitate (~105 words), Solve (~95 words) = ~295 words. Consistent with the stated range."
+    },
+    {
+      "claim": "The Agitate phase 'names the root cause: industry pressure pushing small teams to adopt enterprise-scale tooling'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Agitate section opens: 'The observability industry has done a masterful job convincing you that sophisticated tooling equals engineering maturity. So Series A and Series B companies stretch their infrastructure budgets to mirror what Stripe or Datadog runs internally.' This matches the claim."
+    },
+    {
+      "claim": "Structured logs + basic metrics already in your stack covers 90% of what teams need",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Solve section: 'will cover 90% of what a team your size actually encounters in production.' The claim is present in the text."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "opening.md uses first-person stake or named-team specificity at least once — the literal words 'I', 'we', 'our', 'I've seen', 'in my experience', or a named company/team — to signal lived authority.",
+        "reason": "The assertion passes because 'Stripe or Datadog' are named companies, but they are used as counterexamples ('mirror what Stripe or Datadog runs internally — platforms built to tame fleets of thousands of services') rather than as signals of personal lived authority. An executor could trivially satisfy this by name-dropping any company as a contrast, without conveying any personal credibility. Consider tightening to require first-person language OR a specific claim of personal experience at a named company (e.g., 'I've seen this at [Company]'), not just naming a company as an industry reference."
+      },
+      {
+        "assertion": "opening.md contains an Agitate phase with at least ONE specific quantified cost...",
+        "reason": "The failure here is meaningful and well-caught. The $4,000/month cost landed in the Problem section instead of Agitate. No assertion checks whether any quantified cost with mechanism exists anywhere in the piece (rather than specifically in Agitate). A companion assertion covering cost presence in the Problem section might also be valuable, since the structure places the financial hook there — it's a positive outcome worth verifying explicitly."
+      }
+    ],
+    "overall": "The Agitate-cost assertion (expectation 1) is the strongest and most discriminating of the three — it caught a real structural issue where the quantified cost was placed in the wrong PAS phase. The dishonest-agitation check (expectation 3) is also solid. The named-company assertion (expectation 2) is too permissive: any company name-drop satisfies it, even as a counterexample, which dilutes the 'lived authority' signal the assertion is supposed to verify."
+  }
+}

@@ -1,0 +1,1 @@
+Saved to `hook.md`. The hook runs ~121 words — opens with a reframe (the wait isn't reviews, it's CI), quantifies the cost in terms EMs care about (dollars and flow state), then escalates to the structural argument before landing on the implicit promise that there's a fix.

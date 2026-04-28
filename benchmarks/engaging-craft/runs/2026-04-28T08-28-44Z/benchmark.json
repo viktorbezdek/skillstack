@@ -1,0 +1,254 @@
+{
+  "metadata": {
+    "skill_name": "engaging-craft",
+    "skill_path": "technical-copywriting/skills/engaging-craft",
+    "executor_model": "haiku",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-28T08:30:27Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "engaging-craft",
+    "target_path": "technical-copywriting/skills/engaging-craft"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 4.258,
+        "tokens": 21,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count \u2014 the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. The executor aborted with 'Prompt is too long' (output.txt contains only that string). Timing shows 0 tokens used, confirming the run never executed."
+        },
+        {
+          "text": "rewrite.md names AT LEAST TWO specific named entities \u2014 proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. Run failed before any output was generated."
+        },
+        {
+          "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step \u2014 examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count \u2014 those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. Run failed before any output was generated."
+        }
+      ],
+      "notes": [
+        "Eval prompt exceeds model context limit \u2014 the with_skill run includes the full skill text which may push the prompt over the token limit. Consider trimming the eval prompt or the skill body."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 3.707,
+        "tokens": 18,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION \u2014 first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES \u2014 opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION \u2014 opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT \u2014 opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED \u2014 first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+          "passed": false,
+          "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created. Output file contains only 'Prompt is too long'."
+        },
+        {
+          "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph \u2014 must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min \u00d7 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+          "passed": false,
+          "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created."
+        },
+        {
+          "text": "hook.md respects Sugarman slippery-slide sentence discipline \u2014 must satisfy ALL THREE: (a) the FIRST sentence is \u226425 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is \u22648 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+          "passed": false,
+          "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created."
+        }
+      ],
+      "notes": [
+        "Run failed due to prompt being too long \u2014 the eval prompt (with skill context injected) exceeded the model's context limit. Consider reducing skill content or splitting the eval."
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 3.58,
+        "tokens": 18,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms \u2014 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' \u2014 do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created. Only output.txt contains the single line 'Prompt is too long'."
+        },
+        {
+          "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph \u2014 at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created."
+        },
+        {
+          "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative \u2014 a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created."
+        }
+      ],
+      "notes": [
+        "Run failed due to prompt-too-long on haiku model \u2014 eval may need a smaller system prompt or a larger model for this eval."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 4.273,
+        "tokens": 20,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count \u2014 the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). The only output file contains the single string 'Prompt is too long'."
+        },
+        {
+          "text": "rewrite.md names AT LEAST TWO specific named entities \u2014 proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). No named entities of any kind appear in the outputs."
+        },
+        {
+          "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step \u2014 examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count \u2014 those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+          "passed": false,
+          "evidence": "No rewrite.md was produced. The execution failed immediately with 'Prompt is too long' (HTTP 400). No user-side content of any kind was generated."
+        }
+      ],
+      "notes": [
+        "Run aborted due to prompt-too-long error \u2014 the eval prompt itself exceeds the model's context limit. This is a harness/configuration issue, not an executor behavior issue. Results are not informative about the skill vs. no-skill comparison."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 2.764,
+        "tokens": 20,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION \u2014 first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES \u2014 opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION \u2014 opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT \u2014 opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED \u2014 first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' error (HTTP 400). No hook.md was produced. output.txt contains only the string 'Prompt is too long'. Cannot evaluate hook structure."
+        },
+        {
+          "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph \u2014 must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min \u00d7 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' error. No hook.md was produced. Cannot evaluate quantitative content."
+        },
+        {
+          "text": "hook.md respects Sugarman slippery-slide sentence discipline \u2014 must satisfy ALL THREE: (a) the FIRST sentence is \u226425 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is \u22648 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+          "passed": false,
+          "evidence": "Execution failed with 'Prompt is too long' error. No hook.md was produced. Cannot evaluate sentence discipline."
+        }
+      ],
+      "notes": [
+        "Run failed due to prompt_too_long on claude-haiku-4-5-20251001 model. The benchmark harness should use a model with sufficient context window for this eval prompt, or reduce prompt size."
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 2.329,
+        "tokens": 18,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms \u2014 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' \u2014 do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+          "passed": false,
+          "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). Output file contains only 'Prompt is too long'. Zero tokens were consumed."
+        },
+        {
+          "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph \u2014 at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+          "passed": false,
+          "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). No content was generated."
+        },
+        {
+          "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative \u2014 a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+          "passed": false,
+          "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). No content was generated."
+        }
+      ],
+      "notes": [
+        "Run failed due to 'Prompt is too long' \u2014 the eval prompt itself exceeded the model's context limit. This is a harness/configuration issue, not an executor skill issue. Results are not meaningful for skill comparison."
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 3.8483,
+        "stddev": 0.3604,
+        "min": 3.58,
+        "max": 4.258
+      },
+      "tokens": {
+        "mean": 19.0,
+        "stddev": 1.7321,
+        "min": 18.0,
+        "max": 21.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 3.122,
+        "stddev": 1.0202,
+        "min": 2.329,
+        "max": 4.273
+      },
+      "tokens": {
+        "mean": 19.3333,
+        "stddev": 1.1547,
+        "min": 18.0,
+        "max": 20.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+0.7",
+      "tokens": "-0"
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION — first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES — opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION — opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT — opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED — first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+      "passed": false,
+      "evidence": "Hook opens: 'Your engineers aren't slow. Your CI is.' — this is a reframe but fails all five named patterns. (a) MISCONCEPTION: no literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out') in the first two sentences. (b) IN-MEDIAS-RES: no specific time marker anywhere in the opening 80 words. (c) FAILED-EXPECTATION: no 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'. (d) SURPRISING-FACT: no number paired with 'not X, not Y' comparison pattern. (e) ARTIFACT-LED: no code block, terminal output, or quoted error message in first 50 words. The opening is a pithy reframe, not any of the five typified structures."
+    },
+    {
+      "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph — must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min × 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+      "passed": true,
+      "evidence": "Paragraph 2 contains four quantitative measures: '22 minutes' (wait duration), '50 engineers' (headcount), '3 commits a day' (frequency), '3,300 context switches per week' (aggregate rate). These are at least two genuinely different measures — duration (22 minutes) and headcount (50 engineers) — in the same paragraph. The paragraph reads: 'Every time a developer pushes a commit and waits 22 minutes for a green light, they context-switch... At 50 engineers pushing 3 commits a day, that's 3,300 context switches per week.'"
+    },
+    {
+      "text": "hook.md respects Sugarman slippery-slide sentence discipline — must satisfy ALL THREE: (a) the FIRST sentence is ≤25 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is ≤8 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+      "passed": true,
+      "evidence": "(a) First sentence: 'Your engineers aren't slow.' = 5 words ≤25. ✓ (b) Longest sentence: 'The real problem is structural: test suites that grew without architecture, dependency graphs nobody mapped, and caching strategies copy-pasted from a Stack Overflow answer in 2019.' = ~26 words ≤35. No sentence exceeds 35 words. ✓ (c) Punch sentences ≤8 words: 'Your engineers aren't slow.' (5 words), 'Your CI is.' (3 words), 'That buys six months before the pain returns.' (8 words). Multiple punch pivots present. ✓ All three sub-criteria satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 163,
+    "transcript_chars": 23
+  },
+  "timing": {
+    "executor_duration_seconds": 21.555,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 21.555
+  },
+  "claims": [
+    {
+      "claim": "The hook opens with a sharp reframe (wait time as cognitive cost)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The hook reframes CI wait time as cognitive/productivity cost via context-switching metaphor. The 22-minute wait → context switch → lost mental model chain is present and effective."
+    },
+    {
+      "claim": "The hook quantifies the problem concretely",
+      "type": "quality",
+      "verified": true,
+      "evidence": "22 minutes, 50 engineers, 3 commits/day, 3,300 context switches/week — four specific numbers with different measures provide concrete quantification."
+    },
+    {
+      "claim": "The hook pivots to structural diagnosis",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Third paragraph: 'The real problem is structural: test suites that grew without architecture, dependency graphs nobody mapped, and caching strategies copy-pasted from a Stack Overflow answer in 2019.' — clear pivot to structural diagnosis."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "hook.md commits to AT LEAST ONE of these named hook types...",
+        "reason": "The assertion's five named types don't fully cover a sixth common high-impact pattern: the PARADOX/REFRAME opener ('X isn't the problem, Y is'), which is what the executor actually produced. 'Your engineers aren't slow. Your CI is.' is a structurally distinct and effective hook type not captured by any of the five. The assertion as written will always FAIL this style even if it's demonstrably engaging — consider adding it as type (f), or the benchmark will systematically penalize a strong pattern."
+      },
+      {
+        "reason": "No assertion checks whether the hook achieves a genuine slippery-slide pull — i.e., whether each sentence forces the reader to need the next. The Sugarman metric checks form constraints (word counts) but not the rhetorical outcome (momentum). A hook with three 5-word sentences passing (c) could be completely forgettable. Consider an assertion like: 'Every sentence in the hook ends on an open loop that the next sentence closes or escalates.'"
+      }
+    ],
+    "overall": "The compound-numbers assertion (E2) and the Sugarman sentence-discipline assertion (E3) are well-designed and discriminating — they would catch a generic baseline hook. E1's five-type taxonomy is rigorous but omits the REFRAME/PARADOX pattern that the executor correctly employed. The eval marks the executor down for using a strong hook type that the taxonomy simply didn't enumerate."
+  }
+}

@@ -1,0 +1,5 @@
+Saved to `package.md`. Three items:
+
+- **Dek** (34 words) — frames the contradiction between VACUUM's purpose and its blocker, ends on the key mechanism.
+- **Meta description** (159 chars) — hits "long-running transactions", "VACUUM", "dead rows", "Postgres", and "visibility floor" for keyword coverage.
+- **OG image** — blueprint-style, three-zone layout: bloat accumulating → frozen VACUUM bar with red BLOCKED badge → amber open-transaction timeline with a padlock and causal arrow. Monospace caption anchors the takeaway.

@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION — first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES — opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION — opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT — opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED — first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+      "passed": false,
+      "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created. Output file contains only 'Prompt is too long'."
+    },
+    {
+      "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph — must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min × 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+      "passed": false,
+      "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created."
+    },
+    {
+      "text": "hook.md respects Sugarman slippery-slide sentence discipline — must satisfy ALL THREE: (a) the FIRST sentence is ≤25 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is ≤8 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+      "passed": false,
+      "evidence": "Executor failed with API error 400 'Prompt is too long' before producing any output. No hook.md was created."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 1,
+    "output_chars": 18,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 3.707,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 3.707
+  },
+  "claims": [
+    {
+      "claim": "The executor produced a hook.md file",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Only file in outputs is output.txt containing 'Prompt is too long'. No hook.md present."
+    },
+    {
+      "claim": "The run completed successfully",
+      "type": "process",
+      "verified": false,
+      "evidence": "result.is_error=true, terminal_reason='prompt_too_long', API status 400, 0 output tokens generated."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Run failed due to prompt being too long — the eval prompt (with skill context injected) exceeded the model's context limit. Consider reducing skill content or splitting the eval."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "This run failed because the injected skill prompt exceeded the model's token limit. The eval framework should have a pre-flight check that estimates prompt length before submitting. A failed run produces no signal on any of the three assertions — the eval is effectively blind when prompt injection causes overflows."
+      }
+    ],
+    "overall": "The three assertions are well-constructed and discriminating — each targets a specific, measurable structural property that a generic output would fail. However, this run produced zero signal because the prompt was too long to submit. The skill content injected into the 'with_skill' variant likely caused the overflow; a size guard or skill-content truncation strategy is needed to make 'with_skill' runs reliable."
+  }
+}

@@ -1,0 +1,1 @@
+Saved to `rewrite.md`. The rewrite trades vague superlatives for specific numbers (840ms → 120ms, 7x, 22% bounce rate drop), names the actual causes of the slowdown, and ends with a concrete next target rather than a generic "we'll keep improving."

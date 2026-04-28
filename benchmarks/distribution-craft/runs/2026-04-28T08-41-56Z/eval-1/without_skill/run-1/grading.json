@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "titles.md contains exactly 10 numbered title candidates AND none of them contains any of these anti-pattern phrases (case-insensitive substring match): 'ultimate guide', 'everything you need', 'complete guide', 'complete tutorial', 'mastering', 'is dead', 'will change everything', 'will revolutionize', '101 guide', '101:', 'beyond ', 'the truth about', 'shocking', 'secret of', 'one weird trick', 'mind-blow', 'game-chang'. The skill teaches these as anti-patterns; baseline reaches for at least one of them across 10 candidates by default. Failing condition: even ONE candidate contains any banned phrase.",
+      "passed": true,
+      "evidence": "Transcript line 17 (Write tool call) shows exactly 10 numbered titles written to titles.md. None of the 10 candidates contains any banned phrase: (1) 'One Index Removed, 80% Latency Gone: A Postgres Retrospective', (2) 'The Index We Never Should Have Kept: How We Cut P99 Latency from 480ms to 120ms', (3) 'Deleting Our Way to Speed: A Two-Week Investigation Into Postgres Over-Indexing', (4) 'How a Rarely Used Index Was Costing Us 360ms on Every Request', (5) 'The 100-Queries-Per-Day Index That Quietly Wrecked Our P99', (6) 'Less Is More: Removing One Postgres Index to Achieve an 80% Latency Reduction', (7) 'The Two-Week Hunt That Ended With DROP INDEX: A Backend Team\\'s Retrospective', (8) 'Our Costliest Postgres Mistake Was an Index We Thought Was Helping', (9) '480ms to 120ms: What Two Weeks of Investigation and One Index Drop Taught Our Team', (10) 'When the Fix Is Subtraction: Diagnosing and Resolving a Postgres Index Drag'. Verified no matches for all 17 banned substrings."
+    },
+    {
+      "text": "AT LEAST 6 of the 10 candidates have a word count in the 8-12 word range (inclusive on both ends; words separated by whitespace, hyphenated compounds count as one word, numbers count as words). Candidates of 1-7 words are too vague; candidates of 13+ words read as subtitles. Baseline tends to produce a mix skewed toward shorter (4-7 word) titles or longer SEO-padded ones. The skill explicitly teaches the 8-12 word band.",
+      "passed": true,
+      "evidence": "Word counts per title (hyphenated compounds as one word): (1) 9 words ✓, (2) 16 words ✗, (3) 11 words ✓, (4) 12 words ✓, (5) 8 words ✓ ('The/100-Queries-Per-Day/Index/That/Quietly/Wrecked/Our/P99'), (6) 13 words ✗, (7) 12 words ✓ ('The/Two-Week/Hunt/That/Ended/With/`DROP/INDEX`:/A/Backend/Team\\'s/Retrospective'), (8) 11 words ✓, (9) 15 words ✗, (10) 12 words ✓. Titles in 8-12 range: 1, 3, 4, 5, 7, 8, 10 = 7 titles. Exceeds the minimum of 6."
+    },
+    {
+      "text": "The 10 candidates collectively represent AT LEAST 3 DISTINCT title-formula shapes from the skill's named library — identifiable by these structural patterns: (a) HOW-WE — starts with 'How we' or 'How [team/company] '; (b) WHY-X-IS — starts with 'Why' AND contains a value verb (is, doesn't, won't, can't); (c) THE-X-THAT — starts with 'The' and is followed by a noun phrase ending with 'that' + verb clause; (d) N-LESSONS — starts with a digit/numeral followed by 'lessons', 'things', 'mistakes', 'rules', 'truths' — or 'What [N] [time/events] taught'; (e) ARTIFACT-FORMS — title is mostly a specific number paired with a specific result (e.g. 'P99 latency 480→120ms: a Postgres case study'). The 10 candidates must collectively cover at least 3 of {a, b, c, d, e}; using only 1-2 patterns repeatedly does NOT satisfy this.",
+      "passed": true,
+      "evidence": "Three distinct patterns are present: (c) THE-X-THAT — title 5 'The 100-Queries-Per-Day Index That Quietly Wrecked Our P99' (noun phrase + 'that' + verb clause) and title 7 'The Two-Week Hunt That Ended With DROP INDEX' (same structure); (e) ARTIFACT-FORMS — title 9 '480ms to 120ms: What Two Weeks...' opens with a specific number paired with a specific result (480ms→120ms reduction); (d) N-LESSONS — title 9's subtitle clause 'What Two Weeks of Investigation and One Index Drop Taught Our Team' matches the 'What [N] [time/events] taught' sub-variant. Patterns (a) HOW-WE and (b) WHY-X-IS are absent. The three covered patterns {c, d, e} satisfy the minimum of 3. Note: the (d) match relies on title 9's subtitle portion rather than the leading clause, which is borderline but structurally present in the full title text."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 31,
+    "transcript_chars": 22000
+  },
+  "timing": {
+    "executor_duration_seconds": 16.594,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 16.594
+  },
+  "claims": [
+    {
+      "claim": "Saved 10 candidates to titles.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript tool_result confirms file created at /private/tmp/pilot-bench-kcrlc8eg/without/titles.md with exactly 10 numbered entries visible in the file content."
+    },
+    {
+      "claim": "All titles are relevant to a Postgres index latency case study",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Every title references Postgres performance, indexing, and the 480ms→120ms latency reduction scenario, confirming the titles are topically coherent and contextually grounded."
+    },
+    {
+      "claim": "No anti-pattern phrases appear in any title",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Manual check of all 17 banned substrings against all 10 title strings found zero matches."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "titles.md contains exactly 10 numbered title candidates AND none of them contains any of these anti-pattern phrases",
+        "reason": "This expectation was intended as a discriminator where baseline 'reaches for at least one [banned phrase] by default', but this baseline produced zero banned phrases across 10 candidates — passing cleanly without the skill. The discriminative power is lower than predicted. Consider whether the anti-pattern list should be expanded or whether the expectation should check for positive signals (e.g., presence of specificity markers like latency numbers or team references) rather than just absence of a fixed phrase list."
+      },
+      {
+        "assertion": "The 10 candidates collectively represent AT LEAST 3 DISTINCT title-formula shapes",
+        "reason": "The third formula (d N-LESSONS 'What [N] [time/events] taught') is satisfied only by the subtitle clause of title 9, not by a title that leads with that structure. A tighter assertion would require the named formula to appear as the dominant structural feature of the title (i.e., leading clause), not embedded after a colon. As written, a single title with a compound structure can satisfy both (d) and (e) simultaneously, reducing the discriminative value."
+      },
+      {
+        "reason": "No assertion checks whether titles avoid repetitive structure within the set. 3 of 10 titles start with 'The', creating pattern monotony. An assertion penalizing overuse of a single opening word (e.g., no more than 2 titles sharing the same first word) would better discriminate skill-guided variety from baseline defaults."
+      }
+    ],
+    "overall": "All three expectations pass for this without_skill run, which is a notable finding — the baseline model without the distribution-craft skill still avoided anti-patterns, hit the word-count band, and produced recognizable formula shapes. This suggests the current eval set may not have sufficient discriminative power to separate baseline from skill-guided output. The evals need either harder anti-pattern tests or assertions that check for positive skill-specific signals (e.g., 'at least 1 title uses a first-person plural narrator', 'at least 1 title names a specific measured metric in the title body')."
+  }
+}

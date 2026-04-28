@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "engaging-craft",
+    "skill_path": "technical-copywriting/skills/engaging-craft",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-28T08:23:00Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "engaging-craft",
+    "target_path": "technical-copywriting/skills/engaging-craft"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 13.05,
+        "tokens": 110479,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count \u2014 the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+          "passed": true,
+          "evidence": "The rewrite contains five distinct numeric measurements: '60\u201380%' (latency reduction range), '200ms' (original query time), '40ms' (new query time), '12%' (checkout abandonment drop), and '30%' (estimated remaining headroom). All five are digits-in-context, not qualitative descriptions."
+        },
+        {
+          "text": "rewrite.md names AT LEAST TWO specific named entities \u2014 proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+          "passed": false,
+          "evidence": "The rewrite contains zero proper-noun named entities. The only technical terms present are 'connection pooling' and 'index pruning' \u2014 both of which are explicitly listed in the assertion's exclusion list as generic terms that do NOT count. No database product (Postgres, Redis, etc.), no tool name, no endpoint path, and no framework/library name appears anywhere in the rewrite."
+        },
+        {
+          "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step \u2014 examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count \u2014 those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+          "passed": true,
+          "evidence": "'Checkout abandonment dropped 12% in the first week' is a concrete, measured user-side outcome tied to a specific funnel step (checkout) with a numeric result and timeframe. Additionally 'the loading spinner our users had accepted as normal simply never appears anymore' names a specific observable user behavior change. Neither phrase uses the excluded abstract language ('positive impact', 'user experience', etc.)."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 21.555,
+        "tokens": 110622,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION \u2014 first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES \u2014 opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION \u2014 opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT \u2014 opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED \u2014 first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+          "passed": false,
+          "evidence": "Hook opens: 'Your engineers aren't slow. Your CI is.' \u2014 this is a reframe but fails all five named patterns. (a) MISCONCEPTION: no literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out') in the first two sentences. (b) IN-MEDIAS-RES: no specific time marker anywhere in the opening 80 words. (c) FAILED-EXPECTATION: no 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'. (d) SURPRISING-FACT: no number paired with 'not X, not Y' comparison pattern. (e) ARTIFACT-LED: no code block, terminal output, or quoted error message in first 50 words. The opening is a pithy reframe, not any of the five typified structures."
+        },
+        {
+          "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph \u2014 must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min \u00d7 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+          "passed": true,
+          "evidence": "Paragraph 2 contains four quantitative measures: '22 minutes' (wait duration), '50 engineers' (headcount), '3 commits a day' (frequency), '3,300 context switches per week' (aggregate rate). These are at least two genuinely different measures \u2014 duration (22 minutes) and headcount (50 engineers) \u2014 in the same paragraph. The paragraph reads: 'Every time a developer pushes a commit and waits 22 minutes for a green light, they context-switch... At 50 engineers pushing 3 commits a day, that's 3,300 context switches per week.'"
+        },
+        {
+          "text": "hook.md respects Sugarman slippery-slide sentence discipline \u2014 must satisfy ALL THREE: (a) the FIRST sentence is \u226425 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is \u22648 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+          "passed": true,
+          "evidence": "(a) First sentence: 'Your engineers aren't slow.' = 5 words \u226425. \u2713 (b) Longest sentence: 'The real problem is structural: test suites that grew without architecture, dependency graphs nobody mapped, and caching strategies copy-pasted from a Stack Overflow answer in 2019.' = ~26 words \u226435. No sentence exceeds 35 words. \u2713 (c) Punch sentences \u22648 words: 'Your engineers aren't slow.' (5 words), 'Your CI is.' (3 words), 'That buys six months before the pain returns.' (8 words). Multiple punch pivots present. \u2713 All three sub-criteria satisfied."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 25.269,
+        "tokens": 111704,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms \u2014 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' \u2014 do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+          "passed": true,
+          "evidence": "Agitate section: 'The tooling vendors have done their job well: Datadog, Honeycomb, and their kin have convinced small teams...' \u2014 two distinct named companies (Datadog, Honeycomb) appear in the same sentence."
+        },
+        {
+          "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph \u2014 at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+          "passed": true,
+          "evidence": "Agitate paragraph contains: 'Teams burning 15\u201320% of their engineering payroll on instrumentation overhead...' (number + unit = 15\u201320% of engineering payroll) AND 'every hour spent tuning alert thresholds or fighting cardinality limits is an hour not spent on the product' (mechanism word 'every' in the same paragraph, showing how the cost chains into lost product time)."
+        },
+        {
+          "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative \u2014 a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+          "passed": false,
+          "evidence": "The Solve section reads: 'Structured logging with searchable output, a handful of business-critical metrics, and lightweight error tracking cover over ninety percent of the incidents...' \u2014 all three alternatives are generic categories with no proper-noun tool, library, framework, or named pattern. No Prometheus, Loki, OpenTelemetry, Sentry, or equivalent named entity appears. Compare to the failing examples: 'a simpler stack' maps closely to 'deliberate operational minimalism' and 'structured logging with searchable output' (descriptive, not named). The Solve phase gestures at simplicity without committing to a specific named alternative."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 21.855,
+        "tokens": 103760,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count \u2014 the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+          "passed": true,
+          "evidence": "rewrite.md contains six distinct numeric measurements: '840ms', '120ms', '7x', '22%', 'three queries', '2 seconds'. Full text: 'P99 query latency dropped from 840ms to under 120ms overnight \u2014 a 7x improvement that immediately showed up as a 22% reduction in bounce rate on our dashboard pages... three queries still routinely blow past 2 seconds under load.'"
+        },
+        {
+          "text": "rewrite.md names AT LEAST TWO specific named entities \u2014 proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+          "passed": false,
+          "evidence": "rewrite.md contains zero qualifying named entities. The text references 'index restructuring', 'connection pool tuning', 'the reporting pipeline', 'dashboard pages', and 'the new stack' \u2014 all generic terms explicitly excluded by the assertion. No database product (Postgres/MySQL/Redis), no tool name (pgBouncer/Datadog), no endpoint path (/orders etc.), and no framework or library name appears anywhere in the output."
+        },
+        {
+          "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step \u2014 examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count \u2014 those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+          "passed": true,
+          "evidence": "'22% reduction in bounce rate on our dashboard pages' is a measured user-behavior outcome with a specific percentage, matching the 'support tickets fell 40%' pattern listed as a qualifying example. It quantifies an observed user behavior change (bounce rate) in a specific context (dashboard pages) rather than using abstract phrasing like 'improved user experience'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 19.047,
+        "tokens": 111713,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "hook.md commits to AT LEAST ONE of these named hook types in its opening 80 words, identifiable by structural pattern: (a) MISCONCEPTION \u2014 first 2 sentences contain a stated conventional view followed by a literal reversal word ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'); (b) IN-MEDIAS-RES \u2014 opens with a specific time marker (e.g. '02:47 AM', 'last Tuesday', 'in Q3 2024') AND a specific actor or place in the same or adjacent sentence; (c) FAILED-EXPECTATION \u2014 opens with at least 3 sentences forming a 'we did X / we expected Y / we got Z' pattern (3 short clauses, comma- or period-separated, containing 'expected'/'thought'/'assumed' contrasted with 'instead'/'actually'/'turned out'); (d) SURPRISING-FACT \u2014 opens with a number paired with a 'not X, not Y' explicit comparison pattern; (e) ARTIFACT-LED \u2014 first 50 words contain a literal code block, terminal-output snippet, or specific quoted error message. A generic essay opener about CI in general does NOT satisfy any of these.",
+          "passed": false,
+          "evidence": "Opening two sentences: 'Your engineers aren't waiting for code review. They're waiting for CI.' This creates a contrast effect but uses NO literal reversal word from the required list ('but', 'however', 'actually', 'except', 'the truth is', 'turns out'). (a) MISCONCEPTION fails on this criterion \u2014 the conventional view is implied through negation ('aren't'), not stated then reversed with an explicit word. (b) No specific time marker present. (c) No 3-clause 'we did X / expected Y / got Z' structure. (d) Hook does not open with a number + 'not X, not Y' comparison. (e) No code block or quoted error message in first 50 words. The opener is a clean contrast pivot but does not satisfy any named structural pattern."
+        },
+        {
+          "text": "hook.md contains AT LEAST TWO distinct specific numbers paired in the same paragraph \u2014 must be two genuinely different quantitative measures (e.g. duration + frequency: '12 min \u00d7 80 PRs/week'; cost + timeframe: '$200K/quarter for 18 months'; count + percentage: '47 services with 80% test coverage'). Two instances of the same measure (e.g. two durations '12 minutes' and '15 minutes') count as ONE distinct measure. Baseline hooks typically include one number; the skill explicitly teaches stacking compound concreteness.",
+          "passed": true,
+          "evidence": "First paragraph: 'That 18-minute pipeline isn't a minor inconvenience \u2014 at 200 engineers running three builds a day, it's over 1,800 hours of blocked work every week.' Contains: (1) 18 minutes \u2014 a duration measure; (2) 200 engineers \u2014 a headcount/count measure; (3) three builds/day \u2014 a frequency measure; (4) 1,800 hours \u2014 a volume/aggregate measure. Multiple pairs of distinct quantitative measures appear in the same paragraph, satisfying the requirement of at least two genuinely different measures."
+        },
+        {
+          "text": "hook.md respects Sugarman slippery-slide sentence discipline \u2014 must satisfy ALL THREE: (a) the FIRST sentence is \u226425 words, (b) NO single sentence in the hook exceeds 35 words, (c) at least ONE sentence in the hook is \u22648 words (a punch sentence used as a pivot). Baseline hooks tend to open with a 25-40 word balanced sentence and avoid short-punch sentences.",
+          "passed": true,
+          "evidence": "Sentence word counts: (1) 'Your engineers aren't waiting for code review.' = 7 words [\u226425 \u2713]; (2) 'They're waiting for CI.' = 4 words [punch sentence \u22648 \u2713]; (3) 'That 18-minute pipeline isn't a minor inconvenience \u2014 at 200 engineers running three builds a day, it's over 1,800 hours of blocked work every week.' = ~24 words [\u226435 \u2713]; (4) 'That's a full engineering team doing nothing but watching progress bars.' = 11 words; (5) 'The frustrating part: most of that time isn't doing anything useful.' = 11 words; (6) 'It's re-running tests that already passed, downloading dependencies that haven't changed, and serializing jobs that could run in parallel.' = 19 words; (7) 'The root causes aren't mysterious \u2014 they're structural, and they compound as your team scales.' = 14 words; (8) 'What felt acceptable at 30 engineers becomes a productivity tax at 150.' = 12 words; (9) 'This post covers the patterns that slow down CI at growth-stage companies and the fixes that actually move the number \u2014 without a platform rewrite.' = ~24 words. All three Sugarman criteria satisfied: (a) first sentence = 7 words \u226425; (b) no sentence exceeds 35 words; (c) 'They're waiting for CI.' = 4 words satisfies \u22648 punch sentence."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 25.826,
+        "tokens": 111268,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms \u2014 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' \u2014 do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+          "passed": true,
+          "evidence": "The PROBLEM section explicitly names four distinct products: 'Datadog. Honeycomb. New Relic. Grafana Cloud.' All four are real observability companies/products, satisfying the minimum of two distinct named entities."
+        },
+        {
+          "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph \u2014 at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+          "passed": true,
+          "evidence": "The AGITATE paragraph contains: 'The average Datadog contract for a 15-engineer team runs $3,000\u2013$6,000 per month. That's $36,000\u2013$72,000 per year \u2014 enough to fund half a senior hire.' This has numbers ($3,000\u2013$6,000) with unit (month/year) and the explicit mechanism word 'per' (listed in the mechanism word set) in the same paragraph, showing how the monthly cost compounds to an annual figure."
+        },
+        {
+          "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative \u2014 a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+          "passed": false,
+          "evidence": "The SOLVE section reads: 'Structured JSON logging, a single time-series metrics endpoint, and one error-tracking integration \u2014 tools you can wire up in a day and maintain in hours per quarter \u2014 cover nearly every incident your team will face before you hit 50 engineers.' No specific tool, library, or product is named: not Prometheus, not Loki, not Sentry, not OpenTelemetry. 'Structured JSON logging' describes a technique/approach rather than naming a concrete product or framework. 'Time-series metrics endpoint' and 'error-tracking integration' are similarly generic. The solve gestures at the category of solution without committing to a named implementation."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.67,
+        "stddev": 0.0,
+        "min": 0.67,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 19.958,
+        "stddev": 6.2641,
+        "min": 13.05,
+        "max": 25.269
+      },
+      "tokens": {
+        "mean": 110935.0,
+        "stddev": 669.8007,
+        "min": 110479.0,
+        "max": 111704.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.67,
+        "stddev": 0.0,
+        "min": 0.67,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 22.2427,
+        "stddev": 3.4061,
+        "min": 19.047,
+        "max": 25.826
+      },
+      "tokens": {
+        "mean": 108913.6667,
+        "stddev": 4468.7489,
+        "min": 103760.0,
+        "max": 111713.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-2.3",
+      "tokens": "+2021"
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,7 @@
+Saved to `launch.md`. Here's what each post does:
+
+**X** — leads with the two-week/one-index contrast, lands on the mechanism (planner pessimization), not just the number. Under 280 chars.
+
+**LinkedIn** — opens on the investigation experience (relatable to any engineer), explains the root cause without jargon, ends with a clear CTA. ~200 words.
+
+**HN** — title is factual and specific (HN readers reward concrete numbers over headlines). The author comment does the work that performs well there: explains *why* the index survived (`pg_stat_user_indexes` signal), the planner mechanics (`EXPLAIN (ANALYZE, BUFFERS)`, nested loop vs hash join), why the two-week timeline was defensible (plan regression hidden in aggregated stats), and actionable takeaways (`auto_explain`, scan-count monitoring). That's the kind of comment that earns upvotes and follow-on questions.

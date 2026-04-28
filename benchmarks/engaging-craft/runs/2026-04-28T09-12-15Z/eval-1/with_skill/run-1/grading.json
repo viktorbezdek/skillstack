@@ -1,0 +1,76 @@
+{
+  "expectations": [
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate' (figurative), 'leverage' (as a verb), 'navigate' (figurative), 'myriad', 'plethora', 'landscape' (figurative), 'paradigm'.",
+      "passed": true,
+      "evidence": "Checked all 12 words (whole-word, case-insensitive) against the written content: 'Database performance problems usually aren't mysterious — they're slow queries running without indexes, or the same data fetched on every request when it could be cached once...' Zero matches found for: delve, underscore, pivotal, realm, harness, illuminate, leverage, navigate, myriad, plethora, landscape, paradigm."
+    },
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transition phrases: 'In today's', 'In the rapidly evolving', 'In recent years', 'That being said', 'At its core', 'To put it simply', 'A key takeaway is', 'This underscores the importance', 'It's important to note', 'It is important to note', 'From a broader perspective', 'cannot be overstated', 'tends to facilitate'.",
+      "passed": true,
+      "evidence": "Checked all 13 transition phrases (substring, case-insensitive) against the output. Zero matches found. The rewrite uses direct, concrete prose with no filler transitions."
+    },
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI buzzwords: 'revolutionize', 'innovative', 'cutting-edge', 'state-of-the-art', 'game-changing', 'transformative', 'seamless integration', 'scalable solution' AND ZERO occurrences of these reflex-hedge phrases: 'Generally speaking', 'Broadly speaking', 'tends to', 'tend to' (when followed by a verb), 'arguably', 'to some extent'.",
+      "passed": true,
+      "evidence": "Checked all 8 buzzwords and 5 hedge phrases (plus 'tend to + verb' pattern). Zero matches found. The output avoids all hedging and marketing language entirely."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 500,
+    "transcript_chars": 23000
+  },
+  "timing": {
+    "executor_duration_seconds": 15.186,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 15.186
+  },
+  "claims": [
+    {
+      "claim": "The rewrite is direct, concrete, and free of AI filler",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output uses specific technical language: 'slow queries running without indexes', 'Redis layer or a rewritten query', 'read-heavy SaaS app with strict latency budgets', 'write-heavy pipeline that can tolerate a few seconds of lag'. No abstract filler."
+    },
+    {
+      "claim": "The executor used the engaging-craft skill",
+      "type": "process",
+      "verified": true,
+      "evidence": "The skill 'engaging-craft' appears in the slash_commands list in the init record. The thinking block in the transcript shows the executor explicitly identified and removed all the banned phrases from the original before writing."
+    },
+    {
+      "claim": "The rewrite preserves the original's meaning (database performance optimization)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output covers the same topics: profiling first, choosing between caching and query optimization, acknowledging different workload profiles (read-heavy vs write-heavy), and the anti-pattern of premature optimization."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions are purely negative (count must be zero). There is no assertion verifying the output is a genuine humanized rewrite rather than an empty file or a one-word stub. A minimal positive check — e.g., 'humanized.md is at least 80 words and retains the topic of database performance' — would prevent a trivially empty file from scoring 3/3."
+      },
+      {
+        "reason": "No assertion checks that the output is substantively different from the original (i.e., that actual rewriting occurred rather than just deletion of the offending phrases). An assertion like 'humanized.md shares fewer than 40% of content tokens with the original' would discriminate between a real rewrite and a find-replace patch."
+      }
+    ],
+    "overall": "The skill-with condition cleanly produces zero matches across all three banned lists, showing the skill works as intended. However, all three assertions are purely exclusionary — they would also pass for a trivial output that happens to avoid the banned words. Adding at least one positive/structural assertion would make the eval more discriminating."
+  }
+}

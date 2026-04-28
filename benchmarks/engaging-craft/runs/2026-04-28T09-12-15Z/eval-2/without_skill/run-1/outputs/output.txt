@@ -1,0 +1,1 @@
+Saved to `opener.md`. The paragraph opens with a concrete failure scenario (the green-test/broken-production gap), names the mechanism (mock drift), and closes with the affirmative case for integration tests — grounded rather than prescriptive.

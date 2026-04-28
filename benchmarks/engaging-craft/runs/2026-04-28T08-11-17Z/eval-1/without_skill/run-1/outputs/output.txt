@@ -1,0 +1,1 @@
+Saved to `rewrite.md`. The rewrite swaps vague superlatives for concrete numbers (10x, low double digits vs. hundreds of ms), grounds the impact in a user behavior signal (support ticket volume), and ends with forward momentum that's honest about what's left — making it feel like a real engineering story rather than a press release.

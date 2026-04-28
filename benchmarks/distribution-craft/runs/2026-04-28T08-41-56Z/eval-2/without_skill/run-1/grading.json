@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "The Dek section in package.md does NOT repeat the title — measured by: NO consecutive substring of 5+ words from the title appears in the dek. Specifically, the dek must NOT contain the exact phrase 'VACUUM blocks during long transactions' or 'Why VACUUM blocks' anywhere in the dek body. The skill explicitly teaches 'dek extends, doesn't repeat'; baseline often opens the dek by restating the title. Lowercased substring comparison; punctuation differences ignored.",
+      "passed": true,
+      "evidence": "Dek text: 'PostgreSQL's VACUUM can't reclaim dead rows while an old transaction holds a snapshot that still needs to see them. Here's the exact xmin horizon mechanism that stalls autovacuum — and the two levers that fix it.' Title is 'Why VACUUM blocks during long transactions in Postgres'. No 5-word consecutive title substring appears in the dek. Neither 'VACUUM blocks during long transactions' nor 'Why VACUUM blocks' is present. The dek extends the title premise with mechanism-first framing rather than restating it."
+    },
+    {
+      "text": "The Meta description section in package.md has a character count between 140 and 165 characters inclusive (giving slight tolerance around the 150-160 band) AND contains AT LEAST 2 mechanism words connecting concrete deliverables — mechanism words: 'how', 'why', 'what', 'and', 'plus', 'including', 'because', 'so', '+'. Examples that pass: 'How dead tuples accumulate, why VACUUM stalls, and the alert that catches it'. Examples that fail: 'Learn about Postgres VACUUM' (too short, no mechanism), generic 200+ char marketing prose. Baseline tends to either overflow or write 60-100 char generic descriptions.",
+      "passed": true,
+      "evidence": "Meta description: 'Long-running transactions silently block VACUUM from reclaiming dead rows. Learn the xmin horizon mechanism and how to diagnose and fix autovacuum stalls.' Character count: 154 characters (within 140-165 range). Mechanism words present: 'and' appears twice ('mechanism and how', 'diagnose and fix') and 'how' appears once — 3 mechanism words total, satisfying the ≥2 requirement."
+    },
+    {
+      "text": "The OG image section in package.md describes a SPECIFIC non-generic visual concept. The description must NOT consist solely of any of these baseline-default placeholder ideas (case-insensitive): 'stock photo', 'a developer at a computer', 'a database server', 'the company logo', 'a generic image', 'a person typing', 'an abstract design'. The description MUST mention AT LEAST ONE of: rendered typography of the title, a specific chart/diagram concept tied to the article (e.g. timeline, transaction-state graph, before/after metric), a code/terminal-output visualization, or a specific contextual photograph (with subject named — not 'a developer' but 'a postgres terminal output' or 'a chart of dead-tuple growth over time'). The skill teaches that OG images extend the article's promise; generic stock images are explicitly named as anti-patterns.",
+      "passed": true,
+      "evidence": "OG image description: 'A dark terminal split into two vertical panels on a deep-charcoal background. The left panel shows the output of `SELECT pid, now() - xact_start AS age, xmin FROM pg_stat_activity` with one row highlighted in amber... The right panel shows an `autovacuum` log excerpt... a simplified heap-page diagram shows dead tuples (rendered as faded gray rows with strikethroughs) accumulating without being reclaimed... Title text \"Why VACUUM waits\" appears in large white monospace at the top.' This is highly specific: contains code/terminal-output visualization (SQL query panel, autovacuum log panel), a specific diagram concept tied to the article (heap-page dead-tuple accumulation diagram, xmin horizon arrow), and rendered title typography. None of the generic placeholder patterns are present."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 157,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 44.966,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 44.966
+  },
+  "claims": [
+    {
+      "claim": "Dek is 36 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted: 'PostgreSQL's VACUUM can't reclaim dead rows while an old transaction holds a snapshot that still needs to see them. Here's the exact xmin horizon mechanism that stalls autovacuum — and the two levers that fix it.' — approximately 36 words. Consistent with executor's self-report."
+    },
+    {
+      "claim": "Meta description is 154 characters and hits keyword 'VACUUM', 'xmin horizon', and 'autovacuum stalls'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted 154 characters. All three keywords ('VACUUM', 'xmin horizon', 'autovacuum stalls') appear verbatim in the meta description."
+    },
+    {
+      "claim": "OG image is a dual-panel terminal layout tying live transaction to blocked autovacuum log with xmin horizon labeled as connecting concept",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The description explicitly shows two panels (pg_stat_activity query + autovacuum log), connected by a horizontal arrow labeled 'xmin horizon', with heap-page dead-tuple diagram below. Fully delivers on the described concept."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions passed on this without_skill run, suggesting baseline Claude (without distribution-craft) can produce skill-level output for this specific eval. Consider whether the assertions are discriminating enough — a model that just writes good SEO copy will satisfy all three without needing any skill-specific guidance. Adding an assertion that checks the dek's first word or phrase uses mechanism-first framing (verb or noun describing what happens technically, not 'Learn how' / 'Discover') would better discriminate skill-guided from baseline output."
+      },
+      {
+        "assertion": "The OG image section in package.md describes a SPECIFIC non-generic visual concept...",
+        "reason": "The OG image assertion currently focuses on excluding generic ideas, but the without_skill run produced an extremely detailed and high-quality OG description (specific SQL output, dual-panel layout, xmin horizon labeled arrow). This may mean the exclusion list is too narrow or that the article topic (Postgres internals) naturally lends itself to specific visuals. Consider adding a positive check: does the OG image description make the article's core mechanism visible? (e.g., must mention the blocking relationship, not just 'a terminal')"
+      }
+    ],
+    "overall": "All three assertions pass on the without_skill run, which means either baseline Claude performs at skill level for this eval or the assertions lack enough discriminating power to distinguish with/without. The evals are structurally sound but may need harder positive criteria beyond exclusion checks."
+  }
+}

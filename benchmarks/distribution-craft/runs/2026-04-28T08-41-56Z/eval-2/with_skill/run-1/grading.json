@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "The Dek section in package.md does NOT repeat the title — measured by: NO consecutive substring of 5+ words from the title appears in the dek. Specifically, the dek must NOT contain the exact phrase 'VACUUM blocks during long transactions' or 'Why VACUUM blocks' anywhere in the dek body. The skill explicitly teaches 'dek extends, doesn't repeat'; baseline often opens the dek by restating the title. Lowercased substring comparison; punctuation differences ignored.",
+      "passed": true,
+      "evidence": "Dek text: 'VACUUM is designed to reclaim dead rows and keep your tables healthy — but open a long transaction and it stalls completely. Here's why Postgres can't clean up what an active snapshot might still need to read.' Neither forbidden phrase ('vacuum blocks during long transactions', 'why vacuum blocks') appears. The dek opens with VACUUM's purpose, not a restatement of the title — it extends the concept rather than repeating it."
+    },
+    {
+      "text": "The Meta description section in package.md has a character count between 140 and 165 characters inclusive (giving slight tolerance around the 150-160 band) AND contains AT LEAST 2 mechanism words connecting concrete deliverables — mechanism words: 'how', 'why', 'what', 'and', 'plus', 'including', 'because', 'so', '+'. Examples that pass: 'How dead tuples accumulate, why VACUUM stalls, and the alert that catches it'. Examples that fail: 'Learn about Postgres VACUUM' (too short, no mechanism), generic 200+ char marketing prose. Baseline tends to either overflow or write 60-100 char generic descriptions.",
+      "passed": true,
+      "evidence": "Meta description: 'Long-running transactions silently prevent VACUUM from reclaiming dead rows in Postgres. Learn why transaction IDs create a visibility floor and how to fix it.' Character count: 159 (within 140–165 range). Mechanism words found: 'why' ('Learn why transaction IDs…'), 'how' ('and how to fix it'), 'and' — 3 of the required 2."
+    },
+    {
+      "text": "The OG image section in package.md describes a SPECIFIC non-generic visual concept. The description must NOT consist solely of any of these baseline-default placeholder ideas (case-insensitive): 'stock photo', 'a developer at a computer', 'a database server', 'the company logo', 'a generic image', 'a person typing', 'an abstract design'. The description MUST mention AT LEAST ONE of: rendered typography of the title, a specific chart/diagram concept tied to the article (e.g. timeline, transaction-state graph, before/after metric), a code/terminal-output visualization, or a specific contextual photograph (with subject named — not 'a developer' but 'a postgres terminal output' or 'a chart of dead-tuple growth over time'). The skill teaches that OG images extend the article's promise; generic stock images are explicitly named as anti-patterns.",
+      "passed": true,
+      "evidence": "OG image describes a three-zone technical blueprint diagram: (1) Postgres table icon with growing 'dead tuples' blocks on the left, (2) VACUUM progress bar frozen at 40% with a red 'BLOCKED' badge in center, (3) amber 'open transaction · xmin 482901' timeline with padlock on right. Includes a dashed causal arrow, monospace caption ('VACUUM cannot advance past the oldest open transaction's snapshot horizon'), and specific hex colors (#1e1e2e, #336791). No generic placeholder phrases present. Satisfies the 'specific chart/diagram concept' and 'code/terminal-output visualization' criteria."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 192,
+    "transcript_chars": 31489
+  },
+  "timing": {
+    "executor_duration_seconds": 46.749,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 46.749
+  },
+  "claims": [
+    {
+      "claim": "Dek is 34 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Word count of dek: 'VACUUM is designed to reclaim dead rows and keep your tables healthy — but open a long transaction and it stalls completely. Here's why Postgres can't clean up what an active snapshot might still need to read.' = ~34 words. Consistent with executor's stated count."
+    },
+    {
+      "claim": "Meta description is 159 chars",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Programmatic character count confirms 159 characters."
+    },
+    {
+      "claim": "Meta description hits keywords: long-running transactions, VACUUM, dead rows, Postgres, visibility floor",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All five claimed keywords are present in the 159-char meta description."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 1 checks only 2 specific title phrases. A baseline that restates the title with slightly different wording (e.g. 'why does VACUUM block' or 'VACUUM blocking during transactions') would still pass. Consider using the 5-word-substring rule more broadly: extract all 5-word windows from the title and check none appear in the dek."
+      },
+      {
+        "assertion": "The OG image section in package.md describes a SPECIFIC non-generic visual concept.",
+        "reason": "The assertion verifies specificity but not coherence with the article topic. A highly specific image description for the wrong article (e.g. 'a chart of CPU utilization spikes') would pass. Consider adding a check that at least one domain term from the article (e.g. VACUUM, dead tuples, transaction, xmin) appears in the OG description."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating for this content type. The dek and meta checks use measurable criteria (forbidden phrases, char count, mechanism words) that are hard to satisfy by accident. Minor strengthening possible on edges noted above."
+  }
+}

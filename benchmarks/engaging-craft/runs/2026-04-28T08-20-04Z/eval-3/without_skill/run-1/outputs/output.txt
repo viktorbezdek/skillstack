@@ -1,0 +1,7 @@
+Saved to `opening.md`. The three phases:
+
+- **Problem** — relatable 2 a.m. incident scene; names the industry shift where observability became a product category small teams felt compelled to buy
+- **Agitate** — quantifies the cost ($36k–$72k/year), names the complexity tax (two sprints of integration work), and lands the gut-punch irony (teams grep in production anyway)
+- **Solve** — offers a concrete, proportionate alternative (structured logs + basic metrics + one error tracker) and frames the rest of the article as the practical how-to
+
+Word count: ~290.

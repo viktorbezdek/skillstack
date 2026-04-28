@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms — 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' — do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+      "passed": false,
+      "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). Output file contains only 'Prompt is too long'. Zero tokens were consumed."
+    },
+    {
+      "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph — at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+      "passed": false,
+      "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). No content was generated."
+    },
+    {
+      "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative — a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+      "passed": false,
+      "evidence": "No opening.md was produced. The run failed immediately with 'Prompt is too long' (API error 400). No content was generated."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 1,
+    "output_chars": 18,
+    "transcript_chars": 17940
+  },
+  "timing": {
+    "executor_duration_seconds": 2.329,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 2.329
+  },
+  "claims": [
+    {
+      "claim": "The run produced output.txt with content 'Prompt is too long'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt contains exactly 'Prompt is too long' (18 chars). Transcript confirms API error 400, terminal_reason: prompt_too_long."
+    },
+    {
+      "claim": "No opening.md file was created",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Glob of the run directory shows only transcript.jsonl, output.txt, and timing.json. No opening.md present."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Run failed due to 'Prompt is too long' — the eval prompt itself exceeded the model's context limit. This is a harness/configuration issue, not an executor skill issue. Results are not meaningful for skill comparison."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The run failed with 'Prompt is too long' before any work was done. The eval prompt is too large for the model being used (claude-haiku-4-5-20251001). Consider reducing prompt size, switching to a model with a larger context window, or trimming injected system context for this eval."
+      }
+    ],
+    "overall": "All three expectations fail due to a harness-level failure (prompt too long), not due to the executor lacking the skill. This run produces no signal about skill vs. no-skill performance."
+  }
+}

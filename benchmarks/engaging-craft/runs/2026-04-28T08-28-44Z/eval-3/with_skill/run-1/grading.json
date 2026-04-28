@@ -1,0 +1,65 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms — 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' — do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+      "passed": false,
+      "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created. Only output.txt contains the single line 'Prompt is too long'."
+    },
+    {
+      "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph — at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+      "passed": false,
+      "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created."
+    },
+    {
+      "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative — a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+      "passed": false,
+      "evidence": "Execution failed with 'Prompt is too long' (HTTP 400, invalid_request). No opening.md was created."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 1,
+    "output_chars": 18,
+    "transcript_chars": 17
+  },
+  "timing": {
+    "executor_duration_seconds": 3.58,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 3.58
+  },
+  "claims": [
+    {
+      "claim": "The run produced an opening.md file",
+      "type": "factual",
+      "verified": false,
+      "evidence": "No opening.md exists in outputs_dir. Only output.txt (1 line: 'Prompt is too long') is present."
+    },
+    {
+      "claim": "The executor completed the task",
+      "type": "process",
+      "verified": false,
+      "evidence": "transcript.jsonl terminal_reason is 'prompt_too_long'; num_turns=1; api_error_status=400. The model (claude-haiku-4-5-20251001) rejected the prompt before any tool calls were made."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": ["Run failed due to prompt-too-long on haiku model — eval may need a smaller system prompt or a larger model for this eval."],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "This run used claude-haiku-4-5-20251001, which rejected the prompt as too long before producing any output. The benchmark runner should either use a model with a larger context window or trim the system prompt for haiku-class models. All three assertions fail trivially due to infra failure, not skill quality — this run contributes no signal."
+      }
+    ],
+    "overall": "All failures are infrastructure failures (prompt too long), not content failures. The assertions themselves are well-constructed and discriminating, but this run cannot be used to evaluate them."
+  }
+}

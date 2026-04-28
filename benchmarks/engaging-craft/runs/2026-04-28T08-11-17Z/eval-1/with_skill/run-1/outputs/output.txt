@@ -1,0 +1,1 @@
+Saved to `rewrite.md`. The rewrite swaps vague superlatives for specific numbers (60–80% latency drop, 40ms query time), grounds the win in a concrete story (the notorious join), and connects the technical outcome to things that actually matter — fewer pages, lower bounce rates, changed expectations.

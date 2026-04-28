@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "opener.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate', 'leverage' (verb), 'myriad', 'plethora', 'paradigm', 'ecosystem' (figurative). When writing fresh prose about a technical topic, baseline LLMs commonly reach for at least one of these — 'leverage' and 'pivotal' especially. The skill explicitly teaches their removal.",
+      "passed": true,
+      "evidence": "Full text extracted from transcript (Write tool call, line 17): none of the 11 banned words appear. The prose uses concrete language — 'mocks are obedient', 'silently swallowing a constraint violation', 'stand up your actual stack' — with no AI-cliché vocabulary."
+    },
+    {
+      "text": "opener.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transitions or filler phrases: 'In today's', 'In the modern', 'It's important to note', 'It is important to note', 'That being said', 'At its core', 'To put it simply', 'From a broader perspective', 'Moreover,', 'Furthermore,', 'In essence,'. Baseline tends to use 'Moreover' or 'It's important to note' as a structural connective.",
+      "passed": true,
+      "evidence": "Full text reviewed: none of the 11 banned transition/filler phrases appear. The paragraph uses short declarative sentences as connectives ('The tests passed because mocks are obedient. Real systems are not.') rather than any of the banned phrases."
+    },
+    {
+      "text": "opener.md contains AT LEAST ONE of: a first-person pronoun ('I', 'we', 'our', 'my', 'I've', 'we've'), OR a specific number with a unit (e.g. '40% fewer', '12 incidents', '6 months', '3 services'), OR a named entity (a specific framework, language, tool by name — pytest, Jest, Postgres, Stripe API, Postman, etc.). Baseline 200-word opinion openers tend to stay third-person abstract; the skill teaches stake and specificity.",
+      "passed": true,
+      "evidence": "First sentence: 'Every team I've worked with has a suite of unit tests...' — contains the first-person pronoun 'I've'. Additionally '2am' constitutes a time-anchored number. No named tools appear, but the first-person stake criterion is clearly met."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 1,
+    "output_chars": 31,
+    "transcript_chars": 22800
+  },
+  "timing": {
+    "executor_duration_seconds": 12.799,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 12.799
+  },
+  "claims": [
+    {
+      "claim": "The executor wrote a ~200-word opener",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Text extracted from transcript Write call: 228 words. Within reasonable range of the 200-word target."
+    },
+    {
+      "claim": "The opener argues that integration tests are better than unit tests for API code",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Final two sentences: 'Integration tests that stand up your actual stack, write to a real database, and exercise the full request path will catch the class of bugs that ends your on-call rotation at 2am. They're slower to write and slower to run, and they're worth every second of both.' The argument is explicitly stated and consistent throughout."
+    },
+    {
+      "claim": "The run ended with an auth error after the file was written",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript line 20: 'authentication_failed' with message 'Not logged in · Please run /login'. The Write tool succeeded first (line 19 confirms file created), so the output is valid despite the auth error on the second turn."
+    },
+    {
+      "claim": "The opener uses personal experience as the hook",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Every team I've worked with has a suite of unit tests...' — first-person past-tense experience claim grounds the argument in observed reality rather than abstract assertion."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "opener.md contains AT LEAST ONE of: a first-person pronoun ... OR a specific number with a unit ... OR a named entity ...",
+        "reason": "The assertion passes on the weakest of three criteria (first-person pronoun 'I've'). A stronger version would require the prose to demonstrate *specificity* more concretely — e.g., require both a first-person stake AND either a number or a named entity. The current 'any one of three' structure means a sentence like 'I think integration tests are good' would also pass, which is what the skill is trying to move away from."
+      },
+      {
+        "reason": "No assertion checks for third-person abstract generalization at the sentence level — e.g., long stretches of 'teams do X', 'systems behave Y' without concrete anchors. The current output is excellent but a future weaker run could satisfy all three expectations while still being largely generic."
+      }
+    ],
+    "overall": "Assertions are well-targeted and the output genuinely satisfies them. The third assertion's OR-structure slightly reduces discriminating power; tightening it to require two of three criteria would better distinguish skilled output from baseline."
+  }
+}

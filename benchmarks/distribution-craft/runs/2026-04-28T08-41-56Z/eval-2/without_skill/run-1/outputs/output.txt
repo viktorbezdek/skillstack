@@ -1,0 +1,5 @@
+Saved to `package.md`. Three assets delivered:
+
+- **Dek** (36 words) — leads with the mechanism, ends with a concrete payoff promise
+- **Meta description** (154 chars) — hits the keyword "VACUUM", "xmin horizon", and "autovacuum stalls" within the 150–160 char window
+- **OG image** — dual-panel terminal layout tying the live transaction to the blocked autovacuum log, with the xmin horizon labeled explicitly as the connecting concept

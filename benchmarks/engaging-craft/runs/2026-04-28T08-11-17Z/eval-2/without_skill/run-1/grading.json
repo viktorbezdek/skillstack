@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "The opening sentence of hook.md does NOT begin with any of these baseline-default openers (case-insensitive substring match against the first 80 characters): 'in today', 'in this article', 'in this post', 'have you ever', 'we all know', \"it's no secret\", 'imagine you', 'imagine a', 'picture this', 'for years', 'for decades', 'in the world of', 'in the modern', 'as developers', 'as engineers'.",
+      "passed": true,
+      "evidence": "First 80 characters: \"Your engineers aren't waiting on code review. They're waiting on CI. That 22-min\" — none of the banned openers appear. The hook opens with a direct reframe ('Your engineers aren't waiting on code review')."
+    },
+    {
+      "text": "hook.md contains at least ONE specific number or quantitative claim (a duration like '12 minutes', '8 seconds'; a count like '80 PRs/week'; a percentage; a dollar amount; or a specific year/date) — generic adjectives like 'long' or 'expensive' do NOT count.",
+      "passed": true,
+      "evidence": "Multiple specific quantitative claims present: '22-minute pipeline', '100 engineers', 'three pipeline runs a day', '20-minute CI', '100 hours of blocked developer time daily', 'two and a half full-time engineers'."
+    },
+    {
+      "text": "hook.md ends with a clear question, claim, or transition that creates a specific reason to read further — at minimum it must contain one of: a contrarian reversal (the literal words 'but', 'however', 'actually', 'turns out', 'except'), a forward-pointing transition (the literal words 'here\\'s', 'here is', 'this article', 'we\\'ll', 'we will'), or end with a question mark — and the hook must NOT end with a generic summary sentence.",
+      "passed": false,
+      "evidence": "The hook ends with: '...CI slowness is an organizational problem wearing the costume of an infrastructure problem, and the fix is usually simpler — and cheaper — than a platform migration.' The only occurrence of 'but' in the text is 'doing nothing but watching progress bars' (idiomatic 'nothing but' meaning 'only', not a contrarian reversal). None of the other required literal words ('however', 'actually', 'turns out', 'except', 'here\\'s', 'here is', 'this article', 'we\\'ll', 'we will') appear anywhere in the hook. The hook does not end with a question mark. The final sentence is a declarative thesis statement — it hints at a simpler fix but lacks any of the required forward signal words."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 131,
+    "transcript_chars": 25000
+  },
+  "timing": {
+    "executor_duration_seconds": 19.981,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 19.981
+  },
+  "claims": [
+    {
+      "claim": "The hook opens with the reframe (it's wait time, not review time)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "First two sentences: 'Your engineers aren't waiting on code review. They're waiting on CI.' — classic reframe from review to CI wait time."
+    },
+    {
+      "claim": "Makes the cost concrete with a specific calculation",
+      "type": "quality",
+      "verified": true,
+      "evidence": "At 100 engineers × 3 runs/day × 20-minute CI = 100 hours blocked daily = 2.5 FTE equivalent — the math is explicit and follows from stated inputs."
+    },
+    {
+      "claim": "Closes with the thesis that positions the post as actionable rather than a case for a platform rewrite",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Final sentence: '...the fix is usually simpler — and cheaper — than a platform migration.' This does position the post as actionable, but lacks a forward signal word that would unambiguously invite the reader onward."
+    },
+    {
+      "claim": "131 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted approximately 131 words in the extracted hook.md content — consistent with the executor's self-report."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "hook.md ends with a clear question, claim, or transition that creates a specific reason to read further — at minimum it must contain one of: a contrarian reversal ...",
+        "reason": "The third expectation's literal-word requirement is strict in a useful way, but the list of accepted words is narrow enough that a strong, curiosity-driving ending like '...the fix is usually simpler — and cheaper — than a platform migration' fails even though it functionally creates forward momentum. Consider whether the required list should include 'simpler', 'easier', or explicit cost-framing phrases, or whether a broader structural criterion (e.g., 'ends with a thesis claim that implies actionable guidance follows') would be more discriminating without being over-prescriptive."
+      }
+    ],
+    "overall": "Two of three assertions are solid. The quantitative claim check (E2) is the most discriminating and works well. E1 and E2 both pass with clear evidence. E3 catches a real weakness in the output — the ending lacks a forward signal — but the literal-word list may penalize good endings that don't happen to use those exact words."
+  }
+}

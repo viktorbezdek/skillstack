@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains at least TWO specific numeric measurements (e.g. '120ms', '3x', '40%', 'P99', or similar) — replacing the abstract adjectives in the original ('significantly', 'much', 'many'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits.",
+      "passed": true,
+      "evidence": "The rewrite contains '10x improvement' and '48 hours' — both contain actual digits. 'Hundreds of milliseconds' describes the old state vaguely, and 'low double digits' is imprecise, but '10x' (matching '3x' example format) and '48 hours' each carry real digits that replace the original's abstract language."
+    },
+    {
+      "text": "rewrite.md names at least ONE specific concrete entity that didn't appear in the original — examples: a database (Postgres, MySQL), an endpoint (/orders, /search, the checkout API), a system component, a tool, or a measurement context. Generic terms ('queries', 'the system', 'our app', 'users') do NOT count — the assertion requires a proper noun, an endpoint path, or a versioned tool name.",
+      "passed": false,
+      "evidence": "No proper noun, endpoint path, or versioned tool name appears in the rewrite. 'N+1 patterns' is a technical pattern concept but is not a proper noun, endpoint, or versioned tool. 'The reporting layer' is an internal generic label. 'Most-hammered endpoints' uses a generic noun. No database (Postgres, MySQL), no path (/orders), no tool name appears anywhere."
+    },
+    {
+      "text": "The rewrite avoids the AI-prose tell: the literal words 'significantly', 'much faster', 'positive impact', and 'happy with the results' do NOT appear anywhere in rewrite.md (case-insensitive). At least one of those four phrases would survive a baseline rewrite that just polishes; this assertion fails when the rewrite is cosmetic instead of substantive.",
+      "passed": true,
+      "evidence": "None of the four forbidden phrases ('significantly', 'much faster', 'positive impact', 'happy with the results') appear in the rewrite. The rewrite is substantive — it replaces vague adjectives with concrete numbers and a user behavior signal rather than polishing the surface."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 512,
+    "transcript_chars": 24100
+  },
+  "timing": {
+    "executor_duration_seconds": 16.73,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 16.73
+  },
+  "claims": [
+    {
+      "claim": "The rewrite swaps vague superlatives for concrete numbers (10x, low double digits vs. hundreds of ms)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'10x improvement' and 'hundreds of milliseconds → low double digits' are present; '10x' is a real digit-bearing measurement. 'Low double digits' is less precise than the example formats but is a numeric description."
+    },
+    {
+      "claim": "The rewrite grounds impact in a user behavior signal (support ticket volume)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Support tickets about sluggish load times dried up within 48 hours of the rollout' — concrete behavioral signal, not just a performance stat."
+    },
+    {
+      "claim": "The rewrite ends with forward momentum that's honest about what's left",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'We're not done — there are still a handful of N+1 patterns lurking in the reporting layer' clearly flags remaining work."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "rewrite.md contains at least TWO specific numeric measurements",
+        "reason": "'48 hours' (time to ticket drop) and '10x' are counted here, but '48 hours' is a timeline measurement rather than a performance metric. The assertion could tighten the definition to require at least two *performance* measurements (latency, throughput, error rate) to avoid counting peripheral time references. Also, 'low double digits' has no digit — a tighter assertion would require an actual numeral in each measurement."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite preserves the semantic meaning of the original (e.g., it should still be about a database/infrastructure migration, not a completely different topic). A paraphrase that invents a new story could satisfy all three assertions while being a fabrication."
+      }
+    ],
+    "overall": "The concrete-entity assertion (E2) is the discriminating one here — the without-skill run produced strong numeric grounding but stayed generic on naming, which is exactly the gap the skill is likely designed to close."
+  }
+}

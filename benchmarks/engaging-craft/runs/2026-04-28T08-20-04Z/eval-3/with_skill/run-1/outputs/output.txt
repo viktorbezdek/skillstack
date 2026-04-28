@@ -1,0 +1,5 @@
+Saved to `opening.md`. The three phases:
+
+- **Problem** — concrete 2 a.m. incident scene that mirrors the reader's experience
+- **Agitate** — quantified cost (15–20% of engineering payroll, $4k/month) plus the invisible cognitive tax that hits harder than the invoice
+- **Solve** — specific alternative (structured logs + basic metrics + error tracking) with a 90% coverage claim as the hook into the rest of the article

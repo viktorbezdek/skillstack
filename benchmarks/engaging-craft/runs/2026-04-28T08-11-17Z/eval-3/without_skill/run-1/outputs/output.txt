@@ -1,0 +1,5 @@
+Saved to `opening.md` (~290 words). The three PAS phases are:
+
+- **Problem** (¶1): Small teams get pulled into observability tool debates while production issues sit unresolved.
+- **Agitate** (¶2): Quantifies the real cost — money, attention, alert fatigue, false confidence, and slower shipping.
+- **Solve** (¶3): Reframes the argument: structured logging + basic metrics + error tracking covers 90% of real incidents at this scale, without the integration tax.

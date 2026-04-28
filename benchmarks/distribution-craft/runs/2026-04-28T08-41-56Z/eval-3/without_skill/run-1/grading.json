@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "The three sections in launch.md are structurally distinct, NOT minor variants of the same prose. Specifically: (a) the X/Twitter section's first 60 characters must contain a specific number (digits) OR a contrarian reversal word ('but', 'actually', 'turns out', 'surprisingly', 'not'); (b) the LinkedIn section's first sentence must contain at least one first-person pronoun ('I', 'we', 'our', 'my') OR a specific scene/moment marker (a date, time, or named team event); (c) the Hacker News section must contain BOTH a submission title AND a first-comment subsection. ALL THREE must hold.",
+      "passed": true,
+      "evidence": "(a) X first 60 chars: 'We spent 2 weeks hunting a Postgres latency spike. The culpr' — contains digit '2'. (b) LinkedIn first sentence: 'Two weeks ago our team was staring at a P99 latency graph that looked like a cliff.' — contains first-person pronoun 'our'. (c) HN section contains '**Submission title:** Removing a single Postgres index dropped our P99 from 480ms to 120ms' and '**Author first comment:**' as a labeled subsection. All three sub-conditions pass."
+    },
+    {
+      "text": "The LinkedIn section is between 100 and 320 words inclusive AND uses at least 3 paragraph breaks (i.e. at least 4 paragraphs separated by blank lines) AND does NOT contain any of these LinkedIn-cliche phrases (case-insensitive substring match): 'excited to share', 'thrilled to announce', 'honored to', 'humbled to', 'proud to', 'thoughts?', 'what do you think?', 'would love to hear', 'let me know in the comments', 'agree or disagree', 'drop a 🙌'.",
+      "passed": true,
+      "evidence": "LinkedIn section is 197 words (within 100–320 range). Contains 6 paragraphs separated by blank lines (exceeds the ≥4 requirement). None of the 11 cliche phrases found: the section ends with 'Link in the comments.' (not 'let me know in the comments'), uses no hype openers, and has no engagement-bait closers."
+    },
+    {
+      "text": "The Hacker News first-comment section adds substantive non-promotional context AND does NOT contain any of these promotional phrases (case-insensitive): 'excited to share', 'we built', 'check it out', 'learn more', 'would love your feedback', 'happy to answer questions about [our product]', 'shameless plug'. The comment must include at least ONE of: a reference to a specific Postgres version or query-planner behavior, a related-work reference (citing another tool/paper/post by name), an explicit acknowledged limitation of the approach, OR an invitation to disagree on a specific named technical point.",
+      "passed": true,
+      "evidence": "No promotional phrases found. Substantive criteria met on multiple counts: (1) specific Postgres version 'PG14+' referenced with query plan hash splitting; (2) explicit planner behavior described — nested loop join vs hash join, EXPLAIN (ANALYZE, BUFFERS), pg_stat_user_indexes, pg_stat_statements; (3) acknowledged limitation — 'Why it took two weeks' section explicitly explains 'We kept looking at application-layer causes first' and how aggregated stats masked the plan regression. The comment is structured as four labeled technical sub-points, not a product pitch."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tokens": 113377,
+    "input_tokens": 18,
+    "output_tokens": 1656,
+    "cache_creation_input_tokens": 43417,
+    "cache_read_input_tokens": 68286,
+    "total_cost_usd": 0.20819355
+  },
+  "timing": {
+    "executor_duration_seconds": 47.308,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 47.308
+  },
+  "claims": [
+    {
+      "claim": "X post leads with the two-week/one-index contrast and lands on the mechanism (planner pessimization), not just the number",
+      "type": "quality",
+      "verified": true,
+      "evidence": "X post: 'We spent 2 weeks hunting a Postgres latency spike. The culprit: one index nobody questioned. Removing it dropped P99 from 480ms → 120ms. The index wasn't slow. It was making the query planner choose the wrong plan on a hot path.' — correctly surfaces mechanism, not just the result."
+    },
+    {
+      "claim": "HN author comment explains why the index survived (pg_stat_user_indexes signal)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Comment explicitly covers 'Why the index survived so long' with pg_stat_user_indexes showing ~3 scans in 30 days as the misleading signal."
+    },
+    {
+      "claim": "LinkedIn is ~200 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted 197 words — consistent with the executor's stated '~200 words'."
+    },
+    {
+      "claim": "X post is under 280 characters",
+      "type": "factual",
+      "verified": true,
+      "evidence": "X content is approximately 230 characters (not counting the trailing '[link]' placeholder), well within the 280-char limit."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 3 specifies 'happy to answer questions about [our product]' as a banned phrase but the actual pattern to check is 'happy to answer questions about' as a substring — the [our product] part is an example placeholder, not literal text. The assertion wording could cause a grader to check for the full bracketed string rather than the stem, making the check trivially pass. Clarify that only the stem 'happy to answer questions about' needs to be checked."
+      },
+      {
+        "reason": "No assertion checks whether the three sections are actually distinct in *length or format register* beyond the three specific sub-checks. The baseline executor happened to write substantively different sections here, but a plausible failure mode (same 150-word explainer recast with minimal changes) might technically pass all three sub-conditions while still being nearly identical copy. A word-count divergence check (e.g., X must be under 60 words, LinkedIn 100–320, HN comment 200+) would catch this."
+      }
+    ],
+    "overall": "Evals are well-constructed and discriminating. The three expectations correctly target the skill's core teaching: channel-specific framing, LinkedIn anti-patterns, and HN comment quality. The without_skill run happened to produce high-quality output that passes all three — this is a useful data point showing the baseline can sometimes match the skill's output on a factual/structural level, even if it might fail consistency across multiple runs."
+  }
+}

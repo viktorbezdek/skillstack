@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms — 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' — do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+      "passed": true,
+      "evidence": "Agitate section: 'The tooling vendors have done their job well: Datadog, Honeycomb, and their kin have convinced small teams...' — two distinct named companies (Datadog, Honeycomb) appear in the same sentence."
+    },
+    {
+      "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph — at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+      "passed": true,
+      "evidence": "Agitate paragraph contains: 'Teams burning 15–20% of their engineering payroll on instrumentation overhead...' (number + unit = 15–20% of engineering payroll) AND 'every hour spent tuning alert thresholds or fighting cardinality limits is an hour not spent on the product' (mechanism word 'every' in the same paragraph, showing how the cost chains into lost product time)."
+    },
+    {
+      "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative — a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+      "passed": false,
+      "evidence": "The Solve section reads: 'Structured logging with searchable output, a handful of business-critical metrics, and lightweight error tracking cover over ninety percent of the incidents...' — all three alternatives are generic categories with no proper-noun tool, library, framework, or named pattern. No Prometheus, Loki, OpenTelemetry, Sentry, or equivalent named entity appears. Compare to the failing examples: 'a simpler stack' maps closely to 'deliberate operational minimalism' and 'structured logging with searchable output' (descriptive, not named). The Solve phase gestures at simplicity without committing to a specific named alternative."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 389,
+    "transcript_chars": 24500
+  },
+  "timing": {
+    "executor_duration_seconds": 25.269,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 25.269
+  },
+  "claims": [
+    {
+      "claim": "The opening uses three phases: Problem, Agitate, Solve",
+      "type": "process",
+      "verified": true,
+      "evidence": "The file has explicit '## Problem', '## Agitate', '## Solve' headings with content under each."
+    },
+    {
+      "claim": "Quantified cost is '15–20% of engineering payroll, $4k/month'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "$4,000/month appears in the Problem section; 15–20% of engineering payroll appears in the Agitate section. Both are present."
+    },
+    {
+      "claim": "The Solve phase covers '90% of incidents' with structured logs + basic metrics + error tracking",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Solve: 'cover over ninety percent of the incidents a sub-fifty-person team will ever face' — the 90% hook is present and the three categories are named, though none are specifically named tools."
+    },
+    {
+      "claim": "The piece names Datadog and Honeycomb as specific vendors",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Agitate: 'Datadog, Honeycomb, and their kin have convinced small teams...' — both named explicitly."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative...",
+        "reason": "This is a discriminating and well-calibrated assertion. The with_skill run still failed it — the skill's guidance on prescriptive specificity in the Solve phase did not propagate into the output in this run. Worth verifying if the with_skill condition consistently improves this or if the signal is weaker than expected."
+      },
+      {
+        "reason": "No assertion checks the word count of opening.md (the eval prompt likely specifies 250–300 words). The piece as written is within that range, but an explicit length assertion would catch outputs that satisfy all three content checks by writing a 2000-word document."
+      }
+    ],
+    "overall": "Assertions are well-targeted. The vendor-naming and quantified-cost-with-mechanism checks are appropriately specific and non-trivial. The Solve-phase specificity check is the most discriminating of the three and correctly identified a gap. The with_skill run still failed the hardest expectation, which is useful signal about how much the skill actually changes the Solve phase behavior."
+  }
+}

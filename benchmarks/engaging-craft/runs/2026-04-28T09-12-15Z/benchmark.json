@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "skill_name": "engaging-craft",
+    "skill_path": "technical-copywriting/skills/engaging-craft",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-28T09:15:51Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "engaging-craft",
+    "target_path": "technical-copywriting/skills/engaging-craft"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 15.186,
+        "tokens": 55851,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate' (figurative), 'leverage' (as a verb), 'navigate' (figurative), 'myriad', 'plethora', 'landscape' (figurative), 'paradigm'.",
+          "passed": true,
+          "evidence": "Checked all 12 words (whole-word, case-insensitive) against the written content: 'Database performance problems usually aren't mysterious \u2014 they're slow queries running without indexes, or the same data fetched on every request when it could be cached once...' Zero matches found for: delve, underscore, pivotal, realm, harness, illuminate, leverage, navigate, myriad, plethora, landscape, paradigm."
+        },
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transition phrases: 'In today's', 'In the rapidly evolving', 'In recent years', 'That being said', 'At its core', 'To put it simply', 'A key takeaway is', 'This underscores the importance', 'It's important to note', 'It is important to note', 'From a broader perspective', 'cannot be overstated', 'tends to facilitate'.",
+          "passed": true,
+          "evidence": "Checked all 13 transition phrases (substring, case-insensitive) against the output. Zero matches found. The rewrite uses direct, concrete prose with no filler transitions."
+        },
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI buzzwords: 'revolutionize', 'innovative', 'cutting-edge', 'state-of-the-art', 'game-changing', 'transformative', 'seamless integration', 'scalable solution' AND ZERO occurrences of these reflex-hedge phrases: 'Generally speaking', 'Broadly speaking', 'tends to', 'tend to' (when followed by a verb), 'arguably', 'to some extent'.",
+          "passed": true,
+          "evidence": "Checked all 8 buzzwords and 5 hedge phrases (plus 'tend to + verb' pattern). Zero matches found. The output avoids all hedging and marketing language entirely."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 12.799,
+        "tokens": 55489,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "opener.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate', 'leverage' (verb), 'myriad', 'plethora', 'paradigm', 'ecosystem' (figurative). When writing fresh prose about a technical topic, baseline LLMs commonly reach for at least one of these \u2014 'leverage' and 'pivotal' especially. The skill explicitly teaches their removal.",
+          "passed": true,
+          "evidence": "Full text extracted from transcript (Write tool call, line 17): none of the 11 banned words appear. The prose uses concrete language \u2014 'mocks are obedient', 'silently swallowing a constraint violation', 'stand up your actual stack' \u2014 with no AI-clich\u00e9 vocabulary."
+        },
+        {
+          "text": "opener.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transitions or filler phrases: 'In today's', 'In the modern', 'It's important to note', 'It is important to note', 'That being said', 'At its core', 'To put it simply', 'From a broader perspective', 'Moreover,', 'Furthermore,', 'In essence,'. Baseline tends to use 'Moreover' or 'It's important to note' as a structural connective.",
+          "passed": true,
+          "evidence": "Full text reviewed: none of the 11 banned transition/filler phrases appear. The paragraph uses short declarative sentences as connectives ('The tests passed because mocks are obedient. Real systems are not.') rather than any of the banned phrases."
+        },
+        {
+          "text": "opener.md contains AT LEAST ONE of: a first-person pronoun ('I', 'we', 'our', 'my', 'I've', 'we've'), OR a specific number with a unit (e.g. '40% fewer', '12 incidents', '6 months', '3 services'), OR a named entity (a specific framework, language, tool by name \u2014 pytest, Jest, Postgres, Stripe API, Postman, etc.). Baseline 200-word opinion openers tend to stay third-person abstract; the skill teaches stake and specificity.",
+          "passed": true,
+          "evidence": "First sentence: 'Every team I've worked with has a suite of unit tests...' \u2014 contains the first-person pronoun 'I've'. Additionally '2am' constitutes a time-anchored number. No named tools appear, but the first-person stake criterion is clearly met."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 30.57,
+        "tokens": 52770,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "audit.md explicitly names AT LEAST 6 of these specific words or phrases from the audited paragraph as AI-prose tells: 'transformative' (or 'transformative shift'), 'navigate' (figurative), 'rapidly evolving landscape' (or 'landscape'), 'From a broader perspective', 'leverage', 'cutting-edge', 'pivotal', 'innovative', 'It's important to note' (or 'It is important to note'), 'harness', 'comprehensive', 'bolster', 'To put it simply', 'refine', 'realm'. The audit must call out at least 6 of these by literal quotation or unambiguous reference (the literal word in the audit.md text, not a paraphrase). Baseline audits tend to produce 2-4 specific callouts; the skill's catalog should produce 6+.",
+          "passed": true,
+          "evidence": "The audit flags all 15 terms from the list by literal quotation in a structured table: #1 'transformative shift', #2 'carefully navigate' (contains 'navigate'), #3 'rapidly evolving landscape', #4 'From a broader perspective', #5 'leverage', #6 'cutting-edge', #7 'pivotal', #8 'innovative solutions' (contains 'innovative'), #10 'It's important to note that', #11 'harness', #12 'comprehensive', #13 'bolster', #14 'refine their approaches' (contains 'refine'), #15 'competitive realm' (contains 'realm'). 'To put it simply' also appears in the summary section. That is 14\u201315 direct hits, far exceeding the threshold of 6."
+        },
+        {
+          "text": "audit.md uses skill-specific category vocabulary \u2014 must contain AT LEAST ONE of these phrases (case-insensitive): 'AI-prose tell', 'AI prose', 'AI vocabulary', 'AI-generated', 'high-frequency AI word', 'AI transition', 'AI buzzword', 'sounds like AI', 'humanize', 'humanization', 'reflex hedge', 'academic filler', 'sniff test', 'reads as generic'. Bare descriptions like 'this is jargon' or 'this is overused' do NOT satisfy. The skill teaches an explicit named diagnostic vocabulary; baseline lacks the named taxonomy.",
+          "passed": true,
+          "evidence": "The file is titled '# AI-Prose Vocabulary Audit' (matching 'AI prose' / 'AI-Prose'), and row #3 in the table explicitly reads 'The single most over-used AI-generated metaphor in tech writing.' \u2014 satisfying the 'AI-generated' criterion. The phrase 'AI amplification' also appears in row #1 ('Signature AI amplification'). Multiple named-taxonomy hits are present."
+        },
+        {
+          "text": "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms \u2014 substitution pattern is 'X \u2192 Y' or 'X \u2192 use Y' or 'replace X with Y' or '\"X\" should be Y' (any clear pairing of an AI word/phrase with a specific simpler replacement). Example accepted forms: 'leverage \u2192 use', 'pivotal \u2192 important', 'harness \u2192 take advantage of', 'utilize \u2192 use', 'cutting-edge \u2192 modern' or 'cut entirely'. Generic advice like 'use simpler language' without proposing specific replacements does NOT count. The skill teaches the specific substitution table; baseline proposes vague rewrite advice.",
+          "passed": true,
+          "evidence": "The audit uses a 'Suggested replacement' column in its table providing concrete mappings for all 15 tells. Concrete pairings include: 'transformative shift' \u2192 'a major change' or 'changing fast'; 'leverage' \u2192 'use'; 'cutting-edge' \u2192 'new' / 'modern'; 'pivotal' \u2192 'essential' / 'critical'; 'harness' \u2192 'use'; 'bolster' \u2192 'improve' / 'speed up' / 'strengthen'; 'competitive realm' \u2192 'industry' / 'market' / 'field'; 'It's important to note that' \u2192 delete (state the fact directly); 'carefully navigate' \u2192 'adapt to'. That is at least 9 concrete X\u2192Y pairings, well above the threshold of 4."
+        }
+      ],
+      "notes": [
+        "output.txt shows 'Not logged in \u00b7 Please run /login' \u2014 CLI session authentication failed. The audit.md was successfully written via Write tool earlier in the run, so the audit content is complete. The auth error is a benchmark harness issue, not a content quality issue."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 16.852,
+        "tokens": 111436,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate' (figurative), 'leverage' (as a verb), 'navigate' (figurative \u2014 i.e. not literal navigation), 'myriad', 'plethora', 'landscape' (figurative), 'paradigm'. The original has 5 of these (pivotal, leverage, navigate, harness, realm, myriad). Baseline rewrites typically retain or substitute 2-3 of these by reflex; the skill teaches removal of all of them.",
+          "passed": true,
+          "evidence": "Full text from transcript step 20: 'Slow database queries are usually the first thing I look at when an endpoint starts dragging. Nine times out of ten, it's a missing index or an N+1 hiding in the ORM \u2014 not something exotic...' None of the listed words (delve, underscore, pivotal, realm, harness, illuminate, leverage, navigate, myriad, plethora, landscape, paradigm) appear anywhere in the output."
+        },
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transition phrases: 'In today's', 'In the rapidly evolving', 'In recent years', 'That being said', 'At its core', 'To put it simply', 'A key takeaway is', 'This underscores the importance', 'It's important to note', 'It is important to note', 'From a broader perspective', 'cannot be overstated', 'tends to facilitate'. The original has 5 of these phrases. Baseline rewrites typically reduce but do not zero them out.",
+          "passed": true,
+          "evidence": "None of the listed transition phrases appear in the output. The rewrite uses no formulaic transitions at all \u2014 sentences connect directly or use dashes."
+        },
+        {
+          "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI buzzwords: 'revolutionize', 'innovative', 'cutting-edge', 'state-of-the-art', 'game-changing', 'transformative', 'seamless integration', 'scalable solution' AND ZERO occurrences of these reflex-hedge phrases: 'Generally speaking', 'Broadly speaking', 'tends to', 'tend to' (when followed by a verb), 'arguably', 'to some extent'. The original has 4+ of these. The full count must be zero \u2014 not 'reduced' \u2014 for the assertion to pass.",
+          "passed": true,
+          "evidence": "None of the buzzwords or hedge phrases appear in the output. The output avoids all hedging idioms and uses no marketing-style language."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 17.816,
+        "tokens": 111233,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "opener.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate', 'leverage' (verb), 'myriad', 'plethora', 'paradigm', 'ecosystem' (figurative). When writing fresh prose about a technical topic, baseline LLMs commonly reach for at least one of these \u2014 'leverage' and 'pivotal' especially. The skill explicitly teaches their removal.",
+          "passed": true,
+          "evidence": "Full text extracted from transcript (Write tool call, line 18). Verified absence of all 11 words: delve, underscore, pivotal, realm, harness, illuminate, leverage, myriad, plethora, paradigm, ecosystem \u2014 none appear in the text."
+        },
+        {
+          "text": "opener.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transitions or filler phrases: 'In today's', 'In the modern', 'It's important to note', 'It is important to note', 'That being said', 'At its core', 'To put it simply', 'From a broader perspective', 'Moreover,', 'Furthermore,', 'In essence,'. Baseline tends to use 'Moreover' or 'It's important to note' as a structural connective.",
+          "passed": true,
+          "evidence": "Full text verified from transcript. None of the 11 filler phrases appear. The text uses concrete narrative connectives ('Then they ship the change', 'Not because', 'Because', 'But most API code') rather than the formulaic transitions listed."
+        },
+        {
+          "text": "opener.md contains AT LEAST ONE of: a first-person pronoun ('I', 'we', 'our', 'my', 'I've', 'we've'), OR a specific number with a unit (e.g. '40% fewer', '12 incidents', '6 months', '3 services'), OR a named entity (a specific framework, language, tool by name \u2014 pytest, Jest, Postgres, Stripe API, Postman, etc.). Baseline 200-word opinion openers tend to stay third-person abstract; the skill teaches stake and specificity.",
+          "passed": true,
+          "evidence": "The text contains 'thirty unit tests' \u2014 a specific number ('thirty') with a countable noun ('unit tests'), structurally identical to the listed examples '12 incidents' and '3 services'. No first-person pronouns and no specific named tools (ORM is generic), but the number criterion is satisfied."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 32.44,
+        "tokens": 56618,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "audit.md explicitly names AT LEAST 6 of these specific words or phrases from the audited paragraph as AI-prose tells: 'transformative' (or 'transformative shift'), 'navigate' (figurative), 'rapidly evolving landscape' (or 'landscape'), 'From a broader perspective', 'leverage', 'cutting-edge', 'pivotal', 'innovative', 'It's important to note' (or 'It is important to note'), 'harness', 'comprehensive', 'bolster', 'To put it simply', 'refine', 'realm'. The audit must call out at least 6 of these by literal quotation or unambiguous reference (the literal word in the audit.md text, not a paraphrase). Baseline audits tend to produce 2-4 specific callouts; the skill's catalog should produce 6+.",
+          "passed": true,
+          "evidence": "The audit flags ALL 15 target phrases as literal quotations in a table: row 1 '\"transformative shift\"', row 2 '\"carefully navigate\"' (figurative use flagged explicitly), row 3 '\"rapidly evolving landscape\"', row 4 '\"From a broader perspective\"', row 5 '\"leverage\"', row 6 '\"cutting-edge\"', row 7 '\"pivotal\"', row 8 '\"innovative solutions at scale\"', row 9 '\"It's important to note that\"', row 10 '\"harness\"', row 11 '\"comprehensive\"', row 12 '\"bolster\"', row 13 '\"To put it simply\"', row 14 '\"refine their approaches\"', row 15 '\"competitive realm\"'. 15/15 target items called out by literal quotation \u2014 far exceeds the 6+ threshold. Notably, this baseline (without skill) still exceeds the threshold, meaning expectation 1 does not discriminate between with/without-skill runs."
+        },
+        {
+          "text": "audit.md uses skill-specific category vocabulary \u2014 must contain AT LEAST ONE of these phrases (case-insensitive): 'AI-prose tell', 'AI prose', 'AI vocabulary', 'AI-generated', 'high-frequency AI word', 'AI transition', 'AI buzzword', 'sounds like AI', 'humanize', 'humanization', 'reflex hedge', 'academic filler', 'sniff test', 'reads as generic'. Bare descriptions like 'this is jargon' or 'this is overused' do NOT satisfy. The skill teaches an explicit named diagnostic vocabulary; baseline lacks the named taxonomy.",
+          "passed": false,
+          "evidence": "None of the 14 required phrases appear in the audit. The audit title is '# AI-Prose Audit' (contains 'AI-Prose' with a hyphen, not 'AI prose' or 'AI-prose tell'). In the 'Why it's a tell' column the audit uses its own ad-hoc terms: 'AI filler move' (row 2), 'an AI go-to word' (row 7), 'AI-favored elevated synonym' (row 10), and category labels like 'Filler signposts', 'Elevated synonyms', 'Vague intensifiers'. None of these match any required phrase. The skill's named taxonomy (AI-prose tell, reflex hedge, sniff test, humanize, etc.) is entirely absent."
+        },
+        {
+          "text": "audit.md proposes concrete plain-English substitutions for AT LEAST 4 of the flagged terms \u2014 substitution pattern is 'X \u2192 Y' or 'X \u2192 use Y' or 'replace X with Y' or '\"X\" should be Y' (any clear pairing of an AI word/phrase with a specific simpler replacement). Example accepted forms: 'leverage \u2192 use', 'pivotal \u2192 important', 'harness \u2192 take advantage of', 'utilize \u2192 use', 'cutting-edge \u2192 modern' or 'cut entirely'. Generic advice like 'use simpler language' without proposing specific replacements does NOT count. The skill teaches the specific substitution table; baseline proposes vague rewrite advice.",
+          "passed": true,
+          "evidence": "The audit has a dedicated 'Proposed substitution' column in the table providing explicit replacements for all 15 flagged terms. Each row clearly pairs a flagged phrase with a specific simpler replacement. Examples: 'leverage' \u2192 '\"use\" or \"adopt\"'; 'pivotal' \u2192 '\"critical\" or \"important\"'; 'harness' \u2192 '\"use\" or \"rely on\"'; 'bolster' \u2192 '\"improve\" or \"speed up\"'; 'cutting-edge' \u2192 '\"new\" or \"modern\"'; 'rapidly evolving landscape' \u2192 '\"a fast-moving field\" or \"this field\"'; 'transformative shift' \u2192 '\"a major change\"'. The table format qualifies under the expectation's parenthetical 'any clear pairing' clause. 15 pairings provided, far exceeding the 4+ threshold."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 19.5183,
+        "stddev": 9.6452,
+        "min": 12.799,
+        "max": 30.57
+      },
+      "tokens": {
+        "mean": 54703.3333,
+        "stddev": 1684.0708,
+        "min": 52770.0,
+        "max": 55851.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.89,
+        "stddev": 0.1905,
+        "min": 0.67,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 22.3693,
+        "stddev": 8.7348,
+        "min": 16.852,
+        "max": 32.44
+      },
+      "tokens": {
+        "mean": 93095.6667,
+        "stddev": 31590.7491,
+        "min": 56618.0,
+        "max": 111436.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.11",
+      "time_seconds": "-2.9",
+      "tokens": "-38392"
+    }
+  },
+  "notes": []
+}

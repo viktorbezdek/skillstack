@@ -1,0 +1,1 @@
+Saved to `rewrite.md`. The rewrite replaces vague superlatives with concrete numbers (60–80% latency, 200ms → 40ms, 12% abandonment drop) and ties the technical win to a visible user outcome and a specific next step.

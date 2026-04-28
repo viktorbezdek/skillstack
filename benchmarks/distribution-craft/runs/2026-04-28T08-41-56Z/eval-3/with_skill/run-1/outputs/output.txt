@@ -1,0 +1,9 @@
+Saved to `launch.md`. Here's what each post does:
+
+**X** — leads with the two-week setup to make the single-deletion payoff land harder; stays under 200 chars so the link doesn't feel crammed.
+
+**LinkedIn** — follows a problem → methodical-but-wrong investigation → junior engineer's find → result → transferable lesson arc. The lesson reframes it beyond "we got lucky" into something actionable for readers.
+
+**HN title** — uses the exact numbers (75%, not 80%, because 480→120 is technically 75%) and the word "nobody" to signal the counterintuitive angle without being clickbait. HN audiences respond better to precision than superlatives.
+
+**HN comment** — covers four things the article likely glosses over: the organizational reason the index survived, the alternative fix you almost shipped, the specific planner mechanics (stale stats affecting join order cost estimation, not direct index selection), and the concrete rollback plan. Ends with a hook for follow-up engagement.

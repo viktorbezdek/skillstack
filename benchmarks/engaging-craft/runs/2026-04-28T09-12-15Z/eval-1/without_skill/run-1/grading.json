@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive whole-word match) of any of these AI high-frequency words: 'delve', 'underscore' (verb), 'pivotal', 'realm' (figurative), 'harness' (verb), 'illuminate' (figurative), 'leverage' (as a verb), 'navigate' (figurative — i.e. not literal navigation), 'myriad', 'plethora', 'landscape' (figurative), 'paradigm'. The original has 5 of these (pivotal, leverage, navigate, harness, realm, myriad). Baseline rewrites typically retain or substitute 2-3 of these by reflex; the skill teaches removal of all of them.",
+      "passed": true,
+      "evidence": "Full text from transcript step 20: 'Slow database queries are usually the first thing I look at when an endpoint starts dragging. Nine times out of ten, it's a missing index or an N+1 hiding in the ORM — not something exotic...' None of the listed words (delve, underscore, pivotal, realm, harness, illuminate, leverage, navigate, myriad, plethora, landscape, paradigm) appear anywhere in the output."
+    },
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI transition phrases: 'In today's', 'In the rapidly evolving', 'In recent years', 'That being said', 'At its core', 'To put it simply', 'A key takeaway is', 'This underscores the importance', 'It's important to note', 'It is important to note', 'From a broader perspective', 'cannot be overstated', 'tends to facilitate'. The original has 5 of these phrases. Baseline rewrites typically reduce but do not zero them out.",
+      "passed": true,
+      "evidence": "None of the listed transition phrases appear in the output. The rewrite uses no formulaic transitions at all — sentences connect directly or use dashes."
+    },
+    {
+      "text": "humanized.md contains ZERO occurrences (case-insensitive substring match) of any of these AI buzzwords: 'revolutionize', 'innovative', 'cutting-edge', 'state-of-the-art', 'game-changing', 'transformative', 'seamless integration', 'scalable solution' AND ZERO occurrences of these reflex-hedge phrases: 'Generally speaking', 'Broadly speaking', 'tends to', 'tend to' (when followed by a verb), 'arguably', 'to some extent'. The original has 4+ of these. The full count must be zero — not 'reduced' — for the assertion to pass.",
+      "passed": true,
+      "evidence": "None of the buzzwords or hedge phrases appear in the output. The output avoids all hedging idioms and uses no marketing-style language."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 686,
+    "transcript_chars": 3850
+  },
+  "timing": {
+    "executor_duration_seconds": 16.852,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 16.852
+  },
+  "claims": [
+    {
+      "claim": "The rewrite swaps the generic framing for concrete specifics — N+1 queries, Redis with a real TTL, p99 latency",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The output does mention N+1, Redis with 60-second TTL, and p99 latency — all concrete specifics absent from a typical AI-generated paragraph."
+    },
+    {
+      "claim": "The output is a humanized version of the input paragraph",
+      "type": "process",
+      "verified": false,
+      "evidence": "The executor wrote a completely new paragraph on database query optimization and Redis caching — a topically adjacent subject — rather than editing the original AI-generated text. The original paragraph's content (software performance, caching strategies, API design, team practices) is not preserved. The executor replaced rather than transformed."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": null,
+        "reason": "No assertion checks fidelity to the original input. The executor wrote a fresh paragraph on an adjacent topic rather than humanizing the provided AI-generated text — yet all three assertions pass. A rewrite that ignores the input entirely satisfies all current assertions. Consider adding: 'humanized.md preserves the core subject matter of the original (software performance optimization, caching strategies) and is recognizably derived from the original text, not a replacement.'"
+      },
+      {
+        "assertion": null,
+        "reason": "No assertion checks that the output is longer than, say, 100 characters or contains multiple sentences — a one-word output ('Done.') would technically pass all three absence-based assertions. A minimum-length or minimum-sentence-count guard would make the suite more robust."
+      }
+    ],
+    "overall": "All three assertions check only for the absence of AI markers, not for whether the humanization task was actually performed on the original text. The without_skill executor passed by writing a completely fresh paragraph — a strategy that trivially satisfies every absence check. The evals measure 'no AI slop' but not 'did the work asked.' Adding a fidelity assertion would close this gap."
+  }
+}

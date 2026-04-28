@@ -1,0 +1,7 @@
+Saved to `opening.md`. The three PAS phases are clearly delineated:
+
+- **Problem** — The familiar midnight incident with an expensive dashboard that doesn't actually help.
+- **Agitate** — Names the root cause: industry pressure pushing small teams to adopt enterprise-scale tooling that doesn't fit their reality ("operational theater").
+- **Solve** — Offers the thesis as relief: structured logs + basic metrics already in your stack, and a promise to make the case for staying simple.
+
+Word count lands at ~295.

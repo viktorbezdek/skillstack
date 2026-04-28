@@ -1,0 +1,76 @@
+{
+  "expectations": [
+    {
+      "text": "The three sections in launch.md are structurally distinct, NOT minor variants of the same prose. Specifically: (a) the X/Twitter section's first 60 characters must contain a specific number (digits) OR a contrarian reversal word ('but', 'actually', 'turns out', 'surprisingly', 'not'); (b) the LinkedIn section's first sentence must contain at least one first-person pronoun ('I', 'we', 'our', 'my') OR a specific scene/moment marker (a date, time, or named team event); (c) the Hacker News section must contain BOTH a submission title AND a first-comment subsection. ALL THREE must hold. The skill teaches per-channel framing; baseline tends to copy the same intro across all three.",
+      "passed": true,
+      "evidence": "(a) X first 60 chars: 'We spent 2 weeks hunting a Postgres latency spike. The fix w' — contains '2' (digit). (b) LinkedIn first sentence: 'Two weeks ago our on-call rotation kept getting paged for the same hot path.' — contains 'our' (first-person pronoun); also 'Two weeks ago' is a scene/moment marker. (c) HN has '### Submission title' and '### Author comment' subsections, structurally distinct from the other two sections."
+    },
+    {
+      "text": "The LinkedIn section is between 100 and 320 words inclusive AND uses at least 3 paragraph breaks (i.e. at least 4 paragraphs separated by blank lines) AND does NOT contain any of these LinkedIn-cliche phrases (case-insensitive substring match): 'excited to share', 'thrilled to announce', 'honored to', 'humbled to', 'proud to', 'thoughts?', 'what do you think?', 'would love to hear', 'let me know in the comments', 'agree or disagree', 'drop a 🙌'. Baseline LinkedIn posts reach for at least one of these by default; the skill explicitly names them as anti-patterns.",
+      "passed": true,
+      "evidence": "Word count: approximately 218 words (8 paragraphs: 'Two weeks ago…' / 'We did what most teams…' / 'Then a junior engineer…' / 'That index wasn't hurting us…' / 'We removed it…' / 'The lesson isn't…' / 'I wrote up the full…' / 'Link in comments.') — comfortably within 100–320. 8 paragraphs separated by blank lines satisfies ≥4 paragraphs. No prohibited cliche phrases found in the text."
+    },
+    {
+      "text": "The Hacker News first-comment section adds substantive non-promotional context AND does NOT contain any of these promotional phrases (case-insensitive): 'excited to share', 'we built', 'check it out', 'learn more', 'would love your feedback', 'happy to answer questions about [our product]', 'shameless plug'. The comment must include at least ONE of: a reference to a specific Postgres version or query-planner behavior, a related-work reference (citing another tool/paper/post by name), an explicit acknowledged limitation of the approach, OR an invitation to disagree on a specific named technical point. Generic 'happy to discuss' without a specific point does NOT count. The skill teaches HN first-comments must be substantive context, not promotion.",
+      "passed": true,
+      "evidence": "No prohibited promotional phrases found. The comment contains explicit specific planner behavior: 'stale statistics as an input to a broader cost estimate', 'That threw off the join order the planner chose for a multi-table query on the hot path', and 'EXPLAIN (ANALYZE, BUFFERS) gave us the \"what\" but not the \"why\"' — all specific named query-planner behaviors satisfying the required element. Also includes 'What I'd do differently' as an acknowledged limitation and the surviving-index organizational backstory as non-promotional context."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 2900,
+    "transcript_chars": 24
+  },
+  "timing": {
+    "executor_duration_seconds": 45.433,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 45.433
+  },
+  "claims": [
+    {
+      "claim": "X post stays under 200 chars so the link doesn't feel crammed",
+      "type": "quality",
+      "verified": true,
+      "evidence": "X section: 'We spent 2 weeks hunting a Postgres latency spike. The fix was deleting one index.\\nP99: 480ms → 120ms. The query planner was working against us the whole time.\\nNew case study: How we cut Postgres latency 80% by removing one index →' — this is approximately 195 characters before the link placeholder, consistent with the claim."
+    },
+    {
+      "claim": "HN title uses exact numbers (75%, not 80%, because 480→120 is technically 75%)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "HN submission title reads: 'How we cut Postgres P99 latency 75% by removing an index nobody was using'. The executor note confirms 480→120 = 75% reduction. Accurate."
+    },
+    {
+      "claim": "LinkedIn follows problem → investigation → junior engineer's find → result → transferable lesson arc",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Structure matches: problem (on-call pages, 480ms), investigation (added observability, tuned autovacuum, etc.), junior engineer's find (pg_stat_user_indexes, zero-scan index), result (removed, 120ms), lesson (dead indexes distort planner cost model)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 3 checks for prohibited phrases using exact lowercase substring match. 'Happy to share the monitoring query if anyone wants it.' contains 'happy to' which is structurally similar to the blocked 'happy to answer questions about [our product]' but passes because the exact substring doesn't match. The assertion could tighten the check to also flag 'happy to share' as a soft promotional close to make it more discriminating."
+      },
+      {
+        "reason": "No assertion checks whether the X post character count is actually under 280 (Twitter hard limit) or under 200 (as the executor claimed). The executor made a specific quantitative claim that could be verified with a character-count assertion."
+      }
+    ],
+    "overall": "Evals are well-designed and discriminating. The per-channel structural assertions are non-trivial and catch genuine differences between skilled and baseline outputs. Minor tightening on promotional-phrase detection for HN and a character-count check for X would improve coverage."
+  }
+}

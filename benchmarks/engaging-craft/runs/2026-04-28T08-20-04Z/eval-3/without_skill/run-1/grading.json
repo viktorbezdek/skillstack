@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "opening.md names AT LEAST TWO specific real observability companies, products, or open-source projects (e.g. Datadog, Honeycomb, Splunk, New Relic, Grafana, Prometheus, Loki, Tempo, OpenTelemetry, Sentry, PagerDuty). Generic terms — 'the observability stack', 'tools', 'platforms', 'vendors', 'SaaS solutions' — do NOT count. The two named entities must be distinct (Datadog and Honeycomb count as two; mentioning Datadog twice counts as one). Baseline opinion prose tends to stay vendor-agnostic.",
+      "passed": true,
+      "evidence": "The PROBLEM section explicitly names four distinct products: 'Datadog. Honeycomb. New Relic. Grafana Cloud.' All four are real observability companies/products, satisfying the minimum of two distinct named entities."
+    },
+    {
+      "text": "opening.md contains a quantified-cost-with-mechanism in a single paragraph — at least one number paired with a unit AND at least one explicit mechanism word in the same paragraph showing how the cost compounds or chains. Mechanism words include 'because', 'compounds', 'on top of', 'leads to', 'pulls', 'every', 'per', 'multiplied', 'doubles', 'cascades'. Examples that count: '$40k/year, multiplied across each new tool', '6 hours/week per engineer, every week', '20% of the on-call rotation pulled into dashboard babysitting'. A standalone cost claim without mechanism does NOT count.",
+      "passed": true,
+      "evidence": "The AGITATE paragraph contains: 'The average Datadog contract for a 15-engineer team runs $3,000–$6,000 per month. That's $36,000–$72,000 per year — enough to fund half a senior hire.' This has numbers ($3,000–$6,000) with unit (month/year) and the explicit mechanism word 'per' (listed in the mechanism word set) in the same paragraph, showing how the monthly cost compounds to an annual figure."
+    },
+    {
+      "text": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative — a real pattern, tool, library, or methodology by name. Examples that count: 'in-process metrics with /metrics endpoint and Prometheus scrape', 'structured JSON logs to stdout and Loki', 'OpenTelemetry SDK with the in-process exporter', 'sqlite-backed audit log', 'Heroku metrics dashboard'. Generic preview prose like 'consider simpler approaches', 'start with what you have', 'a simpler stack', 'rethink the architecture' does NOT count. The skill teaches that prescriptions must commit to specifics, not gesture at simplicity.",
+      "passed": false,
+      "evidence": "The SOLVE section reads: 'Structured JSON logging, a single time-series metrics endpoint, and one error-tracking integration — tools you can wire up in a day and maintain in hours per quarter — cover nearly every incident your team will face before you hit 50 engineers.' No specific tool, library, or product is named: not Prometheus, not Loki, not Sentry, not OpenTelemetry. 'Structured JSON logging' describes a technique/approach rather than naming a concrete product or framework. 'Time-series metrics endpoint' and 'error-tracking integration' are similarly generic. The solve gestures at the category of solution without committing to a named implementation."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 311,
+    "transcript_chars": 24800
+  },
+  "timing": {
+    "executor_duration_seconds": 25.826,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 25.826
+  },
+  "claims": [
+    {
+      "claim": "Quantifies the cost ($36k–$72k/year)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Text contains: '$36,000–$72,000 per year' in the AGITATE section."
+    },
+    {
+      "claim": "Names the complexity tax (two sprints of integration work)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Text states: 'I've watched teams spend two full sprints integrating an observability platform.'"
+    },
+    {
+      "claim": "Offers a concrete, proportionate alternative (structured logs + basic metrics + one error tracker)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The executor's summary describes this as 'concrete', but the SOLVE text does not name a single specific tool — no Loki, no Prometheus, no Sentry, no OpenTelemetry. The alternatives are described at the category level only, not with the specificity required by the assertion."
+    },
+    {
+      "claim": "Word count: ~290",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The written text is consistent with approximately 290 words based on the content in the transcript."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The Solve phase of opening.md commits to AT LEAST ONE specific named alternative",
+        "reason": "This assertion is discriminating and correctly fires here. However, consider tightening the boundary on 'Structured JSON logging' — a model could argue it IS a named methodology. Adding an explicit exclusion list that includes technique-descriptions like 'structured logging', 'centralized logging', 'metrics collection', 'error tracking' (without a named tool) would remove ambiguity and prevent a too-charitable pass."
+      },
+      {
+        "reason": "No assertion checks whether the named observability tools (Datadog, Honeycomb, etc.) appear in an adversarial role (as the problem) rather than as recommended alternatives. A future without_skill run could name Datadog in the Solve phase and still pass assertion 1 — consider constraining that the named tools appear specifically as examples of the over-engineering problem, not as recommended solutions."
+      }
+    ],
+    "overall": "The three assertions are well-targeted and discriminating. Assertion 3 correctly catches the baseline model's tendency to prescribe categories instead of specific tools. Minor boundary clarification on 'technique-description vs. named tool' would make assertion 3 more robust."
+  }
+}

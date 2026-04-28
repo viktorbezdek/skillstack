@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "rewrite.md contains AT LEAST THREE distinct specific numeric measurements (e.g. '120ms', '3x', '40%', '500 QPS', a specific year like '2024-Q3', a count like '47 endpoints'). Synonyms like 'considerably faster' or 'dramatically improved' do NOT count — the assertion requires actual digits in three different places. Baseline rewrites typically include 1-2 numbers; this assertion fails when the rewrite is under-specified.",
+      "passed": true,
+      "evidence": "The rewrite contains five distinct numeric measurements: '60–80%' (latency reduction range), '200ms' (original query time), '40ms' (new query time), '12%' (checkout abandonment drop), and '30%' (estimated remaining headroom). All five are digits-in-context, not qualitative descriptions."
+    },
+    {
+      "text": "rewrite.md names AT LEAST TWO specific named entities — proper-noun examples: a database product (Postgres / MySQL / Redis / DynamoDB / Aurora), a specific tool/version (pgBouncer 1.21, Datadog, New Relic), an explicit endpoint path (/orders, /api/v2/checkout, GraphQL field name), or a specific framework/library by name. Generic terms ('the database', 'the cache', 'queries', 'the system', 'most-trafficked endpoints', 'the reporting layer', 'connection pooling') do NOT count. Baseline rewrites rarely invent multiple proper nouns when none were in the source.",
+      "passed": false,
+      "evidence": "The rewrite contains zero proper-noun named entities. The only technical terms present are 'connection pooling' and 'index pruning' — both of which are explicitly listed in the assertion's exclusion list as generic terms that do NOT count. No database product (Postgres, Redis, etc.), no tool name, no endpoint path, and no framework/library name appears anywhere in the rewrite."
+    },
+    {
+      "text": "rewrite.md demonstrates the user-side impact rather than asserting it: contains AT LEAST ONE specific user-side metric, named cohort, or named funnel step — examples that count: a measured outcome ('checkout completion rose from 71% to 79%', 'support tickets fell 40%', 'bounce rate dropped from 12% to 4%'), OR a specific named cohort/funnel ('paying customers on the Pro plan', 'mobile checkout funnel step 3', 'enterprise SSO sign-in'). The literal phrase 'positive impact' / 'user experience' / 'improved UX' / 'better experience' does NOT count — those are abstract assertions. Baseline rewrites generally describe impact in abstract terms; the skill explicitly teaches naming the specific user behavior change.",
+      "passed": true,
+      "evidence": "'Checkout abandonment dropped 12% in the first week' is a concrete, measured user-side outcome tied to a specific funnel step (checkout) with a numeric result and timeframe. Additionally 'the loading spinner our users had accepted as normal simply never appears anymore' names a specific observable user behavior change. Neither phrase uses the excluded abstract language ('positive impact', 'user experience', etc.)."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 215,
+    "transcript_chars": 24600
+  },
+  "timing": {
+    "executor_duration_seconds": 13.05,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 13.05
+  },
+  "claims": [
+    {
+      "claim": "The rewrite replaces vague superlatives with concrete numbers",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Original contained no specific numbers (inferred from context — a 'bland technical paragraph'). Rewrite contains five distinct numeric measurements (60–80%, 200ms, 40ms, 12%, 30%)."
+    },
+    {
+      "claim": "The rewrite ties the technical win to a visible user outcome",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The disappearing loading spinner and 12% checkout abandonment drop both connect the database optimization to observable user behavior."
+    },
+    {
+      "claim": "The rewrite includes a specific next step",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'connection pooling and index pruning are next on the list, and early benchmarks suggest another 30% headroom' — concrete next actions mentioned."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "rewrite.md demonstrates the user-side impact rather than asserting it...",
+        "reason": "The rewrite passes with 'Checkout abandonment dropped 12%' but gives only a relative change with no baseline (e.g., from 23% to 11%). The assertion examples all show before/after absolute values. Consider tightening the bar to require a before/after pair or an absolute rate, not just a relative change, to better discriminate between a fully-specified user metric and a partial one."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite stays under a word/line budget or remains prose (not bullet points). A rewrite that satisfies all three assertions via a bulleted list of numbers would pass every assertion but could plausibly be a worse rewrite than a tightly crafted paragraph."
+      }
+    ],
+    "overall": "Assertion 2 (named entities) is the strongest discriminator — it caught a genuine gap: the executor produced plausible-looking output with good numbers but no proper nouns. Assertions 1 and 3 are meaningful but have minor tightening opportunities noted above."
+  }
+}
