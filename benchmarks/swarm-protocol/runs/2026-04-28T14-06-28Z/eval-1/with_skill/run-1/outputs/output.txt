@@ -1,0 +1,17 @@
+Plan written to `plan.md`. Here's the summary:
+
+**Arc:** Arc 3 — Full arc (divergent → probing → convergent), because the team hasn't decided yet and the topic spans product, engineering, and production concerns.
+
+**Persona subset (7 of 12, distributed across 3 phases):**
+
+- **Phase 1 (6 in parallel):** `pm`, `engineer`, `designer`, `user-advocate`, `operator`, `skeptic` — breadth-first, all see the same shared prompt, spawned in one message
+- **Phase 2 (2 in parallel):** `pre-mortem-specialist`, `constraint-setter` — triggered after synthesis identifies the expected tension (user pain vs. sync complexity); prompt injects the Phase 1 synthesis excerpt
+- **Phase 3 (3 in parallel):** `veteran`, `first-principles-thinker`, `skeptic` — each gives strongest FOR / strongest AGAINST / decisive consideration on the candidate direction
+
+**Key spawning rules:**
+- Each phase is one message with N simultaneous `Task()` calls — no sequential spawning within a phase
+- Phases are sequential (wait for synthesis before advancing)
+- `swarm-synthesis` runs as a gate between every phase
+- Early-exit shortcut: if Phase 1 synthesis is decisive with no significant dissent, skip Phase 2
+
+**Prompt structure:** all personas get the same shared topic + context block, with Phase 2/3 prompts injecting the live synthesis excerpt so later phases respond to actual emerging findings, not a static brief.

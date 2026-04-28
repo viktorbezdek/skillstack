@@ -1,0 +1,7 @@
+Plan written to `plan.md`. Summary of decisions:
+
+**8 canonical personas selected:** Security Expert, Devil's Advocate, Risk Manager, Cost Analyst, CTO/Architect, Operations/SRE, Legal, Product Manager. Dropped Customer Advocate, DX, Data Engineer, and Business Strategist — their angles are covered by others for this question.
+
+**1 custom persona designed — Compliance Architect:** Former Big-4 financial-services auditor with CISA/CISSP, scoped to PCI-DSS v4.0, GLBA Safeguards Rule, SOX ITGC, NYDFS Part 500, FFIEC IT Handbook, and OCC Cloud Risk Guidance. This role is absent from the canonical set because it distinguishes between regulations that *mandate* CMK versus those that merely permit provider-managed with compensating controls — the exact distinction that determines the real answer to the question.
+
+**Brainstorm runs in 6 phases:** frame the decision → regulatory forcing functions (Compliance Architect leads) → threat model → operational/cost reality → devil's advocate pressure test → synthesis. The plan surfaces five key tensions (data control vs. availability risk, GDPR crypto-shredding vs. irreversibility, etc.) and targets a tiered deliverable by data category rather than a binary yes/no.

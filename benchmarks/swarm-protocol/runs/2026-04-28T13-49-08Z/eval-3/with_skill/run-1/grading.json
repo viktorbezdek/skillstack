@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+      "passed": false,
+      "evidence": "Condition (a) is satisfied: plan.md creates a custom persona named 'Regulatory & Compliance Specialist', which qualifies as a 'Regulatory Specialist' name. However, condition (b) is NOT satisfied: the plan contains no occurrence of 'brief', 'briefing', 'brief vs fork', 'brief the canonical', or any language framing the choice as 'augmenting the canonical Operator with regulatory context.' The plan's Gap Analysis explains WHY a custom persona is needed over existing canonicals ('Security Expert covers threat modeling; Legal covers liability. Neither covers the operative question...'), but it does so without naming or invoking the brief-vs-fork decision framework at all. Both conditions must hold for a pass."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+      "passed": false,
+      "evidence": "The plan selects 8 personas from a claimed 'standard 12-persona brainstorm-swarm roster', but uses entirely different names: Security Expert, Devil's Advocate, Risk Manager, Technical Expert, Financial Analyst, Business Strategist, Legal, and Operations. None of the required canonical names appear — 'Operator' is absent, and none of PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, or Constraint-Setter appear. The executor used personas that may correspond conceptually (e.g., 'Devil's Advocate' ≈ 'Skeptic', 'Technical Expert' ≈ 'Engineer') but the expectation requires the literal canonical names from the skill's roster. Both 'Operator' and 2+ of the listed names must be present for a pass."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+      "passed": false,
+      "evidence": "Only element (a) is clearly present: the persona has a '**Voice/stance:**' section with 3+ explicit characteristics — 'Evidence-driven, citation-anchored, moderately conservative' plus additional behavioral descriptors. Elements (b)–(e) are absent: the '**Core contributions to the brainstorm**' section lists 5 numbered substantive points (regulatory analysis items) rather than the 4 labeled slots (questions / concerns / reframe / veto-or-critical-question); there is no 'discipline' or 'do/don't' section; no 'output format' specification with Markdown heading structure; and no length budget. The 'Signature challenge question' could loosely map to a 'veto-or-critical-question' slot, but the full 4-slot template is not present with labeled headings. With only 1 of 5 structural elements satisfied, the threshold of 3 is not reached."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": null,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 562,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 72.655,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 72.655
+  },
+  "claims": [
+    {
+      "claim": "8 of 12 canonical personas selected",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md lists exactly 8 personas in the table (Security Expert, Devil's Advocate, Risk Manager, Technical Expert, Financial Analyst, Business Strategist, Legal, Operations) and explicitly documents the 4 omitted."
+    },
+    {
+      "claim": "Custom persona named 'Regulatory & Compliance Specialist' was designed",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md has a full '## Custom Persona: Regulatory & Compliance Specialist' section with Voice/stance, Knowledge domains, Core contributions, and a Signature challenge question."
+    },
+    {
+      "claim": "The gap analysis explains why a custom persona is needed",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The Gap Analysis section clearly articulates that no canonical persona 'speaks with authority on how specific regulations mandate or interpret key management controls' and explains the specific auditor question that motivates the custom persona."
+    },
+    {
+      "claim": "The custom persona follows the 4-slot template structure",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The plan does not use the 4-slot (questions / concerns / reframe / veto-or-critical-question) structure. It uses free-form 'Core contributions' with 5 regulatory analysis items instead."
+    },
+    {
+      "claim": "Canonical brainstorm-swarm personas were used (8 of 12)",
+      "type": "process",
+      "verified": false,
+      "evidence": "The plan claims to select from 'the standard 12-persona brainstorm-swarm roster' but uses persona names (Security Expert, Devil's Advocate, Technical Expert, etc.) that do not match the expected canonical names (Operator, PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, Constraint-Setter). The executor appears to have renamed or substituted the canonical personas."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas.",
+        "reason": "This assertion depends on persona names matching the skill's exact canonical roster labels. The executor clearly used the skill (it claims '8 of 12 canonical personas') but produced different persona labels than expected. It's worth verifying whether the skill's actual SKILL.md uses 'Operator', 'PM', 'Skeptic', etc. as canonical names, or whether the eval was written with an assumed roster that doesn't match the skill's actual text. If the skill uses different labels internally, the assertion will always fail for correct executions."
+      },
+      {
+        "reason": "No assertion checks the Gap Analysis quality — whether the executor correctly identifies the specific regulatory gap (key custody/auditability) vs. a generic 'add compliance perspective' rationale. A strong discriminating assertion would check for specific regulatory citations (PCI-DSS, NYDFS, GLBA) in the gap analysis, since the skill teaches domain-specific reasoning rather than just persona-adding."
+      }
+    ],
+    "overall": "The executor produced a substantively rich plan with a well-reasoned custom persona and regulatory depth, but failed all three assertions because: (1) it never invoked the brief-vs-fork framework by name, (2) it used non-canonical persona label names, and (3) it didn't follow the 4-slot template structure. The pass_rate of 0.0 may understate quality if the canonical persona name assertion is miscalibrated against the skill's actual roster."
+  }
+}

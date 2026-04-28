@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names — particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+      "passed": false,
+      "evidence": "plan.md persona table uses generic archetype names: 'Product Manager', 'User Champion', 'Tech Lead', 'Security Expert', 'Business Analyst', 'Competitor Analyst', 'Devil's Advocate', 'Risk Analyst'. None match the canonical brainstorm-swarm names. Substring matches found ('pm' in 'construction PMs', 'engineer' in 'engineering cost') are incidental text occurrences, not persona labels. 'Optimist' appears only in the excluded-personas footnote ('Optimist/Pessimist (covered by split between User Champion + Business Analyst vs. Devil\\'s Advocate + Risk Analyst)') — not as a deployed persona name. Zero canonical names ('constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker', 'skeptic', 'user-advocate', 'operator', 'junior', 'veteran', 'designer') appear anywhere in the plan."
+    },
+    {
+      "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count — the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+      "passed": true,
+      "evidence": "plan.md contains both required elements. (a) 'single message' appears explicitly: 'Phase 1 — Independent Analysis  [PARALLEL, single message, 8 agents]' and again in the Session Arc diagram: '8 agents, single message, no shared context'. (b) Agent() call references confirmed present in plan content (ctx_execute_file found `agent()` in the plan string) and the terminal summary states 'Phase 1 is a single message with 8 parallel Agent() calls'. Both the single-message constraint and the multi-agent parallel invocation pattern are explicitly named."
+    },
+    {
+      "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language.",
+      "passed": true,
+      "evidence": "plan.md uses 'Phase 1', 'Phase 2', 'Phase 3' explicitly throughout. The phase structure table reads: 'Phase 1 — Independent Analysis [PARALLEL, single message, 8 agents] / Phase 2 — Cross-Examination [SEQUENTIAL pairs, 3 targeted exchanges] / Phase 3 — Synthesis [SINGLE agent, Product Manager re-run]'. The Session Arc diagram also labels blocks as 'PHASE 1 — Independent Analysis' and 'PHASE 2'. All three phase labels are present; the assertion's minimum threshold (at least one) is satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "total_tokens": 118340,
+    "input_tokens": 18,
+    "output_tokens": 3639,
+    "cache_creation_input_tokens": 45844,
+    "cache_read_input_tokens": 68839,
+    "total_cost_usd": 0.2472057
+  },
+  "timing": {
+    "executor_duration_seconds": 72.312,
+    "total_duration_seconds": 72.312
+  },
+  "claims": [
+    {
+      "claim": "Plan was saved to plan.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript contains a Write tool_use call with file_path 'plan.md' and 10,147 chars of content; terminal output confirms 'Plan saved to plan.md'"
+    },
+    {
+      "claim": "8 of 12 canonical personas were selected",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The plan selects 8 personas, but they are generic archetypes (Product Manager, User Champion, Tech Lead, etc.), not 8 of the 12 canonical brainstorm-swarm named personas. The 'canonical roster' framing in the plan text is the executor's own label, not the skill's taxonomy."
+    },
+    {
+      "claim": "Phase 1 spawns 8 agents in a single message",
+      "type": "process",
+      "verified": true,
+      "evidence": "plan.md phase structure table: 'Phase 1 — Independent Analysis [PARALLEL, single message, 8 agents]' and terminal output summary confirm this."
+    },
+    {
+      "claim": "~17 min wall-clock, ~11 agent calls total",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is a projection in the plan, not an executed result. Cannot verify from the plan alone."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'.",
+        "reason": "'Phase 1/2/3' are generic enough that any competent baseline planner would use them for a multi-phase workflow — this run passes the assertion without using any skill-specific vocabulary. The assertion note says 'baseline would describe rounds in generic first round / second round language', but Phase 1/2/3 is equally generic. The discriminating labels are 'Arc 1/2/3/4', 'divergent opening', 'convergent closing', 'probing round' — the skill's actual named taxonomy. Consider requiring one of those four skill-specific terms instead of (or in addition to) Phase N numbering."
+      }
+    ],
+    "overall": "Expectation 1 is strong and discriminating — baseline correctly fails it. Expectation 2 is well-designed: 'single message' is a specific enough constraint that its presence alongside Agent() call references genuinely signals skill influence (or a lucky discovery). Expectation 3 is too weak: 'Phase 1/2/3' is satisfied by any structured planner and doesn't distinguish skill knowledge from baseline behavior."
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names — particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+      "passed": true,
+      "evidence": "plan.md (output.txt) explicitly names 10 canonical personas: 'pm', 'engineer', 'designer', 'user-advocate', 'operator', 'skeptic' (Phase 1); 'pre-mortem-specialist', 'constraint-setter' (Phase 2); 'veteran', 'first-principles-thinker' (Phase 3). Transcript search confirmed all 12 canonical names appear including the discriminating trio: 'pre-mortem-specialist', 'constraint-setter', 'first-principles-thinker'."
+    },
+    {
+      "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count — the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+      "passed": true,
+      "evidence": "plan.md states: 'Each phase is one message with N simultaneous Task() calls — no sequential spawning within a phase'. This satisfies both conditions: (a) 'one message' is present, (b) 'N simultaneous Task() calls' explicitly names multiple Task() invocations spawned together. Transcript also confirmed 'single message', 'one message', 'ONE message' appear multiple times in context."
+    },
+    {
+      "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language.",
+      "passed": true,
+      "evidence": "plan.md states: 'Arc: Arc 3 — Full arc (divergent → probing → convergent)' and explicitly uses 'Phase 1', 'Phase 2', 'Phase 3'. Transcript search confirmed Arc 1-4, Phase 1-3, 'divergent opening', and 'convergent closing' all appear in the execution context."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tokens": 182979,
+    "input_tokens": 27,
+    "output_tokens": 4124,
+    "cache_creation_input_tokens": 49899,
+    "cache_read_input_tokens": 128929,
+    "total_cost_usd": 0.28774094999999994
+  },
+  "timing": {
+    "executor_duration_seconds": 80.043,
+    "total_duration_seconds": 80.043
+  },
+  "claims": [
+    {
+      "claim": "plan.md was written to disk",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt begins with 'Plan written to `plan.md`.' and contains the full plan content"
+    },
+    {
+      "claim": "Arc 3 was selected as the appropriate arc for the topic",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt: 'Arc: Arc 3 — Full arc (divergent → probing → convergent), because the team hasn't decided yet and the topic spans product, engineering, and production concerns'"
+    },
+    {
+      "claim": "7 of 12 personas were selected and distributed across 3 phases",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states 'Persona subset (7 of 12, distributed across 3 phases)' with explicit per-phase breakdown. Note: Phase 3 adds 'skeptic' again, so 8 slots across 7 unique personas."
+    },
+    {
+      "claim": "swarm-synthesis runs as a gate between every phase",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt: 'swarm-synthesis runs as a gate between every phase'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks whether plan.md was actually written to disk vs. only described in the transcript. The output.txt serves as a proxy here, but a direct file-existence check in outputs_dir would be a cleaner assertion."
+      },
+      {
+        "assertion": "plan.md references the brainstorm-swarm arc framework",
+        "reason": "The assertion accepts any one of many terms, making it easy to satisfy incidentally. A stronger version would require both a named arc (Arc 1-4) AND explicit phase numbering (Phase 1/2/3), since baseline Claude could mention 'Phase 1' generically. The paired requirement — arc name + phase number — is more discriminating."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating for the skill under test. The persona assertion is particularly strong because it requires the specific canonical names (especially the three non-obvious ones). The single-message rule assertion is precise and catches the exact teaching point. Minor improvement opportunity around plan.md file-existence verification."
+  }
+}

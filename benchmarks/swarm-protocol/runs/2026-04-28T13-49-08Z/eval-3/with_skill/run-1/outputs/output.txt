@@ -1,0 +1,7 @@
+Saved to `plan.md`. Here's the structure:
+
+**8 of 12 canonical personas selected** — Security Expert, Devil's Advocate, Risk Manager, Technical Expert, Financial Analyst, Business Strategist, Legal, and Operations. The 4 omitted (Customer/User, Optimist, Innovation, Executive) are either absorbed by other personas or add low signal for a technical compliance question.
+
+**1 custom persona designed: Regulatory & Compliance Specialist** — the gap is real and decisive. The canonical roster covers threat modeling (Security), liability (Legal), and cost (Financial Analyst), but none speaks to *how regulators actually audit key custody* in practice. The custom persona brings PCI-DSS v4.0 §3.5–3.7, GLBA 2023 amendments, NYDFS §500.15, GDPR Articles 25/32, and the breach safe-harbor economics that directly determine whether CMK is elective or effectively required. Its signature provocation — "does your provider-managed setup require you to inherit their SOC 2 scope?" — is the kind of question that reframes the cost-benefit calculation entirely.
+
+The plan also includes a structured 3-question swarm format and 5 decision criteria the team must resolve before the brainstorm can produce an actionable recommendation.

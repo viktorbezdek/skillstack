@@ -1,0 +1,15 @@
+Saved to `plan.md`. Here's what's in it:
+
+**8 Personas** — each isolated, each with a focused attack vector:
+1. **Bear Case Analyst** — reconstructs the failure narrative from 6 months out
+2. **Competitive Strategist** — maps competitor responses at week 1/4/12
+3. **CFO** — builds the break-even table and attacks the 90-day recovery thesis
+4. **Mid-Market Buyer** — surfaces loyalty and retroactive pricing resentment
+5. **Sales Leader** — exposes field execution risk, pipeline disruption, quota chaos
+6. **Brand Strategist** — identifies signal risk and pre-arms reps against competitive narrative
+7. **Operational Risk Officer** — enumerates every system that has to change by Monday 9am
+8. **Devil's Advocate** — makes the strongest possible case for a 30-day delay
+
+**3-Phase Arc:** Isolated memos → 3 targeted debate pairs (Bear vs. CFO, Competitive vs. Sales, Brand vs. Dissenter) → Integrator synthesis that outputs a ranked risk register and a go/conditional-go/delay recommendation.
+
+Each persona prompt is self-contained and ready to paste. The debate pairs are designed to surface the two highest-stakes disagreements (volume thesis and timing). The synthesis prompt forces the integrator to name unchallenged assumptions — which is usually where the blind spots live.

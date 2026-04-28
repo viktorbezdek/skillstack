@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+      "passed": false,
+      "evidence": "Part (a) passes: the plan creates 'The Compliance Architect' custom persona under 'Custom Persona: Fintech Regulatory Compliance Specialist' — fits 'Regulatory Specialist or similar'. Part (b) fails: the plan's Gap Analysis section simply states the canonical 12 lack a regulatory specialist and proceeds directly to design the custom persona. The words 'brief', 'briefing', 'brief vs fork', 'brief the canonical', and any reasoning contrasting augmenting the canonical Operator are entirely absent. The plan treats persona creation as the only path without discussing the briefing-vs-forking trade-off."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+      "passed": false,
+      "evidence": "The plan deploys 7 personas: Risk Manager, Security Architect, Devil's Advocate, Financial Analyst, Legal Counsel, Operations/Implementer, Customer Advocate. None of these uses the canonical swarm vocabulary. The literal string 'Operator' does not appear (the closest is 'Operations/Implementer'). None of PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, or Constraint-Setter appear anywhere in the document. The baseline invented its own generic persona names rather than drawing on the canonical swarm."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+      "passed": false,
+      "evidence": "The Compliance Architect persona section has: Domain Knowledge table, Characteristic Arguments (5 items), Counter-Positions, and How to Engage guidance. None of these map to the 4-slot template: (a) no explicit 'voice' or 'tone' section listing 3+ characteristics — archetype description is narrative but unlabeled as tone; (b) no 4-slot contribution structure (questions/concerns/reframe/veto); (c) no 'discipline' or 'do/don't' section; (d) no 'output format' specification with headings; (e) no word length budget. Zero of 5 structural elements satisfied. The persona is richer than a one-liner but follows a custom ad-hoc structure, not the 4-slot template."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 7255,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 74.506,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 74.506
+  },
+  "claims": [
+    {
+      "claim": "7 of 12 canonical personas selected",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The plan selects 7 personas, but these are generically invented (Risk Manager, Security Architect, etc.) — not drawn from the brainstorm-swarm canonical 12 (Operator, PM, Engineer, Skeptic, etc.). The '12' reference is unverifiable; the 7 chosen don't map to any known canonical set."
+    },
+    {
+      "claim": "1 custom persona designed: The Compliance Architect",
+      "type": "process",
+      "verified": true,
+      "evidence": "The plan contains a full section 'Custom Persona: Fintech Regulatory Compliance Specialist' with name 'The Compliance Architect', domain knowledge table, characteristic arguments, counter-positions, and engagement guidance."
+    },
+    {
+      "claim": "3-round structure with threat model → regulatory forcing functions → operational/financial reality",
+      "type": "process",
+      "verified": true,
+      "evidence": "Plan's 'Brainstorm Sequencing Recommendation' section explicitly defines Round 1 (threat model), Round 2 (regulatory forcing functions), Round 3 (operational and financial reality)."
+    },
+    {
+      "claim": "Gap analysis correctly identifies regulatory/compliance as missing from the canonical set",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The 'Gap Analysis' section states: 'The canonical 12 do not include a regulatory/compliance specialist. The CMK decision in fintech is often driven by regulatory mandate, not purely security preference.' This is a correct and substantive gap identification."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 1 is conjunctive (requires BOTH parts) but the baseline satisfies part (a) well. Splitting into two separate assertions would allow cleaner signal: one assertion for 'custom compliance persona designed' and another for 'brief-vs-fork reasoning present'. As written, the conjunctive form correctly fails this run, but the pass/fail verdict obscures that the baseline did half the work correctly."
+      },
+      {
+        "assertion": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas.",
+        "reason": "The assertion presupposes the executor uses the canonical swarm vocabulary (Operator, PM, Engineer, Skeptic, etc.). A baseline that invents its own semantically equivalent names (Security Architect ≈ Engineer, Legal Counsel ≈ General Counsel) would still fail on exact string matching even if functionally equivalent. Consider whether the assertion should test for vocabulary adherence (strict) or functional coverage (looser). Currently it's testing vocabulary, which is legitimate for skill adoption measurement."
+      }
+    ],
+    "overall": "Evals are well-targeted discriminators for skill adoption. The brainstorm-swarm skill injects specific vocabulary (Operator, brief-vs-fork, 4-slot template) that a baseline wouldn't know. The 0/3 result is a clean negative — the baseline produced substantive work (a detailed compliance persona, correct gap analysis, good sequencing) but none of it used the skill's frameworks. That's exactly the signal these evals are designed to capture."
+  }
+}

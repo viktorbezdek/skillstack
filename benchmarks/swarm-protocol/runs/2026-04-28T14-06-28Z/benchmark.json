@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "swarm-protocol",
+    "skill_path": "brainstorm-swarm/skills/swarm-protocol",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-28T14:12:27Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "swarm-protocol",
+    "target_path": "brainstorm-swarm/skills/swarm-protocol"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 80.043,
+        "tokens": 182979,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names \u2014 particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+          "passed": true,
+          "evidence": "plan.md (output.txt) explicitly names 10 canonical personas: 'pm', 'engineer', 'designer', 'user-advocate', 'operator', 'skeptic' (Phase 1); 'pre-mortem-specialist', 'constraint-setter' (Phase 2); 'veteran', 'first-principles-thinker' (Phase 3). Transcript search confirmed all 12 canonical names appear including the discriminating trio: 'pre-mortem-specialist', 'constraint-setter', 'first-principles-thinker'."
+        },
+        {
+          "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count \u2014 the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+          "passed": true,
+          "evidence": "plan.md states: 'Each phase is one message with N simultaneous Task() calls \u2014 no sequential spawning within a phase'. This satisfies both conditions: (a) 'one message' is present, (b) 'N simultaneous Task() calls' explicitly names multiple Task() invocations spawned together. Transcript also confirmed 'single message', 'one message', 'ONE message' appear multiple times in context."
+        },
+        {
+          "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language.",
+          "passed": true,
+          "evidence": "plan.md states: 'Arc: Arc 3 \u2014 Full arc (divergent \u2192 probing \u2192 convergent)' and explicitly uses 'Phase 1', 'Phase 2', 'Phase 3'. Transcript search confirmed Arc 1-4, Phase 1-3, 'divergent opening', and 'convergent closing' all appear in the execution context."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 72.963,
+        "tokens": 173648,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) \u2014 the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+          "passed": false,
+          "evidence": "The plan does contain 'Phase 3' literally, but only as an internal phase label ('## Phase 3 \u2014 Synthesis Prompt') within the plan's own 3-phase structure \u2014 NOT as identification of the session arc type using the skill's terminology. None of the other required phrases appear: 'Arc 4', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test' are all absent. The session type IS correctly framed as 'Pressure-test / pre-mortem (decision is final \u2014 find failure modes, not reasons to reverse)', which shows correct conceptual understanding, but the plan never uses the skill's arc vocabulary and critically does NOT explicitly note that Phase 1 divergent brainstorming is NOT what is needed here. The plan avoids Arc 1 divergent opening, but the negative constraint on divergent is implicit rather than explicit."
+        },
+        {
+          "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing \u2014 should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+          "passed": false,
+          "evidence": "The plan spawns 8 personas \u2014 more than the baseline's typical 6-7, not fewer. The 8 personas are: Bear Case Analyst, Competitive Strategist, CFO/Unit Economics, Mid-Market Buyer, Sales & Revenue Ops, Existing Customer Risk Officer, Contrarian/Devil's Advocate, Execution Risk Officer. There is no persona named 'Skeptic' (the word 'skeptical' appears in CFO's role description but as an adjective, not a persona archetype). The plan makes no mention that the subset is smaller than a divergent Phase 1 session \u2014 in fact it does the opposite, running a larger-than-typical swarm. The tighter subset constraint from the skill's Phase 3 guidance is completely absent."
+        },
+        {
+          "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+          "passed": false,
+          "evidence": "None of the 8 persona prompts follow the convergent FOR/AGAINST/decisive structure. Each persona has a unique analytical task (failure reconstruction, competitive horizon modeling, P&L scenario modeling, buyer journey journal, operational audit, etc.). Only the Contrarian persona (Persona 7) contains 'strongest argument against' \u2014 'Construct the single strongest argument that the 30% price cut is a strategic mistake' \u2014 but even this persona lacks a paired 'strongest argument for' or 'argument FOR' element, and lacks a 'decisive consideration' / 'deciding factor' / 'their position' wrapping. No persona prompt contains 'strongest argument for', 'strongest case for', or 'argument FOR'. No persona contains 'decisive consideration', 'deciding factor', or 'their position'. The prompts are Phase 1-style deep-dive analytical briefs, not the convergent structured FOR/AGAINST challenge format the skill prescribes for pressure-testing."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 66.177,
+        "tokens": 172516,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+          "passed": false,
+          "evidence": "(a) SATISFIED: A custom persona 'Compliance Architect' is designed \u2014 former Big-4 financial-services auditor with CISA/CISSP, scoped to PCI-DSS, GLBA, SOX, NYDFS, GDPR, FFIEC, OCC. The name fits the 'Regulatory Specialist' family. (b) NOT SATISFIED: None of the trigger phrases appear in plan.md \u2014 'brief', 'briefing', 'brief vs fork', 'brief the canonical', and 'augmenting the canonical Operator with regulatory context' are all absent. The plan has a 'Why a custom persona is required' section that argues none of the 12 canonicals provides sufficient depth, but it frames this as a one-way decision (custom needed) without contrasting it against the brief-the-canonical alternative. The brief-vs-fork decision framework is never named or invoked."
+        },
+        {
+          "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+          "passed": false,
+          "evidence": "The plan lists 8 canonical personas: Security Expert, Devil's Advocate, Risk Manager, Cost Analyst, CTO/Architect, Operations/SRE, Legal, Product Manager. None of these match the expected canonical names. 'Operator' is absent. Of the expected supporting canonicals (PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, Constraint-Setter), only 'Product Manager' could be considered a match for 'PM' \u2014 all others are absent. The executor appears to have invented its own canonical roster (12 names like Security Expert, Devil's Advocate, Customer Advocate, DX, Data Engineer, Business Strategist) rather than using the brainstorm-swarm skill's canonical roster (Operator, PM, Engineer, Skeptic, Pre-Mortem, etc.)."
+        },
+        {
+          "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+          "passed": false,
+          "evidence": "The Compliance Architect custom persona has: Background (professional context), Regulatory scope (7 specific regulations listed), and Characteristic arguments (4 bullet points). None of the 5 required structural elements are present: (a) No 'Voice:' or 'Tone:' section with 3+ voice characteristics \u2014 the Background describes expertise, not voice. (b) The 4 Characteristic arguments are not labeled as questions/concerns/reframe/veto contribution slots. (c) No 'discipline' or 'do/don't' section. (d) No persona-specific output format specification \u2014 the plan's Deliverable section describes the overall plan output, not the persona's contribution format. (e) No length budget mentioned. Score: 0 of 5 elements satisfied, well below the 3-element threshold."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 72.312,
+        "tokens": 118340,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names \u2014 particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+          "passed": false,
+          "evidence": "plan.md persona table uses generic archetype names: 'Product Manager', 'User Champion', 'Tech Lead', 'Security Expert', 'Business Analyst', 'Competitor Analyst', 'Devil's Advocate', 'Risk Analyst'. None match the canonical brainstorm-swarm names. Substring matches found ('pm' in 'construction PMs', 'engineer' in 'engineering cost') are incidental text occurrences, not persona labels. 'Optimist' appears only in the excluded-personas footnote ('Optimist/Pessimist (covered by split between User Champion + Business Analyst vs. Devil\\'s Advocate + Risk Analyst)') \u2014 not as a deployed persona name. Zero canonical names ('constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker', 'skeptic', 'user-advocate', 'operator', 'junior', 'veteran', 'designer') appear anywhere in the plan."
+        },
+        {
+          "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count \u2014 the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+          "passed": true,
+          "evidence": "plan.md contains both required elements. (a) 'single message' appears explicitly: 'Phase 1 \u2014 Independent Analysis  [PARALLEL, single message, 8 agents]' and again in the Session Arc diagram: '8 agents, single message, no shared context'. (b) Agent() call references confirmed present in plan content (ctx_execute_file found `agent()` in the plan string) and the terminal summary states 'Phase 1 is a single message with 8 parallel Agent() calls'. Both the single-message constraint and the multi-agent parallel invocation pattern are explicitly named."
+        },
+        {
+          "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language.",
+          "passed": true,
+          "evidence": "plan.md uses 'Phase 1', 'Phase 2', 'Phase 3' explicitly throughout. The phase structure table reads: 'Phase 1 \u2014 Independent Analysis [PARALLEL, single message, 8 agents] / Phase 2 \u2014 Cross-Examination [SEQUENTIAL pairs, 3 targeted exchanges] / Phase 3 \u2014 Synthesis [SINGLE agent, Product Manager re-run]'. The Session Arc diagram also labels blocks as 'PHASE 1 \u2014 Independent Analysis' and 'PHASE 2'. All three phase labels are present; the assertion's minimum threshold (at least one) is satisfied."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 63.422,
+        "tokens": 116681,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) \u2014 the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+          "passed": false,
+          "evidence": "The plan contains 'Phase 3' but as a coincidental label for the executor's own synthesis step ('Phase 3 \u2014 Synthesis'), not as identification of the swarm protocol arc taxonomy. The plan's structure is: Phase 1 = Isolated Analysis, Phase 2 = Red Team Debate, Phase 3 = Synthesis \u2014 the executor invented a 3-phase arc without reference to the protocol's Arc 1/Arc 4 framework. None of the required swarm-protocol phrases appear: 'arc 4'=false, 'pressure-test arc'=false, 'convergent closing'=false, 'decision pressure test'=false. No explicit note that Phase 1 divergent is NOT appropriate here. The plan is a pre-mortem in spirit but never articulates the arc taxonomy at all."
+        },
+        {
+          "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing \u2014 should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+          "passed": false,
+          "evidence": "The plan specifies 8 personas: Bear Case Analyst, Competitive Strategist, CFO, Mid-Market Buyer, Sales Leader, Brand Strategist, Operational Risk Officer, Devil's Advocate. This exceeds the 3-5 ceiling. No 'Skeptic' persona appears. No mention of phase-appropriate sizing or that this subset is intentionally smaller than a Phase 1 divergent set."
+        },
+        {
+          "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+          "passed": false,
+          "evidence": "All three required structural elements are absent from the persona prompts. Checks: 'strongest argument for'=false, 'strongest argument against'=false, 'argument for'=false, 'argument against'=false, 'decisive consideration'=false, 'deciding factor'=false, 'their position'=false. Persona prompts are open pre-mortem style: Bear Case Analyst asked to 'reconstruct how this happened', Competitive Strategist asked to 'walk through most likely responses', Brand Strategist asked about 'what does it signal'. No FOR/AGAINST/decisive structure anywhere."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 93.658,
+        "tokens": 177105,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+          "passed": false,
+          "evidence": "Custom persona ('Regulatory & Compliance Architect') is clearly designed with a full background section. HOWEVER, a text search of the full plan.md content (9485 chars) finds zero occurrences of 'brief', 'briefing', 'fork', 'brief vs fork', or 'brief the canonical'. The plan does not mention the brief-vs-fork decision framework at all. The design section explains WHY a custom persona is needed (gating question about regulatory forcing function) but never frames the choice as briefing vs. forking. Both criteria must pass; only (a) is satisfied."
+        },
+        {
+          "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+          "passed": false,
+          "evidence": "A text search of the full plan.md content confirms 0 occurrences of 'Operator'. The 8 personas the baseline selected are: Security Expert, Architect, DevOps/Operations, Legal Counsel, CFO/Finance, Product Manager, Devil's Advocate, Business Analyst \u2014 none of which are the brainstorm-swarm canonical names. 'Engineer' appears twice but only in the Skipped Personas table (as 'ML Engineer' and 'Engineer / Developer', both marked out-of-scope). 'PM' appears once but also in the Skipped Personas section. Without 'Operator' the AND condition fails immediately."
+        },
+        {
+          "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+          "passed": false,
+          "evidence": "The Custom Persona section ('Regulatory & Compliance Architect') contains: Name, Background narrative, and a Regulatory Corpus table (mapping regulations to relevance). It does NOT contain: (a) a voice/tone description with 3+ characteristics \u2014 absent; (b) contribution slots (questions/concerns/reframe/veto) \u2014 absent from the persona definition (questions appear in Phase prompts but not as persona design slots); (c) a discipline or do/don't section \u2014 absent; (d) an output format specification \u2014 absent; (e) a length budget \u2014 absent. 0 of 5 structural elements present. The baseline persona design is richer than a one-liner (it has a background and regulatory table) but does not follow the 4-slot template."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.3333,
+        "stddev": 0.5774,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 73.061,
+        "stddev": 6.9335,
+        "min": 66.177,
+        "max": 80.043
+      },
+      "tokens": {
+        "mean": 176381.0,
+        "stddev": 5741.9996,
+        "min": 172516.0,
+        "max": 182979.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.2233,
+        "stddev": 0.3868,
+        "min": 0.0,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 76.464,
+        "stddev": 15.5397,
+        "min": 63.422,
+        "max": 93.658
+      },
+      "tokens": {
+        "mean": 137375.3333,
+        "stddev": 34416.8982,
+        "min": 116681.0,
+        "max": 177105.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.11",
+      "time_seconds": "-3.4",
+      "tokens": "+39006"
+    }
+  },
+  "notes": []
+}

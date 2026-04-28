@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+      "passed": false,
+      "evidence": "Custom persona ('Regulatory & Compliance Architect') is clearly designed with a full background section. HOWEVER, a text search of the full plan.md content (9485 chars) finds zero occurrences of 'brief', 'briefing', 'fork', 'brief vs fork', or 'brief the canonical'. The plan does not mention the brief-vs-fork decision framework at all. The design section explains WHY a custom persona is needed (gating question about regulatory forcing function) but never frames the choice as briefing vs. forking. Both criteria must pass; only (a) is satisfied."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+      "passed": false,
+      "evidence": "A text search of the full plan.md content confirms 0 occurrences of 'Operator'. The 8 personas the baseline selected are: Security Expert, Architect, DevOps/Operations, Legal Counsel, CFO/Finance, Product Manager, Devil's Advocate, Business Analyst — none of which are the brainstorm-swarm canonical names. 'Engineer' appears twice but only in the Skipped Personas table (as 'ML Engineer' and 'Engineer / Developer', both marked out-of-scope). 'PM' appears once but also in the Skipped Personas section. Without 'Operator' the AND condition fails immediately."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+      "passed": false,
+      "evidence": "The Custom Persona section ('Regulatory & Compliance Architect') contains: Name, Background narrative, and a Regulatory Corpus table (mapping regulations to relevance). It does NOT contain: (a) a voice/tone description with 3+ characteristics — absent; (b) contribution slots (questions/concerns/reframe/veto) — absent from the persona definition (questions appear in Phase prompts but not as persona design slots); (c) a discipline or do/don't section — absent; (d) an output format specification — absent; (e) a length budget — absent. 0 of 5 structural elements present. The baseline persona design is richer than a one-liner (it has a background and regulatory table) but does not follow the 4-slot template."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Write": 1
+    },
+    "total_tool_calls": 2,
+    "total_steps": 27,
+    "errors_encountered": 0,
+    "output_chars": 9485,
+    "transcript_chars": 109577
+  },
+  "timing": {
+    "executor_duration_seconds": 93.658,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 93.658
+  },
+  "claims": [
+    {
+      "claim": "8 canonical personas selected: Security Expert, Architect, DevOps/Ops, Legal Counsel, CFO, Product Manager, Devil's Advocate, Business Analyst",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Canonical Personas Used (8 of 12) table in plan.md confirms all 8 entries with their angles"
+    },
+    {
+      "claim": "Custom persona: Regulatory & Compliance Architect — former Big-4 financial services auditor",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Plan.md Custom Persona section confirms Name, Background (14 years in financial services, Big-4 EY/Deloitte auditor), and detailed Regulatory Corpus table covering PCI-DSS v4.0, SOX, GLBA, NYDFS 23 NYCRR 500, FFIEC"
+    },
+    {
+      "claim": "Session runs 6 phases: regulatory gate → threat model → operational cost reality → devil's advocate stress-test → legal/PM synthesis → decision matrix",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt summary and plan.md phases confirm the 6-phase structure with distinct persona assignments per phase"
+    },
+    {
+      "claim": "Custom persona is the critical addition because canonical set cannot answer the regulatory forcing function question",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Why a Custom Persona Is Needed' section articulates that neither Security Expert nor Legal Counsel has the regulatory forcing function knowledge to determine whether CMK is a hard regulatory requirement vs. elective control"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements...",
+        "reason": "The threshold of 3-of-5 elements is reasonable, but the assertion would benefit from specifying that elements must appear *within the custom persona definition block*, not anywhere in the plan. The baseline puts phase-level questions (Phase 1, Phase 4, Phase 5 all have 'Questions:' blocks) which could be mistakenly counted as contribution slot (b) if the grader reads too broadly."
+      },
+      {
+        "reason": "No assertion checks whether the Regulatory & Compliance Architect persona is *assigned to lead Phase 1* (the regulatory gate). That integration between persona design and session structure is an important discriminator — a with_skill run would likely assign the custom persona an explicit gating role, while without_skill might just include the persona without wiring it into the session flow. The baseline actually does assign the custom persona to lead Phase 1, which is an unexpected quality outcome worth measuring."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating for the without_skill condition. The brief-vs-fork check (Expectation 1b) is the strongest discriminator — it's a named framework term the baseline cannot reproduce. Expectation 2 (canonical Operator) is also clean. Expectation 3 is slightly vulnerable to false positives because 'questions' blocks appear in phase prompts rather than persona definitions; the note above is a suggestion to tighten it."
+  }
+}

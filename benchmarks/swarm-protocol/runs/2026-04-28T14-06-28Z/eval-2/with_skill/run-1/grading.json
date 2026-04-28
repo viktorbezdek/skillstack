@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+      "passed": false,
+      "evidence": "The plan does contain 'Phase 3' literally, but only as an internal phase label ('## Phase 3 — Synthesis Prompt') within the plan's own 3-phase structure — NOT as identification of the session arc type using the skill's terminology. None of the other required phrases appear: 'Arc 4', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test' are all absent. The session type IS correctly framed as 'Pressure-test / pre-mortem (decision is final — find failure modes, not reasons to reverse)', which shows correct conceptual understanding, but the plan never uses the skill's arc vocabulary and critically does NOT explicitly note that Phase 1 divergent brainstorming is NOT what is needed here. The plan avoids Arc 1 divergent opening, but the negative constraint on divergent is implicit rather than explicit."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+      "passed": false,
+      "evidence": "The plan spawns 8 personas — more than the baseline's typical 6-7, not fewer. The 8 personas are: Bear Case Analyst, Competitive Strategist, CFO/Unit Economics, Mid-Market Buyer, Sales & Revenue Ops, Existing Customer Risk Officer, Contrarian/Devil's Advocate, Execution Risk Officer. There is no persona named 'Skeptic' (the word 'skeptical' appears in CFO's role description but as an adjective, not a persona archetype). The plan makes no mention that the subset is smaller than a divergent Phase 1 session — in fact it does the opposite, running a larger-than-typical swarm. The tighter subset constraint from the skill's Phase 3 guidance is completely absent."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+      "passed": false,
+      "evidence": "None of the 8 persona prompts follow the convergent FOR/AGAINST/decisive structure. Each persona has a unique analytical task (failure reconstruction, competitive horizon modeling, P&L scenario modeling, buyer journey journal, operational audit, etc.). Only the Contrarian persona (Persona 7) contains 'strongest argument against' — 'Construct the single strongest argument that the 30% price cut is a strategic mistake' — but even this persona lacks a paired 'strongest argument for' or 'argument FOR' element, and lacks a 'decisive consideration' / 'deciding factor' / 'their position' wrapping. No persona prompt contains 'strongest argument for', 'strongest case for', or 'argument FOR'. No persona contains 'decisive consideration', 'deciding factor', or 'their position'. The prompts are Phase 1-style deep-dive analytical briefs, not the convergent structured FOR/AGAINST challenge format the skill prescribes for pressure-testing."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": 26,
+    "errors_encountered": 0,
+    "output_chars": null,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 72.963,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 72.963
+  },
+  "claims": [
+    {
+      "claim": "The plan is saved to plan.md and represents a pressure-test / pre-mortem session",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Session type field in plan.md reads: 'Pressure-test / pre-mortem (decision is final — find failure modes, not reasons to reverse)'. This is structurally correct for the scenario."
+    },
+    {
+      "claim": "The plan includes a synthesis integrator producing top-3 confirmed risks, top-3 variance unknowns, 3 must-be-true conditions, and a kill-switch definition",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Phase 3 Synthesis prompt explicitly asks for: (1) top 3 risks flagged by multiple personas, (2) top 3 risks flagged by only one persona, (3) 3 conditions that must be confirmed true before Monday, (4) kill-switch definition with observable trigger and owner."
+    },
+    {
+      "claim": "8 distinct personas are spawned with role definitions and prompts",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Plan contains ### Persona 1 through ### Persona 8 with full role and prompt blocks for each."
+    },
+    {
+      "claim": "The plan uses a 3-phase arc: isolated briefs, cross-examination pairs, synthesis",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Session Arc table shows Phase 1 (Isolated Brief), Phase 2 (Cross-Examination), Phase 3 (Synthesis) with 4 adversarial cross-examination pairs defined."
+    },
+    {
+      "claim": "The skill guided the executor toward the correct session TYPE (pressure-test not open brainstorm)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The executor correctly avoided a divergent open brainstorm and framed the session as a pre-mortem/pressure-test. The skill appears to have influenced the session type identification even though arc vocabulary was not adopted."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases...",
+        "reason": "The plan does contain 'Phase 3' literally (as an internal phase label), which creates a false positive risk if the check is purely lexical. A stronger assertion would require 'Phase 3' to appear in a context that identifies the SESSION arc (e.g., 'This is a Phase 3 session' or 'Arc: Phase 3'), not as an internal step label. Alternatively, test for the negative: does the plan explicitly say divergent opening is wrong? That would be more discriminating."
+      },
+      {
+        "reason": "No assertion checks whether the plan explicitly references the SKILL'S arc framework at all. A `with_skill` run that correctly names Arc 4 / Phase 3 in the skill's vocabulary vs. a run that just happens to be conceptually correct (like this one) should be distinguishable. Consider an assertion: 'plan.md uses the skill's arc vocabulary (Arc 1–4 or Phase 1–3) when identifying the session type, not just as internal step labels.'"
+      },
+      {
+        "reason": "The executor produced a genuinely sophisticated and domain-appropriate pressure-test plan — arguably better than a superficial plan that just uses 'Arc 4' in the title. The assertion set penalizes quality plans that don't parrot skill vocabulary while potentially rewarding low-quality plans that do. Consider adding a positive quality assertion: 'The plan's approach is structurally correct for decision pressure-testing (not an open divergent brainstorm, contains adversarial challenge elements).'"
+      }
+    ],
+    "overall": "All three expectations fail on the `with_skill` run. The executor correctly identified the session as a pressure-test (not divergent brainstorm) but did not adopt the skill's arc vocabulary or the Phase 3 convergent FOR/AGAINST/decisive prompt structure. The skill appears to have influenced the session type but not the arc labeling or persona count/structure constraints. The most discriminating failure is expectation 3 — the persona prompts are Phase 1-style analytical briefs, not Phase 3 convergent structured challenges. The eval assertions are largely well-targeted, but the lexical check for 'Phase 3' in expectation 1 has a false-positive risk due to internal phase labeling."
+  }
+}

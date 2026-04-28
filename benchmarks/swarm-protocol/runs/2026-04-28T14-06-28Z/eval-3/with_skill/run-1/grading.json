@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md recommends DESIGNING a custom persona for the regulatory/compliance perspective AND explicitly invokes the brief-vs-fork decision framework. Must contain BOTH: (a) the recommendation to design a custom persona (using a name like 'Compliance Officer', 'Privacy Officer', 'Security Engineer', 'General Counsel', 'Regulatory Specialist', or similar), AND (b) reasoning that contrasts forking with briefing the canonical Operator with extra context (the literal phrase 'brief' OR 'briefing' OR 'brief vs fork' OR 'brief the canonical' OR mention of augmenting the canonical Operator with regulatory context). Baseline wouldn't know the brief-vs-fork framework as a named decision pattern.",
+      "passed": false,
+      "evidence": "(a) SATISFIED: A custom persona 'Compliance Architect' is designed — former Big-4 financial-services auditor with CISA/CISSP, scoped to PCI-DSS, GLBA, SOX, NYDFS, GDPR, FFIEC, OCC. The name fits the 'Regulatory Specialist' family. (b) NOT SATISFIED: None of the trigger phrases appear in plan.md — 'brief', 'briefing', 'brief vs fork', 'brief the canonical', and 'augmenting the canonical Operator with regulatory context' are all absent. The plan has a 'Why a custom persona is required' section that argues none of the 12 canonicals provides sufficient depth, but it frames this as a one-way decision (custom needed) without contrasting it against the brief-the-canonical alternative. The brief-vs-fork decision framework is never named or invoked."
+    },
+    {
+      "text": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas. Must contain 'Operator' AND at least 2 of: PM, Engineer, Skeptic, Pre-Mortem (or Pre-Mortem Specialist), Veteran, First-Principles, Constraint-Setter. The Operator covers security/production; the additional canonicals handle the broader perspectives. Baseline tends to either rely entirely on the canonicals (missing the regulatory gap) OR design a custom without preserving the canonical Operator.",
+      "passed": false,
+      "evidence": "The plan lists 8 canonical personas: Security Expert, Devil's Advocate, Risk Manager, Cost Analyst, CTO/Architect, Operations/SRE, Legal, Product Manager. None of these match the expected canonical names. 'Operator' is absent. Of the expected supporting canonicals (PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, Constraint-Setter), only 'Product Manager' could be considered a match for 'PM' — all others are absent. The executor appears to have invented its own canonical roster (12 names like Security Expert, Devil's Advocate, Customer Advocate, DX, Data Engineer, Business Strategist) rather than using the brainstorm-swarm skill's canonical roster (Operator, PM, Engineer, Skeptic, Pre-Mortem, etc.)."
+    },
+    {
+      "text": "plan.md's custom persona design follows the 4-slot template structure from the custom-personas skill. Must include AT LEAST 3 of these structural elements: (a) a 'voice' or 'tone' description (3+ voice characteristics), (b) 4 contribution slots (questions / concerns / reframe / veto-or-critical-question), (c) a 'discipline' or 'do/don't' section, (d) an 'output format' specification with structured Markdown headings, (e) a length budget (under 400-500 words). Baseline produces a one-line 'add a compliance person' without the template structure.",
+      "passed": false,
+      "evidence": "The Compliance Architect custom persona has: Background (professional context), Regulatory scope (7 specific regulations listed), and Characteristic arguments (4 bullet points). None of the 5 required structural elements are present: (a) No 'Voice:' or 'Tone:' section with 3+ voice characteristics — the Background describes expertise, not voice. (b) The 4 Characteristic arguments are not labeled as questions/concerns/reframe/veto contribution slots. (c) No 'discipline' or 'do/don't' section. (d) No persona-specific output format specification — the plan's Deliverable section describes the overall plan output, not the persona's contribution format. (e) No length budget mentioned. Score: 0 of 5 elements satisfied, well below the 3-element threshold."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 546,
+    "transcript_chars": 31848
+  },
+  "timing": {
+    "executor_duration_seconds": 66.177,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 66.177
+  },
+  "claims": [
+    {
+      "claim": "8 canonical personas selected: Security Expert, Devil's Advocate, Risk Manager, Cost Analyst, CTO/Architect, Operations/SRE, Legal, Product Manager",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md Canonical Personas table lists exactly these 8 personas"
+    },
+    {
+      "claim": "1 custom persona designed — Compliance Architect",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md contains '## Custom Persona: Compliance Architect' with Background, Regulatory scope, and Characteristic arguments"
+    },
+    {
+      "claim": "Custom persona is absent from the canonical set",
+      "type": "process",
+      "verified": true,
+      "evidence": "plan.md states 'none of the 12 canonical personas provides this depth' in the Why section"
+    },
+    {
+      "claim": "The custom persona uses the 4-slot template from the custom-personas skill",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The persona has Background/Regulatory-scope/Characteristic-arguments but none of the required template slots: no voice section, no labeled contribution slots (questions/concerns/reframe/veto), no do/don't discipline section, no output format spec, no length budget"
+    },
+    {
+      "claim": "Brainstorm runs in 6 phases with Compliance Architect leading Phase 2",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md has 6 phases: frame decision → regulatory forcing functions (Compliance Architect leads) → threat model → operational/cost reality → devil's advocate pressure test → synthesis"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md includes the canonical Operator AND at least 2 other canonical brainstorm-swarm personas",
+        "reason": "The expected canonical names (Operator, PM, Engineer, Skeptic, Pre-Mortem, Veteran, First-Principles, Constraint-Setter) do not match the names actually used in the brainstorm-swarm skill's canonical roster as observed in this run (Security Expert, Devil's Advocate, Risk Manager, Cost Analyst, CTO/Architect, Operations/SRE, Legal, Product Manager, Customer Advocate, DX, Data Engineer, Business Strategist). If the skill uses the latter set, the assertion will always fail for the 'with_skill' run, which would make it a poor discriminator. Recommend verifying the skill's actual canonical roster names and updating the assertion to use those names."
+      },
+      {
+        "reason": "No assertion checks whether the brainstorm phases are logically ordered to exploit the custom persona (e.g., Compliance Architect leading a dedicated regulatory phase before the team debates operational trade-offs). The plan has a strong phase structure where Phase 2 is specifically anchored on regulatory forcing functions led by the Compliance Architect — this is the highest-value skill-specific output and nothing tests for it."
+      }
+    ],
+    "overall": "The executor produced a substantive, well-reasoned brainstorm plan with a genuinely useful Compliance Architect custom persona and a strong regulatory taxonomy. However, all three expectations fail: the brief-vs-fork framework language is absent, the canonical roster uses completely different names than the skill's actual roster (making expectation 2 likely invalid as written), and the custom persona uses an ad-hoc structure (Background/Scope/Arguments) rather than the 4-slot template. The canonical name mismatch in expectation 2 is likely an eval authoring error rather than an execution failure and warrants correction."
+  }
+}

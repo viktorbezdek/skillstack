@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+      "passed": false,
+      "evidence": "The plan.md labels its arc as '**Arc:** Pre-Mortem / Red Team' — none of the required literal phrases ('Arc 4', 'pressure-test arc', 'convergent closing arc', 'decision pressure test') appear as arc identifiers. The string 'Phase 3' does appear in the document, but only as an internal phase-numbering label ('Phase 3 Synthesis Prompt (single synthesizer)' / 'Phase 3 is the deliverable') — not as identification of the brainstorm-swarm skill's convergent closing arc taxonomy. The plan correctly avoids divergent brainstorming (no Arc 1 structure), but never explicitly states that Phase 1 divergent is NOT appropriate here. The skill's arc/phase vocabulary is absent entirely."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+      "passed": false,
+      "evidence": "The plan.md defines exactly 8 personas: (1) Bear Case Analyst, (2) Competitive Strategist, (3) CFO / Unit Economics, (4) Mid-Market Buyer, (5) Existing Power User, (6) Brand/Perceived Value Critic, (7) Execution Risk Officer, (8) Reverse Advocate. This exceeds the required 3-5 ceiling. No Skeptic persona is included by name (though 'Reverse Advocate' serves an adjacent function). The plan makes no reference to this being a smaller or tighter subset than a Phase 1 divergent session, nor does it mention the typical 6-7 baseline."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+      "passed": false,
+      "evidence": "The Phase 1 persona prompts use a retrospective failure-analysis format, not a convergent FOR/AGAINST/decisive structure. For example: Bear Case Analyst asks 'find every operational failure mode in the 96 hours surrounding launch' with P0/P1/P2 severity ratings; Competitive Strategist and several others share a prompt reconstructing failure 'six months from Monday'; CFO asks for unit economics scenario modeling (A/B/C lift scenarios); Brand Critic asks about narrative second-order effects. Only the Reverse Advocate prompt contains 'strongest possible case for' (element a), and only in Phase 2 is there 'strongest case against cutting price'. No single persona prompt contains all three required structural elements (FOR + AGAINST + decisive/position wrapping). The 'decisive consideration' / 'deciding factor' / 'their position' element is entirely absent across all persona prompts."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tokens": 113485,
+    "input_tokens": 18,
+    "output_tokens": 3576,
+    "cache_creation_input_tokens": 56592,
+    "cache_read_input_tokens": 53299,
+    "total_cost_usd": 0.2819037
+  },
+  "timing": {
+    "executor_duration_seconds": 82.606,
+    "total_duration_seconds": 82.606
+  },
+  "claims": [
+    {
+      "claim": "The plan was saved to plan.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Write tool call found in transcript line 17, writing to /private/tmp/pilot-bench-nj9eku83/with/plan.md"
+    },
+    {
+      "claim": "The arc is Pre-Mortem / Red Team with 3 phases",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Plan.md header: '**Arc:** Pre-Mortem / Red Team' with a Phase Structure table containing Phase 1 (isolation), Phase 2 (cross-persona debate), Phase 3 (synthesis)"
+    },
+    {
+      "claim": "8 personas were specified",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt and plan.md both enumerate 8 named personas (Bear Case Analyst, Competitive Strategist, CFO/Unit Economics, Mid-Market Buyer, Existing Power User, Brand/Perceived Value Critic, Execution Risk Officer, Reverse Advocate)"
+    },
+    {
+      "claim": "The swarm correctly treats the task as adversarial stress-testing not ideation",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Plan.md states: 'This is not ideation. It is adversarial stress-testing.' The decision is explicitly treated as locked."
+    },
+    {
+      "claim": "Persona prompts ask for FOR/AGAINST/decisive structure",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Phase 1 persona prompts are retrospective failure-analysis prompts (failure cascade, P0/P1/P2 risk lists, unit economics scenarios). Only the Reverse Advocate has a 'strongest case for' element; no persona prompt has all three required structural elements."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 1 lists 'Phase 3' as a qualifying phrase, but this string can be satisfied by any plan that internally numbers its own phases (as this plan does with its own 3-phase structure). The assertion should require that 'Phase 3' appears in the context of identifying the brainstorm-swarm skill's arc taxonomy, not just as any internal phase label. Consider requiring the phrase to co-occur with 'arc' or 'convergent' within the same sentence."
+      },
+      {
+        "assertion": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing).",
+        "reason": "The executor produced a genuinely sophisticated pre-mortem plan that achieves the practical goal (pressure-test, not divergent brainstorm), but without using the skill's vocabulary. An interesting follow-up assertion would check that the plan *at minimum* labels its intent as pressure-testing rather than ideation — which this plan does pass ('This is not ideation. It is adversarial stress-testing.'). The current assertion is all-or-nothing on taxonomy, which may be too strict relative to what the skill is actually trying to produce."
+      },
+      {
+        "reason": "No assertion checks whether the executor invoked the brainstorm-swarm skill at all vs. just doing it from scratch. The plan was produced without skill-specific scaffold patterns (e.g., no Arc/Phase labels, no mention of the swarm protocol). An assertion checking for skill-specific vocabulary (arc labels, phase taxonomy) would better discriminate skill-use from general planning ability."
+      }
+    ],
+    "overall": "All three expectations fail. The executor produced a high-quality adversarial pre-mortem plan but didn't follow the brainstorm-swarm skill's Arc/Phase taxonomy, spawned 8 personas instead of 3-5, and used retrospective failure-analysis prompts rather than the convergent FOR/AGAINST/decisive format. The plan is substantively strong but doesn't demonstrate skill-specific behavior on any of the three dimensions being tested."
+  }
+}

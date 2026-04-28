@@ -1,0 +1,12 @@
+Saved to `plan.md`. Here's the structure at a glance:
+
+**6 personas:** Visionary, Pragmatist, User Advocate, Skeptic, Data Analyst, Synthesizer.
+
+**Spawn strategy:**
+- Phase 1: 5 personas in **one parallel message** (no dependencies, independence is the point)
+- Optional Phase 1c: a second parallel round if outputs contradict on facts, not just emphasis
+- Phase 2: Synthesizer runs **sequentially** after all 5 briefs are collected
+
+**Prompt template structure:** shared preamble (product context injected once) + persona role description + 4 fixed sections ending with a clear recommendation ask. The Synthesizer's prompt slots in all 5 briefs verbatim and outputs a decision memo with explicit decision options.
+
+**4-phase arc:** Setup → Diverge → (optional) Cross-Pollinate → Synthesize → Human review. Target wall-clock time under 20 minutes.

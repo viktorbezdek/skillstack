@@ -1,0 +1,18 @@
+Saved to `plan.md`. Here's what's in it:
+
+**8 personas, 3 phases:**
+
+| Persona | Attack angle |
+|---------|-------------|
+| Bear Case Analyst | Reconstruct the failure mechanism from Nov 2026 |
+| Competitive Strategist | Model competitor response at 72h / 30d / 90d |
+| CFO / Unit Economics | Three elasticity scenarios with break-even math |
+| Mid-Market Buyer | First-person journal: does the cut close or spook them? |
+| Sales & Revenue Ops | 48-hour pre-launch operational failure audit |
+| Existing Customer Risk | Retroactive credit vs. churn — decision framework |
+| Contrarian | Strongest structural argument against the cut, then falsify it |
+| Execution Risk Officer | Every operational failure in the 96-hour launch window |
+
+**Arc:** Isolated briefs → cross-examination pairs (4 adversarial exchanges) → synthesis integrator that produces top-3 confirmed risks, top-3 variance unknowns, 3 must-be-true-before-Monday conditions, and a single kill-switch definition.
+
+The synthesis prompt is the sharpest forcing function — it requires falsifiable claims and named owners, not hedged prose.

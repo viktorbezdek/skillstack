@@ -1,0 +1,10 @@
+Saved to `plan.md`. Here's the structure:
+
+**8 canonical personas selected:**
+Security Expert, Architect, DevOps/Ops, Legal Counsel, CFO, Product Manager, Devil's Advocate, Business Analyst. Dropped UX Designer, End User, Data Scientist, and Developer (subsumed by Architect/DevOps for this domain).
+
+**Custom persona: Regulatory & Compliance Architect** — former Big-4 financial services auditor, commands PCI-DSS v4.0, GLBA (2023), NYDFS 23 NYCRR 500, FFIEC Cloud Guidance, OCC Third-Party Risk, GDPR Art. 17/32, CCPA/CPRA.
+
+**Why the custom persona is the critical addition:** The canonical set can't answer the single gating question — *is CMK a hard regulatory requirement for our entity type, or elective?* That determination comes from knowing what specific regulatory sections apply, how examiners interpret "meaningful control" over keys (FFIEC), and whether provider-managed passes the NYDFS § 500.15 evidence standard. Without that, the brainstorm optimizes the wrong variable.
+
+**Session runs 6 phases:** regulatory gate → threat model → operational cost reality → devil's advocate stress-test → legal/PM synthesis → decision matrix with three explicit verdicts (required / recommended / deferred with trigger conditions).

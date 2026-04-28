@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md names AT LEAST 4 of the canonical brainstorm-swarm personas by their literal name (case-insensitive substring match): 'pm', 'engineer', 'designer', 'skeptic', 'user-advocate' (or 'user advocate'), 'pre-mortem-specialist' (or 'pre-mortem specialist' or 'pre-mortem'), 'junior', 'veteran', 'first-principles-thinker' (or 'first-principles' or 'first principles'), 'constraint-setter' (or 'constraint setter'), 'optimist', 'operator'. Baseline Claude without the skill knows generic persona archetypes but not the specific brainstorm-swarm canonical names — particularly 'constraint-setter', 'pre-mortem-specialist', 'first-principles-thinker' as named personas.",
+      "passed": false,
+      "evidence": "plan.md defines 6 personas: Visionary, Pragmatist, User Advocate, Skeptic, Data Analyst, Synthesizer. Of these, only 'User Advocate' (matches 'user advocate') and 'Skeptic' (matches 'skeptic') appear in the canonical list. The other 4 — Visionary, Pragmatist, Data Analyst, Synthesizer — are not canonical brainstorm-swarm personas. None of the distinctively skill-specific names (pre-mortem-specialist, first-principles-thinker, constraint-setter, junior, veteran, optimist, operator, pm, designer, engineer) appear as persona names. The executor even claimed 'These are the six canonical brainstorm-swarm personas' — a factually incorrect assertion. Only 2 of the required 4 canonical names are present."
+    },
+    {
+      "text": "plan.md explicitly states the single-message parallel-spawn rule. Must contain BOTH: (a) a literal reference to 'single message' OR 'one message' OR 'same message' (case-insensitive), AND (b) a reference to multiple Task() calls or multiple parallel subagent invocations being spawned together. Generic 'spawn in parallel' without naming the single-message constraint does NOT count — the skill's specific teaching is that the parallelism comes from putting all Task() calls in ONE message; baseline tends to say 'in parallel' generically without that specificity.",
+      "passed": true,
+      "evidence": "plan.md satisfies both criteria. (a) 'single message' appears explicitly: 'Phase 1–2: Parallel (single message, 5 simultaneous Agent calls)' and 'Method: single message, 5 Agent calls simultaneously'. (b) Multiple parallel subagent invocations in one message: the code block shows 'Message N: Agent(Visionary) + Agent(Pragmatist) + Agent(User Advocate) + Agent(Skeptic) + Agent(Data Analyst)  ← single message, 5 parallel'. The same pattern repeats for Phase 1c cross-pollination: 'Method: single message, 5 Agent calls simultaneously'. Both conditions are clearly and explicitly satisfied."
+    },
+    {
+      "text": "plan.md references the brainstorm-swarm arc framework. Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 1', 'Arc 2', 'Arc 3', 'Arc 4', 'Phase 1', 'Phase 2', 'Phase 3', 'divergent opening', 'convergent closing', 'probing round'. The skill teaches a named 4-arc taxonomy with phase numbering; baseline Claude wouldn't know these specific labels and would describe rounds in generic 'first round / second round' language.",
+      "passed": true,
+      "evidence": "plan.md Section 4 'Arc / Phases' explicitly uses numbered phases: 'Phase 0: Setup', 'Phase 1: Diverge', 'Phase 1b: Conflict Check', 'Phase 1c: Cross-Pollinate', 'Phase 2: Synthesize', 'Phase 3: Review'. 'Phase 1', 'Phase 2', and 'Phase 3' all appear literally (case-insensitive match required). The executor structured the arc with numbered phase labels rather than generic 'first round / second round' language."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 1
+    },
+    "total_tool_calls": 1,
+    "total_steps": 3,
+    "errors_encountered": 0,
+    "output_chars": 6800,
+    "transcript_chars": 32162
+  },
+  "timing": {
+    "executor_duration_seconds": 81.513,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 81.513
+  },
+  "claims": [
+    {
+      "claim": "These are the six canonical brainstorm-swarm personas for a product decision question",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The executor's chosen personas (Visionary, Pragmatist, User Advocate, Skeptic, Data Analyst, Synthesizer) are NOT the skill's canonical brainstorm-swarm roster. The skill defines: pm, engineer, designer, skeptic, user-advocate, pre-mortem-specialist, junior, veteran, first-principles-thinker, constraint-setter, optimist, operator. The executor invented plausible-sounding product archetypes and labeled them canonical — a hallucinated assertion."
+    },
+    {
+      "claim": "Spawn 5 personas in a single message with 5 Agent tool calls simultaneously",
+      "type": "process",
+      "verified": true,
+      "evidence": "Confirmed in plan.md Section 2 and Section 4 Phase 1 description. The code block shows 5 Agent() calls in one message and Phase 1 explicitly labels the method as 'single message, 5 Agent calls simultaneously'."
+    },
+    {
+      "claim": "Total wall-clock time target under 20 minutes for Phase 0–2",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is a planning claim about future execution, not verifiable from the plan document alone. No supporting estimate breakdown is provided."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md references the brainstorm-swarm arc framework (Phase 1, Phase 2, Phase 3, etc.)",
+        "reason": "Numbered phases (Phase 1, Phase 2, Phase 3) are generic enough that baseline Claude would also use them when asked to plan a multi-round brainstorm. The skill's actual discriminating vocabulary is 'Arc 1/2/3/4', 'divergent opening', 'convergent closing', 'probing round' — terms a baseline model would not produce. Consider making the assertion require at least one of the arc-specific labels (Arc 1–4 or the named phase types) to distinguish skill-use from generic planning output."
+      },
+      {
+        "reason": "No assertion checks whether the executor used the skill's actual canonical persona roster vs. invented alternatives. The executor used entirely different personas (Visionary, Pragmatist, Data Analyst, Synthesizer) and falsely labeled them canonical — a significant failure that expectation 1 catches, but it's worth also adding a negative assertion: the plan should NOT claim invented personas are canonical. The hallucinated 'canonical' label is particularly dangerous for downstream users who might trust it."
+      }
+    ],
+    "overall": "Expectation 1 correctly discriminates — the executor failed to use canonical persona names, revealing the skill was not driving persona selection. Expectation 2 is well-designed and clearly passes. Expectation 3 passes but is weaker than intended; generic phase numbering doesn't isolate skill-specific arc vocabulary."
+  }
+}

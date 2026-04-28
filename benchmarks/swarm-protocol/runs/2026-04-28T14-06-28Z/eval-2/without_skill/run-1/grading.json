@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+      "passed": false,
+      "evidence": "The plan contains 'Phase 3' but as a coincidental label for the executor's own synthesis step ('Phase 3 — Synthesis'), not as identification of the swarm protocol arc taxonomy. The plan's structure is: Phase 1 = Isolated Analysis, Phase 2 = Red Team Debate, Phase 3 = Synthesis — the executor invented a 3-phase arc without reference to the protocol's Arc 1/Arc 4 framework. None of the required swarm-protocol phrases appear: 'arc 4'=false, 'pressure-test arc'=false, 'convergent closing'=false, 'decision pressure test'=false. No explicit note that Phase 1 divergent is NOT appropriate here. The plan is a pre-mortem in spirit but never articulates the arc taxonomy at all."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+      "passed": false,
+      "evidence": "The plan specifies 8 personas: Bear Case Analyst, Competitive Strategist, CFO, Mid-Market Buyer, Sales Leader, Brand Strategist, Operational Risk Officer, Devil's Advocate. This exceeds the 3-5 ceiling. No 'Skeptic' persona appears. No mention of phase-appropriate sizing or that this subset is intentionally smaller than a Phase 1 divergent set."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+      "passed": false,
+      "evidence": "All three required structural elements are absent from the persona prompts. Checks: 'strongest argument for'=false, 'strongest argument against'=false, 'argument for'=false, 'argument against'=false, 'decisive consideration'=false, 'deciding factor'=false, 'their position'=false. Persona prompts are open pre-mortem style: Bear Case Analyst asked to 'reconstruct how this happened', Competitive Strategist asked to 'walk through most likely responses', Brand Strategist asked about 'what does it signal'. No FOR/AGAINST/decisive structure anywhere."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 792,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 63.422,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 63.422
+  },
+  "claims": [
+    {
+      "claim": "Plan has 8 personas each with a focused attack vector",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt and transcript confirm 8 persona sections: Bear Case Analyst, Competitive Strategist, CFO, Mid-Market Buyer, Sales Leader, Brand Strategist, Operational Risk Officer, Devil's Advocate"
+    },
+    {
+      "claim": "Plan uses a 3-Phase Arc: Isolated memos → debate pairs → Integrator synthesis",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript assistant message confirms: 'Phase 1 — Isolated Analysis, Phase 2 — Red Team Debate, Phase 3 — Synthesis' with a neutral Integrator producing ranked risk register and go/conditional-go/delay recommendation"
+    },
+    {
+      "claim": "Plan is a pressure-test / pre-mortem approach (not a divergent brainstorm)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The plan's purpose is 'Surface failure modes and blind spots before it becomes irreversible' — this is adversarial stress-testing, not divergent ideation. However, the executor never labels or frames this as Arc 4/Phase 3 in swarm protocol terms."
+    },
+    {
+      "claim": "Each persona prompt is self-contained and ready to paste",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Transcript confirms individual prompts per persona are fully written out as blockquotes ready for direct use"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing)...",
+        "reason": "The 'Phase 3' literal phrase check is a false-positive trap: the baseline executor naturally names its synthesis step 'Phase 3' in a 3-phase structure without any connection to the protocol's arc taxonomy. The assertion should add a disambiguation check — e.g., require 'Phase 3' to appear in a context that references the swarm arc OR require the presence of another qualifying phrase. A stronger discriminating check would be: does the plan explicitly frame the session as 'the team has already decided' / 'decision is locked' and reference that context as the reason for the arc choice?"
+      },
+      {
+        "reason": "No assertion checks whether the plan's purpose/framing acknowledges that a decision is already made and the goal is pressure-testing it (vs. generating options). A without_skill executor that happens to write a pre-mortem still passes the spirit of the arc even without using the swarm protocol vocabulary — worth adding an assertion that checks for 'decision is locked' / 'already decided' framing to separate genuine arc awareness from coincidental structure."
+      }
+    ],
+    "overall": "All three expectations fail cleanly for the without_skill baseline. The executor produced a competent pre-mortem plan but entirely missed the swarm protocol arc taxonomy (Arc 4, convergent closing), over-staffed personas (8 vs 3-5), and used open-ended investigation prompts instead of the FOR/AGAINST/decisive convergent format. The 'Phase 3' false-positive in expectation 1 is the one eval robustness concern worth addressing."
+  }
+}

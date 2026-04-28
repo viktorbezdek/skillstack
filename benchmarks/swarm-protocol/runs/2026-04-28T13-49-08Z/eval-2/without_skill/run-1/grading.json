@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test) OR explicitly Phase 3 (convergent closing). Must contain AT LEAST ONE of these literal phrases (case-insensitive): 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', 'decision pressure test'. Must NOT plan a full Arc 1 (divergent opening) — the team has already decided, so a divergent opening is wrong. Plan should explicitly note that Phase 1 divergent is NOT what's needed here. Baseline would default to running a standard divergent brainstorm.",
+      "passed": false,
+      "evidence": "plan.md uses 'Phase: Red-Team Pressure Test (Pre-Commit)' and describes 'ATTACK → STRESS-TEST → MITIGATE' as the arc, but none of the required literal phrases appear: 'Arc 4', 'Phase 3', 'pressure-test arc', 'pressure test arc', 'convergent closing arc', or 'decision pressure test'. The plan does correctly avoid Arc 1 divergent brainstorming (says 'This is NOT a reversal exercise — it's a final adversarial scan') but never explicitly states that Phase 1 divergent is NOT what is needed, nor does it use any of the required arc/phase vocabulary from the skill."
+    },
+    {
+      "text": "plan.md picks a TIGHTER persona subset (3-5 personas) appropriate for Phase 3 pressure-testing — should include Skeptic and 2-4 domain-relevant personas (PM, Operator, User Advocate, or a custom CFO are candidates). Plan should explicitly mention or imply that the Phase 3 subset is smaller than a Phase 1 divergent subset (the typical 6-7). Baseline tends to spawn the standard 6 regardless of phase.",
+      "passed": false,
+      "evidence": "plan.md defines 9 attack personas (Financial Modeler, Existing Customer Advocate, Competitor Strategist, Sales & Pipeline Lead, Ops & Implementation Lead, Communications Architect, Legal & Contracts Reviewer, Timing Devil's Advocate, Second-Order Effects Scout) plus 1 synthesis persona — 10 total. This is MORE than the typical 6-7 divergent baseline, not fewer. No 'Skeptic' persona is named. The plan makes no mention of a smaller subset being appropriate for this phase vs. a divergent opening. The without_skill executor over-generated personas rather than tightening to 3-5."
+    },
+    {
+      "text": "plan.md's prompt design for each persona follows the Phase 3 convergent format. Must contain ALL of these structural elements (each persona's prompt asks for): (a) a 'strongest argument for' OR 'strongest case for' OR 'argument FOR' formulation, (b) a 'strongest argument against' OR 'strongest case against' OR 'argument AGAINST' formulation, AND (c) a 'decisive consideration' OR 'deciding factor' OR 'their position' wrapping. Baseline likely uses an open-perspective Phase 1 prompt that doesn't structure FOR/AGAINST/decisive, even when told it's a pressure-test.",
+      "passed": false,
+      "evidence": "All 9 persona prompts use an adversarial 'find the landmine' structure with numbered questions. None contain 'strongest argument for', 'strongest case for', 'argument FOR', 'strongest argument against', 'strongest case against', 'argument AGAINST', 'decisive consideration', 'deciding factor', or 'their position'. The prompts ask each persona to surface specific risks and answer numbered questions within their domain — a unilateral attack format, not the Phase 3 FOR/AGAINST/decisive-consideration format the skill would produce."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "total_tool_calls": null,
+    "total_steps": 2,
+    "errors_encountered": 0,
+    "output_chars": 831,
+    "transcript_chars": 23
+  },
+  "timing": {
+    "executor_duration_seconds": 76.654,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 76.654
+  },
+  "claims": [
+    {
+      "claim": "The session is a single-phase swarm, not multi-round ideation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md states 'This is a single-phase swarm, not a multi-round ideation' and the Session Parameters table confirms this structure"
+    },
+    {
+      "claim": "9 attack personas run in parallel",
+      "type": "factual",
+      "verified": true,
+      "evidence": "plan.md lists exactly 9 numbered personas and the Session Parameters table states 'Run mode: Parallel (all 9 attack personas simultaneously)'"
+    },
+    {
+      "claim": "Synthesis pass runs sequentially after all 9 personas complete",
+      "type": "process",
+      "verified": true,
+      "evidence": "Session Parameters table: 'Synthesis: Sequential after all 9 complete'"
+    },
+    {
+      "claim": "No persona may recommend canceling the price cut",
+      "type": "process",
+      "verified": true,
+      "evidence": "Session Parameters table: 'Constraint: No persona may recommend canceling the price cut'. Each persona prompt also reinforces 'The decision is made.'"
+    },
+    {
+      "claim": "The plan correctly identifies this as a pressure-test rather than ideation",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The plan's framing is genuinely adversarial and avoids divergent brainstorming — all personas are constrained to find risks, not generate ideas. However, it uses its own vocabulary ('Red-Team Pressure Test') rather than the skill's arc/phase taxonomy."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "plan.md correctly identifies the appropriate arc as Arc 4 (decision pressure-test)...",
+        "reason": "The without_skill executor correctly diagnosed this as a pressure-test (not divergent brainstorming) and produced a genuinely adversarial plan — it just used different vocabulary ('Red-Team Pressure Test' vs 'Arc 4'/'Phase 3'). The assertion requires the skill's specific terminology, which is a valid discriminator since the skill's taxonomy is exactly what's being tested. However, the assertion could be strengthened by also checking that the plan does NOT use any divergent/ideation language, which is a complementary signal that would pass here even without the skill."
+      },
+      {
+        "assertion": "plan.md picks a TIGHTER persona subset (3-5 personas)...",
+        "reason": "This is the most discriminating assertion — the without_skill baseline produced 9 personas (worse than the default 6 the assertion predicts), confirming the assertion tests a real behavioral gap. The assertion correctly predicts baseline behavior but underestimates it: baseline doesn't just default to 6, it can over-generate even further. Consider adding an upper-bound check: 'persona count must be ≤5 AND ≥3'."
+      },
+      {
+        "reason": "No assertion checks whether the plan explicitly states the decision is already made and the session's purpose is NOT to re-evaluate it. The without_skill executor does include 'Decision status: Committed. Ships Monday.' and 'The decision is made.' in each prompt — this is a quality signal worth asserting on, as it distinguishes a true pressure-test framing from a disguised reversal exercise."
+      }
+    ],
+    "overall": "All three assertions fail cleanly for the without_skill run, confirming they are discriminating. The most diagnostic gap is persona count (9 vs required 3-5) and missing FOR/AGAINST/decisive structure. The arc vocabulary assertion (Expectation 1) correctly identifies a real gap but the executor shows partial competence — it recognized the phase type but lacks the skill's structured arc language."
+  }
+}

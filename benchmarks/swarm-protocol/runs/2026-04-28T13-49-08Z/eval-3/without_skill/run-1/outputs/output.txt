@@ -1,0 +1,7 @@
+Saved to `plan.md`. Key decisions:
+
+**7 of 12 canonical personas selected** — Risk Manager, Security Architect, Devil's Advocate, Financial Analyst, Legal Counsel, Operations/Implementer, Customer Advocate. Five excluded (Marketer, Futurist, Historian, UX, Growth) — no material signal for this question.
+
+**1 custom persona designed:** The *Compliance Architect* — a former Big-4 auditor who covers PCI-DSS v4.0, SOX IT controls, GLBA 2023, GDPR/CCPA cryptographic erasure, FFIEC examination handbook, and OCC third-party risk guidance. The gap is real: the canonical set treats compliance as a checkbox, but CMK decisions in fintech are often regulatory forcing functions (cryptographic erasure for right-to-erasure, commingled key risk, audit evidence ownership). The persona holds both the pro-CMK case *and* the counter — CMK with weak ops is worse than provider-managed.
+
+**3-round structure:** threat model → regulatory forcing functions → operational/financial reality. The plan also maps the four expected tension points where personas will productively disagree.

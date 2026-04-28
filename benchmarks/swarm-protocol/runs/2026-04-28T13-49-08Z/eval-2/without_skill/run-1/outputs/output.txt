@@ -1,0 +1,19 @@
+Saved to `plan.md`. Here's the summary:
+
+**Arc:** Single-phase Red-Team Pressure Test. Not ideation — adversarial scan only. Every persona is constrained: find the landmine, don't argue the decision.
+
+**9 attack personas (run in parallel):**
+
+| # | Persona | Domain |
+|---|---------|--------|
+| 1 | Financial Modeler | Which assumption, if wrong 20%, makes this destructive? |
+| 2 | Existing Customer Advocate | Relationship and retroactive credit exposure |
+| 3 | Competitor Strategist | Who matches it, who benefits from it, what's the 72-hour counter-narrative? |
+| 4 | Sales & Pipeline Lead | Sandbagging reps, comp plan misalignment, stalled deals |
+| 5 | Ops & Implementation Lead | Systems, billing, CPQ, rollback plan |
+| 6 | Communications Architect | The journalist question you can't answer yet |
+| 7 | Legal & Contracts | MFN clauses, channel conflicts, implied commitments in copy |
+| 8 | Timing Devil's Advocate | Why not next Monday instead — run the comparison |
+| 9 | Second-Order Effects Scout | Who does this attract, and is that who you want? |
+
+**Synthesis pass (sequential after all 9):** Ranked top-5 real, unmitigated, solvable-by-Friday risks — each with owner + deadline. Any unsolvable risk flags as a potential delay trigger.

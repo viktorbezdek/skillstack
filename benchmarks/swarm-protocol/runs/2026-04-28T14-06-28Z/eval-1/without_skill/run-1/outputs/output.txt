@@ -1,0 +1,9 @@
+Plan saved to `plan.md`. Here's the shape of it:
+
+**Personas (8 of 12 canonical):** Product Manager, User Champion, Tech Lead, Security Expert, Business Analyst, Competitor Analyst, Devil's Advocate, Risk Analyst. Excluded: Data Scientist, Optimist, Pessimist (their angles are covered by the selected set).
+
+**Spawning:** Phase 1 is a single message with 8 parallel `Agent()` calls — no shared context, uncontaminated positions. Phase 2 runs 3 sequential debate pairs (DA↔UC, TL↔RA, BA↔DA), each reading two Phase 1 outputs. Phase 3 is one final Product Manager synthesis agent reading all 11 prior outputs.
+
+**Prompt structure:** Each Phase 1 agent gets the topic, app context, a persona-specific framing insert, and a strict 5-section output format. Phase 2 agents get both personas' outputs and produce a structured rebuttal + the single factual question that would resolve the dispute. Phase 3 produces a Build/Defer/Reject/Scope-Down verdict with rationale, risks, MVP scope, and unresolved questions.
+
+**Arc:** ~17 min wall-clock, ~11 agent calls total. Includes stopping criteria for degenerate cases (unanimous Phase 1, Defer result, Reject result).

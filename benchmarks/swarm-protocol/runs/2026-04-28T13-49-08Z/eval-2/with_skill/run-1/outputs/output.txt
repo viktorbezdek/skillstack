@@ -1,0 +1,15 @@
+Saved to `plan.md`. Here's the shape of what's in there:
+
+**Arc:** Pre-Mortem / Red Team — 3 phases (isolated analysis → cross-persona debate → synthesis).
+
+**8 personas:**
+1. Bear Case Analyst — traces failure backward from a bad outcome
+2. Competitive Strategist — models rational competitor responses at 30 and 90 days
+3. CFO / Unit Economics — break-even conversion math, LTV/CAC, cash cost of underperformance
+4. Mid-Market Buyer — prospect who's mid-evaluation and just got the email
+5. Existing Power User — 14-month customer, honest 72-hour reaction arc
+6. Brand/Perceived Value Critic — price-as-signal, reversibility, narrative that sticks
+7. Execution Risk Officer — billing edge cases, support surge, rollback plan, all rated P0/P1/P2
+8. Reverse Advocate — builds the strongest case for each alternative (smaller cut, targeted cut, promo pricing) to confirm they were actually evaluated
+
+**Key facilitation rules in the doc:** Phase 1 must run in isolation (no cross-talk), Bear Case and Reverse Advocate are read last in Phase 2, CFO brief goes to leadership separately before synthesis, synthesizer must be a fresh voice. Estimated 25–35 min parallel, 90–120 min sequential.

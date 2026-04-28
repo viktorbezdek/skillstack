@@ -1,0 +1,13 @@
+Saved to `plan.md`. Here's the summary:
+
+**Personas (8 total):** Advocate, Critic, User, Builder, Strategist, Risk Officer, Wildcard, Synthesizer.
+
+**Spawn strategy:**
+- Phase 1 — all 7 divergent personas in **one message as parallel Agent calls** (isolated, no cross-visibility to prevent anchoring)
+- Phase 2 — Synthesizer runs **sequentially after** all 7 complete, receives all outputs concatenated
+
+**Prompt structure:** Shared context brief (product, users, current state, question) + persona-specific instruction appended. Each persona is instructed to take positions, be concrete, and stay 250–400 words.
+
+**Arc:** Phase 0 (brief prep + model routing) → Phase 1 (7 parallel divergent agents, `sonnet`) → Phase 2 (1 Synthesizer, `opus`) → Phase 3 (deliver synthesis + file outputs). Wall time ~4–5 min.
+
+Key design rationale is documented at the bottom: why 7 personas, why isolation matters, and why Opus is reserved for the Synthesizer only.
