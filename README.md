@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**55** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**56** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **55** plugins · **8** categories · **10** collections · MIT License
+> **56** plugins · **8** categories · **10** collections · MIT License
 
 ---
 
@@ -25,11 +25,11 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 55 plugins</summary>
+<summary><strong>SkillStack</strong> — 56 plugins</summary>
 
-> The complete SkillStack library — 55 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
+> The complete SkillStack library — 56 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
@@ -65,11 +65,11 @@ Plugins: `context-compression`, `context-degradation`, `context-fundamentals`, `
 </details>
 
 <details>
-<summary><strong>Agent Architecture</strong> — 7 plugins</summary>
+<summary><strong>Agent Architecture</strong> — 8 plugins</summary>
 
-> Build production LLM agents: multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, and project development methodology.
+> Build production LLM agents: multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, project development methodology, and brainstorm-swarm (parallel persona-swarm interviewing).
 
-Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `hosted-agents`, `memory-systems`, `multi-agent-patterns`, `tool-design`
+Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `brainstorm-swarm`, `hosted-agents`, `memory-systems`, `multi-agent-patterns`, `tool-design`
 </details>
 
 <details>
@@ -155,13 +155,14 @@ Plugins: `plugin-dev`, `skill-foundry`, `skillstack-workflows`
 | [Context Optimization](context-optimization/README.md) | `1.0.4` | Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models. |
 | [Filesystem Context](filesystem-context/README.md) | `1.0.4` | Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns. |
 
-### 🤖 Agent Architecture (7)
+### 🤖 Agent Architecture (8)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [Agent Evaluation](agent-evaluation/README.md) | `1.0.4` | Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring. |
 | [Agent Project Development](agent-project-development/README.md) | `1.0.4` | Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction. |
 | [BDI Mental States](bdi-mental-states/README.md) | `1.0.4` | Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns. |
+| [Brainstorm Swarm](brainstorm-swarm/README.md) | `1.0.0` | Run a parallel persona-swarm interview to brainstorm any complex decision. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem, Junior, Veteran, First-Principles, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective. Synthesizes consensus, dissent, and open questions. |
 | [Hosted Agents](hosted-agents/README.md) | `1.0.4` | Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome). |
 | [Memory Systems](memory-systems/README.md) | `1.0.5` | Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies. |
 | [Multi Agent Patterns](multi-agent-patterns/README.md) | `1.0.4` | Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution. |

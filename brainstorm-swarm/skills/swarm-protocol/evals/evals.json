@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I'm thinking about adding offline mode to our project management mobile app. Run a persona swarm on this — I want PM, Engineer, Designer, User Advocate, Pre-Mortem Specialist, and Skeptic perspectives.",
+    "files": ["SKILL.md", "references/persona-catalog.md", "references/parallel-spawn-rules.md"],
+    "expected_behavior": "Should: (1) ask 1-2 clarifying questions about the topic before spawning, (2) confirm the 6-persona subset matches the topic (offer adjustment), (3) spawn ALL 6 personas in a SINGLE message with multiple Task() calls (not sequentially), (4) include the standard prompt template (topic + context + length budget) for each spawn, (5) plan to hand off to swarm-synthesis after collection. Should NOT just provide perspectives itself without actually spawning subagents."
+  },
+  {
+    "query": "Brainstorm whether we should kill or migrate our legacy notifications service. The team is split.",
+    "files": ["SKILL.md", "references/persona-catalog.md", "references/invocation-patterns.md"],
+    "expected_behavior": "Should select the appropriate persona subset for a 'technical migration' decision: Engineer + Operator + Veteran + Pre-Mortem + Constraint-Setter + Skeptic (per the default subset matrix). Should justify the inclusion of Veteran (migrations are pattern-prone) and the exclusion of Designer (no UI surface). Should ask 1 clarifying question about migration target. Should plan parallel spawn."
+  },
+  {
+    "query": "We've decided to ship feature X with the team's recommended approach. Can you pressure-test that decision before we commit?",
+    "files": ["SKILL.md", "references/invocation-patterns.md"],
+    "expected_behavior": "Should recognize this as Arc 4 (decision pressure-test, not divergent opening) and explicitly say so. Should pick a smaller subset (3-4 personas: Skeptic + 2-3 domain-relevant) rather than the standard 6. Should NOT do a full Phase 1 divergent opening. Should propose a Phase 3 prompt that asks each persona for strongest FOR / strongest AGAINST / decisive consideration."
+  }
+]

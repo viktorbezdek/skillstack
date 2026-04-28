@@ -1,0 +1,17 @@
+[
+  {
+    "query": "We're brainstorming whether to cut our entry-level price by 30%. The canonical 12 don't have a CFO perspective. Design one.",
+    "files": ["SKILL.md", "references/persona-design.md"],
+    "expected_behavior": "Should produce a complete custom CFO persona prompt using the template (voice + 4 contribution slots + discipline + output format). Voice should be financially-grounded (unit economics, gross margin, payback period, runway). The 4 slots should produce: financial questions, financial concerns, financial reframe, veto question. Should specify the persona's failure mode to avoid (over-pessimizing). Should include guidance on how to invoke (Task with subagent_type='general-purpose' + the custom prompt). Should NOT re-use a canonical persona's voice with cosmetic changes."
+  },
+  {
+    "query": "Should I design a custom 'Senior Backend Engineer specifically for Postgres performance' persona, or just brief the canonical Engineer with Postgres context?",
+    "files": ["SKILL.md", "references/when-to-fork.md"],
+    "expected_behavior": "Should recommend BRIEFING the canonical Engineer with extra Postgres context, not forking. Should explain why: the topic is Engineer-shaped (90% within the canonical's scope); briefing with context fills the gap; forking would produce a too-narrow persona that breaks down outside Postgres. Should provide an example brief format showing the 'Additional context' addition to the canonical Engineer prompt. Should reference the brief-vs-fork decision rules."
+  },
+  {
+    "query": "We need a healthcare-compliance perspective for a brainstorm on storing patient-uploaded photos in our app. The canonical Operator covers security but not HIPAA specifics. What should I do?",
+    "files": ["SKILL.md", "references/persona-design.md", "references/when-to-fork.md"],
+    "expected_behavior": "Should offer two options: (a) BRIEF Operator with HIPAA-specific context if this is a one-off, or (b) DESIGN a 'HIPAA Privacy Officer' custom persona if this kind of question recurs. Should recommend (b) only if the topic genuinely needs specialized regulatory expertise; otherwise (a) suffices. Should produce the custom persona template if the user picks (b), with specific HIPAA terminology (PHI, BAA, minimum necessary, audit logs, breach notification) baked into the voice."
+  }
+]

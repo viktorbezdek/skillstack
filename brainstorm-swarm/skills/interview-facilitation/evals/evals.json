@@ -1,0 +1,17 @@
+[
+  {
+    "query": "After Phase 1, the synthesis showed PM said 'don't build it' and User Advocate said 'build it for the silent cohort.' How should I structure Phase 2?",
+    "files": ["SKILL.md", "references/interview-arcs.md", "references/question-design.md"],
+    "expected_behavior": "Should recognize this as a Phase 2 (probing) opportunity. Should propose spawning JUST PM and User Advocate (not the full swarm again). Should draft a Phase 2 prompt that: (1) names the specific tension verbatim, (2) asks each to defend their position with specifics, (3) asks each to steelman the other side, (4) asks each to identify what evidence would resolve the disagreement. Should NOT propose re-spawning all 6 original personas."
+  },
+  {
+    "query": "I want a brainstorm that's quick — just one round, breadth-first, and synthesis. Don't deepen.",
+    "files": ["SKILL.md", "references/interview-arcs.md"],
+    "expected_behavior": "Should recognize this as Arc 1 (Divergent only) and explicitly say so. Should plan a single Phase 1 spawn → synthesis → done flow. Should pick a subset of 5-7 personas. Should explicitly NOT propose a Phase 2 or Phase 3. Should mention that Arc 1 fits when 'I want fresh angles' or for early-stage exploration."
+  },
+  {
+    "query": "Draft the Phase 1 prompt template for a brainstorm on 'should we cut our entry-level price by 30%'. Include enough context that personas can be specific.",
+    "files": ["SKILL.md", "references/question-design.md"],
+    "expected_behavior": "Should produce a prompt that includes: (1) one-sentence topic framing, (2) substantial context (~150-300 words: business model, current price tier, customer segments, what's driving the consideration, constraints like timing and team capacity), (3) the user's specific question, (4) length budget. Should be NEUTRAL framing (not biased toward 'we should cut' or 'we shouldn't'). Should NOT bake in opinions or pre-judge. Should respect the persona's own output format (not over-prescribe)."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {"query": "synthesize the swarm's outputs into consensus and dissent", "should_trigger": true, "note": "core use: synthesis"},
+  {"query": "combine these 6 persona contributions into an artifact", "should_trigger": true, "note": "synthesis"},
+  {"query": "the swarm just returned — produce the final brief", "should_trigger": true, "note": "post-collection synthesis"},
+  {"query": "extract the consensus matrix from the persona outputs", "should_trigger": true, "note": "consensus matrix format"},
+  {"query": "build a decision one-pager from the brainstorm", "should_trigger": true, "note": "one-pager format"},
+  {"query": "write a dissent log capturing the 3 disagreements", "should_trigger": true, "note": "dissent log format"},
+  {"query": "what's the recommended next move from this brainstorm", "should_trigger": true, "note": "next-move synthesis"},
+  {"query": "preserve the dissent — don't force consensus", "should_trigger": true, "note": "core principle invocation"},
+  {"query": "produce the brainstorm artifact in decision-matrix format", "should_trigger": true, "note": "format specification"},
+  {"query": "spawn the persona swarm in parallel", "should_trigger": false, "note": "swarm-protocol job"},
+  {"query": "design a custom CFO persona", "should_trigger": false, "note": "custom-personas job"},
+  {"query": "structure a 3-phase interview arc", "should_trigger": false, "note": "interview-facilitation job"},
+  {"query": "write a BLUF email for this decision", "should_trigger": false, "note": "communication/structured-writing — short-form different domain"},
+  {"query": "draft a full PRD from scratch", "should_trigger": false, "note": "prd skill job"},
+  {"query": "edit this synthesis for active voice", "should_trigger": false, "note": "clarity-editing job"}
+]

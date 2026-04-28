@@ -1,0 +1,17 @@
+[
+  {
+    "query": "The swarm returned 6 contributions on 'should we add offline mode'. PM says don't build it. Engineer says complex but feasible. Designer says no UX problem to solve for the median user. Skeptic says we're inventing demand. User Advocate says cellular cohort is silent but real. Pre-Mortem imagines failure as 4% adoption + support burden. Synthesize.",
+    "files": ["SKILL.md", "references/synthesis-frameworks.md", "references/decision-frameworks.md"],
+    "expected_behavior": "Should produce the standard artifact format with: (1) Personas-in-swarm section, (2) Consensus section identifying genuine convergence (likely: scope risk, demand uncertainty), (3) Dissent section explicitly naming the underlying disagreement (empirical question about cellular cohort, not values), (4) Open questions with 'what evidence would resolve' — for the cellular cohort question, propose querying connectivity-error sessions, (5) Recommended next move using the 'dissent on empirical question' pattern (research first). Should preserve dissent, NOT force consensus toward 'don't build it.' Should NOT just average the perspectives."
+  },
+  {
+    "query": "The brainstorm produced 3 candidate directions: (A) ship full feature, (B) ship MVP behind a flag, (C) don't ship, do user research first. Synthesize as a decision matrix.",
+    "files": ["SKILL.md", "references/synthesis-frameworks.md"],
+    "expected_behavior": "Should use the Decision Matrix format (Alternative format 5 from synthesis-frameworks.md). Should produce a table with rows for each persona's view across columns A/B/C. Should include rough cost and primary risk per option. Should land on a recommended option with reasoning, AND name explicitly why the other two were not chosen. Should NOT use the standard artifact format here — Decision Matrix fits better when alternatives are clean."
+  },
+  {
+    "query": "The swarm produced 6 contributions but they all said different things — almost no overlap. What's the synthesis?",
+    "files": ["SKILL.md", "references/synthesis-frameworks.md"],
+    "expected_behavior": "Should be honest about the synthesis difficulty rather than producing a polished-but-misleading artifact. Should diagnose the issue: either the spawn was sequential (single-message rule violated) OR the topic was too vague (each persona interpreted it differently) OR the personas talked past each other. Should propose: (a) re-running with a tighter topic + parallel spawn, OR (b) producing a Per-Persona Highlights format that respects the lack of synthesis. Should NOT fake consensus where none exists."
+  }
+]

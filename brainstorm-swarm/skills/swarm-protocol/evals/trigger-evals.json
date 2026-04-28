@@ -1,0 +1,18 @@
+[
+  {"query": "brainstorm this feature with multiple perspectives", "should_trigger": true, "note": "core use: invoke swarm"},
+  {"query": "run a persona swarm on this design decision", "should_trigger": true, "note": "explicit invocation"},
+  {"query": "I need a virtual roundtable on whether to add offline mode", "should_trigger": true, "note": "roundtable framing"},
+  {"query": "workshop this idea from PM, engineer, and skeptic angles", "should_trigger": true, "note": "named persona angles"},
+  {"query": "give me multiple perspectives on this architecture choice", "should_trigger": true, "note": "multi-perspective framing"},
+  {"query": "spawn a brainstorm swarm for this technical migration", "should_trigger": true, "note": "explicit term"},
+  {"query": "pre-mortem this rollout plan", "should_trigger": true, "note": "pre-mortem invocation"},
+  {"query": "I want devil's advocates on this proposal", "should_trigger": true, "note": "skeptic framing"},
+  {"query": "think through this from different angles", "should_trigger": true, "note": "natural-language multi-perspective"},
+  {"query": "get me the panel — pm, eng, skeptic, designer — on this", "should_trigger": true, "note": "panel framing"},
+  {"query": "review this PR for security issues", "should_trigger": false, "note": "code-review job, not brainstorm"},
+  {"query": "edit this paragraph for clarity", "should_trigger": false, "note": "writing/editing job, not brainstorm"},
+  {"query": "deep interview me about my career goals", "should_trigger": false, "note": "single-perspective deep-interview, not swarm"},
+  {"query": "create a user persona for our product", "should_trigger": false, "note": "persona-definition job — artifact creation"},
+  {"query": "build a multi-agent system for parallel task execution", "should_trigger": false, "note": "team/multi-agent-patterns — execution not brainstorm"},
+  {"query": "generate a PRD for this feature", "should_trigger": false, "note": "prd skill job"}
+]

@@ -1,0 +1,17 @@
+[
+  {"query": "structure the interview arc for this brainstorm", "should_trigger": true, "note": "core use: arc design"},
+  {"query": "design the questions each persona should ask", "should_trigger": true, "note": "question design"},
+  {"query": "should we go broader or deeper after the first round of brainstorming", "should_trigger": true, "note": "depth-vs-breadth call"},
+  {"query": "the personas in round 1 disagreed — should I do a second round?", "should_trigger": true, "note": "phase 2 decision"},
+  {"query": "draft the phase 2 probing prompt for the PM-vs-Skeptic disagreement", "should_trigger": true, "note": "phase 2 prompt design"},
+  {"query": "convergent closing round — pressure-test the proposed decision", "should_trigger": true, "note": "phase 3 invocation"},
+  {"query": "how should I sequence the brainstorming rounds", "should_trigger": true, "note": "arc selection"},
+  {"query": "build a divergent-then-convergent interview structure", "should_trigger": true, "note": "arc design"},
+  {"query": "open versus probing question design for the swarm", "should_trigger": true, "note": "question patterns"},
+  {"query": "spawn 6 persona subagents in parallel", "should_trigger": false, "note": "swarm-protocol job"},
+  {"query": "synthesize the consensus and dissent from the swarm output", "should_trigger": false, "note": "swarm-synthesis job"},
+  {"query": "design a custom persona for a CFO", "should_trigger": false, "note": "custom-personas job"},
+  {"query": "edit this paragraph for clarity", "should_trigger": false, "note": "writing job"},
+  {"query": "create a user persona for our SaaS product", "should_trigger": false, "note": "persona-definition job"},
+  {"query": "build a structured psychological deep interview using OARS", "should_trigger": false, "note": "elicitation job — different domain"}
+]
