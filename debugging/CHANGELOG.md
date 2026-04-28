@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- misc cleanup and add .nvmrc
 - update plugin changelogs [skip ci]
+- misc cleanup and add .nvmrc
 - add per-plugin changelog generation workflow
 - add NOT clause for feature dev/refactoring, add 3 anti-patterns (one-test-pass, no-failing-test, ignore-env), refine description keywords with test pollution/flaky/E2E
 
