@@ -1,0 +1,18 @@
+[
+  {"query": "suggest 10 titles for this finished article", "should_trigger": true, "note": "core use: title craft"},
+  {"query": "write a dek for my article", "should_trigger": true, "note": "dek craft"},
+  {"query": "write the meta description for SEO", "should_trigger": true, "note": "meta description"},
+  {"query": "pull 4 social quotes from this article", "should_trigger": true, "note": "pull-quote extraction"},
+  {"query": "reframe this article for X, LinkedIn, and Hacker News", "should_trigger": true, "note": "channel framing"},
+  {"query": "write a tweet thread that previews this deep-dive", "should_trigger": true, "note": "tweet thread"},
+  {"query": "write a LinkedIn post for my article launch", "should_trigger": true, "note": "LinkedIn channel"},
+  {"query": "newsletter subject line and preview text for this piece", "should_trigger": true, "note": "newsletter framing"},
+  {"query": "audit my existing distribution copy", "should_trigger": true, "note": "distribution audit"},
+  {"query": "title is too generic — make it more specific", "should_trigger": true, "note": "title craft"},
+  {"query": "polish the body of my article for pacing", "should_trigger": false, "note": "long-form-polish — body work"},
+  {"query": "outline my article structure", "should_trigger": false, "note": "long-form-structure"},
+  {"query": "research sources for the article", "should_trigger": false, "note": "technical-research"},
+  {"query": "make this paragraph more engaging", "should_trigger": false, "note": "engaging-craft — sentence level"},
+  {"query": "write a subject line for my work email to the CEO", "should_trigger": false, "note": "communication/structured-writing — work email"},
+  {"query": "write an Instagram caption for my product launch", "should_trigger": false, "note": "out of scope — paid promo / product marketing"}
+]

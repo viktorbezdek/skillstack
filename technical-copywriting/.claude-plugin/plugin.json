@@ -1,0 +1,43 @@
+{
+  "name": "technical-copywriting",
+  "version": "1.1.0",
+  "description": "Five composable skills for writing long-form technical content for an audience — articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/technical-copywriting",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "technical-copywriting",
+    "long-form",
+    "technical-content",
+    "technical-blog",
+    "deep-dive",
+    "technical-essay",
+    "newsletter",
+    "whitepaper",
+    "tutorial",
+    "research",
+    "audience-profiling",
+    "source-tiering",
+    "triangulation",
+    "citation",
+    "article-structure",
+    "hook-promise-payoff",
+    "AIDA",
+    "PAS",
+    "bencivenga",
+    "sugarman",
+    "schwartz-awareness",
+    "engaging-writing",
+    "voice",
+    "pacing",
+    "scannability",
+    "title-craft",
+    "social-pull-quotes",
+    "channel-framing"
+  ]
+}

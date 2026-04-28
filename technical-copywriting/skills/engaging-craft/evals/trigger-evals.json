@@ -1,0 +1,18 @@
+[
+  {"query": "make this article more engaging at the sentence level", "should_trigger": true, "note": "core use: engagement craft"},
+  {"query": "write a hook for my technical post about Postgres", "should_trigger": true, "note": "hook engineering"},
+  {"query": "calibrate the voice of this draft", "should_trigger": true, "note": "voice calibration"},
+  {"query": "replace these abstract claims with concrete examples", "should_trigger": true, "note": "concrete-over-abstract discipline"},
+  {"query": "apply PAS to the opening of my opinion piece", "should_trigger": true, "note": "PAS formula"},
+  {"query": "use Bencivenga's pyramid to sequence my arguments", "should_trigger": true, "note": "Bencivenga sequencing"},
+  {"query": "this prose feels generic — fix it", "should_trigger": true, "note": "generic-prose tell"},
+  {"query": "what hook type works for a deep-dive article", "should_trigger": true, "note": "hook selection"},
+  {"query": "find Schwartz's awareness level for my readers", "should_trigger": true, "note": "Schwartz framework"},
+  {"query": "this article reads like AI wrote it — make it feel human", "should_trigger": true, "note": "AI-prose tell anti-pattern"},
+  {"query": "outline the sections of my deep-dive", "should_trigger": false, "note": "long-form-structure"},
+  {"query": "polish this draft for pacing and scan-ability", "should_trigger": false, "note": "long-form-polish"},
+  {"query": "research sources for my article", "should_trigger": false, "note": "technical-research"},
+  {"query": "suggest 10 titles for this piece", "should_trigger": false, "note": "distribution-craft"},
+  {"query": "edit this email for clarity", "should_trigger": false, "note": "communication/clarity-editing — short-form work writing"},
+  {"query": "construct a scene with dialogue between the protagonist and antagonist", "should_trigger": false, "note": "storytelling — fiction craft"}
+]

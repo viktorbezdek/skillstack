@@ -1,0 +1,18 @@
+[
+  {"query": "research a deep-dive on incremental TypeScript strict mode adoption", "should_trigger": true, "note": "core use: research before writing"},
+  {"query": "help me profile the audience for a technical blog post about Postgres", "should_trigger": true, "note": "audience profiling — central skill function"},
+  {"query": "find sources for a long-form article on distributed tracing", "should_trigger": true, "note": "source gathering"},
+  {"query": "build a claim-evidence map for my draft", "should_trigger": true, "note": "evidence inventory move"},
+  {"query": "fact-check the load-bearing claims in this technical post", "should_trigger": true, "note": "triangulation"},
+  {"query": "audit the citations in my draft", "should_trigger": true, "note": "citation discipline"},
+  {"query": "I need to triangulate a performance benchmark claim across sources", "should_trigger": true, "note": "explicit triangulation"},
+  {"query": "tier the sources I have for this whitepaper", "should_trigger": true, "note": "source tiering"},
+  {"query": "what's the right way to cite a benchmark that came from the vendor?", "should_trigger": true, "note": "citation discipline edge case"},
+  {"query": "how should I research a technical essay before drafting", "should_trigger": true, "note": "pre-writing research workflow"},
+  {"query": "generate a README for this Python project", "should_trigger": false, "note": "documentation-generator job, not technical-research"},
+  {"query": "edit this paragraph for active voice and clarity", "should_trigger": false, "note": "communication/clarity-editing or long-form-polish, not research"},
+  {"query": "outline the sections for a long-form article", "should_trigger": false, "note": "long-form-structure job, not research"},
+  {"query": "write a hook for my opinion piece", "should_trigger": false, "note": "engaging-craft job"},
+  {"query": "create a persona for our SaaS product user research", "should_trigger": false, "note": "persona-definition job — product personas, not article-audience"},
+  {"query": "look up the docs for FastAPI's dependency injection", "should_trigger": false, "note": "context7 / docs MCP, not technical-research"}
+]

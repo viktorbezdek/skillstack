@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Make this paragraph more engaging: 'Performance was significantly improved across the board after the migration. Many of our queries now run much faster, which has had a positive impact on user experience.'",
+    "files": ["SKILL.md", "references/concrete-over-abstract.md"],
+    "expected_behavior": "Should diagnose the paragraph as 'asserted, not demonstrated' — every claim is abstract. Should rewrite with concrete substitutions: numbers replace adjectives ('much faster' → specific ms), names replace categories ('many queries' → specific endpoints), demonstrations replace assertions ('positive impact' → measurable user outcome). Should produce a rewritten version that's longer-but-grippier OR shorter-but-tighter, with explanation of the substitutions made."
+  },
+  {
+    "query": "Engineer a hook for an article titled 'Why your CI is slow and how to fix it.' Audience is engineering managers at Series B-D companies.",
+    "files": ["SKILL.md", "references/hooks-and-openers.md", "references/proven-formulas.md"],
+    "expected_behavior": "Should select an appropriate hook type for opinion (consequential question, misconception, or intellectual provocation work; in-medias-res does not). Should identify Schwartz awareness level (likely Problem-aware — the audience knows CI is slow). Should draft 2-3 candidate hooks of 50-150 words each. Should explain what each hook is doing. Should NOT use generic openers like 'In today's fast-paced digital landscape.'"
+  },
+  {
+    "query": "This whole article reads like AI wrote it — generic, smooth, hedge-laden. Diagnose what's wrong and fix the first 500 words.",
+    "files": ["SKILL.md", "references/voice-and-tonality.md", "references/concrete-over-abstract.md"],
+    "expected_behavior": "Should diagnose as: (1) lacks voice (no commitment on the six axes), (2) abstract everywhere, (3) hedge accumulation. Should propose: pick a voice profile, do an abstract-to-concrete pass on every paragraph, cut hedges, add stake/opinion where appropriate. Should rewrite the first 500 words demonstrating the fix. The rewritten version should be perceptibly different — voicier, more concrete, more committed."
+  }
+]

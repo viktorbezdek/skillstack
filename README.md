@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**54** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**55** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **54** plugins · **8** categories · **10** collections · MIT License
+> **55** plugins · **8** categories · **10** collections · MIT License
 
 ---
 
@@ -25,11 +25,11 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 54 plugins</summary>
+<summary><strong>SkillStack</strong> — 55 plugins</summary>
 
-> The complete SkillStack library — 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
+> The complete SkillStack library — 55 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>
@@ -89,11 +89,11 @@ Plugins: `content-modelling`, `elicitation`, `navigation-design`, `ontology-desi
 </details>
 
 <details>
-<summary><strong>Documentation & Communication</strong> — 3 plugins</summary>
+<summary><strong>Documentation & Communication</strong> — 4 plugins</summary>
 
-> Write, structure, and communicate: documentation generation, example design, and communication craft (structured writing, stakeholder alignment, ADRs, runbooks, diagram-as-code).
+> Write, structure, and communicate: documentation generation, example design, communication craft (structured writing, stakeholder alignment, ADRs, runbooks, diagram-as-code), and long-form technical copywriting (research, structure, engaging craft, polish, distribution).
 
-Plugins: `communication`, `documentation-generator`, `example-design`
+Plugins: `communication`, `documentation-generator`, `example-design`, `technical-copywriting`
 </details>
 
 <details>
@@ -194,13 +194,14 @@ Plugins: `plugin-dev`, `skill-foundry`, `skillstack-workflows`
 | [User Journey Design](user-journey-design/README.md) | `1.0.10` | Design user journey maps with touchpoints, emotional states, pain points, and opportunities. |
 | [UX Writing](ux-writing/README.md) | `1.0.10` | Write effective microcopy, error messages, button labels, and interface text using UX writing principles. |
 
-### 📚 Documentation (3)
+### 📚 Documentation (4)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [Communication](communication/README.md) | `1.0.0` | Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code). |
 | [Documentation Generator](documentation-generator/README.md) | `1.1.15` | Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references. |
 | [Example Design](example-design/README.md) | `1.0.10` | Design effective code examples, tutorials, and runnable samples with progressive complexity. |
+| [Technical Copywriting](technical-copywriting/README.md) | `1.0.0` | Five composable skills for writing long-form technical content for an audience — articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga, Sugarman, Schwartz awareness, hooks, voice, concrete-over-abstract), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. |
 
 ---
 

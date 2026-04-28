@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Run a 30% cut pass on this 800-word section. It's full of hedges, throat-clearing, and recap padding.",
+    "files": ["SKILL.md", "references/cut-discipline.md"],
+    "expected_behavior": "Should walk through the three-pass cut protocol: (Pass 1) hedges and filler, (Pass 2) throat-clearing and meta, (Pass 3) redundancy. Should produce a cut version that is approximately 30% shorter (≈560 words) without losing meaning. Should keep concrete examples, citations, voice markers, and genuine qualifications. Should explain at least 5 specific cuts with reasoning."
+  },
+  {
+    "query": "This article reads monotone — every paragraph is similar length and similar energy. How do I fix the pacing?",
+    "files": ["SKILL.md", "references/pacing-and-rhythm.md"],
+    "expected_behavior": "Should diagnose the monotony at sentence, paragraph, and section levels. Should propose: (1) sentence-length variation (insert short punch sentences after long developmental ones), (2) paragraph-length variation (break walls; insert one-sentence paragraphs at pivots), (3) section-length variation if applicable. Should give 2-3 specific rewrites demonstrating long-then-short, short-then-long, or three-short-cascade patterns. Should reference the breath test."
+  },
+  {
+    "query": "Optimize this article for scan-ability. The skim reader needs to extract the main points in 90 seconds.",
+    "files": ["SKILL.md", "references/scannability.md"],
+    "expected_behavior": "Should walk through the skim reader's path (title, headings, first sentences, bold, lists, last paragraph). Should identify: (1) heading clarity (do they preview content?), (2) topic sentences first (do paragraph openers carry meaning?), (3) bold usage (sparse and pointed?), (4) lists (genuinely parallel content?), (5) tables (comparative content?), (6) callouts (tangents pulled out of flow?). Should propose specific edits for each. Should run the 90-second skim test mentally and report what the skimmer would extract."
+  }
+]

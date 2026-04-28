@@ -1,0 +1,18 @@
+[
+  {"query": "outline a 3000-word deep-dive on PostgreSQL row-level security", "should_trigger": true, "note": "core use: outlining a long-form piece"},
+  {"query": "structure a tutorial article on incremental TS strict mode adoption", "should_trigger": true, "note": "tutorial structure"},
+  {"query": "pick the right template for a case study about our migration", "should_trigger": true, "note": "template selection"},
+  {"query": "audit the structure of this draft article", "should_trigger": true, "note": "structural audit"},
+  {"query": "engineer the hook → promise → payoff for my opinion piece", "should_trigger": true, "note": "contract engineering"},
+  {"query": "fix pacing across the sections of my article", "should_trigger": true, "note": "section-level pacing"},
+  {"query": "decide if this article should be 1500 or 3000 words", "should_trigger": true, "note": "length strategy"},
+  {"query": "plan a whitepaper on the state of LLM evals in 2026", "should_trigger": true, "note": "whitepaper template"},
+  {"query": "the transitions between my sections feel choppy — fix them", "should_trigger": true, "note": "section transitions"},
+  {"query": "split this 6000-word article into a series", "should_trigger": true, "note": "length / split decision"},
+  {"query": "write a BLUF email for my CEO", "should_trigger": false, "note": "communication/structured-writing — short-form work writing"},
+  {"query": "edit this paragraph for active voice", "should_trigger": false, "note": "long-form-polish or communication/clarity-editing — line level"},
+  {"query": "structure the chapters of my novel", "should_trigger": false, "note": "storytelling — fiction"},
+  {"query": "research sources for a deep-dive", "should_trigger": false, "note": "technical-research"},
+  {"query": "suggest 5 titles for my article", "should_trigger": false, "note": "distribution-craft"},
+  {"query": "write a hook in punchier prose", "should_trigger": false, "note": "engaging-craft — sentence-level"}
+]

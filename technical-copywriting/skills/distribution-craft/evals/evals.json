@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Suggest 10 title candidates for an article about how we cut Postgres latency 80% by removing one index. The article is a 2500-word case study with specific numbers and a retrospective.",
+    "files": ["SKILL.md", "references/title-craft.md"],
+    "expected_behavior": "Should produce 10 distinct title candidates spanning at least 3-4 of the formula patterns (How we / Why X is / The X that / N things / etc). Should land most candidates in the 8-12 word band. Should pick a top-3 with reasoning. Should not include any anti-pattern formats ('Ultimate Guide', 'Everything You Need', 'X is Dead'). Should avoid clickbait. Each candidate should be defensible as honest given the article description."
+  },
+  {
+    "query": "Reframe this 3000-word deep-dive on Postgres dead tuples for X, LinkedIn, and Hacker News. Same article, three different framings.",
+    "files": ["SKILL.md", "references/social-pull-quotes.md", "references/channel-framing.md"],
+    "expected_behavior": "Should produce three distinct framings: (1) X version — punchy, value-led, specific numbers, ~280 chars or 5-7 tweet thread, (2) LinkedIn version — personal angle, 100-300 words, line breaks, professional tone, (3) HN version — title only (possibly adapted from article title) plus a substantive first comment that adds context without promotion. Should respect each channel's conventions and anti-patterns. Should not cross-post identical content."
+  },
+  {
+    "query": "Audit my distribution copy: Title 'The Ultimate Guide to Database Performance', Dek 'Discover everything you need to know about database optimization techniques and best practices.', Meta description 'Learn how to optimize your database performance with our comprehensive guide.'",
+    "files": ["SKILL.md", "references/title-craft.md", "references/dek-and-meta.md"],
+    "expected_behavior": "Should diagnose multiple anti-patterns: (1) title is 'Ultimate Guide' anti-pattern + over-promise, (2) dek repeats title and uses adjective inflation ('comprehensive', 'everything you need'), (3) meta description is generic and wastes characters. Should propose specific replacements: a specific title (8-12 words; specific number/topic/technique), a dek that extends the title with concrete previews, a meta that promises one specific deliverable. Should reference the honest-title constraint and the specifics-over-adjectives discipline."
+  }
+]

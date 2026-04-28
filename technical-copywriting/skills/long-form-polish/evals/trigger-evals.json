@@ -1,0 +1,18 @@
+[
+  {"query": "polish this 3000-word draft for pacing and scan-ability", "should_trigger": true, "note": "core use: long-form polish"},
+  {"query": "fix the pacing of this article — sentences feel monotone", "should_trigger": true, "note": "pacing pass"},
+  {"query": "improve scan-ability — the skim reader bounces", "should_trigger": true, "note": "scan-ability pass"},
+  {"query": "run a 30% cut pass on this draft", "should_trigger": true, "note": "cut discipline"},
+  {"query": "do a read-aloud test on this section", "should_trigger": true, "note": "read-aloud protocol"},
+  {"query": "tighten this draft — it feels long", "should_trigger": true, "note": "tightening / cut"},
+  {"query": "the sections in my article are uneven in length — fix it", "should_trigger": true, "note": "section-length variation"},
+  {"query": "add callouts and pull quotes to this draft", "should_trigger": true, "note": "scan-ability tools"},
+  {"query": "prepare this draft for publication", "should_trigger": true, "note": "polish workflow"},
+  {"query": "the prose feels bloated — what to cut", "should_trigger": true, "note": "cut discipline"},
+  {"query": "edit this RFC for clarity and concision", "should_trigger": false, "note": "communication/clarity-editing — short-form work writing"},
+  {"query": "outline a long-form article", "should_trigger": false, "note": "long-form-structure"},
+  {"query": "calibrate the voice of this draft", "should_trigger": false, "note": "engaging-craft"},
+  {"query": "research sources for an article", "should_trigger": false, "note": "technical-research"},
+  {"query": "write a title and dek for this piece", "should_trigger": false, "note": "distribution-craft"},
+  {"query": "generate API docs for this Python package", "should_trigger": false, "note": "documentation-generator"}
+]

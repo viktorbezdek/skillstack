@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I want to write a 3000-word piece on incremental TypeScript strict mode adoption based on our team's experience. Outline it.",
+    "files": ["SKILL.md", "references/article-templates.md", "references/hook-promise-payoff.md", "references/length-strategy.md"],
+    "expected_behavior": "Should pick an appropriate template (likely case study or hybrid case-study/deep-dive). Should produce: (1) a hook, (2) a one-sentence promise, (3) 5-9 sections each with a clear role, (4) length budget per section that totals roughly 3000, (5) a payoff that delivers what the hook promised. Should justify the template choice. Should NOT just produce a generic 'intro / body / conclusion' outline."
+  },
+  {
+    "query": "Audit the structure of this draft. It opens with three paragraphs of background, has 8 unequal sections (200-1500 words each), repeats key claims twice, and ends with 'in conclusion, it depends.'",
+    "files": ["SKILL.md", "references/section-transitions.md", "references/length-strategy.md"],
+    "expected_behavior": "Should identify multiple structural problems: (1) buried thesis (3 paragraphs of background), (2) section-length variance is unintentional bloat, (3) recap padding from repeated claims, (4) deflated payoff ('it depends'). Should propose specific fixes: move thesis up, equalize section lengths, cut recaps, replace 'it depends' with a framework or commit to an answer. Should reference relevant anti-patterns."
+  },
+  {
+    "query": "Help me engineer the hook-promise-payoff contract for an opinion piece arguing 'most teams don't need observability stacks.' What hook works?",
+    "files": ["SKILL.md", "references/hook-promise-payoff.md", "references/article-templates.md"],
+    "expected_behavior": "Should recommend a hook type appropriate to opinion (misconception, intellectual provocation, or consequential question). Should draft 2-3 candidate hooks. Should articulate the promise (one sentence). Should sketch the payoff so the reader leaves with: a framework for evaluating their team's observability needs, or a specific recommendation. Should warn against premise-strawmanning and recommend steel-manning the conventional view first."
+  }
+]

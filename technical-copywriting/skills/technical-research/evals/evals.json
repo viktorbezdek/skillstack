@@ -1,0 +1,17 @@
+[
+  {
+    "query": "I'm writing a deep-dive on Postgres dead tuples accumulation. Help me profile the audience and identify what evidence I need to triangulate.",
+    "files": ["SKILL.md", "references/audience-profiling.md", "references/triangulation-and-fact-checking.md"],
+    "expected_behavior": "Should produce: (1) a structured audience profile across the three axes (knowledge level, JTBD, prior beliefs), (2) a list of load-bearing claims that need triangulation, and (3) for each load-bearing claim, suggest specific source types from at least Tier 0-2 of the source-tiering hierarchy. Should NOT immediately start drafting the article. Should reference the audience profile template and triangulation worksheet from the references."
+  },
+  {
+    "query": "Audit the citations in this draft. The article makes the claim that 'most TypeScript codebases over 100k lines have 5-15% any-typed code' citing one Stack Overflow answer. Is that source strong enough?",
+    "files": ["SKILL.md", "references/source-tiering.md", "references/citation-discipline.md"],
+    "expected_behavior": "Should diagnose this as a Tier 4 source (anonymous popular) being used for a load-bearing comparative/statistical claim. Should recommend: (1) escalating to Tier 0-2 sources (e.g., GitHub code-search for actual codebase metrics, peer-reviewed studies if any exist, named practitioner reports), (2) running the writer's own measurement to become a Tier 0 source, or (3) weakening the claim. Should reference the independence test and the escalation ladder."
+  },
+  {
+    "query": "I want to write an opinion piece arguing 'observability is overhyped for small teams.' Walk me through the research workflow.",
+    "files": ["SKILL.md", "references/audience-profiling.md", "references/triangulation-and-fact-checking.md", "references/citation-discipline.md"],
+    "expected_behavior": "Should walk through the 8-step research workflow from SKILL.md: profile audience (likely Solution-aware engineering managers at small teams), state thesis, identify load-bearing claims (cost of observability stacks, benefit at small scale, alternatives), triangulate each claim across Tier 0-2 sources, identify gaps, archive citations. Should specifically caution about steel-manning the conventional view (since it's an opinion piece) and the need for Tier 0-2 evidence on cost claims."
+  }
+]
