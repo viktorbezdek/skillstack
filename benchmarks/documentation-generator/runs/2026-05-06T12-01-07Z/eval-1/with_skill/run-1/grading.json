@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "At least TWO distinct documentation files are produced in the sandbox (e.g., README.md plus one of: CONTRIBUTING.md, GETTING-STARTED.md, API.md, CHANGELOG.md, USAGE.md, ARCHITECTURE.md). A baseline run that emits only a single README.md must FAIL this assertion.",
+      "passed": true,
+      "evidence": "output.txt lists 8 distinct files written to /private/tmp/pilot-bench-dgz2sp7l/with/: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/transliteration.md, docs/examples.md, docs/migration.md, docs/faq.md. Transcript confirms Write tool calls for each. Far exceeds the two-file minimum."
+    },
+    {
+      "text": "The output explicitly names target audiences, personas, or user types (e.g., a heading like 'Audience', 'For:', 'Who this is for', 'Target users', 'Stakeholders', or a list of distinct user roles such as 'library consumers', 'maintainers', 'contributors'). Generic statements like 'developers' alone do NOT satisfy this — the assertion requires at least TWO distinct named audience segments.",
+      "passed": false,
+      "evidence": "JavaScript analysis of the full CONTRIBUTING.md and README.md Write payloads returned 'Audience mentions: []' and 'Total audience hits: 0' — no matches for 'audience', 'persona', 'who this is', 'intended for', 'target user', 'stakeholder', 'maintainer', 'contributor', 'consumer', or 'library user'. The CONTRIBUTING.md opens with a generic intro ('Thank you for helping improve slugify-utils. This guide covers how to report bugs, propose changes, and submit pull requests.') with no named user segments. No file contains an explicit audience section or enumerated user-role list."
+    },
+    {
+      "text": "At least one generated file follows a recognizable structured template pattern with multiple labeled sections — either: (a) a CONTRIBUTING.md with sections covering setup, workflow/process, AND code style/standards; OR (b) a GETTING-STARTED with sections covering prerequisites, installation, AND a quickstart example; OR (c) an API.md with per-function entries containing parameters and return values. A bare README without a structured companion does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md satisfies option (a): its table of contents includes 'Development Setup' (setup), 'Proposing Changes' + 'Pull Request Checklist' (workflow/process), and code style is explicitly covered — the output_txt batch summary states 'CONTRIBUTING.md — Dev setup, testing, code style, how to add a language, PR + release process'. Additionally, docs/api-reference.md satisfies option (c): output.txt describes it as covering 'Parameter types, return values, exceptions, transformation steps, and edge-case tables for all three functions', and transcript content confirms per-function entries with parameters and return values."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": null,
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 1229,
+    "transcript_chars": 155546
+  },
+  "timing": {
+    "executor_duration_seconds": 209.202,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 209.202
+  },
+  "claims": [
+    {
+      "claim": "8 documentation files were produced: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/transliteration.md, docs/examples.md, docs/migration.md, docs/faq.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt enumerates all 8 files explicitly; transcript contains Write tool calls for each file path under /private/tmp/pilot-bench-dgz2sp7l/with/"
+    },
+    {
+      "claim": "CONTRIBUTING.md covers dev setup, testing, code style, how to add a language, and PR + release process",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output_txt batch summary states this explicitly; TOC extracted from transcript shows sections: Reporting Bugs, Proposing Changes, Development Setup, Running Tests, Adding Transliteration Rules, Pull Request Checklist, Versioning Policy"
+    },
+    {
+      "claim": "docs/api-reference.md contains parameter types, return values, exceptions for all three functions",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt: 'Parameter types, return values, exceptions, transformation steps, and edge-case tables for all three functions'. Transcript shows README contains a summary table referencing slugify, validate_slug, unslugify with link to full API reference."
+    },
+    {
+      "claim": "No explicit audience or user-type segmentation appears in any generated file",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Programmatic search across CONTRIBUTING.md and README.md Write payloads for all audience-related terms returned zero matches."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output explicitly names target audiences, personas, or user types...",
+        "reason": "The assertion requires audience content that the skill does not systematically produce — nothing in the skill's visible behavior targets audience documentation. Consider whether this expectation actually tests the skill's documented purpose (generating comprehensive documentation structure), or tests a separate concern (audience framing). If audience sections are intentional, add a trigger in the eval prompt that explicitly requests them."
+      },
+      {
+        "reason": "No assertion verifies that the generated files were actually written to disk (transcript tool_result confirmations) vs. merely having their content appear in Write tool call inputs. The transcript does confirm successful Write results, but an assertion checking for at least N Write tool-result 'File created successfully' messages would make this explicit and catch partial-write failures."
+      }
+    ],
+    "overall": "Assertions 1 and 3 are well-targeted and discriminating — they check real structural outcomes. Assertion 2 (audience segments) may be testing behavior the skill does not advertise, making it a systematically failing gate rather than a meaningful quality signal. The structured-template assertion (3) is strong but could be strengthened by checking actual section heading presence in the transcript payload rather than relying solely on the executor's self-reported output summary."
+  }
+}

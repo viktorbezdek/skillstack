@@ -1,0 +1,21 @@
+All files written. Here is the complete list:
+
+```
+README.md
+docs/architecture/overview.md
+docs/architecture/services.md
+docs/architecture/communication.md
+docs/architecture/decisions/ADR-001-grpc-migration.md
+docs/architecture/migration/rest-to-grpc.md
+docs/architecture/proto/services.proto
+```
+
+**What each file covers:**
+
+- **`README.md`** — system overview, service table, quick-start, repo layout
+- **`overview.md`** — ASCII system diagram, tech stack, data-flow walkthrough, NFR targets
+- **`services.md`** — per-service responsibilities, state machine (order-service), owned DB schemas, env vars
+- **`communication.md`** — gRPC call inventory, error code conventions, Kafka topic config and event schema, deprecated REST table
+- **`ADR-001-grpc-migration.md`** — structured decision record: context, options considered, decision, positive/negative consequences
+- **`rest-to-grpc.md`** — 3-phase migration plan with concrete commands, rollback paths, and Protobuf evolution rules
+- **`services.proto`** — canonical `.proto` definitions for `OrderService` (CreateOrder, GetOrder, ListOrders, CancelOrder) and `PaymentService` (ChargePayment, RefundPayment, GetPayment)

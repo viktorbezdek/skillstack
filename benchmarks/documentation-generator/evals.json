@@ -1,0 +1,42 @@
+{
+  "target": {
+    "type": "skill",
+    "path": "documentation-generator/skills/documentation-generator",
+    "name": "documentation-generator"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "library-portfolio",
+      "prompt": "You maintain a Python library called `slugify-utils` v0.3.2. It exposes three public functions: `slugify(text, lang='en')`, `validate_slug(s)`, and `unslugify(slug)`. It supports English, Russian, and Czech transliteration. About 50 internal teams import it. Generate the documentation portfolio for this library — produce all the docs you think it needs. Save every file you create into the CURRENT directory (use plain filenames like README.md, no absolute paths). Do not ask clarifying questions; make reasonable assumptions and produce the docs. Print the final list of files you wrote at the end.",
+      "expected_output": "Multi-file doc portfolio (README + at least one companion file), with explicit audience/persona awareness in at least one file.",
+      "expectations": [
+        "At least TWO distinct documentation files are produced in the sandbox (e.g., README.md plus one of: CONTRIBUTING.md, GETTING-STARTED.md, API.md, CHANGELOG.md, USAGE.md, ARCHITECTURE.md). A baseline run that emits only a single README.md must FAIL this assertion.",
+        "The output explicitly names target audiences, personas, or user types (e.g., a heading like 'Audience', 'For:', 'Who this is for', 'Target users', 'Stakeholders', or a list of distinct user roles such as 'library consumers', 'maintainers', 'contributors'). Generic statements like 'developers' alone do NOT satisfy this — the assertion requires at least TWO distinct named audience segments.",
+        "At least one generated file follows a recognizable structured template pattern with multiple labeled sections — either: (a) a CONTRIBUTING.md with sections covering setup, workflow/process, AND code style/standards; OR (b) a GETTING-STARTED with sections covering prerequisites, installation, AND a quickstart example; OR (c) an API.md with per-function entries containing parameters and return values. A bare README without a structured companion does NOT satisfy this."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "architecture-multidoc",
+      "prompt": "You are documenting an existing internal e-commerce system named `orderflow`. It has 4 services: `api-gateway` (Go), `order-service` (Python/FastAPI), `payment-service` (Python/FastAPI, owns Stripe integration), and `notification-service` (Node.js). They communicate via REST and a Kafka topic `order.events`. The team just decided to migrate from REST to gRPC for inter-service calls. Generate the architecture documentation set for this system, including the migration decision. Save every file you create into the CURRENT directory. Do not ask clarifying questions; make reasonable assumptions. Print the final list of files at the end.",
+      "expected_output": "Multiple architecture-flavored docs including an ADR for the gRPC migration, a system-design or component-spec doc, and an ownership/component matrix.",
+      "expectations": [
+        "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences' (case-insensitive, all four required in one file). A single architecture.md without these four named sections does NOT satisfy this.",
+        "The architecture documentation is split across THREE OR MORE distinct files (e.g., system-design.md, ownership-map.md, data-flow.md, adr-001-grpc.md, component-spec.md). A single monolithic architecture.md or a README + 1 file does NOT satisfy this.",
+        "At least one file contains an explicit per-service ownership or responsibility breakdown — either a table or a structured list mapping each of the 4 services (api-gateway, order-service, payment-service, notification-service) to its responsibility, owner, or scope. The mapping must enumerate ALL FOUR services individually (not just generic prose mentioning some of them)."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "handoff-prioritized-plan",
+      "prompt": "Your team is handing off a 2-year-old internal tool called `metrics-dashboard` to a different department. Stack: Python/Flask backend, React frontend, PostgreSQL, deployed on Kubernetes via Helm. About 200 daily users across product, ops, and finance teams. The receiving team has 3 mid-level engineers and 1 ops person; they have never seen this codebase. Produce the handoff documentation package: a master plan AND the actual docs. Save every file you create into the CURRENT directory. Do not ask clarifying questions; make reasonable assumptions. Print the final list of files at the end.",
+      "expected_output": "A documentation plan/index that maps stakeholders to docs and prioritizes them, plus 4+ produced docs covering the handoff.",
+      "expectations": [
+        "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents (e.g., a section like 'For new engineers: X, Y' / 'For ops: Z' OR a table with columns like Audience/Persona × Document). A flat list of files without stakeholder mapping does NOT satisfy this.",
+        "The plan uses explicit prioritization markers — at minimum TWO distinct priority tiers must be visible using one of these schemes: P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or numbered phases (Phase 1/Phase 2). An undifferentiated bullet list of docs without any priority annotation does NOT satisfy this.",
+        "At least FOUR distinct documentation files are produced beyond the plan itself (i.e., 5+ files total counting the plan). Acceptable examples: README, ARCHITECTURE, RUNBOOK, ONBOARDING, OPERATIONS, API, DEPLOYMENT, TROUBLESHOOTING, CONTRIBUTING. A plan-only output or a plan + 1-2 docs does NOT satisfy this."
+      ]
+    }
+  ]
+}

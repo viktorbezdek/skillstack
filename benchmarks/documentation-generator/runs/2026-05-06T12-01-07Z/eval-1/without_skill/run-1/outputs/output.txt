@@ -1,0 +1,16 @@
+All documentation files are written. Here is the complete list:
+
+---
+
+**Files created:**
+
+```
+README.md                    — Project overview, quick start, full API summary, install instructions
+CHANGELOG.md                 — Version history from 0.1.0 → 0.3.2 (Keep a Changelog format)
+CONTRIBUTING.md              — Dev setup, testing, code style, how to add a language, PR + release process
+docs/api-reference.md        — Full specification for slugify, validate_slug, and unslugify (params, returns, raises, pipeline, examples)
+docs/language-support.md     — Transliteration tables for en / ru / cs with per-character mappings and examples
+docs/examples.md             — 8 practical recipes (unique slugs, bulk pipelines, Django/Flask routing, breadcrumbs, empty-result handling, pre-processing)
+docs/faq.md                  — 18 Q&As covering general use, each function, versioning, and deployment
+docs/migration.md            — Step-by-step upgrade guides: 0.2.x → 0.3.x (separator deprecation, bytes TypeError, Czech support, validate_slug), preview of 0.4.0, compatibility matrix
+```

@@ -1,0 +1,16 @@
+All six files written. Here's the complete list:
+
+---
+
+**Files created in `/private/tmp/pilot-bench-ngufibt3/without/`:**
+
+| File | Contents |
+|------|----------|
+| `README.md` | System overview, service table, doc index |
+| `architecture-overview.md` | ASCII architecture diagrams (current REST + target gRPC), component responsibilities, deployment topology, decision table |
+| `services-reference.md` | Per-service API endpoints, state machine, env config, dependencies, SLOs |
+| `kafka-events.md` | Topic config, envelope schema, all 6 event types with JSON examples, producer/consumer table, consumer guidelines |
+| `adr-001-grpc-migration.md` | Full ADR: context, decision, 4 alternatives considered, consequences (positive/negative/neutral), compliance note |
+| `grpc-migration-plan.md` | 4-phase rollout, complete `.proto` files for `OrderService` and `PaymentService`, per-service implementation notes, port reference, CI commands, rollback strategy |
+
+Key assumptions made: Stripe webhook callbacks (`payment-service` → `order-service`) stay REST and are explicitly called out as out of scope; `notification-service` is Kafka-only and excluded from gRPC migration; gRPC uses insecure transport inside the cluster mesh (mTLS deferred to a follow-on ADR); proto files live in a top-level `proto/` directory with `buf` for linting.

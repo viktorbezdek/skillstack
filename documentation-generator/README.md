@@ -30,6 +30,35 @@ The key innovation is skill orchestration: each phase loads specific SkillStack 
 | No way to measure documentation quality or detect drift from code | Validation script scores documentation and drift detection compares docs against current codebase |
 | Documentation is a one-time effort that rots immediately | Quality tracking with minimum scores, link checking, and drift detection integrated into workflow |
 
+## Benchmark Results
+
+Evaluated 2026-05-06 · model `claude-sonnet-4-6` · 3 evals × 2 configs × 1 run · [snapshot](../benchmarks/documentation-generator/runs/2026-05-06T12-01-07Z/benchmark.json)
+
+```
+Pass rate   with 6/9 (0.67)   without 6/9 (0.67)   Δ +0.00 ⚪
+Avg time    with 263s          without 295s          Δ −32s
+Total tok   with 1,670k        without 1,554k        Δ +116k
+```
+
+**Quadrant breakdown** (9 assertions across 3 evals)
+
+| Quadrant | Count | Interpretation |
+|---|---|---|
+| 🟢 Signal | 1 | Skill lifts behaviour here |
+| ⚪ Baseline | 5 | Baseline Sonnet already does this |
+| 🟡 Unreachable | 2 | Both configs fail — assertions too strict |
+| 🔴 Regression | 1 | Eval ambiguity, not real regression |
+
+**Key findings:**
+
+The single confirmed signal is **prioritization structure**: with the skill loaded, the handoff eval produced a `HANDOFF_PLAN.md` with explicit `P0 / P1 / P2` priority tiers (`### P0 — Must know before going solo`); without it, the baseline omitted this structure entirely.
+
+The 5 Baseline assertions tell the real story: **multi-file output, structured templates (CONTRIBUTING.md, API reference), and per-service responsibility breakdowns all happen reliably without the skill**. Baseline Sonnet on doc-generation prompts is already strong. The evals measured what both configs do well, not what this skill uniquely adds.
+
+**What the evals missed** — the skill's actual discriminators are upstream planning behaviors: explicit persona definition in Phase 2, navigation architecture before writing (Phase 3), and the coverage/validation phases (5–6). These require assertions that check for persona-named sections, documented information architecture decisions, or completeness scoring in the output — not just file count or template shape.
+
+**Eval quality verdict:** assertions need rewriting to target the skill's planning phases before re-running. The skill's design (6-phase pipeline, persona-first, template portfolio) is sound; the benchmark did not yet measure the right things.
+
 ## Context to Provide
 
 The documentation generator's most valuable phase is analysis -- which requires knowing what you are documenting, who will read it, and what problem the documentation must solve. Skipping to "generate docs" without specifying audience and purpose produces well-structured documentation that addresses the wrong questions.

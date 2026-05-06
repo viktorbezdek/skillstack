@@ -1,0 +1,25 @@
+All documentation has been written. Here is the complete file list:
+
+```
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
+docs/api-reference.md
+docs/transliteration.md
+docs/examples.md
+docs/migration.md
+docs/faq.md
+```
+
+**What each file covers:**
+
+| File | Purpose |
+|------|---------|
+| `README.md` | Overview, quick-start, install, public API surface, language table |
+| `CHANGELOG.md` | Full release history from 0.1.0 through 0.3.2 with breaking-change callouts |
+| `CONTRIBUTING.md` | Dev setup, test commands, how to add a new transliteration language, PR checklist, versioning policy |
+| `docs/api-reference.md` | Parameter types, return values, exceptions, transformation steps, and edge-case tables for all three functions |
+| `docs/transliteration.md` | Full character-mapping tables for EN / RU / CZ with drop rules explained |
+| `docs/examples.md` | Patterns for unique-slug generation, Django/Flask/FastAPI integration, batch slugification, display labels |
+| `docs/migration.md` | Upgrade paths between every minor version, compatibility matrix, pinning advice |
+| `docs/faq.md` | 14 answered questions covering empty output, thread safety, round-trip limits, performance, and language-selection guidance |

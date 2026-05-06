@@ -1,0 +1,25 @@
+All 10 files written. Here's the final inventory:
+
+---
+
+## Files Created
+
+| File | Purpose | Primary Audience |
+|------|---------|-----------------|
+| `HANDOFF.md` | Master plan: schedule, access checklist, critical warnings, known debt | Everyone — read first |
+| `README.md` | Project overview, repo layout, Makefile reference, quick links | Everyone |
+| `ONBOARDING.md` | Day-by-day first-week guide, key concepts, common first-week mistakes | All engineers |
+| `ARCHITECTURE.md` | System diagram, component descriptions, data flows, auth model, observability | Engineers |
+| `DEVELOPMENT.md` | Local setup (Docker Compose + manual), migrations, testing, linting, IDE config | Engineers |
+| `DEPLOYMENT.md` | Helm deploy workflow (staging + prod), rollback, secrets management, CI/CD | Engineers + ops |
+| `DATABASE.md` | Full schema, migration workflow, maintenance queries, backup/restore | Engineers + ops |
+| `API.md` | Every endpoint: parameters, request/response shapes, error codes | Backend engineers |
+| `RUNBOOK.md` | On-call playbooks for every known alert type, step-by-step remediation | Ops primarily |
+| `TROUBLESHOOTING.md` | Searchable symptom → cause → fix catalog for local dev and production | Everyone |
+
+**Notable decisions baked in:**
+
+- `HANDOFF.md §5` captures the five most dangerous institutional-knowledge gaps (nightly aggregation, migration discipline, `finance_summary` external consumers, build pipeline, two secrets not in Helm).
+- `RUNBOOK.md` covers every PagerDuty alert by name with a triage table at the top — ops can jump directly to the right section under pressure.
+- `DATABASE.md` calls out the `finance_summary` materialized view's external Tableau/Looker dependency explicitly — the most likely schema-change foot-gun for a new team.
+- `ONBOARDING.md` ends with a concrete "am I ready for on-call" checklist rather than leaving it ambiguous.

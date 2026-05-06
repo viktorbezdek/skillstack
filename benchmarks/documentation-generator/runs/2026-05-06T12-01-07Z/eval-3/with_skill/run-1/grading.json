@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents (e.g., a section like 'For new engineers: X, Y' / 'For ops: Z' OR a table with columns like Audience/Persona × Document). A flat list of files without stakeholder mapping does NOT satisfy this.",
+      "passed": false,
+      "evidence": "README.md (the index file) contains a 'Quick Navigation' table mapping Document → Purpose (e.g., 'DEPLOYMENT.md → Kubernetes / Helm release process'), which is doc-to-purpose, not stakeholder-to-doc. HANDOFF_PLAN.md has P0/P1/P2 knowledge tiers ('Ranked by criticality to daily operations') but these are priority levels for the incoming team as a whole, not stakeholder/persona groups mapped to specific docs. The only persona-to-doc guidance ('The ops person should focus on DEPLOYMENT.md and OPERATIONS_RUNBOOK.md; direct each engineer to ONBOARDING_CHECKLIST.md') appears in the assistant's final response text (captured in output.txt) — this is the conversational reply, NOT content written into any produced documentation file via the Write tool. No produced file contains a section like 'For ops: X, Y' or a table with an Audience/Persona column."
+    },
+    {
+      "text": "The plan uses explicit prioritization markers — at minimum TWO distinct priority tiers must be visible using one of these schemes: P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or numbered phases (Phase 1/Phase 2). An undifferentiated bullet list of docs without any priority annotation does NOT satisfy this.",
+      "passed": true,
+      "evidence": "HANDOFF_PLAN.md contains a 'Knowledge Transfer Priorities' section with three explicitly labeled tiers: '### P0 — Must know before going solo', '### P1 — Should know within first two weeks', and '### P2 — Good to know within first month'. Each tier contains a numbered list of knowledge items referencing specific documentation files (e.g., 'How to deploy to production (DEPLOYMENT.md)' under P0). This satisfies the requirement for at least two distinct priority tiers using the P0/P1/P2 scheme."
+    },
+    {
+      "text": "At least FOUR distinct documentation files are produced beyond the plan itself (i.e., 5+ files total counting the plan). Acceptable examples: README, ARCHITECTURE, RUNBOOK, ONBOARDING, OPERATIONS, API, DEPLOYMENT, TROUBLESHOOTING, CONTRIBUTING. A plan-only output or a plan + 1-2 docs does NOT satisfy this.",
+      "passed": true,
+      "evidence": "10 files were produced and confirmed created via Write tool calls in the transcript: README.md, HANDOFF_PLAN.md, ARCHITECTURE.md, DEVELOPMENT.md, DEPLOYMENT.md, OPERATIONS_RUNBOOK.md, DATABASE.md, API_REFERENCE.md, KNOWN_ISSUES.md, ONBOARDING_CHECKLIST.md. Even counting HANDOFF_PLAN.md as 'the plan', there are 9 additional documentation files — far exceeding the minimum of 4 beyond the plan. File sizes range from 3.1K (README) to 9.8K (OPERATIONS_RUNBOOK), indicating substantive content in each."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": 55,
+    "errors_encountered": 0,
+    "output_chars": 860,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 407.99,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 407.99,
+    "total_tokens": 701701,
+    "total_cost_usd": 0.79
+  },
+  "claims": [
+    {
+      "claim": "All 10 files created in the current directory",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript contains 10 distinct Write tool calls, each confirmed with 'File created successfully at: /private/tmp/pilot-bench-rghcytlx/with/<filename>' tool results. All 10 filenames match those listed in output.txt."
+    },
+    {
+      "claim": "HANDOFF_PLAN.md contains P0/P1/P2 knowledge priorities",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Write tool call for HANDOFF_PLAN.md (line 22 of transcript) contains explicit ### P0, ### P1, and ### P2 sections under 'Knowledge Transfer Priorities', each with numbered items referencing specific docs."
+    },
+    {
+      "claim": "README.md serves as entry point and doc index",
+      "type": "factual",
+      "verified": true,
+      "evidence": "README.md content extracted from transcript: contains 'Quick Navigation' table listing all 9 companion docs with purposes, plus repo layout and quick-start instructions. Confirmed as first Write call (line 18)."
+    },
+    {
+      "claim": "Each file has substantial content (3.1K–9.8K)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output.txt summary table lists file sizes: README.md 3.1K, HANDOFF_PLAN.md 4.8K, ARCHITECTURE.md 9.4K, DEVELOPMENT.md 7.1K, DEPLOYMENT.md 8.5K, OPERATIONS_RUNBOOK.md 9.8K, DATABASE.md 8.6K, API_REFERENCE.md 7.0K, KNOWN_ISSUES.md 7.6K, ONBOARDING_CHECKLIST.md 6.4K. Partial content reads from HANDOFF_PLAN and README confirmed substantive markdown with tables, checklists, and structured sections."
+    },
+    {
+      "claim": "Persona-to-doc routing guidance was provided for ops and engineers",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The guidance 'The ops person should focus on DEPLOYMENT.md and OPERATIONS_RUNBOOK.md' appears in the final assistant response text (output.txt), NOT in any produced documentation file. The expectation requires this mapping to be in a produced plan/index/master file — it was not placed there."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents...",
+        "reason": "The assertion is correct but the boundary is subtle: a README with doc→purpose table is close to passing but shouldn't. Consider adding a clarification that 'doc → purpose' (the reverse direction) does not satisfy this — the mapping must be persona/role → list of recommended docs. Also worth noting that persona-to-doc guidance in the assistant's conversational response (not written to a file) does not satisfy this expectation."
+      },
+      {
+        "reason": "No assertion checks whether the produced documents are internally consistent or cross-reference each other correctly. HANDOFF_PLAN.md references DEPLOYMENT.md, ONBOARDING_CHECKLIST.md, etc. — a stronger eval would verify at least one cross-reference is accurate (e.g., a section name referenced in HANDOFF_PLAN exists in the target file)."
+      }
+    ],
+    "overall": "Assertions 2 and 3 are well-calibrated and discriminating. Assertion 1 is meaningful and correctly identifies a gap, but the distinction between doc→purpose and persona→doc is easy to miss — a concrete counter-example in the assertion text would sharpen it."
+  }
+}

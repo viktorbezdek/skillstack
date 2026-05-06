@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "At least TWO distinct documentation files are produced in the sandbox (e.g., README.md plus one of: CONTRIBUTING.md, GETTING-STARTED.md, API.md, CHANGELOG.md, USAGE.md, ARCHITECTURE.md). A baseline run that emits only a single README.md must FAIL this assertion.",
+      "passed": true,
+      "evidence": "8 files were written to /private/tmp/pilot-bench-al4gbxv8/without/: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/language-support.md, docs/examples.md, docs/faq.md, docs/migration.md. Verified via Write tool_use events in transcript lines 17, 21, 24, 30, 33, 36, 39, 42."
+    },
+    {
+      "text": "The output explicitly names target audiences, personas, or user types (e.g., a heading like 'Audience', 'For:', 'Who this is for', 'Target users', 'Stakeholders', or a list of distinct user roles such as 'library consumers', 'maintainers', 'contributors'). Generic statements like 'developers' alone do NOT satisfy this — the assertion requires at least TWO distinct named audience segments.",
+      "passed": false,
+      "evidence": "No file contains an explicit audience section, 'Audience' heading, 'Who this is for', 'For:' callout, or any dedicated audience declaration. The only keyword matches were incidental: 'maintainer' appears twice in CONTRIBUTING.md as a process role ('one maintainer review is required before merging', 'Releases are handled by the slugify-utils maintainers') — these are procedural references, not named audience segments. No second distinct audience segment is named anywhere across all 8 files. The assertion requires at least two explicitly declared audience types."
+    },
+    {
+      "text": "At least one generated file follows a recognizable structured template pattern with multiple labeled sections — either: (a) a CONTRIBUTING.md with sections covering setup, workflow/process, AND code style/standards; OR (b) a GETTING-STARTED with sections covering prerequisites, installation, AND a quickstart example; OR (c) an API.md with per-function entries containing parameters and return values. A bare README without a structured companion does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md satisfies option (a). It contains: 'Getting Started' section (dev environment setup with clone/venv/pip instructions), 'Running Tests' + 'Adding a Language' + 'Submitting Changes' sections (workflow/process), and a dedicated 'Code Style' section (ruff linting, formatting, mypy type annotations). All three required pillars — setup, workflow/process, and code style/standards — are present as labeled sections."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 8,
+      "Bash": 1
+    },
+    "total_tool_calls": 9,
+    "total_steps": 47,
+    "errors_encountered": 0,
+    "output_chars": 1091,
+    "transcript_chars": 167462
+  },
+  "timing": {
+    "executor_duration_seconds": 216.178,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 216.178
+  },
+  "claims": [
+    {
+      "claim": "8 distinct documentation files were created",
+      "type": "factual",
+      "verified": true,
+      "evidence": "8 Write tool_use events confirmed in transcript: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/language-support.md, docs/examples.md, docs/faq.md, docs/migration.md"
+    },
+    {
+      "claim": "CONTRIBUTING.md covers dev setup, testing, code style, how to add a language, PR + release process",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Full CONTRIBUTING.md content extracted from transcript confirms all claimed sections: Getting Started (setup), Running Tests, Code Style, Adding a Language, Submitting Changes, Release Process"
+    },
+    {
+      "claim": "docs/api-reference.md provides full specification for slugify, validate_slug, and unslugify with params, returns, raises",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Output.txt claims this but the api-reference.md content was not individually verified beyond the output summary. README.md itself already contains detailed API reference with parameter tables and return values for all three functions — the separate api-reference.md claim is plausible but not directly extracted for verification."
+    },
+    {
+      "claim": "No audience section or named user segments appear in any file",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Regex search across all 8 written file contents for audience|persona|who this is for|target user|stakeholder|library consumer|contributor found only incidental 'maintainer' references in CONTRIBUTING.md and docs/language-support.md — no explicit audience declarations."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output explicitly names target audiences, personas, or user types...",
+        "reason": "The assertion is well-discriminating: the without_skill run produced 8 rich documentation files but missed explicit audience framing entirely. Consider adding a parallel assertion that checks whether the README or a dedicated file contains an 'Installation' section AND a 'Contributing' link, as a lightweight proxy for whether the docs distinguish library consumers from contributors — this would catch the common baseline pattern without requiring the full audience-naming behavior."
+      },
+      {
+        "reason": "No assertion checks whether the files written in the sandbox actually match the claimed file paths and non-empty content. The current eval trusts output.txt at face value; a stronger assertion would verify file existence and minimum byte count in the sandbox path (e.g., each file > 500 bytes)."
+      }
+    ],
+    "overall": "Assertions 1 and 3 are well-calibrated and discriminating. Assertion 2 correctly fails here — the without_skill run produces comprehensive technical docs but skips audience framing. The eval suite effectively distinguishes skill presence from absence on the audience dimension."
+  }
+}

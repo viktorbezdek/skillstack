@@ -1,0 +1,16 @@
+All 10 files created in the current directory:
+
+| File | Purpose | Size |
+|------|---------|------|
+| `README.md` | Entry point — repo layout, quick start, doc index | 3.1K |
+| `HANDOFF_PLAN.md` | 4-week transfer timeline, credentials checklist, P0/P1/P2 knowledge priorities, sign-off | 4.8K |
+| `ARCHITECTURE.md` | System diagram, Flask blueprint map, React component tree, data flow, auth, K8s topology, external deps | 9.4K |
+| `DEVELOPMENT.md` | Prerequisites, local setup, Make targets, backend/frontend coding standards, debugging tips | 7.1K |
+| `DEPLOYMENT.md` | Helm chart structure, secrets management, staging/production deploy steps, rollback procedures, env var reference | 8.5K |
+| `OPERATIONS_RUNBOOK.md` | Alert table, per-alert incident response procedures, log queries, routine maintenance schedule | 9.8K |
+| `DATABASE.md` | Full schema DDL, Alembic migration workflow, migration safety checklist, backup/restore, connection instructions | 8.6K |
+| `API_REFERENCE.md` | All REST endpoints with params, request/response shapes, error codes | 7.0K |
+| `KNOWN_ISSUES.md` | 5 active bugs with workarounds, 6 tech debt items, "looks like a bug but isn't" section | 7.6K |
+| `ONBOARDING_CHECKLIST.md` | Day-by-day 3-day onboarding plan, completion sign-off, quick reference card | 6.4K |
+
+**How to use:** Hand the receiving team `HANDOFF_PLAN.md` first (their roadmap), then direct each engineer to `ONBOARDING_CHECKLIST.md` for their individual onboarding. The ops person should focus on `DEPLOYMENT.md` and `OPERATIONS_RUNBOOK.md`. Fill in the bracketed placeholders (`[fill in]`, `<registry-url>`, etc.) before sending.

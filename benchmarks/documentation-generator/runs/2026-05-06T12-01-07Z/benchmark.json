@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "documentation-generator",
+    "skill_path": "documentation-generator/skills/documentation-generator",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-06T12:12:00Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "documentation-generator",
+    "target_path": "documentation-generator/skills/documentation-generator"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 209.202,
+        "tokens": 509745,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least TWO distinct documentation files are produced in the sandbox (e.g., README.md plus one of: CONTRIBUTING.md, GETTING-STARTED.md, API.md, CHANGELOG.md, USAGE.md, ARCHITECTURE.md). A baseline run that emits only a single README.md must FAIL this assertion.",
+          "passed": true,
+          "evidence": "output.txt lists 8 distinct files written to /private/tmp/pilot-bench-dgz2sp7l/with/: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/transliteration.md, docs/examples.md, docs/migration.md, docs/faq.md. Transcript confirms Write tool calls for each. Far exceeds the two-file minimum."
+        },
+        {
+          "text": "The output explicitly names target audiences, personas, or user types (e.g., a heading like 'Audience', 'For:', 'Who this is for', 'Target users', 'Stakeholders', or a list of distinct user roles such as 'library consumers', 'maintainers', 'contributors'). Generic statements like 'developers' alone do NOT satisfy this \u2014 the assertion requires at least TWO distinct named audience segments.",
+          "passed": false,
+          "evidence": "JavaScript analysis of the full CONTRIBUTING.md and README.md Write payloads returned 'Audience mentions: []' and 'Total audience hits: 0' \u2014 no matches for 'audience', 'persona', 'who this is', 'intended for', 'target user', 'stakeholder', 'maintainer', 'contributor', 'consumer', or 'library user'. The CONTRIBUTING.md opens with a generic intro ('Thank you for helping improve slugify-utils. This guide covers how to report bugs, propose changes, and submit pull requests.') with no named user segments. No file contains an explicit audience section or enumerated user-role list."
+        },
+        {
+          "text": "At least one generated file follows a recognizable structured template pattern with multiple labeled sections \u2014 either: (a) a CONTRIBUTING.md with sections covering setup, workflow/process, AND code style/standards; OR (b) a GETTING-STARTED with sections covering prerequisites, installation, AND a quickstart example; OR (c) an API.md with per-function entries containing parameters and return values. A bare README without a structured companion does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md satisfies option (a): its table of contents includes 'Development Setup' (setup), 'Proposing Changes' + 'Pull Request Checklist' (workflow/process), and code style is explicitly covered \u2014 the output_txt batch summary states 'CONTRIBUTING.md \u2014 Dev setup, testing, code style, how to add a language, PR + release process'. Additionally, docs/api-reference.md satisfies option (c): output.txt describes it as covering 'Parameter types, return values, exceptions, transformation steps, and edge-case tables for all three functions', and transcript content confirms per-function entries with parameters and return values."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 172.501,
+        "tokens": 458585,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences' (case-insensitive, all four required in one file). A single architecture.md without these four named sections does NOT satisfy this.",
+          "passed": false,
+          "evidence": "ADR-001-grpc-migration.md has '## Context', '## Decision', and '## Consequences' as markdown headings, but 'Status' is presented as a table row ('| Status | **Accepted** |') rather than a heading. Confirmed by grep: '## Status': 0 occurrences across the transcript. All four must be headings; Status fails this requirement."
+        },
+        {
+          "text": "The architecture documentation is split across THREE OR MORE distinct files (e.g., system-design.md, ownership-map.md, data-flow.md, adr-001-grpc.md, component-spec.md). A single monolithic architecture.md or a README + 1 file does NOT satisfy this.",
+          "passed": true,
+          "evidence": "Six distinct architecture files were written under docs/architecture/: overview.md, services.md, communication.md, decisions/ADR-001-grpc-migration.md, migration/rest-to-grpc.md, proto/services.proto. Plus README.md at root. Well above the three-file threshold."
+        },
+        {
+          "text": "At least one file contains an explicit per-service ownership or responsibility breakdown \u2014 either a table or a structured list mapping each of the 4 services (api-gateway, order-service, payment-service, notification-service) to its responsibility, owner, or scope. The mapping must enumerate ALL FOUR services individually (not just generic prose mentioning some of them).",
+          "passed": true,
+          "evidence": "services.md contains four top-level sections \u2014 '## api-gateway', '## order-service', '## payment-service', '## notification-service' \u2014 each with a '### Responsibilities' bullet list enumerating that service's specific duties (e.g., api-gateway: JWT validation, rate limiting, routing; order-service: CRUD, state machine, payment orchestration, Kafka events; payment-service: Stripe integration; notification-service: Kafka consumer, email/push delivery). All four services are individually and explicitly mapped."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 407.99,
+        "tokens": 701701,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents (e.g., a section like 'For new engineers: X, Y' / 'For ops: Z' OR a table with columns like Audience/Persona \u00d7 Document). A flat list of files without stakeholder mapping does NOT satisfy this.",
+          "passed": false,
+          "evidence": "README.md (the index file) contains a 'Quick Navigation' table mapping Document \u2192 Purpose (e.g., 'DEPLOYMENT.md \u2192 Kubernetes / Helm release process'), which is doc-to-purpose, not stakeholder-to-doc. HANDOFF_PLAN.md has P0/P1/P2 knowledge tiers ('Ranked by criticality to daily operations') but these are priority levels for the incoming team as a whole, not stakeholder/persona groups mapped to specific docs. The only persona-to-doc guidance ('The ops person should focus on DEPLOYMENT.md and OPERATIONS_RUNBOOK.md; direct each engineer to ONBOARDING_CHECKLIST.md') appears in the assistant's final response text (captured in output.txt) \u2014 this is the conversational reply, NOT content written into any produced documentation file via the Write tool. No produced file contains a section like 'For ops: X, Y' or a table with an Audience/Persona column."
+        },
+        {
+          "text": "The plan uses explicit prioritization markers \u2014 at minimum TWO distinct priority tiers must be visible using one of these schemes: P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or numbered phases (Phase 1/Phase 2). An undifferentiated bullet list of docs without any priority annotation does NOT satisfy this.",
+          "passed": true,
+          "evidence": "HANDOFF_PLAN.md contains a 'Knowledge Transfer Priorities' section with three explicitly labeled tiers: '### P0 \u2014 Must know before going solo', '### P1 \u2014 Should know within first two weeks', and '### P2 \u2014 Good to know within first month'. Each tier contains a numbered list of knowledge items referencing specific documentation files (e.g., 'How to deploy to production (DEPLOYMENT.md)' under P0). This satisfies the requirement for at least two distinct priority tiers using the P0/P1/P2 scheme."
+        },
+        {
+          "text": "At least FOUR distinct documentation files are produced beyond the plan itself (i.e., 5+ files total counting the plan). Acceptable examples: README, ARCHITECTURE, RUNBOOK, ONBOARDING, OPERATIONS, API, DEPLOYMENT, TROUBLESHOOTING, CONTRIBUTING. A plan-only output or a plan + 1-2 docs does NOT satisfy this.",
+          "passed": true,
+          "evidence": "10 files were produced and confirmed created via Write tool calls in the transcript: README.md, HANDOFF_PLAN.md, ARCHITECTURE.md, DEVELOPMENT.md, DEPLOYMENT.md, OPERATIONS_RUNBOOK.md, DATABASE.md, API_REFERENCE.md, KNOWN_ISSUES.md, ONBOARDING_CHECKLIST.md. Even counting HANDOFF_PLAN.md as 'the plan', there are 9 additional documentation files \u2014 far exceeding the minimum of 4 beyond the plan. File sizes range from 3.1K (README) to 9.8K (OPERATIONS_RUNBOOK), indicating substantive content in each."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 216.178,
+        "tokens": 521298,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least TWO distinct documentation files are produced in the sandbox (e.g., README.md plus one of: CONTRIBUTING.md, GETTING-STARTED.md, API.md, CHANGELOG.md, USAGE.md, ARCHITECTURE.md). A baseline run that emits only a single README.md must FAIL this assertion.",
+          "passed": true,
+          "evidence": "8 files were written to /private/tmp/pilot-bench-al4gbxv8/without/: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/language-support.md, docs/examples.md, docs/faq.md, docs/migration.md. Verified via Write tool_use events in transcript lines 17, 21, 24, 30, 33, 36, 39, 42."
+        },
+        {
+          "text": "The output explicitly names target audiences, personas, or user types (e.g., a heading like 'Audience', 'For:', 'Who this is for', 'Target users', 'Stakeholders', or a list of distinct user roles such as 'library consumers', 'maintainers', 'contributors'). Generic statements like 'developers' alone do NOT satisfy this \u2014 the assertion requires at least TWO distinct named audience segments.",
+          "passed": false,
+          "evidence": "No file contains an explicit audience section, 'Audience' heading, 'Who this is for', 'For:' callout, or any dedicated audience declaration. The only keyword matches were incidental: 'maintainer' appears twice in CONTRIBUTING.md as a process role ('one maintainer review is required before merging', 'Releases are handled by the slugify-utils maintainers') \u2014 these are procedural references, not named audience segments. No second distinct audience segment is named anywhere across all 8 files. The assertion requires at least two explicitly declared audience types."
+        },
+        {
+          "text": "At least one generated file follows a recognizable structured template pattern with multiple labeled sections \u2014 either: (a) a CONTRIBUTING.md with sections covering setup, workflow/process, AND code style/standards; OR (b) a GETTING-STARTED with sections covering prerequisites, installation, AND a quickstart example; OR (c) an API.md with per-function entries containing parameters and return values. A bare README without a structured companion does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md satisfies option (a). It contains: 'Getting Started' section (dev environment setup with clone/venv/pip instructions), 'Running Tests' + 'Adding a Language' + 'Submitting Changes' sections (workflow/process), and a dedicated 'Code Style' section (ruff linting, formatting, mypy type annotations). All three required pillars \u2014 setup, workflow/process, and code style/standards \u2014 are present as labeled sections."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 167.1,
+        "tokens": 354860,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences' (case-insensitive, all four required in one file). A single architecture.md without these four named sections does NOT satisfy this.",
+          "passed": false,
+          "evidence": "adr-001-grpc-migration.md was written and contains '## Context', '## Decision', and '## Consequences' as proper markdown headings (confirmed 2 occurrences each in transcript search). However, 'Status' appears only as a table row: '| **Status** | Accepted |' \u2014 NOT as a markdown heading. Transcript search confirmed '## Status': 0 occurrences and '# Status': 0 occurrences across the entire transcript. Three of the four required headings are present; Status is missing as a heading."
+        },
+        {
+          "text": "The architecture documentation is split across THREE OR MORE distinct files (e.g., system-design.md, ownership-map.md, data-flow.md, adr-001-grpc.md, component-spec.md). A single monolithic architecture.md or a README + 1 file does NOT satisfy this.",
+          "passed": true,
+          "evidence": "output.txt confirms 6 files written: README.md, architecture-overview.md, services-reference.md, kafka-events.md, adr-001-grpc-migration.md, grpc-migration-plan.md. Transcript shows 6 distinct Write tool calls to these paths in /private/tmp/pilot-bench-ngufibt3/without/. Excluding README.md, there are 5 architecture documentation files \u2014 well above the 3-file threshold."
+        },
+        {
+          "text": "At least one file contains an explicit per-service ownership or responsibility breakdown \u2014 either a table or a structured list mapping each of the 4 services (api-gateway, order-service, payment-service, notification-service) to its responsibility, owner, or scope. The mapping must enumerate ALL FOUR services individually (not just generic prose mentioning some of them).",
+          "passed": true,
+          "evidence": "architecture-overview.md contains a '## Component Responsibilities' section with four subsections \u2014 '### api-gateway', '### order-service', '### payment-service', '### notification-service' \u2014 each with a bullet list of responsibilities. All four services are individually enumerated. Confirmed from transcript: the full content of each subsection was verified, including notification-service ('Stateless consumer of order.events. Maps event types to notification templates...'). This is a structured list mapping all 4 services to their scope and responsibility."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 501.939,
+        "tokens": 677674,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents (e.g., a section like 'For new engineers: X, Y' / 'For ops: Z' OR a table with columns like Audience/Persona \u00d7 Document). A flat list of files without stakeholder mapping does NOT satisfy this.",
+          "passed": true,
+          "evidence": "HANDOFF.md \u00a72 'Documentation Index' contains a table with columns 'File | Audience | Read First?' that explicitly maps each document to its target stakeholder: README.md \u2192 Everyone, ONBOARDING.md \u2192 All engineers, ARCHITECTURE.md \u2192 Engineers, DEVELOPMENT.md \u2192 Engineers, API.md \u2192 Backend engineers, DATABASE.md \u2192 Engineers + ops, DEPLOYMENT.md \u2192 Engineers + ops, RUNBOOK.md \u2192 Ops primarily, TROUBLESHOOTING.md \u2192 Everyone. The final output.txt also summarizes this as a 'Primary Audience' column."
+        },
+        {
+          "text": "The plan uses explicit prioritization markers \u2014 at minimum TWO distinct priority tiers must be visible using one of these schemes: P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or numbered phases (Phase 1/Phase 2). An undifferentiated bullet list of docs without any priority annotation does NOT satisfy this.",
+          "passed": false,
+          "evidence": "No P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or Phase 1/Phase 2 markers appear anywhere in HANDOFF.md (confirmed by regex scan: 0 matches). The 'Read First?' column uses timing-based guidance (Yes, Week 1, Week 1\u20132, Before going on-call, On demand) and \u00a73 'Recommended Handoff Schedule' uses 'Week 1 \u2014 Orientation', 'Week 2 \u2014 Supervised Operation', 'Week 3 \u2014 Independent' \u2014 these are temporal sequencing indicators, not priority tiers per any of the specified schemes."
+        },
+        {
+          "text": "At least FOUR distinct documentation files are produced beyond the plan itself (i.e., 5+ files total counting the plan). Acceptable examples: README, ARCHITECTURE, RUNBOOK, ONBOARDING, OPERATIONS, API, DEPLOYMENT, TROUBLESHOOTING, CONTRIBUTING. A plan-only output or a plan + 1-2 docs does NOT satisfy this.",
+          "passed": true,
+          "evidence": "10 files were written total: HANDOFF.md (plan/master), README.md, ARCHITECTURE.md, ONBOARDING.md, DEVELOPMENT.md, DEPLOYMENT.md, DATABASE.md, API.md, RUNBOOK.md, TROUBLESHOOTING.md. That is 9 files beyond the plan, well exceeding the threshold of 4 additional files."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.67,
+        "stddev": 0.0,
+        "min": 0.67,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 263.231,
+        "stddev": 126.7009,
+        "min": 172.501,
+        "max": 407.99
+      },
+      "tokens": {
+        "mean": 556677.0,
+        "stddev": 128172.9567,
+        "min": 458585.0,
+        "max": 701701.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.67,
+        "stddev": 0.0,
+        "min": 0.67,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 295.0723,
+        "stddev": 180.8246,
+        "min": 167.1,
+        "max": 501.939
+      },
+      "tokens": {
+        "mean": 517944.0,
+        "stddev": 161433.1336,
+        "min": 354860.0,
+        "max": 677674.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-31.8",
+      "tokens": "+38733"
+    }
+  },
+  "notes": []
+}

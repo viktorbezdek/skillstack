@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences' (case-insensitive, all four required in one file). A single architecture.md without these four named sections does NOT satisfy this.",
+      "passed": false,
+      "evidence": "ADR-001-grpc-migration.md has '## Context', '## Decision', and '## Consequences' as markdown headings, but 'Status' is presented as a table row ('| Status | **Accepted** |') rather than a heading. Confirmed by grep: '## Status': 0 occurrences across the transcript. All four must be headings; Status fails this requirement."
+    },
+    {
+      "text": "The architecture documentation is split across THREE OR MORE distinct files (e.g., system-design.md, ownership-map.md, data-flow.md, adr-001-grpc.md, component-spec.md). A single monolithic architecture.md or a README + 1 file does NOT satisfy this.",
+      "passed": true,
+      "evidence": "Six distinct architecture files were written under docs/architecture/: overview.md, services.md, communication.md, decisions/ADR-001-grpc-migration.md, migration/rest-to-grpc.md, proto/services.proto. Plus README.md at root. Well above the three-file threshold."
+    },
+    {
+      "text": "At least one file contains an explicit per-service ownership or responsibility breakdown — either a table or a structured list mapping each of the 4 services (api-gateway, order-service, payment-service, notification-service) to its responsibility, owner, or scope. The mapping must enumerate ALL FOUR services individually (not just generic prose mentioning some of them).",
+      "passed": true,
+      "evidence": "services.md contains four top-level sections — '## api-gateway', '## order-service', '## payment-service', '## notification-service' — each with a '### Responsibilities' bullet list enumerating that service's specific duties (e.g., api-gateway: JWT validation, rate limiting, routing; order-service: CRUD, state machine, payment orchestration, Kafka events; payment-service: Stripe integration; notification-service: Kafka consumer, email/push delivery). All four services are individually and explicitly mapped."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": 45,
+    "errors_encountered": 0,
+    "output_chars": 612,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 172.501,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 172.501
+  },
+  "claims": [
+    {
+      "claim": "ADR-001-grpc-migration.md is a structured decision record with context, options considered, decision, positive/negative consequences",
+      "type": "quality",
+      "verified": true,
+      "evidence": "File content confirms detailed options table (Stay REST, GraphQL, gRPC), '## Decision', '## Consequences' with Positive/Negative/Neutral subsections, and a migration strategy section. Substantive and well-structured."
+    },
+    {
+      "claim": "services.proto contains canonical proto definitions for OrderService and PaymentService",
+      "type": "factual",
+      "verified": false,
+      "evidence": "output.txt lists services.proto was written with those definitions, but file content was not directly extracted from the transcript — could not independently verify the proto file content."
+    },
+    {
+      "claim": "notification-service is Kafka-only and not affected by the gRPC migration",
+      "type": "factual",
+      "verified": true,
+      "evidence": "ADR Decision section explicitly states: 'notification-service remains Kafka-only and is not affected.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences'",
+        "reason": "Many real ADRs encode Status as a metadata table or frontmatter rather than a `## Status` heading — the MADR and Y-Statements formats both do this. If the intent is to verify a well-formed ADR (not just a specific heading style), the assertion could be relaxed to allow Status appearing as a prominent table field. Alternatively, the assertion is valuable as-is if enforcing a strict heading format is intentional — just note it will reject common MADR-style ADRs."
+      },
+      {
+        "reason": "No assertion checks that the files are actually non-trivial in length or content quality — a stub file with just headings and no body would pass assertions 2 and 3. An assertion checking minimum word count or that the responsibility bullet lists are non-empty would improve discrimination."
+      }
+    ],
+    "overall": "Assertions are well-targeted at discriminating outcomes. Expectation 1 is strict about heading format, which correctly catches the Status-as-table pattern used here. Expectation 3 is well-specified with the all-four-services requirement."
+  }
+}

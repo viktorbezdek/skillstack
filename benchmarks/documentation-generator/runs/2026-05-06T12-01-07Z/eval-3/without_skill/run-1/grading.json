@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "A documentation plan, index, or master file is produced that explicitly maps stakeholders or personas to specific documents (e.g., a section like 'For new engineers: X, Y' / 'For ops: Z' OR a table with columns like Audience/Persona × Document). A flat list of files without stakeholder mapping does NOT satisfy this.",
+      "passed": true,
+      "evidence": "HANDOFF.md §2 'Documentation Index' contains a table with columns 'File | Audience | Read First?' that explicitly maps each document to its target stakeholder: README.md → Everyone, ONBOARDING.md → All engineers, ARCHITECTURE.md → Engineers, DEVELOPMENT.md → Engineers, API.md → Backend engineers, DATABASE.md → Engineers + ops, DEPLOYMENT.md → Engineers + ops, RUNBOOK.md → Ops primarily, TROUBLESHOOTING.md → Everyone. The final output.txt also summarizes this as a 'Primary Audience' column."
+    },
+    {
+      "text": "The plan uses explicit prioritization markers — at minimum TWO distinct priority tiers must be visible using one of these schemes: P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or numbered phases (Phase 1/Phase 2). An undifferentiated bullet list of docs without any priority annotation does NOT satisfy this.",
+      "passed": false,
+      "evidence": "No P0/P1/P2, must-have/nice-to-have, critical/important/optional, MVP/extended, tier-1/tier-2, or Phase 1/Phase 2 markers appear anywhere in HANDOFF.md (confirmed by regex scan: 0 matches). The 'Read First?' column uses timing-based guidance (Yes, Week 1, Week 1–2, Before going on-call, On demand) and §3 'Recommended Handoff Schedule' uses 'Week 1 — Orientation', 'Week 2 — Supervised Operation', 'Week 3 — Independent' — these are temporal sequencing indicators, not priority tiers per any of the specified schemes."
+    },
+    {
+      "text": "At least FOUR distinct documentation files are produced beyond the plan itself (i.e., 5+ files total counting the plan). Acceptable examples: README, ARCHITECTURE, RUNBOOK, ONBOARDING, OPERATIONS, API, DEPLOYMENT, TROUBLESHOOTING, CONTRIBUTING. A plan-only output or a plan + 1-2 docs does NOT satisfy this.",
+      "passed": true,
+      "evidence": "10 files were written total: HANDOFF.md (plan/master), README.md, ARCHITECTURE.md, ONBOARDING.md, DEVELOPMENT.md, DEPLOYMENT.md, DATABASE.md, API.md, RUNBOOK.md, TROUBLESHOOTING.md. That is 9 files beyond the plan, well exceeding the threshold of 4 additional files."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 1900,
+    "transcript_chars": 247600
+  },
+  "timing": {
+    "executor_duration_seconds": 501.939,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 501.939
+  },
+  "claims": [
+    {
+      "claim": "All 10 files written",
+      "type": "factual",
+      "verified": true,
+      "evidence": "transcript.jsonl contains 10 Write tool calls for: HANDOFF.md, README.md, ARCHITECTURE.md, ONBOARDING.md, DEVELOPMENT.md, DEPLOYMENT.md, DATABASE.md, API.md, RUNBOOK.md, TROUBLESHOOTING.md — all in /private/tmp/pilot-bench-j3qa3trd/without/"
+    },
+    {
+      "claim": "RUNBOOK.md covers every PagerDuty alert by name with a triage table",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Claimed in output.txt but RUNBOOK.md content not independently verified from transcript — only the claim in the executor's summary is available"
+    },
+    {
+      "claim": "HANDOFF.md §5 captures five dangerous institutional-knowledge gaps",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Claimed in output.txt summary; §5 'Critical Knowledge' section title confirmed in transcript index but full content not independently verified"
+    },
+    {
+      "claim": "Documentation Index maps each document to its audience",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Full table content extracted from HANDOFF.md Write call in transcript: File | Audience | Read First? table with 9 rows mapping each doc to a specific audience"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The plan uses explicit prioritization markers — at minimum TWO distinct priority tiers must be visible",
+        "reason": "The 'Read First?' column in the Documentation Index table (Yes / Week 1 / Week 1–2 / On demand) comes close to functioning as priority tiers. The eval could acknowledge temporal sequencing as a borderline case, or alternatively require that the expectation text explicitly exclude timing-based schemes to make the boundary unambiguous."
+      },
+      {
+        "reason": "No assertion checks whether the individual documentation files (README, RUNBOOK, etc.) contain substantive content beyond placeholder text. A run that writes 10 nearly-empty stubs would pass expectation 3 but produce no real value."
+      }
+    ],
+    "overall": "Assertions 1 and 3 are well-constructed and discriminating. Assertion 2 (priority tiers) has an edge case around temporal sequencing that could benefit from clarification in the eval text."
+  }
+}

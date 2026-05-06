@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences' (case-insensitive, all four required in one file). A single architecture.md without these four named sections does NOT satisfy this.",
+      "passed": false,
+      "evidence": "adr-001-grpc-migration.md was written and contains '## Context', '## Decision', and '## Consequences' as proper markdown headings (confirmed 2 occurrences each in transcript search). However, 'Status' appears only as a table row: '| **Status** | Accepted |' — NOT as a markdown heading. Transcript search confirmed '## Status': 0 occurrences and '# Status': 0 occurrences across the entire transcript. Three of the four required headings are present; Status is missing as a heading."
+    },
+    {
+      "text": "The architecture documentation is split across THREE OR MORE distinct files (e.g., system-design.md, ownership-map.md, data-flow.md, adr-001-grpc.md, component-spec.md). A single monolithic architecture.md or a README + 1 file does NOT satisfy this.",
+      "passed": true,
+      "evidence": "output.txt confirms 6 files written: README.md, architecture-overview.md, services-reference.md, kafka-events.md, adr-001-grpc-migration.md, grpc-migration-plan.md. Transcript shows 6 distinct Write tool calls to these paths in /private/tmp/pilot-bench-ngufibt3/without/. Excluding README.md, there are 5 architecture documentation files — well above the 3-file threshold."
+    },
+    {
+      "text": "At least one file contains an explicit per-service ownership or responsibility breakdown — either a table or a structured list mapping each of the 4 services (api-gateway, order-service, payment-service, notification-service) to its responsibility, owner, or scope. The mapping must enumerate ALL FOUR services individually (not just generic prose mentioning some of them).",
+      "passed": true,
+      "evidence": "architecture-overview.md contains a '## Component Responsibilities' section with four subsections — '### api-gateway', '### order-service', '### payment-service', '### notification-service' — each with a bullet list of responsibilities. All four services are individually enumerated. Confirmed from transcript: the full content of each subsection was verified, including notification-service ('Stateless consumer of order.events. Maps event types to notification templates...'). This is a structured list mapping all 4 services to their scope and responsibility."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 1340,
+    "transcript_chars": 153675
+  },
+  "timing": {
+    "executor_duration_seconds": 167.1,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 167.1
+  },
+  "claims": [
+    {
+      "claim": "All six files were written successfully",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt lists all 6 files; transcript shows 6 Write tool calls with successful file creation confirmations at /private/tmp/pilot-bench-ngufibt3/without/"
+    },
+    {
+      "claim": "adr-001-grpc-migration.md contains a Full ADR with context, decision, 4 alternatives considered, consequences",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Transcript shows the full content of the ADR file including '## Context', '## Decision', '## Alternatives Considered' (with 4 sub-options), and '## Consequences' with Positive and Negative/Risk subsections"
+    },
+    {
+      "claim": "Status field is present in the ADR",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Status is present as a table row '| **Status** | Accepted |' in a metadata table at the top of the ADR — but not as a markdown heading, which is what the first expectation requires"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "At least one file uses Architecture Decision Record (ADR) format with the four canonical sections present as headings: 'Status', 'Context', 'Decision', AND 'Consequences'",
+        "reason": "The ADR produced uses a metadata table for Status (a common modern ADR style per Markdown ADR templates like adr-tools and adr-log) rather than a '## Status' heading. The assertion enforces the Nygard/Cognitect style specifically. Consider clarifying whether table-based Status is acceptable, or explicitly state 'must be a markdown heading (##)' rather than 'canonical sections present as headings' — since the executor produced a widely-used ADR format that technically satisfies the spirit but not the strict letter."
+      }
+    ],
+    "overall": "The key gap is the ADR Status heading check. The other two assertions are solid discriminators with clear pass/fail boundaries."
+  }
+}
