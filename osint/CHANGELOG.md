@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
-- Fix plugin.json schema: convert `author` from string to object, remove invalid `skills` field; add `license`, `repository`, `keywords`
+- fix plugin.json schema — author as object, drop invalid skills field, bump to 1.0.1
 
 ## [1.0.0] - 2026-05-06
 

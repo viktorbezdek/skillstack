@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.2.1] - 2026-05-06
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ### Fixed
 
 - resolve SKILL_DIR placeholder so doc-gen.py is invoked at runtime
