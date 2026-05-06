@@ -4,6 +4,12 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.1] - 2026-05-06
+
+### Fixed
+
+- Replace broken `{SKILL_DIR}` placeholder with `find`-based script discovery so `doc-gen.py` is actually invoked at runtime
+
 ## [1.2.0] - 2026-05-06
 
 ### Added

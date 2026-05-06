@@ -36,8 +36,11 @@ Each phase produces **mandatory output artifacts** — specific named sections a
 Run the analysis script first:
 
 ```bash
-SKILL_DIR="{SKILL_DIR}"
-python "$SKILL_DIR/scripts/doc-gen.py" analyze /path/to/repo --output analysis.json --pretty
+# Locate doc-gen.py (works regardless of installation path)
+DOC_GEN=$(find ~/.claude -name "doc-gen.py" -path "*/documentation-generator/scripts/*" 2>/dev/null | head -1)
+[ -z "$DOC_GEN" ] && DOC_GEN=$(find . -name "doc-gen.py" -path "*/documentation-generator/scripts/*" 2>/dev/null | head -1)
+
+python "$DOC_GEN" analyze /path/to/repo --output analysis.json --pretty
 ```
 
 If the script is unavailable, manually survey: public API surface, directory structure, existing docs (even if outdated), test files (they reveal use cases), and CI/CD configuration.
@@ -382,20 +385,24 @@ The following shows what the mandatory deliverables look like in practice.
 ## Script Commands
 
 ```bash
+# Locate doc-gen.py once
+DOC_GEN=$(find ~/.claude -name "doc-gen.py" -path "*/documentation-generator/scripts/*" 2>/dev/null | head -1)
+[ -z "$DOC_GEN" ] && DOC_GEN=$(find . -name "doc-gen.py" -path "*/documentation-generator/scripts/*" 2>/dev/null | head -1)
+
 # Full workflow
-python "$SKILL_DIR/scripts/doc-gen.py" full /path/to/repo
+python "$DOC_GEN" full /path/to/repo
 
 # Analyze structure
-python "$SKILL_DIR/scripts/doc-gen.py" analyze /path/to/repo --output analysis.json
+python "$DOC_GEN" analyze /path/to/repo --output analysis.json
 
 # Generate docs
-python "$SKILL_DIR/scripts/doc-gen.py" generate /path/to/repo --output ./docs
+python "$DOC_GEN" generate /path/to/repo --output ./docs
 
 # Validate and score (outputs DQI score)
-python "$SKILL_DIR/scripts/doc-gen.py" validate /path/to/docs --min-score 70
+python "$DOC_GEN" validate /path/to/docs --min-score 70
 
 # Detect drift
-python "$SKILL_DIR/scripts/doc-gen.py" drift /path/to/repo --docs-path /path/to/docs
+python "$DOC_GEN" drift /path/to/repo --docs-path /path/to/docs
 ```
 
 ---
