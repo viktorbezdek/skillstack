@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - bump to v1.2.0 — output-anchored skill rewrite
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ## [1.1.16] - 2026-04-18
 
 ### Changed
