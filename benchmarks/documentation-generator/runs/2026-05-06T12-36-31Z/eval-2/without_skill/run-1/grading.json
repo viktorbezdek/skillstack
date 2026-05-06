@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "At least one ADR file contains '## Status' as a markdown heading (a line starting with exactly '## Status', case-insensitive). A table row like '| Status | Accepted |' does NOT satisfy this — the heading form is required. This tests that the skill's ADR template format is followed rather than the MADR table convention baseline models default to.",
+      "passed": false,
+      "evidence": "ADR-001-grpc-migration.md was written. Its status is expressed as a MADR-style table row '| Status | Accepted |', not as a '## Status' heading. The file's ## headings are: Context, Decision, Rationale, Consequences, Migration Plan, Proto Versioning Policy. No '## Status' heading is present."
+    },
+    {
+      "text": "A '## Documentation Quality Score' section OR a 'Documentation Quality Score' table appears somewhere in the output — either in README.md or a dedicated QUALITY.md — containing a numeric score expressed as X/100. A qualitative rating like 'Good' without a number does NOT satisfy this.",
+      "passed": false,
+      "evidence": "All 9 written files were searched for 'Quality', 'Score', and '/100'. None contained a Documentation Quality Score section, a QUALITY.md file, or any numeric X/100 rating. No quality scoring was produced."
+    },
+    {
+      "text": "A '## Known Gaps' section OR a GAPS.md file appears in the output. It must contain either: (a) at least one gap row in a table, OR (b) the literal text 'No known gaps' followed by a date. Complete absence of any known gaps section does NOT satisfy this.",
+      "passed": false,
+      "evidence": "All 9 written files were searched for 'Gap', 'gap', and 'GAPS'. None contained a Known Gaps section or any gap-related content. No GAPS.md file was written. The executor produced no gaps documentation at all."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Write": 9
+    },
+    "total_tool_calls": 10,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 1374,
+    "transcript_chars": 159314
+  },
+  "timing": {
+    "executor_duration_seconds": 175.167,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 175.167
+  },
+  "claims": [
+    {
+      "claim": "All 9 files written",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript confirms 9 Write tool calls, each to a distinct file path. Output.txt lists all 9 filenames."
+    },
+    {
+      "claim": "ADR-001 includes problem statement, decision, alternatives considered, consequences/risks with mitigations, phased migration checklist (4 sprints), proto versioning policy",
+      "type": "quality",
+      "verified": true,
+      "evidence": "ADR content in transcript shows ## Context, ## Decision, ## Rationale, ## Consequences, ## Migration Plan, ## Proto Versioning Policy sections with substantive content matching the claim."
+    },
+    {
+      "claim": "ADR-001 follows proper ADR template format",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The file uses MADR table-header convention (| Status | Accepted |) rather than a ## Status heading. The skill's expected template uses the heading form — baseline model defaulted to MADR table convention."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions test for skill-specific output formats (ADR heading style, quality scoring, gaps section) that a baseline model without the skill would not produce. This is a strong discriminating eval design — the 0/3 pass rate on 'without_skill' is exactly what you'd expect and validates the evals are non-trivially satisfied."
+      },
+      {
+        "assertion": "A '## Known Gaps' section OR a GAPS.md file appears in the output",
+        "reason": "The OR condition between GAPS.md and ## Known Gaps section is appropriate, but consider also asserting content quality — a ## Known Gaps section with a single placeholder row 'TBD' would technically pass but carry no documentation value."
+      }
+    ],
+    "overall": "Evals are well-designed discriminators. All three target skill-specific conventions that baseline models reliably skip, making them effective at detecting skill impact. The 0/3 pass rate in without_skill confirms the assertions are genuinely non-trivial."
+  }
+}

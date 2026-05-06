@@ -1,0 +1,18 @@
+Done. Eight files written to the current directory:
+
+---
+
+**Files created:**
+
+| File | Audience | Contents |
+|------|----------|----------|
+| `README.md` | Everyone | Stack overview, repo layout, 30-second quickstart, ownership links |
+| `ARCHITECTURE.md` | Engineers | System diagram, component responsibilities, data flow, auth, known constraints |
+| `DEVELOPMENT.md` | Engineers | Prerequisites, first-time setup, env vars, backend + frontend workflows, migrations, testing philosophy |
+| `DATABASE.md` | Backend engineers | Full schema with relationships, table-by-table notes, migration rules, backup/restore procedures, common queries |
+| `DEPLOYMENT.md` | Ops + backend | CI/CD pipeline, Helm chart structure, secrets management, manual deploy commands, rollback procedures, scaling |
+| `RUNBOOK.md` | Ops person | Access checklist, daily ops, monitoring signals, alerting, log access, restart procedures, Redis management, scheduled jobs |
+| `TROUBLESHOOTING.md` | Everyone | Nine symptom-indexed sections covering: stale data, 502s, auth failures, slow loads, Redis outages, crash loops, failed migrations, and more |
+| `HANDOFF.md` | New team lead | Reading order, access request table, stakeholder contacts, SLAs, 9 itemized tech debt items, non-obvious decisions, gotchas, and a first-week checklist per role |
+
+The new team should start with `HANDOFF.md`, then `README.md`. The ops person's priority is `RUNBOOK.md`. Engineers should work through `DEVELOPMENT.md` to get local setup running in their first session.

@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "At least one documentation file contains BOTH a '## Before You Begin' section (with a prerequisite list or checklist) AND a '## What You Will Learn' section (with bulleted learning outcomes). Both sections must appear in the same file. A file with only one of the two does NOT satisfy this — both are required for a Tutorial per the skill's Phase 3 specification.",
+      "passed": false,
+      "evidence": "All 8 written files (README.md, ARCHITECTURE.md, DEVELOPMENT.md, DATABASE.md, DEPLOYMENT.md, RUNBOOK.md, TROUBLESHOOTING.md, HANDOFF.md) were scanned — none contains '## Before You Begin' or '## What You Will Learn'. The executor produced reference/runbook-style docs but no Tutorial doc type."
+    },
+    {
+      "text": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers — the literal strings 'P0', 'P1', or 'P2' must appear as priority labels in a table or section heading. Timing-based language like 'Read First: Yes' or 'Week 1' does NOT satisfy this — the P0/P1/P2 scheme is required.",
+      "passed": false,
+      "evidence": "HANDOFF.md was checked explicitly — P0/P1/P2 count is 0. The file uses 'High Priority', 'Medium Priority', 'Low Priority' subheadings under Known Technical Debt, and a numbered 'Reading Order' list. No P0/P1/P2 labels appear in any of the 8 files."
+    },
+    {
+      "text": "At least one documentation file contains the comment '<!-- Doc-Type: Tutorial -->' as a line in the file AND that same file has a '## Before You Begin' section. The Doc-Type label and the required tutorial section must co-occur in the same file — a label without the section, or a section without the label, does NOT satisfy this.",
+      "passed": false,
+      "evidence": "No file contains '<!-- Doc-Type: Tutorial -->' (nor any Doc-Type HTML comment). Combined with the absence of '## Before You Begin' in all files, both halves of this expectation are unmet."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 8
+    },
+    "total_tool_calls": 8,
+    "total_steps": 20,
+    "errors_encountered": 0,
+    "output_chars": 689,
+    "transcript_chars": 189393
+  },
+  "timing": {
+    "executor_duration_seconds": 270.624,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 270.624
+  },
+  "claims": [
+    {
+      "claim": "Eight files were written to the current directory",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript confirms 8 Write tool calls: README.md, ARCHITECTURE.md, DEVELOPMENT.md, DATABASE.md, DEPLOYMENT.md, RUNBOOK.md, TROUBLESHOOTING.md, HANDOFF.md"
+    },
+    {
+      "claim": "HANDOFF.md contains a 'reading order' and 'first-week checklist per role'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "HANDOFF.md content includes '## Reading Order for the New Team' (numbered list) and '## First-Week Checklist' sections"
+    },
+    {
+      "claim": "The output covers the full doc set needed for a new team",
+      "type": "quality",
+      "verified": false,
+      "evidence": "No Tutorial-type document was produced. The skill's Phase 3 specification requires Tutorial docs with '## Before You Begin' and '## What You Will Learn' sections, plus Doc-Type HTML comment annotations. None of the 8 files satisfy these requirements. The executor produced useful reference docs but omitted the tutorial format entirely."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The eval prompt (eval-3) apparently did not elicit Tutorial-type output — the executor produced all reference/ops docs with no Tutorial. It would be worth checking whether the eval prompt explicitly requests a Tutorial doc, or whether the scenario cues are insufficient to trigger that doc type. If no cue exists, the skill may be working as intended for this input, and the expectations are testing behavior that the prompt doesn't motivate."
+      },
+      {
+        "assertion": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers",
+        "reason": "HANDOFF.md does use a priority scheme (High/Medium/Low) — a weaker assertion checking for any priority labeling would have passed. The P0/P1/P2 requirement is very specific to the skill's output format; confirm the skill actually mandates that notation, versus it being one possible format."
+      }
+    ],
+    "overall": "All three assertions probe the skill's Phase 3 (Tutorial doc type) behavior and its priority-labeling scheme. The executor produced zero Tutorial docs, so all three fail together — the failure is a single root cause (no Tutorial doc generated), not three independent failures. Evals would benefit from a separate assertion verifying the doc-type discovery phase produced at least one Tutorial identification before checking for Tutorial-specific formatting."
+  }
+}

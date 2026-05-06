@@ -1,0 +1,17 @@
+All files written. Here's the complete documentation portfolio:
+
+---
+
+**Files created:**
+
+```
+README.md                  — Overview, quick start, function summaries, language table
+CHANGELOG.md               — Full version history from v0.1.0 → v0.3.2
+CONTRIBUTING.md            — Dev setup, testing, code style, PR workflow, adding languages, versioning policy
+docs/api.md                — Full API reference: parameters, return types, raises, processing pipeline, examples
+docs/architecture.md       — Internal design: pipeline diagram, transliteration table strategy, validate regex rationale, performance benchmarks, add-language checklist
+docs/migration.md          — Upgrade guides: 0.1.x→0.2.x, 0.2.x→0.3.x with slug output diff table and SQL migration script
+docs/faq.md                — 20 Q&As covering common pitfalls for the ~50 internal teams
+```
+
+Key decisions made: `docs/api.md` documents the two-regex approach in `validate_slug` (to avoid ReDoS), the migration guide includes a SQL snippet teams can adapt for slug-stability checks, and the architecture doc calls out the `str.translate` optimization opportunity for the Russian/Czech paths.

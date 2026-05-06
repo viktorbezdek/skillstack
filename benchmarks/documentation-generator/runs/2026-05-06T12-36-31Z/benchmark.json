@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "documentation-generator",
+    "skill_path": "documentation-generator/skills/documentation-generator",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-06T12:44:11Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "documentation-generator",
+    "target_path": "documentation-generator/skills/documentation-generator"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 219.371,
+        "tokens": 449569,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A '## Target Audiences' section is present in README.md OR in a separate AUDIENCES.md file, containing a table with AT LEAST 2 distinct named personas \u2014 each row must have a non-empty Role AND a non-empty 'First Doc to Read' column. Generic entries like 'Developer' without a role do NOT satisfy this; named personas like 'Library Consumer / Backend engineer' DO.",
+          "passed": false,
+          "evidence": "No AUDIENCES.md was created. The 7 generated files are: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api.md, docs/architecture.md, docs/migration.md, docs/faq.md. Searched all Write tool call contents for 'Target Audience', 'AUDIENCES', and persona table patterns \u2014 none found."
+        },
+        {
+          "text": "A documentation plan section or file is present that contains BOTH: (a) a 'Di\u00e1taxis Type' or equivalent column with values from Tutorial/How-To/Reference/Explanation, AND (b) a priority column using P0/P1/P2 notation. A plan with numbered bullets or a flat list but no priority tier notation does NOT satisfy this.",
+          "passed": false,
+          "evidence": "No documentation plan file was created. Searched all written file contents for 'Diataxis', 'Tutorial', 'How-To', 'Explanation', 'P0', 'P1', 'P2' \u2014 none found in any output file. The executor went directly to writing content files without a planning artifact."
+        },
+        {
+          "text": "At least one generated file contains the comment '<!-- Doc-Type: Tutorial -->' OR '<!-- Doc-Type: How-To -->' OR '<!-- Doc-Type: Reference -->' OR '<!-- Doc-Type: Explanation -->' as a line in the file. Files without any Doc-Type comment do NOT satisfy this \u2014 the label must literally appear in the output.",
+          "passed": false,
+          "evidence": "Searched all 7 written files for the literal string '<!-- Doc-Type:' \u2014 not found in any file. No Diataxis type labels appear anywhere in the generated documentation."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 145.505,
+        "tokens": 386899,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one ADR file contains '## Status' as a markdown heading (a line starting with exactly '## Status', case-insensitive). A table row like '| Status | Accepted |' does NOT satisfy this \u2014 the heading form is required. This tests that the skill's ADR template format is followed rather than the MADR table convention baseline models default to.",
+          "passed": false,
+          "evidence": "The ADR file (docs/adr/001-grpc-migration.md) uses a table for metadata: '| Field | Value |' with '| Status | **Accepted** |' as a row. No line starts with '## Status'. Headings found in the ADR: ## Context, ## Decision, ## Rationale, ## Why gRPC, ## Why not alternatives, ## Consequences, ## Positive, ## Negative / Risks, ## Migration, ## Phase 0, ## Phase 1, ## Phase 2, ## Completion, ## Proto Contracts, ## Alternatives. The status appears only as a MADR-style table row, not as a markdown heading."
+        },
+        {
+          "text": "A '## Documentation Quality Score' section OR a 'Documentation Quality Score' table appears somewhere in the output \u2014 either in README.md or a dedicated QUALITY.md \u2014 containing a numeric score expressed as X/100. A qualitative rating like 'Good' without a number does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Searched the full transcript (41 lines, 125 KB) for 'Documentation Quality Score', 'Quality Score', '/100', and 'QUALITY.md'. Zero matches. The output consists of six files: README.md, docs/architecture.md, docs/services.md, docs/communication.md, docs/events.md, and docs/adr/001-grpc-migration.md. None contain a quality score section or QUALITY.md was not created."
+        },
+        {
+          "text": "A '## Known Gaps' section OR a GAPS.md file appears in the output. It must contain either: (a) at least one gap row in a table, OR (b) the literal text 'No known gaps' followed by a date. Complete absence of any known gaps section does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Searched the full transcript for 'Known Gaps' and 'GAPS.md'. Zero matches. The six files produced contain no Known Gaps section, and no GAPS.md file was created. The skill did not produce this required documentation artifact."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 270.624,
+        "tokens": 479241,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one documentation file contains BOTH a '## Before You Begin' section (with a prerequisite list or checklist) AND a '## What You Will Learn' section (with bulleted learning outcomes). Both sections must appear in the same file. A file with only one of the two does NOT satisfy this \u2014 both are required for a Tutorial per the skill's Phase 3 specification.",
+          "passed": false,
+          "evidence": "All 8 written files (README.md, ARCHITECTURE.md, DEVELOPMENT.md, DATABASE.md, DEPLOYMENT.md, RUNBOOK.md, TROUBLESHOOTING.md, HANDOFF.md) were scanned \u2014 none contains '## Before You Begin' or '## What You Will Learn'. The executor produced reference/runbook-style docs but no Tutorial doc type."
+        },
+        {
+          "text": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers \u2014 the literal strings 'P0', 'P1', or 'P2' must appear as priority labels in a table or section heading. Timing-based language like 'Read First: Yes' or 'Week 1' does NOT satisfy this \u2014 the P0/P1/P2 scheme is required.",
+          "passed": false,
+          "evidence": "HANDOFF.md was checked explicitly \u2014 P0/P1/P2 count is 0. The file uses 'High Priority', 'Medium Priority', 'Low Priority' subheadings under Known Technical Debt, and a numbered 'Reading Order' list. No P0/P1/P2 labels appear in any of the 8 files."
+        },
+        {
+          "text": "At least one documentation file contains the comment '<!-- Doc-Type: Tutorial -->' as a line in the file AND that same file has a '## Before You Begin' section. The Doc-Type label and the required tutorial section must co-occur in the same file \u2014 a label without the section, or a section without the label, does NOT satisfy this.",
+          "passed": false,
+          "evidence": "No file contains '<!-- Doc-Type: Tutorial -->' (nor any Doc-Type HTML comment). Combined with the absence of '## Before You Begin' in all files, both halves of this expectation are unmet."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 197.976,
+        "tokens": 453287,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A '## Target Audiences' section is present in README.md OR in a separate AUDIENCES.md file, containing a table with AT LEAST 2 distinct named personas \u2014 each row must have a non-empty Role AND a non-empty 'First Doc to Read' column. Generic entries like 'Developer' without a role do NOT satisfy this; named personas like 'Library Consumer / Backend engineer' DO.",
+          "passed": false,
+          "evidence": "No mention of 'Target Audience', 'AUDIENCES', 'personas', 'First Doc', or a Role/personas table in any of the 7 generated files (README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/user-guide.md, docs/languages.md, docs/migration.md). Case-insensitive search across all file content returned 0 occurrences for every relevant term."
+        },
+        {
+          "text": "A documentation plan section or file is present that contains BOTH: (a) a 'Di\u00e1taxis Type' or equivalent column with values from Tutorial/How-To/Reference/Explanation, AND (b) a priority column using P0/P1/P2 notation. A plan with numbered bullets or a flat list but no priority tier notation does NOT satisfy this.",
+          "passed": false,
+          "evidence": "No documentation plan file or section was created. Search across all generated file content found 0 occurrences of 'Diataxis', 'Di\u00e1taxis', 'P0', 'P1', 'P2', 'priority', 'Tutorial', 'How-To', or 'Explanation'. The executor produced conventional library docs (API reference, user guide, migration guide, etc.) with no planning artifact."
+        },
+        {
+          "text": "At least one generated file contains the comment '<!-- Doc-Type: Tutorial -->' OR '<!-- Doc-Type: How-To -->' OR '<!-- Doc-Type: Reference -->' OR '<!-- Doc-Type: Explanation -->' as a line in the file. Files without any Doc-Type comment do NOT satisfy this \u2014 the label must literally appear in the output.",
+          "passed": false,
+          "evidence": "Search for '<!-- Doc-Type' and 'Doc-Type' across all 7 generated files returned 0 occurrences. None of the written files contain any Doc-Type HTML comment annotation."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 175.167,
+        "tokens": 553917,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one ADR file contains '## Status' as a markdown heading (a line starting with exactly '## Status', case-insensitive). A table row like '| Status | Accepted |' does NOT satisfy this \u2014 the heading form is required. This tests that the skill's ADR template format is followed rather than the MADR table convention baseline models default to.",
+          "passed": false,
+          "evidence": "ADR-001-grpc-migration.md was written. Its status is expressed as a MADR-style table row '| Status | Accepted |', not as a '## Status' heading. The file's ## headings are: Context, Decision, Rationale, Consequences, Migration Plan, Proto Versioning Policy. No '## Status' heading is present."
+        },
+        {
+          "text": "A '## Documentation Quality Score' section OR a 'Documentation Quality Score' table appears somewhere in the output \u2014 either in README.md or a dedicated QUALITY.md \u2014 containing a numeric score expressed as X/100. A qualitative rating like 'Good' without a number does NOT satisfy this.",
+          "passed": false,
+          "evidence": "All 9 written files were searched for 'Quality', 'Score', and '/100'. None contained a Documentation Quality Score section, a QUALITY.md file, or any numeric X/100 rating. No quality scoring was produced."
+        },
+        {
+          "text": "A '## Known Gaps' section OR a GAPS.md file appears in the output. It must contain either: (a) at least one gap row in a table, OR (b) the literal text 'No known gaps' followed by a date. Complete absence of any known gaps section does NOT satisfy this.",
+          "passed": false,
+          "evidence": "All 9 written files were searched for 'Gap', 'gap', and 'GAPS'. None contained a Known Gaps section or any gap-related content. No GAPS.md file was written. The executor produced no gaps documentation at all."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 348.702,
+        "tokens": 487192,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one documentation file contains BOTH a '## Before You Begin' section (with a prerequisite list or checklist) AND a '## What You Will Learn' section (with bulleted learning outcomes). Both sections must appear in the same file. A file with only one of the two does NOT satisfy this \u2014 both are required for a Tutorial per the skill's Phase 3 specification.",
+          "passed": false,
+          "evidence": "Searched all 8 output files in /private/tmp/pilot-bench-pse_lik6/without/ for 'Before You Begin' and 'What You Will Learn'. Both returned NOT FOUND. The executor produced: README.md, ARCHITECTURE.md, DEVELOPMENT.md, DATABASE.md, OPERATIONS.md, RUNBOOK.md, KNOWN_ISSUES.md, ONBOARDING.md \u2014 none contain either section. No tutorial-style documentation was generated."
+        },
+        {
+          "text": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers \u2014 the literal strings 'P0', 'P1', or 'P2' must appear as priority labels in a table or section heading. Timing-based language like 'Read First: Yes' or 'Week 1' does NOT satisfy this \u2014 the P0/P1/P2 scheme is required.",
+          "passed": false,
+          "evidence": "The only P1/P2 occurrences found are in OPERATIONS.md lines 168-172 inside a PagerDuty alert-severity table (e.g., '| Error rate | >1% over 5 min | P2 |', '| Pod crash looping | Any pod restarting >3\u00d7 in 10 min | P1 |'). These are monitoring alert severity levels, not documentation priority labels for a plan/index file. No P0 appears anywhere. No documentation plan or handoff index with P0/P1/P2 priority labeling was produced."
+        },
+        {
+          "text": "At least one documentation file contains the comment '<!-- Doc-Type: Tutorial -->' as a line in the file AND that same file has a '## Before You Begin' section. The Doc-Type label and the required tutorial section must co-occur in the same file \u2014 a label without the section, or a section without the label, does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Searched all output files for 'Doc-Type' and 'Tutorial'. Both returned NOT FOUND. No HTML comment labels of any kind appear in the output files, and no tutorial-type file was created."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 211.8333,
+        "stddev": 62.8992,
+        "min": 145.505,
+        "max": 270.624
+      },
+      "tokens": {
+        "mean": 438569.6667,
+        "stddev": 47143.4008,
+        "min": 386899.0,
+        "max": 479241.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 240.615,
+        "stddev": 94.2983,
+        "min": 175.167,
+        "max": 348.702
+      },
+      "tokens": {
+        "mean": 498132.0,
+        "stddev": 51199.2375,
+        "min": 453287.0,
+        "max": 553917.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-28.8",
+      "tokens": "-59562"
+    }
+  },
+  "notes": []
+}

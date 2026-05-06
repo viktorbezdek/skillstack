@@ -1,0 +1,20 @@
+Done. Here are the files written:
+
+---
+
+**Root directory**
+
+| File | Contents |
+|------|----------|
+| `README.md` | Overview, installation, quick start, full API summary, language table |
+| `CHANGELOG.md` | Release history from 0.1.0 through 0.3.2 with per-version added/changed/fixed entries |
+| `CONTRIBUTING.md` | Dev setup, test instructions, map-editing workflow, PR checklist, release process |
+
+**`docs/`**
+
+| File | Contents |
+|------|----------|
+| `docs/api-reference.md` | Full function signatures, parameter tables, processing pipeline, all edge cases, error reference |
+| `docs/user-guide.md` | Practical patterns — URL generation, multilingual content, slug deduplication, Django/Flask/Celery examples |
+| `docs/languages.md` | Full transliteration tables for `en`/`ru`/`cs`, character-by-character mappings, guidance on choosing a locale |
+| `docs/migration.md` | Step-by-step upgrade paths (0.1→0.2, 0.2→0.3), breaking-change inventory, compatibility matrix, grep commands for finding affected callsites |

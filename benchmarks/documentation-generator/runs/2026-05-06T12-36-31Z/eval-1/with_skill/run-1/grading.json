@@ -1,0 +1,78 @@
+{
+  "expectations": [
+    {
+      "text": "A '## Target Audiences' section is present in README.md OR in a separate AUDIENCES.md file, containing a table with AT LEAST 2 distinct named personas — each row must have a non-empty Role AND a non-empty 'First Doc to Read' column. Generic entries like 'Developer' without a role do NOT satisfy this; named personas like 'Library Consumer / Backend engineer' DO.",
+      "passed": false,
+      "evidence": "No AUDIENCES.md was created. The 7 generated files are: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api.md, docs/architecture.md, docs/migration.md, docs/faq.md. Searched all Write tool call contents for 'Target Audience', 'AUDIENCES', and persona table patterns — none found."
+    },
+    {
+      "text": "A documentation plan section or file is present that contains BOTH: (a) a 'Diátaxis Type' or equivalent column with values from Tutorial/How-To/Reference/Explanation, AND (b) a priority column using P0/P1/P2 notation. A plan with numbered bullets or a flat list but no priority tier notation does NOT satisfy this.",
+      "passed": false,
+      "evidence": "No documentation plan file was created. Searched all written file contents for 'Diataxis', 'Tutorial', 'How-To', 'Explanation', 'P0', 'P1', 'P2' — none found in any output file. The executor went directly to writing content files without a planning artifact."
+    },
+    {
+      "text": "At least one generated file contains the comment '<!-- Doc-Type: Tutorial -->' OR '<!-- Doc-Type: How-To -->' OR '<!-- Doc-Type: Reference -->' OR '<!-- Doc-Type: Explanation -->' as a line in the file. Files without any Doc-Type comment do NOT satisfy this — the label must literally appear in the output.",
+      "passed": false,
+      "evidence": "Searched all 7 written files for the literal string '<!-- Doc-Type:' — not found in any file. No Diataxis type labels appear anywhere in the generated documentation."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 7,
+      "Bash": 1
+    },
+    "total_tool_calls": 8,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 28527,
+    "transcript_chars": 144748
+  },
+  "timing": {
+    "executor_duration_seconds": 219.371,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "7 documentation files were created covering README, CHANGELOG, CONTRIBUTING, API reference, architecture, migration guide, and FAQ",
+      "type": "factual",
+      "verified": true,
+      "evidence": "7 Write tool calls confirmed targeting those exact paths in /private/tmp/pilot-bench-e4sfqltb/with/"
+    },
+    {
+      "claim": "docs/api.md documents the two-regex approach in validate_slug to avoid ReDoS",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Write call to docs/api.md content preview includes the API reference section; executor's final summary explicitly states this decision"
+    },
+    {
+      "claim": "The skill's documentation-generator workflow was followed",
+      "type": "process",
+      "verified": false,
+      "evidence": "The skill requires a Target Audiences table, Diataxis-typed documentation plan with P0/P1/P2 priorities, and Doc-Type HTML comments — none of these appear. The executor produced competent general documentation but ignored all three skill-specific structural requirements."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three expectations check for skill-specific structural markers that a non-skill run would never produce, which is correct discriminating design. However, it would strengthen eval-2 to also assert the plan file exists as a separate artifact (e.g., 'docs/plan.md' or 'PLAN.md') rather than just checking for column values — a plan embedded in README prose is harder to detect."
+      },
+      {
+        "assertion": "At least one generated file contains the comment '<!-- Doc-Type: Tutorial -->' ...",
+        "reason": "This is a strong, binary assertion and well-suited to LLM output. Consider also checking that the Doc-Type label matches the actual Diataxis category of the document it appears in — a file that says 'Doc-Type: Tutorial' but contains only reference tables would be a quality gap that this assertion misses."
+      }
+    ],
+    "overall": "All three assertions are well-calibrated discriminators — they check for output patterns that require the skill to be active and followed. The 0/3 result on the 'with_skill' run indicates the executor loaded the skill but did not invoke it (or the skill did not activate). This is a meaningful signal worth investigating."
+  }
+}

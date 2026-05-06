@@ -1,0 +1,25 @@
+All 9 files written. Here's the complete list:
+
+```
+README.md
+docs/architecture/overview.md
+docs/architecture/services.md
+docs/architecture/communication.md
+docs/architecture/decisions/ADR-001-grpc-migration.md
+docs/services/api-gateway.md
+docs/services/order-service.md
+docs/services/payment-service.md
+docs/services/notification-service.md
+```
+
+**What's in each:**
+
+- **README.md** — top-level index with service table and doc links
+- **overview.md** — ASCII system diagram, design principles, key flows, tech choices
+- **services.md** — full service catalog with dependency graph
+- **communication.md** — gRPC conventions (proto naming, error mapping, mTLS), Kafka topic config and event envelope, current REST endpoints marked as deprecated
+- **ADR-001** — problem statement, decision, alternatives considered, consequences/risks with mitigations, phased migration checklist (4 sprints), proto versioning policy
+- **api-gateway.md** — routing table, JWT/rate-limit behaviour, env vars, health endpoints
+- **order-service.md** — state machine diagram, gRPC API, events published, DB schema, config
+- **payment-service.md** — Stripe integration details, webhook handling, idempotency key strategy, secrets guidance
+- **notification-service.md** — event-to-notification mapping table, Kafka consumer config, idempotency via DB unique index, dead-letter queue, scaling notes

@@ -1,0 +1,74 @@
+{
+  "expectations": [
+    {
+      "text": "A '## Target Audiences' section is present in README.md OR in a separate AUDIENCES.md file, containing a table with AT LEAST 2 distinct named personas — each row must have a non-empty Role AND a non-empty 'First Doc to Read' column. Generic entries like 'Developer' without a role do NOT satisfy this; named personas like 'Library Consumer / Backend engineer' DO.",
+      "passed": false,
+      "evidence": "No mention of 'Target Audience', 'AUDIENCES', 'personas', 'First Doc', or a Role/personas table in any of the 7 generated files (README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/user-guide.md, docs/languages.md, docs/migration.md). Case-insensitive search across all file content returned 0 occurrences for every relevant term."
+    },
+    {
+      "text": "A documentation plan section or file is present that contains BOTH: (a) a 'Diátaxis Type' or equivalent column with values from Tutorial/How-To/Reference/Explanation, AND (b) a priority column using P0/P1/P2 notation. A plan with numbered bullets or a flat list but no priority tier notation does NOT satisfy this.",
+      "passed": false,
+      "evidence": "No documentation plan file or section was created. Search across all generated file content found 0 occurrences of 'Diataxis', 'Diátaxis', 'P0', 'P1', 'P2', 'priority', 'Tutorial', 'How-To', or 'Explanation'. The executor produced conventional library docs (API reference, user guide, migration guide, etc.) with no planning artifact."
+    },
+    {
+      "text": "At least one generated file contains the comment '<!-- Doc-Type: Tutorial -->' OR '<!-- Doc-Type: How-To -->' OR '<!-- Doc-Type: Reference -->' OR '<!-- Doc-Type: Explanation -->' as a line in the file. Files without any Doc-Type comment do NOT satisfy this — the label must literally appear in the output.",
+      "passed": false,
+      "evidence": "Search for '<!-- Doc-Type' and 'Doc-Type' across all 7 generated files returned 0 occurrences. None of the written files contain any Doc-Type HTML comment annotation."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 7,
+      "Bash": 1
+    },
+    "total_tool_calls": 8,
+    "total_steps": 9,
+    "errors_encountered": 0,
+    "output_chars": 1026,
+    "transcript_chars": 141943
+  },
+  "timing": {
+    "executor_duration_seconds": 197.976,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 197.976
+  },
+  "claims": [
+    {
+      "claim": "Seven documentation files were written covering README, CHANGELOG, CONTRIBUTING, API reference, user guide, languages, and migration guide",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript confirms Write tool calls to: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/api-reference.md, docs/user-guide.md, docs/languages.md, docs/migration.md — all confirmed successful"
+    },
+    {
+      "claim": "The documentation portfolio covers the full documented API of slugify-utils v0.3.2",
+      "type": "quality",
+      "verified": true,
+      "evidence": "API reference contains full function signatures for slugify() and validate_slug() with parameter tables, return types, and examples. User guide covers common patterns. Migration guide covers 0.1→0.2 and 0.2→0.3 paths."
+    },
+    {
+      "claim": "No structured documentation planning artifacts (audience personas, Diataxis classification, priority tiers, Doc-Type annotations) were produced",
+      "type": "process",
+      "verified": true,
+      "evidence": "Exhaustive term search across all file content: 0 hits for 'Target Audience', 'AUDIENCES', 'Diataxis', 'P0/P1/P2', 'Doc-Type', 'Tutorial', 'How-To', 'Explanation', 'personas', 'priority', 'First Doc to Read'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions test for skill-specific structural patterns (personas table, Diataxis+priority plan, Doc-Type comments) that are highly discriminating — a without-skill run produces zero of them, which is exactly the expected signal. The assertions are well-designed as differential markers."
+      }
+    ],
+    "overall": "Assertions are tight and discriminating. Without the skill, none of the three structured patterns appear at all, confirming these are meaningful differentiators. No improvements needed."
+  }
+}

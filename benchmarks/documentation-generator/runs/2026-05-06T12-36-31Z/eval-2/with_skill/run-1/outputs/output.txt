@@ -1,0 +1,19 @@
+Done. Six files written:
+
+```
+README.md
+docs/architecture.md
+docs/services.md
+docs/communication.md
+docs/events.md
+docs/adr/001-grpc-migration.md
+```
+
+**What each covers:**
+
+- **`README.md`** — service table, communication summary, doc index, quick start.
+- **`docs/architecture.md`** — ASCII component diagram, place-order data flow, infrastructure table, traffic boundary rules.
+- **`docs/services.md`** — per-service reference: language, ports, inbound/outbound, responsibilities, Kafka events published, Stripe constraints.
+- **`docs/communication.md`** — REST conventions (current), gRPC conventions (target), Kafka topic config, producer/consumer settings, trace propagation.
+- **`docs/events.md`** — full JSON schema for `order.placed`, `order.cancelled`, `order.fulfilled`; envelope fields; consumer idempotency and DLQ guidelines.
+- **`docs/adr/001-grpc-migration.md`** — decision record with context, rationale, REST vs gRPC comparison table, rejected alternatives, consequences, and a phased migration plan (Phase 0 foundation → Phase 1 `order-service`→`payment-service` → Phase 2 `api-gateway`→`order-service`).

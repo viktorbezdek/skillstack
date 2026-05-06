@@ -1,0 +1,22 @@
+All 8 files written. Here is the complete file list:
+
+---
+
+```
+/private/tmp/pilot-bench-pse_lik6/without/
+├── README.md           Project overview, tech stack, repo layout, reading order
+├── ARCHITECTURE.md     ASCII system diagram, component breakdown, request flows, security
+├── DEVELOPMENT.md      Prerequisites, local setup, tests, linting, coding standards, git workflow
+├── DATABASE.md         Schema (DDL + indexes + partitioning), migrations rules, backup/restore, perf notes
+├── OPERATIONS.md       Kubernetes resources, Helm chart, CI/CD pipeline, secrets (Vault), env vars, monitoring
+├── RUNBOOK.md          6 incident playbooks + routine maintenance tasks + command reference
+├── KNOWN_ISSUES.md     12 itemized issues (critical → low), planned backlog with effort/priority, user complaints
+└── ONBOARDING.md       Week-by-week ramp plan, access checklist, role-specific notes, FAQ
+```
+
+**Coverage summary:**
+- `README.md` + `ARCHITECTURE.md` answer "what is this and how does it work"
+- `DEVELOPMENT.md` + `DATABASE.md` answer "how do I build and change it"
+- `OPERATIONS.md` + `RUNBOOK.md` answer "how do I run it and respond to incidents"
+- `KNOWN_ISSUES.md` answers "what's broken and what's coming next"
+- `ONBOARDING.md` is a 4-week structured ramp plan tailored to 3 engineers + 1 ops person, including an access checklist, simulated incident exercises, and a full ownership transfer checklist

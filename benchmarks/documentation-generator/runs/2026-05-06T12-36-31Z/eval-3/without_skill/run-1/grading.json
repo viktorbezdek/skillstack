@@ -1,0 +1,68 @@
+{
+  "expectations": [
+    {
+      "text": "At least one documentation file contains BOTH a '## Before You Begin' section (with a prerequisite list or checklist) AND a '## What You Will Learn' section (with bulleted learning outcomes). Both sections must appear in the same file. A file with only one of the two does NOT satisfy this — both are required for a Tutorial per the skill's Phase 3 specification.",
+      "passed": false,
+      "evidence": "Searched all 8 output files in /private/tmp/pilot-bench-pse_lik6/without/ for 'Before You Begin' and 'What You Will Learn'. Both returned NOT FOUND. The executor produced: README.md, ARCHITECTURE.md, DEVELOPMENT.md, DATABASE.md, OPERATIONS.md, RUNBOOK.md, KNOWN_ISSUES.md, ONBOARDING.md — none contain either section. No tutorial-style documentation was generated."
+    },
+    {
+      "text": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers — the literal strings 'P0', 'P1', or 'P2' must appear as priority labels in a table or section heading. Timing-based language like 'Read First: Yes' or 'Week 1' does NOT satisfy this — the P0/P1/P2 scheme is required.",
+      "passed": false,
+      "evidence": "The only P1/P2 occurrences found are in OPERATIONS.md lines 168-172 inside a PagerDuty alert-severity table (e.g., '| Error rate | >1% over 5 min | P2 |', '| Pod crash looping | Any pod restarting >3× in 10 min | P1 |'). These are monitoring alert severity levels, not documentation priority labels for a plan/index file. No P0 appears anywhere. No documentation plan or handoff index with P0/P1/P2 priority labeling was produced."
+    },
+    {
+      "text": "At least one documentation file contains the comment '<!-- Doc-Type: Tutorial -->' as a line in the file AND that same file has a '## Before You Begin' section. The Doc-Type label and the required tutorial section must co-occur in the same file — a label without the section, or a section without the label, does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Searched all output files for 'Doc-Type' and 'Tutorial'. Both returned NOT FOUND. No HTML comment labels of any kind appear in the output files, and no tutorial-type file was created."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "note": "No metrics.json found in outputs directory"
+  },
+  "timing": {
+    "note": "No timing.json found"
+  },
+  "claims": [
+    {
+      "claim": "All 8 files were written",
+      "type": "process",
+      "verified": true,
+      "evidence": "ls /private/tmp/pilot-bench-pse_lik6/without/ confirms all 8 files exist: ARCHITECTURE.md, DATABASE.md, DEVELOPMENT.md, KNOWN_ISSUES.md, ONBOARDING.md, OPERATIONS.md, README.md, RUNBOOK.md"
+    },
+    {
+      "claim": "ONBOARDING.md is a 4-week structured ramp plan with role-specific notes and access checklist",
+      "type": "quality",
+      "verified": false,
+      "evidence": "output.txt states this but no assertion verifies ONBOARDING.md content. The file exists but its actual content was not inspected for this grading."
+    },
+    {
+      "claim": "Documentation covers the full stack (what, how to build, how to run, known issues, onboarding)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Coverage summary in output.txt maps all 8 files to functional areas; files confirmed present on disk."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The three assertions all test documentation-generator skill-specific output patterns (Tutorial doc-type, P0/P1/P2 priority scheme, Before You Begin sections). These are strong discriminating assertions that correctly fail for a without_skill run — the without run produced competent general documentation but none of the skill-specific structural conventions. This is exactly the right design."
+      },
+      {
+        "assertion": "A documentation plan, handoff plan, or index file contains explicit P0/P1/P2 priority markers",
+        "reason": "Consider also asserting that the P0/P1/P2 labels appear in a document that is explicitly a plan or index file (e.g., README.md reading-order table, a DOC_PLAN.md), not just any file. The current assertion already excludes alert-severity P1/P2 via the 'priority labels in a table or section heading' language, but the file-type qualifier ('documentation plan, handoff plan, or index file') adds meaningful precision worth keeping."
+      }
+    ],
+    "overall": "Evals are well-designed for this without_skill condition — all three test skill-specific conventions that a capable but unaided model will not spontaneously adopt. The 0/3 pass rate is the expected correct result."
+  }
+}

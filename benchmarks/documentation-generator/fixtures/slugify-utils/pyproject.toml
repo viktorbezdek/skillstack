@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slugify-utils"
+version = "0.3.2"
+description = "URL-safe slug generation with multilingual support"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "FoundryAI", email = "eng@foundryai.io" }]
+keywords = ["slug", "url", "unicode", "transliteration", "i18n"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Source" = "https://github.com/foundryai/slugify-utils"
+"Bug Tracker" = "https://github.com/foundryai/slugify-utils/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

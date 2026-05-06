@@ -1,0 +1,79 @@
+{
+  "expectations": [
+    {
+      "text": "At least one ADR file contains '## Status' as a markdown heading (a line starting with exactly '## Status', case-insensitive). A table row like '| Status | Accepted |' does NOT satisfy this — the heading form is required. This tests that the skill's ADR template format is followed rather than the MADR table convention baseline models default to.",
+      "passed": false,
+      "evidence": "The ADR file (docs/adr/001-grpc-migration.md) uses a table for metadata: '| Field | Value |' with '| Status | **Accepted** |' as a row. No line starts with '## Status'. Headings found in the ADR: ## Context, ## Decision, ## Rationale, ## Why gRPC, ## Why not alternatives, ## Consequences, ## Positive, ## Negative / Risks, ## Migration, ## Phase 0, ## Phase 1, ## Phase 2, ## Completion, ## Proto Contracts, ## Alternatives. The status appears only as a MADR-style table row, not as a markdown heading."
+    },
+    {
+      "text": "A '## Documentation Quality Score' section OR a 'Documentation Quality Score' table appears somewhere in the output — either in README.md or a dedicated QUALITY.md — containing a numeric score expressed as X/100. A qualitative rating like 'Good' without a number does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Searched the full transcript (41 lines, 125 KB) for 'Documentation Quality Score', 'Quality Score', '/100', and 'QUALITY.md'. Zero matches. The output consists of six files: README.md, docs/architecture.md, docs/services.md, docs/communication.md, docs/events.md, and docs/adr/001-grpc-migration.md. None contain a quality score section or QUALITY.md was not created."
+    },
+    {
+      "text": "A '## Known Gaps' section OR a GAPS.md file appears in the output. It must contain either: (a) at least one gap row in a table, OR (b) the literal text 'No known gaps' followed by a date. Complete absence of any known gaps section does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Searched the full transcript for 'Known Gaps' and 'GAPS.md'. Zero matches. The six files produced contain no Known Gaps section, and no GAPS.md file was created. The skill did not produce this required documentation artifact."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 7,
+      "Bash": 2,
+      "Read": 1
+    },
+    "total_tool_calls": 10,
+    "total_steps": 41,
+    "errors_encountered": 0,
+    "output_chars": 1123,
+    "transcript_chars": 123229
+  },
+  "timing": {
+    "executor_duration_seconds": 145.505,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 145.505
+  },
+  "claims": [
+    {
+      "claim": "Six files were written: README.md, docs/architecture.md, docs/services.md, docs/communication.md, docs/events.md, docs/adr/001-grpc-migration.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript shows mkdir -p and Write tool calls for each of these paths under /private/tmp/pilot-bench-1tqb6z07/with/. File creation confirmed messages appear in transcript."
+    },
+    {
+      "claim": "ADR-001 contains a decision record with context, rationale, REST vs gRPC comparison table, rejected alternatives, consequences, and phased migration plan",
+      "type": "quality",
+      "verified": true,
+      "evidence": "ADR content visible in transcript: ## Context (4 friction points), ## Decision, ## Rationale with REST vs gRPC comparison table, ## Why not alternatives, ## Consequences (Positive/Negative), ## Migration phases (Phase 0, 1, 2)."
+    },
+    {
+      "claim": "The ADR follows the skill's ADR template format",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The ADR uses MADR table-style metadata (| Status | Accepted |) rather than the skill's required '## Status' heading format. This is the baseline model's default MADR convention, not the skill's template."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three assertions failed, but the executor did produce substantial, high-quality documentation (6 files, detailed ADR, ASCII diagrams, Kafka schemas). Consider adding an assertion that checks for basic output completeness (e.g., at least one ADR file exists, or a README.md is produced) to distinguish a total failure from a partial failure where the skill's template-specific formatting is missing but the underlying documentation task was completed well."
+      },
+      {
+        "assertion": "At least one ADR file contains '## Status' as a markdown heading",
+        "reason": "This is a strong discriminating assertion — a MADR-table baseline will always fail it while a skill-following output will pass. Good. However, consider also verifying that '## Decision' and '## Context' headings appear (standard ADR sections), to catch cases where a model follows the ## Status form but omits the rest of the template."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating — they correctly distinguish skill-template compliance from MADR baseline convention. The run reveals the skill did not activate its ADR template format or inject the quality/gaps sections, suggesting the documentation-generator skill's template guidance was not applied to this eval prompt."
+  }
+}
