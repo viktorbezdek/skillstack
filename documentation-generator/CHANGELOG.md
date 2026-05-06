@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
-- Replace broken `{SKILL_DIR}` placeholder with `find`-based script discovery so `doc-gen.py` is actually invoked at runtime
+- resolve SKILL_DIR placeholder so doc-gen.py is invoked at runtime
 
 ## [1.2.0] - 2026-05-06
 
