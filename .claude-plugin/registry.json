@@ -1301,7 +1301,7 @@
       "description": "Systematic intelligence gathering on individuals \u2014 from name or handle to scored dossier with psychoprofile, career map, confidence grades, 55+ Apify actors, swarm mode.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "osint/skills/osint",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "osint",
         "research",

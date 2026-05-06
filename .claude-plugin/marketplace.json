@@ -833,7 +833,7 @@
       "name": "osint",
       "source": "./osint",
       "description": "Systematic intelligence gathering on individuals \u2014 from name or handle to scored dossier with psychoprofile, career map, confidence grades, 55+ Apify actors, swarm mode.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "research",
       "tags": [
         "osint",
