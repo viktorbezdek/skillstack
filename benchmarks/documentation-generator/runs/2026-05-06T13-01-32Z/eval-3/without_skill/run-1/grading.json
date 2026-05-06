@@ -1,0 +1,85 @@
+{
+  "expectations": [
+    {
+      "text": "The ADR file contains 'Context', 'Decision', AND 'Consequences' as markdown headings (##, ###, or bold heading — any heading style). All three must be present in the same file. An ADR with only Context and Decision but no Consequences does NOT satisfy this.",
+      "passed": true,
+      "evidence": "adr-001-languages-module.md contains all three as ## headings: '## Context', '## Decision', and '## Consequences'. The Consequences section includes 'Positive' and 'Negative / Watch Points' subsections with substantive content about maintenance burden and API exposure issues."
+    },
+    {
+      "text": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: (a) how to set up a local development environment (clone + install steps), (b) code style or formatting requirements, AND (c) how to submit a pull request or change. A CONTRIBUTING.md covering only 1 or 2 of these three areas does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md covers all three areas: (a) '## Development setup' section with explicit `git clone`, `python -m venv .venv`, and `pip install -e \".[dev]\"` steps; (b) '## Code style and conventions' section listed in Table of Contents; (c) '## Pull request checklist' section listed in Table of Contents. The file was written with a full Table of Contents confirming all sections exist."
+    },
+    {
+      "text": "A gap register, 'Documentation Gaps', or 'Known Gaps' file exists with AT LEAST 5 specific named gaps (not just headers). Each gap must describe a missing or incomplete piece of documentation. A gap register with only 1-2 entries or only high-level categories does NOT satisfy this.",
+      "passed": true,
+      "evidence": "doc-gap-register.md contains 15 documented gaps. Visible in transcript: GAP-001 (batch_slugify warns claim is false — no warnings.warn call exists), GAP-002 (unknown lang code silent fallback undocumented), GAP-003 (is_valid_slug not exported from public API), GAP-004 (SUPPORTED_LANGUAGES not exported), GAP-005 (validate_slug separator constraint undocumented), GAP-006 (no tests for validators.py), and 9 more. Each gap has a file reference, actual vs. documented behavior, impact, and fix suggestion."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Glob": 1,
+      "Read": 7,
+      "Write": 3
+    },
+    "total_tool_calls": 11,
+    "total_steps": 20,
+    "errors_encountered": 0,
+    "output_chars": 893,
+    "transcript_chars": 170312
+  },
+  "timing": {
+    "executor_duration_seconds": 193.201,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 193.201
+  },
+  "claims": [
+    {
+      "claim": "Three files written: adr-001-languages-module.md, CONTRIBUTING.md, doc-gap-register.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript shows exactly 3 Write tool calls to those file paths under /private/tmp/pilot-bench-6vcjvefb/without/"
+    },
+    {
+      "claim": "15 documented gaps across P1/P2/P3 priorities",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states '15 documented gaps across P1/P2/P3 priorities'; transcript shows the full doc-gap-register.md content which is structured with P1/P2/P3 sections"
+    },
+    {
+      "claim": "CONTRIBUTING.md covers a step-by-step language addition walkthrough",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Table of Contents in CONTRIBUTING.md lists '5. Adding a new language' with a detailed walkthrough in the transcript content showing Step 1 (declare dict) and guidelines"
+    },
+    {
+      "claim": "ADR evaluates three rejected alternatives",
+      "type": "factual",
+      "verified": true,
+      "evidence": "ADR contains '## Alternatives Considered' section with alternatives A (inline in core.py), B (one file per language), and C (external data files) — all three rejected with reasoning"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: ...",
+        "reason": "The assertion checks for section presence but not content depth. The CONTRIBUTING.md Table of Contents lists 'Code style and conventions' — verifying that heading exists satisfies the assertion — but a verifier should confirm the section body is non-trivial. The transcript-based check is reliable here, but a future eval could assert specific style rules appear (e.g., line length, type hint requirements)."
+      },
+      {
+        "reason": "No assertion checks that the ADR's Consequences section contains substantive content (not just the heading). The model produced meaningful content (maintenance burden for dual-case tables, SUPPORTED_LANGUAGES API exposure), but the assertion would pass even for an empty ## Consequences section. Consider requiring at least one bullet point or sentence."
+      }
+    ],
+    "overall": "All three assertions are meaningfully discriminating — the model had to produce real, structured content to satisfy them. Minor improvement opportunity: add content-depth checks for the Consequences section and CONTRIBUTING.md style area."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file. A code example that only appears at the end of the file, or after all function documentation, does NOT satisfy this — the sample must come first.",
+      "passed": false,
+      "evidence": "The api-reference.md opens with a single-line import statement (`from slugify_utils import slugify, unslugify, batch_slugify, validate_slug, SlugError`) — only 1 line, below the 3-line minimum. The next code block is the `slugify` function signature (`def slugify(text: str, lang: str = \"en\", separator: str = \"-\", max_length: int = 80,) -> str`), which is 6 lines but is itself a function-signature definition, not a working usage example. The actual usage examples (`>>> slugify(\"Hello World\")` etc.) only appear AFTER the **Parameters** table in each function section. No qualifying working code example of 3+ lines precedes the first Parameters table."
+    },
+    {
+      "text": "A troubleshooting or error reference section exists containing a table OR structured list that maps at least 3 distinct error conditions to their causes or fixes. The table must have entries covering SlugError or ValueError (the actual exceptions in the codebase). A generic 'if something goes wrong, check your input' paragraph without specific error entries does NOT satisfy this.",
+      "passed": true,
+      "evidence": "troubleshooting.md contains 9 H2-headed sections, each dedicated to a specific error condition with a named Cause + Fix structure. Sections include `ValueError: text must be a non-empty string`, `ValueError: text '...' produced an empty slug`, `SlugError: slug '...' is invalid`, `SlugError: slug length N exceeds maximum M`, and five more. This is a structured list mapping error conditions to causes/fixes. Both SlugError and ValueError are explicitly covered. Well above the minimum of 3 entries."
+    },
+    {
+      "text": "The quickstart or getting-started file contains an explicit prerequisite block — either '## Prerequisites', '## Before You Begin', or '## Requirements' — listing at least Python version AND one installation command. A file that jumps straight to usage examples without a named prerequisite section does NOT satisfy this.",
+      "passed": false,
+      "evidence": "quickstart.md has `## Installation` (not `## Prerequisites`, `## Before You Begin`, or `## Requirements`). That section contains `pip install slugify-utils` and `Requires Python 3.10+. No third-party dependencies.` — both required pieces of content are present, but under the wrong heading name. None of the three required heading names appear anywhere in the file's indexed sections."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": null,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 95.449,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 95.449
+  },
+  "claims": [
+    {
+      "claim": "api-reference.md contains full reference for all 5 public functions, SlugError exception, SUPPORTED_LANGUAGES constant, and language support table",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Indexed sections confirm: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug functions; SlugError exception; SUPPORTED_LANGUAGES and TRANSLITERATION_MAPS constants; Supported Languages table all present."
+    },
+    {
+      "claim": "quickstart.md contains installation, basic usage, separator/length customisation, multilingual examples, and a validation section",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Indexed sections show: Installation, Basic Usage (3 sub-sections), Customisation (2 sub-sections), Multilingual Slugs, Validating Slugs (2 sub-sections), and Putting It Together — all confirmed present."
+    },
+    {
+      "claim": "troubleshooting.md covers nine common errors with root cause explanations and concrete fixes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "9 distinct H2 sections confirmed in indexed output: empty input, all-symbol input, invalid slug format, length violations, missing lang, unslugify strict validation, batch_slugify silent failures, ImportError, and non-determinism."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file.",
+        "reason": "The function signature code block (`def slugify(...)`) is 6 lines and appears before the Parameters table — an executor could argue this satisfies the intent. The assertion could be strengthened by explicitly requiring the code block to contain a *call* or *import-then-call* pattern (i.e., lines that produce output), rather than just a definition, to unambiguously exclude function signatures."
+      },
+      {
+        "reason": "No assertion checks whether the api-reference.md top-level intro provides any orientation (e.g., a one-paragraph description of the library) before the function list. The file jumps directly from the version line to the Functions heading. An assertion checking for at least one explanatory sentence before the first H2 would catch a bare reference dump."
+      }
+    ],
+    "overall": "The three assertions are well-targeted and discriminating — they test specific structural conventions that the skill should enforce. The prerequisite-heading and code-example-placement checks are notably strict and appropriate for measuring whether the skill prescribes particular document patterns."
+  }
+}

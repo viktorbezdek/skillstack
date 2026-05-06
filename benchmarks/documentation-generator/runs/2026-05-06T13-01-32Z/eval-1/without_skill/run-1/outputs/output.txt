@@ -1,0 +1,10 @@
+All six documentation files have been written to `/private/tmp/pilot-bench-3woikiel/without/`:
+
+| File | Contents |
+|------|----------|
+| `README.md` | Overview, install, quickstart, feature table, supported languages, API summary, error handling |
+| `API_REFERENCE.md` | Full signature, parameter tables, return types, raises, and examples for every public symbol (`slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`, `SlugError`, constants, module layout) |
+| `CHANGELOG.md` | Version history from 0.1.0 → 0.3.2 in Keep-a-Changelog format |
+| `CONTRIBUTING.md` | Dev setup, project layout, how to add a language, coding conventions, testing requirements, PR process |
+| `docs/quickstart.md` | Runnable examples for every feature: basic, Unicode, transliteration, separator, length cap, round-trip, batch, validation, and common pitfalls |
+| `docs/languages.md` | Full character mapping tables for all five languages (en/ru/cs/de/tr) with worked examples and guidance on unsupported languages |

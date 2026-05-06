@@ -1,0 +1,15 @@
+All three files written to the current directory:
+
+| File | Description |
+|---|---|
+| `adr-001-languages-module.md` | Architecture Decision Record — why transliteration tables live in `languages.py` |
+| `CONTRIBUTING.md` | Contributor guide — setup, adding a language, bug workflow, code style, versioning |
+| `doc-gap-register.md` | 12 documented gaps, each with impact rating and a recommended fix |
+
+---
+
+A few findings worth flagging:
+
+- **GAP-003 (high)** — `batch_slugify` docstring says it emits a warning on bad input; the code silently returns `""`. This is a live accuracy bug in the existing docs.
+- **GAP-004 (high)** — The "transliteration before NFKD" ordering constraint is undocumented beyond an inline comment. It's the most dangerous refactor trap in the codebase; I documented it in both the ADR and the contributor guide.
+- **GAP-002 (high)** — `is_valid_slug` exists, has a full docstring, but is neither exported nor mentioned anywhere external to its file — it's invisible to users.

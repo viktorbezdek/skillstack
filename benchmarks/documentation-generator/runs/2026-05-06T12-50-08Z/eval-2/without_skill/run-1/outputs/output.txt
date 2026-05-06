@@ -1,0 +1,15 @@
+All three files written. Here's the list:
+
+```
+/private/tmp/pilot-bench-mdxdnn0_/without/api-reference.md
+/private/tmp/pilot-bench-mdxdnn0_/without/quickstart.md
+/private/tmp/pilot-bench-mdxdnn0_/without/troubleshooting.md
+```
+
+**What each file contains:**
+
+- **`api-reference.md`** — Full reference for all 5 public functions (`slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`), the `SlugError` exception, `SUPPORTED_LANGUAGES` constant, and the language support table with per-language transliteration notes.
+
+- **`quickstart.md`** — Installation, basic usage, separator/length customisation, multilingual examples for all 5 supported languages, and a validation section with a real-world end-to-end pattern.
+
+- **`troubleshooting.md`** — Nine common errors with root cause explanations, code examples showing the bad pattern, and concrete fixes: empty input, all-symbol input, invalid slug format, length violations, missing `lang`, `unslugify` strict validation, `batch_slugify` silent failures, import errors, and non-determinism.

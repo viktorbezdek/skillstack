@@ -1,0 +1,16 @@
+All three files written. Here's what's in the current directory:
+
+```
+/private/tmp/pilot-bench-iysiegv6/with/
+├── API_REFERENCE.md
+├── QUICKSTART.md
+└── TROUBLESHOOTING.md
+```
+
+**What each file covers:**
+
+- **`API_REFERENCE.md`** — full parameter tables, return types, exception conditions, and examples for all 5 public symbols: `slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`, plus `SlugError` and the language constants.
+
+- **`QUICKSTART.md`** — install, basic usage, one example per supported language (`ru`/`de`/`cs`/`tr`), custom separators, length truncation, batch processing, and a realistic URL-building pattern.
+
+- **`TROUBLESHOOTING.md`** — every error message the library can raise, its cause, and a concrete fix, plus a quick-reference table at the end.

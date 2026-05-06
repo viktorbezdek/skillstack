@@ -1,0 +1,7 @@
+Three files written to the current directory:
+
+| File | Size | Contents |
+|------|------|----------|
+| `API_REFERENCE.md` | 5.8 KB | Full reference for all 5 public functions (`slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`), the `SlugError` exception, and the `SUPPORTED_LANGUAGES` constant with parameter tables and examples |
+| `QUICKSTART.md` | 3.3 KB | 5-minute tour covering basic slugs, multilingual transliteration, custom separators, length limits, `unslugify`, bulk processing, and validation; includes three real-world patterns |
+| `TROUBLESHOOTING.md` | 6.0 KB | Covers every error the library can raise (`ValueError` variants, `SlugError` variants), silent failure modes in `batch_slugify`, unexpected output (truncation, stripped characters, wrong `lang`), custom separator edge cases, and unsupported language handling |

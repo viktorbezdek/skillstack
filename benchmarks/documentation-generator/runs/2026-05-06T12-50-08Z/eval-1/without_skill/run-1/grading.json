@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "A '## Target Audiences' section OR a table explicitly labelled 'Target Audiences' or 'Audiences' exists in at least one output file, containing a markdown table with AT LEAST 2 rows where each row names a distinct user type (e.g. 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator'). A section that only mentions 'developers' generically without distinct rows does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Python scan of all 9 written files for 'audience' / 'target audience' (case-insensitive) returned zero matches. README.md sections are: Features, Installation, Quick Start, Supported Languages, API Overview, License. No Target Audiences section or audience-typed table exists in any output file."
+    },
+    {
+      "text": "A documentation plan, priority section, or structured doc index exists containing EXPLICIT priority markers — either P0/P1/P2, or must-have/should-have/nice-to-have, or Critical/Important/Optional — applied to at least 3 distinct documents. A flat list of documents without any priority notation does NOT satisfy this. Timing-only guidance like 'Read First: Yes' does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Python regex scan of all 9 written files for P0/P1/P2, must-have/should-have/nice-to-have, and Critical/Important/Optional patterns returned zero matches. The output.txt summary table lists files with only a 'Purpose' column — no priority markers of any kind appear in any output file."
+    },
+    {
+      "text": "At least one output file contains BOTH a '## Before You Begin' OR '## Prerequisites' section AND a '## What You Will Learn' OR '## Learning Objectives' OR '## By the end of this guide' section. Both sections must appear in the same file. A getting-started file with only prerequisites OR only learning objectives but not both does NOT satisfy this.",
+      "passed": false,
+      "evidence": "docs/quickstart.md is the only getting-started file. Its sections are: Step 1—Install, Step 2—Create your first slug, Step 3—Work with non-English text, Step 4—Validate a slug, Step 5—Process a list, Next steps. No 'Before You Begin', 'Prerequisites', 'What You Will Learn', 'Learning Objectives', or 'By the end of this guide' heading appears in any output file."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Skill": 1,
+      "Bash": 2,
+      "Read": 7,
+      "Write": 9
+    },
+    "total_tool_calls": 19,
+    "total_steps": 75,
+    "errors_encountered": 0,
+    "output_chars": 897,
+    "transcript_chars": 213146
+  },
+  "timing": {
+    "executor_duration_seconds": 235.226,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "9 documentation files were generated covering README, CHANGELOG, CONTRIBUTING, quickstart, API reference, languages, configuration, troubleshooting, and architecture",
+      "type": "factual",
+      "verified": true,
+      "evidence": "9 Write tool calls found in transcript, each creating a file at /private/tmp/pilot-bench-fqfuna0h/without/ matching the list in output.txt"
+    },
+    {
+      "claim": "docs/quickstart.md is a '5-step getting-started guide with runnable examples'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript confirms quickstart.md contains Steps 1–5 with inline Python code blocks. All steps include runnable examples."
+    },
+    {
+      "claim": "API reference covers all 6 public symbols",
+      "type": "factual",
+      "verified": true,
+      "evidence": "README.md API Overview table lists slugify, unslugify, batch_slugify, validate_slug, is_valid_slug, SlugError — exactly 6 symbols."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "Assertions are well-designed discriminators. All three test structured patterns that the documentation-generator skill explicitly mandates (persona/audience tables from persona-mapping, RICE/ICE priority scoring from prioritization, quickstart templates with learning objectives from user-journey-design). The without_skill run predictably fails all three — the executor produced technically solid but structurally minimal documentation with no audience segmentation, no priority ranking, and no learning-objective scaffolding. Evals look solid."
+  }
+}

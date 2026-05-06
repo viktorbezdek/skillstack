@@ -1,0 +1,17 @@
+All three files are written. Here is the list:
+
+```
+adr-001-languages-module-separation.md
+CONTRIBUTING.md
+doc-gap-register.md
+```
+
+---
+
+**What each file contains:**
+
+- **`adr-001-languages-module-separation.md`** — Architecture Decision Record explaining why transliteration tables live in `languages.py` rather than inline in `core.py`. Covers five rationale points (data/logic separation, open/closed for new languages, auditability, replaceability, file-size discipline), two rejected alternatives (inline, per-file), and consequences including the silent unknown-lang fallback.
+
+- **`CONTRIBUTING.md`** — Full contributor guide: prerequisites, local setup, project layout table, running tests, step-by-step "adding a new language" workflow (the most likely contribution), core-logic change protocol, code style rules, PR checklist, and a versioning/release policy table.
+
+- **`doc-gap-register.md`** — 15 documented gaps across user-facing and developer documentation, each with severity (5 HIGH, 6 MEDIUM, 4 LOW), location, description, and recommended action. Highest-severity items: stub README, silent unknown-lang fallback, missing CHANGELOG, and absent CI configuration.

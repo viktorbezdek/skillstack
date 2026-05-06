@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "documentation-generator",
+    "skill_path": "documentation-generator/skills/documentation-generator",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-06T12:57:00Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "documentation-generator",
+    "target_path": "documentation-generator/skills/documentation-generator"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 175.795,
+        "tokens": 851851,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A '## Target Audiences' section OR a table explicitly labelled 'Target Audiences' or 'Audiences' exists in at least one output file, containing a markdown table with AT LEAST 2 rows where each row names a distinct user type (e.g. 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator'). A section that only mentions 'developers' generically without distinct rows does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Grep for 'target audience', 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator', 'user type' across all generated output files (README.md, docs/quickstart.md, docs/api-reference.md, docs/languages.md, docs/error-reference.md, docs/architecture.md, CHANGELOG.md, CONTRIBUTING.md) returned zero matches. The SKILL.md mandates producing this table in README.md or a dedicated docs/AUDIENCES.md, but the executor omitted it entirely. Matches found were only in the skill's own template files under .claude/, not in generated output."
+        },
+        {
+          "text": "A documentation plan, priority section, or structured doc index exists containing EXPLICIT priority markers \u2014 either P0/P1/P2, or must-have/should-have/nice-to-have, or Critical/Important/Optional \u2014 applied to at least 3 distinct documents. A flat list of documents without any priority notation does NOT satisfy this. Timing-only guidance like 'Read First: Yes' does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Grep for P0/P1/P2, must-have/should-have/nice-to-have, Critical/Important/Optional, and 'priority' across all generated output files (excluding .claude/) returned only two relevant matches: (1) analysis.json containing generic machine-generated 'priority': 'high'/'medium' fields \u2014 these are internal analysis data, not a documentation plan or doc index with priority markers applied to distinct documents; (2) docs/architecture.md line 103 with 'Optional[str]' in a Python type context \u2014 not a priority notation. No generated markdown file contains a structured doc backlog or priority section with P0/P1/P2 or equivalent markers applied to \u22653 documents."
+        },
+        {
+          "text": "At least one output file contains BOTH a '## Before You Begin' OR '## Prerequisites' section AND a '## What You Will Learn' OR '## Learning Objectives' OR '## By the end of this guide' section. Both sections must appear in the same file. A getting-started file with only prerequisites OR only learning objectives but not both does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Grep for 'before you begin', '## prerequisites', 'what you will learn', 'learning objectives', 'by the end of this guide' across all generated output files returned zero matches. The quickstart.md structure is: Install \u2192 Your First Slug \u2192 Common Patterns \u2192 Next Steps \u2014 no prerequisites or learning objectives sections. The SKILL.md explicitly notes that producing a Tutorial without '## Before You Begin' and '## What You Will Learn' is incomplete (line 423), but the executor did not include these sections in the generated quickstart."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 96.461,
+        "tokens": 399663,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file. A code example that only appears at the end of the file, or after all function documentation, does NOT satisfy this \u2014 the sample must come first.",
+          "passed": false,
+          "evidence": "API_REFERENCE.md lines 7-9 contain a fenced code block before the first parameter table, but it holds only a single import statement ('from slugify_utils import slugify, ...'). That is 1 line of actual code inside the fences \u2014 not a 3-line working example. The function signature block at lines 17-19 is also before the first table but is just a signature, not a usage example. The first genuine multi-line working code examples (showing function calls with output values, 6+ lines) appear in the 'Examples' sub-sections starting at line 45, which is after the parameters table at lines 27-31. No multi-line working example demonstrating actual API usage precedes the first parameter/function-signature table."
+        },
+        {
+          "text": "A troubleshooting or error reference section exists containing a table OR structured list that maps at least 3 distinct error conditions to their causes or fixes. The table must have entries covering SlugError or ValueError (the actual exceptions in the codebase). A generic 'if something goes wrong, check your input' paragraph without specific error entries does NOT satisfy this.",
+          "passed": true,
+          "evidence": "TROUBLESHOOTING.md lines 207-215 contain a 'Quick Reference' table with 5 rows mapping specific error messages to their source functions and most likely causes: 'ValueError: text must be a non-empty string', 'ValueError: text ... produced an empty slug', 'SlugError: slug must be a non-empty string', 'SlugError: slug length N exceeds maximum M', and 'SlugError: slug ... is invalid'. Both ValueError and SlugError are explicitly covered, and the table has far more than 3 distinct entries."
+        },
+        {
+          "text": "The quickstart or getting-started file contains an explicit prerequisite block \u2014 either '## Prerequisites', '## Before You Begin', or '## Requirements' \u2014 listing at least Python version AND one installation command. A file that jumps straight to usage examples without a named prerequisite section does NOT satisfy this.",
+          "passed": false,
+          "evidence": "QUICKSTART.md's top-level sections are: '## Installation', '## Basic Usage', '## Common Scenarios', '## Building a URL', '## Error Handling', '## What's Next'. None of the required heading names ('## Prerequisites', '## Before You Begin', '## Requirements') is present. The file provides a pip install command under '## Installation' but never names a prerequisite block and never mentions a Python version requirement anywhere in the file."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 166.524,
+        "tokens": 425809,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections present as ## or ### headings in the same file: 'Status' AND 'Context' AND 'Decision' AND 'Consequences'. A file that has only 2 or 3 of these as headings does NOT satisfy this. The Status section must appear before Context in the file.",
+          "passed": false,
+          "evidence": "ADR-001-languages-module-separation.md contains ## Context (line 10), ## Decision (line 31), and ## Consequences (line 54), but has NO '## Status' or '### Status' heading anywhere in the file. Regex search for /^#{1,3}\\s+Status/m returned index -1. Three of four required sections present; Status is absent."
+        },
+        {
+          "text": "A contributor guide or CONTRIBUTING.md file exists that explicitly covers ALL THREE of: (a) development environment setup (install/clone/virtualenv steps), (b) a code style or formatting standard (linting, formatting tool, or naming convention), AND (c) how to submit changes (PR process, branch naming, or commit message format). A CONTRIBUTING.md that covers only 1 or 2 of these does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md was written to /private/tmp/pilot-bench-til0blwc/with/CONTRIBUTING.md and covers all three: (a) '## Development setup' section (lines 31-52) with git clone, python -m venv .venv, source .venv/bin/activate, and pip install -e steps; (b) '## Code conventions' section (line 160) covering ruff for formatting/linting; (c) '## Submitting a pull request' section (line 178) with PR process steps."
+        },
+        {
+          "text": "A gaps register, 'Known Gaps', 'Documentation Gaps', or 'Missing Documentation' section exists in at least one output file. It must contain at least one specific gap item (e.g. a doc type or topic that is not yet covered). The text 'No known gaps' also satisfies this IF it is followed by a date or version. A completely absent gaps section does NOT satisfy this.",
+          "passed": true,
+          "evidence": "DOC-GAP-REGISTER.md was written to /private/tmp/pilot-bench-til0blwc/with/DOC-GAP-REGISTER.md. It contains a '## Gaps' heading followed by at least 12 specific numbered gap items (G-001 through G-004+ visible, 25 bullet/numbered lines total). Examples: G-001 'is_valid_slug is undocumented and unexported \u00b7 P1', G-002 'Unsupported language codes silently fall back \u00b7 P1', G-003 'SUPPORTED_LANGUAGES not mentioned anywhere outside source \u00b7 P2', G-004 'batch_slugify and unslugify absent from README \u00b7 P2'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 235.226,
+        "tokens": 805483,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A '## Target Audiences' section OR a table explicitly labelled 'Target Audiences' or 'Audiences' exists in at least one output file, containing a markdown table with AT LEAST 2 rows where each row names a distinct user type (e.g. 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator'). A section that only mentions 'developers' generically without distinct rows does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Python scan of all 9 written files for 'audience' / 'target audience' (case-insensitive) returned zero matches. README.md sections are: Features, Installation, Quick Start, Supported Languages, API Overview, License. No Target Audiences section or audience-typed table exists in any output file."
+        },
+        {
+          "text": "A documentation plan, priority section, or structured doc index exists containing EXPLICIT priority markers \u2014 either P0/P1/P2, or must-have/should-have/nice-to-have, or Critical/Important/Optional \u2014 applied to at least 3 distinct documents. A flat list of documents without any priority notation does NOT satisfy this. Timing-only guidance like 'Read First: Yes' does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Python regex scan of all 9 written files for P0/P1/P2, must-have/should-have/nice-to-have, and Critical/Important/Optional patterns returned zero matches. The output.txt summary table lists files with only a 'Purpose' column \u2014 no priority markers of any kind appear in any output file."
+        },
+        {
+          "text": "At least one output file contains BOTH a '## Before You Begin' OR '## Prerequisites' section AND a '## What You Will Learn' OR '## Learning Objectives' OR '## By the end of this guide' section. Both sections must appear in the same file. A getting-started file with only prerequisites OR only learning objectives but not both does NOT satisfy this.",
+          "passed": false,
+          "evidence": "docs/quickstart.md is the only getting-started file. Its sections are: Step 1\u2014Install, Step 2\u2014Create your first slug, Step 3\u2014Work with non-English text, Step 4\u2014Validate a slug, Step 5\u2014Process a list, Next steps. No 'Before You Begin', 'Prerequisites', 'What You Will Learn', 'Learning Objectives', or 'By the end of this guide' heading appears in any output file."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 95.449,
+        "tokens": 440280,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file. A code example that only appears at the end of the file, or after all function documentation, does NOT satisfy this \u2014 the sample must come first.",
+          "passed": false,
+          "evidence": "The api-reference.md opens with a single-line import statement (`from slugify_utils import slugify, unslugify, batch_slugify, validate_slug, SlugError`) \u2014 only 1 line, below the 3-line minimum. The next code block is the `slugify` function signature (`def slugify(text: str, lang: str = \"en\", separator: str = \"-\", max_length: int = 80,) -> str`), which is 6 lines but is itself a function-signature definition, not a working usage example. The actual usage examples (`>>> slugify(\"Hello World\")` etc.) only appear AFTER the **Parameters** table in each function section. No qualifying working code example of 3+ lines precedes the first Parameters table."
+        },
+        {
+          "text": "A troubleshooting or error reference section exists containing a table OR structured list that maps at least 3 distinct error conditions to their causes or fixes. The table must have entries covering SlugError or ValueError (the actual exceptions in the codebase). A generic 'if something goes wrong, check your input' paragraph without specific error entries does NOT satisfy this.",
+          "passed": true,
+          "evidence": "troubleshooting.md contains 9 H2-headed sections, each dedicated to a specific error condition with a named Cause + Fix structure. Sections include `ValueError: text must be a non-empty string`, `ValueError: text '...' produced an empty slug`, `SlugError: slug '...' is invalid`, `SlugError: slug length N exceeds maximum M`, and five more. This is a structured list mapping error conditions to causes/fixes. Both SlugError and ValueError are explicitly covered. Well above the minimum of 3 entries."
+        },
+        {
+          "text": "The quickstart or getting-started file contains an explicit prerequisite block \u2014 either '## Prerequisites', '## Before You Begin', or '## Requirements' \u2014 listing at least Python version AND one installation command. A file that jumps straight to usage examples without a named prerequisite section does NOT satisfy this.",
+          "passed": false,
+          "evidence": "quickstart.md has `## Installation` (not `## Prerequisites`, `## Before You Begin`, or `## Requirements`). That section contains `pip install slugify-utils` and `Requires Python 3.10+. No third-party dependencies.` \u2014 both required pieces of content are present, but under the wrong heading name. None of the three required heading names appear anywhere in the file's indexed sections."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.67,
+        "time_seconds": 134.301,
+        "tokens": 358924,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections present as ## or ### headings in the same file: 'Status' AND 'Context' AND 'Decision' AND 'Consequences'. A file that has only 2 or 3 of these as headings does NOT satisfy this. The Status section must appear before Context in the file.",
+          "passed": false,
+          "evidence": "adr-001-languages-module-separation.md has '## Context', '## Decision', and '## Consequences' as headings, but 'Status' is formatted as bold text ('**Status:** Accepted'), NOT a ## or ### heading. Only 3 of the required 4 sections appear as headings."
+        },
+        {
+          "text": "A contributor guide or CONTRIBUTING.md file exists that explicitly covers ALL THREE of: (a) development environment setup (install/clone/virtualenv steps), (b) a code style or formatting standard (linting, formatting tool, or naming convention), AND (c) how to submit changes (PR process, branch naming, or commit message format). A CONTRIBUTING.md that covers only 1 or 2 of these does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md contains: (a) '## Local Setup' with git clone, python -m venv .venv, pip install -e \".[dev]\" steps; (b) '## Code Style' with type hints, Google-style docstrings, line length 99 chars, PEP 8; (c) '## Submitting a Pull Request' with branch naming (git checkout -b feat/...), conventional commit format, and PR workflow."
+        },
+        {
+          "text": "A gaps register, 'Known Gaps', 'Documentation Gaps', or 'Missing Documentation' section exists in at least one output file. It must contain at least one specific gap item (e.g. a doc type or topic that is not yet covered). The text 'No known gaps' also satisfies this IF it is followed by a date or version. A completely absent gaps section does NOT satisfy this.",
+          "passed": true,
+          "evidence": "doc-gap-register.md is a dedicated gap register with 15 documented gaps (GAP-001 through GAP-015), each including severity (HIGH/MEDIUM/LOW), location, description, and recommended action. First gap: GAP-001 'README is a stub' (HIGH severity)."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.3333,
+        "stddev": 0.335,
+        "min": 0.0,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 146.26,
+        "stddev": 43.3756,
+        "min": 96.461,
+        "max": 175.795
+      },
+      "tokens": {
+        "mean": 559107.6667,
+        "stddev": 253859.9963,
+        "min": 399663.0,
+        "max": 851851.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.3333,
+        "stddev": 0.335,
+        "min": 0.0,
+        "max": 0.67
+      },
+      "time_seconds": {
+        "mean": 154.992,
+        "stddev": 72.1491,
+        "min": 95.449,
+        "max": 235.226
+      },
+      "tokens": {
+        "mean": 534895.6667,
+        "stddev": 237839.9218,
+        "min": 358924.0,
+        "max": 805483.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "-8.7",
+      "tokens": "+24212"
+    }
+  },
+  "notes": []
+}

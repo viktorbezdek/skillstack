@@ -1,0 +1,71 @@
+{
+  "expectations": [
+    {
+      "text": "The ADR file contains 'Context', 'Decision', AND 'Consequences' as markdown headings (##, ###, or bold heading — any heading style). All three must be present in the same file. An ADR with only Context and Decision but no Consequences does NOT satisfy this.",
+      "passed": true,
+      "evidence": "adr-001-languages-module.md contains all three as level-2 headings: '## Context', '## Decision', and '## Consequences'. Extracted directly from the Write tool call writing /private/tmp/pilot-bench-szlpp7ti/with/adr-001-languages-module.md in the transcript."
+    },
+    {
+      "text": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: (a) how to set up a local development environment (clone + install steps), (b) code style or formatting requirements, AND (c) how to submit a pull request or change. A CONTRIBUTING.md covering only 1 or 2 of these three areas does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md written to /private/tmp/pilot-bench-szlpp7ti/with/CONTRIBUTING.md. Headings confirm: (a) '## Setup' with clone and editable install steps, (b) '## Code style' section, (c) '## Pull request checklist' section. All three required areas present."
+    },
+    {
+      "text": "A gap register, 'Documentation Gaps', or 'Known Gaps' file exists with AT LEAST 5 specific named gaps (not just headers). Each gap must describe a missing or incomplete piece of documentation. A gap register with only 1-2 entries or only high-level categories does NOT satisfy this.",
+      "passed": true,
+      "evidence": "doc-gap-register.md written to /private/tmp/pilot-bench-szlpp7ti/with/doc-gap-register.md. Contains 12 named gaps (GAP-001 through GAP-012 per output.txt summary). First 4000 chars show GAP-001 through GAP-006, each with a specific description, impact rating, and recommended fix. Well above the 5-gap minimum."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 1017,
+    "transcript_chars": 158925
+  },
+  "timing": {
+    "executor_duration_seconds": 172.613,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 172.613
+  },
+  "claims": [
+    {
+      "claim": "12 documented gaps, each with impact rating and a recommended fix",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states '12 documented gaps, each with impact rating and a recommended fix'. First 4000 chars of the file show GAP-001 through GAP-006 fully written with High/Medium/Low ratings and recommended fix sections."
+    },
+    {
+      "claim": "GAP-003 is a live accuracy bug — batch_slugify docstring says it emits a warning but code silently returns empty string",
+      "type": "quality",
+      "verified": true,
+      "evidence": "GAP-003 entry in doc-gap-register.md explicitly documents this discrepancy and flags it as High impact."
+    },
+    {
+      "claim": "ADR documents the transliteration-before-NFKD ordering constraint",
+      "type": "quality",
+      "verified": true,
+      "evidence": "GAP-004 description references 'ADR-001' and the ADR's Rationale section explains why transliteration must precede Unicode normalisation."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: (a) how to set up a local development environment (clone + install steps), (b) code style or formatting requirements, AND (c) how to submit a pull request or change.",
+        "reason": "The assertion checks heading presence but not content depth. A CONTRIBUTING.md could have a '## Code style' heading with a single sentence (e.g., 'Follow PEP 8') and still pass. Consider requiring at least one concrete rule or tool reference (e.g., mentions of a linter, formatter, or line-length constraint)."
+      },
+      {
+        "reason": "No assertion checks whether the ADR's Consequences section contains substantive content vs. a placeholder. An ADR with '## Consequences\\nTBD' would pass the current assertion."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating for the key structural requirements. Minor gap: heading presence is checked but not content adequacy. The gap-register assertion is the strongest — requiring 5 specific named gaps with descriptions is hard to satisfy superficially."
+  }
+}

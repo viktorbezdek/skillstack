@@ -1,0 +1,85 @@
+{
+  "expectations": [
+    {
+      "text": "The troubleshooting or error guide contains a table OR structured list mapping at least 3 error conditions to their causes or fixes, where entries specifically reference SlugError or ValueError (the actual exceptions in the codebase). A generic 'check your input' section without named exception types does NOT satisfy this.",
+      "passed": true,
+      "evidence": "TROUBLESHOOTING.md has 5 named error sections under '## Errors', each with Cause and Fix subsections: (1) '### `ValueError: text must be a non-empty string`', (2) '### `ValueError: text \\'...\\' produced an empty slug`', (3) '### `SlugError: slug \\'...\\' is invalid: must match [a-z0-9]+(-[a-z0-9]+)*`', (4) '### `SlugError: slug length N exceeds maximum 255`', (5) '### `SlugError` when using a custom separator'. All entries name the specific exception type and provide concrete cause + fix."
+    },
+    {
+      "text": "The API reference documents ALL FIVE of these public symbols: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug. Each must appear as a named section heading or function entry. Missing any of the five does NOT satisfy this.",
+      "passed": true,
+      "evidence": "API_REFERENCE.md contains all five as '###' section headings under '## Functions': '### `slugify`', '### `unslugify`', '### `batch_slugify`', '### `validate_slug`', '### `is_valid_slug`'. Each has a full signature block, parameter table, returns description, raises table, and examples."
+    },
+    {
+      "text": "The quickstart or getting-started file contains code examples for AT LEAST 2 different supported languages — for example, a Russian (lang='ru') AND a Czech or German example, demonstrating the multilingual capability. A quickstart with only English examples does NOT satisfy this.",
+      "passed": true,
+      "evidence": "QUICKSTART.md section '## Working with Non-English Text' contains code examples for four non-English languages: Russian (`slugify(\"Привет мир\", lang=\"ru\")`), German (`slugify(\"Über den Dächern\", lang=\"de\")`), Czech (`slugify(\"Čeština je krásná\", lang=\"cs\")`), and Turkish (`slugify(\"İstanbul şehri\", lang=\"tr\")`). Clearly exceeds the minimum of 2."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 7,
+      "Bash": 3,
+      "Write": 3
+    },
+    "total_tool_calls": 13,
+    "total_steps": 13,
+    "errors_encountered": 0,
+    "output_chars": 16980,
+    "transcript_chars": 147764
+  },
+  "timing": {
+    "executor_duration_seconds": 101.06,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 101.06
+  },
+  "claims": [
+    {
+      "claim": "All 5 public functions documented in API_REFERENCE.md including SlugError exception and language support table",
+      "type": "factual",
+      "verified": true,
+      "evidence": "API_REFERENCE.md confirms all five function sections plus a '### `SlugError`' exception section and a '## Language Support' table with 5 language codes."
+    },
+    {
+      "claim": "Multilingual examples for all 5 supported languages in QUICKSTART.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "QUICKSTART.md covers Russian, German, Czech, and Turkish explicitly as lang= code examples; English is handled via Unicode normalization (no explicit lang code needed, also shown). All 5 codes from SUPPORTED_LANGUAGES appear in the file."
+    },
+    {
+      "claim": "TROUBLESHOOTING.md covers all five distinct error/exception messages with root causes and fixes",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed 5 distinct named error sections in TROUBLESHOOTING.md, each with a Cause explanation and a Fix code block or prose. Additionally covers 4 'Unexpected Output' scenarios and 2 'Integration Issues'."
+    },
+    {
+      "claim": "batch_slugify never raises (ValueError and SlugError silently swallowed)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "API_REFERENCE.md explicitly states: 'Unlike `slugify`, this function never raises. `ValueError` and `SlugError` from individual conversions are silently swallowed and represented as \"\" at the corresponding index.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All three expectations check structural presence (named sections, exception type names, lang= code examples) but none verify output correctness — e.g., whether the Russian example output 'privet-mir' is accurate, or whether the SlugError cause descriptions match the actual codebase implementation. A wrong but structurally conformant document would pass all three. Consider adding a claim like 'The SlugError description in TROUBLESHOOTING.md matches the regex in the source code'."
+      },
+      {
+        "assertion": "The API reference documents ALL FIVE of these public symbols",
+        "reason": "The assertion is satisfied by named headings alone, but a doc that has headings with no content (empty sections) would also pass. Consider requiring that each function entry include at minimum a signature and one example."
+      }
+    ],
+    "overall": "Solid, discriminating assertions — they would reject a purely generic or template-filled doc. The main gap is output accuracy verification; all three assertions are structural/presence checks, not correctness checks."
+  }
+}

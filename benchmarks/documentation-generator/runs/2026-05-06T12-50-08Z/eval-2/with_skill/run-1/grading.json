@@ -1,0 +1,77 @@
+{
+  "expectations": [
+    {
+      "text": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file. A code example that only appears at the end of the file, or after all function documentation, does NOT satisfy this — the sample must come first.",
+      "passed": false,
+      "evidence": "API_REFERENCE.md lines 7-9 contain a fenced code block before the first parameter table, but it holds only a single import statement ('from slugify_utils import slugify, ...'). That is 1 line of actual code inside the fences — not a 3-line working example. The function signature block at lines 17-19 is also before the first table but is just a signature, not a usage example. The first genuine multi-line working code examples (showing function calls with output values, 6+ lines) appear in the 'Examples' sub-sections starting at line 45, which is after the parameters table at lines 27-31. No multi-line working example demonstrating actual API usage precedes the first parameter/function-signature table."
+    },
+    {
+      "text": "A troubleshooting or error reference section exists containing a table OR structured list that maps at least 3 distinct error conditions to their causes or fixes. The table must have entries covering SlugError or ValueError (the actual exceptions in the codebase). A generic 'if something goes wrong, check your input' paragraph without specific error entries does NOT satisfy this.",
+      "passed": true,
+      "evidence": "TROUBLESHOOTING.md lines 207-215 contain a 'Quick Reference' table with 5 rows mapping specific error messages to their source functions and most likely causes: 'ValueError: text must be a non-empty string', 'ValueError: text ... produced an empty slug', 'SlugError: slug must be a non-empty string', 'SlugError: slug length N exceeds maximum M', and 'SlugError: slug ... is invalid'. Both ValueError and SlugError are explicitly covered, and the table has far more than 3 distinct entries."
+    },
+    {
+      "text": "The quickstart or getting-started file contains an explicit prerequisite block — either '## Prerequisites', '## Before You Begin', or '## Requirements' — listing at least Python version AND one installation command. A file that jumps straight to usage examples without a named prerequisite section does NOT satisfy this.",
+      "passed": false,
+      "evidence": "QUICKSTART.md's top-level sections are: '## Installation', '## Basic Usage', '## Common Scenarios', '## Building a URL', '## Error Handling', '## What's Next'. None of the required heading names ('## Prerequisites', '## Before You Begin', '## Requirements') is present. The file provides a pip install command under '## Installation' but never names a prerequisite block and never mentions a Python version requirement anywhere in the file."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "execution_metrics": {
+    "output_chars": 10186,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 96.461,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "API_REFERENCE.md covers all 5 public symbols: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug, plus SlugError and language constants",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Each of those 7 items has its own section in API_REFERENCE.md with parameter tables, return types, raises tables, and examples."
+    },
+    {
+      "claim": "TROUBLESHOOTING.md covers every error message the library can raise",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The file documents both ValueError variants and four SlugError variants, plus two behavioral (non-exception) symptoms. The Quick Reference table at the end lists all error-raising cases."
+    },
+    {
+      "claim": "QUICKSTART.md includes install, basic usage, language examples, custom separators, length truncation, batch processing, and URL-building",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All those topics are present in QUICKSTART.md with code examples for each scenario."
+    },
+    {
+      "claim": "The import code block at the top of API_REFERENCE.md constitutes a 'working code example' before the first parameter table",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The block contains one import statement. It is technically valid Python and appears at line 7-9, before the first parameter table at line 27. However, it is not a working usage example (no function calls, no output shown), and its content is only 1 line. The expectation requires at least 3 lines of content demonstrating actual usage."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The API reference file contains a working code example (a fenced code block of at least 3 lines) BEFORE the first parameter or function-signature table in the file.",
+        "reason": "The assertion is ambiguous about what counts as '3 lines' — does the fence delimiters count, or only actual code content lines? Clarifying 'at least 3 lines of actual code (excluding fence delimiters)' would prevent borderline cases like a 1-line import block wrapped in ``` fences."
+      },
+      {
+        "reason": "No assertion checks whether Python version compatibility is documented in the API reference. The generated files never state which Python version is required (e.g., Python 3.9+ for 'list[str]' return type annotation), which is an important omission for a real project."
+      }
+    ],
+    "overall": "The troubleshooting assertion is well-targeted and correctly discriminating. The quickstart prerequisites assertion is precise and correctly caught a real gap. The API example assertion would benefit from clarifying 'lines of actual code' to remove ambiguity around fence-line counting."
+  }
+}

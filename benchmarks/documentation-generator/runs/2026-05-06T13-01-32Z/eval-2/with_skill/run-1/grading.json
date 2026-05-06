@@ -1,0 +1,88 @@
+{
+  "expectations": [
+    {
+      "text": "The troubleshooting or error guide contains a table OR structured list mapping at least 3 error conditions to their causes or fixes, where entries specifically reference SlugError or ValueError (the actual exceptions in the codebase). A generic 'check your input' section without named exception types does NOT satisfy this.",
+      "passed": true,
+      "evidence": "TROUBLESHOOTING.md contains four named error sections, each with explicit cause/fix structure: (1) '### `ValueError: text must be a non-empty string`' — cause + fix code block; (2) '### `ValueError: text \\\"...\\\" produced an empty slug`' — cause + fix code block; (3) '### `SlugError: slug \\\"...\\\" is invalid: must match [a-z0-9]+(-[a-z0-9]+)*`' — cause + table of 5 input/problem pairs + fix code block; (4) '### `SlugError: slug length N exceeds maximum 255`' — cause + fix code block. All entries name the actual exception type (SlugError or ValueError) in the section heading."
+    },
+    {
+      "text": "The API reference documents ALL FIVE of these public symbols: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug. Each must appear as a named section heading or function entry. Missing any of the five does NOT satisfy this.",
+      "passed": true,
+      "evidence": "API_REFERENCE.md has all five as `###` section headings under '## Functions': '### `slugify`', '### `unslugify`', '### `batch_slugify`', '### `validate_slug`', '### `is_valid_slug`'. All five are present and each is its own named heading."
+    },
+    {
+      "text": "The quickstart or getting-started file contains code examples for AT LEAST 2 different supported languages — for example, a Russian (lang='ru') AND a Czech or German example, demonstrating the multilingual capability. A quickstart with only English examples does NOT satisfy this.",
+      "passed": true,
+      "evidence": "QUICKSTART.md section '### 2. Non-Latin scripts' contains a single code block with four language examples: `slugify(\"Привет мир\", lang=\"ru\")` (Russian), `slugify(\"Česká republika\", lang=\"cs\")` (Czech), `slugify(\"Über straße\", lang=\"de\")` (German), `slugify(\"İstanbul\", lang=\"tr\")` (Turkish). Russian + Czech alone satisfy the ≥2 requirement; all four are present."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 7,
+      "Bash": 4,
+      "Write": 3
+    },
+    "total_tool_calls": 14,
+    "total_steps": 28,
+    "errors_encountered": 0,
+    "output_chars": 15307,
+    "transcript_chars": 145816
+  },
+  "timing": {
+    "executor_duration_seconds": 124.765,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 124.765
+  },
+  "claims": [
+    {
+      "claim": "API_REFERENCE.md is 5.8 KB",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Write call content for API_REFERENCE.md is 5909 chars (~5.8 KB)."
+    },
+    {
+      "claim": "QUICKSTART.md is 3.3 KB",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Write call content for QUICKSTART.md is 3340 chars (~3.3 KB)."
+    },
+    {
+      "claim": "TROUBLESHOOTING.md is 6.0 KB",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Write call content for TROUBLESHOOTING.md is 6058 chars (~5.9 KB ≈ 6.0 KB)."
+    },
+    {
+      "claim": "All 5 public functions documented in API reference",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All five (slugify, unslugify, batch_slugify, validate_slug, is_valid_slug) appear as named ### headings in API_REFERENCE.md."
+    },
+    {
+      "claim": "TROUBLESHOOTING.md covers every error the library can raise",
+      "type": "quality",
+      "verified": true,
+      "evidence": "File covers ValueError (empty input, empty-slug result), SlugError (invalid pattern, length exceeded), and silent-failure modes in batch_slugify. Matches actual exceptions in codebase."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The quickstart or getting-started file contains code examples for AT LEAST 2 different supported languages",
+        "reason": "The assertion accepts any two language code appearances. A doc that mentions `lang='ru'` and `lang='cs'` in a table (not runnable code examples) would also pass. Consider requiring that the examples be in actual code blocks with real input text, not just a reference table. The current output does satisfy this at a high bar, but the assertion wording permits weaker solutions."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating. All three check specific named symbols/exceptions rather than generic presence, which prevents superficial compliance. The multilingual assertion could be tightened slightly as noted, but overall the eval suite is solid."
+  }
+}

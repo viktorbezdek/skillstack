@@ -1,0 +1,17 @@
+All three files were created successfully. Here's the list:
+
+```
+ADR-001-languages-module-separation.md
+CONTRIBUTING.md
+DOC-GAP-REGISTER.md
+```
+
+---
+
+**What each file contains:**
+
+**`ADR-001-languages-module-separation.md`** — Explains the decision to put transliteration tables in `languages.py`. Key drivers: the Russian table alone is 66 entries and would bury `core.py`; German uses expansion mappings (ä→ae) while Czech uses 1:1 stripping — mixing these conventions inline with pipeline logic hurts legibility. The ADR covers the `"en": {}` intentional empty entry, two rejected alternatives (inline and JSON files), and the derivation of `SUPPORTED_LANGUAGES` from the map's keys.
+
+**`CONTRIBUTING.md`** — Setup (Python ≥ 3.10, no runtime deps), test commands, project layout table, a step-by-step guide for adding a new language (only `languages.py` changes needed), language-specific notes distinguishing 1:1 stripping from digraph expansion from full script transliteration, code conventions, and a PR checklist.
+
+**`DOC-GAP-REGISTER.md`** — 12 gaps across P1/P2/P3, including two P1s: `is_valid_slug` being unexported/undocumented, and unknown `lang` codes silently falling through with no warning. P2 gaps cover missing `batch_slugify`/`unslugify` README examples, undocumented `max_length` truncation edge cases, and an unguarded multi-character separator bug in `validate_slug`. P3 gaps cover version drift between `__init__.py` and `pyproject.toml`, missing `py.typed` marker, and doctests not wired into pytest.

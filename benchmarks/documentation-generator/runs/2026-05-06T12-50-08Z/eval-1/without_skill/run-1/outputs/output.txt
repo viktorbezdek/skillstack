@@ -1,0 +1,17 @@
+All 9 files created. Here's the full portfolio:
+
+---
+
+**Files generated:**
+
+| File | Purpose |
+|------|---------|
+| `README.md` | Project overview, feature list, quick examples, API table, install |
+| `CHANGELOG.md` | Version history from 0.1.0 → 0.3.2 |
+| `CONTRIBUTING.md` | Setup, test instructions, how to add a new language |
+| `docs/quickstart.md` | 5-step getting-started guide with runnable examples |
+| `docs/api-reference.md` | Full reference for all 6 public symbols — parameters, return types, raises tables, examples |
+| `docs/languages.md` | Per-language description, full character-mapping tables, edge cases |
+| `docs/configuration.md` | Every tunable parameter, choosing values, reuse patterns, edge case table |
+| `docs/troubleshooting.md` | 8 named error scenarios, causes, and fixes |
+| `docs/architecture.md` | Internal data-flow diagram, module layout, design decisions |

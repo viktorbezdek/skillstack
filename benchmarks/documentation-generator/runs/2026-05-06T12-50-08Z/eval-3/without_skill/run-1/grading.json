@@ -1,0 +1,88 @@
+{
+  "expectations": [
+    {
+      "text": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections present as ## or ### headings in the same file: 'Status' AND 'Context' AND 'Decision' AND 'Consequences'. A file that has only 2 or 3 of these as headings does NOT satisfy this. The Status section must appear before Context in the file.",
+      "passed": false,
+      "evidence": "adr-001-languages-module-separation.md has '## Context', '## Decision', and '## Consequences' as headings, but 'Status' is formatted as bold text ('**Status:** Accepted'), NOT a ## or ### heading. Only 3 of the required 4 sections appear as headings."
+    },
+    {
+      "text": "A contributor guide or CONTRIBUTING.md file exists that explicitly covers ALL THREE of: (a) development environment setup (install/clone/virtualenv steps), (b) a code style or formatting standard (linting, formatting tool, or naming convention), AND (c) how to submit changes (PR process, branch naming, or commit message format). A CONTRIBUTING.md that covers only 1 or 2 of these does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md contains: (a) '## Local Setup' with git clone, python -m venv .venv, pip install -e \".[dev]\" steps; (b) '## Code Style' with type hints, Google-style docstrings, line length 99 chars, PEP 8; (c) '## Submitting a Pull Request' with branch naming (git checkout -b feat/...), conventional commit format, and PR workflow."
+    },
+    {
+      "text": "A gaps register, 'Known Gaps', 'Documentation Gaps', or 'Missing Documentation' section exists in at least one output file. It must contain at least one specific gap item (e.g. a doc type or topic that is not yet covered). The text 'No known gaps' also satisfies this IF it is followed by a date or version. A completely absent gaps section does NOT satisfy this.",
+      "passed": true,
+      "evidence": "doc-gap-register.md is a dedicated gap register with 15 documented gaps (GAP-001 through GAP-015), each including severity (HIGH/MEDIUM/LOW), location, description, and recommended action. First gap: GAP-001 'README is a stub' (HIGH severity)."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 1,
+      "Read": 7,
+      "Write": 3
+    },
+    "total_tool_calls": 11,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 1181,
+    "transcript_chars": 159371
+  },
+  "timing": {
+    "executor_duration_seconds": 134.301,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 134.301
+  },
+  "claims": [
+    {
+      "claim": "Three files were written: adr-001-languages-module-separation.md, CONTRIBUTING.md, doc-gap-register.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Three Write tool calls confirmed in transcript, each targeting the named files in /private/tmp/pilot-bench-87kn8edm/without/"
+    },
+    {
+      "claim": "ADR covers five rationale points and two rejected alternatives",
+      "type": "factual",
+      "verified": true,
+      "evidence": "ADR has '## Rationale' with 5 numbered subsections and '## Alternatives Considered' with 3 alternatives"
+    },
+    {
+      "claim": "doc-gap-register.md documents 15 gaps",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt states '15 documented gaps across user-facing and developer documentation'; transcript content confirms GAP-001 through at least GAP-004 with full detail visible"
+    },
+    {
+      "claim": "CONTRIBUTING.md includes a step-by-step 'adding a new language' workflow",
+      "type": "factual",
+      "verified": true,
+      "evidence": "CONTRIBUTING.md has '## Adding a New Language' section with numbered steps and code examples"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections present as ## or ### headings...",
+        "reason": "The assertion correctly catches the failure (bold text vs heading). This is a meaningful discriminating assertion — well written. No change needed."
+      },
+      {
+        "reason": "No assertion checks the quality or accuracy of ADR content — only structure. An ADR with correct headings but placeholder content ('TBD') would pass. Consider adding a content assertion (e.g., Consequences section must describe at least one trade-off or downside)."
+      },
+      {
+        "reason": "No assertion checks that the CONTRIBUTING.md code style section names a specific tool (ruff, black, flake8) or provides a runnable command. The current CONTRIBUTING.md says 'no linter is configured yet' — a genuinely weak code style section that still passes the assertion."
+      }
+    ],
+    "overall": "The ADR heading assertion is well-targeted and correctly caught a structural failure. The CONTRIBUTING.md and gaps assertions are satisfied with substantive content. The main coverage gap is content quality within sections — presence of headings alone doesn't guarantee actionable documentation."
+  }
+}

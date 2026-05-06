@@ -1,0 +1,9 @@
+Done. Files created in `/private/tmp/pilot-bench-6bsg2n6m/with/`:
+
+| File | Description |
+|------|-------------|
+| `README.md` | Full project README — installation, quick start, features table, supported languages, validation guide, error handling, API summary |
+| `docs/api-reference.md` | Complete API reference — all 6 public symbols with signatures, parameter tables, return types, exceptions, processing pipeline, and copy-paste examples |
+| `docs/architecture.md` | Architecture doc — module dependency graph, slug generation pipeline with rationale, validation regex design, language extensibility model, error strategy, repository layout, and key design decisions |
+| `docs/contributing.md` | Contribution guide — dev setup, running tests, how to add a new language (with transliteration table guidelines), code style, and PR workflow |
+| `CHANGELOG.md` | Version history from 0.1.0 to 0.3.2 inferred from the codebase |

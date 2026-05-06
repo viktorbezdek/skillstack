@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "skill_name": "documentation-generator",
+    "skill_path": "documentation-generator/skills/documentation-generator",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-06T13:07:42Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "documentation-generator",
+    "target_path": "documentation-generator/skills/documentation-generator"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 215.79,
+        "tokens": 594625,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "A file named 'architecture.md' or 'ARCHITECTURE.md' (at root or in a docs/ subdirectory) exists in the output. It must describe the system's module structure, component relationships, or key design decisions of the slugify-utils library. A generic README or API reference does NOT satisfy this \u2014 the file must be specifically about architecture, module organization, or system design.",
+          "passed": true,
+          "evidence": "Write tool call created /private/tmp/pilot-bench-6bsg2n6m/with/docs/architecture.md (6139 chars). Content covers: module responsibility table (core.py, validators.py, languages.py, __init__.py), a module dependency graph (ASCII tree), a 6-step slug generation pipeline with design rationale, validation regex design, error strategy table (ValueError vs SlugError), language extensibility model, repository structure, and an explicit 'Design Decisions' section. Clearly an architecture document, not a generic README."
+        },
+        {
+          "text": "A dedicated error or exception reference file exists that is SEPARATE from the main troubleshooting guide. Acceptable names: 'error-reference.md', 'exceptions.md', 'errors.md', 'error-handling.md', or similar. It must cover the library's exception types (SlugError, ValueError) with their triggers. A troubleshooting.md that combines errors with general how-to guidance does NOT satisfy this \u2014 the file must be focused specifically on exceptions/errors.",
+          "passed": false,
+          "evidence": "Only 5 files were written: README.md, docs/api-reference.md, docs/architecture.md, docs/contributing.md, CHANGELOG.md. None is named error-reference.md, exceptions.md, errors.md, or error-handling.md. SlugError and ValueError are documented inside docs/architecture.md (Error Strategy section) and mentioned in docs/api-reference.md, but there is no standalone dedicated error/exception reference file."
+        },
+        {
+          "text": "The documentation output contains AT LEAST 6 distinct markdown files (counting docs/ subdirectory files). A portfolio with only 3-4 files (README + api-reference + quickstart) does NOT satisfy this \u2014 the skill's multi-phase workflow produces broader coverage.",
+          "passed": false,
+          "evidence": "Exactly 5 markdown files were written via Write tool calls: README.md, docs/api-reference.md, docs/architecture.md, docs/contributing.md, CHANGELOG.md. The output.txt summary from the executor also lists these same 5 files with no others. 5 < 6, so this expectation is not met."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 124.765,
+        "tokens": 491215,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The troubleshooting or error guide contains a table OR structured list mapping at least 3 error conditions to their causes or fixes, where entries specifically reference SlugError or ValueError (the actual exceptions in the codebase). A generic 'check your input' section without named exception types does NOT satisfy this.",
+          "passed": true,
+          "evidence": "TROUBLESHOOTING.md contains four named error sections, each with explicit cause/fix structure: (1) '### `ValueError: text must be a non-empty string`' \u2014 cause + fix code block; (2) '### `ValueError: text \\\"...\\\" produced an empty slug`' \u2014 cause + fix code block; (3) '### `SlugError: slug \\\"...\\\" is invalid: must match [a-z0-9]+(-[a-z0-9]+)*`' \u2014 cause + table of 5 input/problem pairs + fix code block; (4) '### `SlugError: slug length N exceeds maximum 255`' \u2014 cause + fix code block. All entries name the actual exception type (SlugError or ValueError) in the section heading."
+        },
+        {
+          "text": "The API reference documents ALL FIVE of these public symbols: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug. Each must appear as a named section heading or function entry. Missing any of the five does NOT satisfy this.",
+          "passed": true,
+          "evidence": "API_REFERENCE.md has all five as `###` section headings under '## Functions': '### `slugify`', '### `unslugify`', '### `batch_slugify`', '### `validate_slug`', '### `is_valid_slug`'. All five are present and each is its own named heading."
+        },
+        {
+          "text": "The quickstart or getting-started file contains code examples for AT LEAST 2 different supported languages \u2014 for example, a Russian (lang='ru') AND a Czech or German example, demonstrating the multilingual capability. A quickstart with only English examples does NOT satisfy this.",
+          "passed": true,
+          "evidence": "QUICKSTART.md section '### 2. Non-Latin scripts' contains a single code block with four language examples: `slugify(\"\u041f\u0440\u0438\u0432\u0435\u0442 \u043c\u0438\u0440\", lang=\"ru\")` (Russian), `slugify(\"\u010cesk\u00e1 republika\", lang=\"cs\")` (Czech), `slugify(\"\u00dcber stra\u00dfe\", lang=\"de\")` (German), `slugify(\"\u0130stanbul\", lang=\"tr\")` (Turkish). Russian + Czech alone satisfy the \u22652 requirement; all four are present."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 172.613,
+        "tokens": 307040,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The ADR file contains 'Context', 'Decision', AND 'Consequences' as markdown headings (##, ###, or bold heading \u2014 any heading style). All three must be present in the same file. An ADR with only Context and Decision but no Consequences does NOT satisfy this.",
+          "passed": true,
+          "evidence": "adr-001-languages-module.md contains all three as level-2 headings: '## Context', '## Decision', and '## Consequences'. Extracted directly from the Write tool call writing /private/tmp/pilot-bench-szlpp7ti/with/adr-001-languages-module.md in the transcript."
+        },
+        {
+          "text": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: (a) how to set up a local development environment (clone + install steps), (b) code style or formatting requirements, AND (c) how to submit a pull request or change. A CONTRIBUTING.md covering only 1 or 2 of these three areas does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md written to /private/tmp/pilot-bench-szlpp7ti/with/CONTRIBUTING.md. Headings confirm: (a) '## Setup' with clone and editable install steps, (b) '## Code style' section, (c) '## Pull request checklist' section. All three required areas present."
+        },
+        {
+          "text": "A gap register, 'Documentation Gaps', or 'Known Gaps' file exists with AT LEAST 5 specific named gaps (not just headers). Each gap must describe a missing or incomplete piece of documentation. A gap register with only 1-2 entries or only high-level categories does NOT satisfy this.",
+          "passed": true,
+          "evidence": "doc-gap-register.md written to /private/tmp/pilot-bench-szlpp7ti/with/doc-gap-register.md. Contains 12 named gaps (GAP-001 through GAP-012 per output.txt summary). First 4000 chars show GAP-001 through GAP-006, each with a specific description, impact rating, and recommended fix. Well above the 5-gap minimum."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "time_seconds": 160.361,
+        "tokens": 649341,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "A file named 'architecture.md' or 'ARCHITECTURE.md' (at root or in a docs/ subdirectory) exists in the output. It must describe the system's module structure, component relationships, or key design decisions of the slugify-utils library. A generic README or API reference does NOT satisfy this \u2014 the file must be specifically about architecture, module organization, or system design.",
+          "passed": false,
+          "evidence": "find /tmp/pilot-bench-3woikiel/without confirms exactly 6 .md files: README.md, API_REFERENCE.md, CHANGELOG.md, CONTRIBUTING.md, docs/quickstart.md, docs/languages.md. No architecture.md or ARCHITECTURE.md exists anywhere in the output. Transcript search for 'architecture' returned only the init system line \u2014 no Write call for an architecture file was issued."
+        },
+        {
+          "text": "A dedicated error or exception reference file exists that is SEPARATE from the main troubleshooting guide. Acceptable names: 'error-reference.md', 'exceptions.md', 'errors.md', 'error-handling.md', or similar. It must cover the library's exception types (SlugError, ValueError) with their triggers. A troubleshooting.md that combines errors with general how-to guidance does NOT satisfy this \u2014 the file must be focused specifically on exceptions/errors.",
+          "passed": false,
+          "evidence": "The 6 files produced are README.md, API_REFERENCE.md, CHANGELOG.md, CONTRIBUTING.md, docs/quickstart.md, docs/languages.md. None matches any acceptable error-reference name. Transcript search for 'error-reference', 'exceptions.md', 'errors.md', 'error-handling.md', 'troubleshoot' returned only the init system line \u2014 no dedicated error/exception file was written. SlugError coverage appears only inside API_REFERENCE.md, not in a standalone file."
+        },
+        {
+          "text": "The documentation output contains AT LEAST 6 distinct markdown files (counting docs/ subdirectory files). A portfolio with only 3-4 files (README + api-reference + quickstart) does NOT satisfy this \u2014 the skill's multi-phase workflow produces broader coverage.",
+          "passed": true,
+          "evidence": "find /tmp/pilot-bench-3woikiel/without -name '*.md' lists exactly 6 files: /tmp/pilot-bench-3woikiel/without/README.md, /tmp/pilot-bench-3woikiel/without/API_REFERENCE.md, /tmp/pilot-bench-3woikiel/without/CHANGELOG.md, /tmp/pilot-bench-3woikiel/without/CONTRIBUTING.md, /tmp/pilot-bench-3woikiel/without/docs/quickstart.md, /tmp/pilot-bench-3woikiel/without/docs/languages.md. Transcript confirms 6 Write calls to .md files. Exactly meets the minimum of 6."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 101.06,
+        "tokens": 438001,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The troubleshooting or error guide contains a table OR structured list mapping at least 3 error conditions to their causes or fixes, where entries specifically reference SlugError or ValueError (the actual exceptions in the codebase). A generic 'check your input' section without named exception types does NOT satisfy this.",
+          "passed": true,
+          "evidence": "TROUBLESHOOTING.md has 5 named error sections under '## Errors', each with Cause and Fix subsections: (1) '### `ValueError: text must be a non-empty string`', (2) '### `ValueError: text \\'...\\' produced an empty slug`', (3) '### `SlugError: slug \\'...\\' is invalid: must match [a-z0-9]+(-[a-z0-9]+)*`', (4) '### `SlugError: slug length N exceeds maximum 255`', (5) '### `SlugError` when using a custom separator'. All entries name the specific exception type and provide concrete cause + fix."
+        },
+        {
+          "text": "The API reference documents ALL FIVE of these public symbols: slugify, unslugify, batch_slugify, validate_slug, is_valid_slug. Each must appear as a named section heading or function entry. Missing any of the five does NOT satisfy this.",
+          "passed": true,
+          "evidence": "API_REFERENCE.md contains all five as '###' section headings under '## Functions': '### `slugify`', '### `unslugify`', '### `batch_slugify`', '### `validate_slug`', '### `is_valid_slug`'. Each has a full signature block, parameter table, returns description, raises table, and examples."
+        },
+        {
+          "text": "The quickstart or getting-started file contains code examples for AT LEAST 2 different supported languages \u2014 for example, a Russian (lang='ru') AND a Czech or German example, demonstrating the multilingual capability. A quickstart with only English examples does NOT satisfy this.",
+          "passed": true,
+          "evidence": "QUICKSTART.md section '## Working with Non-English Text' contains code examples for four non-English languages: Russian (`slugify(\"\u041f\u0440\u0438\u0432\u0435\u0442 \u043c\u0438\u0440\", lang=\"ru\")`), German (`slugify(\"\u00dcber den D\u00e4chern\", lang=\"de\")`), Czech (`slugify(\"\u010ce\u0161tina je kr\u00e1sn\u00e1\", lang=\"cs\")`), and Turkish (`slugify(\"\u0130stanbul \u015fehri\", lang=\"tr\")`). Clearly exceeds the minimum of 2."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 193.201,
+        "tokens": 312328,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The ADR file contains 'Context', 'Decision', AND 'Consequences' as markdown headings (##, ###, or bold heading \u2014 any heading style). All three must be present in the same file. An ADR with only Context and Decision but no Consequences does NOT satisfy this.",
+          "passed": true,
+          "evidence": "adr-001-languages-module.md contains all three as ## headings: '## Context', '## Decision', and '## Consequences'. The Consequences section includes 'Positive' and 'Negative / Watch Points' subsections with substantive content about maintenance burden and API exposure issues."
+        },
+        {
+          "text": "A contributor guide or CONTRIBUTING.md file exists covering ALL THREE of: (a) how to set up a local development environment (clone + install steps), (b) code style or formatting requirements, AND (c) how to submit a pull request or change. A CONTRIBUTING.md covering only 1 or 2 of these three areas does NOT satisfy this.",
+          "passed": true,
+          "evidence": "CONTRIBUTING.md covers all three areas: (a) '## Development setup' section with explicit `git clone`, `python -m venv .venv`, and `pip install -e \".[dev]\"` steps; (b) '## Code style and conventions' section listed in Table of Contents; (c) '## Pull request checklist' section listed in Table of Contents. The file was written with a full Table of Contents confirming all sections exist."
+        },
+        {
+          "text": "A gap register, 'Documentation Gaps', or 'Known Gaps' file exists with AT LEAST 5 specific named gaps (not just headers). Each gap must describe a missing or incomplete piece of documentation. A gap register with only 1-2 entries or only high-level categories does NOT satisfy this.",
+          "passed": true,
+          "evidence": "doc-gap-register.md contains 15 documented gaps. Visible in transcript: GAP-001 (batch_slugify warns claim is false \u2014 no warnings.warn call exists), GAP-002 (unknown lang code silent fallback undocumented), GAP-003 (is_valid_slug not exported from public API), GAP-004 (SUPPORTED_LANGUAGES not exported), GAP-005 (validate_slug separator constraint undocumented), GAP-006 (no tests for validators.py), and 9 more. Each gap has a file reference, actual vs. documented behavior, impact, and fix suggestion."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.7767,
+        "stddev": 0.3868,
+        "min": 0.33,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 171.056,
+        "stddev": 45.5325,
+        "min": 124.765,
+        "max": 215.79
+      },
+      "tokens": {
+        "mean": 464293.3333,
+        "stddev": 145670.399,
+        "min": 307040.0,
+        "max": 594625.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.7767,
+        "stddev": 0.3868,
+        "min": 0.33,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 151.5407,
+        "stddev": 46.6995,
+        "min": 101.06,
+        "max": 193.201
+      },
+      "tokens": {
+        "mean": 466556.6667,
+        "stddev": 170311.5091,
+        "min": 312328.0,
+        "max": 649341.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+19.5",
+      "tokens": "-2263"
+    }
+  },
+  "notes": []
+}

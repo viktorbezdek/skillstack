@@ -1,0 +1,88 @@
+{
+  "expectations": [
+    {
+      "text": "A '## Target Audiences' section OR a table explicitly labelled 'Target Audiences' or 'Audiences' exists in at least one output file, containing a markdown table with AT LEAST 2 rows where each row names a distinct user type (e.g. 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator'). A section that only mentions 'developers' generically without distinct rows does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Grep for 'target audience', 'Library Consumer', 'Contributor', 'Maintainer', 'Integrator', 'user type' across all generated output files (README.md, docs/quickstart.md, docs/api-reference.md, docs/languages.md, docs/error-reference.md, docs/architecture.md, CHANGELOG.md, CONTRIBUTING.md) returned zero matches. The SKILL.md mandates producing this table in README.md or a dedicated docs/AUDIENCES.md, but the executor omitted it entirely. Matches found were only in the skill's own template files under .claude/, not in generated output."
+    },
+    {
+      "text": "A documentation plan, priority section, or structured doc index exists containing EXPLICIT priority markers — either P0/P1/P2, or must-have/should-have/nice-to-have, or Critical/Important/Optional — applied to at least 3 distinct documents. A flat list of documents without any priority notation does NOT satisfy this. Timing-only guidance like 'Read First: Yes' does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Grep for P0/P1/P2, must-have/should-have/nice-to-have, Critical/Important/Optional, and 'priority' across all generated output files (excluding .claude/) returned only two relevant matches: (1) analysis.json containing generic machine-generated 'priority': 'high'/'medium' fields — these are internal analysis data, not a documentation plan or doc index with priority markers applied to distinct documents; (2) docs/architecture.md line 103 with 'Optional[str]' in a Python type context — not a priority notation. No generated markdown file contains a structured doc backlog or priority section with P0/P1/P2 or equivalent markers applied to ≥3 documents."
+    },
+    {
+      "text": "At least one output file contains BOTH a '## Before You Begin' OR '## Prerequisites' section AND a '## What You Will Learn' OR '## Learning Objectives' OR '## By the end of this guide' section. Both sections must appear in the same file. A getting-started file with only prerequisites OR only learning objectives but not both does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Grep for 'before you begin', '## prerequisites', 'what you will learn', 'learning objectives', 'by the end of this guide' across all generated output files returned zero matches. The quickstart.md structure is: Install → Your First Slug → Common Patterns → Next Steps — no prerequisites or learning objectives sections. The SKILL.md explicitly notes that producing a Tutorial without '## Before You Begin' and '## What You Will Learn' is incomplete (line 423), but the executor did not include these sections in the generated quickstart."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3,
+    "pass_rate": 0.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Write": 8
+    },
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": null,
+    "transcript_chars": null,
+    "note": "No metrics.json found in outputs_dir. Write call count estimated from transcript scan. Transcript was 80263+ tokens — full tool call counts not enumerated."
+  },
+  "timing": {
+    "executor_duration_seconds": 175.795,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 175.795
+  },
+  "claims": [
+    {
+      "claim": "Documentation portfolio generated with files: README.md, CHANGELOG.md, CONTRIBUTING.md, docs/quickstart.md, docs/api-reference.md, docs/languages.md, docs/error-reference.md, docs/architecture.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All 8 files confirmed present at /private/tmp/pilot-bench-qg3jspas/with/ via directory listing"
+    },
+    {
+      "claim": "The skill produced comprehensive documentation covering all common patterns",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The skill's own SKILL.md mandates 4 mandatory deliverables — Audience table, Doc backlog with priorities, DQI score, Known Gaps register. None of these appear in the generated output. The generated docs cover content well (API reference, language tables, error hierarchy, architecture) but omit the structural planning artifacts the skill requires."
+    },
+    {
+      "claim": "quickstart.md covers all common patterns (blog URLs, multilingual, filenames, truncation, validation, batch, unslugify)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed in quickstart.md: sections for Blog post URLs, Multilingual content, File and directory names, Constrained-length slugs, Validating existing slugs, Processing lists, Reversing a slug"
+    },
+    {
+      "claim": "The executor followed the skill's planning phase (Phase 2: Personas, Stakeholder Priority, Prioritization)",
+      "type": "process",
+      "verified": false,
+      "evidence": "No Audience table, Doc backlog, or prioritized doc index appears in any output file. Phase 2 requires producing these planning artifacts. The executor appears to have skipped directly to writing content without completing the planning deliverables."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "A '## Target Audiences' section OR a table explicitly labelled 'Target Audiences' or 'Audiences' exists in at least one output file...",
+        "reason": "Strong discriminating assertion — passes only when the executor actually produces the mandatory planning artifact. Current wording is precise. Consider also requiring the table appear in a specific mandatory file (README.md or docs/AUDIENCES.md) to prevent the executor satisfying it by burying it in an obscure file."
+      },
+      {
+        "assertion": "A documentation plan, priority section, or structured doc index exists containing EXPLICIT priority markers...",
+        "reason": "Good discriminating assertion. The analysis.json false-positive risk is real — consider tightening to 'in a markdown (.md) file' to exclude machine-generated JSON data files."
+      },
+      {
+        "reason": "No assertion checks that the skill's DQI (Document Quality Index) score or Known Gaps register was produced — these are also mandatory deliverables per SKILL.md. Adding a check for a 'Known Gaps' or 'DQI' section would further validate skill compliance."
+      }
+    ],
+    "overall": "All three assertions are well-targeted and discriminating — the executor genuinely failed to produce the required planning artifacts, and all three FAILs reflect real gaps. The assertions correctly catch that the executor wrote content files but skipped the structural deliverables (audience table, priority backlog, tutorial scaffolding)."
+  }
+}

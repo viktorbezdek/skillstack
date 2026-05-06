@@ -1,0 +1,13 @@
+Documentation portfolio generated. Files created in the current directory:
+
+**Root level**
+- `README.md` — full feature overview, install, quick examples, supported languages table, API summary, error handling
+- `CHANGELOG.md` — version history from 0.1.0 through 0.3.2 with categorised entries
+- `CONTRIBUTING.md` — setup, test instructions, step-by-step guide for adding a language, PR checklist
+
+**`docs/`**
+- `docs/quickstart.md` — five-minute tutorial covering all common patterns (blog URLs, multilingual, filenames, truncation, validation, batch, unslugify)
+- `docs/api-reference.md` — full parameter tables, return types, exception tables, and examples for every public symbol (`slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`, `SlugError`), plus module layout
+- `docs/languages.md` — per-language transliteration tables (full Cyrillic mapping, Czech, German, Turkish), examples, and instructions for extending `TRANSLITERATION_MAPS`
+- `docs/error-reference.md` — exception hierarchy, all error messages, every trigger scenario, three defensive patterns
+- `docs/architecture.md` — module dependency graph, processing pipeline diagram, regex validation logic, and rationale for the key design decisions

@@ -1,0 +1,7 @@
+Three files written to `/private/tmp/pilot-bench-6vcjvefb/without/`:
+
+| File | Contents |
+|---|---|
+| `adr-001-languages-module.md` | ADR explaining why transliteration tables live in `languages.py` — covers separation of concerns, independent extensibility, reviewability, import graph clarity, testability, and upgrade path. Evaluates three rejected alternatives with reasoning. |
+| `CONTRIBUTING.md` | Contributor guide covering prerequisites, dev setup, project layout with module responsibility table, test commands, step-by-step language addition walkthrough, core-logic modification guidelines, code style rules, PR checklist, and release process. |
+| `doc-gap-register.md` | 15 documented gaps across P1/P2/P3 priorities. Three P1 blockers: `batch_slugify`'s false claim of emitting warnings, the silent no-op on unknown `lang` codes, and `is_valid_slug` missing from the public API. |

@@ -1,0 +1,13 @@
+All three files written to the current directory:
+
+```
+/private/tmp/pilot-bench-92jt_189/without/API_REFERENCE.md
+/private/tmp/pilot-bench-92jt_189/without/QUICKSTART.md
+/private/tmp/pilot-bench-92jt_189/without/TROUBLESHOOTING.md
+```
+
+**What's in each:**
+
+- **`API_REFERENCE.md`** — Full parameter tables, return types, exception tables, and examples for all 5 public functions (`slugify`, `unslugify`, `batch_slugify`, `validate_slug`, `is_valid_slug`) plus the `SlugError` exception and the language support table.
+- **`QUICKSTART.md`** — Installation, basic usage, multilingual examples for all 5 supported languages, custom separators, length limiting, batch processing, slug validation, and three common patterns (URL generation, form validation, deduplication).
+- **`TROUBLESHOOTING.md`** — All five distinct error/exception messages with root causes and fixes, unexpected output scenarios (wrong `lang`, truncation, empty `batch_slugify` results), `unslugify` casing edge cases, and integration notes for web frameworks and databases.

@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections present as ## or ### headings in the same file: 'Status' AND 'Context' AND 'Decision' AND 'Consequences'. A file that has only 2 or 3 of these as headings does NOT satisfy this. The Status section must appear before Context in the file.",
+      "passed": false,
+      "evidence": "ADR-001-languages-module-separation.md contains ## Context (line 10), ## Decision (line 31), and ## Consequences (line 54), but has NO '## Status' or '### Status' heading anywhere in the file. Regex search for /^#{1,3}\\s+Status/m returned index -1. Three of four required sections present; Status is absent."
+    },
+    {
+      "text": "A contributor guide or CONTRIBUTING.md file exists that explicitly covers ALL THREE of: (a) development environment setup (install/clone/virtualenv steps), (b) a code style or formatting standard (linting, formatting tool, or naming convention), AND (c) how to submit changes (PR process, branch naming, or commit message format). A CONTRIBUTING.md that covers only 1 or 2 of these does NOT satisfy this.",
+      "passed": true,
+      "evidence": "CONTRIBUTING.md was written to /private/tmp/pilot-bench-til0blwc/with/CONTRIBUTING.md and covers all three: (a) '## Development setup' section (lines 31-52) with git clone, python -m venv .venv, source .venv/bin/activate, and pip install -e steps; (b) '## Code conventions' section (line 160) covering ruff for formatting/linting; (c) '## Submitting a pull request' section (line 178) with PR process steps."
+    },
+    {
+      "text": "A gaps register, 'Known Gaps', 'Documentation Gaps', or 'Missing Documentation' section exists in at least one output file. It must contain at least one specific gap item (e.g. a doc type or topic that is not yet covered). The text 'No known gaps' also satisfies this IF it is followed by a date or version. A completely absent gaps section does NOT satisfy this.",
+      "passed": true,
+      "evidence": "DOC-GAP-REGISTER.md was written to /private/tmp/pilot-bench-til0blwc/with/DOC-GAP-REGISTER.md. It contains a '## Gaps' heading followed by at least 12 specific numbered gap items (G-001 through G-004+ visible, 25 bullet/numbered lines total). Examples: G-001 'is_valid_slug is undocumented and unexported · P1', G-002 'Unsupported language codes silently fall back · P1', G-003 'SUPPORTED_LANGUAGES not mentioned anywhere outside source · P2', G-004 'batch_slugify and unslugify absent from README · P2'."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "total": 3,
+    "pass_rate": 0.67
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Glob": 2,
+      "Read": 7,
+      "Write": 3,
+      "Bash": 1
+    },
+    "total_tool_calls": 13,
+    "total_steps": 13,
+    "errors_encountered": 0,
+    "output_chars": 1629,
+    "transcript_chars": 167830
+  },
+  "timing": {
+    "executor_duration_seconds": 166.524,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 166.524
+  },
+  "claims": [
+    {
+      "claim": "Three files were created: ADR-001-languages-module-separation.md, CONTRIBUTING.md, DOC-GAP-REGISTER.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Three Write tool calls confirmed at transcript entries 37, 40, 43 targeting those exact filenames."
+    },
+    {
+      "claim": "The ADR covers two rejected alternatives (inline and JSON files)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "ADR headings include '### Inline all tables in core.py' (line 93) and '### Store tables in JSON/TOML data files' (line 101)."
+    },
+    {
+      "claim": "DOC-GAP-REGISTER.md contains 12 gaps across P1/P2/P3",
+      "type": "factual",
+      "verified": true,
+      "evidence": "File has 25 bullet/numbered lines and P1/P2/P3 priority labels visible in the first 60 lines. G-001 and G-002 are P1; G-003 and G-004 are P2."
+    },
+    {
+      "claim": "The ADR uses ADR format (implied by output.txt description)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "ADR format requires Status, Context, Decision, Consequences. The file is missing Status, so it does not fully conform to standard ADR format."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "At least one file uses Architecture Decision Record format with ALL FOUR of these sections...",
+        "reason": "The assertion is well-discriminating and correctly caught a real deficiency. Consider adding a positive example of the expected heading text in the assertion (e.g., '## Status\\nAccepted') so the executor's model has a concrete target rather than relying on general ADR knowledge."
+      },
+      {
+        "reason": "No assertion checks the content quality of CONTRIBUTING.md's code style section — a one-line mention of 'use ruff' would pass the same as a full style guide. Consider requiring at least one concrete example (e.g., a specific ruff rule, a naming convention example, or a command)."
+      }
+    ],
+    "overall": "Assertions are appropriately strict (ALL FOUR / ALL THREE language caught real omissions). The ADR assertion correctly identified the missing Status section. Minor improvement opportunity: content-depth checks on CONTRIBUTING code-style coverage."
+  }
+}
