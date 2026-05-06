@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**56** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
+**57** expert plugins covering development, DevOps, testing, design, strategy, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **56** plugins · **8** categories · **10** collections · MIT License
+> **57** plugins · **8** categories · **10** collections · MIT License
 
 ---
 
@@ -25,11 +25,11 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 56 plugins</summary>
+<summary><strong>SkillStack</strong> — 57 plugins</summary>
 
-> The complete SkillStack library — 56 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
+> The complete SkillStack library — 57 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `osint`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`, `workflow-automation`
 </details>
 
 <details>

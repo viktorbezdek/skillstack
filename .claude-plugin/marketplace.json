@@ -65,7 +65,7 @@
     {
       "name": "brainstorm-swarm",
       "source": "./brainstorm-swarm",
-      "description": "Run a parallel persona-swarm interview to brainstorm any complex decision — feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping).",
+      "description": "Run a parallel persona-swarm interview to brainstorm any complex decision \u2014 feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping).",
       "version": "1.1.0",
       "category": "agent-architecture",
       "tags": [
@@ -670,7 +670,7 @@
     {
       "name": "storytelling",
       "source": "./storytelling",
-      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kishōtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
+      "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "version": "1.0.1",
       "category": "design",
       "tags": [
@@ -703,7 +703,7 @@
     {
       "name": "technical-copywriting",
       "source": "./technical-copywriting",
-      "description": "Five composable skills for writing long-form technical content for an audience — articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract, the AI-prose-tell catalog with banned words like delve / underscore / pivotal / leverage and humanization substitutions), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay — and when humanizing AI-generated prose. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
+      "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract, the AI-prose-tell catalog with banned words like delve / underscore / pivotal / leverage and humanization substitutions), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay \u2014 and when humanizing AI-generated prose. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
       "version": "1.1.0",
       "category": "documentation",
       "tags": [
@@ -827,6 +827,20 @@
         "ci-cd",
         "orchestration",
         "release-management"
+      ]
+    },
+    {
+      "name": "osint",
+      "source": "./osint",
+      "description": "Systematic intelligence gathering on individuals \u2014 from name or handle to scored dossier with psychoprofile, career map, confidence grades, 55+ Apify actors, swarm mode.",
+      "version": "1.0.0",
+      "category": "research",
+      "tags": [
+        "osint",
+        "research",
+        "intelligence",
+        "psychoprofile",
+        "due-diligence"
       ]
     }
   ]

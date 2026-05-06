@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Run OSINT on Alex Mercer, CTO at DataFlow Inc. LinkedIn: linkedin.com/in/alexmercer. Check what you can find.",
+    "files": [],
+    "expected_behavior": "Should run Phase 0 (diagnose.sh tooling check), then Phase 1 (Level 1 parallel search using Perplexity sonar + Brave + Tavily + Exa), proceed to Phase 1.5 (check internal intelligence sources), then Phase 2 (platform extraction starting with LinkedIn via apify.sh). Should cross-reference facts in Phase 3 with confidence grades A/B/C/D. Should build psychoprofile in Phase 4. Should run Phase 5 completeness check with Depth Score. Must output final dossier using templates/dossier-template.md structure with bullet lists (no markdown tables). Must not exceed $0.50 budget without asking. Must include Depth Score, source count, and total cost in output."
+  },
+  {
+    "query": "пробей @ivan_blogger — ведёт телеграм канал про маркетинг, есть инстаграм. Нужно понять кто это перед переговорами.",
+    "files": [],
+    "expected_behavior": "Should understand the Russian trigger пробей and switch to Russian language for the dossier output. Should check Telegram channel (web_fetch t.me/s/ivan_blogger) as primary source. Should search for Instagram profile. Should run internal intelligence check for Telegram history. Dossier должен быть на русском языке. Must include из переписки section if Telegram history available. Should apply psychoprofile analysis especially from Telegram channel content. Must follow templates/dossier-template.md structure. Should identify approach strategy (entry points) since pre-negotiation context was given."
+  },
+  {
+    "query": "Add Instagram data to existing dossier. We already know: Dr. Sarah Williams, Professor at MIT, age 45. Need Instagram profile analysis.",
+    "files": [],
+    "expected_behavior": "Should route to Phase 2 only (not full cycle) since context says existing dossier. Should use apify.sh instagram as primary tool. Should search for Instagram handle using web_search site:instagram.com 'Sarah Williams MIT'. Should run instagram-tagged-scraper for social graph. Should extract engagement rate, style signals, content analysis. Should NOT restart full pipeline — just enrich the existing dossier with Instagram data. Should note if no Instagram found with explicit gap statement."
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "query": "osint John Smith CEO at Acme Corp",
+    "should_trigger": true,
+    "note": "canonical trigger word + person + role"
+  },
+  {
+    "query": "пробей @ivan_petrov telegram",
+    "should_trigger": true,
+    "note": "Russian trigger word with handle"
+  },
+  {
+    "query": "research person Jane Doe LinkedIn https://linkedin.com/in/janedoe",
+    "should_trigger": true,
+    "note": "explicit research person phrase"
+  },
+  {
+    "query": "find everything about Alex Johnson founder of TechStartup",
+    "should_trigger": true,
+    "note": "find everything about phrase"
+  },
+  {
+    "query": "due diligence on Maria Garcia before the meeting",
+    "should_trigger": true,
+    "note": "due diligence phrase"
+  },
+  {
+    "query": "background check on @crypto_whale_99",
+    "should_trigger": true,
+    "note": "background check phrase with handle"
+  },
+  {
+    "query": "digital footprint of Dr. Sarah Williams professor MIT",
+    "should_trigger": true,
+    "note": "digital footprint phrase"
+  },
+  {
+    "query": "build dossier on Pavel Ivanov CTO at FinTech Ltd",
+    "should_trigger": true,
+    "note": "build dossier phrase"
+  },
+  {
+    "query": "досье на Николай Сидоров директор компании",
+    "should_trigger": true,
+    "note": "Russian досье phrase"
+  },
+  {
+    "query": "разведка по человеку перед переговорами",
+    "should_trigger": true,
+    "note": "Russian разведка phrase"
+  },
+  {
+    "query": "найди всё про @techblogger на ютубе",
+    "should_trigger": true,
+    "note": "Russian найди всё phrase"
+  },
+  {
+    "query": "профиль человека Анна Козлова инстаграм",
+    "should_trigger": true,
+    "note": "Russian профиль человека phrase"
+  },
+  {
+    "query": "кто это: @mysterious_dev_777",
+    "should_trigger": true,
+    "note": "Russian кто это phrase with handle"
+  },
+  {
+    "query": "profile someone from this email john@company.com",
+    "should_trigger": true,
+    "note": "profile someone phrase with email"
+  },
+  {
+    "query": "who is this person: instagram.com/some_user",
+    "should_trigger": true,
+    "note": "who is this person with URL"
+  },
+  {
+    "query": "research Elon Musk social media presence",
+    "should_trigger": true,
+    "note": "research phrase on known individual"
+  },
+  {
+    "query": "собери информацию о докладчике конференции",
+    "should_trigger": true,
+    "note": "Russian collect info phrase"
+  },
+  {
+    "query": "competitive analysis of Stripe vs Adyen payment platforms",
+    "should_trigger": false,
+    "note": "company vs company — NOT for, no named individual"
+  },
+  {
+    "query": "market research for SaaS product in HR space",
+    "should_trigger": false,
+    "note": "market research — NOT for"
+  },
+  {
+    "query": "scrape all reviews from TripAdvisor for hotels in Paris",
+    "should_trigger": false,
+    "note": "general web scraping without individual target — NOT for"
+  },
+  {
+    "query": "write a blog post about cybersecurity trends",
+    "should_trigger": false,
+    "note": "content generation — NOT for"
+  },
+  {
+    "query": "analyze competitor product features vs ours",
+    "should_trigger": false,
+    "note": "competitive analysis — NOT for"
+  },
+  {
+    "query": "find all companies in the fintech space in Germany",
+    "should_trigger": false,
+    "note": "company research without named person — NOT for"
+  }
+]
