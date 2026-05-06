@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - bump to v1.1.0 — surface canonical names + Arc taxonomy at top of swarm-protocol SKILL.md, add benchmark evidence
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ## [1.0.0] - 2026-04-28
 
 ### Added
