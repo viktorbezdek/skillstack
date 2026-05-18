@@ -4,10 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.24] - 2026-04-18
+## [1.1.24] - 2026-05-18
 
 ### Changed
 
+- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - condense anti-patterns into table, add missing anti-patterns (resource limits, unpinned actions), remove trailing blank lines

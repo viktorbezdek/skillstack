@@ -4,10 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.25] - 2026-04-18
+## [1.1.25] - 2026-05-18
 
 ### Changed
 
+- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - rewrite SKILL.md removing fabricated MoAI/Context7 classes, add review type decision tree, priority levels, structured review checklist, 8 concrete anti-patterns, proper trigger description with NOT clause

@@ -4,7 +4,7 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.2.0] - 2026-04-28
+## [1.2.0] - 2026-05-18
 
 ### Added
 
@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
 
 ## [1.1.1] - 2026-04-18

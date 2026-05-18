@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.0.1] - 2026-05-06
 
+### Changed
+
+- update plugin changelogs [skip ci]
+
 ### Fixed
 
 - fix plugin.json schema — author as object, drop invalid skills field, bump to 1.0.1

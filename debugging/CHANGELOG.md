@@ -4,10 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.27] - 2026-04-28
+## [1.1.27] - 2026-05-18
 
 ### Changed
 
+- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
 - misc cleanup and add .nvmrc
 - add per-plugin changelog generation workflow

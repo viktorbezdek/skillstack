@@ -4,10 +4,11 @@ All notable changes to this plugin will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [1.1.16] - 2026-04-18
+## [1.1.16] - 2026-05-18
 
 ### Changed
 
+- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
 - add per-plugin changelog generation workflow
 - add When to Use/Not sections, technique selection decision tree, expand anti-patterns with solutions table
