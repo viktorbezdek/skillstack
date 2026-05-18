@@ -1,6 +1,6 @@
 ---
 name: context-degradation
-description: Diagnosing context FAILURES — lost-in-middle, poisoning, distraction, confusion, and clash patterns with empirical thresholds by model. Use when the user asks to "diagnose context problems", "fix lost-in-middle issues", "debug agent failures", "understand context poisoning", or mentions context degradation, context clash, or agent performance degradation. NOT for learning context basics or theory (use context-fundamentals), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache optimization or partitioning (use context-optimization), NOT for building isolated multi-agent architectures (use multi-agent-patterns).
+description: Diagnosing context FAILURES — lost-in-middle, poisoning, distraction, confusion, and clash patterns with model-agnostic measurement workflows. Use when the user asks to "diagnose context problems", "fix lost-in-middle issues", "debug agent failures", "understand context poisoning", or mentions context degradation, context clash, or agent performance degradation. NOT for learning context basics or theory (use context-fundamentals), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache optimization or partitioning (use context-optimization), NOT for building isolated multi-agent architectures (use multi-agent-patterns).
 ---
 
 # Context Degradation Patterns
@@ -41,7 +41,7 @@ What degradation symptom are you seeing?
 │   ├── From version conflicts -> Context Clash (version filtering)
 │   └── From different perspectives -> Context Clash (explicit conflict marking)
 └── Performance degrades as context grows
-    └── See Empirical Thresholds -> Choose mitigation from Four-Bucket Approach
+    └── Measure local degradation curve -> Choose mitigation from Four-Bucket Approach
 ```
 
 ## Five Degradation Patterns
@@ -80,25 +80,31 @@ Accumulated information directly conflicts — different sources contradict, out
 
 **Resolution:** Explicit conflict marking requesting clarification. Priority rules establishing source precedence. Version filtering excluding outdated information.
 
-## Empirical Thresholds by Model
+## Measuring Degradation Thresholds
 
-| Model | Degradation Onset | Severe Degradation | Notes |
-|-------|-------------------|-------------------|-------|
-| GPT-5.2 | ~64K tokens | ~200K tokens | Best degradation resistance with thinking mode |
-| Claude Opus 4.5 | ~100K tokens | ~180K tokens | 200K context window, strong attention management |
-| Claude Sonnet 4.5 | ~80K tokens | ~150K tokens | Optimized for agents and coding tasks |
-| Gemini 3 Pro | ~500K tokens | ~800K tokens | 1M context window, native multimodality |
-| Gemini 3 Flash | ~300K tokens | ~600K tokens | 3x speed improvement, 81.2% MMMU-Pro |
+Do not rely on hard-coded model threshold tables. Context behavior changes across model versions, serving configurations, reasoning modes, retrieval quality, and task type. Measure the degradation curve for the actual model and workflow.
 
-**Key finding:** Only 50% of models claiming 32K+ context maintain satisfactory performance at 32K tokens (RULER benchmark). Needle-in-haystack test scores do not predict real long-context understanding.
+### Local Measurement Protocol
 
-### Model-Specific Failure Modes
+| Step | What to Do | Output |
+|------|------------|--------|
+| 1. Establish baseline | Run 10-20 representative tasks with lean context | Baseline success rate, latency, token cost |
+| 2. Add controlled context | Repeat at increasing context sizes with relevant, neutral, and distracting material | Success rate by context size |
+| 3. Vary placement | Put critical facts at beginning, middle, and end | Placement sensitivity |
+| 4. Add conflict tests | Insert outdated or contradictory facts with source labels | Context clash behavior |
+| 5. Set triggers | Pick compression/isolation thresholds before quality drops materially | Operational thresholds |
 
-| Model | Failure Mode | Mitigation |
-|-------|-------------|------------|
-| Claude 4.5 series | Tends to refuse/ask clarification rather than fabricate | Lower hallucination risk; may stall on ambiguous tasks |
-| GPT-5.2 | Thinking mode reduces hallucination but increases latency | Use thinking mode for high-stakes tasks, instant for speed |
-| Gemini 3 Pro/Flash | Native multimodality across 1M context | Leverage for multi-modal reasoning; still degrades at scale |
+**Key finding:** Long advertised context windows do not guarantee long-context understanding. Needle-in-haystack scores are useful smoke tests, but they do not predict performance on messy retrieved documents, tool logs, or evolving task state.
+
+### Versioned Threshold Register
+
+When thresholds matter, keep a dated local register instead of embedding global claims:
+
+```markdown
+| Date | Model/config | Task suite | Degradation trigger | Severe trigger | Mitigation |
+|------|--------------|------------|---------------------|----------------|------------|
+| YYYY-MM-DD | model + reasoning mode | repo triage v3 | 65% success | 40% success | compact at N tokens |
+```
 
 ## Counterintuitive Findings
 
@@ -129,12 +135,12 @@ Accumulated information directly conflicts — different sources contradict, out
 | Anti-Pattern | Problem | Solution |
 |---|---|---|
 | Assuming larger context = better performance | Larger contexts create new problems; degradation is non-linear | Monitor context length vs performance; find your model's degradation onset and compress before it |
-| No degradation monitoring | Failures appear silently; no early warning before quality drops | Track context length and task success rate; set alerts at model-specific degradation thresholds |
+| No degradation monitoring | Failures appear silently; no early warning before quality drops | Track context length and task success rate; set alerts at locally measured thresholds |
 | Loading all retrieved docs without filtering | Single irrelevant document causes measurable degradation | Apply relevance filtering before loading; use JIT retrieval instead of pre-loading |
 | Ignoring context placement | Critical info buried in middle gets 10-40% lower recall | Place critical information at context edges; use headers for navigation |
 | Keeping outdated information in context | Version conflicts cause context clash | Implement version filtering; explicitly mark and remove superseded information |
 | No poisoning recovery plan | Once poisoned, errors compound with no escape path | Define truncation points, explicit marking protocols, and clean-restart procedures |
-| Treating all models the same | Different models have different degradation thresholds and failure modes | Match model selection to task context length requirements; see empirical thresholds table |
+| Treating all models the same | Different models and configurations degrade differently | Match model selection to task context length requirements; measure with the local protocol above |
 | Pre-loading "just in case" | Pre-loaded context that isn't needed creates distraction | Use JIT loading; load context only when the task requires it |
 
 ## Guidelines

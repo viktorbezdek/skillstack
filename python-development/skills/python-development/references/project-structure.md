@@ -27,7 +27,7 @@ A well-organized project structure is the foundation of maintainable Python code
 
 ## Modern Standard: src/ Layout
 
-The **src/ layout** is the modern standard for Python packages intended for distribution. As of 2024-2025, the official Python Packaging User Guide tutorial uses and recommends this structure.
+The **src/ layout** is the modern standard for Python packages intended for distribution. As of current, the official Python Packaging User Guide tutorial uses and recommends this structure.
 
 ### Why src/ Layout?
 

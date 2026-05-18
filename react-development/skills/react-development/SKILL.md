@@ -9,7 +9,7 @@ Build production-grade React with proper architecture, optimized hooks, and qual
 
 ## When to Use This Skill
 
-- Building React applications with Next.js App Router
+- Building React applications, component libraries, and client-side UI flows
 - Creating reusable component libraries with shadcn/ui or fpkit
 - Optimizing React hooks usage and eliminating anti-patterns
 - Auditing React codebase quality with Bulletproof React
@@ -29,8 +29,8 @@ Build production-grade React with proper architecture, optimized hooks, and qual
 ```
 What are you building?
 |
-+-- Full-stack Next.js app?
-|   --> 5-Layer Architecture (Section 1)
++-- React application or feature area?
+|   --> Component/State Architecture (Section 1)
 |
 +-- Component library?
 |   +-- shadcn/ui? --> CVA Variants + Radix Primitives (Section 2)
@@ -50,46 +50,50 @@ What are you building?
 
 ---
 
-## Section 1: Next.js Architecture
+## Section 1: React Application Architecture
 
-### 5-Layer Architecture
+Use this section for React-side organization: components, hooks, state, and client data access. If the work involves Next.js routing, Server Components, Server Actions, cache behavior, or SSR boundaries, switch to `nextjs-development`.
+
+### 4-Layer Client Architecture
 
 ```
-Types --> Services --> Hooks --> Components --> Pages
+Types --> Services --> Hooks --> Components
 
 src/
   types/           # TypeScript interfaces (database.types.ts)
-  lib/services/    # Server-side data access (users.service.ts)
+  services/        # Client-safe API wrappers (users.service.ts)
   hooks/           # Client-side data hooks (use-users.ts)
   components/      # UI components (user-card.tsx)
-  app/             # Routes and pages (app/users/page.tsx)
+  pages/ or routes/ # Framework-specific route integration, if present
 ```
 
 ### Key Patterns
 
-**Services Layer** (Server-side only):
+**Services Layer** (client-safe API wrapper):
 ```typescript
-// lib/services/users.service.ts
-import { createClient } from '@/lib/supabase/server'
+// services/users.service.ts
+export interface User {
+  id: string
+  name: string
+}
 
 export async function getUsers() {
-  const supabase = await createClient()
-  const { data, error } = await supabase.from('users').select('*')
-  if (error) throw error
-  return data
+  const response = await fetch('/api/users')
+  if (!response.ok) throw new Error('Failed to load users')
+  return response.json() as Promise<User[]>
 }
 ```
 
 **Hooks Layer** (Client-side):
 ```typescript
 // hooks/use-users.ts
-'use client'
 import { useQuery } from '@tanstack/react-query'
+import { getUsers } from '@/services/users.service'
 
 export function useUsers() {
   return useQuery({
     queryKey: ['users'],
-    queryFn: () => fetch('/api/users').then(r => r.json())
+    queryFn: getUsers
   })
 }
 ```
@@ -204,7 +208,7 @@ Only use `useMemo`/`useCallback` when:
 ## Best Practices Summary
 
 ### Do
-- Use the 5-layer architecture for Next.js apps
+- Separate API services, hooks, and presentation components
 - Calculate derived values during render (not in effects)
 - Handle user actions in event handlers
 - Use React Query/SWR for server state

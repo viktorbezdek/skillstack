@@ -13,6 +13,7 @@ TITLE_OVERRIDES = {
     "api": "API", "bdi": "BDI", "cicd": "CI/CD", "finops": "FinOps",
     "mcp": "MCP", "nextjs": "Next.js", "tdd": "TDD", "ux": "UX",
     "ui": "UI", "devops": "DevOps", "grpc": "gRPC", "graphql": "GraphQL",
+    "osint": "OSINT",
 }
 
 
@@ -42,12 +43,14 @@ def main():
         by_cat.setdefault(p.get("category", "other"), []).append(p)
 
     cat_order = ["development", "devops", "quality", "context-engineering",
-                 "agent-architecture", "thinking", "design", "documentation", "other"]
+                 "agent-architecture", "thinking", "design", "documentation",
+                 "research", "other"]
     cats = sorted(by_cat.keys(), key=lambda c: (cat_order.index(c) if c in cat_order else 100, c))
     emoji = {
         "development": "\U0001f4bb", "devops": "\u2699\ufe0f", "quality": "\u2705",
         "context-engineering": "\U0001f9e0", "agent-architecture": "\U0001f916",
         "thinking": "\U0001f4a1", "design": "\U0001f3a8", "documentation": "\U0001f4da",
+        "research": "\U0001f50e",
         "other": "\U0001f4cc"
     }
 
@@ -60,7 +63,7 @@ def main():
     w("**Battle-tested skills for Claude Code.**")
     w("")
     w(f"**{len(active_plugins)}** expert plugins covering development, DevOps, testing, "
-      "design, strategy, context engineering, and agent architecture.")
+      "design, strategy, research, context engineering, and agent architecture.")
     w("")
     w(f"**[Browse the catalog]({PAGES_URL})** \u00b7 "
       f"**[Install](#quick-start)** \u00b7 "
@@ -97,7 +100,8 @@ def main():
             cd = col.get("description", "").strip()
             cp = col.get("plugin_ids", [])
             w("<details>")
-            w(f"<summary><strong>{cn}</strong> \u2014 {len(cp)} plugins</summary>")
+            plugin_word = "plugin" if len(cp) == 1 else "plugins"
+            w(f"<summary><strong>{cn}</strong> \u2014 {len(cp)} {plugin_word}</summary>")
             w("")
             w(f"> {cd}")
             w("")

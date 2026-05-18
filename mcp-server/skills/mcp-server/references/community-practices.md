@@ -358,7 +358,7 @@ USE_CASES:
 - Can it handle multiple simultaneous tool calls?
 - Does it recover if a tool crashes?
 - Are tool descriptions clear enough that the model chooses the right tool?
-- Does it work with different AI models (Claude, GPT-4)?
+- Does it work with different AI models (Claude, GPT-family models)?
 
 ### Early Feedback Loop
 
@@ -435,7 +435,7 @@ async def stream_large_file(path: str):
 
 PLATFORM: Anthropic Claude Desktop STATUS: Native MCP support INTEGRATION: Built-in, no adapter needed CONFIG: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
-PLATFORM: OpenAI GPT-4/ChatGPT STATUS: Community adapters INTEGRATION: Via bridge libraries EXAMPLES:
+PLATFORM: OpenAI GPT-family/ChatGPT STATUS: Community adapters INTEGRATION: Via bridge libraries EXAMPLES:
 
 - Glama Chat with MCP support
 - LobeChat MCP integration
@@ -523,7 +523,7 @@ Use "planner" LLM that breaks requests into steps, and specialist MCP servers to
 ```text
 User Request
     ↓
-Planner LLM (GPT-4 / Claude)
+Planner LLM (GPT-family / Claude)
     ↓
 [Step 1] → MCP Server A
 [Step 2] → MCP Server B
@@ -723,6 +723,6 @@ MANDATORY_PRACTICES:
    - The model must verify tool schemas before deployment
 
 5. COMPATIBILITY:
-   - The model must provide OpenAI function schemas when targeting GPT-4
+   - The model must provide OpenAI function schemas when targeting GPT-family models
    - The model must configure transport per platform requirements
    - The model must follow platform-specific config formats

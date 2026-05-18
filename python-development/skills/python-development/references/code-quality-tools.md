@@ -1,6 +1,6 @@
 # Python Code Quality Tools
 
-Comprehensive guide to code quality tools for Python projects (2024-2025), covering linting, formatting, type checking, security scanning, and automation.
+Comprehensive guide to code quality tools for Python projects (current), covering linting, formatting, type checking, security scanning, and automation.
 
 **Official Documentation:**
 
@@ -29,7 +29,7 @@ Comprehensive guide to code quality tools for Python projects (2024-2025), cover
 
 ## Tool Ecosystem Overview
 
-### Modern Python Code Quality Stack (2024-2025)
+### Modern Python Code Quality Stack (current)
 
 The recommended modern stack for Python code quality:
 

@@ -418,7 +418,7 @@ When the user reports high coverage but low confidence ("my tests pass but bugs 
 - **[Test-Driven Development](../test-driven-development/)** -- The Red-Green-Refactor methodology that uses these frameworks (complementary)
 - **[Python Development](../python-development/)** -- Python-specific testing with pytest, fixtures, and parametrization
 - **[React Development](../react-development/)** -- React component testing patterns with hooks and architecture
-- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline configuration beyond testing -- deployment, infrastructure, and release automation
+- **[CI/CD Pipelines](../cicd-pipelines/)** -- Pipeline configuration beyond testing -- deployment, infrastructure, and security gates
 - **[Code Review](../code-review/)** -- Review test quality and coverage as part of PR reviews
 
 ---

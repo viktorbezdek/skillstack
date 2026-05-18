@@ -1,12 +1,12 @@
 ---
 name: cicd-pipelines
-description: CI/CD pipeline design and DevOps automation — use when the user mentions GitHub Actions, GitLab CI, Jenkins, Terraform, infrastructure as code, DevSecOps, ArgoCD, Kubernetes manifests, or pipeline configuration YAML. NOT for automating release workflows or orchestration (use workflow-automation), NOT for Docker containers or Dockerfiles (use docker-containerization), NOT for git branching or commits (use git-workflow).
+description: CI/CD pipeline design and DevOps automation — use when the user mentions GitHub Actions, GitLab CI, Jenkins, Terraform, infrastructure as code, DevSecOps, ArgoCD, Kubernetes deployment automation, or pipeline configuration YAML. NOT for release orchestration or semantic-release workflows (use git-workflow), NOT for Docker containers or Dockerfiles (use docker-containerization), NOT for git branching or commits (use git-workflow).
 license: MIT
 ---
 
 # CI/CD Pipelines - Comprehensive DevOps Skill
 
-A unified skill for CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, security scanning, and enterprise release management across all major platforms.
+A unified skill for CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness across major platforms.
 
 ## When to Use This Skill
 
@@ -24,21 +24,23 @@ Use this skill when:
 ### DevSecOps & Security
 - Securing pipelines (secrets, OIDC, supply chain)
 - Implementing security scanning (SAST, DAST, SCA)
-- Container vulnerability scanning
+- Container image vulnerability scanning inside a pipeline
 - Secret detection and management
 - Enterprise readiness assessment (OpenSSF compliance)
 
 ### Infrastructure as Code
 - Terraform module development
 - CloudFormation/CDK templates
-- Kubernetes manifests and Helm charts
+- Deploying Kubernetes manifests and Helm charts from CI/CD
 - GitOps workflows (ArgoCD, Flux)
 
-### Container Orchestration
-- Docker multi-stage builds
-- Kubernetes deployments
-- Container registry management
-- Service mesh configuration
+### Container Pipeline Integration
+- Building and signing container images from an existing Dockerfile
+- Publishing to registries from CI/CD
+- Scanning container images with tools such as Trivy or Snyk
+- Deploying containerized services through GitOps
+
+For Dockerfile design, Docker Compose, local container environments, or container runtime architecture, switch to `docker-containerization`.
 
 ### Release Management
 - Semantic versioning automation
@@ -56,7 +58,7 @@ What are you building?
 +-- Node.js/Frontend --> templates/github-actions/node-ci.yml | templates/gitlab-ci/node-ci.yml
 +-- Python --> templates/github-actions/python-ci.yml | templates/gitlab-ci/python-ci.yml
 +-- Go --> templates/github-actions/go-ci.yml | templates/gitlab-ci/go-ci.yml
-+-- Docker Image --> templates/github-actions/docker-build.yml | templates/gitlab-ci/docker-build.yml
++-- Container image pipeline --> templates/github-actions/docker-build.yml | templates/gitlab-ci/docker-build.yml
 +-- Security Scanning --> templates/github-actions/security-scan.yml | templates/gitlab-ci/security-scan.yml
 ```
 
@@ -116,11 +118,11 @@ steps:
 |--------|---------------------|
 | **CI/CD Platforms** | GitHub Actions, GitLab CI, Jenkins |
 | **Infrastructure as Code** | Terraform, AWS CDK, CloudFormation, Pulumi |
-| **Containers** | Docker, Kubernetes, Helm, Kustomize |
+| **Container Pipeline Integration** | Image build/publish steps, Trivy/Snyk scanning, Cosign signing, Kubernetes/Helm deploy jobs |
 | **GitOps** | ArgoCD, Flux |
 | **Security Scanning** | CodeQL, Semgrep, Trivy, Snyk, TruffleHog |
 | **Cloud Platforms** | AWS, Azure, GCP, Cloudflare |
-| **Release Management** | semantic-release, Cosign, SLSA |
+| **Release Artifacts & Provenance** | Cosign, SLSA, signed tags, reproducible build checks |
 
 ## Architecture Patterns
 
@@ -158,10 +160,10 @@ App Repo --CI--> Config Repo --ArgoCD--> K8s Cluster
 
 ### Infrastructure & Cloud Platforms
 - `references/terraform-eks-module.tf` - Production EKS cluster Terraform
-- `references/kubernetes-deployment.yaml` - K8s deployment with HPA and ArgoCD
-- `references/kubernetes-basics.md` - Core K8s concepts, pods, services
-- `references/docker-basics.md` - Dockerfile best practices, multi-stage builds
-- `references/docker-compose.md` - Multi-container applications
+- `references/kubernetes-deployment.yaml` - Example manifest deployed by pipelines
+- `references/kubernetes-basics.md` - Kubernetes concepts needed to understand deployment jobs
+- `references/docker-basics.md` - Pipeline-adjacent container concepts; use `docker-containerization` for Dockerfile design
+- `references/docker-compose.md` - Pipeline-adjacent compose references; use `docker-containerization` for local container environments
 - `references/aws-overview.md` - AWS fundamentals, IAM, services
 - `references/gcloud-platform.md` - GCP overview, gcloud CLI
 - `references/cloudflare-workers-basics.md` - Edge computing, Workers
@@ -174,11 +176,9 @@ App Repo --CI--> Config Repo --ArgoCD--> K8s Cluster
 - `references/signed-releases.md` - Artifact and tag signing
 - `references/reproducible-builds.md` - Deterministic build patterns
 
-### Release Management
-- `references/local-release-workflow.md` - Step-by-step release process
-- `references/workflow-patterns.md` - Personal, team, standalone patterns
-- `references/version-alignment.md` - Git tags as SSoT
-- `references/authentication.md` - SSH keys, GitHub CLI auth
+### Release Artifact References
+- `references/signed-releases.md` - Artifact and tag signing
+- `references/reproducible-builds.md` - Deterministic build patterns
 
 ## Templates
 
@@ -200,13 +200,6 @@ App Repo --CI--> Config Repo --ArgoCD--> K8s Cluster
 | `templates/gitlab-ci/go-ci.yml` | Go pipeline with Kubernetes deployment |
 | `templates/gitlab-ci/docker-build.yml` | Docker build with DinD, multi-arch |
 | `templates/gitlab-ci/security-scan.yml` | DevSecOps with GitLab security templates |
-
-### Release Configuration
-| Template | Description |
-|----------|-------------|
-| `templates/releaserc.yml` | semantic-release configuration |
-| `templates/package.json` | Node.js package for releases |
-| `templates/shareable-config/` | Shareable semantic-release config |
 
 ### Enterprise Templates
 | Template | Description |
@@ -242,14 +235,6 @@ App Repo --CI--> Config Repo --ArgoCD--> K8s Cluster
 |--------|-------------|
 | `scripts/cloudflare_deploy.py` | Cloudflare Worker deployments |
 | `scripts/docker_optimize.py` | Dockerfile analysis and optimization |
-
-### Release Management
-| Script | Description |
-|--------|-------------|
-| `scripts/init_project.sh` | Initialize semantic-release for project |
-| `scripts/init_user_config.sh` | Create user-level release config |
-| `scripts/create_org_config.sh` | Create organization release config |
-| `scripts/generate-adr-notes.mjs` | Auto-link ADRs in release notes |
 
 ## Anti-Patterns
 
@@ -364,7 +349,7 @@ terraform state list                # List resources
 4. **Debug issues**: Check `references/troubleshooting.md`
 5. **Improve security**: Review `references/security.md` and `references/devsecops.md`
 6. **Enterprise readiness**: Follow `references/general.md` checklist
-7. **Set up releases**: Use `scripts/init_project.sh` for semantic versioning
+7. **Release notes/versioning**: switch to `git-workflow` for changelog, semantic version, and commit convention workflows
 
 ## Source Skills
 
@@ -374,7 +359,7 @@ This curated skill combines content from the following legacy skills (now part o
 - Cloud platforms, Docker, Cloudflare
 - Multi-cloud, FinOps, comprehensive DevOps
 - OpenSSF compliance, security assessment
-- Automated versioning and releases (semantic-release)
+- Artifact signing, provenance, and pipeline gates
 
 ## Resources
 
@@ -385,11 +370,6 @@ This curated skill combines content from the following legacy skills (now part o
 - **ArgoCD**: https://argo-cd.readthedocs.io
 - **OpenSSF Scorecard**: https://securityscorecards.dev/
 - **SLSA Framework**: https://slsa.dev/
-- **semantic-release**: https://semantic-release.gitbook.io/
-
-
-
-
 
 
 

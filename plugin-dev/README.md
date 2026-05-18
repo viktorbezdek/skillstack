@@ -229,7 +229,7 @@ Write a comprehensive README for the cloud-finops plugin in this repository
 ```
 
 ```
-Generate documentation for the plugin at ./workflow-automation
+Generate documentation for the plugin at ./cicd-pipelines
 ```
 
 ```

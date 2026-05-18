@@ -2,10 +2,10 @@
 name: prompt-engineering
 description: >-
   Design, evaluate, and iteratively improve prompts for LLMs — system prompts, few-shot
-  examples, chain-of-thought structures, and instruction templates. Use when the user
+  examples, reasoning structures, and instruction templates. Use when the user
   asks to improve a prompt, write a system prompt, optimize LLM instructions, reduce
   hallucinations through prompt structure, test prompt variants, or apply prompting
-  techniques (CoT, ReAct, few-shot, structured output). NOT for building MCP tools
+  techniques (structured reasoning, ReAct, few-shot, structured output). NOT for building MCP tools
   or server implementation (use mcp-server). NOT for creating Claude Code SKILL.md
   files (use skill-foundry). NOT for building a full agent (use build-ai-agent workflow).
 ---
@@ -19,8 +19,8 @@ Activate this skill when:
 - Creating a new prompt from scratch (system prompt, instruction template, few-shot)
 - Evaluating prompt quality across dimensions (clarity, specificity, structure)
 - A/B testing prompt variants for measurable improvement
-- Migrating a prompt between LLM platforms (Claude ↔ GPT-4 ↔ Gemini)
-- Applying specific techniques: Chain-of-Thought, Few-Shot, Role Assignment, Output Specification
+- Migrating a prompt between LLM platforms (Claude ↔ GPT-family models ↔ Gemini)
+- Applying specific techniques: structured reasoning, Few-Shot, Role Assignment, Output Specification
 - Reducing hallucinations through prompt structure and constraints
 - Designing multi-stage prompt pipelines
 
@@ -71,8 +71,8 @@ Diagnosis reveals the problem:
   ├─ Missing background / LLM lacks context → Context Layering
   │   └─ Background → Goal → Constraints → Output Format
   │
-  ├─ Complex reasoning, math, multi-factor analysis → Chain-of-Thought
-  │   └─ Ask LLM to reason step by step before answering
+  ├─ Complex reasoning, math, multi-factor analysis → Structured private reasoning
+  │   └─ Ask the model to plan, check, and verify internally; show only concise rationale needed by the user
   │
   ├─ Output format inconsistent → Few-Shot Examples + Output Specification
   │   └─ Show 2-3 input→output pairs + define exact structure
@@ -121,8 +121,9 @@ Use when domain expertise matters. The more specific the role, the better the ou
 **Context Layering** — Provide essential background in structured format:
 Background → Goal → Constraints → Output Format. Remove anything the LLM doesn't need.
 
-**Chain-of-Thought** — Ask the LLM to reason step by step. Critical for complex analytical,
-mathematical, or multi-factor reasoning tasks. Without this, LLMs often skip to conclusions.
+**Structured Reasoning** — Ask the model to plan, check assumptions, and verify internally,
+then present a concise rationale or decision trace appropriate for the user. Avoid requesting
+hidden chain-of-thought verbatim; prefer "think privately, then summarize the key reasons."
 
 **Few-Shot Examples** — Show 2-3 input→output pairs that demonstrate the pattern you want.
 This is the single most powerful technique for controlling output format and style.
@@ -167,7 +168,7 @@ Output format:
 [EXACT STRUCTURE EXPECTED]
 ```
 
-### Pattern: Few-Shot + Chain-of-Thought
+### Pattern: Few-Shot + Structured Reasoning
 
 Use for tasks requiring consistent format AND complex reasoning.
 
@@ -178,16 +179,16 @@ Here are examples of the expected analysis:
 
 Example 1:
 Input: [SAMPLE]
-Reasoning: [STEP-BY-STEP THOUGHT PROCESS]
+Rationale: [CONCISE VISIBLE REASONS]
 Output: [RESULT]
 
 Example 2:
 Input: [SAMPLE]
-Reasoning: [STEP-BY-STEP THOUGHT PROCESS]
+Rationale: [CONCISE VISIBLE REASONS]
 Output: [RESULT]
 
-Now analyze the following. Think through your reasoning step by step before
-providing your final output.
+Now analyze the following. Think privately through the reasoning, check for mistakes,
+then provide the final output with a concise rationale.
 
 Input: [ACTUAL TASK]
 ```
@@ -218,7 +219,7 @@ Format: [FINAL OUTPUT SPECIFICATION]
 |-------------|---------|----------|
 | **Kitchen sink prompt** | Every possible instruction crammed in; model drowns in contradictory directives | Identify the 3 most important requirements. Cut the rest. Each instruction must earn its tokens. |
 | **Copycat prompt** | Copied from a blog post without understanding why it works; fails when use case differs slightly | Use the 4-D framework to analyze why a template works before adapting it. Understand the technique, not just the words. |
-| **Platform-blind prompt** | Written for one LLM and assumed to transfer; Claude XML tags confuse GPT-4, "You MUST" over-constrains Claude | Use platform-specific translation (see `references/PLATFORMS.md`). Convert structural patterns, don't just change words. |
+| **Platform-blind prompt** | Written for one LLM and assumed to transfer; XML tags may not help every GPT-family model, while "You MUST" can over-constrain Claude | Use platform-specific translation (see `references/PLATFORMS.md`). Convert structural patterns, don't just change words. |
 | **Format-free prompt** | No output structure specified; each run produces different format, breaking downstream processing | Add explicit Output Specification with headers, structure, and length requirements. |
 | **Contradiction prompt** | "Be concise" AND "Be thorough" in same prompt; model oscillates between contradictory instructions | Resolve trade-offs explicitly: "Prioritize completeness over brevity" or "Be thorough on methodology, concise on examples." |
 | **Vague instructions** | "Analyze the data" — no format, scope, or audience defined | Add specificity: who, what, how, format, length, audience |
@@ -273,7 +274,7 @@ When comparing two prompt versions:
 | Platform | Strengths | Avoid |
 |----------|----------|-------|
 | **Claude** | XML tags for structure, nuanced role descriptions, extended thinking | Over-constraining with rigid rules; Claude performs better with clear intent |
-| **GPT-4** | System/user message separation, function calling, "You MUST" directives | Assuming XML tags work; use explicit directives instead |
+| **GPT-family models** | System/user message separation, tool/function calling, explicit directives | Assuming XML tags work; use native message and tool schemas instead |
 | **Gemini** | Multimodal prompts, clear section demarcation | Ambiguous section boundaries |
 
 See `references/PLATFORMS.md` for detailed platform optimization guides.

@@ -6,9 +6,9 @@
     "url": "https://github.com/viktorbezdek"
   },
   "metadata": {
-    "version": "3.1.0",
+    "version": "3.0.0",
     "schema_version": 2,
-    "last_full_sync": "2026-04-28T14:34:00Z"
+    "last_full_sync": "2026-05-17T15:35:26Z"
   },
   "repositories": [
     {
@@ -16,8 +16,8 @@
       "url": "https://github.com/viktorbezdek/skillstack",
       "added_by": "viktorbezdek",
       "added_date": "2025-01-01",
-      "last_synced_sha": "edd3b891d0e8cf3b9455c6dc851d8201c1e37c4a",
-      "last_synced_at": "2026-04-28T14:34:00Z",
+      "last_synced_sha": "e1a270fd28c0ffdba9ca21582bdf65bc6d5df137",
+      "last_synced_at": "2026-05-17T15:35:26Z",
       "integration_status": "active",
       "context": "56 battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
     }
@@ -113,7 +113,7 @@
     {
       "id": "brainstorm-swarm",
       "name": "Brainstorm Swarm",
-      "type": "skill",
+      "type": "agent",
       "category": "agent-architecture",
       "description": "Run a parallel persona-swarm interview to brainstorm any complex decision \u2014 feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping).",
       "repo_id": "viktorbezdek-skillstack",
@@ -152,7 +152,7 @@
       "name": "Cicd Pipelines",
       "type": "skill",
       "category": "devops",
-      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
+      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "cicd-pipelines/skills/cicd-pipelines",
       "version": "1.1.24",
@@ -316,7 +316,7 @@
       "name": "Context Degradation",
       "type": "skill",
       "category": "context-engineering",
-      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
+      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and model-agnostic degradation measurement.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "context-degradation/skills/context-degradation",
       "version": "1.0.11",
@@ -461,7 +461,7 @@
       "name": "Documentation Generator",
       "type": "skill",
       "category": "documentation",
-      "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
+      "description": "Generate repository documentation at the right scale, from lightweight README updates to full codebase documentation sets with API, architecture, quality, and gaps coverage.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "documentation-generator/skills/documentation-generator",
       "version": "1.2.1",
@@ -781,6 +781,28 @@
       ]
     },
     {
+      "id": "osint",
+      "name": "Osint",
+      "type": "skill",
+      "category": "research",
+      "description": "OSINT intelligence skill \u2014 systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "osint/skills/osint",
+      "version": "1.0.1",
+      "tags": [
+        "osint",
+        "research",
+        "intelligence",
+        "psychoprofile",
+        "due-diligence"
+      ],
+      "documentation_path": "./osint/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
       "id": "outcome-orientation",
       "name": "Outcome Orientation",
       "type": "skill",
@@ -845,7 +867,7 @@
       "name": "Plugin Dev",
       "type": "skill",
       "category": "development",
-      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Scaffolded plugins now ship with run_eval.py bundled so authors can run evals out of the box. Document any plugin by URL or local path with comprehensive README generation.",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "plugin-dev",
       "version": "1.2.0",
@@ -963,7 +985,7 @@
       "name": "React Development",
       "type": "skill",
       "category": "development",
-      "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
+      "description": "Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "react-development/skills/react-development",
       "version": "1.1.21",
@@ -1105,7 +1127,7 @@
       "name": "Technical Copywriting",
       "type": "skill",
       "category": "documentation",
-      "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract, the AI-prose-tell catalog with banned words like delve / underscore / pivotal / leverage and humanization substitutions), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay \u2014 and when humanizing AI-generated prose. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
+      "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "technical-copywriting",
       "version": "1.1.0",
@@ -1173,7 +1195,7 @@
       "name": "Testing Framework",
       "type": "skill",
       "category": "quality",
-      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
+      "description": "Test framework router and infrastructure setup across multiple languages and platforms. Selects focused modules for unit, integration, E2E, accessibility, mutation, fuzz, and CI/CD test integration.",
       "repo_id": "viktorbezdek-skillstack",
       "path_in_repo": "testing-framework/skills/testing-framework",
       "version": "1.1.24",
@@ -1271,56 +1293,13 @@
       "platforms": [
         "claude-code"
       ]
-    },
-    {
-      "id": "workflow-automation",
-      "name": "Workflow Automation",
-      "type": "skill",
-      "category": "devops",
-      "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
-      "repo_id": "viktorbezdek-skillstack",
-      "path_in_repo": "workflow-automation/skills/workflow-automation",
-      "version": "1.1.22",
-      "tags": [
-        "automation",
-        "ci-cd",
-        "orchestration",
-        "release-management"
-      ],
-      "documentation_path": "./workflow-automation/README.md",
-      "status": "active",
-      "platforms": [
-        "claude-code"
-      ]
-    },
-    {
-      "id": "osint",
-      "name": "OSINT",
-      "type": "skill",
-      "category": "research",
-      "description": "Systematic intelligence gathering on individuals \u2014 from name or handle to scored dossier with psychoprofile, career map, confidence grades, 55+ Apify actors, swarm mode.",
-      "repo_id": "viktorbezdek-skillstack",
-      "path_in_repo": "osint/skills/osint",
-      "version": "1.0.1",
-      "tags": [
-        "osint",
-        "research",
-        "intelligence",
-        "psychoprofile",
-        "due-diligence"
-      ],
-      "documentation_path": "./osint/README.md",
-      "status": "active",
-      "platforms": [
-        "claude-code"
-      ]
     }
   ],
   "collections": [
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library \u2014 54 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
+      "description": "The complete SkillStack library \u2014 56 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [
@@ -1328,6 +1307,7 @@
         "agent-project-development",
         "api-design",
         "bdi-mental-states",
+        "brainstorm-swarm",
         "cicd-pipelines",
         "cloud-finops",
         "code-review",
@@ -1357,6 +1337,7 @@
         "navigation-design",
         "nextjs-development",
         "ontology-design",
+        "osint",
         "outcome-orientation",
         "persona-definition",
         "persona-mapping",
@@ -1371,13 +1352,13 @@
         "skillstack-workflows",
         "storytelling",
         "systems-thinking",
+        "technical-copywriting",
         "test-driven-development",
         "testing-framework",
         "tool-design",
         "typescript-development",
         "user-journey-design",
-        "ux-writing",
-        "workflow-automation"
+        "ux-writing"
       ],
       "created_at": "2025-01-01T00:00:00Z"
     },
@@ -1403,14 +1384,13 @@
     {
       "id": "skillstack-devops",
       "name": "DevOps & Infrastructure",
-      "description": "Ship and operate software in production: CI/CD pipelines, cloud FinOps, Docker containerization, Git workflow management, and workflow automation.",
+      "description": "Ship and operate software in production: CI/CD pipelines, cloud FinOps, Docker containerization, and Git workflow management.",
       "audience": "technical",
       "plugin_ids": [
         "cicd-pipelines",
         "cloud-finops",
         "docker-containerization",
-        "git-workflow",
-        "workflow-automation"
+        "git-workflow"
       ],
       "created_at": "2025-01-01T00:00:00Z"
     },
@@ -1451,6 +1431,7 @@
         "agent-evaluation",
         "agent-project-development",
         "bdi-mental-states",
+        "brainstorm-swarm",
         "hosted-agents",
         "memory-systems",
         "multi-agent-patterns",
@@ -1500,7 +1481,18 @@
       "plugin_ids": [
         "communication",
         "documentation-generator",
-        "example-design"
+        "example-design",
+        "technical-copywriting"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "skillstack-research",
+      "name": "Research",
+      "description": "Research and intelligence-gathering skills that collect, organize, and assess evidence from external sources.",
+      "audience": "technical",
+      "plugin_ids": [
+        "osint"
       ],
       "created_at": "2025-01-01T00:00:00Z"
     },

@@ -193,7 +193,7 @@ async def stream_large_data(query: str):
 
 CONSTRAINTS:
 
-- The model must use HTTP transport for streaming (STDIO does not support streaming)
+- The model must use Streamable HTTP for remote streaming (STDIO is for local subprocess integrations)
 - The model must yield dict objects (not strings) for structured streaming
 - The model must include progress indicators when streaming long operations
 
@@ -387,13 +387,13 @@ DECISION_TREE: Transport Selection
    - GOTO setup_stdio
 
 2. ELSE IF multi-user or remote access THEN
-   - Use HTTP transport
+   - Use Streamable HTTP transport
    - Server runs as network service
-   - Communication via HTTP endpoint
+   - Communication via the MCP HTTP endpoint
    - GOTO setup_http
 
 3. ELSE IF production deployment THEN
-   - Use HTTP with FastMCP Cloud OR custom deployment
+   - Use Streamable HTTP with FastMCP Cloud OR custom deployment
    - GOTO production_deployment
 
 setup_stdio:

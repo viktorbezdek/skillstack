@@ -1,7 +1,7 @@
 {
   "name": "documentation-generator",
   "version": "1.2.1",
-  "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
+  "description": "Generate repository documentation at the right scale, from lightweight README updates to full codebase documentation sets with API, architecture, quality, and gaps coverage.",
   "author": {
     "name": "Viktor Bezdek",
     "url": "https://github.com/viktorbezdek"

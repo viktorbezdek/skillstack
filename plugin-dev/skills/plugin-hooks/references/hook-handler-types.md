@@ -1,6 +1,6 @@
 # Hook Handler Types
 
-> Every hook entry is one of four handler types: `command`, `http`, `prompt`, or `agent`. This reference documents the full schema, security model, and trade-offs of each. Sourced from [https://code.claude.com/docs/en/hooks](https://code.claude.com/docs/en/hooks).
+> Every hook entry is one of five handler types: `command`, `http`, `mcp_tool`, `prompt`, or `agent`. This reference documents the schema, security model, and trade-offs of each. Sourced from [https://code.claude.com/docs/en/hooks](https://code.claude.com/docs/en/hooks).
 
 ---
 
@@ -10,10 +10,11 @@
 |---|---|---|---|---|
 | `command` | Shell scripts, local OS access | Subprocess | Yes (exit 2) | Free |
 | `http` | Remote service, shared state | HTTP POST | Yes (response JSON) | Network |
+| `mcp_tool` | Existing MCP server capability | MCP tool call | Yes (response JSON) | Tool-dependent |
 | `prompt` | LLM evaluation of content | Model call | Yes (decision in output) | Model tokens |
 | `agent` | Multi-step, tool-using verification | Subagent call | Yes (decision in output) | Model tokens |
 
-**Default timeouts**: `command` 60s · `http` 30s · `prompt` 30s · `agent` 60s. Override with the `timeout` field (seconds).
+**Default timeouts**: event-specific defaults can differ, and `UserPromptSubmit` uses shorter defaults for blocking hooks. Set an explicit `timeout` field in seconds for any guardrail or latency-sensitive hook.
 
 ---
 
@@ -150,6 +151,37 @@ The server receives the same JSON input as a `command` handler and can respond w
 - `allowedEnvVars` is the ONLY way env vars reach the handler — everything else is masked. This prevents a malicious plugin from exfiltrating arbitrary env vars via header injection.
 - Network failures count as non-blocking errors: if the endpoint times out, the action proceeds.
 - Use HTTPS. For guardrails, the endpoint must be trusted — a compromised server can instruct Claude to do anything.
+
+---
+
+## mcp_tool
+
+Calls a tool on a configured MCP server. Use this when the hook decision depends on an existing local or remote capability that is already packaged as MCP.
+
+### Schema
+
+```json
+{
+  "type": "mcp_tool",
+  "server": "policy-server",
+  "tool": "evaluate_hook_event",
+  "arguments": {"event": "$ARGUMENTS"},
+  "timeout": 30
+}
+```
+
+| Field | Required | Default | Purpose |
+|---|---|---|---|
+| `server` | yes | — | Configured MCP server name. |
+| `tool` | yes | — | Tool to call on that server. |
+| `arguments` | no | hook input | JSON arguments. Use `$ARGUMENTS` to pass the serialized hook input. |
+| `timeout` | no | event default | Seconds before the hook is treated as a non-blocking error. |
+
+### Security model
+
+- Treat the MCP server as part of the hook trust boundary. A compromised server can allow, deny, or modify hook behavior.
+- Prefer read-only tools for policy checks. If the MCP tool has side effects, document them in the hook description.
+- Keep responses compact and use the same JSON decision schema as command and HTTP hooks.
 
 ---
 

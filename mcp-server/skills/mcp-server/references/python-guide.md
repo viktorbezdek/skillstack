@@ -643,28 +643,24 @@ async def query_data(query: str, ctx: Context) -> str:
     return format_results(results)
 ```
 
-### Multiple Transport Options
+### Transport Options
 
-FastMCP supports different transport mechanisms:
+FastMCP supports local stdio and remote Streamable HTTP. Streamable HTTP is the current remote transport; SSE is optional inside that transport for streaming messages, not a separate default transport choice.
 
 ```python
 # Default: Stdio transport (for CLI tools)
 if __name__ == "__main__":
     mcp.run()
 
-# HTTP transport (for web services)
+# Streamable HTTP transport (for remote services)
 if __name__ == "__main__":
     mcp.run(transport="streamable_http", port=8000)
-
-# SSE transport (for real-time updates)
-if __name__ == "__main__":
-    mcp.run(transport="sse", port=8000)
 ```
 
 **Transport selection:**
 - **Stdio**: Command-line tools, subprocess integration
-- **HTTP**: Web services, remote access, multiple clients
-- **SSE**: Real-time updates, push notifications
+- **Streamable HTTP**: Web services, remote access, multiple clients; can use SSE responses when streaming is needed
+- **Legacy HTTP+SSE**: Only for backwards compatibility with older clients
 
 ---
 

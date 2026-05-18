@@ -45,9 +45,9 @@
     "note": "Near-miss \u2014 NOT-for clause from description: CI/CD pipelines or pipeline YAML"
   },
   {
-    "query": "help me with workflow orchestration or release automation",
+    "query": "help me with multi-stage deployment orchestration",
     "should_trigger": false,
-    "note": "Near-miss \u2014 NOT-for clause from description: workflow orchestration or release automation"
+    "note": "Near-miss \u2014 non-git workflow orchestration belongs to skillstack-workflows or multi-agent-patterns"
   },
   {
     "query": "merge my PR",

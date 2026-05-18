@@ -1,10 +1,12 @@
 {
   "name": "skillstack",
-  "version": "3.1.0",
-  "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
   "owner": {
     "name": "Viktor Bezdek",
-    "email": "vbezdek@groupon.com"
+    "url": "https://github.com/viktorbezdek"
+  },
+  "metadata": {
+    "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
+    "version": "3.0.0"
   },
   "plugins": [
     {
@@ -94,7 +96,7 @@
     {
       "name": "cicd-pipelines",
       "source": "./cicd-pipelines",
-      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, and enterprise release management.",
+      "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness.",
       "version": "1.1.24",
       "category": "devops",
       "tags": [
@@ -202,7 +204,7 @@
     {
       "name": "context-degradation",
       "source": "./context-degradation",
-      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and empirical degradation thresholds by model.",
+      "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and model-agnostic degradation measurement.",
       "version": "1.0.11",
       "category": "context-engineering",
       "tags": [
@@ -291,7 +293,7 @@
     {
       "name": "documentation-generator",
       "source": "./documentation-generator",
-      "description": "Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.",
+      "description": "Generate repository documentation at the right scale, from lightweight README updates to full codebase documentation sets with API, architecture, quality, and gaps coverage.",
       "version": "1.2.1",
       "category": "documentation",
       "tags": [
@@ -493,6 +495,20 @@
       ]
     },
     {
+      "name": "osint",
+      "source": "./osint",
+      "description": "OSINT intelligence skill \u2014 systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
+      "version": "1.0.1",
+      "category": "research",
+      "tags": [
+        "osint",
+        "research",
+        "intelligence",
+        "psychoprofile",
+        "due-diligence"
+      ]
+    },
+    {
       "name": "outcome-orientation",
       "source": "./outcome-orientation",
       "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
@@ -531,7 +547,7 @@
     {
       "name": "plugin-dev",
       "source": "./plugin-dev",
-      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Scaffolded plugins now ship with run_eval.py bundled so authors can run evals out of the box. Document any plugin by URL or local path with comprehensive README generation.",
+      "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
       "version": "1.2.0",
       "category": "development",
       "tags": [
@@ -609,7 +625,7 @@
     {
       "name": "react-development",
       "source": "./react-development",
-      "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
+      "description": "Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.",
       "version": "1.1.21",
       "category": "development",
       "tags": [
@@ -703,7 +719,7 @@
     {
       "name": "technical-copywriting",
       "source": "./technical-copywriting",
-      "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract, the AI-prose-tell catalog with banned words like delve / underscore / pivotal / leverage and humanization substitutions), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay \u2014 and when humanizing AI-generated prose. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
+      "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
       "version": "1.1.0",
       "category": "documentation",
       "tags": [
@@ -755,7 +771,7 @@
     {
       "name": "testing-framework",
       "source": "./testing-framework",
-      "description": "Comprehensive testing framework for multiple languages and platforms. Covers unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD integration.",
+      "description": "Test framework router and infrastructure setup across multiple languages and platforms. Selects focused modules for unit, integration, E2E, accessibility, mutation, fuzz, and CI/CD test integration.",
       "version": "1.1.24",
       "category": "quality",
       "tags": [
@@ -814,33 +830,6 @@
         "ux-writing",
         "microcopy",
         "error-messages"
-      ]
-    },
-    {
-      "name": "workflow-automation",
-      "source": "./workflow-automation",
-      "description": "Automate development workflows end-to-end including CI/CD pipelines, multi-agent orchestration, parallel task execution, release automation, and git workflow management.",
-      "version": "1.1.22",
-      "category": "devops",
-      "tags": [
-        "automation",
-        "ci-cd",
-        "orchestration",
-        "release-management"
-      ]
-    },
-    {
-      "name": "osint",
-      "source": "./osint",
-      "description": "Systematic intelligence gathering on individuals \u2014 from name or handle to scored dossier with psychoprofile, career map, confidence grades, 55+ Apify actors, swarm mode.",
-      "version": "1.0.1",
-      "category": "research",
-      "tags": [
-        "osint",
-        "research",
-        "intelligence",
-        "psychoprofile",
-        "due-diligence"
       ]
     }
   ]

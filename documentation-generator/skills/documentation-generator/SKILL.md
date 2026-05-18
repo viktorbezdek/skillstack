@@ -12,9 +12,9 @@ description: >-
 
 # Repository Documentation Generator
 
-Generate comprehensive documentation for repositories of any size - from small libraries to large monorepos. Creates both non-technical overviews and detailed technical references.
+Generate documentation for repositories of any size - from a single README refresh to large monorepo documentation sets. Creates non-technical overviews, API docs, architecture docs, and technical references.
 
-Each phase produces **mandatory output artifacts** — specific named sections and files that must appear in the output. Skipping a mandatory artifact means that phase is incomplete.
+Use the lightweight path for small README-only tasks. Use the full workflow when the user asks for a documentation set, codebase documentation, API docs, architecture docs, or a repo-wide documentation audit.
 
 ---
 
@@ -28,6 +28,19 @@ Each phase produces **mandatory output artifacts** — specific named sections a
 5. COVERAGE PHASE      → Edge cases + user journey validation
 6. VALIDATION PHASE    → DQI score + Known Gaps register
 ```
+
+---
+
+## Work Modes
+
+| Request shape | Mode | Required output |
+|---|---|---|
+| "Write/update a README" for a small project | Lightweight README | README only, plus brief assumptions/gaps if needed |
+| "Document this repo/codebase" | Full workflow | Audience table, doc backlog, Diátaxis labels, DQI score, Known Gaps register |
+| "Create API docs" | Focused reference | API reference plus examples/error table; add audience/backlog only if scope expands |
+| "Audit existing docs" | Validation mode | DQI score, drift findings, prioritized fixes, Known Gaps register |
+
+When in lightweight mode, do not force the full six-phase process. Still read the repository first, but produce the smallest useful documentation artifact.
 
 ---
 
@@ -49,7 +62,7 @@ If the script is unavailable, manually survey: public API surface, directory str
 
 ## Phase 2: Planning
 
-### MANDATORY DELIVERABLE 1 — Audience Analysis
+### FULL WORKFLOW DELIVERABLE 1 — Audience Analysis
 
 Before writing any documentation, produce a `## Target Audiences` section in README.md **or** a dedicated `docs/AUDIENCES.md` file. Required table schema:
 
@@ -68,7 +81,7 @@ Before writing any documentation, produce a `## Target Audiences` section in REA
 - Each row must have a non-empty "First Doc to Read" pointing to an actual file you will produce.
 - Derive personas from the codebase: test files reveal use cases; CI config reveals deployment audience; existing issues reveal confusion points.
 
-### MANDATORY DELIVERABLE 2 — Prioritized Documentation Backlog
+### FULL WORKFLOW DELIVERABLE 2 — Prioritized Documentation Backlog
 
 Produce a `## Documentation Plan` section (in a dedicated `DOC_PLAN.md`, `HANDOFF_PLAN.md`, or the README) with this schema:
 
@@ -94,7 +107,7 @@ Produce a `## Documentation Plan` section (in a dedicated `DOC_PLAN.md`, `HANDOF
 
 ## Phase 3: Structure — Diátaxis Classification
 
-Every documentation set must cover at least two of the four Diátaxis types. Blending types in one file (e.g., a README that is simultaneously tutorial + reference + explanation) produces docs that serve no reader well.
+Every full documentation set must cover at least two of the four Diátaxis types. Blending types in one file (e.g., a README that is simultaneously tutorial + reference + explanation) produces docs that serve no reader well.
 
 ### The four types — use these to label every doc you produce
 
@@ -105,7 +118,7 @@ Every documentation set must cover at least two of the four Diátaxis types. Ble
 | **Reference** | "What is the exact value/syntax/behavior?" | Tables, structured lists, no narrative | Adding tutorials or how-tos into reference |
 | **Explanation** | "Why does this work this way?" | Prose, rationale, tradeoffs, history | Adding steps or commands |
 
-### MANDATORY: Label each document with its type
+### FULL WORKFLOW: Label each document with its type
 
 Add one of these comments as the **first line** of every documentation file you produce:
 
@@ -226,7 +239,7 @@ Add a version note to every doc that describes behavior that may change:
 
 ## Phase 6: Validation
 
-### MANDATORY DELIVERABLE 3 — Documentation Quality Score
+### FULL WORKFLOW DELIVERABLE 3 — Documentation Quality Score
 
 After completing all documentation, compute a DQI score and include it in README.md or a dedicated `docs/QUALITY.md`. Use the criteria from `references/quality/document-quality-index.md`.
 
@@ -247,7 +260,7 @@ Threshold: 70/100 minimum to declare documentation complete.
 
 If the score is below 70, add a P0 improvement item to the Documentation Backlog explaining what would close the gap.
 
-### MANDATORY DELIVERABLE 4 — Known Gaps Register
+### FULL WORKFLOW DELIVERABLE 4 — Known Gaps Register
 
 Produce a `## Known Gaps` section (in the README, DOC_PLAN, or a dedicated `docs/GAPS.md`) listing what is intentionally deferred, incomplete, or undocumentable:
 
@@ -312,7 +325,7 @@ This skill includes **24 comprehensive templates** in `templates/`:
 
 ## Examples of Correct Output
 
-The following shows what the mandatory deliverables look like in practice.
+The following shows what the full-workflow deliverables look like in practice.
 
 <examples>
 <example>
@@ -416,7 +429,8 @@ What does the user need documented?
 ├─ API for external consumers → API reference (Reference) + usage examples (How-To)
 ├─ Internal system → Architecture (Explanation) + runbooks (How-To)
 ├─ Onboarding problem → GETTING-STARTED (Tutorial) + user guide (How-To)
-└─ Full documentation project → Run all 6 phases; produce all 4 Mandatory Deliverables
+├─ Small README-only request → Lightweight README mode
+└─ Full documentation project → Run all 6 phases; produce all 4 Full Workflow Deliverables
 ```
 
 ---
@@ -424,7 +438,8 @@ What does the user need documented?
 ## Anti-Patterns
 
 - **Writing docs before running analysis** — scripts surface structure you will miss manually
-- **Skipping Mandatory Deliverables** — audience table, doc backlog, DQI score, and gaps register are required, not optional
+- **Applying full-workflow ceremony to a tiny README** — lightweight requests need focused docs, not a planning packet
+- **Skipping Full Workflow Deliverables on repo-wide docs** — audience table, doc backlog, DQI score, and gaps register are required for full documentation projects
 - **Blending Diátaxis types** — a README that is simultaneously tutorial + reference + explanation serves no reader well; split into separate docs
 - **Generic personas** — "developers" is not a persona; it must have a role, background, and primary question
 - **Template structure without required sections** — producing a Tutorial without `## Before You Begin` and `## What You Will Learn` is incomplete
@@ -435,7 +450,7 @@ What does the user need documented?
 
 ## When NOT to Use This Skill
 
-- Writing a single README for a small project — use `ux-writing` for concise copy
+- UX microcopy, button labels, error messages, or interface copy — use `ux-writing`
 - Creating navigation structure for a docs site — use `navigation-design`
 - Building a tutorial with runnable code — use `example-design`
 - Writing inline code comments — this is not documentation generation
@@ -444,10 +459,11 @@ What does the user need documented?
 
 ## Rules
 
-1. **Produce all 4 mandatory deliverables** — Audience table, Doc backlog, DQI score, Known Gaps register. These are not optional.
-2. **Label every doc with its Diátaxis type** — `<!-- Doc-Type: Tutorial -->` as first line.
-3. **Match required sections to type** — Tutorials need Before/Learn/NextSteps; How-Tos need Troubleshooting table; Reference needs code sample at top + error table.
-4. **Use templates as scaffolding** — don't reinvent structures the templates already provide.
-5. **ADR Status is a heading** — `## Status`, never `| Status | Accepted |`.
-6. **Run scripts first** — they handle initial analysis and validation scoring.
-7. **Score ≥ 70 before declaring done** — if below 70, add the gap to the backlog as P0.
+1. **Select the right mode first** — lightweight README, focused reference, validation, or full workflow.
+2. **For full workflows, produce all 4 deliverables** — Audience table, Doc backlog, DQI score, Known Gaps register. These are not optional.
+3. **Label every full-workflow doc with its Diátaxis type** — `<!-- Doc-Type: Tutorial -->` as first line.
+4. **Match required sections to type** — Tutorials need Before/Learn/NextSteps; How-Tos need Troubleshooting table; Reference needs code sample at top + error table.
+5. **Use templates as scaffolding** — don't reinvent structures the templates already provide.
+6. **ADR Status is a heading** — `## Status`, never `| Status | Accepted |`.
+7. **Run scripts first for full workflows** — they handle initial analysis and validation scoring.
+8. **Score ≥ 70 before declaring full docs done** — if below 70, add the gap to the backlog as P0.

@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Git workflow management — use when the user mentions git, conventional commits, commit quality, branch management, worktree operations, GitFlow, changelog generation, semantic versioning, backlog management, or issue tracking integration. NOT for CI/CD pipelines or pipeline YAML (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation), NOT for code review content or PR quality assessment (use code-review).
+description: Git workflow management — use when the user mentions git, conventional commits, commit quality, branch management, worktree operations, GitFlow, changelog generation, semantic versioning, release notes, backlog management, or issue tracking integration. NOT for CI/CD pipelines or pipeline YAML (use cicd-pipelines), NOT for non-git workflow orchestration (use skillstack-workflows or multi-agent-patterns), NOT for code review content or PR quality assessment (use code-review).
 allowed-tools: Bash, Read, Grep, Glob, Write
 ---
 
@@ -21,7 +21,7 @@ Unified skill for commit management, branch workflows, worktree operations, and 
 
 **Do NOT use when:**
 - CI/CD pipeline configuration or deployment YAML -> use `cicd-pipelines`
-- Workflow orchestration or release automation -> use `workflow-automation`
+- Non-git workflow orchestration -> use `skillstack-workflows` or `multi-agent-patterns`
 - Code review content (security, performance, design) -> use `code-review`
 
 ## Decision Tree

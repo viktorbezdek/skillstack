@@ -1339,4 +1339,4 @@ markers = [
 ---
 
 **Last Updated**: 2025-01-17
-**Sources**: Official pytest documentation, pytest-cov documentation, pytest-mock documentation, Perplexity research on pytest best practices 2024-2025
+**Sources**: Official pytest documentation, pytest-cov documentation, pytest-mock documentation, Perplexity research on pytest best practices current

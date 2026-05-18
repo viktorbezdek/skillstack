@@ -290,7 +290,7 @@ This is common. The skill recommends addressing patterns in severity order: pois
 ## Ideal For
 
 - **AI platform engineers** debugging degradation in production agent systems who need a diagnostic taxonomy rather than guesswork
-- **ML engineers evaluating models** for long-context tasks who need empirical degradation thresholds by model to make evidence-based selection decisions
+- **ML engineers evaluating models** for long-context tasks who need a repeatable measurement protocol for evidence-based selection decisions
 - **RAG system architects** whose retrieval systems degrade with more documents and who need to understand the distraction and confusion patterns
 - **Agent reliability engineers** who need to design monitoring and mitigation strategies for context degradation before it impacts users
 

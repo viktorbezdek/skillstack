@@ -88,15 +88,17 @@ const transport = new StdioClientTransport({
 });
 ```
 
-### HTTP+SSE (Remote)
+### Streamable HTTP (Remote)
 
-POST for requests, GET for server events.
+POST for client messages, optional GET/SSE for server-to-client messages from the same MCP endpoint.
 
 ```typescript
 const transport = new StreamableHTTPClientTransport({
   url: 'http://localhost:3000/mcp'
 });
 ```
+
+Legacy HTTP+SSE exists for older clients. Prefer Streamable HTTP for new remote servers.
 
 ## Error Codes
 

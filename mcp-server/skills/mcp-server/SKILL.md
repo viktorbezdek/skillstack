@@ -46,8 +46,9 @@ What are you building?
 │
 ├─ Deploying to production
 │  ├─ Local only? → STDIO transport
-│  ├─ Remote service? → HTTP transport
-│  └─ Real-time streaming needed? → SSE transport
+│  ├─ Remote service? → Streamable HTTP transport
+│  ├─ Server-to-client notifications or streaming? → Streamable HTTP with optional SSE responses
+│  └─ Older client compatibility required? → Also expose legacy HTTP+SSE endpoints
 │
 └─ Not sure if MCP is the right approach
    ├─ Wrapping an API for Claude? → Yes, MCP server
@@ -130,8 +131,10 @@ await server.connect(transport);
 | Transport | Use Case |
 |-----------|----------|
 | **STDIO** | Local processes, Claude Desktop (default, most common) |
-| **HTTP** | Remote services, REST APIs |
-| **SSE** | Real-time streaming updates |
+| **Streamable HTTP** | Remote services; one MCP endpoint supporting POST and optional GET/SSE |
+| **Legacy HTTP+SSE** | Backwards compatibility for clients pinned to the 2024-11-05 transport |
+
+Current MCP transport guidance defines `stdio` and `Streamable HTTP` as the standard transports. Do not design a new remote server as separate "HTTP" and "SSE" transports. Streamable HTTP uses HTTP POST for JSON-RPC messages and may use SSE to stream multiple server messages from the MCP endpoint. For compatibility, older clients may still need the legacy HTTP+SSE pair alongside the new endpoint.
 
 ### MCP Configuration
 
@@ -183,11 +186,13 @@ await server.connect(transport);
 - Use confirmation flags for destructive operations
 - Set `destructiveHint` annotation for state-changing tools
 - Store secrets in environment variables
+- For Streamable HTTP, validate `Origin`, bind local servers to localhost, require authentication, and include the negotiated `MCP-Protocol-Version` header on HTTP requests
 
 See [Extended Patterns](references/extended-patterns.md) for the full development workflow, Claude Code plugin integration, evaluation creation, complete reference file listings, and script documentation.
 
 ## Additional Resources
 
-- MCP Specification: `https://modelcontextprotocol.io/llms-full.txt`
+- MCP Specification: `https://modelcontextprotocol.io/specification/2025-11-25`
+- MCP Transports: `https://modelcontextprotocol.io/specification/2025-11-25/basic/transports`
 - FastMCP: `https://github.com/jlowin/fastmcp`
 - Claude Code Docs: `https://docs.anthropic.com/claude-code`

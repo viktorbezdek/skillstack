@@ -1,6 +1,6 @@
 # Python Dependency Management Guide
 
-Python dependency management has evolved significantly, with modern tools offering substantial improvements over traditional approaches. This guide covers the current landscape of dependency management tools, best practices, and workflows for Python projects in 2024-2025.
+Python dependency management has evolved significantly, with modern tools offering substantial improvements over traditional approaches. This guide covers the current landscape of dependency management tools, best practices, and workflows for Python projects in current.
 
 **Official Sources:**
 
@@ -1427,7 +1427,7 @@ pip install --use-feature=fast-deps
 
 **Tool Versions Referenced**:
 
-- uv: Latest stable (2024-2025)
+- uv: Latest stable (current)
 - Poetry: 2.0+ (with PEP 621 support)
 - pip: 25.3+
 - Python: 3.11-3.14

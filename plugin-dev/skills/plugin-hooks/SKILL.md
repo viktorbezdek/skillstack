@@ -1,6 +1,6 @@
 ---
 name: plugin-hooks
-description: Authoritative guide to Claude Code hooks — event-driven scripts that execute before or after tool calls, session events, file changes, and more. Use when writing a PreToolUse hook to block dangerous commands, a PostToolUse hook to auto-format after edits, a SessionStart hook to inject context, a Stop hook for session loops, a Notification hook for desktop alerts, a FileChanged hook for reactive environments, a WorktreeCreate hook for custom worktree provisioning, or any of the 24 documented hook events. Covers all 4 handler types (command, http, prompt, agent), matcher syntax (exact/OR-list/regex), exit code semantics, and JSON output schema. NOT for designing hook script content for a specific domain (use the domain skill) — this skill covers hook mechanics and authoring only.
+description: Authoritative guide to Claude Code hooks — event-driven scripts that execute before or after tool calls, session events, file changes, and more. Use when writing a PreToolUse hook to block dangerous commands, a PostToolUse hook to auto-format after edits, a SessionStart hook to inject context, a Stop hook for session loops, a Notification hook for desktop alerts, a FileChanged hook for reactive environments, a WorktreeCreate hook for custom worktree provisioning, or current documented hook events. Covers handler types (command, http, mcp_tool, prompt, agent), matcher syntax (exact/OR-list/regex), exit code semantics, and JSON output schema. NOT for designing hook script content for a specific domain (use the domain skill) — this skill covers hook mechanics and authoring only.
 ---
 
 # Plugin Hooks
@@ -37,9 +37,9 @@ Authoritative source: [https://code.claude.com/docs/en/hooks](https://code.claud
 
 ---
 
-## The 10 core events (most common in practice)
+## Core events (most common in practice)
 
-All 24 documented events are in `references/hook-event-reference.md`. These 10 are what practitioners actually use.
+The full documented event set changes over time. `references/hook-event-reference.md` tracks the current catalog; this section covers the events practitioners reach for most often.
 
 ### PreToolUse
 Fires before any tool call. Can block, modify input, or allow. The most powerful event.
@@ -122,6 +122,7 @@ echo "/absolute/path/to/worktree"
 |---|---|---|
 | `command` | Shell script, full OS access | `command`, `async`, `shell`, `timeout` |
 | `http` | Remote service, shared state | `url`, `headers`, `allowedEnvVars`, `timeout` |
+| `mcp_tool` | Delegate the hook decision to a configured MCP tool | `server`, `tool`, `arguments`, `timeout` |
 | `prompt` | LLM evaluation | `prompt` (use `$ARGUMENTS`), `model`, `timeout` (30s default) |
 | `agent` | Multi-step tool-using verification | `prompt` (use `$ARGUMENTS`), `model`, `timeout` (60s default) |
 
@@ -180,8 +181,8 @@ Use `${CLAUDE_PLUGIN_ROOT}` for paths to scripts bundled with the plugin. Use `$
 
 | File | Contents |
 |---|---|
-| `references/hook-event-reference.md` | All 24+ events with schemas, blocking behavior, matcher semantics |
-| `references/hook-handler-types.md` | Command, http, prompt, agent — full schemas, examples, security |
+| `references/hook-event-reference.md` | Current hook event catalog with schemas, blocking behavior, matcher semantics |
+| `references/hook-handler-types.md` | Command, http, mcp_tool, prompt, agent — full schemas, examples, security |
 | `references/hook-anti-patterns.md` | Exit code 1 trap, infinite Stop loops, shell profile pollution, partial updatedInput, and 10+ more |
 | `references/hook-testing-patterns.md` | `/hooks` menu, debug log, `test_hook.sh` usage, stdin replay |
 

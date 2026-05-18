@@ -129,9 +129,11 @@ uv run pytest --cov          # Tests with coverage
 5. **Lock dependencies**: Always maintain `uv.lock` for reproducible builds
 6. **PEP 723 for scripts**: Use inline script metadata for single-file scripts
 
-## Modern Python Toolchain (2024-2025)
+## Modern Python Toolchain
 
 ### Package Management: uv
+
+Use current tool documentation when exact flags matter; uv, ruff, mypy, and pytest move quickly. The defaults below are stable project-starting patterns, not a substitute for checking release notes during migrations.
 
 ```bash
 uv init my-project && cd my-project   # Initialize

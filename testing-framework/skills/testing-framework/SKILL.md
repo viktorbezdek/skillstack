@@ -1,12 +1,12 @@
 ---
 name: testing-framework
 description: |
-  Provides test infrastructure setup, framework selection, and test suite authoring across multiple languages and platforms including unit testing (Rust, TypeScript, PHP, Shell), E2E testing (Playwright), component testing (React Testing Library), accessibility testing (axe-core), mutation testing, fuzz testing, and CI/CD test integration. Use when the user asks to set up testing, choose a test framework, write unit tests, write E2E tests, add accessibility tests, configure test automation, create test suites, set up Playwright or Vitest or PHPUnit or ShellSpec or BATS, or integrate tests into CI/CD pipelines. NOT for TDD methodology or red-green-refactor workflow (use test-driven-development), NOT for diagnosing and fixing bugs or analyzing errors (use debugging), NOT for reviewing existing code or PRs (use code-review).
+  Test framework router and infrastructure setup across multiple languages and platforms. Use when the user asks to choose a test framework, scaffold test infrastructure, add focused unit/integration/E2E/accessibility coverage, or integrate tests into CI/CD. Covers Rust, TypeScript/React, PHP/TYPO3, Shell, Playwright, accessibility, mutation, and fuzz testing as selectable modules. NOT for TDD methodology or red-green-refactor workflow (use test-driven-development), NOT for diagnosing and fixing bugs or analyzing errors (use debugging), NOT for reviewing existing code or PRs (use code-review).
 ---
 
 # Testing Framework
 
-Set up test infrastructure, choose frameworks, and author test suites across multiple languages.
+Set up test infrastructure, choose frameworks, and author focused test suites across multiple languages. Treat this skill as a router: select the one testing module that matches the codebase, then load only the relevant references/templates.
 
 ## When to Use This Skill
 
@@ -23,6 +23,22 @@ Set up test infrastructure, choose frameworks, and author test suites across mul
 - **Diagnosing and fixing bugs** → use `debugging`
 - **Reviewing existing code or PRs** → use `code-review`
 - **Performance benchmarking** → use domain-specific profiling tools
+- **Framework-specific implementation patterns beyond tests** → use the language/framework skill first, then return here for test scaffolding
+
+## Scope Control
+
+This skill intentionally spans several ecosystems, so avoid loading every module. Pick a lane:
+
+| Need | Use |
+|---|---|
+| Choose a test stack | Decision tree + `references/test-runners.md` |
+| Add tests to a React/Next.js app | Next.js/React module + Playwright/RTL templates |
+| Add tests to Rust code | Rust module + AAA references |
+| Add tests to PHP/TYPO3 | TYPO3/PHP module |
+| Test shell scripts | ShellSpec/BATS module |
+| Improve existing suite quality | `scripts/analyze-test-quality.py` + anti-pattern references |
+
+If a request needs two or more ecosystems, handle them as separate passes so the output stays practical.
 
 ## Decision Tree
 
@@ -432,7 +448,6 @@ scripts/validate_test_results.py actual.txt expected.txt
 ---
 
 **Remember**: The goal is deployment confidence, not coverage theater.
-
 
 
 

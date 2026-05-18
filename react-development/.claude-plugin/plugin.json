@@ -1,7 +1,7 @@
 {
   "name": "react-development",
   "version": "1.1.21",
-  "description": "Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture.",
+  "description": "Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.",
   "author": {
     "name": "Viktor Bezdek",
     "url": "https://github.com/viktorbezdek"

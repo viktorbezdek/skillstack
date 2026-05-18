@@ -3,7 +3,7 @@
 Detailed guidance for optimizing prompts for different LLM platforms.
 
 ## Table of Contents
-1. ChatGPT / GPT-4
+1. ChatGPT / GPT-family models
 2. Claude (Anthropic)
 3. Gemini (Google)
 4. Platform Comparison
@@ -11,14 +11,13 @@ Detailed guidance for optimizing prompts for different LLM platforms.
 
 ---
 
-## 1. ChatGPT / GPT-4
+## 1. ChatGPT / GPT-family Models
 
 ### Platform Capabilities
 
 **Context Window:**
-- GPT-4: 8K, 32K, 128K tokens depending on model
-- GPT-3.5-Turbo: 16K tokens
-- Planning: Consider context limits when designing prompts
+- Context windows vary by model and product tier.
+- Planning: confirm the active model's current limits before designing long-context prompts.
 
 **Special Features:**
 - Custom instructions (system-level guidance)
@@ -26,7 +25,7 @@ Detailed guidance for optimizing prompts for different LLM platforms.
 - Code Interpreter
 - DALL-E integration
 - Web browsing (in some versions)
-- Vision capabilities (GPT-4 Vision)
+- Vision/multimodal capabilities, depending on the selected model
 
 ### Optimization Strategies
 
@@ -217,21 +216,19 @@ Take advantage of large context window with layered information:
 Claude will selectively use sections as needed.
 ```
 
-#### 2. Thinking Tags
+#### 2. Reasoning Guidance
 
-Request explicit reasoning for complex tasks:
+For complex tasks, ask Claude to reason privately and show the useful summary:
 
 ```
-<thinking>
-Work through this problem step by step:
+Think privately through this problem:
 1. Analyze the requirements
 2. Consider different approaches
 3. Evaluate trade-offs
 4. Select optimal solution
 5. Validate reasoning
-</thinking>
 
-Now provide your answer: [TASK]
+Now provide your answer with a concise rationale: [TASK]
 ```
 
 #### 3. XML Structure for Complex Data
@@ -534,13 +531,13 @@ Provide integrated analysis considering all inputs.
 
 | Feature | ChatGPT | Claude | Gemini |
 |---------|---------|---------|--------|
-| Context Window | 128K max | 200K | 2M max |
-| Multimodal | ✓ (GPT-4V) | ✓ (Claude 3+) | ✓✓ (Native) |
-| Code Execution | ✓ (Interpreter) | ✓ (Computer Use) | ✓ (Built-in) |
+| Context Window | Varies by model | Varies by model | Varies by model |
+| Multimodal | Model-dependent | Model-dependent | Model-dependent |
+| Code Execution | Product-dependent | Product/tool-dependent | Product-dependent |
 | Function Calling | ✓✓ | ✓ | ✓ |
 | Custom Instructions | ✓ | ~ (via prompts) | ~ (via prompts) |
 | Search Integration | ✓ (some versions) | ✗ | ✓✓ |
-| Thinking Process | ~ (implicit) | ✓✓ (explicit tags) | ~ (implicit) |
+| Reasoning Controls | Model/product-dependent | Model/product-dependent | Model/product-dependent |
 
 ### Strength-Based Selection
 

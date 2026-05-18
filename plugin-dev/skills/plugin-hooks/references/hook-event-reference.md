@@ -1,6 +1,6 @@
 # Hook Event Reference
 
-> Authoritative catalog of every documented Claude Code hook event. Sourced from [https://code.claude.com/docs/en/hooks](https://code.claude.com/docs/en/hooks). SKILL.md body covers the 10 most-used events inline; this reference covers all 24+ events with schemas, blocking behavior, and matcher semantics.
+> Authoritative catalog of documented Claude Code hook events. Sourced from [https://code.claude.com/docs/en/hooks](https://code.claude.com/docs/en/hooks). SKILL.md body covers the most-used events inline; this reference tracks the current event set with schemas, blocking behavior, and matcher semantics.
 
 ---
 
@@ -11,8 +11,9 @@
 | `PreToolUse` | Yes | exit 2 OR `permissionDecision: "deny"` | Tool name |
 | `PostToolUse` | No | — | Tool name |
 | `PermissionRequest` | Yes | `decision.behavior: "deny"` | Tool name |
-| `PermissionDenied` | No | — | Tool name |
+| `PermissionDenied` | No | `retry: true` can tell the model it may retry | Tool name |
 | `UserPromptSubmit` | Yes | exit 2 (rejects prompt) | None |
+| `UserPromptExpansion` | Yes | exit 2 or JSON `decision: "block"` | Command name |
 | `SessionStart` | No | — | Source (`startup`/`resume`/`clear`/`compact`) |
 | `SessionEnd` | No | — | None |
 | `Stop` | Yes | exit 2 (forces Claude to continue) | None |
@@ -20,20 +21,21 @@
 | `Notification` | No | — | Notification type |
 | `SubagentStart` | No | — | Agent name |
 | `SubagentStop` | Yes | exit 2 (forces subagent to continue) | Agent name |
-| `TaskCreated` | No | — | None |
-| `TaskCompleted` | No | — | None |
-| `TeammateIdle` | No | — | None |
-| `ConfigChange` | No | — | Config key |
+| `TaskCreated` | Yes | exit 2 rolls back task creation | None |
+| `TaskCompleted` | Yes | exit 2 prevents completion marking | None |
+| `TeammateIdle` | Yes | exit 2 keeps the teammate active | None |
+| `ConfigChange` | Yes | exit 2 blocks most config changes | Config key |
 | `CwdChanged` | No | — | None |
 | `FileChanged` | No | — | File path (watch list + filter) |
-| `PreCompact` | No | — | None |
+| `PreCompact` | Yes | exit 2 blocks compaction | None |
 | `PostCompact` | No | — | None |
 | `Elicitation` | Yes | exit 2 (rejects elicitation) | None |
-| `ElicitationResult` | No | — | None |
+| `ElicitationResult` | Yes | exit 2 blocks the response | None |
 | `WorktreeCreate` | **Yes (always)** | Any non-zero exit fails creation | None |
 | `WorktreeRemove` | No | — | None |
 | `InstructionsLoaded` | No | — | None |
 | `PostToolUseFailure` | No | — | Tool name |
+| `PostToolBatch` | Yes | exit 2 stops the loop before the next model call | None |
 
 ---
 

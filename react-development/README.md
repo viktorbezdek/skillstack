@@ -2,31 +2,30 @@
 
 > **v1.1.21** | Development | 22 iterations
 
-> Build production-grade React applications with Next.js App Router, shadcn/ui components, optimized hooks, and Bulletproof React architecture patterns.
-> Single skill combining 7 domains + 30 references + 12 scripts + 7 templates + 3 examples
+> Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.
+> Single skill combining React application architecture, shadcn/ui, fpkit, hooks optimization, and quality auditing.
 
 ## The Problem
 
 React applications start simple and grow complex fast. A team builds a feature with useState and useEffect, and within weeks the component is 500 lines of tangled state synchronization, derived values stored in state that should be computed during render, and effects that fire on every keystroke because the dependency array is wrong. The hooks look correct -- they follow the Rules of Hooks -- but they violate patterns the React docs now explicitly warn against.
 
-Architecture decisions made in the first week compound through the project's lifetime. Without a layered structure, server-side data fetching leaks into components, business logic lives in useEffect chains, and there is no clear boundary between what runs on the server and what runs on the client. Teams end up with components that are impossible to test in isolation because they directly call APIs, manage their own caching, and handle their own error states.
+Architecture decisions made in the first week compound through the project's lifetime. Without clear client-side boundaries, business logic lives in useEffect chains, API calls leak into presentation components, and server state is mixed with local UI state. Teams end up with components that are impossible to test in isolation because they directly call APIs, manage their own caching, and handle their own error states.
 
 Component libraries suffer a different problem. Teams either build everything from scratch (wasting weeks on accessible dropdowns and date pickers) or adopt a component library without a variant system, leading to one-off CSS overrides scattered across the codebase. When design requirements change, every component needs individual attention because there is no systematic theming or variant architecture.
 
 ## Context to Provide
 
-The skill routes to one of five domains (Next.js architecture, shadcn/ui components, fpkit library, hooks optimization, Bulletproof audit) based on what you describe. More context means faster, more targeted routing and less back-and-forth.
+The skill routes to one of five domains (React application architecture, shadcn/ui components, fpkit library, hooks optimization, Bulletproof audit) based on what you describe. More context means faster, more targeted routing and less back-and-forth.
 
 **What information to include in your prompt:**
-- **What you are building** -- full-stack Next.js app, standalone component library, or optimizing existing code? The routing decision is different for each.
-- **Technology stack** -- Next.js version, backend (Supabase, Prisma, external API), state management (React Query, Zustand, Redux), UI library (shadcn/ui, custom). These determine which reference files load.
+- **What you are building** -- React app feature, standalone component library, or optimization of existing code? The routing decision is different for each.
+- **Technology stack** -- React version, bundler/framework, backend/API shape, state management (React Query, Zustand, Redux), UI library (shadcn/ui, custom). These determine which reference files load.
 - **The specific problem** -- for hooks issues, describe the exact behavior (firing too often, stale data, performance regression), not just "it doesn't work." The dependency array shape is usually the clue.
 - **Actual code when debugging** -- for anti-pattern detection, paste the component or hook. "My useEffect fires on every render" is diagnosable; "my component is slow" is not.
 - **Component requirements when building** -- for shadcn/ui component requests, specify variants, sizes, states (disabled, loading, error), and accessibility needs. Underspecified component requests produce bare-minimum scaffolds.
 
 **What makes results better:**
 - Showing the component code and the problem symptom together (not just the symptom)
-- Specifying Next.js App Router vs. Pages Router -- the patterns are completely different
 - Describing the data flow: where data comes from (server, client fetch, real-time), how it gets to the component, and where state lives
 
 **What makes results worse:**
@@ -34,9 +33,9 @@ The skill routes to one of five domains (Next.js architecture, shadcn/ui compone
 - Describing symptoms without showing the dependency array for hooks issues
 - Requesting "a button component" without specifying variants, states, and whether it needs to integrate with a form library
 
-**Template prompt (for Next.js architecture):**
+**Template prompt (for React application architecture):**
 ```
-I'm building a [type: SaaS dashboard / e-commerce / admin panel / internal tool] with Next.js [version] and [backend: Supabase / Prisma / external REST API].
+I'm building a [type: SaaS dashboard / e-commerce / admin panel / internal tool] with React and [backend/API: Supabase / Prisma API / external REST API].
 
 Main features: [list 2-3 key features -- e.g., "user dashboard with real-time updates, team management, billing"]
 Current structure: [describe how the project is organized now, or say "starting from scratch"]
@@ -70,9 +69,9 @@ TypeScript: strict types for all props
 
 ## The Solution
 
-This plugin combines expertise from seven specialized React development domains into a single skill: Next.js 5-layer architecture, shadcn/ui component patterns with CVA variants, fpkit component library building, Bulletproof React code quality auditing, and advanced hooks optimization. It activates whenever you work with React components, hooks, JSX/TSX files, or Next.js routing.
+This plugin combines expertise from specialized React development domains into a single skill: React client architecture, shadcn/ui component patterns with CVA variants, fpkit component library building, Bulletproof React code quality auditing, and advanced hooks optimization. It activates whenever you work with React components, hooks, JSX/TSX files, client data flow, or component architecture.
 
-The skill provides a decision tree that routes you to the right pattern: building a full-stack Next.js app gets you the 5-layer architecture (Types, Services, Hooks, Components, Pages), creating a component library gets you shadcn/ui or fpkit patterns with CVA variants and CSS variables, and optimizing existing code gets you hooks anti-pattern detection and Bulletproof React auditing. Each path includes concrete code patterns, not abstract guidelines.
+The skill provides a decision tree that routes you to the right pattern: app-level React work gets client service/hook/component boundaries, creating a component library gets shadcn/ui or fpkit patterns with CVA variants and CSS variables, and optimizing existing code gets hooks anti-pattern detection and Bulletproof React auditing. Each path includes concrete code patterns, not abstract guidelines.
 
 For hooks specifically, the skill enforces a core principle: "The best hook is the one you don't need to write." It identifies the four most common anti-patterns (derived state in useState+useEffect, event responses in effects, props-to-state synchronization, and premature memoization) and provides the correct alternative for each. The result is simpler, faster components that re-render only when they should.
 
@@ -193,18 +192,18 @@ User works with React / Next.js / JSX / TSX / hooks
 
 #### react-development (skill)
 
-**What it does:** Activates when you work with React components, hooks (useState, useEffect, useReducer, useContext), JSX/TSX files, component architecture, or state management. Routes you to the right pattern based on what you are building -- full-stack Next.js apps, component libraries, or hooks optimization.
+**What it does:** Activates when you work with React components, hooks (useState, useEffect, useReducer, useContext), JSX/TSX files, component architecture, or state management. Routes you to the right pattern based on what you are building -- React app features, component libraries, or hooks optimization.
 
-**Input -> Output:** A React development question or task -> Concrete code patterns following the appropriate architecture (5-layer, CVA variants, or optimized hooks), plus quality assessment when requested.
+**Input -> Output:** A React development question or task -> Concrete code patterns following the appropriate architecture (client layers, CVA variants, or optimized hooks), plus quality assessment when requested.
 
-**When to use:** Building React applications with Next.js App Router. Creating reusable component libraries with shadcn/ui or fpkit. Optimizing hooks usage and eliminating anti-patterns. Auditing React codebase quality against Bulletproof React standards.
+**When to use:** Building React applications and client-side UI flows. Creating reusable component libraries with shadcn/ui or fpkit. Optimizing hooks usage and eliminating anti-patterns. Auditing React codebase quality against Bulletproof React standards.
 
 **When NOT to use:** Next.js routing, SSR, and server components at the framework level (use nextjs-development). CSS design systems, Tailwind utilities, and accessibility patterns (use frontend-design). Backend API development (use api-design or typescript-development).
 
 **Try these prompts:**
 
 ```
-Set up a Next.js 15 project with the 5-layer architecture, Supabase, and React Query
+Design the React client architecture for a dashboard that uses React Query and an existing REST API
 ```
 
 ```
@@ -231,14 +230,6 @@ My useEffect has 8 items in its dependency array and fires too often -- help me 
 
 | Reference | Topic |
 |---|---|
-| `nextjs-architecture-patterns.md` | 5-layer architecture, module boundaries, data flow |
-| `nextjs-component-patterns.md` | Server/Client component patterns, composition |
-| `nextjs-hooks-patterns.md` | React Query integration, custom hooks for Next.js |
-| `nextjs-service-patterns.md` | Server-side service layer with Supabase |
-| `nextjs-database-patterns.md` | Database access patterns, migrations, row-level security |
-| `nextjs-page-patterns.md` | Page layouts, loading states, error boundaries |
-| `nextjs-typescript-patterns.md` | TypeScript patterns specific to Next.js + React |
-| `nextjs-permission-patterns.md` | Auth and permission patterns with Supabase |
 | `shadcn-form-patterns.md` | Form components with React Hook Form + Zod validation |
 | `shadcn-data-tables.md` | Data table patterns with sorting, filtering, pagination |
 | `shadcn-animation-patterns.md` | Animation patterns with Framer Motion + shadcn |
@@ -438,7 +429,7 @@ The final dashboard has clean separation: services handle data access, hooks man
 **How does the skill decide which domain to use?**
 
 The skill examines your request and routes to the appropriate React domain:
-- Working with Next.js App Router, data fetching, or project structure -> **Next.js 5-Layer Architecture** with server services, client hooks, and typed data flow
+- Working with React client data fetching or state boundaries -> **React Application Architecture** with services, hooks, and typed data flow
 - Creating or modifying React components with variants and theming -> **shadcn/ui Patterns** with CVA, Radix primitives, and CSS variables
 - Building library components for @fpkit/acss -> **fpkit Patterns** with composition, accessibility, and Storybook integration
 - Questions about useState, useEffect, useMemo, or dependency arrays -> **Hooks Best Practices** with anti-pattern detection and correct alternatives
@@ -447,7 +438,7 @@ The skill examines your request and routes to the appropriate React domain:
 **When does the skill load references?**
 
 The SKILL.md body contains the decision tree, core architecture patterns, CVA variant syntax, and hooks anti-patterns. References load on demand:
-- Next.js architecture question -> the relevant `nextjs-*.md` file (architecture, components, services, etc.)
+- Next.js routing, SSR, Server Components, or framework architecture question -> switch to `nextjs-development`
 - shadcn/ui component question -> the relevant `shadcn-*.md` file (forms, data tables, animations, testing)
 - fpkit question -> the relevant `fpkit-builder-*.md` or `fpkit-dev-*.md` file
 - Hooks deep-dive -> `hooks-dependency-array.md`, `hooks-unnecessary-hooks.md`, or `hooks-custom-hooks.md`
@@ -465,11 +456,11 @@ The skill recommends memoization (useMemo/useCallback) only when three condition
 | Hooks anti-pattern produces stale closures | State values inside useEffect or event handlers are stale -- they show the value from when the closure was created, not the current value | Use functional updates (`setCount(c => c + 1)` instead of `setCount(count + 1)`) or useRef for values that should not trigger re-renders but need current values in callbacks. |
 | CVA variants become unmanageable | A component has 6+ variant axes and the combinations produce confusing CSS classes | Decompose the component into smaller, single-responsibility components. A "Card" with variants for size, color, border, shadow, padding, and alignment is really 3 separate concerns that should be composed, not configured. |
 | Bulletproof audit produces false positives | The auditor flags patterns that are intentional in your codebase (e.g., a god component that serves as a page layout root) | Use the severity matrix to triage findings. "Suggestion" severity items may be intentional trade-offs. The skill supports annotation comments to mark intentional exceptions. |
-| React Query cache and Supabase Realtime conflict | Optimistic updates via React Query get overwritten by Realtime subscription events, causing UI flicker | Coordinate by using Realtime events to invalidate the React Query cache rather than directly updating state. The skill shows the pattern in the Next.js hooks reference. |
+| React Query cache and realtime events conflict | Optimistic updates get overwritten by subscription events, causing UI flicker | Coordinate by using realtime events to invalidate the React Query cache rather than directly updating local state. |
 
 ## Ideal For
 
-- **Teams building full-stack Next.js applications** -- the 5-layer architecture prevents the common "everything in page components" trap and provides clear boundaries between server and client code
+- **Teams building React-heavy applications** -- client service/hook/component boundaries prevent the common "everything in one component" trap
 - **Frontend developers building component libraries** -- shadcn/ui and fpkit patterns with CVA variants produce systematic, themeable, accessible components instead of one-off implementations
 - **React developers struggling with hooks complexity** -- anti-pattern detection and correct alternatives eliminate the most common sources of excessive re-renders and stale state
 - **Tech leads preparing for code reviews** -- the Bulletproof React auditor produces severity-rated reports that identify architectural issues objectively

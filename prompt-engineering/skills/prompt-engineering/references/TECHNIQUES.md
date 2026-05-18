@@ -177,20 +177,25 @@ Validation:
 
 ## Advanced Techniques
 
-### 6. Chain-of-Thought (CoT)
+### 6. Structured Reasoning
 
-**What:** Explicitly request step-by-step reasoning
+**What:** Give the model a reasoning workflow, but ask it to keep detailed reasoning private and show only the concise rationale needed by the user.
 
 **When:** Complex reasoning, math problems, multi-step analysis, debugging
 
 **Basic pattern:**
 ```
-Think through this step-by-step:
+Think privately through this workflow:
 1. Identify the key components
 2. Analyze relationships
 3. Reason through each step
 4. Draw conclusions
 5. Verify the answer
+
+Then answer with:
+- Final answer
+- Concise rationale
+- Checks or caveats
 
 Problem: [Your problem]
 ```
@@ -210,8 +215,8 @@ Use this reasoning framework:
 - Select optimal path
 
 ## Execution
-- Work through each step
-- Show intermediate results
+- Work through each step privately
+- Surface only intermediate results needed for verification
 - Check consistency
 
 ## Validation
@@ -222,21 +227,14 @@ Use this reasoning framework:
 Now apply to: [Your problem]
 ```
 
-**Few-Shot CoT:**
+**Few-Shot Structured Reasoning:**
 ```
-Here's an example of step-by-step reasoning:
+Here's an example of the visible rationale style:
 
 Q: If 3 painters can paint 3 rooms in 3 hours, how many painters needed for 6 rooms in 6 hours?
 
-A: Let me work through this:
-1. First, find rate per painter: 3 painters paint 3 rooms in 3 hours
-   - This means each painter paints 1 room in 3 hours
-   - Rate: 1/3 room per hour per painter
-2. For 6 rooms in 6 hours:
-   - Need 6 rooms painted total
-   - Have 6 hours available
-   - Each painter can paint: 6 hours × 1/3 room/hr = 2 rooms
-3. Therefore: 6 rooms ÷ 2 rooms/painter = 3 painters needed
+A: 3 painters.
+Rationale: Each painter paints 1 room in 3 hours, so each painter paints 2 rooms in 6 hours. Six rooms therefore require 3 painters.
 
 Now solve this: [Your problem]
 ```
@@ -651,7 +649,7 @@ Execute code and show both code and results.
 | Creative generation | Constraints + Role | Examples, Iteration |
 | Multi-stakeholder | Multi-perspective | Frameworks, Trade-off analysis |
 | Teaching/Learning | Socratic method | Examples, Analogies |
-| Research synthesis | ReAct | Multi-perspective, Chain-of-thought |
+| Research synthesis | ReAct | Multi-perspective, structured reasoning |
 | Technical tasks | Constraints + Tests | Few-shot, Error handling |
 | Decision support | Multi-perspective | Trade-off analysis, Criteria weighting |
 
@@ -675,22 +673,23 @@ Analyze from:
 - Competitive perspective
 - Market trends perspective
 
-[Chain-of-Thought]
-For each perspective:
+[Structured Reasoning]
+Think privately for each perspective:
 1. Identify key factors
 2. Analyze implications
 3. Draw insights
+Then show only the concise rationale and evidence.
 
 [Output Specification]
 Format as structured report:
 ## Perspective 1: Customers
-[Analysis following CoT]
+[Analysis with concise rationale]
 
 ## Perspective 2: Competition
-[Analysis following CoT]
+[Analysis with concise rationale]
 
 ## Perspective 3: Market
-[Analysis following CoT]
+[Analysis with concise rationale]
 
 ## Synthesis
 [Combined insights and recommendations]

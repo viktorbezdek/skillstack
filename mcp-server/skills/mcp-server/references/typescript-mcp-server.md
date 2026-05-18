@@ -583,15 +583,17 @@ server.registerResource(
 
 ```typescript
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 
 // Stdio transport (default - for CLI tools)
 const stdioTransport = new StdioServerTransport();
 await server.connect(stdioTransport);
 
-// SSE transport (for real-time web updates)
-const sseTransport = new SSEServerTransport("/message", response);
-await server.connect(sseTransport);
+// Streamable HTTP transport (for remote services)
+const httpTransport = new StreamableHTTPServerTransport({
+  sessionIdGenerator: undefined,
+});
+await server.connect(httpTransport);
 ```
 
 ## Code Composability

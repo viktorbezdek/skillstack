@@ -167,7 +167,7 @@ Single-skill plugin with 13 references, 13 scripts, and 1 asset file. The skill 
 
 **When NOT to use:**
 - CI/CD pipeline configuration or deployment YAML -> use [cicd-pipelines](../cicd-pipelines/)
-- Workflow orchestration or release automation -> use [workflow-automation](../workflow-automation/)
+- Non-git workflow orchestration -> use [skillstack-workflows](../skillstack-workflows/) or [multi-agent-patterns](../multi-agent-patterns/)
 - Code review (the content, not the commit format) -> use [code-review](../code-review/)
 
 **Try these prompts:**
@@ -410,13 +410,13 @@ Multiple areas can be combined in a single workflow (e.g., commit -> version -> 
 ## Not For
 
 - **CI/CD pipeline configuration** -- YAML files, GitHub Actions, deployment automation. Use [cicd-pipelines](../cicd-pipelines/)
-- **Workflow orchestration** -- release automation, multi-stage deployment. Use [workflow-automation](../workflow-automation/)
+- **Non-git workflow orchestration** -- multi-stage deployment or agent coordination. Use [skillstack-workflows](../skillstack-workflows/) or [multi-agent-patterns](../multi-agent-patterns/)
 - **Code review content** -- reviewing the actual code quality, security, and performance. Use [code-review](../code-review/)
 
 ## Related Plugins
 
 - **[CI/CD Pipelines](../cicd-pipelines/)** -- Configure GitHub Actions, GitLab CI, and deployment pipelines that consume the commits and changelogs this plugin produces
-- **[Workflow Automation](../workflow-automation/)** -- Orchestrate release workflows that use the version calculation and changelog from this plugin
+- **[SkillStack Workflows](../skillstack-workflows/)** -- Orchestrate larger workflows that may consume the version calculation and changelog from this plugin
 - **[Code Review](../code-review/)** -- Review the code content that goes into the atomic commits this plugin helps create
 - **[Consistency Standards](../consistency-standards/)** -- Naming conventions for branches, commits, and tags
 

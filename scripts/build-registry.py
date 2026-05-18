@@ -120,7 +120,7 @@ def main():
             {
                 "id": "skillstack-full",
                 "name": "SkillStack",
-                "description": f"The complete SkillStack library — {len(plugins)} expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, and meta-skills.",
+                "description": f"The complete SkillStack library — {len(plugins)} expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.",
                 "audience": "technical",
                 "auto_inferred_from_repo": REPO_ID,
                 "plugin_ids": [p["id"] for p in plugins],
@@ -137,7 +137,7 @@ def main():
             {
                 "id": "skillstack-devops",
                 "name": "DevOps & Infrastructure",
-                "description": "Ship and operate software in production: CI/CD pipelines, cloud FinOps, Docker containerization, Git workflow management, and workflow automation.",
+                "description": "Ship and operate software in production: CI/CD pipelines, cloud FinOps, Docker containerization, and Git workflow management.",
                 "audience": "technical",
                 "plugin_ids": category_ids("devops"),
                 "created_at": "2025-01-01T00:00:00Z"
@@ -188,6 +188,14 @@ def main():
                 "description": "Write, structure, and communicate: documentation generation, example design, and communication craft (structured writing, stakeholder alignment, ADRs, runbooks, diagram-as-code).",
                 "audience": "technical",
                 "plugin_ids": category_ids("documentation"),
+                "created_at": "2025-01-01T00:00:00Z"
+            },
+            {
+                "id": "skillstack-research",
+                "name": "Research",
+                "description": "Research and intelligence-gathering skills that collect, organize, and assess evidence from external sources.",
+                "audience": "technical",
+                "plugin_ids": category_ids("research"),
                 "created_at": "2025-01-01T00:00:00Z"
             },
             {

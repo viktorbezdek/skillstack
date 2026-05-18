@@ -1,11 +1,11 @@
 # CI/CD Pipelines
 
-> **v1.1.23** | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, container orchestration, security scanning, and enterprise release management.
-> 1 skill | 52 references | 15 templates | 21 scripts | 13 trigger evals, 3 output evals
+> **v1.1.24** | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness.
+> 1 skill | 42 references | 18 templates | 16 scripts | 13 trigger evals, 3 output evals
 
 ## The Problem
 
-CI/CD pipelines start as simple build-and-test workflows and grow into critical infrastructure that nobody fully understands. A typical trajectory: the original author writes a 50-line GitHub Actions workflow. Over months, other engineers bolt on security scanning, Docker builds, Kubernetes deployments, and release automation. The workflow balloons to 500 lines of YAML with hardcoded secrets, no caching, no parallelization, and implicit dependencies between jobs. Builds that should take 3 minutes take 30.
+CI/CD pipelines start as simple build-and-test workflows and grow into critical infrastructure that nobody fully understands. A typical trajectory: the original author writes a 50-line GitHub Actions workflow. Over months, other engineers bolt on security scanning, Docker image builds, Kubernetes deployments, and approval gates. The workflow balloons to 500 lines of YAML with hardcoded secrets, no caching, no parallelization, and implicit dependencies between jobs. Builds that should take 3 minutes take 30.
 
 Security is the silent crisis. Teams hardcode API keys because "we'll fix it later." They use `:latest` tags in Dockerfiles because pinning versions feels tedious. They run containers as root because the non-root alternative requires fixing file permissions. Script injection vulnerabilities lurk in workflows that interpolate user input directly. Each shortcut is a deferred incident, and the compounding effect is a pipeline that is both slow and insecure.
 
@@ -102,14 +102,14 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 |  +------------------+     | OpenSSF Badge    |     | ArgoCD/Flux    |  |
 |                           +------------------+     +----------------+  |
 |                                                                        |
-|  Release Management       Cloud Platforms          Enterprise          |
+|  Provenance & Gates        Cloud Platforms          Enterprise          |
 |  +------------------+     +------------------+     +----------------+  |
-|  | semantic-release  |     | AWS              |     | Governance     |  |
-|  | Signing/Provenance|     | GCP              |     | OpenSSF Silver |  |
-|  | Changelog         |     | Cloudflare       |     | OpenSSF Gold   |  |
+|  | Signing/Provenance|     | AWS              |     | Governance     |  |
+|  | Rollback gates    |     | GCP              |     | OpenSSF Silver |  |
+|  | Deploy approvals  |     | Cloudflare       |     | OpenSSF Gold   |  |
 |  +------------------+     +------------------+     +----------------+  |
 |                                                                        |
-|  Templates (15)  |  Scripts (21)  |  References (52)                   |
+|  Templates (18)  |  Scripts (16)  |  References (42)                   |
 +-----------------------------------------------------------------------+
 ```
 
@@ -118,9 +118,9 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 | Component | Type | Count |
 |---|---|---|
 | `cicd-pipelines` | Skill | 1 comprehensive skill |
-| References | CI/CD, security, infrastructure, cloud, enterprise | 52 files |
-| Templates | GitHub Actions, GitLab CI, release config, enterprise docs | 15 files |
-| Scripts | Analysis, security, coverage, release, infrastructure | 21 files |
+| References | CI/CD, security, infrastructure, cloud, enterprise | 42 files |
+| Templates | GitHub Actions, GitLab CI, deployment, enterprise docs | 18 files |
+| Scripts | Analysis, security, coverage, infrastructure | 16 files |
 
 ### Reference Categories
 
@@ -131,7 +131,6 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 | **Infrastructure** | `terraform-eks-module.tf`, `kubernetes-basics.md`, `kubernetes-deployment.yaml`, `docker-basics.md`, `docker-compose.md` |
 | **Cloud Platforms** | `aws-overview.md`, `gcloud-platform.md`, `gcloud-services.md`, `cloudflare-workers-*.md` (6 files) |
 | **Enterprise** | `general.md`, `github.md`, `openssf-badge-silver.md`, `openssf-badge-gold.md`, `signed-releases.md`, `reproducible-builds.md` |
-| **Release Management** | `local-release-workflow.md`, `workflow-patterns.md`, `version-alignment.md`, `pypi-publishing-with-doppler.md` |
 
 ### Templates
 
@@ -148,7 +147,6 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 | `gitlab-ci/go-ci.yml` | GitLab | Go with Kubernetes deployment |
 | `gitlab-ci/docker-build.yml` | GitLab | Docker with DinD, multi-arch |
 | `gitlab-ci/security-scan.yml` | GitLab | DevSecOps with GitLab templates |
-| `releaserc.yml` | Any | semantic-release configuration |
 | `GOVERNANCE.md` | Any | Project governance documentation |
 | `SECURITY_AUDIT.md` | Any | Security self-audit template |
 
@@ -164,13 +162,12 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 | `verify-signed-tags.sh` | Git tag signature verification |
 | `docker_optimize.py` | Dockerfile analysis and optimization |
 | `cloudflare_deploy.py` | Cloudflare Worker deployments |
-| `init_project.sh` | Initialize semantic-release for project |
 
 ### Component Spotlights
 
 #### cicd-pipelines (skill)
 
-**What it does:** Activates when you need to create, optimize, secure, or debug CI/CD pipelines across any platform. Covers the full DevOps lifecycle from initial pipeline creation through enterprise compliance and release management.
+**What it does:** Activates when you need to create, optimize, secure, or debug CI/CD pipelines across any platform. Covers pipeline creation, performance, DevSecOps, infrastructure deployment, GitOps, provenance, and enterprise readiness.
 
 **Input -> Output:** Pipeline requirements (language, platform, deployment target, security needs) -> Complete workflow YAML, Dockerfile, Kubernetes manifests, Terraform modules, and security configurations.
 
@@ -178,13 +175,13 @@ Create a GitHub Actions CI pipeline for my Node.js monorepo with unit tests, lin
 - Creating new CI/CD workflows (GitHub Actions, GitLab CI, Jenkins)
 - Optimizing slow builds (caching, parallelization, path filters)
 - Securing pipelines (OIDC, secret management, vulnerability scanning)
-- Containerizing applications (Docker, Kubernetes, Helm)
+- Building/scanning/publishing container images from existing Dockerfiles
 - Implementing GitOps (ArgoCD, Flux)
-- Setting up release automation (semantic-release, signing)
+- Adding artifact signing, provenance, deployment gates, and rollback checks
 - Enterprise readiness assessment (OpenSSF compliance)
 
 **When NOT to use:**
-- Automating release orchestration workflows -> use `workflow-automation`
+- Release notes, semantic versioning, or changelog workflows -> use `git-workflow`
 - Writing Dockerfiles from scratch -> use `docker-containerization`
 - Managing git branches and commits -> use `git-workflow`
 
@@ -275,9 +272,9 @@ It pins all actions to SHA commits instead of version tags, adds Trivy container
 
 **Step 5: Deployment safety.** The skill adds a health check after ECS deploy that polls the `/health` endpoint for 5 minutes. If it fails, the deploy automatically rolls back to the previous task definition. A manual approval gate is added between staging and production environments.
 
-**Step 6: Release automation.** The skill sets up semantic-release with conventional commits: `feat:` commits trigger minor version bumps, `fix:` commits trigger patch bumps, `BREAKING CHANGE:` triggers major bumps. Releases are signed with Cosign and include SLSA provenance metadata.
+**Step 6: Provenance.** The skill signs build artifacts with Cosign, records image digests, and includes SLSA provenance metadata. Changelog/version calculation stays in `git-workflow`.
 
-**Final result:** Build time dropped from 22 minutes to 8 minutes. Zero hardcoded credentials. Container runs as non-root with no known vulnerabilities. Automated rollback on failed deploys. Signed releases with provenance.
+**Final result:** Build time dropped from 22 minutes to 8 minutes. Zero hardcoded credentials. Container runs as non-root with no known vulnerabilities. Automated rollback on failed deploys. Signed artifacts with provenance.
 
 **Gotchas discovered:** The OIDC trust policy needed the specific repository and branch conditions -- a permissive policy would let any GitHub Actions workflow assume the role. Also, Trivy scanning caught a critical CVE in the base Node.js image that had been there for 6 months.
 
@@ -359,15 +356,14 @@ Reusable workflows for entire CI/CD pipelines that multiple repos need identical
 
 ## Not For
 
-- **Release orchestration workflows** -- for complex release processes with approvals and notifications, use `workflow-automation`
+- **Release notes and semantic versioning** -- for changelog/version workflows, use `git-workflow`
 - **Writing Dockerfiles from scratch** -- for Docker-specific patterns, multi-stage builds, and container optimization, use `docker-containerization`
 - **Git branching strategies** -- for branch management, commit conventions, and merge strategies, use `git-workflow`
 
 ## Related Plugins
 
 - **docker-containerization** -- Container-specific patterns that complement pipeline Docker build stages
-- **git-workflow** -- Branch management and commit conventions that feed into CI triggers
-- **workflow-automation** -- Release orchestration and approval workflows
+- **git-workflow** -- Branch management, commit conventions, changelogs, and semantic versions that feed into CI triggers
 - **code-review** -- Code quality gates that integrate with CI pipeline checks
 - **cloud-finops** -- Cost optimization for CI/CD infrastructure (runners, build minutes, storage)
 - **api-design** -- API deployment pipelines

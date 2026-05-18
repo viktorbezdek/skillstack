@@ -162,7 +162,6 @@ npx tsx scripts/mcp-tools/cli.ts list-tools
 |------|---------|
 | `references/production-checklist.md` | Pre-deployment validation |
 | `references/community-practices.md` | Mid-2025+ patterns, .mcpb packaging |
-| `references/api-comparison.md` | LLM provider comparison |
 | `references/evaluation-guide.md` | Creating effective evaluations |
 
 ### Claude Code Integration

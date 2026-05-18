@@ -1,6 +1,6 @@
 # Python Conventions and Style Guide
 
-This comprehensive guide covers Python code style conventions, naming patterns, formatting rules, and modern tooling for maintaining consistent, readable Python code. All guidance is based on official PEP standards and current best practices as of 2024-2025.
+This comprehensive guide covers Python code style conventions, naming patterns, formatting rules, and modern tooling for maintaining consistent, readable Python code. All guidance is based on official PEP standards and current best practices as of current.
 
 **Official Sources:**
 
@@ -16,7 +16,7 @@ This comprehensive guide covers Python code style conventions, naming patterns, 
 - [Naming Conventions](#naming-conventions)
 - [Code Formatting](#code-formatting)
 - [Import Organization](#import-organization)
-- [Modern Tooling (2024-2025)](#modern-tooling-2024-2025)
+- [Modern Tooling (current)](#modern-tooling-current)
 - [Configuration Examples](#configuration-examples)
 - [Comments and Docstrings](#comments-and-docstrings)
 - [Best Practices](#best-practices)
@@ -495,7 +495,7 @@ import os
 import sys
 ```
 
-## Modern Tooling (2024-2025)
+## Modern Tooling (current)
 
 ### Ruff (Recommended - All-in-One Solution)
 
@@ -1147,7 +1147,7 @@ Add rules to `select` list incrementally.
 
 ## Summary
 
-**Modern Python style (2024-2025):**
+**Modern Python style (current):**
 
 1. **Follow PEP 8** for naming and structural conventions
 2. **Use Ruff** as all-in-one linter + formatter (replaces Flake8, isort, Black)

@@ -1157,7 +1157,7 @@ class ProviderRouter:
         elif requirements.get("speed"):
             provider = self.providers.get("claude-haiku")  # Fastest
         else:
-            provider = self.providers.get("default")  # GPT-4 Turbo
+            provider = self.providers.get("default")  # configured default model
 
         return provider.chat(messages)
 

@@ -219,9 +219,9 @@ Component templates for rapid scaffolding:
 
 ## File Reference
 
-### References (29 files)
+### References
 
-**Next.js:** nextjs-architecture-patterns.md, nextjs-service-patterns.md, nextjs-hooks-patterns.md, nextjs-component-patterns.md, nextjs-page-patterns.md, nextjs-database-patterns.md, nextjs-permission-patterns.md, nextjs-typescript-patterns.md
+For Next.js routing, SSR, Server Components, Server Actions, or framework architecture, use `nextjs-development`.
 
 **shadcn/ui:** shadcn-form-patterns.md, shadcn-data-tables.md, shadcn-animation-patterns.md, shadcn-testing-setup.md
 

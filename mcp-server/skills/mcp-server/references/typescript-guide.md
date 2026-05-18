@@ -777,30 +777,29 @@ server.registerResourceList(async () => {
 - **Resources**: When data is relatively static or template-based
 - **Tools**: When operations have side effects or complex workflows
 
-### Multiple Transport Options
+### Transport Options
 
-The TypeScript SDK supports different transport mechanisms:
+The TypeScript SDK supports stdio for local process-spawned integrations and Streamable HTTP for remote servers. Legacy HTTP+SSE is deprecated and should be used only for backwards compatibility.
 
 ```typescript
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 
 // Stdio transport (default - for CLI tools)
 const stdioTransport = new StdioServerTransport();
 await server.connect(stdioTransport);
 
-// SSE transport (for real-time web updates)
-const sseTransport = new SSEServerTransport("/message", response);
-await server.connect(sseTransport);
-
-// HTTP transport (for web services)
-// Configure based on your HTTP framework integration
+// Streamable HTTP transport (for remote services)
+const httpTransport = new StreamableHTTPServerTransport({
+  sessionIdGenerator: undefined, // stateless; use a UUID generator for stateful sessions
+});
+await server.connect(httpTransport);
 ```
 
 **Transport selection guide:**
 - **Stdio**: Command-line tools, subprocess integration, local development
-- **HTTP**: Web services, remote access, multiple simultaneous clients
-- **SSE**: Real-time updates, server-push notifications, web dashboards
+- **Streamable HTTP**: Remote access, multiple clients, optional SSE streaming and resumability
+- **Legacy HTTP+SSE**: Backwards compatibility for old clients only
 
 ### Notification Support
 

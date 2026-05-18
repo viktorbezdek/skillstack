@@ -10,7 +10,8 @@ REQUIRED_PLUGIN_FIELDS = {"id", "name", "type", "category", "description", "repo
 REQUIRED_COLLECTION_FIELDS = {"id", "name", "plugin_ids"}
 VALID_PLUGIN_TYPES = {"skill", "agent", "mcp", "command"}
 VALID_CATEGORIES = {"development", "devops", "quality", "context-engineering",
-                    "agent-architecture", "thinking", "design", "documentation"}
+                    "agent-architecture", "thinking", "design", "documentation",
+                    "research"}
 VALID_STATUSES = {"active", "deprecated", "removed"}
 VALID_INTEGRATION_STATUSES = {"active", "paused", "removed"}
 

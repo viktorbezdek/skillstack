@@ -269,7 +269,7 @@ From @ [magic.io/blog/uvloop](https://magic.io/blog/uvloop-blazing-fast-python-n
 - uvloop: 2.3 GiB/s
 - Standard asyncio: 0.8 GiB/s
 
-### Community Benchmarks (2024-2025)
+### Community Benchmarks (current)
 
 @ [discuss.python.org](https://discuss.python.org/t/is-uvloop-still-faster-than-built-in-asyncio-event-loop/71136):
 

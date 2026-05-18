@@ -773,7 +773,7 @@ Or inline in `plugin.json`:
 * **Automatic lifecycle**: Servers start when plugin enables, but you must restart Claude Code to apply MCP server changes (enabling or disabling)
 * **Environment variables**: Use `${CLAUDE_PLUGIN_ROOT}` for plugin-relative paths
 * **User environment access**: Access to same environment variables as manually configured servers
-* **Multiple transport types**: Support stdio, SSE, and HTTP transports (transport support may vary by server)
+* **Multiple transport types**: Support stdio and HTTP/Streamable HTTP transports; SSE support is legacy or embedded in Streamable HTTP depending on the server
 
 **Viewing plugin MCP servers**:
 
