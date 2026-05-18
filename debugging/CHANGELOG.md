@@ -8,8 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Prune obsolete skill coverage
+- Fix chrome devtools dependency alerts
 - update plugin changelogs [skip ci]
+- Prune obsolete skill coverage
 - misc cleanup and add .nvmrc
 - add per-plugin changelog generation workflow
 - add NOT clause for feature dev/refactoring, add 3 anti-patterns (one-test-pass, no-failing-test, ignore-env), refine description keywords with test pollution/flaky/E2E

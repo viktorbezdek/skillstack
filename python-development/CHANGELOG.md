@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Prune obsolete skill coverage
 - update plugin changelogs [skip ci]
+- Prune obsolete skill coverage
 - add per-plugin changelog generation workflow
 - add When NOT to Use section, decision trees (tier/async/protocol/library), expand anti-patterns with solutions, add missing anti-patterns
 
