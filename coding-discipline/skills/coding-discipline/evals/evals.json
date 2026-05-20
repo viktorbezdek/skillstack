@@ -1,0 +1,22 @@
+[
+  {
+    "query": "apply coding discipline when implementing a password reset endpoint",
+    "files": [],
+    "expected_behavior": "Agent activates coding-discipline and applies all 5 principles explicitly: (P1) states 2-3 assumptions before writing code and labels uncertainty type; (P2) starts with the simplest implementation, applies production calibration since this crosses a trust boundary — validates inputs, handles errors; (P3) declares the files to be edited before touching them; (P4) states a success criterion before coding and runs the verification stack; (P5) ends with the DONE/VERIFIED/NOT VERIFIED/ASSUMED/NOTICED/NEXT schema. Response names at least one anti-pattern it is avoiding."
+  },
+  {
+    "query": "our coding agent keeps doing Boy Scout trap edits and inflating the diff — what principle addresses this and how do we enforce it",
+    "files": [],
+    "expected_behavior": "Agent identifies the Boy Scout trap as a Principle 3 (Surgical Changes) anti-pattern, explains it concisely (while-I-was-here edits that expand scope beyond the task), and provides the concrete mitigations: (1) scope declaration before editing, (2) the trace test applied to every changed line, (3) surfacing unrelated issues in a 'Noticed but not changed' block rather than fixing inline. References the empirical backing (FeatBench 2025, Wang/Pradel/Liu 2025: 27.3% over-editing rate). Does not just describe the problem — gives the actionable enforcement mechanism."
+  },
+  {
+    "query": "use goal-driven execution to fix a failing test: test_order_discount fails because the 15% bulk discount is not applied when quantity > 100",
+    "files": [],
+    "expected_behavior": "Agent applies Principle 4: (1) states the success criterion — test_order_discount passes; (2) commits to the existing test as adversarial check, does not modify it; (3) states an iteration budget (e.g., '3 attempts'); (4) runs the verification stack in order after each fix attempt; (5) if successful, ends with the DONE/VERIFIED schema noting 'I did not author this test' or confirming the test was pre-existing. Does not declare success based on a self-authored replacement test."
+  },
+  {
+    "query": "what does the test-gaming firewall mean and how does it interact with TDD",
+    "files": [],
+    "expected_behavior": "Agent explains the test-gaming firewall from Principle 4: the agent must not modify existing tests to make a change pass; if it authors new tests they must be reviewable as a separate step with explicit disclosure. For the TDD interaction: writing a failing test first (red) is encouraged — but the agent must disclose it authored the test so the user knows 'tests pass' is not independent verification. Cites the empirical grounding: Aleithan et al. 2024 (31.08% of SWE-bench passes via inadequate tests). Does not conflate TDD with test-gaming."
+  }
+]

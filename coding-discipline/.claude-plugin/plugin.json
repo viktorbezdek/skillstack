@@ -1,0 +1,27 @@
+{
+  "name": "coding-discipline",
+  "version": "1.0.0",
+  "description": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication — each with named anti-patterns, iteration budgets, and a structured completion schema.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/coding-discipline",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "coding-discipline",
+    "engineering",
+    "production-coding",
+    "test-gaming",
+    "phantom-changes",
+    "scope-creep",
+    "ego-signaling",
+    "calibrated-communication",
+    "surgical-changes",
+    "goal-driven-execution",
+    "llm-agent-discipline",
+    "anti-patterns"
+  ]
+}

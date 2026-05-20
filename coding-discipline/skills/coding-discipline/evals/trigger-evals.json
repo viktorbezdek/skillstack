@@ -1,0 +1,87 @@
+[
+  {
+    "query": "apply coding discipline to this implementation",
+    "should_trigger": true,
+    "note": "Direct plugin-name trigger"
+  },
+  {
+    "query": "use surgical changes when fixing this bug",
+    "should_trigger": true,
+    "note": "Principle 3 name trigger"
+  },
+  {
+    "query": "follow goal-driven execution for this feature",
+    "should_trigger": true,
+    "note": "Principle 4 name trigger"
+  },
+  {
+    "query": "I need calibrated communication in the agent's responses",
+    "should_trigger": true,
+    "note": "Principle 5 name trigger"
+  },
+  {
+    "query": "apply the five coding principles to this refactor",
+    "should_trigger": true,
+    "note": "Generic five-principles reference"
+  },
+  {
+    "query": "our agent keeps making phantom changes — how do we prevent that",
+    "should_trigger": true,
+    "note": "Named anti-pattern trigger (phantom change)"
+  },
+  {
+    "query": "help me prevent test-gaming in our coding agent",
+    "should_trigger": true,
+    "note": "Named failure mode trigger (test-gaming)"
+  },
+  {
+    "query": "the agent is doing Boy Scout trap edits and inflating the diff — stop it",
+    "should_trigger": true,
+    "note": "Named anti-pattern trigger (Boy Scout trap)"
+  },
+  {
+    "query": "apply production engineering discipline to this coding task",
+    "should_trigger": true,
+    "note": "Domain framing trigger"
+  },
+  {
+    "query": "use scope declaration before making edits",
+    "should_trigger": true,
+    "note": "Principle 3 concept trigger"
+  },
+  {
+    "query": "I want the agent to stop ego-signaling and just report what it did",
+    "should_trigger": true,
+    "note": "Named anti-pattern trigger (ego-signaling)"
+  },
+  {
+    "query": "use the DONE/VERIFIED schema for completions",
+    "should_trigger": true,
+    "note": "Completion schema explicit trigger"
+  },
+  {
+    "query": "review this pull request for code quality",
+    "should_trigger": false,
+    "note": "Near-miss — code review of human code, use code-review"
+  },
+  {
+    "query": "write tests for this function",
+    "should_trigger": false,
+    "note": "Near-miss — test authoring without discipline framing, use testing-framework"
+  },
+  {
+    "query": "set up a GitHub Actions CI/CD pipeline",
+    "should_trigger": false,
+    "note": "Near-miss — infrastructure setup, use cicd-pipelines"
+  },
+  {
+    "query": "debug this stack trace from production",
+    "should_trigger": false,
+    "note": "Near-miss — debugging without discipline framing, use debugging"
+  },
+  {
+    "query": "design a REST API for user management",
+    "should_trigger": false,
+    "note": "Near-miss — API design without discipline framing, use api-design"
+  }
+]

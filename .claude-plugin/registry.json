@@ -19,7 +19,7 @@
       "last_synced_sha": "e1a270fd28c0ffdba9ca21582bdf65bc6d5df137",
       "last_synced_at": "2026-05-17T15:35:26Z",
       "integration_status": "active",
-      "context": "56 battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
+      "context": "57 battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
     }
   ],
   "plugins": [
@@ -216,6 +216,30 @@
         "style"
       ],
       "documentation_path": "./code-review/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "coding-discipline",
+      "name": "Coding Discipline",
+      "type": "skill",
+      "category": "quality",
+      "description": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication — each with named anti-patterns, iteration budgets, and a structured completion schema.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "coding-discipline/skills/coding-discipline",
+      "version": "1.0.0",
+      "tags": [
+        "coding-discipline",
+        "production-coding",
+        "test-gaming",
+        "phantom-changes",
+        "scope-creep",
+        "surgical-changes",
+        "anti-patterns"
+      ],
+      "documentation_path": "./coding-discipline/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -430,6 +454,30 @@
         "root-cause-analysis"
       ],
       "documentation_path": "./debugging/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "deslop",
+      "name": "Deslop",
+      "type": "skill",
+      "category": "design",
+      "description": "Remove AI slop from UI copy, marketing text, and product content. Three skills: UI microcopy cleanup (deslop-ui), marketing and editorial humanization (deslop-copy), and AI-detection prevention (deslop-detect).",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "deslop",
+      "version": "1.0.0",
+      "tags": [
+        "deslop",
+        "ai-slop",
+        "humanization",
+        "marketing-copy",
+        "ux-writing",
+        "ai-detection",
+        "content-quality"
+      ],
+      "documentation_path": "./deslop/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -1299,7 +1347,7 @@
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library \u2014 56 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.",
+      "description": "The complete SkillStack library \u2014 57 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [
@@ -1311,6 +1359,7 @@
         "cicd-pipelines",
         "cloud-finops",
         "code-review",
+        "coding-discipline",
         "communication",
         "consistency-standards",
         "content-modelling",
@@ -1321,6 +1370,7 @@
         "creative-problem-solving",
         "critical-intuition",
         "debugging",
+        "deslop",
         "docker-containerization",
         "documentation-generator",
         "edge-case-coverage",
@@ -1401,6 +1451,7 @@
       "audience": "technical",
       "plugin_ids": [
         "code-review",
+        "coding-discipline",
         "consistency-standards",
         "edge-case-coverage",
         "test-driven-development",
@@ -1462,6 +1513,7 @@
       "audience": "technical",
       "plugin_ids": [
         "content-modelling",
+        "deslop",
         "elicitation",
         "navigation-design",
         "ontology-design",

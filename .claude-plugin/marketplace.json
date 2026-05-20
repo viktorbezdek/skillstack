@@ -144,6 +144,22 @@
       ]
     },
     {
+      "name": "coding-discipline",
+      "source": "./coding-discipline",
+      "description": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication — each with named anti-patterns, iteration budgets, and a structured completion schema.",
+      "version": "1.0.0",
+      "category": "quality",
+      "tags": [
+        "coding-discipline",
+        "production-coding",
+        "test-gaming",
+        "phantom-changes",
+        "scope-creep",
+        "surgical-changes",
+        "anti-patterns"
+      ]
+    },
+    {
       "name": "communication",
       "source": "./communication",
       "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
@@ -275,6 +291,20 @@
         "devtools",
         "profiling",
         "root-cause-analysis"
+      ]
+    },
+    {
+      "name": "deslop",
+      "source": "./deslop",
+      "description": "Remove AI slop from UI copy, marketing text, and product content. Three focused skills: UI microcopy cleanup, marketing and editorial humanization, and AI-detection prevention.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "deslop",
+        "ai-slop",
+        "humanization",
+        "marketing-copy",
+        "ai-detection"
       ]
     },
     {

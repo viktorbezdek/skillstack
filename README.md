@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**56** expert plugins covering development, DevOps, testing, design, strategy, research, context engineering, and agent architecture.
+**58** expert plugins covering development, DevOps, testing, design, strategy, research, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **56** plugins · **9** categories · **11** collections · MIT License
+> **58** plugins · **9** categories · **11** collections · MIT License
 
 ---
 
@@ -25,11 +25,11 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 56 plugins</summary>
+<summary><strong>SkillStack</strong> — 58 plugins</summary>
 
-> The complete SkillStack library — 56 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.
+> The complete SkillStack library — 58 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `osint`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`
+Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `coding-discipline`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `deslop`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `osint`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`
 </details>
 
 <details>
@@ -49,11 +49,11 @@ Plugins: `cicd-pipelines`, `cloud-finops`, `docker-containerization`, `git-workf
 </details>
 
 <details>
-<summary><strong>Quality & Testing</strong> — 5 plugins</summary>
+<summary><strong>Quality & Testing</strong> — 6 plugins</summary>
 
-> Ship reliable software: code review, test-driven development, testing frameworks, edge case coverage, and consistency standards.
+> Ship reliable software: code review, coding discipline, test-driven development, testing frameworks, edge case coverage, and consistency standards.
 
-Plugins: `code-review`, `consistency-standards`, `edge-case-coverage`, `test-driven-development`, `testing-framework`
+Plugins: `code-review`, `coding-discipline`, `consistency-standards`, `edge-case-coverage`, `test-driven-development`, `testing-framework`
 </details>
 
 <details>
@@ -142,11 +142,12 @@ Plugins: `plugin-dev`, `skill-foundry`, `skillstack-workflows`
 | [Docker Containerization](docker-containerization/README.md) | `1.1.23` | Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns. |
 | [Git Workflow](git-workflow/README.md) | `1.1.21` | Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management. |
 
-### ✅ Quality (5)
+### ✅ Quality (6)
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
 | [Code Review](code-review/README.md) | `1.1.25` | Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans. |
+| [Coding Discipline](coding-discipline/README.md) | `1.0.0` | Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. |
 | [Consistency Standards](consistency-standards/README.md) | `1.0.11` | Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code. |
 | [Edge Case Coverage](edge-case-coverage/README.md) | `1.0.11` | Identify and document boundary conditions, error scenarios, corner cases, and validation requirements. |
 | [Test Driven Development](test-driven-development/README.md) | `1.1.18` | Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod. |
