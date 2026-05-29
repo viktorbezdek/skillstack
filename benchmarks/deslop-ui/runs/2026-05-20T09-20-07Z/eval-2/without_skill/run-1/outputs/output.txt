@@ -1,0 +1,41 @@
+## Empty State
+
+**What's wrong:**
+
+1. **"It looks like"** — hedging. The system knows exactly what's happened. Uncertainty signals erode trust.
+2. **"Don't worry"** — patronizing. Nobody was worried until you said that.
+3. **"getting started is easy and takes less than a minute"** — effort-signaling. Users scan, they don't read reassurances.
+4. **"Feel free to... whenever you're ready!"** — the weakest possible CTA. It's permission to delay.
+5. **Length** — empty states get one glance. This is a paragraph.
+
+**Replacement:**
+
+> **No projects yet**
+>
+> Create your first project to organize work, collaborate, and track progress.
+>
+> [Create project]
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+1. **"This is where you'll be able to see"** — dead weight. Cut to the noun.
+2. **"We've designed this experience to be as intuitive and seamless as possible"** — self-congratulatory. Users don't care; if it needs announcing, it probably isn't.
+3. **"so that you can focus on what matters most to you"** — hollow filler that says nothing specific.
+4. **"Please don't hesitate to reach out"** — corporate softening of a simple offer. "Don't hesitate" implies the user might feel like a burden.
+5. **No action** — the modal ends with a question invitation, not a step forward.
+
+**Replacement:**
+
+> **Your dashboard**
+>
+> Your metrics, reports, and team activity live here. Start by connecting your first data source.
+>
+> [Get started] [I'll explore on my own]
+
+---
+
+**Pattern across both:** the original copy treats length as a signal of helpfulness. It isn't — it's friction. Every word that doesn't move the user forward is a word asking them to stop and process. Cut to the action.

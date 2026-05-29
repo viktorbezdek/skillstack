@@ -1,0 +1,34 @@
+**No, synonym swapping alone won't work** — and here's why.
+
+Detectors don't scan for "AI vocabulary." They measure **structural statistics**: sentence-length variance (burstiness), token predictability (perplexity), and sentence-frame patterns. Swapping "leverage" for "harness" changes the noun, not the structure — classifiers like Originality.ai and Turnitin see right through it.
+
+---
+
+## What actually works (applied to your text)
+
+**Original:**
+> Our comprehensive platform leverages AI to empower teams with robust analytics and seamless integrations. Furthermore, our innovative approach delivers transformative results for organizations of all sizes.
+
+The problems: two near-identical sentence lengths, no specifics, "Furthermore" as a transition, every word is a prediction the model would make.
+
+**Rewritten (applying burstiness, structure variety, and specificity):**
+
+> The analytics work. That's the part most teams actually care about — not the AI story, not the integrations pitch, but whether the numbers they see on Monday morning reflect what actually happened. We built the platform around that premise. Pull in data from wherever it lives, run it through our tooling, get a clear output. No stitching together five dashboards. Whether you're running a five-person startup or a 10,000-person org, the workflow stays the same.
+
+**What changed:**
+- Short sentence ("The analytics work.") + long sentence = burstiness
+- Opened with a noun, then a dash-clause, then "We," then imperatives — four different opening structures
+- "Monday morning" and "five dashboards" add specificity that raises perplexity
+- Removed "Furthermore," "transformative," "seamless," "robust," "empower"
+- Prose converts the implicit list structure into flowing sentences
+
+---
+
+**Quick checklist before publishing:**
+- At least one sentence under 6 words ✓
+- At least one sentence over 35 words ✓
+- No two consecutive sentences open the same grammatical way ✓
+- At least one specific reference per claim ✓
+- No "Furthermore," "Moreover," "Additionally" transitions ✓
+
+Run the result through both GPTZero *and* Originality.ai — they use different underlying signals, so passing both means you've fixed structure, not just gamed a threshold.

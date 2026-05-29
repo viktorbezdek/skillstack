@@ -1,0 +1,17 @@
+[
+  {
+    "query": "deslop this landing page hero: 'Leverage our comprehensive, cutting-edge platform to empower your team and unlock unprecedented growth. Our innovative solution seamlessly integrates with your existing workflow to deliver transformative results and drive sustainable success.'",
+    "files": [],
+    "expected_behavior": "Agent identifies multiple blacklist items: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, drive. Rewrites at sentence level — not synonym-swapping. Result is shorter, concrete, and contains at least one specific claim. Agent explains which slop patterns were present and why."
+  },
+  {
+    "query": "humanize this email closing: 'Furthermore, I would like to express my sincere gratitude for your consideration of our proposal. Please do not hesitate to reach out should you have any questions or require any additional information. We look forward to the possibility of working together and hope to hear from you at your earliest convenience.'",
+    "files": [],
+    "expected_behavior": "Agent flags: 'Furthermore' (stiff opener), 'sincere gratitude for your consideration' (AI politeness formula), 'do not hesitate to reach out' (blacklist closing), 'at your earliest convenience' (formal filler). Provides a rewrite of 1–2 sentences max, using contractions and direct language. Does not add more words than the original."
+  },
+  {
+    "query": "this blog intro sounds AI-generated: 'In today's fast-paced digital landscape, businesses of all sizes are navigating unprecedented challenges. Now more than ever, it is crucial that organizations leverage data-driven insights to make informed decisions and stay ahead of the curve.'",
+    "files": [],
+    "expected_behavior": "Agent identifies 'In today's fast-paced' (blacklist opener), 'unprecedented challenges' (AI cliché), 'now more than ever' (blacklist), 'leverage' (blacklist verb), 'data-driven insights' (hollow phrase), 'informed decisions' (blacklist), 'stay ahead of the curve' (cliché). Rewrites to a concrete, opinionated opening that starts with a claim or a specific problem, not a broad landscape statement."
+  }
+]

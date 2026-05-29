@@ -1,0 +1,26 @@
+Here's the audit with identified patterns and direct replacements:
+
+---
+
+### Findings
+
+| Copy | AI Pattern | Replacement |
+|---|---|---|
+| `Comprehensive Analytics Dashboard` | Filler adjective — "comprehensive" signals nothing users don't already assume | `Analytics` |
+| `Your data is currently being processed` | Passive voice + "currently" padding | `Processing your data…` |
+| `Proceed to payment` | Bureaucratic verb — "proceed" distances the action | `Pay now` |
+| `Please ensure that all required fields have been completed before submitting` | Hedging opener + passive construction + over-explanation | `Complete all required fields` |
+| `Unfortunately, no results were found matching your search criteria. Please try a different search term.` | Emotional filler ("Unfortunately") + passive + "search criteria" jargon + two sentences where one works | `No results for "[query]" — try a different term` |
+| `Your file has been successfully uploaded to our secure cloud storage` | "successfully" is redundant on success, "our secure cloud storage" is marketing copy in the wrong context | `File uploaded` |
+
+---
+
+### Patterns to watch
+
+- **Redundant qualifiers**: "successfully", "currently", "comprehensive" — remove on sight
+- **Passive constructions**: "has been completed", "were found" — flip to active
+- **Apologetic openers**: "Unfortunately", "Please ensure" — users don't need emotional softening on a status message
+- **Marketing copy bleeding into UI**: "secure cloud storage" belongs in a landing page, not a toast notification
+- **Two sentences where one works**: most empty states and hints can be a single short clause
+
+The rule of thumb: if removing a word leaves the meaning intact, cut it.

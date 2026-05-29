@@ -1,0 +1,59 @@
+## What Each Detector Looks For
+
+**GPTZero** targets two primary signals:
+- **Perplexity** — how predictable each word is given the surrounding context. AI generates the most statistically likely next token; humans don't.
+- **Burstiness** — variance in sentence length. AI produces uniformly medium-length sentences (15–25 words). Humans burst: short punchy ones followed by long winding ones.
+
+**Originality.ai** runs a trained classifier, not just perplexity math. It looks at:
+- Sentence frame patterns (how sentences are structurally built)
+- Transitional phrase fingerprints
+- Opening structure homogeneity
+
+Synonym spinning fools neither. Both detectors see through surface vocabulary changes because the structural fingerprint doesn't change.
+
+---
+
+## Why Your Intro Fails
+
+The original has four problems stacked together:
+
+1. **Zero burstiness** — all four sentences are 15–21 words. Completely flat variance.
+2. **Identical sentence openings** — every sentence opens with a noun-subject (Remote work / Companies / This shift / Organizations). Classic AI structural pattern.
+3. **Predictable vocabulary** — "fundamentally transformed," "attract and retain top talent," "higher employee satisfaction and productivity" are phrases with near-zero perplexity. The model chose the most expected words at every turn.
+4. **No specificity** — no named companies, no numbers, no real-world anchors. Specificity raises perplexity by forcing rare tokens.
+
+---
+
+## Rewrite Strategy Applied
+
+1. **Burstiness**: inject a ≤5-word sentence and a ≥35-word sentence; break the uniform 15–21 word pattern
+2. **Sentence openings**: first opener must not be a noun-subject; vary all five grammatically
+3. **Perplexity**: replace generic claims with named companies (Shopify, GitLab), a specific figure, an unexpected word choice
+4. **Voice**: add a first-person editorial moment and a hedge that signals genuine uncertainty
+5. **Structure**: one sentence runs long with subordinate clauses before landing; one lands in three words
+
+---
+
+## Rewritten Version
+
+Five years ago, nobody called it a strategy. But remote work shifted from employee perk to operating default faster than most HR departments could update their policies — and the companies that committed early, like Shopify and GitLab, didn't just adapt to the change, they rewrote the playbook everyone else is still catching up to. It changed everything. How distributed teams coordinate across a nine-hour time zone gap, how managers build accountability without shared physical space, how junior employees absorb institutional knowledge without being able to lean across a desk — all of it had to be reinvented, and most of it was. The productivity and retention numbers, where this has been done with genuine care rather than policy theater, tend to bear that out. Though the full picture, I'd argue, is messier than the LinkedIn posts suggest.
+
+---
+
+## Detector Signal Verification
+
+**Burstiness**
+- Shortest sentence: "It changed everything." (3 words) ✓ target ≤5
+- Longest sentence: "But remote work shifted from employee perk to operating default faster than most HR departments could update their policies — and the companies that committed early, like Shopify and GitLab, didn't just adapt to the change, they rewrote the playbook everyone else is still catching up to." (49 words) ✓ target ≥35
+
+**Sentence openings (first 3)**
+1. "Five years ago" — prepositional/temporal adverb ✓
+2. "But remote work" — coordinating conjunction ✓
+3. "It changed everything." — pronoun (not SVO noun-subject) ✓
+Variety: ✓ no two consecutive same type
+
+**Perplexity**
+- Specific references injected: Shopify, GitLab, "nine-hour time zone gap," LinkedIn
+- First sentence opener: prepositional phrase — ✓ not SVO
+
+**Passes applied**: burstiness / sentence-structure diversification / perplexity / voice / structural disruption

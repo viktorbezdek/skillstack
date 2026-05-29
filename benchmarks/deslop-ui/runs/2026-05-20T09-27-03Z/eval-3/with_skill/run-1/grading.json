@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "Original: 'Comprehensive Analytics Dashboard' → Replacement: 'Analytics' — 1 word, no adjectives present."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "Original: 'Your data is currently being processed' → Replacement: 'Processing…' — present tense active voice gerund/noun phrase, exactly matching the expected pattern."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "Original: 'Please ensure that all required fields have been completed before submitting' → Replacement: 'Complete all required fields' — direct imperative, no 'please ensure', no 'have been completed', no passive construction."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "Original: 'Your file has been successfully uploaded to our secure cloud storage' → Replacement: 'Uploaded' — 1 word, 'successfully' absent, well under the 4-word ceiling."
+    },
+    {
+      "text": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+      "passed": false,
+      "evidence": "The output is a three-column table (Original | AI Pattern | Replacement) followed by a bullet list of named anti-patterns. There are no numeric scores, no dimension ratings, no quality metrics. The 'AI Pattern' column names the problem category but assigns no score. This is a plain annotated replacement list, which the assertion explicitly excludes."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "note": "No metrics.json found in outputs directory",
+    "output_chars": 1187,
+    "transcript_chars": 31763
+  },
+  "timing": {
+    "executor_duration_seconds": 18.43,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 18.43
+  },
+  "claims": [
+    {
+      "claim": "The replacement for the section header eliminates adjective stacking",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Comprehensive' removed entirely; replacement 'Analytics' is a bare noun"
+    },
+    {
+      "claim": "The replacement for the status message removes the passive voice",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'is currently being processed' (passive) replaced with 'Processing…' (active gerund form)"
+    },
+    {
+      "claim": "The replacement for the form hint removes the triple-hedge structure",
+      "type": "quality",
+      "verified": true,
+      "evidence": "AI Pattern column explicitly labels the issue 'Triple-hedge: please ensure that + passive + before submitting'; replacement 'Complete all required fields' removes all three layers"
+    },
+    {
+      "claim": "The response identifies five anti-pattern categories",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Trailing section lists exactly 5 named pattern categories: Adverb padding, Passive voice, Adjective stacking, Ceremony openers, Restating context"
+    },
+    {
+      "claim": "The output includes a quality scoring or rating component",
+      "type": "quality",
+      "verified": false,
+      "evidence": "No score, rating, or numeric dimension appears anywhere in the output. The 'AI Pattern' column is a qualitative label, not a score."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+        "reason": "This is the right assertion to test the skill's differentiating output. Consider also checking that the same dimensions appear for EACH replacement (not just globally), since a single summary table that isn't per-item is arguably also insufficient."
+      },
+      {
+        "reason": "No assertion checks that ALL six input strings received a replacement. The eval prompt presumably provided six strings; an executor that silently dropped one would still pass all five assertions. Adding a count assertion (e.g., 'at least 6 replacements are produced') would close this gap."
+      }
+    ],
+    "overall": "Four of the five assertions are well-targeted and discriminating — they test exact properties of the output text. The quality-comparison assertion correctly catches the missing scoring output. Consider the two suggestions above to tighten coverage."
+  }
+}

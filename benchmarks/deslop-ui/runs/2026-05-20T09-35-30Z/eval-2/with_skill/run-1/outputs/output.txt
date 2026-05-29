@@ -1,0 +1,40 @@
+Both pieces have the same core problems: they describe features instead of actions, pad with reassurance nobody asked for, and bury or omit the actual next step. Here's the breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+- **States the obvious** — "It looks like you haven't created any projects yet" is redundant. The user can see the empty screen.
+- **Hedging** — "It looks like" and "Feel free... whenever you're ready" are weak and passive. They avoid committing to a call to action.
+- **Unprompted reassurance** — "Don't worry" implies there's something to worry about.
+- **Feature laundry list** — organize, collaborate, track progress. Pick one benefit, the most compelling one.
+- **No clear CTA** — the action is buried in a sentence, not a button label anchor.
+
+**Rewrite:**
+> **No projects yet**
+> Create your first project to start organizing work and tracking progress.
+> [Create project]
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+- **Self-congratulatory** — "We've designed this to be intuitive and seamless" is a red flag in any UI. If it needs to say it's intuitive, it isn't.
+- **Future tense for present state** — "you'll be able to see" when the data is already there.
+- **"Please don't hesitate"** — classic filler. Cut it entirely or replace with a direct link.
+- **No action** — the user leaves this modal having been told nothing useful about what to do first.
+
+**Rewrite:**
+> **Your dashboard**
+> Here's a live view of your key metrics. Add your first data source to get started.
+> [Add data source] [Take a tour]
+
+---
+
+## General pattern to fix
+
+Both pieces try to *talk users into* acting rather than *showing them how*. Good empty states and onboarding modals follow the same structure: **name the state → one-line value proposition → single action**. Everything else is noise.

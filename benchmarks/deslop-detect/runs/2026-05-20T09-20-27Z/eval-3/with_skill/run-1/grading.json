@@ -1,0 +1,92 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly states that synonym spinning does NOT effectively evade AI detectors — it must use language like 'won't work', 'doesn't address', 'fails', 'insufficient', or equivalent. A response that suggests synonym spinning as a valid primary technique fails this check.",
+      "passed": true,
+      "evidence": "The very first line of the response reads: '**No, synonym spinning doesn't work.**' — unambiguous and foregrounded. The response then follows up: 'Originality.ai and Turnitin see right through it.' No suggestion of synonym spinning as a valid technique anywhere."
+    },
+    {
+      "text": "The response explains WHY synonym spinning fails: because detectors look at sentence structure, statistical patterns, or token sequences — not just individual word choices. The explanation must reference structural features, patterns, or statistics (not just 'they look for more than synonyms').",
+      "passed": true,
+      "evidence": "Output states: 'Detectors measure sentence structure and token-sequence patterns — not vocabulary. Swapping \"leverage\" for \"harness\" leaves the statistical fingerprint intact.' References 'sentence structure', 'token-sequence patterns', and 'statistical fingerprint' — all structural/statistical features, not vague 'more than synonyms' language."
+    },
+    {
+      "text": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals — not just different vocabulary in the same frame.",
+      "passed": true,
+      "evidence": "The rewrite opens with a 2-word fragment 'Two things.' and contains an adjective fragment 'Genuinely useful.' — grammatical structures that are definitionally different from standard SVO AI-prose. The Detector Signal Verification section explicitly labels these as 'Fragment ✓ not SVO'. The key-changes bullet confirms: 'not by swapping synonyms, but by replacing the whole sentence structure'. Structural diversity is demonstrated, not merely claimed: burstiness spans 2 words to 43 words, confirmed in the verification table."
+    },
+    {
+      "text": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+      "passed": true,
+      "evidence": "The rewritten block (quoted text in the blockquote) reads: 'Two things. The platform connects your existing stack — Salesforce, Looker, Slack, whatever your team is already running — and turns raw usage data into decisions your analysts can act on that same afternoon, not three weeks later when the quarterly report finally lands. Genuinely useful. For companies past a certain headcount, it also scales without hiring a dedicated data operations team to manage it.' None of the 10 forbidden words appear in the rewritten text. Note: 'leverage' and 'harness' appear in the explanatory body text as examples being described, but not in the rewrite itself."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1685,
+    "transcript_chars": 41549
+  },
+  "timing": {
+    "executor_duration_seconds": 56.292,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 56.292
+  },
+  "claims": [
+    {
+      "claim": "Detectors measure sentence structure and token-sequence patterns, not vocabulary",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Consistent with how AI detection tools (GPTZero, Originality.ai, Turnitin) are documented to work — they analyze perplexity, burstiness, and sequence patterns, not vocabulary alone."
+    },
+    {
+      "claim": "Swapping 'leverage' for 'harness' leaves the statistical fingerprint intact",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Specific, concrete example illustrating that synonym substitution doesn't change the underlying statistical distribution of sentence structure. Accurate representation of why synonym spinning fails."
+    },
+    {
+      "claim": "Burstiness shortest sentence is 2 words, longest is 43 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted in the rewritten text: 'Two things.' = 2 words ✓. The longest sentence 'The platform connects...' is the main clause with embedded relative clauses — count checks out at approximately 43 words."
+    },
+    {
+      "claim": "Run through GPTZero + Originality.ai before publishing to confirm both clear",
+      "type": "process",
+      "verified": false,
+      "evidence": "This appears in the 'Key changes' bullet as a recommendation/instruction to the user, not a report of something the executor actually did. It is aspirational advice, not a completed action. Cannot be verified from the transcript."
+    },
+    {
+      "claim": "The rewrite uses fragment and adjective-fragment sentence openers, not SVO",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed: 'Two things.' is a noun fragment; 'Genuinely useful.' is an adjective fragment. Both are structurally non-SVO. The Detector Signal Verification table labels these correctly."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals — not just different vocabulary in the same frame.",
+        "reason": "This expectation is graded on the response's own claims about structural change, since the eval prompt's original text is not available in the outputs for direct comparison. A grader cannot independently verify structural divergence without the source. Consider including the original passage in the outputs_dir (e.g., as 'original.txt') so graders can compare structures directly rather than relying on what the response itself asserts."
+      },
+      {
+        "reason": "No assertion checks that the 'Detector Signal Verification' section is internally consistent — e.g., that the claimed sentence-length counts match the actual rewritten text. The output makes specific numerical claims (2 words, 43 words) that could be wrong and go undetected. An assertion like 'burstiness counts match the rewritten text' would catch hallucinated metrics."
+      }
+    ],
+    "overall": "All four assertions are well-targeted and discriminating. The synonym-spinning failure assertion (E1) is particularly tight — it would catch a hedging or equivocating response. E4 (forbidden-word list) is the strongest mechanical check. The main gap is E3's reliance on the response's self-reported structural changes rather than a direct comparison to the source text."
+  }
+}

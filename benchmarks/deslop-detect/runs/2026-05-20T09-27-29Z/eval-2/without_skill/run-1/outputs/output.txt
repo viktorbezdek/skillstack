@@ -1,0 +1,41 @@
+## What Each Detector Looks For
+
+**GPTZero**
+- **Perplexity** — how predictable each word choice is. AI gravitates toward the statistically "safest" next token, producing low perplexity scores.
+- **Burstiness** — variance in sentence length and complexity. Humans write in bursts (short, long, fragment, complex). AI produces uniform rhythm.
+- Trained classifier on known AI vs. human corpora.
+
+**Originality.ai**
+- Similar perplexity/burstiness signals, but weighted differently.
+- Flags predictable topic transitions and "corporate scaffold" structure (claim → support → claim → support).
+- Has a running list of high-frequency AI phrases ("fundamentally transformed," "attract and retain top talent," "embrace").
+
+---
+
+## Why Your Text Flags
+
+Your intro hits every pattern:
+- Four sentences of nearly identical length and structure
+- Zero specifics — no data, no timeframe, no named tension
+- Generic positive framing with no friction or opinion
+- Three flagged phrases in 80 words
+
+---
+
+## Rewrite Strategy
+
+1. **Open with something unexpected** — a contradiction, a number, a confession
+2. **Vary length aggressively** — one-word sentence. Then something long and winding that earns its complexity.
+3. **Add specificity** — a year, a company, a statistic, a real observation
+4. **Introduce friction** — the popular story vs. the messier reality
+5. **Take a position** — not "organizations report higher satisfaction" but *your* read on it
+
+---
+
+## Rewritten Version
+
+> Three years ago, Slack's own CEO admitted he wasn't sure remote work would stick. It stuck. But the tidy version of the story — that companies simply opened their minds, workers got happier, and productivity climbed — glosses over what actually happened: most organizations stumbled badly before landing on anything that worked. The 9-to-5 office didn't fade because companies wanted to be modern. It faded because a pandemic forced the experiment, the results surprised nearly everyone, and nobody's fully agreed on what to do with those results since.
+
+---
+
+**What changed:** varied sentence rhythm (2 words → 11 → 40+), a named specific, a counter-narrative, an opinion, and none of the flagged phrases. The unpredictability in word choice and sentence flow is what raises perplexity scores on both tools.

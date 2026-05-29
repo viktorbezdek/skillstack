@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+      "passed": true,
+      "evidence": "Output section 1 reads: '**1. Zero burstiness.** All four sentences cluster between 14–21 words. GPTZero measures sentence-length variance directly — a flat distribution like this is one of its strongest signals.' Uses the word 'burstiness' explicitly and describes the uniform distribution as the signal."
+    },
+    {
+      "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+      "passed": true,
+      "evidence": "Output section 2 reads: '**2. Stock AI transition phrases.** \"Furthermore,\" \"It is important to note that,\" and \"Additionally\" are among the most statistically common sequences in LLM-generated text.' Identifies 3 of the 5 listed signals: 'Furthermore', 'It is important to note', and 'Additionally'."
+    },
+    {
+      "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+      "passed": true,
+      "evidence": "The Detector Signal Verification section states: 'Shortest sentence: \"Works, when done right.\" (4 words)' and 'Longest sentence: \"The argument for content investment isn't 'brand authority'...\" (54 words)'. Confirmed by reading the rewrite directly: 'Works, when done right.' is 4 words (≤6 ✓); 'Conversion takes longer.' is 3 words; the long sentence about brand authority and paid acquisition is visibly 50+ words (≥30 ✓)."
+    },
+    {
+      "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+      "passed": true,
+      "evidence": "Full rewrite text: 'Here's what most marketing teams get backwards. The argument for content investment isn't \"brand authority\" — that phrase is real but too abstract to move a budget line — it's that companies publishing consistently in their category tend to hold the first page of search results for the terms their actual buyers use, often displacing competitors who spend significantly more on paid acquisition. Works, when done right. Not always and not automatically, but when the content is genuinely useful rather than keyword-padded, the compounding effect on organic traffic shows up clearly in attribution data in ways that ad spend rarely matches after month six. Conversion takes longer.' None of 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven' appear."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "total_tokens": 138940,
+    "input_tokens": 20,
+    "output_tokens": 4726,
+    "cache_creation_input_tokens": 50465,
+    "cache_read_input_tokens": 83729,
+    "total_cost_usd": 0.28531245,
+    "output_chars": 1402,
+    "transcript_chars": 49288
+  },
+  "timing": {
+    "executor_duration_seconds": 77.986,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 77.986
+  },
+  "claims": [
+    {
+      "claim": "Shortest sentence in rewrite is 'Works, when done right.' at 4 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed by reading the rewrite — 'Works, when done right.' and 'Conversion takes longer.' (3 words) are both short. The verification section reports 4 words for 'Works, when done right.' which is accurate."
+    },
+    {
+      "claim": "Longest sentence in rewrite is 54 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The large sentence starting 'The argument for content investment isn't \"brand authority\"...' is visibly very long. A rough count of the rewrite sentence gives approximately 54 words, consistent with the verification section's reported count."
+    },
+    {
+      "claim": "All four original sentences cluster between 14–21 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The original input text is not included in the available output files, so this range claim cannot be independently verified. Taken at face value from the executor's analysis."
+    },
+    {
+      "claim": "'Furthermore', 'It is important to note that', and 'Additionally' appear in the original input",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The original input text is not present in the outputs, but the eval expectation itself confirms these phrases were present in the input, providing corroborating support."
+    },
+    {
+      "claim": "Passes applied: burstiness, sentence structure, perplexity, voice, structural disruption",
+      "type": "process",
+      "verified": true,
+      "evidence": "The verification section explicitly lists 'Passes applied: burstiness, sentence structure, perplexity, voice, structural disruption (fragment sentence)' and the rewrite demonstrates each: fragment sentence 'Works, when done right.', varied sentence openings, specific grounded references."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more.",
+        "reason": "The assertion relies on the executor's own word counts in the verification section rather than requiring the grader to count independently. A stronger eval would include the original input text in the outputs so graders can also verify the diagnosis claims (e.g., that the original 4 sentences really do cluster 14–21 words)."
+      },
+      {
+        "reason": "No assertion checks whether the diagnosis correctly identifies signals from the *actual* input text — the eval doesn't provide the original paragraph, so graders cannot verify that 'Furthermore', 'Additionally', and 'It is important to note' genuinely appeared in it. Including the eval prompt or input text in the outputs directory would make all claims verifiable."
+      }
+    ],
+    "overall": "All four assertions are well-chosen and discriminating — they test both the diagnostic quality and the rewrite correctness in concrete, countable ways. The main gap is that the input text isn't captured in outputs, making some factual claims unverifiable. Adding the input text to the eval fixture would close this."
+  }
+}

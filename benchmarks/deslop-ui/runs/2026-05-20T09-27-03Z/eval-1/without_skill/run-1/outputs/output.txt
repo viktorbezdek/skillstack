@@ -1,0 +1,29 @@
+**1. Button: 'Click here to proceed to the next step of the checkout process'**
+
+**Problems:** "Click here" is redundant on a button. "Proceed to the next step of" is filler. "Checkout process" is bureaucratic.
+
+**Replacement:** `Continue to payment`
+
+---
+
+**2. Error: 'There seems to have been an issue processing your payment at this time. Please try again later or contact support if the problem persists.'**
+
+**Problems:** "There seems to have been" hedges when something definitively failed. "At this time" is filler. "If the problem persists" is vague — what's "later"? The message doesn't say what actually went wrong or what to do first.
+
+**Replacement:** `Payment failed. Check your card details and try again, or use a different payment method.`
+
+---
+
+**3. Success: 'Your account has been successfully created and you can now begin using all of our features.'**
+
+**Problems:** "Successfully" is implicit in a success message. "Begin using all of our features" is hollow — it doesn't tell the user what to do next or what they actually get.
+
+**Replacement:** `Account created. You're all set.` (or, if there's a clear next action: `Account created — go to your dashboard.`)
+
+---
+
+**4. Tooltip: 'This is where you can leverage our comprehensive suite of powerful reporting tools to gain in-depth insights into your data.'**
+
+**Problems:** "This is where you can" — they're already looking at it. "Leverage," "comprehensive suite," "powerful," "in-depth insights" are all marketing filler that conveys nothing. Doesn't say what the tool actually does.
+
+**Replacement:** `View charts, trends, and exports across your data.`

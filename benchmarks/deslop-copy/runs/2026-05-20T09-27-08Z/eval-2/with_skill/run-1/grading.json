@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+      "passed": true,
+      "evidence": "Opener: \"I'll skip the 'in today's fast-paced landscape' intro — you've read that email before.\" Begins with 'I'll skip…' — a specific meta-observation that actively rejects the cliché. While it quotes the banned phrase as an object, the opener itself begins with a direct first-person statement, not landscape/era framing."
+    },
+    {
+      "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+      "passed": true,
+      "evidence": "Closer: \"Worth 20 minutes to see if it's relevant? If not, I'll leave you alone.\" None of the four banned phrases appear. The closer is a direct, specific ask (a time-boxed meeting request) followed by a low-pressure release, which is more conversational and direct than any of the banned patterns."
+    },
+    {
+      "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+      "passed": true,
+      "evidence": "Subject: \"Quick question about [Company]'s ops\". None of the banned words appear. 'ops' is lowercase, personalized with [Company], and used as a specific referent rather than a filler noun. The subject signals the domain (ops efficiency) and uses a curiosity-gap pattern that implies the sender has something specific to say about the recipient's operations. Borderline on 'specific enough' — it doesn't reveal the actual offer (manual-work reduction, analytics). Noted in eval_feedback."
+    },
+    {
+      "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+      "passed": true,
+      "evidence": "Multiple contractions found in the body: 'I'll skip', 'you've read', 'doesn't generate', 'it's relevant', 'I'll leave'. The original was flagged in the slop inventory as having a formal, non-conversational register; the rewrite clearly addresses this."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 1023,
+    "transcript_chars": 44499
+  },
+  "timing": {
+    "executor_duration_seconds": 65.925,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 65.925
+  },
+  "claims": [
+    {
+      "claim": "Blacklist hits include 'Now more than ever', 'unlock its full potential', 'Don't hesitate to reach out', 'We look forward to connecting with you at your earliest convenience'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Slop inventory at top of output.txt lists these phrases. All are recognized high-frequency corporate slop patterns. The original email's inclusion of these can be taken as given from the inventory."
+    },
+    {
+      "claim": "Rewrite is approximately 95 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual count of the body (excluding 'Subject:' label, 'Hi [Name],' greeting, and '[Name]' sign-off): approximately 85–95 words. Consistent with the stated ~95 word count."
+    },
+    {
+      "claim": "The notes section flags the rewrite is 'still general — humanized, but general' and needs a real customer result",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Notes block in output.txt states: 'The email will get sharper once you drop in one real customer result (a number or a name) and one specific observation about the recipient's company.' This is an accurate and useful observation — the rewrite uses placeholder tokens ([specific workflow], [problem state], [resolved state]) so specificity is deferred."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+        "reason": "'Quick question about [Company]'s ops' is a curiosity-gap template that avoids the banned words but doesn't reveal the email's actual offer (manual-work reduction, analytics). The assertion's positive criterion — 'specific enough to suggest what the email actually offers' — is loose enough that most subject lines pointing at any topic would pass. Consider tightening to: the subject must hint at the problem domain OR the benefit, not just the function area."
+      },
+      {
+        "reason": "No assertion checks that the placeholder tokens ([specific workflow], [problem state], [resolved state]) are acknowledged as requiring completion rather than presented as a finished rewrite. The notes block does flag this, but an assertion like 'The output acknowledges that [bracketed placeholders] remain and instructs the user to fill them with specifics' would ensure the skill doesn't ship a template as a finished product."
+      },
+      {
+        "assertion": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing.",
+        "reason": "The opener quotes 'in today's fast-paced landscape' inline as part of a subversive meta-comment. The assertion is technically satisfied because the opener *begins* with 'I'll skip…', but an output that opens with landscape framing and then subverts it would also pass this assertion. Consider checking that no landscape/era phrase appears unironically in the first sentence, not just that it isn't the first word."
+      }
+    ],
+    "overall": "All four assertions pass on substantive evidence. The main weakness is assertion 3's specificity criterion, which is under-defined, and the lack of any assertion covering placeholder completeness."
+  }
+}

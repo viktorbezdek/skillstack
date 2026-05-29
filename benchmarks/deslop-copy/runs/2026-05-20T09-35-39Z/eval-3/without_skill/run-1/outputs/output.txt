@@ -1,0 +1,26 @@
+Here's the rewrite:
+
+---
+
+We build [X] for [Y].
+
+Most companies in this space promise innovation and tell you about their passion. We'd rather show you our work. In [X years], we've helped [type of client] do [specific thing] — faster, with less overhead, and without the hand-holding that usually comes with it.
+
+We have opinions about how this work should be done. We think [specific belief about your industry or approach]. That's shaped every decision we've made about what to build and who to hire.
+
+Our team is small and stays that way. Not because we can't grow, but because adding people for its own sake makes the work worse.
+
+If you're looking for [the specific problem you solve], [one sentence on what working with you looks like].
+
+---
+
+**What's wrong with the original and what I changed:**
+
+- "passionate team of dedicated professionals" → deleted entirely. Every company says this.
+- "cutting-edge technology / innovative approach" → replaced with what you actually do
+- "exceptional value / meaningful impact / transformative growth" → hollow. Replaced with a specific claim a reader can evaluate.
+- "holistic commitment to excellence" → no reader has ever been moved by this phrase
+- "seamless, intuitive experiences" → product marketing language that belongs in ad copy, not an about page
+- "united by a shared vision of a better world" → the reader rolls their eyes and closes the tab
+
+The bracketed parts are placeholders — fill them in with your actual specifics and this will be considerably stronger than what you started with.

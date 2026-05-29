@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "skill_name": "deslop-copy",
+    "skill_path": "deslop/skills/deslop-copy",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-20T09:24:42Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "deslop-copy",
+    "target_path": "deslop/skills/deslop-copy"
+  },
+  "runs": [
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "time_seconds": 17.311,
+        "tokens": 66522,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+          "passed": true,
+          "evidence": "All 15 slop terms are absent from the rewrite text. 'holistic', 'transformative', 'empowering' etc. appear only in the explanation section as quoted examples of what was cut (e.g. 'Cut all the abstract nouns (excellence, transformation, holistic)'), never in the rewritten about-page copy itself. 15/15 absent, well above the required 10."
+        },
+        {
+          "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company \u2014 NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+          "passed": false,
+          "evidence": "The rewrite is a template with placeholder brackets for all company-specific details: '[specific thing]', '[industry]', '[city]', '[get in touch / try it free / see how it works]'. The non-placeholder statements ('We answer our own support tickets', 'We don't have a roadmap driven by investor slide decks', 'companies burning time on tools that weren't built for how they actually work') are opinionated but apply equally well to any small bootstrapped software company \u2014 they are archetype claims, not company-specific facts. The executor explicitly acknowledged this: 'The bracketed parts are placeholders \u2014 the more specific you can make those, the stronger it gets.' No statement in the rewrite 'could only apply to this company'."
+        },
+        {
+          "text": "The rewrite is equal to or shorter than the original in word count.",
+          "passed": false,
+          "evidence": "Original text word count: approximately 95 words (counted sentence by sentence: 16 + 18 + 16 + 22 + 23 = 95). Rewrite text word count (about-page section only, excluding the explanation): approximately 134 words (paragraph by paragraph: 22 + 29 + 40 + 20 + 23 = 134). The rewrite is ~41% longer than the original, failing the brevity constraint."
+        },
+        {
+          "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) \u2014 not just the rewritten text.",
+          "passed": true,
+          "evidence": "The response includes a clearly labeled '**What I changed and why:**' section with five bullet points explaining the techniques: (1) opened with a specific problem instead of self-compliment (specificity), (2) replaced 'passionate dedicated professionals' with actual personality (tone/voice), (3) cut abstract nouns \u2014 they say nothing (content discipline), (4) made the team real by giving them a background and a point of view (specificity/opinion), (5) ended with a direct call to action instead of a vision statement (directness). Additionally, the closing paragraph discusses specificity as the core humanization mechanism. While it doesn't use formal jargon like 'sentence length variation', the explanation clearly identifies and names the humanization approaches applied."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 23.845,
+        "tokens": 66996,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+          "passed": true,
+          "evidence": "All 13 required items are explicitly named in the 'Flagged clich\u00e9s' section of output.txt: (1) 'Leverage', (2) 'comprehensive', (3) 'cutting-edge', (4) 'empower your team', (5) 'unlock unprecedented growth' (covers both 'unlock' and 'unprecedented'), (6) 'innovative solution', (7) 'seamlessly integrates', (8) 'transformative results', (9) 'drive sustainable success', (11) 'robust analytics', (12) 'valuable insights', (13) 'enable informed decision-making'. 13 of 13 explicitly called out, well above the 10-of-13 threshold."
+        },
+        {
+          "text": "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+          "passed": true,
+          "evidence": "The rewrite in output.txt is: '[Product] helps your team move faster without changing how they work. It connects to your existing tools in minutes, not months. And when the numbers shift, you'll know exactly where to look \u2014 and what to do about it.' None of the 12 prohibited words (leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore) appear in this text."
+        },
+        {
+          "text": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+          "passed": true,
+          "evidence": "The phrase 'in minutes, not months' in sentence 2 of the rewrite provides a concrete time-anchored claim. This is a specific, falsifiable claim rather than an abstract benefit assertion."
+        },
+        {
+          "text": "The rewrite contains sentence length variation \u2014 at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check.",
+          "passed": false,
+          "evidence": "The rewrite has three sentences with approximate word counts: (1) '[Product] helps your team move faster without changing how they work.' \u224811 words; (2) 'It connects to your existing tools in minutes, not months.' \u224810 words; (3) 'And when the numbers shift, you'll know exactly where to look \u2014 and what to do about it.' \u224817 words. No sentence is \u22647 words (shortest is ~10) and no sentence is \u226520 words (longest is ~17). The post-rewrite commentary ('Short sentences. Concrete claims. One idea per sentence. No borrowed authority from meaningless adjectives.') is the agent's meta-commentary, not part of the rewrite copy itself, and cannot be counted. The assertion requires BOTH a short AND a long sentence; neither threshold is met."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 20.513,
+        "tokens": 66023,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+          "passed": true,
+          "evidence": "The opener reads: 'I noticed [specific thing about their company \u2014 a recent hire, a product launch, something they posted]. It made me think you're probably dealing with [specific problem].' Starts with a specific observation ('I noticed'), no landscape or era framing present."
+        },
+        {
+          "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+          "passed": true,
+          "evidence": "The closer reads: 'Worth a 20-minute call this week? I can show you how it works for [their industry/use case specifically].' None of the forbidden phrases appear in the email body. The phrase 'Don't hesitate to reach out at your earliest convenience' appears only as a quoted bad example in the 'What changed and why' commentary section, not in the rewrite itself."
+        },
+        {
+          "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+          "passed": true,
+          "evidence": "Subject line is: 'Quick question about [their specific pain point]'. Contains none of the forbidden words. The question format is specific and suggests a targeted, personalized outreach rather than a broadcast announcement."
+        },
+        {
+          "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body \u2014 indicating a more conversational register than the original.",
+          "passed": true,
+          "evidence": "The email body contains \"you're probably dealing with\" (the contraction 'you're'). This appears in the opener paragraph of the rewritten email body."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.5,
+        "stddev": 0.0,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "time_seconds": {
+        "mean": 17.311,
+        "stddev": 0.0,
+        "min": 17.311,
+        "max": 17.311
+      },
+      "tokens": {
+        "mean": 66522.0,
+        "stddev": 0.0,
+        "min": 66522.0,
+        "max": 66522.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.875,
+        "stddev": 0.1768,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 22.179,
+        "stddev": 2.3561,
+        "min": 20.513,
+        "max": 23.845
+      },
+      "tokens": {
+        "mean": 66509.5,
+        "stddev": 688.0149,
+        "min": 66023.0,
+        "max": 66996.0
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.38",
+      "time_seconds": "-4.9",
+      "tokens": "+12"
+    }
+  },
+  "notes": []
+}

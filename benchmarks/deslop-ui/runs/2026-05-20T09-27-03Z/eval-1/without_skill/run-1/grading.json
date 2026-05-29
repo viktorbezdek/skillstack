@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar — NOT 'Click here to proceed' or any phrase longer than 3 words.",
+      "passed": true,
+      "evidence": "Replacement is 'Continue to payment' — exactly 3 words (Continue, to, payment). No forbidden multi-word form used."
+    },
+    {
+      "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+      "passed": false,
+      "evidence": "None of the forbidden words appear, but the replacement is 'Payment failed. Check your card details and try again, or use a different payment method.' — 15 words, which exceeds the 10-word ceiling. Fails the length criterion."
+    },
+    {
+      "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+      "passed": true,
+      "evidence": "Primary replacement is 'Account created. You're all set.' — 5 words (Account, created, You're, all, set). The word 'successfully' is absent. An alternative suggestion of 7 words is provided parenthetically but the main replacement satisfies the constraint."
+    },
+    {
+      "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+      "passed": true,
+      "evidence": "Replacement is 'View charts, trends, and exports across your data.' — 8 words, no forbidden terms present. Names concrete functionality (charts, trends, exports) rather than marketing superlatives."
+    },
+    {
+      "text": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) — not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+      "passed": false,
+      "evidence": "The response uses a '**Problems:**' section per item with prose descriptions ('hedges when something definitively failed', 'filler', 'bureaucratic', 'marketing filler') but never applies a categorical named pattern label (hedging, verbose, overlong, passive, superlative, reassurance). No item carries a pattern-type classification — only a freeform critique. This is exactly the shape the expectation disqualifies: 'a plain list of replacements with no pattern labels.'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "execution_metrics": {
+    "total_tokens": 68674,
+    "input_tokens": 10,
+    "output_tokens": 464,
+    "cache_creation_input_tokens": 50051,
+    "cache_read_input_tokens": 18149,
+    "total_cost_usd": 0.20012595
+  },
+  "timing": {
+    "executor_duration_seconds": 13.315,
+    "total_duration_seconds": 13.315
+  },
+  "claims": [
+    {
+      "claim": "The button replacement 'Continue to payment' is concise and actionable",
+      "type": "quality",
+      "verified": true,
+      "evidence": "3 words, no 'Click here', action-oriented, names the destination. Improvement over the original 12-word phrase is clear."
+    },
+    {
+      "claim": "The error replacement states the condition directly",
+      "type": "quality",
+      "verified": false,
+      "evidence": "It does state the condition directly ('Payment failed'), but the prescriptive instruction that follows ('Check your card details and try again, or use a different payment method') inflates it to 15 words. The claim of directness is partially true but the brevity constraint is not met."
+    },
+    {
+      "claim": "The tooltip replacement avoids marketing filler and names what the section does",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'View charts, trends, and exports across your data.' — concrete, functional, no buzzwords."
+    },
+    {
+      "claim": "Each item's problems are explained before the replacement is given",
+      "type": "process",
+      "verified": true,
+      "evidence": "Every item in output.txt follows the structure: bold Problems header with prose critique, then bold Replacement. The pattern is consistent across all four."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+        "reason": "The forbidden-words check and the word-count check are bundled into one assertion. When one sub-criterion fails and the other passes (as here — no forbidden words, but 15 words), the combined FAIL masks a genuine partial success. Splitting into two assertions ('no forbidden words' and '10 words or fewer') would give finer signal and make the benchmark easier to act on."
+      },
+      {
+        "reason": "No assertion checks whether the response acknowledges or discusses the WITHOUT-skill baseline behavior. Since this is the 'without_skill' condition, a useful discriminating signal would be whether the model spontaneously labels slop patterns even without the skill — here it did not, confirming the skill adds value. An assertion like 'the model does NOT apply named slop pattern labels without the skill' would make that contrast explicit and testable."
+      },
+      {
+        "assertion": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer.",
+        "reason": "The output provides a primary replacement (5 words, passes) and an alternative suggestion in parentheses (7 words). The assertion evaluates against the primary only, which is reasonable but not explicit — a future executor could swap primary/alternative and the assertion would still formally pass. Consider specifying 'the first/main replacement offered'."
+      }
+    ],
+    "overall": "Three of five assertions are strong discriminators. The pattern-label assertion in particular is well-designed: it specifies exactly what doesn't satisfy it and lists the named types expected, making it hard to pass accidentally. The main gap is the bundled error assertion — splitting it would improve diagnostic resolution."
+  }
+}

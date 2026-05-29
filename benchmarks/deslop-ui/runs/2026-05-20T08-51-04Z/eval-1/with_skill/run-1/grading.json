@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar — NOT 'Click here to proceed' or any phrase longer than 3 words.",
+      "passed": true,
+      "evidence": "Output line 5: '→ `Continue to payment`'. Word count: Continue(1) to(2) payment(3) = 3 words. Exactly at the 3-word limit. No 'Click here' phrasing."
+    },
+    {
+      "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+      "passed": false,
+      "evidence": "Output line 13: '→ `Payment failed. Check your card details and try again.`'. No forbidden words are present. However word count: Payment(1) failed(2) Check(3) your(4) card(5) details(6) and(7) try(8) again(9) = 9 words, which exceeds the 8-word ceiling."
+    },
+    {
+      "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+      "passed": true,
+      "evidence": "Output line 23: '→ `Account created. You're all set.`'. The word 'successfully' is absent. Word count: Account(1) created(2) You're(3) all(4) set(5) = 5 words, exactly at the limit."
+    },
+    {
+      "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+      "passed": true,
+      "evidence": "Output line 33: '→ `View charts, trends, and exports for your data.`'. None of the three forbidden buzzwords appear. Word count: View(1) charts(2) trends(3) and(4) exports(5) for(6) your(7) data(8) = 8 words, well under the 12-word limit. The replacement names concrete actions the section performs (charts, trends, exports)."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1247,
+    "transcript_chars": 25862
+  },
+  "timing": {
+    "executor_duration_seconds": 11.382,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 11.382
+  },
+  "claims": [
+    {
+      "claim": "'Click here' is redundant on a button",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output explicitly diagnoses this: 'Problems: \"Click here\" is redundant (it's a button)'. This is a correct UX writing principle."
+    },
+    {
+      "claim": "The error message hedges with 'There seems to have been'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The original input contains 'There seems to have been an issue' — the executor correctly identified this as hedging language that should be replaced with a direct statement."
+    },
+    {
+      "claim": "The tooltip replacement names what the section does rather than describing the container",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'View charts, trends, and exports for your data.' concretely describes actions available in a reporting section, replacing vague marketing language."
+    },
+    {
+      "claim": "The error replacement states the condition directly",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Payment failed. Check your card details and try again.' is direct. However it runs 9 words, exceeding the 8-word constraint in the assertion."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+        "reason": "The 8-word ceiling is tight for a compound message that includes both a diagnosis ('Payment failed') and a recovery action ('Check your card details and try again'). The executor produced high-quality, direct copy that violated the limit by exactly one word. Consider whether this threshold should be 10 words, or whether the assertion should be split into two: one for absence of hedging language, one for length. As written, the assertion is the right kind of discriminating — it correctly flagged the overage — but the threshold may be miscalibrated for messages that must both state the error and give the next step."
+      },
+      {
+        "reason": "No assertion checks that the analysis sections ('Problems:') are accurate or present. The executor provided problem diagnoses for each item which are the reasoning behind the replacements. If the skill is supposed to explain WHY copy is bad (not just replace it), the current evals don't verify that diagnostic quality at all."
+      }
+    ],
+    "overall": "Evals are well-targeted and discriminating — the word-count assertions provide clear, verifiable criteria that go beyond surface compliance. The one failure (error at 9 vs 8 words) is a genuine catch. The 8-word ceiling for error messages deserves recalibration if the expected pattern includes both error + recovery action."
+  }
+}

@@ -1,0 +1,43 @@
+Both pieces share the same core problems. Here's the breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+- **"It looks like"** — the system knows exactly what you have. Hedging erodes trust.
+- **"Don't worry"** — condescending. The user wasn't worried until you said that.
+- **No clear action** — "Feel free to create your first project whenever you're ready" is the opposite of a call to action. It's permission to procrastinate.
+- **Generic benefit list** — "organize work, collaborate, track progress" describes every project tool ever made. It tells the user nothing specific about *your* product.
+- **Too long** — empty states should be 1–2 lines max, then a button.
+
+**Rewrite:**
+> No projects yet.
+> Create your first one to start organizing your work.
+>
+> **[Create project]**
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+- **"We've designed this experience to be as intuitive and seamless as possible"** — self-congratulatory filler. If it were intuitive, you wouldn't need to say so.
+- **"all of your important metrics and data"** — vague. What metrics? What data? Name the actual thing.
+- **No next step** — the modal ends with "reach out if you have questions," which is defensive, not helpful. What should the user *do* right now?
+- **Entirely company-focused** — "we've designed," "our support team." Flip it to user outcomes.
+
+**Rewrite:**
+> **Your dashboard is ready**
+> Here you'll find [specific thing, e.g. "revenue, active users, and recent activity"] at a glance.
+> Start by [specific first action, e.g. "connecting your first data source"].
+>
+> **[Get started]** · [Take a tour]
+
+---
+
+## The pattern in both
+
+Both were written to *not offend* rather than to *help*. The result is copy that's long, vague, and passive. Good empty states and onboarding modals answer one question fast: **what do I do next?** Cut everything that doesn't serve that answer.

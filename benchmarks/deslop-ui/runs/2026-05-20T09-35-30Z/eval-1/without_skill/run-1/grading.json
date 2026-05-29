@@ -1,0 +1,107 @@
+{
+  "expectations": [
+    {
+      "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar — NOT 'Click here to proceed' or any phrase longer than 3 words.",
+      "passed": true,
+      "evidence": "Button replacement in output.txt: 'Continue to payment' — exactly 3 words (Continue, to, payment). Passes the ≤3-word limit."
+    },
+    {
+      "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+      "passed": false,
+      "evidence": "Error replacement: 'Payment declined. Check your card details and try again, or use a different payment method.' — none of the forbidden hedging words appear, but the replacement is 15 words (Payment, declined, Check, your, card, details, and, try, again, or, use, a, different, payment, method), well over the 10-word ceiling."
+    },
+    {
+      "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+      "passed": true,
+      "evidence": "Success replacement in output.txt: 'Account created. You're all set.' — 'successfully' is absent, and word count is 5 (Account, created, You're, all, set). The alternative offered ('Account created — go to your dashboard.') is 6 words, but the primary suggestion satisfies both conditions."
+    },
+    {
+      "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+      "passed": true,
+      "evidence": "Tooltip replacement: 'View charts and export reports for your data.' — none of the forbidden words appear, word count is 8 (View, charts, and, export, reports, for, your, data), and it names specific actions the section performs."
+    },
+    {
+      "text": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) — not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+      "passed": false,
+      "evidence": "The output describes problems in inline prose only: 'hedges accountability', 'is filler', 'is redundant', 'is bureaucratic', 'marketing filler', 'vague and hollow'. While some of these terms map informally to pattern types, no explicit named pattern label (e.g., 'Pattern: hedging', 'Type: verbose') is applied to any item. This is a plain corrections list with prose rationale — it does not classify each piece by a named slop pattern type as required."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "execution_metrics": {
+    "total_tokens": 66851,
+    "input_tokens": 10,
+    "output_tokens": 402,
+    "cache_creation_input_tokens": 48290,
+    "cache_read_input_tokens": 18149,
+    "total_cost_usd": 0.19259220000000002,
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 804,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 17.29,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 17.29
+  },
+  "claims": [
+    {
+      "claim": "The button 'Click here' phrasing is redundant because it's a button",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Correct UX writing principle cited; the replacement 'Continue to payment' eliminates the redundant imperative."
+    },
+    {
+      "claim": "The error message hedges accountability with 'There seems to have been'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The original contains exactly this phrase, and the replacement correctly removes all hedging language."
+    },
+    {
+      "claim": "The error replacement is direct and actionable",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The replacement is actionable ('Check your card details and try again') but at 15 words it violates the conciseness standard the task requires. Direct does not mean concise here."
+    },
+    {
+      "claim": "'successfully' is redundant in a success state",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Valid UX writing principle; the replacement correctly omits 'successfully' and is appropriately brief."
+    },
+    {
+      "claim": "Tooltip marketing terms like 'leverage', 'comprehensive suite', 'powerful' say nothing concrete",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The replacement 'View charts and export reports for your data.' is concrete and avoids all identified marketing filler words."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+        "reason": "This assertion bundles two independent conditions (absence of hedging words AND ≤10 words). A model that removes hedging but writes a 15-word replacement — as observed here — passes the first condition and fails the second. Splitting into two separate assertions would give finer-grained signal: e.g., one for 'no forbidden words', one for '10 words or fewer'."
+      },
+      {
+        "reason": "No assertion checks whether the response actually identifies ALL four input copy items. A response that skips one item (e.g., drops the error message) could still pass all four remaining assertions. An assertion like 'all four copy items receive a replacement' would catch this."
+      },
+      {
+        "assertion": "The response classifies each piece of copy by a named slop pattern type",
+        "reason": "This expectation is well-designed and discriminating: the model without the skill produced correct corrections but no named taxonomy. The assertion correctly fails in the without_skill condition, validating it as a strong differentiator between with and without skill behavior."
+      }
+    ],
+    "overall": "Three of five assertions are clean and discriminating. The main weaknesses are the bundled error assertion (two independent conditions in one) and the missing coverage check. The pattern-classification assertion is the strongest differentiator for measuring skill impact."
+  }
+}

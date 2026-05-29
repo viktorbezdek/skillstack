@@ -1,0 +1,79 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "output.txt row 1: 'Comprehensive Analytics Dashboard' → 'Analytics'. Single word, no adjectives present. The explanation explicitly flags 'comprehensive' as a 'filler adjective'."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "output.txt row 2: 'Your data is currently being processed' → 'Processing your data…'. Present progressive active voice, matches the example given in the assertion verbatim."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "output.txt row 4: 'Please ensure that all required fields have been completed before submitting' → 'Complete all required fields'. Direct imperative form; no 'please ensure', no 'have been completed', no passive voice."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "output.txt row 6: 'Your file has been successfully uploaded to our secure cloud storage' → 'File uploaded'. Two words, 'successfully' is absent. Explanation explicitly states: '\"Successfully\" is redundant on success'."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1142,
+    "transcript_chars": 28146
+  },
+  "timing": {
+    "executor_duration_seconds": 22.111,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 22.111
+  },
+  "claims": [
+    {
+      "claim": "'Proceed to payment' is flagged as AI slop because 'no human says this'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt row 3: pattern labeled 'Proceed is formal/legalistic — no human says this', replaced with 'Pay now'. Judgment is defensible."
+    },
+    {
+      "claim": "The no-results message uses 'Unfortunately' as an 'apologetic filler'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt row 5: correctly identifies 'Unfortunately' as apologetic filler and 'search criteria' as corporate phrase; replacement 'No results for that search — try different keywords' is terse and direct."
+    },
+    {
+      "claim": "Six total patterns were audited",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt table has 6 numbered rows (# 1–6), each with an original string, pattern name, and replacement."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks that 'Processing your data…' (with ellipsis) vs 'Processing your data' (without) is acceptable — the ellipsis is a minor stylistic choice that might matter if eval input specified exact form. Currently the assertion is satisfied either way."
+      },
+      {
+        "reason": "None of the assertions verify the explanations/rationale the executor provides alongside replacements. The skill is supposed to identify AI patterns; checking that the rationale correctly names the pattern (e.g., 'passive voice', 'filler adjective') would distinguish genuine skill application from a lucky guess at the right output."
+      }
+    ],
+    "overall": "All four assertions test the right outcomes and are genuinely discriminating — a naive rewrite would fail at least one. Minor gap: the rationale column (which is the skill's core value-add) is not verified by any assertion."
+  }
+}

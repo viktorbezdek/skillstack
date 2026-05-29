@@ -1,0 +1,238 @@
+{
+  "metadata": {
+    "skill_name": "deslop-ui",
+    "skill_path": "deslop/skills/deslop-ui",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-20T08:54:38Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "deslop-ui",
+    "target_path": "deslop/skills/deslop-ui"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 11.382,
+        "tokens": 68352,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar \u2014 NOT 'Click here to proceed' or any phrase longer than 3 words.",
+          "passed": true,
+          "evidence": "Output line 5: '\u2192 `Continue to payment`'. Word count: Continue(1) to(2) payment(3) = 3 words. Exactly at the 3-word limit. No 'Click here' phrasing."
+        },
+        {
+          "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+          "passed": false,
+          "evidence": "Output line 13: '\u2192 `Payment failed. Check your card details and try again.`'. No forbidden words are present. However word count: Payment(1) failed(2) Check(3) your(4) card(5) details(6) and(7) try(8) again(9) = 9 words, which exceeds the 8-word ceiling."
+        },
+        {
+          "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+          "passed": true,
+          "evidence": "Output line 23: '\u2192 `Account created. You're all set.`'. The word 'successfully' is absent. Word count: Account(1) created(2) You're(3) all(4) set(5) = 5 words, exactly at the limit."
+        },
+        {
+          "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+          "passed": true,
+          "evidence": "Output line 33: '\u2192 `View charts, trends, and exports for your data.`'. None of the three forbidden buzzwords appear. Word count: View(1) charts(2) trends(3) and(4) exports(5) for(6) your(7) data(8) = 8 words, well under the 12-word limit. The replacement names concrete actions the section performs (charts, trends, exports)."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 22.111,
+        "tokens": 68967,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+          "passed": true,
+          "evidence": "output.txt row 1: 'Comprehensive Analytics Dashboard' \u2192 'Analytics'. Single word, no adjectives present. The explanation explicitly flags 'comprehensive' as a 'filler adjective'."
+        },
+        {
+          "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' \u2014 something like 'Processing...' or 'Processing your data'.",
+          "passed": true,
+          "evidence": "output.txt row 2: 'Your data is currently being processed' \u2192 'Processing your data\u2026'. Present progressive active voice, matches the example given in the assertion verbatim."
+        },
+        {
+          "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+          "passed": true,
+          "evidence": "output.txt row 4: 'Please ensure that all required fields have been completed before submitting' \u2192 'Complete all required fields'. Direct imperative form; no 'please ensure', no 'have been completed', no passive voice."
+        },
+        {
+          "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+          "passed": true,
+          "evidence": "output.txt row 6: 'Your file has been successfully uploaded to our secure cloud storage' \u2192 'File uploaded'. Two words, 'successfully' is absent. Explanation explicitly states: '\"Successfully\" is redundant on success'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 11.355,
+        "tokens": 68633,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar \u2014 NOT 'Click here to proceed' or any phrase longer than 3 words.",
+          "passed": true,
+          "evidence": "Output line 5: '\u2192 `Continue to payment`'. Word count: Continue(1) to(2) payment(3) = 3 words. Satisfies \u22643 constraint."
+        },
+        {
+          "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+          "passed": false,
+          "evidence": "Output line 13: '\u2192 `Payment failed. Check your card details and try again.`'. None of the five forbidden phrases appear. However, word count is 9 (Payment, failed, Check, your, card, details, and, try, again) \u2014 exceeds the 8-word ceiling. The secondary alternative offered ('Payment failed. Try again or contact support.' = 7 words) would pass, but it is parenthetical and not the primary recommendation."
+        },
+        {
+          "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+          "passed": true,
+          "evidence": "Output line 23: '\u2192 `Account created. You're all set.`'. The word 'successfully' is absent. Word count: Account(1) created(2) You're(3) all(4) set(5) = 5 words. Exactly at the 5-word ceiling \u2014 passes."
+        },
+        {
+          "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+          "passed": true,
+          "evidence": "Output line 31: '\u2192 `View reports and analytics for your data.`'. None of the three forbidden words appear. Word count: View(1) reports(2) and(3) analytics(4) for(5) your(6) data(7) = 7 words, well within the 12-word ceiling. Names the actual function (view reports and analytics)."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 23.626,
+        "tokens": 69468,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+          "passed": true,
+          "evidence": "Primary rewrite in output.txt: '**No projects yet** / Create your first project to bring your work, team, and progress into one place. / [Create a project]'. This is exactly one sentence followed by a CTA. None of the banned words ('it looks like', 'don't worry', 'easy', 'feel free') appear in the replacement. The secondary ('warmer') variant has two sentences and would fail this test, but it is clearly presented as an optional alternative, not the primary rewrite."
+        },
+        {
+          "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+          "passed": true,
+          "evidence": "Primary rewrite body sentence: 'Create your first project to bring your work, team, and progress into one place.' Word count: Create(1) your(2) first(3) project(4) to(5) bring(6) your(7) work(8) team(9) and(10) progress(11) into(12) one(13) place(14) = 14 words. Under the 15-word ceiling. CTA label '[Create a project]' is excluded per the assertion. Note: secondary 'warmer' variant ('Projects keep your work organized and your team aligned. Takes about a minute to set up.') is 16 words, but it is an explicitly labeled secondary option."
+        },
+        {
+          "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+          "passed": true,
+          "evidence": "Modal rewrite in output.txt: 'Welcome to your dashboard / Here you'll see your key metrics, recent activity, and team updates \u2014 updated in real time. / Start by connecting your first data source, or explore the overview with sample data. / [Connect data] [Explore with samples]'. None of the five banned phrases ('seamless', 'intuitive', 'don't hesitate', 'please', 'what matters most') appear in this rewrite. Note: 'intuitive' and 'seamless' DO appear in the 'What's wrong' critique section, but only as quoted examples of bad copy from the original \u2014 not in the replacement text itself. The modal is rewritten rather than recommended for removal, so the second clause of the assertion (recommend removing if unnecessary) is N/A."
+        },
+        {
+          "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler').",
+          "passed": true,
+          "evidence": "The output names multiple specific pattern types: (1) 'Reassure unnecessarily' (equivalent to gratuitous reassurance) \u2014 'Don't worry \u2014 presumes anxiety the user may not feel'; (2) 'corporate filler' \u2014 'Please don't hesitate to reach out \u2014 corporate filler'; (3) 'self-congratulation' \u2014 'We've designed this experience to be as intuitive and seamless as possible \u2014 pure self-congratulation'; (4) 'Passive CTA' \u2014 'feel free to... whenever you're ready \u2014 diffuses urgency'; (5) 'State the obvious', 'Describe the product generically' named in the 'pattern to fix' summary. At least 2 (and actually 5+) named slop pattern types are present."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 24.032,
+        "tokens": 69451,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+          "passed": true,
+          "evidence": "output.txt line 8: Replace: `Analytics` \u2014 1 word, no forbidden adjectives. The original 'Comprehensive Analytics Dashboard' was correctly stripped to just 'Analytics'."
+        },
+        {
+          "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' \u2014 something like 'Processing...' or 'Processing your data'.",
+          "passed": true,
+          "evidence": "output.txt line 15: Replace: `Processing your data\u2026` \u2014 active voice, present progressive, exactly matches the exemplar in the assertion. The passive 'is currently being processed' was eliminated."
+        },
+        {
+          "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+          "passed": true,
+          "evidence": "output.txt line 29: Replace: `Complete all required fields before submitting` \u2014 imperative mood, no 'please ensure', no 'have been completed', no passive construction."
+        },
+        {
+          "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+          "passed": true,
+          "evidence": "output.txt line 43: Replace: `File uploaded` \u2014 2 words, no 'successfully'. Matches the exemplar 'File uploaded' exactly."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.875,
+        "stddev": 0.1768,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 16.7465,
+        "stddev": 7.5865,
+        "min": 11.382,
+        "max": 22.111
+      },
+      "tokens": {
+        "mean": 68659.5,
+        "stddev": 434.8707,
+        "min": 68352.0,
+        "max": 68967.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.9167,
+        "stddev": 0.1443,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 19.671,
+        "stddev": 7.2047,
+        "min": 11.355,
+        "max": 24.032
+      },
+      "tokens": {
+        "mean": 69184.0,
+        "stddev": 477.2557,
+        "min": 68633.0,
+        "max": 69468.0
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.04",
+      "time_seconds": "-2.9",
+      "tokens": "-524"
+    }
+  },
+  "notes": []
+}

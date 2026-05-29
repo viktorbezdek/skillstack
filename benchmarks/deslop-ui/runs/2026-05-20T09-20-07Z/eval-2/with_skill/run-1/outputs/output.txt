@@ -1,0 +1,51 @@
+Both have the same core problem: they talk *about* the user instead of directing them. Here's the breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+- **"It looks like"** — the app knows. Don't hedge.
+- **"Don't worry"** — patronizing. Names an anxiety the user didn't have.
+- **"easy and takes less than a minute"** — unverified claim, filler.
+- **Benefits laundry list** — organize, collaborate, track. Too much. Pick one.
+- **"Feel free to... whenever you're ready!"** — weak permission-giving. No clear CTA.
+
+**Revised:**
+> **No projects yet**
+> Create your first project to start organizing your work.
+> `[Create project]`
+
+That's it. The button is the CTA — the copy just frames it.
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+- **"We've designed this to be intuitive and seamless"** — self-congratulatory. The user will judge that themselves.
+- **"focus on what matters most to you"** — hollow. Says nothing specific.
+- **"Please don't hesitate to reach out"** — corporate filler. Just say "Questions? [link]."
+- **No next step** — the modal ends with no action.
+
+**Revised:**
+> **Your dashboard**
+> Your key metrics live here. Start by connecting your first data source.
+> `[Connect data]` `[Take the tour]`
+
+---
+
+## Pattern to apply going forward
+
+| Slop phrase | Replace with |
+|---|---|
+| "It looks like you haven't..." | State the fact directly |
+| "Don't worry" | Remove it |
+| "Feel free to" | Imperative verb ("Create", "Add", "Start") |
+| "We've designed this to be..." | Remove entirely |
+| "Please don't hesitate to..." | "Questions? [link]" |
+| "whenever you're ready" | Remove — the button handles this |
+
+The rule: every word should either name what the user can do, or why it matters. Everything else is noise.

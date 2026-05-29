@@ -1,0 +1,19 @@
+Here's a rewrite. I'll need you to swap in your actual specifics — I've marked the placeholders.
+
+---
+
+**We started [COMPANY] because [SPECIFIC PROBLEM] was broken, and every existing solution made it worse.**
+
+Most [INDUSTRY] tools are built for the vendor's convenience, not yours. They're complex where they should be simple, opaque where you need clarity, and they lock you in the moment you start getting value from them.
+
+We build differently. [ONE SENTENCE: what you actually make/do — e.g., "We build software that helps logistics teams close their books in hours, not weeks."] That's it. We're not a platform, a solution suite, or a partner ecosystem. We're a [small/focused] team that's good at one thing and keeps making it better.
+
+We've worked with [X clients / in X markets / since YEAR]. We've been wrong about things. We've changed direction twice. We're still here because our customers' results are.
+
+If that sounds like the kind of company you want to work with, [talk to us / get started / see the work].
+
+---
+
+**What to fill in:** the founding reason, the specific problem, the one-line product description, a real credential (clients, longevity, market), and a real call to action.
+
+If you share what the company actually does, I can make the whole thing concrete — no placeholders.

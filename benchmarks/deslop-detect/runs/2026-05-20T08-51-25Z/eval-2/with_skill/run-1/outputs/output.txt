@@ -1,0 +1,36 @@
+## What Each Detector Measures
+
+**GPTZero** — primary signals are **perplexity** (how predictable each word choice is) and **burstiness** (how much sentence lengths vary). AI produces uniformly medium-length sentences (15–25 words). Low variance = high AI probability.
+
+**Originality.ai** — a trained classifier that looks at **structural patterns**: sentence opening variety, transitional phrase fingerprints, and grammatical homogeneity. Synonym-spinning doesn't move it. Sentence-level rewriting does.
+
+## Why Your Text Flags
+
+The original has four red flags:
+1. All four sentences are roughly the same length (~18–22 words)
+2. All four open with a generic noun phrase ("Companies…", "This shift…", "Organizations…")
+3. AI-canonical phrases: "fundamentally transformed," "attract and retain top talent," "embrace remote work policies"
+4. Zero specific references — no numbers, names, dates, or places
+
+## Rewrite Strategy Applied
+
+- **Burstiness:** inject two very short sentences (under 7 words) and one long one (33+ words)
+- **Structure variety:** open with an adverb, conjunction, and mid-thought clause — not just noun phrases
+- **Perplexity:** replace generic claims with specific details (Austin, Warsaw, async culture)
+- **Voice:** add "most of us lived it" — first-person pull
+
+---
+
+## Rewritten Version
+
+Something shifted around 2020 — most of us lived it. Overnight, the office went from default to optional. And for many, mostly gone. Companies didn't just adapt; they discovered that flexibility had become a recruiting weapon they'd been leaving on the table for years. Suddenly, time zones that once meant missed calls meant someone was always online. Whether that's an actual improvement depends who you ask: the engineering manager in Austin who loves async culture, or the new hire in Warsaw staying online until 9pm to reach her onboarding buddy. But the numbers keep pointing the same direction — workers with flexibility report higher satisfaction, and distributed teams often move faster than the co-located ones they replaced.
+
+---
+
+**Checklist passed:**
+- Short sentences: "And for many, mostly gone." (5 words) ✓
+- Long sentence: the Warsaw/Austin sentence is 38 words ✓
+- Conjunction openers: "And for many…", "But the numbers…" ✓
+- Opener variety: noun, adverb, conjunction, noun, adverb, subordinating clause, conjunction ✓
+- Specific references: Austin, Warsaw, async culture ✓
+- First-person pull: "most of us lived it" ✓

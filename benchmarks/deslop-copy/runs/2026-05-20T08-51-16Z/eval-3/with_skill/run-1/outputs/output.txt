@@ -1,0 +1,25 @@
+Here's a rewrite that earns its words:
+
+---
+
+We started because we kept running into the same problem: companies were leaving real money and time on the table, and the tools they had weren't fixing it.
+
+So we built different ones.
+
+We're a small team — [X] people — and we work directly with clients on [specific problem area]. No account managers shuttling messages between you and whoever actually does the work. You talk to the person solving your problem.
+
+We have opinions about how this should be done. We'll tell you when we think you're approaching something the wrong way. We'll also tell you when we can't help — some problems aren't ours to solve.
+
+We're based in [city]. We've been doing this since [year].
+
+---
+
+**Notes on what changed and why:**
+
+- Replaced "passionate team of dedicated professionals" — everyone says this; it says nothing
+- Replaced "cutting-edge / holistic / transformative" — these words have been emptied of meaning by overuse
+- Added specifics: team size, location, founding year — these are the details that make a company feel real
+- Gave it a point of view: they have opinions, they push back, they refer out when appropriate
+- Ended concretely instead of with a vision statement
+
+Fill in the brackets with your actual details and this becomes a page that sounds like a company, not a deck.

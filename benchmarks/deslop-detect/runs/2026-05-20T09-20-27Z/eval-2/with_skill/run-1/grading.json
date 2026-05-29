@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns — not just vocabulary. Both detectors must be described with their specific signal types.",
+      "passed": true,
+      "evidence": "output.txt lines 3–7: GPTZero is described with two named signals — '**Perplexity** — how predictable each word choice is' and '**Burstiness** — how much sentence lengths vary. AI clusters in the 15–22 word range.' Originality.ai is described as running 'a trained classifier on structural patterns — sentence frames, transition phrases, grammatical repetition. Vocabulary swaps don't move it. Synonym-spinning is useless against it.' Both detectors named with specific signal types; Originality.ai's 'not just vocabulary' distinction is explicit."
+    },
+    {
+      "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+      "passed": true,
+      "evidence": "output.txt line 19: Rewrite opens with 'Permanently isn't too strong a word.' — leading adverb, not SVO. The executor's own verification confirms this: '1. \"Permanently isn't...\" — adverb ✓ not SVO'."
+    },
+    {
+      "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+      "passed": true,
+      "evidence": "output.txt line 19 contains 'Of course, dynamics shifted.' (4 words) and 'So did expectations.' (3 words). Executor verification at line 26 confirms: 'Shortest: \"Of course, dynamics shifted.\" (4 words) ✓ target ≤5'. Both sentences are well under the 7-word threshold."
+    },
+    {
+      "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+      "passed": true,
+      "evidence": "output.txt line 41 explicitly lists five passes applied: 'burstiness injection, opener diversification, perplexity injection, voice (direct closing opinion), structural disruption (long-short-short burst after the anchor sentence)'. Each is also demonstrated in the Detector Signal Verification section with concrete evidence: specific brand/city names for perplexity, short/long sentence mixing for burstiness, varied openers for diversification."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1823,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 113.743,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 113.743
+  },
+  "claims": [
+    {
+      "claim": "'Of course, dynamics shifted.' is 4 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Word count: Of(1) course(2) dynamics(3) shifted(4) — confirmed 4 words."
+    },
+    {
+      "claim": "Specific references injected: GitLab, Dropbox, Airbnb; Berlin; Auckland; 9 AM",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All six references appear verbatim in the rewrite text at output.txt line 19."
+    },
+    {
+      "claim": "No two consecutive sentence openers are the same type",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Opener 1: 'Permanently' (adverb). Opener 2: 'Companies like GitLab…' (noun/SVO). Opener 3: 'Of course…' (adverb phrase). Opener 4: 'So did expectations.' (inverted). Opener 5: 'The part that…' (noun phrase, but different structure). No two consecutive openers repeat type."
+    },
+    {
+      "claim": "Sentence structure diversification is one of the passes applied",
+      "type": "process",
+      "verified": true,
+      "evidence": "The executor labels this 'opener diversification' rather than 'sentence structure diversification', which maps to the same concept. The verification block at lines 29–33 provides concrete evidence."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+        "reason": "The assertion uses '2 of 5' as the bar, but the executor satisfied all five. A stronger version would require the passes to be demonstrated in the actual rewrite text — not just listed by name at the end. An executor could satisfy this assertion by appending 'Passes applied: burstiness injection, perplexity injection' without any actual rewriting."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite is actually on-topic relative to the original input (remote work / talent retention). The executor happened to stay on topic, but a response that substituted entirely different content would still pass all four assertions."
+      }
+    ],
+    "overall": "All four assertions pass with clear, specific evidence. The main eval gap is that assertions measure presence of technique labels and structural surface features, not whether the rewriting genuinely reduces AI-detection risk in a way that a tool like GPTZero or Originality.ai would score lower."
+  }
+}

@@ -1,0 +1,22 @@
+No, synonym swapping doesn't work. AI detectors analyze statistical patterns — token probability distributions, sentence length variance (burstiness), structural repetition, and semantic coherence — not surface vocabulary. Swapping "leverage" for "harness" leaves all of those fingerprints intact.
+
+Your text has several AI writing patterns that synonym replacement won't fix:
+
+- **Stacked vague adjectives**: "robust analytics", "seamless integrations", "transformative results"
+- **Generic claims with no specificity**: what does the platform actually do? For whom?
+- **Corporate filler**: "organizations of all sizes", "innovative approach", "Furthermore"
+- **No concrete detail**: no numbers, no named features, no specific outcomes
+
+**What actually works: rewrite for specificity and authentic voice.**
+
+Here's a rewrite of your text:
+
+> "The platform connects your data stack — Salesforce, Snowflake, whatever you're running — and surfaces usage patterns your team would otherwise miss. Setup takes an afternoon. Most teams catch their first actionable insight within a week."
+
+What changed:
+- Named a concrete action instead of vague verbs ("connects your data stack" vs. "leverages AI")
+- Replaced "organizations of all sizes" with a specific claim about time-to-value
+- Dropped the adjective pile in favor of one specific detail
+- Used a realistic cadence — short sentences mixed with longer ones
+
+The same principle applies to your original text: **replace every adjective with a fact, and every vague claim with a specific outcome.** If you can tell me what the platform actually does, I can rewrite it more precisely.

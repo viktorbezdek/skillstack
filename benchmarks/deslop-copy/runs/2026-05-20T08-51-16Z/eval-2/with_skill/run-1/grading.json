@@ -1,0 +1,80 @@
+{
+  "expectations": [
+    {
+      "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+      "passed": true,
+      "evidence": "Opener reads: 'I came across [Company] while researching [industry/specific trigger] and wanted to reach out directly.' None of the banned phrases appear. The opener is a specific, first-person observation grounded in an action the sender took — not a generic landscape framing."
+    },
+    {
+      "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+      "passed": true,
+      "evidence": "Closer reads: 'Would it make sense to jump on a 20-minute call this week? I can show you exactly how it works for a team your size, and if it's not a fit, I'll tell you.' None of the banned phrases are present. The ask is direct and time-specific ('20-minute call this week'). The explanation section also explicitly lists 'at your earliest convenience' and 'don't hesitate' as 'Removed entirely.'"
+    },
+    {
+      "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+      "passed": true,
+      "evidence": "Subject line: 'Quick question about [Company]'s ops'. None of the three banned words appear. 'ops' is lowercase shorthand anchored to a named company ('[Company]'s ops'), not a filler noun. The subject is specific: it names a company and frames the email as a question, which is enough to suggest the email's intent."
+    },
+    {
+      "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+      "passed": true,
+      "evidence": "Three contractions appear in the body: 'they're spending 6–10 hours', 'that's usually where we start', and 'it's not a fit'. All indicate a conversational register distinct from formal AI-slop prose."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1059,
+    "transcript_chars": 26500
+  },
+  "timing": {
+    "executor_duration_seconds": 19.376,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 19.376
+  },
+  "claims": [
+    {
+      "claim": "The rewrite removed 'fast-paced landscape,' 'unprecedented challenges,' 'actionable insights,' 'unlock full potential,' 'at your earliest convenience,' and 'don't hesitate'",
+      "type": "process",
+      "verified": true,
+      "evidence": "None of these phrases appear anywhere in output.txt. The 'What changed and why' section explicitly lists all six as 'Removed entirely.'"
+    },
+    {
+      "claim": "The closer uses a direct ask with a specific time frame",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Would it make sense to jump on a 20-minute call this week?' specifies both the meeting format (call) and duration (20 minutes) and timeframe (this week) — all concrete."
+    },
+    {
+      "claim": "The body contains a concrete time claim (6–10 hours) that gives the reader something to react to",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'Most of our customers find they're spending 6–10 hours a week on things that should take 30 minutes' — the specific numbers are present and the comparison is clear."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+        "reason": "The three-word blocklist is narrow. A subject like 'Streamlining Your Business Processes' would pass the literal check while still being generic slop. The second condition ('specific enough to suggest what the email actually offers') does compensate, but it's a judgment call a grader must make — consider adding a positive formulation: 'mentions a concrete product category, pain point, or outcome' to make pass/fail less ambiguous."
+      },
+      {
+        "reason": "No assertion checks whether the email avoids [bracketed placeholder] artifacts in the final deliverable. The output contains '[Company]', '[Name]', '[industry/specific trigger]', '[specific process]', and '[Your name]' — these are intentional fill-in-the-blank slots, but an assertion verifying the skill provides instructions to fill them (rather than leaving them silently uncompleted) would strengthen confidence that the output is genuinely actionable."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating — each directly tests a named anti-pattern from the deslop brief. The skill performed cleanly on all four. The two suggestions above are minor precision improvements, not gaps that would have flipped any verdict here."
+  }
+}

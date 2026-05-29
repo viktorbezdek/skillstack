@@ -1,0 +1,41 @@
+## Empty State
+
+**Problems:**
+
+1. **"It looks like"** — the system knows exactly what's there. Hedging is false modesty.
+2. **"Don't worry"** — nobody was worried. This creates anxiety it then dismisses.
+3. **"easy and takes less than a minute"** — unearned promise. If it's easy, show them; don't announce it.
+4. **The benefits list** — "organize work, collaborate, track progress" is generic marketing copy, not a reason to act *right now*.
+5. **"whenever you're ready!"** — passive CTA with forced enthusiasm. Gives the user permission to do nothing.
+
+**Suggested replacement:**
+> No projects yet.
+> 
+> [Create your first project]
+
+Or if context warrants a bit more:
+> No projects yet. Create one to start organizing your work.
+>
+> [Create project]
+
+---
+
+## Onboarding Modal
+
+**Problems:**
+
+1. **"Welcome to your new dashboard!"** — filler opener. Every modal starts this way.
+2. **"you'll be able to see all of your important metrics and data"** — says nothing specific. What metrics? Why does it matter?
+3. **"We've designed this experience to be as intuitive and seamless as possible"** — self-congratulatory. The user will decide if it's intuitive. Claiming it signals insecurity.
+4. **"so that you can focus on what matters most to you"** — meaningless. Every product says this.
+5. **"Please don't hesitate to reach out"** — corporate filler with a hidden negative ("don't hesitate").
+6. **No action** — the modal ends with a support offer, not a next step.
+
+**Suggested replacement:**
+> Here's what you can do from your dashboard: [specific thing 1], [specific thing 2], [specific thing 3].
+>
+> [Get started] · [Watch a 2-min intro]
+
+---
+
+**Pattern across both:** the copy talks about the product rather than what the user can accomplish. Cut the self-description and lead with the action.

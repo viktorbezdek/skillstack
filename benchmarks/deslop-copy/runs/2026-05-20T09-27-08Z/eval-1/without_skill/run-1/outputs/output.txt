@@ -1,0 +1,24 @@
+**Flagged clichés:**
+
+1. **"Leverage"** — nobody talks like this. It's a verb replacement for "use."
+2. **"comprehensive, cutting-edge"** — stacked adjectives that mean nothing without evidence.
+3. **"empower your team"** — hollow empowerment language; says nothing about what changes for them.
+4. **"unlock unprecedented growth"** — superlative claim with zero specificity.
+5. **"innovative solution"** — every product calls itself innovative; it's noise.
+6. **"seamlessly integrates"** — "seamlessly" is the single most overused word in SaaS copy.
+7. **"transformative results"** — a promise that promises nothing in particular.
+8. **"drive sustainable success"** — three vague nouns stacked into a phrase that dissolves on contact.
+9. **"Furthermore"** — stiff connector that makes this read like a corporate memo.
+10. **"robust analytics"** — "robust" is a filler adjective that's coded into every product description.
+11. **"valuable insights"** — redundant; insights are by definition valuable.
+12. **"enable informed decision-making at every level of your organization"** — longest possible way to say "helps people decide things."
+
+---
+
+**Rewrite:**
+
+> Stop digging through five different tools to answer one question. [Product] connects your existing stack and puts the numbers you actually need in one place — without a weeks-long setup. Your team sees what's working, what isn't, and what to do next. No analyst required.
+
+---
+
+This version makes a concrete promise (fewer tools to juggle, faster answers), implies the integration story without claiming it's magic, and puts the benefit in human terms. Adjust the product name and specifics — right now it's written for a generic analytics/workflow platform, so swap in any real differentiators you have.

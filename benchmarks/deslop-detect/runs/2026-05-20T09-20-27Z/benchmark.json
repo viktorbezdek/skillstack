@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "skill_name": "deslop-detect",
+    "skill_path": "deslop/skills/deslop-detect",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-20T09:23:58Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "deslop-detect",
+    "target_path": "deslop/skills/deslop-detect"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 77.986,
+        "tokens": 138940,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+          "passed": true,
+          "evidence": "Output section 1 reads: '**1. Zero burstiness.** All four sentences cluster between 14\u201321 words. GPTZero measures sentence-length variance directly \u2014 a flat distribution like this is one of its strongest signals.' Uses the word 'burstiness' explicitly and describes the uniform distribution as the signal."
+        },
+        {
+          "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+          "passed": true,
+          "evidence": "Output section 2 reads: '**2. Stock AI transition phrases.** \"Furthermore,\" \"It is important to note that,\" and \"Additionally\" are among the most statistically common sequences in LLM-generated text.' Identifies 3 of the 5 listed signals: 'Furthermore', 'It is important to note', and 'Additionally'."
+        },
+        {
+          "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+          "passed": true,
+          "evidence": "The Detector Signal Verification section states: 'Shortest sentence: \"Works, when done right.\" (4 words)' and 'Longest sentence: \"The argument for content investment isn't 'brand authority'...\" (54 words)'. Confirmed by reading the rewrite directly: 'Works, when done right.' is 4 words (\u22646 \u2713); 'Conversion takes longer.' is 3 words; the long sentence about brand authority and paid acquisition is visibly 50+ words (\u226530 \u2713)."
+        },
+        {
+          "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+          "passed": true,
+          "evidence": "Full rewrite text: 'Here's what most marketing teams get backwards. The argument for content investment isn't \"brand authority\" \u2014 that phrase is real but too abstract to move a budget line \u2014 it's that companies publishing consistently in their category tend to hold the first page of search results for the terms their actual buyers use, often displacing competitors who spend significantly more on paid acquisition. Works, when done right. Not always and not automatically, but when the content is genuinely useful rather than keyword-padded, the compounding effect on organic traffic shows up clearly in attribution data in ways that ad spend rarely matches after month six. Conversion takes longer.' None of 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven' appear."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 113.743,
+        "tokens": 140134,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns \u2014 not just vocabulary. Both detectors must be described with their specific signal types.",
+          "passed": true,
+          "evidence": "output.txt lines 3\u20137: GPTZero is described with two named signals \u2014 '**Perplexity** \u2014 how predictable each word choice is' and '**Burstiness** \u2014 how much sentence lengths vary. AI clusters in the 15\u201322 word range.' Originality.ai is described as running 'a trained classifier on structural patterns \u2014 sentence frames, transition phrases, grammatical repetition. Vocabulary swaps don't move it. Synonym-spinning is useless against it.' Both detectors named with specific signal types; Originality.ai's 'not just vocabulary' distinction is explicit."
+        },
+        {
+          "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+          "passed": true,
+          "evidence": "output.txt line 19: Rewrite opens with 'Permanently isn't too strong a word.' \u2014 leading adverb, not SVO. The executor's own verification confirms this: '1. \"Permanently isn't...\" \u2014 adverb \u2713 not SVO'."
+        },
+        {
+          "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+          "passed": true,
+          "evidence": "output.txt line 19 contains 'Of course, dynamics shifted.' (4 words) and 'So did expectations.' (3 words). Executor verification at line 26 confirms: 'Shortest: \"Of course, dynamics shifted.\" (4 words) \u2713 target \u22645'. Both sentences are well under the 7-word threshold."
+        },
+        {
+          "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+          "passed": true,
+          "evidence": "output.txt line 41 explicitly lists five passes applied: 'burstiness injection, opener diversification, perplexity injection, voice (direct closing opinion), structural disruption (long-short-short burst after the anchor sentence)'. Each is also demonstrated in the Detector Signal Verification section with concrete evidence: specific brand/city names for perplexity, short/long sentence mixing for burstiness, varied openers for diversification."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 56.292,
+        "tokens": 137171,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explicitly states that synonym spinning does NOT effectively evade AI detectors \u2014 it must use language like 'won't work', 'doesn't address', 'fails', 'insufficient', or equivalent. A response that suggests synonym spinning as a valid primary technique fails this check.",
+          "passed": true,
+          "evidence": "The very first line of the response reads: '**No, synonym spinning doesn't work.**' \u2014 unambiguous and foregrounded. The response then follows up: 'Originality.ai and Turnitin see right through it.' No suggestion of synonym spinning as a valid technique anywhere."
+        },
+        {
+          "text": "The response explains WHY synonym spinning fails: because detectors look at sentence structure, statistical patterns, or token sequences \u2014 not just individual word choices. The explanation must reference structural features, patterns, or statistics (not just 'they look for more than synonyms').",
+          "passed": true,
+          "evidence": "Output states: 'Detectors measure sentence structure and token-sequence patterns \u2014 not vocabulary. Swapping \"leverage\" for \"harness\" leaves the statistical fingerprint intact.' References 'sentence structure', 'token-sequence patterns', and 'statistical fingerprint' \u2014 all structural/statistical features, not vague 'more than synonyms' language."
+        },
+        {
+          "text": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals \u2014 not just different vocabulary in the same frame.",
+          "passed": true,
+          "evidence": "The rewrite opens with a 2-word fragment 'Two things.' and contains an adjective fragment 'Genuinely useful.' \u2014 grammatical structures that are definitionally different from standard SVO AI-prose. The Detector Signal Verification section explicitly labels these as 'Fragment \u2713 not SVO'. The key-changes bullet confirms: 'not by swapping synonyms, but by replacing the whole sentence structure'. Structural diversity is demonstrated, not merely claimed: burstiness spans 2 words to 43 words, confirmed in the verification table."
+        },
+        {
+          "text": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+          "passed": true,
+          "evidence": "The rewritten block (quoted text in the blockquote) reads: 'Two things. The platform connects your existing stack \u2014 Salesforce, Looker, Slack, whatever your team is already running \u2014 and turns raw usage data into decisions your analysts can act on that same afternoon, not three weeks later when the quarterly report finally lands. Genuinely useful. For companies past a certain headcount, it also scales without hiring a dedicated data operations team to manage it.' None of the 10 forbidden words appear in the rewritten text. Note: 'leverage' and 'harness' appear in the explanatory body text as examples being described, but not in the rewrite itself."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 82.6737,
+        "stddev": 29.0109,
+        "min": 56.292,
+        "max": 113.743
+      },
+      "tokens": {
+        "mean": 138748.3333,
+        "stddev": 1490.7697,
+        "min": 137171.0,
+        "max": 140134.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "time_seconds": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+1.00",
+      "time_seconds": "+82.7",
+      "tokens": "+138748"
+    }
+  },
+  "notes": []
+}

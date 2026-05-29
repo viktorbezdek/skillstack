@@ -1,0 +1,51 @@
+Six patterns, six fixes. Here's what's wrong and what to use instead:
+
+---
+
+**1. Section header: `Comprehensive Analytics Dashboard`**
+
+**Problem:** "Comprehensive" is a padding adjective — it describes the vendor's ego, not what the user does here. Dashboard headers should orient, not impress.
+
+**Replacement:** `Analytics`
+
+---
+
+**2. Status message: `Your data is currently being processed`**
+
+**Problem:** "Currently being processed" is passive and vague. It tells the user nothing about duration or next step. "Your data" is also unnecessary — who else's data would it be?
+
+**Replacement:** `Processing… this usually takes a few seconds`
+
+---
+
+**3. Button: `Proceed to payment`**
+
+**Problem:** "Proceed to" is bureaucratic filler. Buttons should state the action, not announce a transition.
+
+**Replacement:** `Pay now`
+
+---
+
+**4. Form hint: `Please ensure that all required fields have been completed before submitting`**
+
+**Problem:** Three problems: "Please ensure that" is condescending throat-clearing, "have been completed" is passive, and the whole sentence fires before anything is wrong — pure noise. Validation hints belong inline on the field, not as pre-emptive warnings.
+
+**Replacement:** Remove entirely. Surface inline errors on submit: `Required` next to the specific field.
+
+If you must have a single hint: `Fill in all required fields to continue`
+
+---
+
+**5. Empty search: `Unfortunately, no results were found matching your search criteria. Please try a different search term.`**
+
+**Problem:** "Unfortunately" is fake sympathy — the algorithm found nothing, it's not sad about it. "No results were found" is passive. "Search criteria" is jargon for "what you typed."
+
+**Replacement:** `No results for "[query]" — try a different spelling or broader term`
+
+---
+
+**6. Notification: `Your file has been successfully uploaded to our secure cloud storage`**
+
+**Problem:** "Successfully" is the most overused word in AI-generated confirmations — the upload either worked or it didn't; the user can see that. "Secure cloud storage" is marketing copy inside a status notification.
+
+**Replacement:** `[filename] uploaded`

@@ -1,0 +1,28 @@
+**Flagged clichés**
+
+| Phrase | Problem |
+|--------|---------|
+| `Leverage` | Default AI verb. Nobody says this out loud. |
+| `comprehensive` | Meaningless filler — everything is "comprehensive." |
+| `cutting-edge` | So overused it signals nothing. |
+| `empower your team` | Corporate abstraction. Empower them to do *what*? |
+| `unlock unprecedented growth` | Hyperbolic and content-free. |
+| `innovative solution` | The two most exhausted words in B2B copy, together. |
+| `seamlessly integrates` | Every product claims this. Zero credibility left. |
+| `transformative results` | What results? Transformed into what? |
+| `drive sustainable success` | Three buzzwords doing no work. |
+| `Furthermore` | AI transition word. Humans don't write hero copy like an essay. |
+| `robust analytics` | "Robust" is padding. Analytics that aren't robust aren't analytics. |
+| `valuable insights` | Redundant — if they weren't valuable you wouldn't mention them. |
+| `enable informed decision-making` | Means "helps you decide things." Say that. |
+| `at every level of your organization` | Corporate boilerplate closer. |
+
+---
+
+**Rewrite**
+
+> Your team moves faster when the tools get out of the way. [Platform] plugs into what you already use, shows you what's actually working, and gives everyone — from the front line to the exec team — the same clear picture. No spreadsheet archaeology. No gut-feel guesses.
+
+---
+
+Two things you'll want to fix before this is done: replace `[Platform]` with the product name, and drop in one concrete claim (a real metric, a named integration, a specific outcome). Right now it's human — but vague. One specific detail makes it land.

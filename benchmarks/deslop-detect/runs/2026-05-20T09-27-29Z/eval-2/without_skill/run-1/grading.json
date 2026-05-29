@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns — not just vocabulary. Both detectors must be described with their specific signal types.",
+      "passed": false,
+      "evidence": "GPTZero is correctly described: 'Perplexity — how predictable each word choice is' and 'Burstiness — variance in sentence length and complexity.' For Originality.ai the output describes signals (predictable topic transitions, 'corporate scaffold' structure, high-frequency AI phrases) but never identifies the mechanism as a 'trained classifier.' The expectation requires that specific framing for Originality.ai; the output instead implies rule-based heuristics. The structural-pattern angle is present, but 'trained classifier' as the mechanism is absent from the Originality.ai section."
+    },
+    {
+      "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+      "passed": true,
+      "evidence": "Rewrite opens: 'Three years ago, Slack's own CEO admitted he wasn't sure remote work would stick.' The sentence leads with the time-adverbial phrase 'Three years ago' — a clear departure from subject-verb-object order."
+    },
+    {
+      "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+      "passed": true,
+      "evidence": "'It stuck.' in the rewritten version is exactly 2 words — unambiguously ≤ 7 words. Also noted in the Rewrite Strategy: 'Vary length aggressively — one-word sentence. Then something long and winding...'"
+    },
+    {
+      "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+      "passed": true,
+      "evidence": "The Rewrite Strategy section explicitly covers at least four passes: (1) 'Vary length aggressively' = burstiness injection; (2) 'Open with something unexpected' = sentence structure diversification; (3) 'Add specificity — a year, a company, a statistic' = perplexity injection; (4) 'Take a position' = voice injection. All four are then demonstrably applied in the rewritten paragraph. Requirement of ≥2 is easily met."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1741,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": 49.012,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 49.012
+  },
+  "claims": [
+    {
+      "claim": "GPTZero uses perplexity and burstiness as detection signals",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output explicitly lists both under the GPTZero section with clear definitions."
+    },
+    {
+      "claim": "Originality.ai flags predictable topic transitions and 'corporate scaffold' structure",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Directly stated in the Originality.ai bullet points in output.txt."
+    },
+    {
+      "claim": "The rewritten paragraph increases perplexity scores on both tools via unpredictable word choice and varied sentence flow",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Final line of output: 'The unpredictability in word choice and sentence flow is what raises perplexity scores on both tools.' The rewrite demonstrates this: sentence lengths go from 2 words to 11 to 40+, includes named specifics (Slack CEO, 3 years ago), and takes an opinion stance."
+    },
+    {
+      "claim": "The rewrite uses 'none of the flagged phrases'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewritten paragraph contains none of the three flagged phrases identified earlier ('fundamentally transformed,' 'attract and retain top talent,' 'embrace'). Confirmed by inspection of the rewritten text."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns — not just vocabulary. Both detectors must be described with their specific signal types.",
+        "reason": "The 'trained classifier' requirement for Originality.ai is a mechanism claim that most responses won't include unless they've specifically researched Originality.ai's implementation. Consider splitting into two assertions: one testing that each detector's signal types are described, and a separate one testing whether the structural-vs-vocabulary distinction is drawn. The bundled AND logic makes this fail even when the more important insight (structural patterns vs. vocabulary) is present."
+      },
+      {
+        "assertion": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption.",
+        "reason": "A threshold of 2/5 is very easy to clear — any rewrite that varies sentence length AND adds a specific detail passes, which a basic rewriting response without the skill would also do. Raising the bar to 3/5 or requiring all five to be named explicitly in the response would better discriminate skill-guided behavior from generic rewriting."
+      },
+      {
+        "reason": "No assertion checks whether the response names or explains what 'burstiness' and 'perplexity' actually measure (not just uses those labels). A response could mention both words without correctly defining them — worth testing definitional accuracy, not just label presence."
+      }
+    ],
+    "overall": "Assertions check presence of concepts but the bundled AND logic in expectation 1 creates a harsh failure for a response that gets the structural-pattern insight right but misses the 'trained classifier' label. Expectation 4 threshold is too low to discriminate skill presence. Consider tightening."
+  }
+}

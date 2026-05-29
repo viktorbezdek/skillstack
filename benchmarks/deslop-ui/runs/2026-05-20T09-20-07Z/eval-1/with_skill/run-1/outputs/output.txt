@@ -1,0 +1,34 @@
+**1. Button: 'Click here to proceed to the next step of the checkout process'**
+- "Click here" is redundant — buttons are clickable by definition
+- 11 words for a button label; should be 1–3
+- "proceed to the next step of" is pure filler
+
+→ **Continue** or **Next**
+
+---
+
+**2. Error: 'There seems to have been an issue processing your payment...'**
+- "There seems to have been" — hedging makes it sound uncertain about its own error
+- Passive voice hides who failed and what failed
+- "at this time" is corporate filler
+- Doesn't tell the user what to do first
+
+→ **Payment failed. Check your card details and try again.**
+
+---
+
+**3. Success: 'Your account has been successfully created and you can now begin using all of our features.'**
+- "has been successfully created" — passive and wordy; if you're reading this, you know it worked
+- "begin using all of our features" — vague marketing language
+- The message doesn't orient the user to what's next
+
+→ **Account created.** (or **You're in.** if the tone allows it)
+
+---
+
+**4. Tooltip: 'This is where you can leverage our comprehensive suite of powerful reporting tools...'**
+- "leverage" and "comprehensive suite of powerful" are pure jargon
+- "gain in-depth insights into your data" says nothing specific
+- Tooltips should say what the thing *does*, not sell it
+
+→ **View reports and analytics.**

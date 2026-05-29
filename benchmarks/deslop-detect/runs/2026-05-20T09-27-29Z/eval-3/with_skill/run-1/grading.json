@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly states that synonym spinning does NOT effectively evade AI detectors — it must use language like 'won't work', 'doesn't address', 'fails', 'insufficient', or equivalent. A response that suggests synonym spinning as a valid primary technique fails this check.",
+      "passed": true,
+      "evidence": "Output opens with: 'No, synonym swapping doesn't work.' And later: 'Your text has several AI writing patterns that synonym replacement won't fix'. Both directly satisfy the required language criterion."
+    },
+    {
+      "text": "The response explains WHY synonym spinning fails: because detectors look at sentence structure, statistical patterns, or token sequences — not just individual word choices. The explanation must reference structural features, patterns, or statistics (not just 'they look for more than synonyms').",
+      "passed": true,
+      "evidence": "Output states: 'AI detectors analyze statistical patterns — token probability distributions, sentence length variance (burstiness), structural repetition, and semantic coherence — not surface vocabulary.' This references all three required categories: statistical patterns (token probability distributions), structural features (sentence length variance, structural repetition), and implicitly token sequences (probability distributions). The explanation is substantive, not a generic placeholder."
+    },
+    {
+      "text": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals — not just different vocabulary in the same frame.",
+      "passed": true,
+      "evidence": "The rewrite is: 'The platform connects your data stack — Salesforce, Snowflake, whatever you're running — and surfaces usage patterns your team would otherwise miss. Setup takes an afternoon. Most teams catch their first actionable insight within a week.' The original text contained adjective+noun piles ('robust analytics', 'seamless integrations', 'transformative results') and vague verb phrases ('leverages AI'). The rewrite substitutes: a compound predicate with a named-tools parenthetical, a two-word subject-verb-object declarative ('Setup takes an afternoon'), and a quantified outcome statement with time-to-value framing. The response itself confirms structural change: 'Named a concrete action instead of vague verbs' and 'Used a realistic cadence — short sentences mixed with longer ones.' These are distinct grammatical frames, not vocabulary swaps."
+    },
+    {
+      "text": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+      "passed": true,
+      "evidence": "The blockquote rewrite reads: 'The platform connects your data stack — Salesforce, Snowflake, whatever you're running — and surfaces usage patterns your team would otherwise miss. Setup takes an afternoon. Most teams catch their first actionable insight within a week.' None of the ten banned words appear in the rewrite. Note: several banned words ('leverages', 'harness', 'robust analytics', 'seamless integrations', 'transformative results', 'innovative approach', 'Furthermore') appear in the analysis/explanation section as quoted examples of the original text's bad patterns — not in the rewrite itself, which is consistent with the expectation scoping ('the rewrite does NOT contain')."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1161,
+    "transcript_chars": 28976
+  },
+  "timing": {
+    "executor_duration_seconds": 20.748,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 20.748
+  },
+  "claims": [
+    {
+      "claim": "synonym swapping doesn't work for evading AI detectors",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Accurate: AI detectors use statistical models (e.g., GPTZero's 'burstiness' + perplexity scoring, Turnitin's classifier) that operate on distributional and structural properties, not lexical surface forms. Synonym substitution does not change these fingerprints."
+    },
+    {
+      "claim": "AI detectors analyze token probability distributions, sentence length variance (burstiness), structural repetition, and semantic coherence",
+      "type": "factual",
+      "verified": true,
+      "evidence": "This accurately describes the detection mechanisms used by mainstream detectors. 'Burstiness' (sentence length variance) is the specific term used by GPTZero. Token probability distributions are the basis of perplexity scoring. The claim is technically accurate."
+    },
+    {
+      "claim": "The rewrite uses 'a realistic cadence — short sentences mixed with longer ones'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewrite has three sentences of different lengths: a long compound sentence with a parenthetical, a 4-word declarative ('Setup takes an afternoon.'), and a medium-length quantified claim. The cadence claim is accurate."
+    },
+    {
+      "claim": "The rewrite replaces 'leverages AI' with 'connects your data stack'",
+      "type": "process",
+      "verified": true,
+      "evidence": "The 'What changed' bullet explicitly states: 'Named a concrete action instead of vague verbs (\"connects your data stack\" vs. \"leverages AI\")'. The rewrite text confirms 'connects your data stack' is present."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks whether the original text provided to the executor actually contained the banned words (comprehensive, leverage, seamless, etc.). If the eval prompt varied the original text, expectation 4 could pass trivially without testing the rewrite quality. Adding an assertion that the eval prompt consistently contains at least 3 of the banned words would make expectation 4 a real discriminating gate."
+      },
+      {
+        "assertion": "The rewrite completely restructures at least one sentence rather than word-swapping.",
+        "reason": "This assertion passes but requires grader judgment about 'different grammatical structures'. Consider making it more falsifiable by specifying a concrete structural test, e.g., 'the rewrite uses at least one sentence with a named specific tool, vendor, or metric that was absent from the original' — a property that can be checked mechanically and that word-swapping cannot satisfy."
+      }
+    ],
+    "overall": "All four assertions are substantive and well-targeted. The response genuinely satisfies every expectation, not by surface compliance but by producing correct explanations and a structurally distinct rewrite. The minor suggestions are about eval robustness across runs, not this run specifically."
+  }
+}

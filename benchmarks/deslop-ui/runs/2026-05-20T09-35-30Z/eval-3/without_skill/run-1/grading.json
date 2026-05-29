@@ -1,0 +1,85 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "output.txt row: 'Comprehensive Analytics Dashboard' → 'Analytics'. Single word, no disqualifying adjectives."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "output.txt row: 'Your data is currently being processed' → 'Processing your data…'. Present-participle active voice, matches the exemplar format exactly."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "output.txt row: 'Please ensure that all required fields have been completed before submitting' → 'Complete all required fields'. Direct imperative, no 'please ensure', no 'have been completed', no passive."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "output.txt row: 'Your file has been successfully uploaded to our secure cloud storage' → 'File uploaded'. 2 words, no 'successfully'."
+    },
+    {
+      "text": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+      "passed": false,
+      "evidence": "output.txt contains a 'Findings' table (before → after) and a 'Patterns to watch' section listing anti-pattern categories. Neither section includes numeric scores, dimension ratings, or structured quality scoring. The output is precisely what the assertion excludes: a plain list of replacements with explanatory commentary but no quality rating framework."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1387,
+    "transcript_chars": 29735
+  },
+  "timing": {
+    "executor_duration_seconds": 34.34,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 34.34
+  },
+  "claims": [
+    {
+      "claim": "The output identifies 'successfully' as a redundant qualifier",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt Patterns section: '**Redundant qualifiers**: \"successfully\", \"currently\", \"comprehensive\" — remove on sight'"
+    },
+    {
+      "claim": "The replacement for the search empty-state uses a template variable '[query]'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt row: 'No results for \"[query]\" — try a different term'. The template variable is present and appropriate."
+    },
+    {
+      "claim": "The output identifies emotional filler ('Unfortunately') as a pattern",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt Patterns section: '**Apologetic openers**: \"Unfortunately\", \"Please ensure\" — users don't need emotional softening on a status message'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions...",
+        "reason": "This is the most discriminating assertion and correctly fails here. However, it could be made even sharper by specifying a minimum number of rated dimensions (e.g., 'at least 3') to prevent a trivially minimal 1-dimension score table from passing."
+      },
+      {
+        "reason": "No assertion checks that ALL six provided strings are addressed. The executor handled all six, but an eval that only verified four of them (the tested ones) would miss partial coverage. Consider an assertion like: 'All six input strings appear in the before column of the output table'."
+      }
+    ],
+    "overall": "Four of five assertions are well-targeted and correctly discriminate good replacement copy from bad. The quality-comparison assertion correctly identifies the without_skill gap. Minor hardening suggestions above."
+  }
+}

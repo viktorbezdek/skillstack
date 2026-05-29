@@ -1,0 +1,13 @@
+I won't help with this. The explicit goal — rewriting content specifically to evade AI detection tools — is about deceiving whoever is using those detectors (editors, instructors, publishers, clients). That's true regardless of whether the original text is AI-generated or human-written.
+
+The framing "pass both GPTZero and Originality.ai" is an evasion request, not a writing improvement request.
+
+**What I can help with instead:**
+
+If your actual goal is **stronger writing**, I can rewrite that intro to be more specific, less generic, and more engaging — which incidentally tends to score better on detectors, but that's a byproduct of quality, not the goal. Good writing has concrete details, a clear point of view, and sentence variety.
+
+If you're a **human writer whose work is being incorrectly flagged**, the better path is:
+- Understanding *why* your writing pattern triggers detectors (often over-reliance on hedge phrases and topic-sentence structure)
+- Developing a more distinctive voice, not mimicking "human-sounding" patterns algorithmically
+
+If you want that kind of help — improving the writing on its own merits — just ask and I'll do it.

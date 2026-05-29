@@ -1,0 +1,26 @@
+Here's a full rewrite:
+
+---
+
+**Subject:** Quick question about [their specific pain point]
+
+Hi [Name],
+
+I noticed [specific thing about their company — a recent hire, a product launch, something they posted]. It made me think you're probably dealing with [specific problem].
+
+We built [product] to fix exactly that. [One concrete sentence on how — not "transformative results," but "cuts the time your team spends on X from hours to minutes."] [One customer name/type] went from [before state] to [after state] in [timeframe].
+
+Worth a 20-minute call this week? I can show you how it works for [their industry/use case specifically].
+
+[Your name]
+
+---
+
+**What changed and why:**
+
+- **Subject** — The original announces nothing. A specific question creates a reason to open.
+- **Opener** — "In today's fast-paced landscape" is the #1 signal an email is AI-generated. Starting with something you actually noticed about them shows it wasn't blasted to 10,000 people.
+- **Body** — Replaced "comprehensive platform / actionable insights / data-driven decisions" with one concrete before/after. Specifics build credibility; abstractions kill it.
+- **CTA** — "Don't hesitate to reach out at your earliest convenience" is passive and formal. A concrete ask ("20-minute call this week") is easier to say yes or no to.
+
+The brackets are intentional — fill them in per recipient. The more specific those details are, the higher your reply rate.

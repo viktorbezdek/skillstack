@@ -1,0 +1,82 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "output.txt line 8: Replace: `Analytics` — 1 word, no forbidden adjectives. The original 'Comprehensive Analytics Dashboard' was correctly stripped to just 'Analytics'."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "output.txt line 15: Replace: `Processing your data…` — active voice, present progressive, exactly matches the exemplar in the assertion. The passive 'is currently being processed' was eliminated."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "output.txt line 29: Replace: `Complete all required fields before submitting` — imperative mood, no 'please ensure', no 'have been completed', no passive construction."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "output.txt line 43: Replace: `File uploaded` — 2 words, no 'successfully'. Matches the exemplar 'File uploaded' exactly."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 1800,
+    "transcript_chars": 87300
+  },
+  "timing": {
+    "executor_duration_seconds": 24.032,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 24.032
+  },
+  "claims": [
+    {
+      "claim": "The output audited all 6 provided UI strings",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt covers: Section Header, Status Message, Button, Form Hint, Empty Search, Notification — 6 sections total."
+    },
+    {
+      "claim": "The button replacement 'Pay now' is an improvement over 'Proceed to payment'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt line 24: Replace: `Pay now` — shorter, direct verb, drops bureaucratic 'Proceed to'. Correct direction."
+    },
+    {
+      "claim": "The empty search replacement eliminates 'Unfortunately' and passive voice",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt line 36: Replace: `No results for \"[term]\" — try a shorter or different word` — direct, no performed empathy, active construction."
+    },
+    {
+      "claim": "3 instances of redundant filler adjectives were found",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt summary table: 'Redundant filler adjectives (comprehensive, successfully, secure) | 3'. All three are identifiable: 'comprehensive' (header), 'successfully' (notification), 'secure' (notification marketing boilerplate)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+        "reason": "The assertion is satisfied by any active-voice present tense phrase, but does not cap length. A verbose replacement like 'We are currently processing your submitted data file now' could technically pass. Consider adding a word-count ceiling (e.g., ≤5 words) to make the assertion more discriminating."
+      },
+      {
+        "reason": "No assertion covers the button replacement ('Proceed to payment' → 'Pay now'). That transformation is observable in the output and involves the same anti-patterns (formal opener, non-verb). Adding a trigger eval for it would increase coverage of the eval suite."
+      }
+    ],
+    "overall": "All four core assertions are well-targeted and cleanly satisfied. The output demonstrates genuine understanding of the anti-patterns, not surface compliance. Minor gaps: no word-count guard on the status message, and the button/empty-search strings go unasserted."
+  }
+}

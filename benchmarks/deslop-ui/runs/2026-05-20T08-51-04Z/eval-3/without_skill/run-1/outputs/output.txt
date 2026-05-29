@@ -1,0 +1,55 @@
+Here's the audit with patterns flagged and replacements:
+
+---
+
+### Section Header
+**`Comprehensive Analytics Dashboard`**
+- **Pattern:** filler adjective ("comprehensive" signals nothing the nav doesn't already imply)
+- **Replace:** `Analytics`
+
+---
+
+### Status Message
+**`Your data is currently being processed`**
+- **Pattern:** passive voice + "currently being" construction (verbose, impersonal)
+- **Replace:** `Processing your data…`
+
+---
+
+### Button
+**`Proceed to payment`**
+- **Pattern:** "Proceed to" is formal/bureaucratic; buttons need verbs, not directions
+- **Replace:** `Pay now` (or `Review & pay` if there's a confirmation step)
+
+---
+
+### Form Hint
+**`Please ensure that all required fields have been completed before submitting`**
+- **Pattern:** "Please ensure that", passive construction, 11 words for a 4-word idea
+- **Replace:** `Complete all required fields before submitting`
+
+---
+
+### Empty Search
+**`Unfortunately, no results were found matching your search criteria. Please try a different search term.`**
+- **Pattern:** "Unfortunately" is performed empathy; "search criteria" is bureaucratic; passive "were found"
+- **Replace:** `No results for "[term]" — try a shorter or different word`
+
+---
+
+### Notification
+**`Your file has been successfully uploaded to our secure cloud storage`**
+- **Pattern:** "successfully" is always redundant (if it failed, you'd say so); "our secure cloud storage" is marketing boilerplate inside a UI
+- **Replace:** `File uploaded`
+
+---
+
+**Summary of patterns found across all 6:**
+
+| Anti-pattern | Instances |
+|---|---|
+| Redundant filler adjectives (`comprehensive`, `successfully`, `secure`) | 3 |
+| Passive voice | 3 |
+| Performed empathy (`Unfortunately`) | 1 |
+| Bureaucratic openers (`Please ensure that`, `Proceed to`) | 2 |
+| Marketing inside UI (`our secure cloud storage`) | 1 |

@@ -1,0 +1,23 @@
+## Why it flags
+
+**Structural tells:**
+
+- **Robotic transitions** — "Furthermore," "Additionally," "It is important to note that" are the top phrases GPTZero's model associates with AI output. They're connective tissue that adds no information.
+- **Low burstiness** — Every sentence is roughly the same length and grammatical complexity. Human writers naturally spike: one short punch, then a long winding clause, then another short one. This paragraph never varies.
+- **Predictable word choices** — "leverage," "data-driven approaches," "thought leadership," "consistently outperform" are high-probability next-token predictions. The model has seen this exact phrasing pattern thousands of times.
+- **Claim density with zero specifics** — Three broad assertions per sentence, none anchored to a number, example, or named company. AI text asserts; humans tend to illustrate.
+- **Tricolon lists** — "builds brand authority, drives organic traffic, and establishes thought leadership" is a clean three-item parallel list. AI loves these.
+
+---
+
+## Rewrite
+
+> Most companies treating content as a checkbox — one blog post a month, recycled tips, no particular angle — aren't seeing results. That's not a content problem. It's a strategy problem.
+>
+> The brands that actually grow from content do something different: they pick a specific audience, say something that audience hasn't heard before, and publish consistently enough to be remembered. HubSpot's early search dominance wasn't from writing about "digital strategy." It came from answering granular questions nobody else had bothered with.
+>
+> Done right, content compounds. Organic traffic from a post written three years ago still converts. A paid ad stops the moment the budget does.
+
+---
+
+**What changed:** short sentences break up long ones, a real company name grounds the claim, the argument moves rather than lists, and the transitions are implicit rather than labeled.

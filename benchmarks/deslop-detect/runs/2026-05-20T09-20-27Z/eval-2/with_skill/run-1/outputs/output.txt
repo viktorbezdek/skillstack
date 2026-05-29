@@ -1,0 +1,40 @@
+## What Each Detector Measures
+
+**GPTZero** uses two primary signals:
+- **Perplexity** — how predictable each word choice is. AI picks the statistically likely next token. Humans don't.
+- **Burstiness** — how much sentence lengths vary. AI clusters in the 15–22 word range. Human writing bursts: 3-word punches followed by 50-word sprawls.
+
+**Originality.ai** runs a trained classifier on structural patterns — sentence frames, transition phrases, grammatical repetition. Vocabulary swaps don't move it. Synonym-spinning is useless against it. Only structural rewriting works.
+
+---
+
+## The Problem With Your Original
+
+Every sentence is 10–18 words. Every sentence opens with a noun phrase subject. Every claim is vague ("companies," "organizations," "top talent"). No specific references. No voice. Classic AI-generated uniformity on all three detector signals.
+
+---
+
+## Rewrite
+
+> Permanently isn't too strong a word. Companies like GitLab, Dropbox, and Airbnb didn't restructure around remote work because flexibility sounded appealing — they did it because the engineers and designers they most needed stopped accepting fixed-location terms, and once that happened, every inherited assumption about what a productive team had to look like came up for renegotiation. Of course, dynamics shifted. So did expectations. The part that catches most executives off guard isn't logistical — a Slack message sent from Berlin at 9 AM reaches Auckland before lunch; that's manageable — it's cultural: organizations that never questioned co-location are now being asked to justify it, and many are finding they can't. And those are, invariably, the ones losing their best people.
+
+---
+
+## Detector Signal Verification
+
+**Burstiness**
+- Shortest: "Of course, dynamics shifted." (4 words) ✓ target ≤5
+- Longest: "Companies like GitLab, Dropbox, and Airbnb didn't restructure... came up for renegotiation." (~53 words) ✓ target ≥35
+
+**Sentence openings (first 3)**
+1. "Permanently isn't..." — adverb ✓ not SVO
+2. "Companies like GitLab..." — noun SVO
+3. "Of course, dynamics shifted." — adverb phrase ✓
+No two consecutive openers the same type ✓
+
+**Perplexity**
+- Specific references injected: GitLab, Dropbox, Airbnb; Berlin; Auckland; 9 AM
+- "engineers and designers they most needed" replaces vague "top talent"
+- "stopped accepting fixed-location terms" replaces "flexible work arrangements"
+
+**Passes applied**: burstiness injection, opener diversification, perplexity injection, voice (direct closing opinion), structural disruption (long-short-short burst after the anchor sentence)

@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "skill_name": "deslop-ui",
+    "skill_path": "deslop/skills/deslop-ui",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-20T09:30:18Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "deslop-ui",
+    "target_path": "deslop/skills/deslop-ui"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "time_seconds": 10.479,
+        "tokens": 68645,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar \u2014 NOT 'Click here to proceed' or any phrase longer than 3 words.",
+          "passed": true,
+          "evidence": "output.txt line 4: '**Replace:** `Continue`' \u2014 exactly 1 word."
+        },
+        {
+          "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+          "passed": true,
+          "evidence": "output.txt line 11: '**Replace:** `Payment failed. Try again or contact support.`' \u2014 7 words, none of the prohibited hedging phrases present, states condition directly ('Payment failed')."
+        },
+        {
+          "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+          "passed": true,
+          "evidence": "output.txt line 18: '**Replace:** `Account created.`' \u2014 2 words, does not contain 'successfully'."
+        },
+        {
+          "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+          "passed": true,
+          "evidence": "output.txt line 24: '**Replace:** `Reports` (or `View reports and analytics` if the icon isn\\'t self-explanatory)' \u2014 primary replacement is 1 word 'Reports', alternate is 4 words. Neither contains 'leverage', 'comprehensive', or 'powerful'. Both name what the section does."
+        },
+        {
+          "text": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) \u2014 not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+          "passed": false,
+          "evidence": "Only the error message is explicitly classified by a named slop pattern type: 'There seems to have been is hedging'. The button analysis says 'Click here is redundant' (not a named slop type from the vocabulary), the success analysis says 'corporate puffery' (not a named slop type), and the tooltip analysis says 'four consecutive marketing terms' (not a named slop type). Three of four items lack a named pattern classification."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 22.799,
+        "tokens": 69251,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+          "passed": true,
+          "evidence": "Output rewrite: '**No projects yet** / Create one to start organizing your work. / [Create project]'. Structure is a heading fragment + one declarative sentence + CTA button. None of the forbidden phrases ('it looks like', 'don't worry', 'easy', 'feel free') appear. No motivational phrases present."
+        },
+        {
+          "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+          "passed": true,
+          "evidence": "Rewrite body (excluding CTA '[Create project]'): 'No projects yet. Create one to start organizing your work.' = 10 words. Well under the 15-word ceiling."
+        },
+        {
+          "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+          "passed": false,
+          "evidence": "The replacement text ('**Your dashboard** / Add your first metric to get started, or explore the [quick tour].') contains none of the five forbidden phrases \u2014 that part passes. However, the output explicitly states 'The entire modal contains zero actionable information,' which identifies the modal as unnecessary. The conditional therefore requires recommending removal, but the response provides a rewrite instead of recommending the modal be removed entirely. The conditional is satisfied but the expected action (recommend removal) is absent."
+        },
+        {
+          "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler', 'verbose', 'reassurance').",
+          "passed": true,
+          "evidence": "Output names multiple specific pattern types: 'hedging' (= hedge phrases) for 'It looks like'; 'patronizing filler' (= motivational filler) for 'easy and takes less than a minute'; 'condescending' (= gratuitous reassurance) for 'Don't worry'; 'passive' for 'whenever you're ready'; 'textbook AI-slop phrase' for 'Please don't hesitate to reach out'. Closing section labels the meta-pattern as 'optimizing for seeming helpful rather than being helpful.' At least 4 distinct named pattern types identified."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "time_seconds": 18.43,
+        "tokens": 69066,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+          "passed": true,
+          "evidence": "Original: 'Comprehensive Analytics Dashboard' \u2192 Replacement: 'Analytics' \u2014 1 word, no adjectives present."
+        },
+        {
+          "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' \u2014 something like 'Processing...' or 'Processing your data'.",
+          "passed": true,
+          "evidence": "Original: 'Your data is currently being processed' \u2192 Replacement: 'Processing\u2026' \u2014 present tense active voice gerund/noun phrase, exactly matching the expected pattern."
+        },
+        {
+          "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+          "passed": true,
+          "evidence": "Original: 'Please ensure that all required fields have been completed before submitting' \u2192 Replacement: 'Complete all required fields' \u2014 direct imperative, no 'please ensure', no 'have been completed', no passive construction."
+        },
+        {
+          "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+          "passed": true,
+          "evidence": "Original: 'Your file has been successfully uploaded to our secure cloud storage' \u2192 Replacement: 'Uploaded' \u2014 1 word, 'successfully' absent, well under the 4-word ceiling."
+        },
+        {
+          "text": "The response produces a before-and-after quality comparison \u2014 either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+          "passed": false,
+          "evidence": "The output is a three-column table (Original | AI Pattern | Replacement) followed by a bullet list of named anti-patterns. There are no numeric scores, no dimension ratings, no quality metrics. The 'AI Pattern' column names the problem category but assigns no score. This is a plain annotated replacement list, which the assertion explicitly excludes."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "time_seconds": 13.315,
+        "tokens": 68674,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar \u2014 NOT 'Click here to proceed' or any phrase longer than 3 words.",
+          "passed": true,
+          "evidence": "Replacement is 'Continue to payment' \u2014 exactly 3 words (Continue, to, payment). No forbidden multi-word form used."
+        },
+        {
+          "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+          "passed": false,
+          "evidence": "None of the forbidden words appear, but the replacement is 'Payment failed. Check your card details and try again, or use a different payment method.' \u2014 15 words, which exceeds the 10-word ceiling. Fails the length criterion."
+        },
+        {
+          "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+          "passed": true,
+          "evidence": "Primary replacement is 'Account created. You're all set.' \u2014 5 words (Account, created, You're, all, set). The word 'successfully' is absent. An alternative suggestion of 7 words is provided parenthetically but the main replacement satisfies the constraint."
+        },
+        {
+          "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+          "passed": true,
+          "evidence": "Replacement is 'View charts, trends, and exports across your data.' \u2014 8 words, no forbidden terms present. Names concrete functionality (charts, trends, exports) rather than marketing superlatives."
+        },
+        {
+          "text": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) \u2014 not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+          "passed": false,
+          "evidence": "The response uses a '**Problems:**' section per item with prose descriptions ('hedges when something definitively failed', 'filler', 'bureaucratic', 'marketing filler') but never applies a categorical named pattern label (hedging, verbose, overlong, passive, superlative, reassurance). No item carries a pattern-type classification \u2014 only a freeform critique. This is exactly the shape the expectation disqualifies: 'a plain list of replacements with no pattern labels.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 22.857,
+        "tokens": 69297,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+          "passed": true,
+          "evidence": "Primary replacement: 'No projects yet.' (sentence fragment) + '[Create your first project]' (CTA). Secondary option: 'No projects yet. Create one to start organizing your work.' + '[Create project]'. Neither version contains 'it looks like', 'don't worry', 'easy', 'feel free', or motivational phrasing. The primary is a clean fragment+CTA. The secondary is functional, not motivational."
+        },
+        {
+          "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+          "passed": true,
+          "evidence": "Primary replacement body: 'No projects yet.' = 3 words. Secondary: 'No projects yet. Create one to start organizing your work.' = 10 words. Both are well within the 15-word limit."
+        },
+        {
+          "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+          "passed": true,
+          "evidence": "Modal replacement: 'Here's what you can do from your dashboard: [specific thing 1], [specific thing 2], [specific thing 3].' + '[Get started] \u00b7 [Watch a 2-min intro]'. None of the banned phrases appear. The modal was improved rather than removed \u2014 no assertion in the output identifies the modal as unnecessary, so the removal recommendation clause does not apply."
+        },
+        {
+          "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler', 'verbose', 'reassurance').",
+          "passed": true,
+          "evidence": "The response names 'generic marketing copy' (empty state problem #4: 'organize work, collaborate, track progress is generic marketing copy') and 'corporate filler' (modal problem #5: 'Please don't hesitate to reach out \u2014 corporate filler with a hidden negative'). These are distinct named pattern types matching the expected vocabulary level."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "time_seconds": 20.513,
+        "tokens": 69052,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+          "passed": true,
+          "evidence": "output.txt line 9: replacement is 'Analytics' \u2014 one word, no padding adjectives. The original 'Comprehensive Analytics Dashboard' is reduced to a clean noun."
+        },
+        {
+          "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' \u2014 something like 'Processing...' or 'Processing your data'.",
+          "passed": true,
+          "evidence": "output.txt line 17: replacement is 'Processing\u2026 this usually takes a few seconds' \u2014 present tense active, no passive construction. Starts with the gerund form as specified."
+        },
+        {
+          "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+          "passed": true,
+          "evidence": "output.txt lines 33-35: Primary suggestion is 'Remove entirely' and fallback is 'Fill in all required fields to continue' \u2014 a direct imperative. Neither contains 'please ensure', 'have been completed', or passive voice."
+        },
+        {
+          "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+          "passed": true,
+          "evidence": "output.txt line 51: replacement is '[filename] uploaded' \u2014 no 'successfully', and it is 2 tokens (placeholder + verb). Matches the expected pattern exactly."
+        },
+        {
+          "text": "The response produces a before-and-after quality comparison \u2014 either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+          "passed": false,
+          "evidence": "output.txt contains six problem/replacement pairs, each with a 'Problem' narrative and a 'Replacement' line. There is no numeric score table, no multi-dimensional rating (Directness, Concision, Clarity, Authenticity or similar), and no structured quality scoring of any kind. The response is exactly the 'plain list of replacements with no quality rating' that the expectation explicitly excludes."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.7833,
+        "stddev": 0.0289,
+        "min": 0.75,
+        "max": 0.8
+      },
+      "time_seconds": {
+        "mean": 17.236,
+        "stddev": 6.2462,
+        "min": 10.479,
+        "max": 22.799
+      },
+      "tokens": {
+        "mean": 68987.3333,
+        "stddev": 310.5645,
+        "min": 68645.0,
+        "max": 69251.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.8,
+        "stddev": 0.2,
+        "min": 0.6,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 18.895,
+        "stddev": 4.9725,
+        "min": 13.315,
+        "max": 22.857
+      },
+      "tokens": {
+        "mean": 69007.6667,
+        "stddev": 313.8572,
+        "min": 68674.0,
+        "max": 69297.0
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.02",
+      "time_seconds": "-1.7",
+      "tokens": "-20"
+    }
+  },
+  "notes": []
+}

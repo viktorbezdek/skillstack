@@ -1,0 +1,97 @@
+{
+  "expectations": [
+    {
+      "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar — NOT 'Click here to proceed' or any phrase longer than 3 words.",
+      "passed": true,
+      "evidence": "output.txt line 4: '**Replace:** `Continue`' — exactly 1 word."
+    },
+    {
+      "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 10 words or fewer.",
+      "passed": true,
+      "evidence": "output.txt line 11: '**Replace:** `Payment failed. Try again or contact support.`' — 7 words, none of the prohibited hedging phrases present, states condition directly ('Payment failed')."
+    },
+    {
+      "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+      "passed": true,
+      "evidence": "output.txt line 18: '**Replace:** `Account created.`' — 2 words, does not contain 'successfully'."
+    },
+    {
+      "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+      "passed": true,
+      "evidence": "output.txt line 24: '**Replace:** `Reports` (or `View reports and analytics` if the icon isn\\'t self-explanatory)' — primary replacement is 1 word 'Reports', alternate is 4 words. Neither contains 'leverage', 'comprehensive', or 'powerful'. Both name what the section does."
+    },
+    {
+      "text": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) — not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+      "passed": false,
+      "evidence": "Only the error message is explicitly classified by a named slop pattern type: 'There seems to have been is hedging'. The button analysis says 'Click here is redundant' (not a named slop type from the vocabulary), the success analysis says 'corporate puffery' (not a named slop type), and the tooltip analysis says 'four consecutive marketing terms' (not a named slop type). Three of four items lack a named pattern classification."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1068,
+    "transcript_chars": 29608
+  },
+  "timing": {
+    "executor_duration_seconds": 10.479,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 10.479
+  },
+  "claims": [
+    {
+      "claim": "Button text shortened to 1 word",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt: Replace: `Continue` — 1 word confirmed"
+    },
+    {
+      "claim": "Error message reduced to 7 words removing vague language",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt: 'Payment failed. Try again or contact support.' counts to 7 words; 'seems', 'at this time', 'if the problem persists' are absent from the replacement"
+    },
+    {
+      "claim": "Success message condensed with no 'successfully'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt: 'Account created.' — 2 words, no 'successfully'"
+    },
+    {
+      "claim": "Tooltip simplified to plain language without marketing jargon",
+      "type": "quality",
+      "verified": true,
+      "evidence": "output.txt: 'Reports' replaces 22-word tooltip full of 'leverage', 'comprehensive', 'powerful'. Replacement contains none of those words."
+    },
+    {
+      "claim": "All four copies are classified with named slop pattern types",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Only error is labeled with a standard named type ('hedging'). Button gets 'redundant' (descriptive adjective, not a slop pattern name), success gets 'corporate puffery' (informal label, not a named pattern type), tooltip gets 'marketing terms' (descriptive, not a pattern name). The pattern labeling is inconsistent and partial."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response classifies each piece of copy by a named slop pattern type (e.g., overlong, hedging, passive, superlative, verbose, reassurance) — not just corrects it. A plain list of replacements with no pattern labels does NOT satisfy this.",
+        "reason": "The assertion is well-constructed and caught a real gap. Consider also requiring that the label appears in a consistent syntactic form (e.g., bold tag, explicit 'Pattern:' prefix) rather than embedded in narrative — this would make grading more mechanical and less judgment-dependent. As written, 'redundant' in prose narrowly escaped the failing verdict but arguably deserves one too."
+      },
+      {
+        "reason": "No assertion checks that the tooltip replacement actually reflects the semantics of the original section (reporting/analytics). 'Reports' is correct here, but a replacement like 'Settings' would also pass all current assertions. Consider adding: 'The tooltip replacement references reporting or data analysis — not a generic action word unrelated to the original content.'"
+      }
+    ],
+    "overall": "Four of five assertions are clean and discriminating — especially the word-count and prohibited-word checks for each copy type. The pattern-labeling assertion is the right call and caught a genuine output gap. Two minor improvements suggested above."
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "query": "deslop this UI copy: button says 'Click here to proceed to the next step of the checkout process', error says 'There seems to have been an issue processing your payment at this time', success says 'Your order has been successfully placed and will be processed shortly'",
+    "files": [],
+    "expected_behavior": "Agent identifies all three as AI slop. Proposes: button → 'Continue' or 'Next'; error → 'Payment failed' or 'Couldn't process payment'; success → 'Order placed'. Explains the slop pattern for each (overlong label, hedging error, redundant 'successfully'). Does not add new words — replacements are shorter."
+  },
+  {
+    "query": "audit my empty state copy: 'It looks like you haven't added any projects yet! Creating your first project is easy and takes less than a minute. You'll be able to organize your work, collaborate with your team, and track your progress. Don't worry — you can always change things later!'",
+    "files": [],
+    "expected_behavior": "Agent identifies this as a verbose empty state with AI patterns: 'it looks like', motivational filler, reassurance ('don't worry'), and benefit listing that belongs in onboarding not an empty state. Proposes a one-line replacement + CTA, e.g. 'No projects yet. [Create project]'. Explains that empty states get one read only."
+  },
+  {
+    "query": "review this tooltip: 'This is where you can leverage our comprehensive suite of powerful reporting tools to gain in-depth insights into your data and make informed business decisions.'",
+    "files": [],
+    "expected_behavior": "Agent flags: 'leverage' (corporate verb), 'comprehensive suite' (superlative filler), 'powerful' (hollow adjective), 'in-depth insights' (cliché), 'informed business decisions' (generic outcome). Proposes a direct replacement under 10 words, e.g. 'View detailed reports for your data.' or just 'Reports — track trends and usage.'"
+  }
+]

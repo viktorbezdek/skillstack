@@ -1,0 +1,30 @@
+Here's the rewrite. I've kept placeholders where specifics are needed — the more concrete you can make those, the better it'll land.
+
+---
+
+**Subject: Quick question about [specific pain point]**
+
+Hi [Name],
+
+I was looking at [something specific about their company — a recent hire, a product launch, a job posting] and had a thought.
+
+[One sentence on what you noticed or what prompted the outreach — make it about them, not you.]
+
+We work with [type of company] teams who are dealing with [specific problem]. Usually it shows up as [concrete symptom — e.g., "hours lost reconciling spreadsheets every Monday" or "ops team fielding the same support questions manually"].
+
+We built a way to handle that. Happy to show you a 15-minute version if it seems relevant.
+
+Worth a quick look?
+
+[Your name]
+
+---
+
+**What changed and why:**
+
+- **Subject line** — the original announces nothing. A question or observation gets opens.
+- **Opener** — dropped the landscape/challenges paragraph entirely. It's filler the reader skips.
+- **Middle** — specificity over superlatives. "Streamlined workflows" means nothing; a concrete symptom does.
+- **Closer** — "Don't hesitate to reach out... at your earliest convenience" is passive and distant. A direct, low-commitment ask ("worth a quick look?") is warmer and gets more replies.
+
+The main thing still missing is specificity about what you actually do and who you're sending this to — that's what will make it feel genuinely human rather than templated.

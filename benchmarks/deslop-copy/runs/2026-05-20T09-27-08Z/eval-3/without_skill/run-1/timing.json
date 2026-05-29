@@ -1,0 +1,12 @@
+{
+  "duration_ms": 33031,
+  "duration_api_ms": 31194,
+  "total_duration_seconds": 33.031,
+  "total_tokens": 66995,
+  "input_tokens": 10,
+  "output_tokens": 1253,
+  "cache_creation_input_tokens": 47583,
+  "cache_read_input_tokens": 18149,
+  "total_cost_usd": 0.20270595,
+  "session_id": "d5276fd6-1d3a-4830-99aa-d8fc92c5a5b4"
+}

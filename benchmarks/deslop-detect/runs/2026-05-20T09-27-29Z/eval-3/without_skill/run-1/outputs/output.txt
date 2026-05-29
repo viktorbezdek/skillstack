@@ -1,0 +1,25 @@
+Synonym swapping doesn't work. AI detectors analyze statistical patterns, sentence structure, perplexity, and burstiness — not word choice. Swapping "leverage" for "harness" changes nothing about those signals.
+
+More importantly, the real problem with that text isn't that it's detectable — it's that it's meaningless. Vague corporate buzzwords ("transformative results," "robust analytics," "seamless integrations") don't communicate anything. That's what makes it *sound* AI-generated, detector or not.
+
+**What actually works: specificity.**
+
+The current text tells readers nothing. A rewrite should answer: *what does it actually do, for whom, and what changed for them?*
+
+Compare:
+
+| Before | After |
+|--------|--------|
+| "comprehensive platform" | name the actual thing |
+| "leverages AI" | say *how* — "automatically flags anomalies in your usage data" |
+| "empower teams" | "so your analysts spend less time in spreadsheets" |
+| "seamless integrations" | "connects to Salesforce, HubSpot, and Slack out of the box" |
+| "transformative results for organizations of all sizes" | a real outcome, ideally with a number |
+
+A draft rewrite (assuming a B2B analytics tool — adjust to your actual product):
+
+> "[Product] pulls your sales, support, and usage data into one place, flags trends automatically, and pushes summaries to Slack — so your team acts on numbers instead of hunting for them. Used by 50-person startups and Fortune 500 ops teams alike."
+
+That's shorter, specific, and passes any detector because it reads like a human who knows what they're selling.
+
+**The actual fix:** replace every vague claim with one concrete fact. If you can't think of a concrete fact for a claim, cut the claim.

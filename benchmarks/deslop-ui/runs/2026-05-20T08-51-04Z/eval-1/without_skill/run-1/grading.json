@@ -1,0 +1,92 @@
+{
+  "expectations": [
+    {
+      "text": "The button replacement is 3 words or fewer. 'Continue', 'Next', 'Proceed' or similar — NOT 'Click here to proceed' or any phrase longer than 3 words.",
+      "passed": true,
+      "evidence": "Output line 5: '→ `Continue to payment`'. Word count: Continue(1) to(2) payment(3) = 3 words. Satisfies ≤3 constraint."
+    },
+    {
+      "text": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+      "passed": false,
+      "evidence": "Output line 13: '→ `Payment failed. Check your card details and try again.`'. None of the five forbidden phrases appear. However, word count is 9 (Payment, failed, Check, your, card, details, and, try, again) — exceeds the 8-word ceiling. The secondary alternative offered ('Payment failed. Try again or contact support.' = 7 words) would pass, but it is parenthetical and not the primary recommendation."
+    },
+    {
+      "text": "The success replacement does NOT contain the word 'successfully'. The replacement is 5 words or fewer (e.g., 'Account created', 'You're in', 'Done').",
+      "passed": true,
+      "evidence": "Output line 23: '→ `Account created. You're all set.`'. The word 'successfully' is absent. Word count: Account(1) created(2) You're(3) all(4) set(5) = 5 words. Exactly at the 5-word ceiling — passes."
+    },
+    {
+      "text": "The tooltip replacement does NOT contain the words 'leverage', 'comprehensive', or 'powerful'. The replacement is 12 words or fewer and names what the section actually does.",
+      "passed": true,
+      "evidence": "Output line 31: '→ `View reports and analytics for your data.`'. None of the three forbidden words appear. Word count: View(1) reports(2) and(3) analytics(4) for(5) your(6) data(7) = 7 words, well within the 12-word ceiling. Names the actual function (view reports and analytics)."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 906,
+    "transcript_chars": 28582
+  },
+  "timing": {
+    "executor_duration_seconds": 11.355,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 11.355
+  },
+  "claims": [
+    {
+      "claim": "The button 'Continue to payment' is 3 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted: Continue(1) to(2) payment(3) = 3 words"
+    },
+    {
+      "claim": "The error replacement removes all five forbidden hedging phrases",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'Payment failed. Check your card details and try again.' contains none of: seems, appears, may have, at this time, if the problem persists"
+    },
+    {
+      "claim": "The error replacement is concise",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Primary recommendation is 9 words, exceeding the 8-word limit. The secondary alternative in parentheses ('Payment failed. Try again or contact support.' = 7 words) is within limit but not the main recommendation."
+    },
+    {
+      "claim": "The success replacement omits 'successfully'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'Account created. You're all set.' contains no occurrence of 'successfully'"
+    },
+    {
+      "claim": "The tooltip replacement names what the section actually does",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'View reports and analytics for your data.' describes the concrete action (view reports/analytics) rather than using marketing language"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The error replacement does NOT contain the words 'seems', 'appears', 'may have', 'at this time', or 'if the problem persists'. It states the condition directly in 8 words or fewer.",
+        "reason": "The executor offered two alternatives: a primary recommendation (9 words, FAILS) and a parenthetical variant (7 words, PASSES). The assertion doesn't specify whether to evaluate the primary recommendation or whether any offered alternative counts. Clarifying 'the primary recommended replacement' vs 'any offered replacement' would make the assertion unambiguous."
+      },
+      {
+        "reason": "No assertion checks that the button replacement actually names the next step (e.g., 'Continue to payment' vs just 'Continue'). Both are ≤3 words, but one is more informative. A quality dimension — 'the button names where the user is going' — would distinguish good from acceptable outputs."
+      }
+    ],
+    "overall": "Three of four assertions are clean and well-calibrated. The error assertion's word-count gate caught a real quality gap in the output (9 vs 8 words). The ambiguity around primary-vs-alternative recommendations is the one gap worth tightening."
+  }
+}

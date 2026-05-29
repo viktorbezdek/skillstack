@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+      "passed": true,
+      "evidence": "All 13 required items are explicitly named in the 'Flagged clichés' section of output.txt: (1) 'Leverage', (2) 'comprehensive', (3) 'cutting-edge', (4) 'empower your team', (5) 'unlock unprecedented growth' (covers both 'unlock' and 'unprecedented'), (6) 'innovative solution', (7) 'seamlessly integrates', (8) 'transformative results', (9) 'drive sustainable success', (11) 'robust analytics', (12) 'valuable insights', (13) 'enable informed decision-making'. 13 of 13 explicitly called out, well above the 10-of-13 threshold."
+    },
+    {
+      "text": "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+      "passed": true,
+      "evidence": "The rewrite in output.txt is: '[Product] helps your team move faster without changing how they work. It connects to your existing tools in minutes, not months. And when the numbers shift, you'll know exactly where to look — and what to do about it.' None of the 12 prohibited words (leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore) appear in this text."
+    },
+    {
+      "text": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+      "passed": true,
+      "evidence": "The phrase 'in minutes, not months' in sentence 2 of the rewrite provides a concrete time-anchored claim. This is a specific, falsifiable claim rather than an abstract benefit assertion."
+    },
+    {
+      "text": "The rewrite contains sentence length variation — at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check.",
+      "passed": false,
+      "evidence": "The rewrite has three sentences with approximate word counts: (1) '[Product] helps your team move faster without changing how they work.' ≈11 words; (2) 'It connects to your existing tools in minutes, not months.' ≈10 words; (3) 'And when the numbers shift, you'll know exactly where to look — and what to do about it.' ≈17 words. No sentence is ≤7 words (shortest is ~10) and no sentence is ≥20 words (longest is ~17). The post-rewrite commentary ('Short sentences. Concrete claims. One idea per sentence. No borrowed authority from meaningless adjectives.') is the agent's meta-commentary, not part of the rewrite copy itself, and cannot be counted. The assertion requires BOTH a short AND a long sentence; neither threshold is met."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 874,
+    "transcript_chars": 32704
+  },
+  "timing": {
+    "executor_duration_seconds": 23.845,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 23.845
+  },
+  "claims": [
+    {
+      "claim": "The executor flagged 14 clichés total (13 required + 1 extra: 'at every level of your organization')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists 14 numbered items in the 'Flagged clichés' section; item 14 is 'at every level of your organization' which was not in the required list but was correctly identified as filler"
+    },
+    {
+      "claim": "The rewrite avoids all prohibited words",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Manual scan of the 3-sentence rewrite confirms none of the 12 prohibited words are present"
+    },
+    {
+      "claim": "The rewrite uses concrete language ('in minutes, not months')",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Sentence 2 of the rewrite contains the concrete temporal contrast 'in minutes, not months'"
+    },
+    {
+      "claim": "The rewrite has good sentence length variation",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The three rewrite sentences are 11, 10, and 17 words respectively — a narrow band (10–17) with no short sentence (≤7) and no long sentence (≥20). Despite the agent's self-description 'Short sentences', the rewrite actually has medium-length, similar-length sentences throughout"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+        "reason": "The assertion passes on 'in minutes, not months', but this is a vague relative claim rather than a hard number (e.g., '5-minute setup', 'integrates with Salesforce and Slack'). A stronger assertion would require a genuinely specific, falsifiable fact rather than a qualitative contrast like 'minutes vs. months'."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite preserves the original message's core purpose (a product tool for teams). The rewrite omits any mention of analytics/reporting, which was the main feature claim in the original — an acceptable tradeoff, but no eval checks for it."
+      }
+    ],
+    "overall": "Assertion 4 (sentence length variation) is the most discriminating of the four — it caught a real quality gap where the model produced uniform medium-length sentences and mistakenly described them as 'short'. The other three assertions are solid. The specificity check (assertion 3) could be tightened to require a hard number or named outcome."
+  }
+}

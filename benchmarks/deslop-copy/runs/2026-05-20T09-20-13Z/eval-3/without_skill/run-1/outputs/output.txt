@@ -1,0 +1,25 @@
+One problem before rewriting: the original says nothing about what this company actually does. Specificity requires real details. I'll rewrite using plausible placeholders — replace the brackets with your actual story.
+
+---
+
+We build [product/service] for [type of customer]. Started in [year] after [specific frustration or problem the founders experienced firsthand].
+
+There are [N] of us. Most came from [industry you serve] before building tools for it — we've been on the other side of these problems, not just observed them.
+
+We work with a small number of clients at a time. That's a choice. It takes time to understand how a business actually works, and we'd rather do that well than spread thin.
+
+We're not chasing a "better, more connected world." We're trying to make [specific thing] less of a headache for [specific people].
+
+[Optional: one sentence CTA or what makes you different from the obvious alternative.]
+
+---
+
+**What changed and why:**
+
+- Opened with what you do, not who you are — readers need the former
+- "Passionate team of dedicated professionals" → cut entirely; everyone claims this
+- Replaced "cutting-edge / holistic / transformative" with zero adjectives — let the facts carry it
+- "Shared vision of a better world" → replaced with a specific, grounded claim
+- Added a constraint ("small number of clients") and a reason — opinions are what make copy memorable
+
+Fill in the brackets and this becomes real copy. The originals are placeholders pretending to be substance.

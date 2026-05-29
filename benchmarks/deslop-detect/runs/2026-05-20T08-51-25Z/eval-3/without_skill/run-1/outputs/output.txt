@@ -1,0 +1,20 @@
+No, synonym swapping doesn't work. AI detectors don't flag specific words — they detect patterns: sentence rhythm uniformity, vague abstractions, lack of specificity, and the tendency to pack multiple buzzwords into a single sentence. Swapping "leverage" for "harness" leaves all of those intact.
+
+**What actually works: rewrite for specificity and voice.**
+
+The real problem with your text is that it says nothing concrete. Fix that, and it stops reading as AI-generated.
+
+Original:
+> *Our comprehensive platform leverages AI to empower teams with robust analytics and seamless integrations. Furthermore, our innovative approach delivers transformative results for organizations of all sizes.*
+
+Rewritten:
+> *The platform uses AI to surface patterns in your data that would take an analyst days to find manually. It connects with the tools your team already uses — no migration required. Whether you're a 10-person startup or a 10,000-person enterprise, the same setup works out of the box.*
+
+What changed:
+- **Removed empty adjectives** — "comprehensive," "robust," "seamless," "innovative," "transformative" add no information
+- **Made the AI claim specific** — *what does the AI actually do?*
+- **Replaced corporate abstractions with user outcomes** — "empowers teams" → what does the user actually get?
+- **Varied sentence length** — AI tends to produce uniformly medium-length sentences
+- **Dropped "Furthermore"** — a classic AI connector; use a plain period or reorder the idea
+
+The core rule: **if a sentence could describe any product in your category, it's doing no work.** Make every sentence falsifiable — something only *your* product can say.

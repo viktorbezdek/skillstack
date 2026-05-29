@@ -1,0 +1,33 @@
+**1. Button: 'Click here to proceed to the next step of the checkout process'**
+
+**Wrong:** "Click here" is redundant on a button. "Proceed to the next step of" is filler — the button's position in the flow already implies sequence. "Checkout process" is jargon.
+
+**Replacement:** `Continue to payment`
+
+---
+
+**2. Error: 'There seems to have been an issue processing your payment at this time. Please try again later or contact support if the problem persists.'**
+
+**Wrong:** "There seems to have been" hedges when you know exactly what happened. "At this time" is filler. "If the problem persists" is passive — the user doesn't know when to escalate vs. retry.
+
+**Replacement:** `Payment failed. Check your card details and try again.`
+
+---
+
+**3. Success: 'Your account has been successfully created and you can now begin using all of our features.'**
+
+**Wrong:** "Successfully" is redundant — success is implied by the success state. "All of our features" is vague and slightly marketing-flavored. The sentence is longer than the moment warrants.
+
+**Replacement:** `Account created. You're all set.`
+
+---
+
+**4. Tooltip: 'This is where you can leverage our comprehensive suite of powerful reporting tools to gain in-depth insights into your data.'**
+
+**Wrong:** "This is where you can" is dead weight — tooltips describe what a thing does, not where it is. "Leverage," "comprehensive suite," "powerful," and "in-depth insights" are marketing filler that communicate nothing specific.
+
+**Replacement:** `View reports and analytics for your data.`
+
+---
+
+**The pattern:** length signals effort to writers but creates friction for users. Every word that isn't load-bearing earns a cut.

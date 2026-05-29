@@ -1,0 +1,25 @@
+## Flagged clichés
+
+1. **"Leverage"** — default AI verb. Means nothing.
+2. **"comprehensive"** — vague intensifier, never earns its place.
+3. **"cutting-edge"** — used so often it signals the opposite.
+4. **"empower your team"** — HR-deck phrase, zero specificity.
+5. **"unlock unprecedented growth"** — hyperbolic and unverifiable.
+6. **"innovative solution"** — every product calls itself this.
+7. **"seamlessly integrates"** — the word "seamlessly" exists to avoid saying how.
+8. **"transformative results"** — means "good things happen," somehow.
+9. **"drive sustainable success"** — double buzzword, says nothing actionable.
+10. **"Furthermore"** — AI's favorite transition; sounds like a legal brief.
+11. **"robust analytics"** — "robust" is padding; analytics can just be analytics.
+12. **"valuable insights"** — all insights are presumably valuable; this is filler.
+13. **"enable informed decision-making at every level of your organization"** — twelve words for "helps your people make better calls."
+
+---
+
+## Rewrite
+
+Your team ships faster when the tools don't fight them. [Product] plugs into what you already use, gives everyone real-time data on what's working, and gets out of the way. No migration project, no separate reporting tab, no guessing at numbers. Just clearer decisions, made sooner, by the people closest to the work.
+
+---
+
+**Note:** I left the product name as `[Product]` — drop in the real name and the line lands harder. I also kept the claims falsifiable rather than aspirational, which is what makes copy sound like a person wrote it.

@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+      "passed": true,
+      "evidence": "All 15 banned terms are absent from the output. Confirmed by scanning output.txt: none of 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', or 'better world' appear anywhere. 15/15 absent, well above the threshold of 10."
+    },
+    {
+      "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+      "passed": false,
+      "evidence": "The entire output is a template with explicit placeholders: '[COMPANY]', '[SPECIFIC PROBLEM]', '[INDUSTRY]', '[ONE SENTENCE: what you actually make/do]', '[X clients / in X markets / since YEAR]', '[talk to us / get started / see the work]'. The model explicitly states: 'I'll need you to swap in your actual specifics' and 'If you share what the company actually does, I can make the whole thing concrete — no placeholders.' Statements like 'We've been wrong about things. We've changed direction twice.' and 'We're not a platform, a solution suite, or a partner ecosystem.' are structural/tonal claims any company could adopt. No single statement is company-specific — the specificity is deferred to placeholders."
+    },
+    {
+      "text": "The rewrite is equal to or shorter than the original in word count.",
+      "passed": false,
+      "evidence": "Original text (from eval prompt) is approximately 101 words. The rewritten section between the '---' delimiters in output.txt is approximately 156 words (five paragraphs totaling ~16 + 37 + 52 + 29 + 22 words). Even excluding placeholder tokens, the rewrite is ~55% longer than the original."
+    },
+    {
+      "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text.",
+      "passed": false,
+      "evidence": "The response contains: (1) a one-sentence intro about placeholders, (2) the rewrite template, (3) a 'What to fill in:' instruction list, and (4) an offer to make it concrete. There is no section explaining which humanization techniques were applied — no mention of sentence length variation, contractions, specificity, opinion, or any other named technique. The instruction list at the end names *what* to supply, not *which writing techniques* were used."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 774,
+    "transcript_chars": 28942
+  },
+  "timing": {
+    "executor_duration_seconds": 23.025,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 23.025
+  },
+  "claims": [
+    {
+      "claim": "The rewrite avoids corporate jargon and AI slop patterns",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output uses short declarative sentences, contractions (\"They're\", \"We're\", \"We've\"), and avoids all 15 listed slop terms. Tone is genuinely more direct and conversational than the original."
+    },
+    {
+      "claim": "The model produces a usable rewrite",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The output is a template scaffold, not a completed rewrite. It cannot be used as-is — every key claim is a placeholder. The model acknowledges this and asks for company details to fill them in. The task prompt asked to 'Rewrite it' without qualifying 'or produce a template', so this is a meaningful shortcoming."
+    },
+    {
+      "claim": "The response requires no further input to be useful",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The model ends with: 'If you share what the company actually does, I can make the whole thing concrete — no placeholders.' This is an explicit request for more information, meaning the task was not completed as stated."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make.",
+        "reason": "This assertion is correctly discriminating, but the eval prompt gives the model an easy escape hatch by not providing any real company details. A stronger eval would either supply real company context (so the model has material to be specific about) OR explicitly state 'do not use placeholders — invent plausible specifics if needed.' As written, a template response trivially avoids specificity while appearing helpful. Consider adding a version of the prompt with invented company context (e.g., 'a 12-person B2B SaaS company that helps restaurant chains manage supplier invoices')."
+      },
+      {
+        "reason": "No assertion checks whether the model actually attempted a rewrite vs. deflected with a template. A template response technically avoids all slop words and can pass assertion 1, but it hasn't done the work. Consider adding: 'The output does not use placeholder brackets like [COMPANY] or [SPECIFIC PROBLEM] — the rewrite must be a finished text, not a template.'"
+      },
+      {
+        "assertion": "The rewrite is equal to or shorter than the original in word count.",
+        "reason": "This assertion is slightly ambiguous when the model includes meta-commentary (intro sentence, 'What to fill in' section). Clarify whether the word count check applies to the rewritten text only, or the entire response. As written, even the rewritten section alone fails, so this ambiguity didn't affect the verdict here — but it could in other cases."
+      }
+    ],
+    "overall": "The skill-with condition still produced a template instead of a finished rewrite. The core issue is the eval prompt lacks company-specific input, making it easy for the model to deflect. One strong assertion is missing: a ban on placeholder brackets. Adding that assertion and providing concrete company context in the prompt would make this eval much more discriminating."
+  }
+}

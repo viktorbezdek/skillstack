@@ -1,0 +1,35 @@
+Here's a full rewrite. I've flagged what was broken in each section.
+
+---
+
+**What was wrong:**
+- **Subject:** "Transforming" + "Innovative Solution" = instant delete. No specificity, no reason to open.
+- **Opener:** "In today's fast-paced business landscape" is the single most recognized AI phrase in cold email. It signals the rest can be ignored.
+- **Body:** Stacks buzzwords without saying anything real. "Comprehensive platform," "actionable insights," "state-of-the-art" — none of these mean anything.
+- **Closer:** "Don't hesitate to reach out at your earliest convenience" is robotic filler. It puts all the work on them with no clear ask.
+
+---
+
+**Rewrite:**
+
+> **Subject:** Quick question about [specific process, e.g. how your team handles reporting]
+>
+> Hi [Name],
+>
+> I noticed [something specific — e.g. you're scaling your ops team / you recently opened two new locations / your job postings mention a lot of manual coordination work]. That usually means [the specific problem you solve] is starting to slow things down.
+>
+> We help [type of company] [specific outcome — e.g. cut the time their teams spend on X from hours to minutes]. [One concrete example: Company Y went from doing this manually to having it done automatically — saved them about 6 hours a week per person.]
+>
+> Worth a 20-minute call to see if it's relevant to what you're working on?
+>
+> [Your name]
+
+---
+
+**The rules applied here:**
+1. Subject is a question or observation, not a claim
+2. Opener references something real about them
+3. One specific outcome, one concrete example — no adjectives without proof
+4. A direct ask with a time commitment, not "feel free to reach out whenever"
+
+Fill in the brackets with actual research and it'll read like a human wrote it.

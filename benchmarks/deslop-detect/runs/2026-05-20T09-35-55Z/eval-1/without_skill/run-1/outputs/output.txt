@@ -1,0 +1,26 @@
+## Why GPTZero Flags It
+
+Several overlapping signals trip the detector:
+
+**Low perplexity (too predictable)**
+Every word choice is the statistically expected next token. "Data-driven approaches consistently outperform competitors" is a phrase so common in AI training data it's practically a template.
+
+**Formulaic connective tissue**
+"Furthermore," "Additionally," and "It is important to note that" are AI filler phrases. They link sentences without adding meaning — a human writer would either cut them or say something specific instead.
+
+**Colon-followed-by-triplet structure**
+`X serves multiple purposes: A, B, and C` is a pattern AI reaches for constantly. Detectors recognize it.
+
+**Zero burstiness**
+All five sentences are roughly the same length and grammatical complexity. Human writing mixes short punches with longer qualifications. This paragraph has no rhythm variation at all.
+
+**Buzzword density with no specifics**
+"Brand authority," "thought leadership," "organic traffic," "conversion rates" — high-frequency marketing terms with nothing concrete anchoring them.
+
+---
+
+## Rewrite
+
+Content marketing started as a way to fill blog post quotas. Then something shifted: companies that actually committed to it — publishing consistently, building real expertise in public — started showing up in ways their competitors weren't. Not because Google rewarded frequency, but because the content gave people a reason to come back.
+
+The ROI case is less interesting than most marketers make it sound. Yes, it drives traffic. Yes, it shortens sales cycles when prospects arrive already knowing what you do. But the less-quantified benefit — that it forces internal clarity about what you actually believe — is often worth more than the leads.

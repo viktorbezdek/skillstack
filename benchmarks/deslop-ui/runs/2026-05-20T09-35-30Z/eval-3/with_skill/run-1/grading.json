@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "Row 1 of the output table: original 'Comprehensive Analytics Dashboard' → replacement 'Analytics'. Single word, no adjectives. Matches the example exactly."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "Row 2 of the output table: original 'Your data is currently being processed' → replacement 'Processing your data…'. Present-tense active gerund phrase, matches the skill's example pattern exactly."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "Row 4 of the output table: original 'Please ensure that all required fields have been completed before submitting' → replacement 'Complete all required fields'. Direct imperative, no 'please ensure', no 'have been completed', no passive voice."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "Row 6 of the output table: original 'Your file has been successfully uploaded to our secure cloud storage' → replacement 'File uploaded.' Two words, no 'successfully'."
+    },
+    {
+      "text": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+      "passed": false,
+      "evidence": "The output contains a table with columns '# | Original | Pattern(s) | Replacement' and a bullet list of pattern categories to watch for. There is no numeric score, no per-dimension ratings (Directness, Concision, Clarity, Authenticity), and no structured quality comparison before vs. after. The 'Pattern(s)' column names the slop type but does not score quality. The assertion explicitly states 'A plain list of replacements with no quality rating does NOT satisfy this' — this output is exactly that."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1291,
+    "transcript_chars": 29008
+  },
+  "timing": {
+    "executor_duration_seconds": 31.444,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 31.444
+  },
+  "claims": [
+    {
+      "claim": "Each piece has distinct AI/corporate slop patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The output identifies 6 distinct inputs and correctly names the slop pattern for each: filler adjective, redundant 'currently' + passive, bureaucratic 'proceed', 'please ensure that' + passive + length, performative apology + passive + jargon, and 'successfully' + marketing copy."
+    },
+    {
+      "claim": "The replacements are short and direct improvements",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All 6 replacements are demonstrably shorter and more direct: 'Analytics', 'Processing your data…', 'Pay now', 'Complete all required fields', 'No results for \"[term]\". Try a different word or phrase.', 'File uploaded.'"
+    },
+    {
+      "claim": "The Pattern(s) column explains why each original is slop",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Each row names the pattern type (filler adjective, redundant adverb + passive, bureaucratic verb, triple-whammy passive/please/padded, performative apology + passive + jargon, restated success + marketing). The explanations are concise and accurate."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring.",
+        "reason": "This assertion tests a fairly specific output format (multi-dimensional scoring) that may not be the most useful thing to require. The skill's core value is accurate slop identification + clean replacements, which the other four assertions capture well. Consider whether a quality-score table actually reflects better output, or whether requiring one introduces format noise. If the goal is to distinguish skilled vs. unskilled runs, a more discriminating assertion might be: 'the Pattern(s) column names the specific anti-pattern (not just generic terms like \"bad writing\")' — that's harder to fake."
+      },
+      {
+        "reason": "No assertion checks whether the 'Proceed to payment' → 'Pay now' substitution is valid (it's row 3 and receives no coverage). That row could regress without any assertion catching it — consider adding a check for the button copy replacement."
+      }
+    ],
+    "overall": "Four of five assertions are solid and well-targeted to observable, specific output properties. The fifth (quality comparison) fails because the skill produced a replacement table without a scoring layer, which is a real gap. The eval correctly catches it."
+  }
+}

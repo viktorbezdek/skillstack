@@ -1,0 +1,18 @@
+No, synonym swapping doesn't work — and it misses the real problem.
+
+AI detectors look for structural patterns: vague abstractions stacked on each other, passive benefit-stacking ("delivers transformative results"), no concrete specifics, and the general shape of writing that asserts rather than demonstrates. Swapping "leverage" for "harness" keeps all those patterns intact.
+
+**What's actually wrong with your text:**
+
+1. **Zero specifics** — "robust analytics," "seamless integrations," "transformative results" say nothing. What analytics? Integrations with what? Results measured how?
+2. **Assertion without evidence** — "innovative approach" and "of all sizes" are claims, not descriptions.
+3. **Stacked vague adjectives** — comprehensive, robust, seamless, innovative, transformative all in two sentences.
+4. **Filler connector** — "Furthermore" signals AI-style padding.
+
+**The fix is specificity, not synonyms.** Tell the reader what actually happens:
+
+> *"Teams use [Platform] to track [specific metric] across [specific tools like Slack, Jira, etc.]. Setup takes under 10 minutes — no IT involvement required."*
+
+That's just an example shape, since I don't know what your platform actually does. The principle: **replace each vague claim with a concrete fact, number, or action.**
+
+If you tell me what the platform specifically does, I can rewrite the passage with real substance rather than a template.

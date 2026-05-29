@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+      "passed": true,
+      "evidence": "All 15 slop terms are absent from the rewrite text. 'holistic', 'transformative', 'empowering' etc. appear only in the explanation section as quoted examples of what was cut (e.g. 'Cut all the abstract nouns (excellence, transformation, holistic)'), never in the rewritten about-page copy itself. 15/15 absent, well above the required 10."
+    },
+    {
+      "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+      "passed": false,
+      "evidence": "The rewrite is a template with placeholder brackets for all company-specific details: '[specific thing]', '[industry]', '[city]', '[get in touch / try it free / see how it works]'. The non-placeholder statements ('We answer our own support tickets', 'We don't have a roadmap driven by investor slide decks', 'companies burning time on tools that weren't built for how they actually work') are opinionated but apply equally well to any small bootstrapped software company — they are archetype claims, not company-specific facts. The executor explicitly acknowledged this: 'The bracketed parts are placeholders — the more specific you can make those, the stronger it gets.' No statement in the rewrite 'could only apply to this company'."
+    },
+    {
+      "text": "The rewrite is equal to or shorter than the original in word count.",
+      "passed": false,
+      "evidence": "Original text word count: approximately 95 words (counted sentence by sentence: 16 + 18 + 16 + 22 + 23 = 95). Rewrite text word count (about-page section only, excluding the explanation): approximately 134 words (paragraph by paragraph: 22 + 29 + 40 + 20 + 23 = 134). The rewrite is ~41% longer than the original, failing the brevity constraint."
+    },
+    {
+      "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text.",
+      "passed": true,
+      "evidence": "The response includes a clearly labeled '**What I changed and why:**' section with five bullet points explaining the techniques: (1) opened with a specific problem instead of self-compliment (specificity), (2) replaced 'passionate dedicated professionals' with actual personality (tone/voice), (3) cut abstract nouns — they say nothing (content discipline), (4) made the team real by giving them a background and a point of view (specificity/opinion), (5) ended with a direct call to action instead of a vision statement (directness). Additionally, the closing paragraph discusses specificity as the core humanization mechanism. While it doesn't use formal jargon like 'sentence length variation', the explanation clearly identifies and names the humanization approaches applied."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.5
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 997,
+    "transcript_chars": 28124
+  },
+  "timing": {
+    "executor_duration_seconds": 17.311,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 17.311
+  },
+  "claims": [
+    {
+      "claim": "Cut all the abstract nouns (excellence, transformation, holistic) — they say nothing",
+      "type": "process",
+      "verified": true,
+      "evidence": "None of excellence, transformation, holistic, or any equivalent abstract nouns appear in the rewritten about-page copy."
+    },
+    {
+      "claim": "Opened with a specific problem instead of a self-compliment",
+      "type": "process",
+      "verified": true,
+      "evidence": "Rewrite opens: 'We started because we kept seeing the same problem: companies burning time on tools that weren't built for how they actually work.' This is a problem statement, not a self-compliment."
+    },
+    {
+      "claim": "Made the team real by giving them a background and a point of view",
+      "type": "process",
+      "verified": false,
+      "evidence": "The team's background is a placeholder '[industry]', not an actual background. The point of view ('we know which parts are genuinely hard and which parts are just badly designed') is present, but it's a generic consultant-voice claim any domain expert could make. Partially true, but the 'real background' is a bracket."
+    },
+    {
+      "claim": "Replaced 'passionate dedicated professionals' with actual personality",
+      "type": "process",
+      "verified": true,
+      "evidence": "The rewrite does not contain 'passionate' or 'dedicated' and instead uses direct, first-person statements with an indie/bootstrapped company voice."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+        "reason": "The input text contains no company-specific information — no name, industry, product, location, or customer type. When given generic-only input, any good rewrite will either invent fictitious specifics (hallucination) or use placeholders (honest). The assertion penalizes the honest approach. Consider adding a variation of this eval where the input text includes at least one company-specific detail (product name, customer segment, founding story) so the skill can demonstrate specificity transformation rather than specificity invention."
+      },
+      {
+        "assertion": "The rewrite is equal to or shorter than the original in word count.",
+        "reason": "The skill's deslop goal is to remove bloat, but this assertion conflates removing buzzwords with reducing length. A rewrite that replaces 95 words of corporate fluff with 134 words of vivid, specific prose may be a better outcome than a shorter but still vague rewrite. The word-count gate would pass a terse but hollow rewrite and fail an expansive but genuinely human one. Consider replacing or supplementing this with an assertion about information density (e.g., 'the rewrite contains fewer words that say nothing') or simply dropping it as too blunt an instrument."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite actually avoids the archetype bootstrapper-voice trap — 'We answer our own support tickets' and 'We don't have a roadmap driven by investor slide decks' are stock phrases for a specific founder archetype. An assertion like 'The rewrite does not rely on bootstrapper/indie-company clichés (e.g., we answer our own support tickets, no VC roadmap, small scrappy team)' would catch this quality failure that the current assertions miss."
+      }
+    ],
+    "overall": "Assertion 1 (slop word removal) and Assertion 4 (explanation present) are well-designed and discriminating. Assertion 2 (company-specific statement) is underspecified for inputs with no company context — it creates an unfair test. Assertion 3 (word count) is a weak proxy for the skill's actual goal. The biggest quality issue in this run — that the output is a template rather than an actual rewrite — is partially caught by Assertion 2 but not clearly enough. Consider adding a 'no placeholder brackets' assertion or requiring at least one sentence that could not be copy-pasted into a different company's about page."
+  }
+}

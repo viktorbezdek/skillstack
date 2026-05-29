@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+      "passed": true,
+      "evidence": "Output section: '**Low burstiness** — all four sentences are roughly the same length and grammatical weight. Human writing alternates short punchy sentences with longer, messier ones.' The word 'burstiness' satisfies the required vocabulary check."
+    },
+    {
+      "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+      "passed": true,
+      "evidence": "Output identifies 4 of the 5 signals: (1) '**AI transition stack** — \"Furthermore,\" \"It is important to note that,\" and \"Additionally\" appear in sequence.' covers Furthermore, It is important to note, and Additionally; (2) '**Three-item parallel lists** — \"brand authority, organic traffic, thought leadership\" is a classic LLM formatting pattern.' covers the three-item list. 'leverage' was not mentioned."
+    },
+    {
+      "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+      "passed": false,
+      "evidence": "The rewrite has multiple short sentences (≤6 words): 'The gap shows up in search.' (6 words), 'But traffic is just the surface.' (6 words), 'That changes the entire conversion conversation.' (6 words). However, no sentence reaches 30 words. The longest sentence is 'The harder gain is that customers who found you through your writing already trust you before they ever talk to sales.' at approximately 21 words. The 30-word-minimum half of the conjunction is not satisfied."
+    },
+    {
+      "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+      "passed": true,
+      "evidence": "The rewrite section (the blockquote paragraph starting 'Most companies treat content as a checkbox') contains none of the five banned tokens. The 'What changed' summary also avoids them. The banned tokens only appear in the diagnosis section where they are being cited as examples, not used generatively."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1124,
+    "transcript_chars": 4200
+  },
+  "timing": {
+    "executor_duration_seconds": 22.982,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 22.982
+  },
+  "claims": [
+    {
+      "claim": "All four sentences in the original are roughly the same length and grammatical weight",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The original paragraph ('Content marketing has become an essential component...Furthermore...Additionally...It is important to note...') does consist of four comparably-structured sentences of similar length — consistent with the diagnosis."
+    },
+    {
+      "claim": "The rewrite demonstrates burstiness by mixing shorter and longer sentences",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite does have short sentences (6 words) but its longest sentence is only ~21 words. True burstiness — the contrast it claims to introduce — would require at least one sentence of 30+ words alongside the short ones. The sentence-length range (6–21 words) is narrower than the claim implies."
+    },
+    {
+      "claim": "The rewrite contains no transition adverbs",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The rewrite uses 'But' (adversative conjunction) and no adverbial transitions like 'Furthermore', 'Additionally', 'Moreover', etc."
+    },
+    {
+      "claim": "The rewrite uses a specific company example (HubSpot)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Sentence present in rewrite: 'HubSpot built their entire business on this before \"content marketing\" was a phrase people used in meetings.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more.",
+        "reason": "The 30-word floor is a sound discriminating criterion — it catches rewrites that drop short sentences without adding genuine long ones — but the threshold may be slightly too high for this particular input length. The rewrite is ~80 words total; asking for one sentence to be 30+ words is asking for a single sentence to be ~38% of the whole piece. Consider lowering to 25 words, or anchoring the check to 'at least 3× longer than the shortest sentence' to be proportional across different input lengths."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite avoids 'data-driven' specifically. The original contains 'data-driven approaches' but the forbidden-tokens assertion checks it correctly. Worth noting this is covered."
+      },
+      {
+        "reason": "No assertion checks specificity improvement — the skill's core value proposition is adding concrete examples (companies, numbers, mechanisms). The HubSpot example is present but no eval checks for it. A claim like 'the rewrite references at least one real company, product, or named example' would better measure whether the humanisation actually occurred."
+      }
+    ],
+    "overall": "Three of four assertions are discriminating and well-formed. The 30-word floor in assertion 3 is a fair criterion that this rewrite genuinely fails — the output claims burstiness but its sentence-length range tops out at ~21 words. One improvement opportunity: add an assertion testing specificity (named example or concrete data point) since that is the skill's primary editorial intervention."
+  }
+}

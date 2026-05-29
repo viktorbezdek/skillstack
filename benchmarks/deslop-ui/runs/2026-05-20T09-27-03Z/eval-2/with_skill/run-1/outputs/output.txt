@@ -1,0 +1,44 @@
+Both have the same core problem: they describe the experience instead of advancing it. Here's the breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+- "It looks like" — hedging. The system knows exactly what you have.
+- "Don't worry" — condescending. Nobody was worried until you said that.
+- "easy and takes less than a minute" — patronizing filler. Show, don't promise.
+- The benefit list (organize, collaborate, track) is generic enough to apply to any SaaS product ever made.
+- "whenever you're ready" — passive. Weakens the CTA right at the moment you need the user to act.
+
+**Rewrite:**
+> **No projects yet**
+> Create one to start organizing your work.
+> [Create project]
+
+That's it. The button is the CTA — don't bury it under reassurance.
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+- "This is where you'll be able to see all of your important metrics" — the user can *see* the dashboard. Describing it adds nothing.
+- "We've designed this experience to be as intuitive and seamless as possible" — every product says this. It's a claim, not information.
+- "focus on what matters most to you" — meaningless. Matters most to *whom* doing *what*?
+- "Please don't hesitate to reach out" — textbook AI-slop phrase. Cut it.
+- The entire modal contains zero actionable information.
+
+**Rewrite:**
+> **Your dashboard**
+> Add your first metric to get started, or explore the [quick tour].
+
+If you need a support line, make it a plain link: "Questions? [Chat with us]"
+
+---
+
+## The pattern to fix across both
+
+These read like someone optimizing for *seeming* helpful rather than *being* helpful. The fix is always the same: **state what's true, then give one clear next action.** Cut everything in between.

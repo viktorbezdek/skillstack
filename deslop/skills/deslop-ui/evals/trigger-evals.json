@@ -1,0 +1,77 @@
+[
+  {
+    "query": "deslop this UI copy",
+    "should_trigger": true,
+    "note": "Direct keyword trigger: deslop"
+  },
+  {
+    "query": "remove AI slop from my interface text",
+    "should_trigger": true,
+    "note": "Explicit AI slop + UI domain"
+  },
+  {
+    "query": "these button labels sound like they were written by ChatGPT, fix them",
+    "should_trigger": true,
+    "note": "AI-generated copy complaint on UI element"
+  },
+  {
+    "query": "audit my error messages for AI patterns",
+    "should_trigger": true,
+    "note": "Audit request on error messages"
+  },
+  {
+    "query": "humanize my app's microcopy",
+    "should_trigger": true,
+    "note": "Humanization request on microcopy"
+  },
+  {
+    "query": "my onboarding tooltips sound too corporate and AI-generated",
+    "should_trigger": true,
+    "note": "AI-generated complaint on onboarding copy"
+  },
+  {
+    "query": "clean up these empty state messages, they're too verbose",
+    "should_trigger": true,
+    "note": "Cleanup request on empty state copy"
+  },
+  {
+    "query": "review my UI text and remove any AI clichés",
+    "should_trigger": true,
+    "note": "Review + AI cliché removal request"
+  },
+  {
+    "query": "anti-slop pass on my product UI",
+    "should_trigger": true,
+    "note": "Keyword trigger: anti-slop"
+  },
+  {
+    "query": "these success messages say 'successfully' too much",
+    "should_trigger": true,
+    "note": "Specific UI copy smell identified by user"
+  },
+  {
+    "query": "write new button copy for my checkout flow",
+    "should_trigger": false,
+    "note": "Near-miss — writing new copy, not cleaning existing. Use ux-writing."
+  },
+  {
+    "query": "help me write a landing page that doesn't sound AI-generated",
+    "should_trigger": false,
+    "note": "Near-miss — landing page is marketing copy. Use deslop-copy."
+  },
+  {
+    "query": "clean up my Python codebase, there's a lot of AI-generated slop",
+    "should_trigger": false,
+    "note": "Near-miss — code slop, not copy slop. Use ai-slop-cleaner."
+  },
+  {
+    "query": "what are the best practices for UX writing?",
+    "should_trigger": false,
+    "note": "Advisory, not cleanup. Use ux-writing skill."
+  },
+  {
+    "query": "write me some error message copy from scratch",
+    "should_trigger": false,
+    "note": "Net new copy creation, not slop removal."
+  }
+]

@@ -1,0 +1,42 @@
+## What Each Detector Measures
+
+**GPTZero** — primarily perplexity (how predictable each word choice is) and burstiness (how much sentence length varies). AI text is uniformly medium-length; humans burst between short punches and long runs.
+
+**Originality.ai** — a trained classifier that looks at structural patterns: sentence opening variety, transitional phrases, and the overall "texture" of construction. Synonym swapping doesn't fool it; it sees through word-level changes to sentence-frame patterns.
+
+**Your text's problems:** All four sentences are 8–17 words (no burstiness). All open with a noun-phrase subject. Zero specific references — "top talent," "higher satisfaction," "significant changes" are the exact phrases a model reaches for by default. No voice, no opinion, nothing that required actual knowledge to write.
+
+---
+
+## Rewrite
+
+Around 2020, something shifted that the business world is still catching up to. Not just the obvious disruption — the overnight pivot to laptops on kitchen tables — but the quieter realization that followed: many teams actually worked better apart.
+
+Companies like GitLab and Automattic had already proved this years earlier. For most organizations, though, the shift felt forced before it felt functional. And then, somewhere around month three or four of fully remote operation, the productivity numbers started telling a different story.
+
+Buffer's annual remote work survey has consistently shown that over 90% of remote workers want to keep working remotely at least some of the time — not because they love video calls, but because they'd traded a daily commute for two extra hours of actual output. But the collaboration patterns changed too, in ways that weren't obvious upfront: asynchronous work across time zones requires far more deliberate documentation than most teams had ever bothered to produce, which — perhaps counterintuitively — makes the work more legible to everyone involved.
+
+Most don't get it right.
+
+What the successful ones share is a single operating principle: remote work is a fundamental model, not a perk, which means rebuilding communication infrastructure so it doesn't require everyone online simultaneously, hiring for self-direction over responsiveness, and accepting that talent competition is now genuinely global in a way it simply wasn't five years ago.
+
+---
+
+## Detector Signal Verification
+
+**Burstiness**
+- Shortest sentence: "Most don't get it right." (5 words) ✓ target ≤5
+- Longest sentence: "Buffer's annual remote work survey has consistently shown..." (47 words) ✓ target ≥35
+
+**Sentence openings (first 3)**
+1. "Around 2020..." — prepositional phrase
+2. "Not just the obvious disruption..." — fragment/negation
+3. "Companies like GitLab..." — noun-SVO
+
+Variety: ✓ no two consecutive same type across all 9 sentences
+
+**Perplexity**
+- Specific references injected: GitLab, Automattic, Buffer's annual remote work survey, 90%, "two extra hours", "five years ago"
+- First sentence opener: prepositional phrase ✓ not SVO
+
+**Passes applied:** burstiness, sentence structure, perplexity, voice ("not because they love video calls," "perhaps counterintuitively"), structural disruption (one-sentence paragraph)

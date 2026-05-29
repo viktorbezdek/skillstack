@@ -1,0 +1,25 @@
+Here's a rewrite:
+
+---
+
+We started because we kept seeing the same problem: companies burning time on tools that weren't built for how they actually work.
+
+So we built something different. Not a platform. Not a suite. A focused piece of software that does one thing well — [specific thing] — and gets out of your way.
+
+We're a small team. Most of us came from [industry]. We've done the job you're trying to do, which means we know which parts are genuinely hard and which parts are just badly designed. That shapes every decision we make.
+
+We're based in [city]. We answer our own support tickets. We don't have a roadmap driven by investor slide decks.
+
+If that sounds like the kind of company you want to work with, [get in touch / try it free / see how it works].
+
+---
+
+**What I changed and why:**
+
+- Opened with a specific problem instead of a self-compliment
+- Replaced "passionate dedicated professionals" with actual personality
+- Cut all the abstract nouns (excellence, transformation, holistic) — they say nothing
+- Made the team real by giving them a background and a point of view
+- Ended with a direct call to action instead of a vision statement
+
+The bracketed parts are placeholders — the more specific you can make those, the stronger it gets. A company that makes accounting software for restaurants reads very differently than one that does API tooling for developers. Specificity is the whole game here.

@@ -1,0 +1,88 @@
+{
+  "expectations": [
+    {
+      "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns — not just vocabulary. Both detectors must be described with their specific signal types.",
+      "passed": true,
+      "evidence": "output.txt lines 3-5: '**GPTZero** — primary signals are **perplexity** (how predictable each word choice is) and **burstiness** (how much sentence lengths vary).' and '**Originality.ai** — a trained classifier that looks at **structural patterns**: sentence opening variety, transitional phrase fingerprints, and grammatical homogeneity. Synonym-spinning doesn't move it. Sentence-level rewriting does.' Both detectors are described with their specific signal types."
+    },
+    {
+      "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+      "passed": false,
+      "evidence": "The rewrite opens with 'Something shifted around 2020 — most of us lived it.' This is standard SVO structure (Subject: 'Something', Verb: 'shifted', Adverbial: 'around 2020'). The conjunction openers ('And for many, mostly gone.' and 'But the numbers…') appear later in the text, not at the start. The checklist in the output confirms the first opener type is 'noun': 'Opener variety: noun, adverb, conjunction, noun, adverb, subordinating clause, conjunction ✓' — the first position is 'noun', i.e., SVO."
+    },
+    {
+      "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+      "passed": true,
+      "evidence": "output.txt line 31: 'Short sentences: \"And for many, mostly gone.\" (5 words) ✓'. The rewrite body contains 'And for many, mostly gone.' which is 5 words (clearly under the 7-word threshold). Also 'Overnight, the office went from default to optional.' is 8 words but the 5-word fragment is confirmed in the checklist."
+    },
+    {
+      "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+      "passed": true,
+      "evidence": "The 'Rewrite Strategy Applied' section explicitly names 4 passes: (1) '**Burstiness:** inject two very short sentences (under 7 words) and one long one (33+ words)' = burstiness injection; (2) '**Structure variety:** open with an adverb, conjunction, and mid-thought clause' = sentence structure diversification; (3) '**Perplexity:** replace generic claims with specific details (Austin, Warsaw, async culture)' = perplexity injection; (4) '**Voice:** add \"most of us lived it\" — first-person pull' = voice injection. All four are both described and applied in the rewrite."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 1677,
+    "transcript_chars": null,
+    "note": "metrics.json not present in outputs_dir; execution metrics derived from timing.json and output.txt file size"
+  },
+  "timing": {
+    "executor_duration_seconds": 54.007,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 54.007,
+    "note": "timing.json present at run-1/timing.json; total_tokens=134311, cost_usd=0.246"
+  },
+  "claims": [
+    {
+      "claim": "The executor named and applied 4 of the 5 detection-evasion passes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The 'Rewrite Strategy Applied' section lists burstiness, structure variety, perplexity, and voice — 4 named passes, all visibly applied in the rewrite."
+    },
+    {
+      "claim": "The short sentence 'And for many, mostly gone.' is 5 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counting: And/for/many/mostly/gone = 5 words. Matches the checklist annotation '(5 words) ✓'."
+    },
+    {
+      "claim": "The rewrite replaces the opening sentence structure with a non-SVO opener",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite opens with 'Something shifted around 2020' which is Subject-Verb-Adverb. The conjunction openers appear at sentence 3 ('And for many, mostly gone.') and final sentence ('But the numbers keep pointing…'), not at the start of the rewrite."
+    },
+    {
+      "claim": "Originality.ai is described as using a trained classifier on structural patterns, not just vocabulary",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt: 'a trained classifier that looks at structural patterns: sentence opening variety, transitional phrase fingerprints, and grammatical homogeneity. Synonym-spinning doesn't move it.' — 'synonym-spinning' directly distinguishes it from vocabulary-based detection."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+        "reason": "The assertion is well-targeted but the skill satisfied the spirit (strong conjunction openers mid-rewrite) while missing the letter (opening sentence is SVO). Consider specifying whether 'opens' means strictly the first sentence, or whether any of the first two sentences qualify — a minor clarification would close the ambiguity."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite actually avoids AI-canonical phrases (e.g., 'fundamentally transformed', 'attract and retain top talent'). The response called these out as red flags but no expectation verifies they were removed from the rewritten version. This is an important quality signal that's not covered."
+      }
+    ],
+    "overall": "Assertions are well-scoped and discriminating. The detector-description assertion (E1) is particularly strong — it requires specific signal names, not just tool names. The opening-structure assertion (E2) reveals a genuine gap: the skill produced a high-quality rewrite but didn't front-load the structural disruption. Adding a phrase-removal assertion would close the remaining coverage gap."
+  }
+}

@@ -1,0 +1,31 @@
+**Slop Inventory**
+
+Blacklist hits: *fast-paced business landscape, unprecedented challenges, Now more than ever, forward-thinking leaders, leverage, cutting-edge technology, stay ahead of the curve, comprehensive platform, streamline, transformative results, Furthermore, state-of-the-art, actionable insights, empower, data-driven decisions, unlock its full potential, Don't hesitate to reach out, We look forward to connecting with you at your earliest convenience*
+
+Structural patterns: opener-cliché, closer-cliché (two), abstract-outcomes (zero specifics), no opinion, uniform sentence length
+
+Original word count: ~100 words. Budget: 100 words.
+
+---
+
+**Rewrite (~95 words)**
+
+---
+
+**Subject: Quick question about [Company]'s ops**
+
+Hi [Name],
+
+I'll skip the "in today's fast-paced landscape" intro — you've read that email before.
+
+We help ops teams cut the manual work out of [specific workflow]. Teams we work with typically go from [problem state] to [resolved state] in the first few weeks, without replacing their existing tools.
+
+The analytics piece is what usually surprises people: it doesn't generate more dashboards — it tells you what actually needs attention.
+
+Worth 20 minutes to see if it's relevant? If not, I'll leave you alone.
+
+[Name]
+
+---
+
+**Notes:** The email will get sharper once you drop in one real customer result (a number or a name) and one specific observation about the recipient's company. Right now it's still general — humanized, but general. Specificity is the other half of the job.

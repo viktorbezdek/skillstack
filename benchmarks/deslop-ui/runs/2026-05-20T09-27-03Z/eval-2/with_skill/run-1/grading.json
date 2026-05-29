@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+      "passed": true,
+      "evidence": "Output rewrite: '**No projects yet** / Create one to start organizing your work. / [Create project]'. Structure is a heading fragment + one declarative sentence + CTA button. None of the forbidden phrases ('it looks like', 'don't worry', 'easy', 'feel free') appear. No motivational phrases present."
+    },
+    {
+      "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+      "passed": true,
+      "evidence": "Rewrite body (excluding CTA '[Create project]'): 'No projects yet. Create one to start organizing your work.' = 10 words. Well under the 15-word ceiling."
+    },
+    {
+      "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+      "passed": false,
+      "evidence": "The replacement text ('**Your dashboard** / Add your first metric to get started, or explore the [quick tour].') contains none of the five forbidden phrases — that part passes. However, the output explicitly states 'The entire modal contains zero actionable information,' which identifies the modal as unnecessary. The conditional therefore requires recommending removal, but the response provides a rewrite instead of recommending the modal be removed entirely. The conditional is satisfied but the expected action (recommend removal) is absent."
+    },
+    {
+      "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler', 'verbose', 'reassurance').",
+      "passed": true,
+      "evidence": "Output names multiple specific pattern types: 'hedging' (= hedge phrases) for 'It looks like'; 'patronizing filler' (= motivational filler) for 'easy and takes less than a minute'; 'condescending' (= gratuitous reassurance) for 'Don't worry'; 'passive' for 'whenever you're ready'; 'textbook AI-slop phrase' for 'Please don't hesitate to reach out'. Closing section labels the meta-pattern as 'optimizing for seeming helpful rather than being helpful.' At least 4 distinct named pattern types identified."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1826,
+    "transcript_chars": 32348
+  },
+  "timing": {
+    "executor_duration_seconds": 22.799,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 22.799
+  },
+  "claims": [
+    {
+      "claim": "Both inputs have 'the same core problem: they describe the experience instead of advancing it'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The output opens with this framing and then enumerates specific instances in each input that describe rather than direct. The claim is substantiated by the list of identified phrases in both sections."
+    },
+    {
+      "claim": "The entire modal contains zero actionable information",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The output lists five specific elements of the modal that are either tautological ('you'll be able to see all of your important metrics' when the user can already see the dashboard), unverifiable claims ('intuitive and seamless'), or filler ('Please don't hesitate to reach out'). The characterization is supported by the enumerated evidence."
+    },
+    {
+      "claim": "'whenever you're ready' weakens the CTA",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The output identifies 'whenever you're ready' as 'passive' and notes it 'weakens the CTA right at the moment you need the user to act.' This is a valid UX writing principle — hedging language before a CTA reduces conversion intent."
+    },
+    {
+      "claim": "The replacement for the modal is: '**Your dashboard** / Add your first metric to get started, or explore the [quick tour].'",
+      "type": "process",
+      "verified": true,
+      "evidence": "The rewrite is directly visible in the output under '## Onboarding Modal / **Rewrite:**'. Content matches the claim exactly."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+        "reason": "This assertion bundles two distinct checks into one expectation — absence of forbidden phrases AND the removal-recommendation conditional. A model could pass the phrase-absence check but fail the removal check (as happened here), or vice versa. Splitting these into separate assertions would produce a cleaner signal and avoid a false 'partial fail' label on the phrase check."
+      },
+      {
+        "reason": "No assertion checks the quality of the modal rewrite against UX writing principles. The rewrite ('Add your first metric to get started, or explore the [quick tour].') is actionable and clean, but no eval measures whether the replacement is meaningfully better than the original — only that the output avoids specific phrases. An assertion like 'the modal rewrite contains at least one concrete next action (imperative verb + object)' would be more discriminating."
+      },
+      {
+        "reason": "No assertion checks that the empty state rewrite actually differs substantively from the original. A model that kept the original text but deleted the forbidden phrases would pass expectations 1 and 2. Adding an assertion like 'the empty state rewrite does not reproduce more than 3 consecutive words from the original input' would guard against surface-level pruning."
+      }
+    ],
+    "overall": "Three of four assertions are well-targeted and discriminating. The main gap is the bundled expectation 3, which should be split, and the absence of any check on whether the rewrites are meaningfully better rather than just phrase-scrubbed versions of the original."
+  }
+}

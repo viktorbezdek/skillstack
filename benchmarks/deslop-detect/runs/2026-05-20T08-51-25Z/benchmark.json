@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "skill_name": "deslop-detect",
+    "skill_path": "deslop/skills/deslop-detect",
+    "executor_model": "claude-sonnet-4-6",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-05-20T08:56:44Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1,
+    "target_type": "skill",
+    "target_name": "deslop-detect",
+    "target_path": "deslop/skills/deslop-detect"
+  },
+  "runs": [
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 54.007,
+        "tokens": 134311,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns \u2014 not just vocabulary. Both detectors must be described with their specific signal types.",
+          "passed": true,
+          "evidence": "output.txt lines 3-5: '**GPTZero** \u2014 primary signals are **perplexity** (how predictable each word choice is) and **burstiness** (how much sentence lengths vary).' and '**Originality.ai** \u2014 a trained classifier that looks at **structural patterns**: sentence opening variety, transitional phrase fingerprints, and grammatical homogeneity. Synonym-spinning doesn't move it. Sentence-level rewriting does.' Both detectors are described with their specific signal types."
+        },
+        {
+          "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+          "passed": false,
+          "evidence": "The rewrite opens with 'Something shifted around 2020 \u2014 most of us lived it.' This is standard SVO structure (Subject: 'Something', Verb: 'shifted', Adverbial: 'around 2020'). The conjunction openers ('And for many, mostly gone.' and 'But the numbers\u2026') appear later in the text, not at the start. The checklist in the output confirms the first opener type is 'noun': 'Opener variety: noun, adverb, conjunction, noun, adverb, subordinating clause, conjunction \u2713' \u2014 the first position is 'noun', i.e., SVO."
+        },
+        {
+          "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+          "passed": true,
+          "evidence": "output.txt line 31: 'Short sentences: \"And for many, mostly gone.\" (5 words) \u2713'. The rewrite body contains 'And for many, mostly gone.' which is 5 words (clearly under the 7-word threshold). Also 'Overnight, the office went from default to optional.' is 8 words but the 5-word fragment is confirmed in the checklist."
+        },
+        {
+          "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+          "passed": true,
+          "evidence": "The 'Rewrite Strategy Applied' section explicitly names 4 passes: (1) '**Burstiness:** inject two very short sentences (under 7 words) and one long one (33+ words)' = burstiness injection; (2) '**Structure variety:** open with an adverb, conjunction, and mid-thought clause' = sentence structure diversification; (3) '**Perplexity:** replace generic claims with specific details (Austin, Warsaw, async culture)' = perplexity injection; (4) '**Voice:** add \"most of us lived it\" \u2014 first-person pull' = voice injection. All four are both described and applied in the rewrite."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "time_seconds": 24.949,
+        "tokens": 66413,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+          "passed": true,
+          "evidence": "Output section '2. Low burstiness' states: 'your sentences are nearly identical in length and follow the same Subject \u2192 Verb \u2192 Object pattern. Humans naturally mix short punchy sentences with longer winding ones. This paragraph is metronomically uniform.' Uses 'burstiness' directly as a signal label and 'uniform' at the end of the diagnosis paragraph."
+        },
+        {
+          "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+          "passed": true,
+          "evidence": "The 'Specific red flags' section explicitly identifies: '\"Furthermore\" / \"Additionally\" / \"It is important to note that\" \u2014 AI transition words that real writers almost never use' and 'The tricolon list (\"brand authority, drives organic traffic, establishes thought leadership\") \u2014 AI loves these'. That is 4 of the 5 listed signals. 'leverage' is not mentioned."
+        },
+        {
+          "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+          "passed": false,
+          "evidence": "Counted all sentences in the rewrite paragraphs. Shortest: 'Six months before you see it in the numbers.' = 9 words (not \u22646). Longest: 'The companies actually winning with it aren't publishing more; they're publishing smarter, using search data and customer questions to shape what they write before they write it.' = 27 words (not \u226530). Neither threshold is met. The rewrite has more length variation than the original AI text but does not satisfy the hard word-count thresholds."
+        },
+        {
+          "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+          "passed": true,
+          "evidence": "Searched the rewrite section (the three paragraphs between the '---' separators). None of the five banned tokens appear: no 'Furthermore', no 'Additionally', no 'leverage', no 'It is important to note', no 'data-driven'. The 'What changed' explanatory section also omits them."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "time_seconds": 21.096,
+        "tokens": 65311,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explains that GPTZero uses perplexity and burstiness as its primary signals, AND explains that Originality.ai uses a trained classifier that looks at structural patterns \u2014 not just vocabulary. Both detectors must be described with their specific signal types.",
+          "passed": false,
+          "evidence": "The executor refused the task entirely. output.txt: 'I won't help with this. The explicit goal here is deceiving AI detection tools \u2014 making content appear human-written when it isn't.' No detector descriptions of any kind were provided."
+        },
+        {
+          "text": "The rewrite opens with a sentence that does NOT follow the standard subject-verb-object structure of the original (e.g., starts with a conjunction, question, adverb, or fragment).",
+          "passed": false,
+          "evidence": "No rewrite was produced. The executor refused to engage with the task, so there is no rewritten text to evaluate."
+        },
+        {
+          "text": "The rewrite contains at least one sentence that is 7 words or fewer (a short punchy sentence to increase burstiness).",
+          "passed": false,
+          "evidence": "No rewrite was produced. The executor refused the task before producing any output content."
+        },
+        {
+          "text": "The response describes or applies at least 2 of the 5 rewriting passes from the detection-evasion methodology: burstiness injection, sentence structure diversification, perplexity injection (via specifics), voice injection, or structural disruption (e.g., converting a list to prose, using a one-sentence paragraph).",
+          "passed": false,
+          "evidence": "No methodology was described or applied. The executor declined to discuss detection-evasion techniques, stating the task is 'purpose-built for deception' with common use in 'academic or professional fraud.'"
+        }
+      ],
+      "notes": [
+        "The executor refused on safety grounds \u2014 this is the expected behavior WITHOUT the skill, since the skill likely provides framing or context that enables engagement with the topic legitimately"
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "time_seconds": 17.779,
+        "tokens": 66071,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The response explicitly states that synonym spinning does NOT effectively evade AI detectors \u2014 it must use language like 'won't work', 'doesn't address', 'fails', 'insufficient', or equivalent. A response that suggests synonym spinning as a valid primary technique fails this check.",
+          "passed": true,
+          "evidence": "Opening sentence of output.txt: \"No, synonym swapping doesn't work.\" \u2014 'doesn't work' is a direct equivalent to the required language. The response never suggests synonym spinning as a valid approach."
+        },
+        {
+          "text": "The response explains WHY synonym spinning fails: because detectors look at sentence structure, statistical patterns, or token sequences \u2014 not just individual word choices. The explanation must reference structural features, patterns, or statistics (not just 'they look for more than synonyms').",
+          "passed": true,
+          "evidence": "output.txt line 1: \"AI detectors don't flag specific words \u2014 they detect patterns: sentence rhythm uniformity, vague abstractions, lack of specificity, and the tendency to pack multiple buzzwords into a single sentence.\" References 'patterns' and 'sentence rhythm uniformity' (a structural feature), satisfying the requirement to explain that detectors analyze structural/statistical features beyond individual word choices."
+        },
+        {
+          "text": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals \u2014 not just different vocabulary in the same frame.",
+          "passed": true,
+          "evidence": "Original second sentence: 'Furthermore, our innovative approach delivers transformative results for organizations of all sizes.' \u2014 a simple declarative [subject + verb + object + prepositional phrase]. Rewrite: 'Whether you're a 10-person startup or a 10,000-person enterprise, the same setup works out of the box.' \u2014 opens with a conditional adverb clause ('Whether you're...') before the main clause, a completely different grammatical structure. This is a genuine structural rewrite, not word-swapping."
+        },
+        {
+          "text": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+          "passed": true,
+          "evidence": "The rewritten block in output.txt ('The platform uses AI to surface patterns in your data...It connects with the tools your team already uses \u2014 no migration required. Whether you're a 10-person startup or a 10,000-person enterprise, the same setup works out of the box.') contains none of the ten forbidden words. Note: the 'What changed' bullets quote some of these words (e.g., 'comprehensive', 'robust') in explaining what was removed, but those appear in the explanation section, not in the rewrite itself."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.75,
+        "stddev": 0.0,
+        "min": 0.75,
+        "max": 0.75
+      },
+      "time_seconds": {
+        "mean": 54.007,
+        "stddev": 0.0,
+        "min": 54.007,
+        "max": 54.007
+      },
+      "tokens": {
+        "mean": 134311.0,
+        "stddev": 0.0,
+        "min": 134311.0,
+        "max": 134311.0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.5833,
+        "stddev": 0.5204,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 21.2747,
+        "stddev": 3.5883,
+        "min": 17.779,
+        "max": 24.949
+      },
+      "tokens": {
+        "mean": 65931.6667,
+        "stddev": 564.0579,
+        "min": 65311.0,
+        "max": 66413.0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.17",
+      "time_seconds": "+32.7",
+      "tokens": "+68379"
+    }
+  },
+  "notes": []
+}

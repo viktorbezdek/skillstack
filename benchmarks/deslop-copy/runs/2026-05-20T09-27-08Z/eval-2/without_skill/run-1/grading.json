@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+      "passed": true,
+      "evidence": "The rewritten opener begins with: 'I noticed [something specific — e.g. you're scaling your ops team / you recently opened two new locations / your job postings mention a lot of manual coordination work].' None of the banned phrases are present. It opens with a direct observational hook ('I noticed')."
+    },
+    {
+      "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+      "passed": true,
+      "evidence": "The closer is: 'Worth a 20-minute call to see if it's relevant to what you're working on?' None of the banned phrases are present. It is a direct, time-bounded ask."
+    },
+    {
+      "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+      "passed": true,
+      "evidence": "The rewritten subject is: 'Quick question about [specific process, e.g. how your team handles reporting]'. None of the banned words appear. It suggests a targeted, process-specific question rather than a generic pitch. The output also explicitly calls out 'Transforming' + 'Innovative Solution' as what was wrong with the original, confirming intentional avoidance."
+    },
+    {
+      "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+      "passed": true,
+      "evidence": "Multiple contractions appear in the body: 'you're scaling your ops team' and 'see if it's relevant to what you're working on'. Both 'you're' and 'it's' are clear contractions."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1317,
+    "transcript_chars": 30385
+  },
+  "timing": {
+    "executor_duration_seconds": 25.47,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 25.47
+  },
+  "claims": [
+    {
+      "claim": "The original subject used 'Transforming' and 'Innovative Solution'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output states under 'What was wrong': 'Subject: \"Transforming\" + \"Innovative Solution\" = instant delete.'"
+    },
+    {
+      "claim": "The original opener was 'In today's fast-paced business landscape'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output explicitly quotes it: '\"In today's fast-paced business landscape\" is the single most recognized AI phrase in cold email.'"
+    },
+    {
+      "claim": "The original closer was 'Don't hesitate to reach out at your earliest convenience'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output states: '\"Don't hesitate to reach out at your earliest convenience\" is robotic filler.'"
+    },
+    {
+      "claim": "The rewrite uses a template/placeholder format rather than a finished email",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Brackets like '[Name]', '[something specific]', '[type of company]' appear throughout. The output closes with 'Fill in the brackets with actual research.' This is a deliberate pattern template, not a final draft."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All four assertions test format and register, but none verify that the rewrite actually identifies and rewrites all parts of the original email (subject + opener + body + closer). The executor produced a generic template rather than a concrete rewrite of the specific original text — an eval checking 'the rewrite references the original email's product/service or industry' would discriminate between a real rewrite and a fill-in-the-blanks template."
+      },
+      {
+        "assertion": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+        "reason": "This assertion is trivially satisfied by a template that uses bracket-notation like '[you're doing X]'. A contraction inside a placeholder doesn't demonstrate the register of the actual output text. A stronger assertion would check for contractions in non-bracketed, authored prose."
+      }
+    ],
+    "overall": "The assertions catch the most obvious AI-slop patterns and all pass cleanly. However, the output is a generic template rather than a rewrite of the specific input email — no assertion detects this gap. The skill's intended output is presumably a finished rewrite, not a fill-in-the-blanks scaffold. An assertion requiring at least one specific, non-bracketed sentence in the body would surface this distinction."
+  }
+}

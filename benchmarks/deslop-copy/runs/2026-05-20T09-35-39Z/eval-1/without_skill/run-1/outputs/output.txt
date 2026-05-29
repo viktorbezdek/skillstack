@@ -1,0 +1,29 @@
+## Flagged clichés
+
+1. **"Leverage"** — corporate verb meaning "use." Just say use.
+2. **"comprehensive"** — filler. Every platform claims this; it means nothing.
+3. **"cutting-edge"** — worn smooth. Signals nothing about what makes it different.
+4. **"empower your team"** — empowerment language is a tell. Real copy describes what people can actually *do*.
+5. **"unlock unprecedented growth"** — double offense: "unlock" is a marketing tic, "unprecedented" is a promise no one believes.
+6. **"innovative solution"** — every product on earth calls itself this.
+7. **"seamlessly integrates"** — "seamlessly" does zero work. If integration were genuinely painless, you'd show it.
+8. **"transformative results"** — vague superlative with no substance behind it.
+9. **"drive sustainable success"** — three words, zero meaning.
+10. **"Furthermore"** — essay-writing connector dropped into ad copy. Breaks the register entirely.
+11. **"robust analytics"** — "robust" is a filler adjective. What do the analytics actually show?
+12. **"valuable insights"** — circular. Insights are by definition valuable; saying so adds nothing.
+13. **"enable informed decision-making at every level of your organization"** — 10 words for "helps your whole team make better decisions."
+
+---
+
+## Rewrite
+
+Your team already knows what to do. The problem is seeing what's happening fast enough to act on it.
+
+[Product] pulls your tools into one place, tracks what's working, and surfaces the numbers your team actually needs — without a report request or a waiting-on-IT detour.
+
+Most teams cut their weekly status meeting in half within the first month. Some cancel it entirely.
+
+---
+
+**Note:** The last paragraph is a placeholder for a real customer result. If you have a concrete stat — time saved, deals closed, churn reduced — drop it in there. Specificity is what makes the rewrite stick; without a real number it's still drifting toward vague.

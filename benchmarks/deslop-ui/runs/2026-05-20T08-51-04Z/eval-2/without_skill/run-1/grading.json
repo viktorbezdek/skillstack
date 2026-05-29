@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+      "passed": true,
+      "evidence": "Primary rewrite in output.txt: '**No projects yet** / Create your first project to bring your work, team, and progress into one place. / [Create a project]'. This is exactly one sentence followed by a CTA. None of the banned words ('it looks like', 'don't worry', 'easy', 'feel free') appear in the replacement. The secondary ('warmer') variant has two sentences and would fail this test, but it is clearly presented as an optional alternative, not the primary rewrite."
+    },
+    {
+      "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+      "passed": true,
+      "evidence": "Primary rewrite body sentence: 'Create your first project to bring your work, team, and progress into one place.' Word count: Create(1) your(2) first(3) project(4) to(5) bring(6) your(7) work(8) team(9) and(10) progress(11) into(12) one(13) place(14) = 14 words. Under the 15-word ceiling. CTA label '[Create a project]' is excluded per the assertion. Note: secondary 'warmer' variant ('Projects keep your work organized and your team aligned. Takes about a minute to set up.') is 16 words, but it is an explicitly labeled secondary option."
+    },
+    {
+      "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+      "passed": true,
+      "evidence": "Modal rewrite in output.txt: 'Welcome to your dashboard / Here you'll see your key metrics, recent activity, and team updates — updated in real time. / Start by connecting your first data source, or explore the overview with sample data. / [Connect data] [Explore with samples]'. None of the five banned phrases ('seamless', 'intuitive', 'don't hesitate', 'please', 'what matters most') appear in this rewrite. Note: 'intuitive' and 'seamless' DO appear in the 'What's wrong' critique section, but only as quoted examples of bad copy from the original — not in the replacement text itself. The modal is rewritten rather than recommended for removal, so the second clause of the assertion (recommend removing if unnecessary) is N/A."
+    },
+    {
+      "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler').",
+      "passed": true,
+      "evidence": "The output names multiple specific pattern types: (1) 'Reassure unnecessarily' (equivalent to gratuitous reassurance) — 'Don't worry — presumes anxiety the user may not feel'; (2) 'corporate filler' — 'Please don't hesitate to reach out — corporate filler'; (3) 'self-congratulation' — 'We've designed this experience to be as intuitive and seamless as possible — pure self-congratulation'; (4) 'Passive CTA' — 'feel free to... whenever you're ready — diffuses urgency'; (5) 'State the obvious', 'Describe the product generically' named in the 'pattern to fix' summary. At least 2 (and actually 5+) named slop pattern types are present."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": null,
+  "timing": {
+    "executor_duration_seconds": 23.626,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "Both pieces share the same core problems: self-focused, padded with filler, and bury or omit the action",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Output correctly identifies specific instances: the empty state has 'Don't worry' (self-reassurance not self-focused on user task), generic benefit list, passive CTA; the modal has self-congratulation and no actionable next step. The characterization is accurate and evidence-backed."
+    },
+    {
+      "claim": "'We've designed this experience to be as intuitive and seamless as possible' is pure self-congratulation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The output correctly quotes this phrase from the original modal and labels it self-congratulation — a well-established anti-pattern in UX writing. Users judge intuitiveness themselves; claiming it upfront is indeed hollow."
+    },
+    {
+      "claim": "The empty state rewrite follows a 'one clear statement of value + one specific action' formula",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Primary rewrite 'Create your first project to bring your work, team, and progress into one place.' + [Create a project] matches this formula exactly."
+    },
+    {
+      "claim": "The secondary 'warmer' empty-state variant 'Takes about a minute to set up' is acceptably clean copy",
+      "type": "quality",
+      "verified": false,
+      "evidence": "'Takes about a minute to set up' is mild motivational filler — functionally equivalent to 'it's easy!' in hedged form. The output presents it as a cleaner alternative, but it arguably reintroduces a softer version of the reassurance anti-pattern the primary rewrite eliminates. This implicit claim goes unexamined."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action.",
+        "reason": "The output provides two alternatives; only the primary one satisfies 'ONE sentence'. The assertion is ambiguous about which variant to grade when multiple are offered. A tighter assertion would specify 'at least the primary/first rewrite must be one sentence' or 'all provided rewrites must be one sentence', preventing a response that buries a compliant version alongside non-compliant options."
+      },
+      {
+        "assertion": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+        "reason": "Same multi-variant ambiguity: the secondary 'warmer' option is 16 words and would fail this test. Grading the primary option passes, but if the intent is that any offered rewrite must comply, the assertion should be explicit. Also worth noting: the 15-word limit doesn't exclude the header ('No projects yet' = 3 words). If the header counts, option 1 is 17 words. The assertion should clarify whether the heading is counted."
+      },
+      {
+        "reason": "No assertion checks whether the rewrites are actually specific to the product context vs. generic placeholders. The empty state rewrite ('bring your work, team, and progress into one place') is generic enough to apply to any project tool. A meaningful discriminating assertion might check for a product-specific noun or value claim absent from the original boilerplate."
+      },
+      {
+        "reason": "No assertion checks whether the 'What's wrong' critique is substantive and evidence-backed rather than itself formulaic. A model that produces correct-shaped rewrites but hollow critique would pass all four assertions; an assertion on critique quality (e.g., 'each identified problem includes a specific quoted example from the input') would raise the bar."
+      }
+    ],
+    "overall": "All four expectations pass cleanly. The evals have a meaningful design — checking for specific banned words and word counts requires genuine inspection. Main gaps: multi-variant ambiguity (two rewrites offered, assertions grade a single instance), undefined header-counting rules for the word limit, and no check on rewrite specificity vs. generic filler."
+  }
+}

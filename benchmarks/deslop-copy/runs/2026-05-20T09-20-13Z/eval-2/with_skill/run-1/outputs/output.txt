@@ -1,0 +1,56 @@
+**Step 1 — Slop Inventory**
+
+```
+Blacklist hits:
+- "fast-paced business landscape" (opener cliché)
+- "unprecedented" (adjective)
+- "Now more than ever" (opener phrase)
+- "leverage" (verb)
+- "cutting-edge" (adjective)
+- "comprehensive" (adjective)
+- "streamline" (overused verb)
+- "transformative results" (vague outcome)
+- "Furthermore" (filler connective)
+- "state-of-the-art" (adjective)
+- "actionable insights" (vague outcome)
+- "empower your team" (empower)
+- "data-driven decisions" (vague outcome)
+- "Don't hesitate to reach out" (closer cliché)
+- "unlock its full potential" (abstract unlock)
+- "We look forward to connecting with you at your earliest convenience" (closer cliché)
+
+Structural patterns: opener-cliché, closer-cliché ×2, abstract-outcomes throughout,
+no specifics (zero numbers/names/examples), no opinion, uniform sentence length
+
+Original word count: ~100 words
+```
+
+---
+
+**Step 2 — Rewrite** (≤100 words)
+
+> **Subject: Quick question about [Company]'s ops**
+
+Hi [Name],
+
+I saw [Company] is [hiring ops roles / expanding to X market / recent trigger]. That usually means coordination is getting harder to manage.
+
+We help teams like yours cut the manual back-and-forth — the kind that doesn't belong to anyone but still eats hours every week. Our reporting also surfaces where the slowdowns actually are, not just that they exist.
+
+Worth 15 minutes to see if it's relevant? Pick a time here: [link].
+
+[Your name]
+
+---
+
+**Step 3 — Humanization Checklist**
+
+- [x] Contractions present ("it's", "don't")
+- [x] Short sentence ≤8 words: "Worth 15 minutes to see if it's relevant?"
+- [x] No two consecutive sentences start the same way
+- [x] Concrete specifics: real timeframe (15 min), specific trigger placeholder, specific outcome framing
+- [x] Opener is not a landscape/era phrase — it's a direct observation
+
+---
+
+**Note:** The `[specific trigger]` placeholder is doing the most work here. The original email failed because it had *no* reason to land in anyone's inbox. Every personalized cold email needs a real, specific hook — job posting, funding news, a shared contact, something that shows you looked. Without it, even a clean rewrite reads like a template.

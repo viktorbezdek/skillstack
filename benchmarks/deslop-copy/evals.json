@@ -1,0 +1,45 @@
+{
+  "target": {
+    "type": "skill",
+    "path": "deslop/skills/deslop-copy",
+    "name": "deslop-copy"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "landing-page-hero-deslop",
+      "prompt": "Clean up this landing page hero copy. Flag every AI cliché and rewrite the whole block so it sounds human:\n\n'Leverage our comprehensive, cutting-edge platform to empower your team and unlock unprecedented growth. Our innovative solution seamlessly integrates with your existing workflow to deliver transformative results and drive sustainable success. Furthermore, our robust analytics provide valuable insights that enable informed decision-making at every level of your organization.'\n\nList what you flagged, then give me the full rewrite.",
+      "expected_output": "Full list of flagged AI words/phrases + a rewrite that contains none of them. Rewrite uses specific language, varies sentence length, and doesn't sound like a press release.",
+      "expectations": [
+        "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+        "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+        "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+        "The rewrite contains sentence length variation — at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "email-opener-and-closer-humanization",
+      "prompt": "Humanize this cold email. It sounds AI-generated. Fix the opener and closer especially:\n\nSubject: Transforming Your Business Operations with Our Innovative Solution\n\n'In today's fast-paced business landscape, organizations of all sizes are facing unprecedented challenges in maintaining operational efficiency. Now more than ever, it is crucial for forward-thinking leaders to leverage cutting-edge technology to stay ahead of the curve.\n\nOur comprehensive platform has helped numerous companies streamline their workflows and achieve transformative results. Furthermore, our state-of-the-art analytics engine provides actionable insights that empower your team to make data-driven decisions.\n\nDon't hesitate to reach out if you'd like to learn more about how we can help your organization unlock its full potential. We look forward to connecting with you at your earliest convenience.'\n\nGive me a full rewrite.",
+      "expected_output": "Rewritten email with a specific opener (not landscape/era framing), concrete middle, and a direct close. No AI clichés. Sounds like a real person wrote it.",
+      "expectations": [
+        "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+        "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+        "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+        "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "about-page-humanization",
+      "prompt": "This company about page sounds robotic and generic. Make it human:\n\n'We are a passionate team of dedicated professionals committed to delivering exceptional value to our clients. Our innovative approach combines cutting-edge technology with deep industry expertise to provide comprehensive solutions that drive meaningful impact.\n\nAt the core of our mission is a holistic commitment to excellence, sustainability, and transformative growth. We believe in empowering our clients to achieve their goals through seamless, intuitive experiences that leverage the full potential of modern technology.\n\nOur diverse team brings together talented individuals from across the globe, united by a shared vision of creating a better, more connected world.'\n\nRewrite it. Make it specific, opinionated, and direct.",
+      "expected_output": "About page rewrite that names what the company actually does, avoids all listed clichés, and takes at least one clear position or opinion.",
+      "expectations": [
+        "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+        "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+        "The rewrite is equal to or shorter than the original in word count.",
+        "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text."
+      ]
+    }
+  ]
+}

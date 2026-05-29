@@ -1,0 +1,24 @@
+Here's the rewrite, with what was wrong with each removed element:
+
+---
+
+**"passionate team of dedicated professionals"** — Says nothing. Everyone claims this.
+**"cutting-edge / innovative / transformative"** — Three adjectives that appear on 90% of about pages.
+**"seamless, intuitive experiences"** — Vague promise with no substance.
+**"better, more connected world"** — Grand aspiration with zero specificity.
+
+---
+
+**Rewritten:**
+
+We help [type of company] solve [specific problem]. Not a broad category of problems — this one.
+
+We've been doing it since [year]. Our team of [N] has seen what breaks in production, what clients actually need versus what they think they need, and where the standard playbook stops working. We'd rather tell you something is a bad idea than charge you to build it.
+
+Our work is [specific deliverable: data pipelines / API integrations / internal tools / etc.]. You'll work directly with the people who build it — no account managers in the middle.
+
+We're based in [city]. Our clients are mostly in [region/industry]. A few have been with us for over five years, which we think is the real résumé.
+
+---
+
+**Fill in the brackets.** The structure is sound; the specifics have to come from you — what you do, who you do it for, how long you've been doing it. Generic "values" copy like the original can't be fixed without facts.

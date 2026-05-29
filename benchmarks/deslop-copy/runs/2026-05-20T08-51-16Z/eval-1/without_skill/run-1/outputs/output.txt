@@ -1,0 +1,29 @@
+## Flagged clichés
+
+| Phrase | Why it's a cliché |
+|---|---|
+| "Leverage" | Corporate verb that means nothing; just say "use" |
+| "comprehensive" | Vague superlative, every product claims it |
+| "cutting-edge" | Exhausted tech modifier |
+| "empower your team" | HR brochure filler |
+| "unlock unprecedented growth" | Hyperbolic and meaningless — unprecedented how? |
+| "innovative solution" | Two buzzwords in a row, zero content |
+| "seamlessly integrates" | Every SaaS product says this |
+| "existing workflow" | Obvious filler — what other workflow would it be? |
+| "transformative results" | Vague abstraction; results of what? |
+| "drive sustainable success" | Triple buzzword stack |
+| "Furthermore" | Stilted formal connector in marketing copy |
+| "robust analytics" | "Robust" is filler; "analytics" alone is fine |
+| "valuable insights" | All insights are supposed to be valuable |
+| "enable informed decision-making" | Bureaucratic noun pile |
+| "at every level of your organization" | Corporate padding |
+
+---
+
+## Rewrite
+
+> Your team already has a workflow. [Product] plugs into it — no migration, no retraining. You get a live view of what's working and where things stall, so you can act on real data instead of gut checks. Less time in spreadsheets. More time on the work that actually moves things forward.
+
+---
+
+**What changed:** shorter sentences, plain verbs, a concrete reader benefit per clause, no adjective stacking. The claim is still confident — it just earns it by being specific instead of loud.

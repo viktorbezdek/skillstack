@@ -1,0 +1,77 @@
+[
+  {
+    "query": "deslop this landing page copy",
+    "should_trigger": true,
+    "note": "Direct keyword trigger: deslop + marketing domain"
+  },
+  {
+    "query": "this email copy sounds AI-generated, humanize it",
+    "should_trigger": true,
+    "note": "AI-generated complaint + humanize on email copy"
+  },
+  {
+    "query": "remove the AI clichés from this product description",
+    "should_trigger": true,
+    "note": "AI cliché removal on product description"
+  },
+  {
+    "query": "make this blog post sound more human",
+    "should_trigger": true,
+    "note": "Humanization request on blog post"
+  },
+  {
+    "query": "anti-slop pass on my marketing copy",
+    "should_trigger": true,
+    "note": "Keyword trigger: anti-slop + marketing domain"
+  },
+  {
+    "query": "this copy says leverage and delve too much, fix it",
+    "should_trigger": true,
+    "note": "Specific AI blacklist words identified by user"
+  },
+  {
+    "query": "clean up this newsletter — it reads like ChatGPT wrote it",
+    "should_trigger": true,
+    "note": "AI-generated complaint on newsletter"
+  },
+  {
+    "query": "rewrite this company about page to not sound robotic",
+    "should_trigger": true,
+    "note": "Humanization request on about page"
+  },
+  {
+    "query": "audit my cold email for AI slop",
+    "should_trigger": true,
+    "note": "Audit request on cold outreach copy"
+  },
+  {
+    "query": "this ad copy is too corporate and generic, strip it out",
+    "should_trigger": true,
+    "note": "Corporate/generic complaint on ad copy"
+  },
+  {
+    "query": "deslop my UI button labels",
+    "should_trigger": false,
+    "note": "Near-miss — UI copy. Use deslop-ui."
+  },
+  {
+    "query": "write me a landing page from scratch",
+    "should_trigger": false,
+    "note": "Net new copy creation, not cleanup. Use storytelling or prompt-engineering."
+  },
+  {
+    "query": "help me pass GPTZero with this blog post",
+    "should_trigger": false,
+    "note": "Near-miss — AI detector evasion specifically. Use deslop-detect."
+  },
+  {
+    "query": "clean up my Python code, it's full of AI slop",
+    "should_trigger": false,
+    "note": "Near-miss — code, not copy. Use ai-slop-cleaner."
+  },
+  {
+    "query": "write me a haiku",
+    "should_trigger": false,
+    "note": "Off-topic — creative writing, not slop removal."
+  }
+]

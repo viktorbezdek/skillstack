@@ -1,0 +1,25 @@
+Here's a rewrite. I've kept placeholders where specifics belong — fill those in and it'll land well.
+
+---
+
+We build [specific thing] for [specific kind of company].
+
+We started because [one-sentence origin — what frustrated you, what you saw missing]. Since then, we've worked with [number or type of clients] who needed [the actual problem you solve].
+
+We're opinionated about how this should work. We think [your actual stance on the industry]. That's why we [specific decision you made that reflects it].
+
+Our team is [actual size]. Most of us came from [relevant background], which means we already know where the hard parts are.
+
+If you're looking for [type of client/problem you're right for], we're probably a good fit. If you need [thing you deliberately don't do], we're not.
+
+---
+
+**What changed and why:**
+
+- "Passionate dedicated professionals" → cut entirely. Everyone says this. It means nothing.
+- "Cutting-edge / holistic / transformative" → stripped. These words signal that nothing specific follows.
+- One concrete origin beat three vague value claims.
+- The "we're not for everyone" line does more trust-building than a paragraph of superlatives.
+- Short sentences. One idea per sentence.
+
+The placeholders are the work — once those are real, the copy is done.

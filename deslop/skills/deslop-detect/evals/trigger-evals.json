@@ -1,0 +1,77 @@
+[
+  {
+    "query": "help me make this pass GPTZero",
+    "should_trigger": true,
+    "note": "Direct detector reference: GPTZero"
+  },
+  {
+    "query": "my content keeps flagging on Originality.ai, how do I fix it?",
+    "should_trigger": true,
+    "note": "Specific detector: Originality.ai + problem statement"
+  },
+  {
+    "query": "I need this blog post to be undetectable as AI-generated",
+    "should_trigger": true,
+    "note": "Explicit undetectable request"
+  },
+  {
+    "query": "beat the AI detector on this article",
+    "should_trigger": true,
+    "note": "Trigger phrase: beat the detector"
+  },
+  {
+    "query": "reduce the AI score on this piece",
+    "should_trigger": true,
+    "note": "AI score reduction request"
+  },
+  {
+    "query": "Turnitin AI detection is flagging my client's content",
+    "should_trigger": true,
+    "note": "Specific detector: Turnitin + client context"
+  },
+  {
+    "query": "bypass the AI content checker for this marketing copy",
+    "should_trigger": true,
+    "note": "Bypass request on marketing copy"
+  },
+  {
+    "query": "what's the AI detection score on this and how do I lower it?",
+    "should_trigger": true,
+    "note": "Score reduction + detection question"
+  },
+  {
+    "query": "this copy passes deslop but still flags as AI, what's next?",
+    "should_trigger": true,
+    "note": "Follow-on from deslop-copy, now needing detection evasion"
+  },
+  {
+    "query": "make this content pass both GPTZero and Copyleaks",
+    "should_trigger": true,
+    "note": "Multi-detector requirement"
+  },
+  {
+    "query": "humanize this marketing copy so it sounds better",
+    "should_trigger": false,
+    "note": "Near-miss — quality humanization, no detection concern. Use deslop-copy."
+  },
+  {
+    "query": "remove AI clichés from this blog post",
+    "should_trigger": false,
+    "note": "Near-miss — cliché removal, not detection. Use deslop-copy."
+  },
+  {
+    "query": "clean up my essay for my professor",
+    "should_trigger": false,
+    "note": "Near-miss — academic context without explicit detection request; avoid academic fraud use case"
+  },
+  {
+    "query": "deslop my landing page",
+    "should_trigger": false,
+    "note": "Near-miss — general deslop on marketing copy. Use deslop-copy."
+  },
+  {
+    "query": "what is perplexity in NLP",
+    "should_trigger": false,
+    "note": "Off-topic — educational question about NLP concept, not detection evasion task"
+  }
+]

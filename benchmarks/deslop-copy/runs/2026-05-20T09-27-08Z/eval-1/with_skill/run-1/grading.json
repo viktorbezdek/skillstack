@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+      "passed": true,
+      "evidence": "All 13 required items are explicitly named. Items 1–13 map as follows: 'Leverage' (item 1), 'comprehensive' (item 2), 'cutting-edge' (item 3), 'empower your team' covers empower (item 4), 'unlock unprecedented growth' covers both unlock and unprecedented (item 5), 'innovative solution' covers innovative (item 6), 'seamlessly integrates' covers seamlessly (item 7), 'deliver transformative results' covers transformative (item 8), 'drive sustainable success' covers drive (item 9), 'robust analytics' covers robust (item 11), 'valuable insights' (item 12), 'enable informed decision-making' covers informed decision-making (item 13). 13/13 required words are present as flagged items, well above the 10/13 threshold."
+    },
+    {
+      "text": "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+      "passed": true,
+      "evidence": "Rewrite text: 'Your team ships faster when their tools talk to each other. [Product] connects to the apps you already use, keeps work from falling through the cracks, and shows you — in plain numbers — what's moving and what's stuck. No consultant required to read the dashboard.' None of the 12 forbidden words appear in this text (checked case-insensitively)."
+    },
+    {
+      "text": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+      "passed": true,
+      "evidence": "The rewrite contains multiple concrete scenarios: 'Your team ships faster when their tools talk to each other' (causal scenario), 'connects to the apps you already use' (specific integration scenario), 'shows you — in plain numbers — what's moving and what's stuck' (named outcome with specific mechanism), and 'No consultant required to read the dashboard' (concrete pain-point resolution). No pure abstract nouns remain."
+    },
+    {
+      "text": "The rewrite contains sentence length variation — at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check.",
+      "passed": true,
+      "evidence": "Three sentences identified. Sentence 1: 'Your team ships faster when their tools talk to each other.' = 11 words. Sentence 2: '[Product] connects to the apps you already use, keeps work from falling through the cracks, and shows you — in plain numbers — what's moving and what's stuck.' = ~26 words (≥20 ✅). Sentence 3: 'No consultant required to read the dashboard.' = 7 words (≤7 ✅). Both length thresholds are met."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 854,
+    "transcript_chars": 29994
+  },
+  "timing": {
+    "executor_duration_seconds": 25.103,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 25.103
+  },
+  "claims": [
+    {
+      "claim": "The response flagged 14 items, including one ('at every level of your organization') not in the required slop list",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt lists 14 numbered flagged items; item 14 is 'at every level of your organization' which is not among the 13 required words in the assertion. The 13 required items are all covered within items 1–13."
+    },
+    {
+      "claim": "The rewrite 'makes a concrete promise' (stated in the closing rationale)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The closing line reads: 'The rewrite makes a concrete promise, acknowledges a real pain point (fragmented tools, opaque reporting), and drops the abstract nouns entirely.' This is supported by the rewrite text, which includes the concrete scenarios verified in Expectation 3."
+    },
+    {
+      "claim": "Real integrations are never seamless (stated as explanation for flagging 'seamlessly integrates')",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is an editorial assertion in the explanation ('tech marketing staple; real integrations are never seamless') and cannot be verified from available artifacts. It is plausible as a copywriting heuristic but is not checkable here."
+    },
+    {
+      "claim": "No tool calls were made — the skill responded in a single turn with no tool use",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript shows a single assistant message (lines 21–22) with no tool_use content blocks. The result record (line 24) confirms num_turns=1 and zero web_search_requests/web_fetch_requests."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+        "reason": "This assertion is too easily passed. 'A concrete scenario' is satisfied by almost any non-abstract sentence — the rewrite here passes on scenario grounds but contains zero hard numbers. The hallmark of truly de-slopped copy is numeric specificity ('reduces onboarding from 5 steps to 2', 'integrates with 80+ tools'). Consider splitting this into two assertions: one for presence of a concrete scenario, and one that specifically checks for at least one quantified claim (number, percentage, count, duration). A rewrite with no numbers but good metaphors like this one would pass the scenario check and fail the quantification check — surfacing a real gap in the output."
+      },
+      {
+        "reason": "No assertion checks whether the explanations accompanying each flagged item are meaningful versus trivial. The executor produced substantive rationale for each flag (e.g., 'insights are by definition valuable' for 'valuable insights'), but an equally passing output could list the words with no explanation at all. Adding an assertion like 'each flagged item includes a reason why it is slop, not just the word itself' would raise the bar."
+      }
+    ],
+    "overall": "All four assertions pass with clear evidence. The eval is solid for catching word-level slop removal and brevity. The main gap is Expectation 3's breadth — 'concrete scenario' is a low bar that a competent rewrite will almost always clear, potentially masking the absence of genuine numeric specificity that separates good copy from great copy."
+  }
+}

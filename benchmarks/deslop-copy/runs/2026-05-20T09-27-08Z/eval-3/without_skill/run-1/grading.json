@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+      "passed": true,
+      "evidence": "The rewritten section (under **Rewritten:**) contains none of the 15 forbidden words — all 15 are absent (15/15 > required 10). Note: several forbidden words ('passionate', 'dedicated', 'innovative', 'cutting-edge', 'transformative', 'seamless') appear in the preceding commentary section, but only as quoted negative examples from the original — not in the rewrite itself."
+    },
+    {
+      "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+      "passed": false,
+      "evidence": "All company-specific details are replaced with placeholder brackets: '[type of company]', '[specific problem]', '[year]', '[N]', '[specific deliverable: data pipelines / API integrations / internal tools / etc.]', '[city]', '[region/industry]'. The non-bracketed statements — 'We'd rather tell you something is a bad idea than charge you to build it' and 'no account managers in the middle' — are opinionated but could apply to any small consultancy. The executor explicitly acknowledges this: 'Fill in the brackets. The structure is sound; the specifics have to come from you.' The rewrite is a template, not a company-specific text."
+    },
+    {
+      "text": "The rewrite is equal to or shorter than the original in word count.",
+      "passed": false,
+      "evidence": "Original text (from eval_metadata.json prompt): approximately 99 words. Rewritten section: approximately 122 words (counting bracket placeholder text as words). The rewrite is roughly 23 words longer than the original, violating this constraint."
+    },
+    {
+      "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text.",
+      "passed": false,
+      "evidence": "The response's commentary section names what was REMOVED from the original (buzzwords, vague adjectives, grand aspirations) but does not name the humanization techniques APPLIED in the rewrite. Techniques like contractions (We've, We'd, We're, You'll), sentence length variation, and specificity are present in the rewrite but never labeled or explained. The only explanatory note is 'Fill in the brackets. The structure is sound; the specifics have to come from you' — which describes a limitation, not applied techniques."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1027,
+    "transcript_chars": 32124
+  },
+  "timing": {
+    "executor_duration_seconds": 33.031,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 33.031
+  },
+  "claims": [
+    {
+      "claim": "The rewrite removes vague corporate buzzwords",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewritten section contains none of 'passionate', 'innovative', 'cutting-edge', 'transformative', 'seamless', 'holistic', 'empowering', 'leverage', or similar buzzwords."
+    },
+    {
+      "claim": "The rewrite is more human and specific than the original",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite uses placeholder brackets for all actual specifics ('[type of company]', '[specific problem]', '[year]', '[N]', '[city]', '[region/industry]'). It is structurally more direct, but without filled-in facts it is not actually specific — it is a template that could apply to any company."
+    },
+    {
+      "claim": "The original can't be rewritten without facts from the company",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The executor states 'Generic values copy like the original can't be fixed without facts' — this is a fair meta-observation, though the task asked for a rewrite of the given text, not a template."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": ["Executor produced a bracketed template rather than filling in specifics, citing the absence of real company facts in the original text"]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make.",
+        "reason": "This assertion is well-designed but the eval prompt might need to make clear that plausible invented specifics are acceptable (e.g., the executor can assume it's a small dev shop and invent 'We build data pipelines for fintech companies'). Without that guidance, an executor may conclude — reasonably — that it cannot invent company facts and produces a template instead, which technically fails the assertion through no fault of its reasoning."
+      },
+      {
+        "assertion": "The rewrite is equal to or shorter than the original in word count.",
+        "reason": "This assertion is sound but the grader requires manual word counts. Consider adding word count as an automatically computed metric in the benchmark harness to make grading unambiguous."
+      },
+      {
+        "reason": "No assertion checks whether the response critiques the ORIGINAL text (what was wrong) versus explaining what techniques were APPLIED to the new text. The current eval-4 conflates these: the executor gave a critique of what was removed (good) but no explanation of what was added (fails the assertion). An assertion distinguishing 'explains removed elements' from 'names applied humanization techniques' would better discriminate skill quality."
+      }
+    ],
+    "overall": "Evals are well-targeted. The primary gap is that the prompt does not clarify whether the executor may invent plausible company specifics, leading to a 'responsible template' response that passes the buzzword assertion but fails three others. This creates a floor for without-skill performance that is arguably higher than intended."
+  }
+}

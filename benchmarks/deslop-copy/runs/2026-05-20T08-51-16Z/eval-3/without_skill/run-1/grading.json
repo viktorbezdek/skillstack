@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+      "passed": true,
+      "evidence": "All 15 banned terms are absent from the rewrite body (between the --- dividers). The 'What changed' explanation references 'passionate', 'cutting-edge', and 'holistic' in quotes only to name what was removed — they do not appear as live claims. The rewrite itself contains none of the 15 banned terms."
+    },
+    {
+      "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+      "passed": false,
+      "evidence": "No statement in the rewrite is specific to this company. The rewrite contains opinionated stances ('We'd rather do fewer things right than more things adequately', 'if we think you're solving the wrong problem, we'll tell you') but these are philosophies any small consulting or software agency could claim. The model itself acknowledged this limitation at the end: 'If you share what the company actually does, I can make it more concrete.' The model's own thinking (visible in the transcript) confirms it intentionally wrote generically because no company-specific information was available. No statement could 'only apply to this company' because the company's domain, customers, and differentiators are entirely absent."
+    },
+    {
+      "text": "The rewrite is equal to or shorter than the original in word count.",
+      "passed": false,
+      "evidence": "The original text contains approximately 95 words. The rewrite (between the --- dividers) contains approximately 158 words — roughly 66% longer than the original. The rewrite expanded compressed buzzword-phrases into full explanatory sentences, trading density for clarity, but this violated the length constraint. No trimming was applied."
+    },
+    {
+      "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text.",
+      "passed": true,
+      "evidence": "The 'What changed:' section reads: 'Removed all the filler adjectives (\"passionate,\" \"cutting-edge,\" \"holistic\"), replaced vague claims with a specific stance, added actual opinions, and made the \"we\" feel like real people with a perspective rather than a press release.' This names techniques: filler removal, specificity, adding opinions, and voice/perspective. The assertion's listed examples (specificity, opinion) are covered. Sentence length variation and contractions are not explicitly named but the coverage meets the intent."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.5
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 858,
+    "transcript_chars": 26712
+  },
+  "timing": {
+    "executor_duration_seconds": 18.999,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 18.999
+  },
+  "claims": [
+    {
+      "claim": "Removed all the filler adjectives ('passionate', 'cutting-edge', 'holistic')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All three named adjectives are absent from the rewrite body. Verified by reading the rewrite text."
+    },
+    {
+      "claim": "Replaced vague claims with a specific stance",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite takes clearer positions than the original but the stances are not company-specific. Statements like 'we intend to stay small' and 'we'll tell you if you're solving the wrong problem' are opinions any small agency could hold. The model itself admitted no company-specific information was available, so 'specific' here means 'opinionated' rather than 'particular to this business.'"
+    },
+    {
+      "claim": "Added actual opinions",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewrite contains genuine positions: refusal of scope creep, deliberate commitment to staying small, preference for doing fewer things well, promise of honest timelines. These are opinions not present in the original."
+    },
+    {
+      "claim": "Made the 'we' feel like real people with a perspective rather than a press release",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewrite uses first-person narrative, contractions (we're, we'd, you'll, aren't), direct address, and self-aware admissions ('every time we've grown too fast, the work got worse'). Reads as human authorship, not AI slop."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make.",
+        "reason": "The eval prompt provides a generic 'about page' with no company name, industry, product, or customer segment. It is structurally impossible for the model to produce a statement that 'could only apply to this company' because the company is not defined. The assertion tests company-specificity but the input lacks any company-specific anchor. Consider either (a) providing minimal company context in the prompt (e.g., 'a 12-person DevOps consultancy serving Series B startups'), or (b) softening the assertion to require a statement that names an industry, customer type, or concrete use case rather than requiring uniqueness to an unnamed company."
+      },
+      {
+        "assertion": "The rewrite is equal to or shorter than the original in word count.",
+        "reason": "This assertion is not tested by any observable behavior in the without_skill run — the model produced a longer rewrite with no awareness of the length constraint. Consider adding explicit length guidance to the eval prompt, or verifying whether the skill's SKILL.md includes a brevity instruction. Without the skill, the model had no reason to trim."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite names or implies what the company actually does (its domain, customer, or product). The model's rewrite is entirely domain-agnostic — it could describe a software agency, a law firm, or a bakery. An assertion like 'the rewrite implies a recognizable industry or customer type' would catch this gap and better measure whether the output is usable as real about-page copy."
+      }
+    ],
+    "overall": "Two of four assertions fail. The length failure (2x the original) is a clear gap. The specificity failure is partly a prompt-design problem: the eval input provides no company context, making company-specific assertions unverifiable. The explanation requirement (assertion 4) passes cleanly. Eval could be strengthened by adding minimal company context to the prompt."
+  }
+}

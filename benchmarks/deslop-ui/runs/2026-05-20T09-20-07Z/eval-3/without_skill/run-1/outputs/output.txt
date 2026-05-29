@@ -1,0 +1,41 @@
+Six patterns, six problems, six fixes:
+
+---
+
+**'Comprehensive Analytics Dashboard'**
+- **Problem:** "Comprehensive" is a marketing superlative — it describes the company's pride, not what the user is looking at. Empty modifier.
+- **Replacement:** `Analytics` (or `Analytics Overview` if hierarchy requires it)
+
+---
+
+**'Your data is currently being processed'**
+- **Problem:** "currently" is dead weight — if it's being processed, it's by definition happening now. "Your data" is also cold.
+- **Replacement:** `Processing data…`
+
+---
+
+**'Proceed to payment'**
+- **Problem:** "Proceed to" is bureaucratic ceremony. Buttons should name the destination or action, not the act of going toward it.
+- **Replacement:** `Continue to payment`
+
+---
+
+**'Please ensure that all required fields have been completed before submitting'**
+- **Problem:** Four layers of hedging: "Please", "ensure that", "have been completed" (passive), "before submitting" (obvious). This is the canonical AI-generated form warning.
+- **Replacement:** `Complete all required fields to continue` (on validation error) or remove it entirely — let inline field errors do the work.
+
+---
+
+**'Unfortunately, no results were found matching your search criteria. Please try a different search term.'**
+- **Problem:** "Unfortunately" is the AI apologizing for the user's search. Passive voice throughout. "Search criteria" is bureaucratic. Two sentences where one handles it.
+- **Replacement:** `No results for "[query]". Try different keywords.`
+
+---
+
+**'Your file has been successfully uploaded to our secure cloud storage'**
+- **Problem:** "successfully" is redundant in a success notification — failure would say so. "Our secure cloud storage" is marketing copy in an interface moment.
+- **Replacement:** `File uploaded.` (or `[filename] uploaded.` if the filename is available)
+
+---
+
+**The pattern across all six:** AI copy tends to over-explain, over-apologize, and over-reassure. It treats every message as an opportunity to describe what just happened rather than confirm it. Users read microcopy in under a second — every word above the minimum is friction.

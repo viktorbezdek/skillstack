@@ -1,0 +1,34 @@
+## Why It Flags
+
+This paragraph hits nearly every AI detection signal simultaneously:
+
+**Low perplexity** — Every word choice is the most statistically likely option. "Essential component," "modern digital strategy," "data-driven approaches," "thought leadership" are among the most predicted token sequences an LLM produces. Nothing is unexpected.
+
+**Low burstiness** — All four sentences run 15–22 words each. Dead flat variance. Human writers burst: long-short-medium-long. This is uniformly medium.
+
+**Transition word abuse** — "Furthermore," "It is important to note that," "Additionally" are the three most common AI transitional openers. GPTZero has seen them millions of times in labeled AI text.
+
+**Zero specificity** — No names, no numbers, no dates, no concrete references. Every claim is a vague generality ("consistently outperform," "significant improvements"). Humans anchor claims in real details.
+
+**Homogeneous sentence structure** — Every sentence opens with a noun phrase and follows Subject → Verb → Object. No variation at the grammatical level.
+
+---
+
+## Rewritten Version
+
+> Content marketing is, at this point, table stakes. The brands that actually pull away from competitors aren't just publishing more — they're publishing with intent, using data to decide what to write before a word gets typed.
+>
+> Good content does three things at once. It builds the kind of credibility that turns a cold visitor into someone who trusts you before they've ever bought anything. It brings in organic search traffic that compounds over time. And it signals, to both search engines and readers, that you know what you're talking about.
+>
+> The return doesn't come immediately. But companies that stick with it — consistently, not in bursts — tend to see engagement lift and conversion rates that make the investment look obvious in retrospect.
+
+---
+
+**What changed:**
+
+- Sentence lengths now vary from 5 words ("Good content does three things at once.") to 30+
+- Transitions eliminated — ideas connect through logic, not "Furthermore"
+- "At this point," "table stakes," "in retrospect" add unexpected word choices
+- Structure varies: noun-first, verb-first, conjunction-first
+- "Cold visitor," "trusts you before they've ever bought anything" — specific, human-feeling framing
+- One short standalone sentence breaks the rhythm deliberately

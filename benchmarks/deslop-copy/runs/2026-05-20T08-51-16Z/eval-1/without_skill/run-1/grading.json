@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+      "passed": true,
+      "evidence": "All 13 target items appear in the flagged clichés table: 'Leverage', 'comprehensive', 'cutting-edge', 'empower your team', 'unlock unprecedented growth' (covers both 'unlock' and 'unprecedented'), 'innovative solution', 'seamlessly integrates', 'transformative results', 'drive sustainable success', 'robust analytics', 'valuable insights', 'enable informed decision-making'. That is 13/13 explicitly named with explanations."
+    },
+    {
+      "text": "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+      "passed": true,
+      "evidence": "Rewrite text: 'Your team already has a workflow. [Product] plugs into it — no migration, no retraining. You get a live view of what's working and where things stall, so you can act on real data instead of gut checks. Less time in spreadsheets. More time on the work that actually moves things forward.' None of the 12 banned words appear."
+    },
+    {
+      "text": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+      "passed": true,
+      "evidence": "Multiple concrete elements present: 'no migration, no retraining' (named outcomes), 'a live view of what's working and where things stall' (concrete scenario), 'act on real data instead of gut checks' (concrete contrast), 'Less time in spreadsheets' (named concrete outcome). These are verifiable, specific claims rather than abstract platitudes."
+    },
+    {
+      "text": "The rewrite contains sentence length variation — at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check.",
+      "passed": true,
+      "evidence": "Short sentences: 'Your team already has a workflow.' = 6 words; 'Less time in spreadsheets.' = 4 words. Long sentence: 'You get a live view of what's working and where things stall, so you can act on real data instead of gut checks.' = 23 words. Both thresholds satisfied."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1412,
+    "transcript_chars": 28693
+  },
+  "timing": {
+    "executor_duration_seconds": 26.745,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 26.745
+  },
+  "claims": [
+    {
+      "claim": "The rewrite uses shorter sentences than the original",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Original had compound sentences stacking multiple claims ('Leverage our comprehensive, cutting-edge platform to empower your team...'). Rewrite splits into short, punchy sentences averaging 8-10 words with two 4-6 word punches."
+    },
+    {
+      "claim": "The rewrite uses plain verbs",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Verbs in rewrite: 'has', 'plugs', 'get', 'stall', 'act', 'moves'. Compare to original's 'leverage', 'empower', 'unlock', 'drive', 'enable' — all corporate-register verbs absent from rewrite."
+    },
+    {
+      "claim": "The rewrite provides a concrete reader benefit per clause",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Each clause delivers a named reader benefit: 'plugs into it — no migration, no retraining' (friction eliminated), 'live view of what's working and where things stall' (specific visibility benefit), 'act on real data instead of gut checks' (decision quality), 'Less time in spreadsheets' (time saved). Verified across all 5 clauses."
+    },
+    {
+      "claim": "The rewrite avoids adjective stacking",
+      "type": "quality",
+      "verified": true,
+      "evidence": "No multi-adjective noun phrases in rewrite. Original had 'comprehensive, cutting-edge platform', 'innovative, seamlessly integrated solution', 'robust analytics'. Rewrite uses noun phrases without stacked modifiers."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 1 passes even if the model flags the words with trivial or wrong reasoning. A model could write 'leverage — bad word' for every entry and pass. Consider adding an assertion that at least one flagged entry includes a specific, non-generic explanation (e.g., references what the phrase obscures or why it fails the reader)."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite preserves the essential purpose of the original copy (i.e., introducing a software tool that helps teams work more effectively). A rewrite that strips slop but also strips the product's value proposition would pass all four current assertions. Consider adding: 'The rewrite communicates that the product integrates with existing processes and provides data visibility.'"
+      },
+      {
+        "assertion": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+        "reason": "This assertion passes here with strong evidence, but 'no migration, no retraining' could be satisfied by a model that just negates the original slop rather than adding genuine specificity. Consider requiring a claim that isn't just the absence of friction (e.g., a number, a named tool, a workflow step) to make the bar harder to satisfy superficially."
+      }
+    ],
+    "overall": "Assertions are well-targeted and discriminating for a without-skill run. The model performs at near-ceiling despite lacking the skill. The main gap is that no assertion checks meaning preservation — a rewrite could pass all four checks while failing to describe the product coherently."
+  }
+}

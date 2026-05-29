@@ -1,0 +1,25 @@
+## Why GPTZero Flags It
+
+**Low perplexity** — every word choice is the statistically most expected next word. "Data-driven approaches consistently outperform" is the kind of phrase an LLM reaches for automatically.
+
+**Low burstiness** — all four sentences are roughly the same length and grammatical weight. Human writing alternates short punchy sentences with longer, messier ones.
+
+**AI transition stack** — "Furthermore," "It is important to note that," and "Additionally" appear in sequence. These are LLM paragraph connectors, not how people actually write.
+
+**Zero specificity** — no numbers, no named companies, no examples. Everything is abstract assertion.
+
+**Three-item parallel lists** — "brand authority, organic traffic, thought leadership" is a classic LLM formatting pattern.
+
+---
+
+## Rewrite
+
+> Most companies treat content as a checkbox — publish a blog post, move on. That's exactly why the ones who don't keep winning.
+>
+> The gap shows up in search. A single well-researched piece on a niche problem can pull qualified traffic for years without another dollar in ad spend. HubSpot built their entire business on this before "content marketing" was a phrase people used in meetings.
+>
+> But traffic is just the surface. The harder gain is that customers who found you through your writing already trust you before they ever talk to sales. That changes the entire conversion conversation.
+
+---
+
+**What changed:** shorter sentences mixed with longer ones (burstiness), a specific company example (HubSpot), an opinion with some edge ("that's exactly why"), no transition adverbs, and claims grounded in a concrete mechanism rather than vague assertion.

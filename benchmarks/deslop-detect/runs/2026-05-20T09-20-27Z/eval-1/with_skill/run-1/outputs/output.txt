@@ -1,0 +1,35 @@
+## Why This Paragraph Flags
+
+**1. Zero burstiness.** All four sentences cluster between 14–21 words. GPTZero measures sentence-length variance directly — a flat distribution like this is one of its strongest signals.
+
+**2. Stock AI transition phrases.** "Furthermore," "It is important to note that," and "Additionally" are among the most statistically common sequences in LLM-generated text. Detectors train on these specifically.
+
+**3. Low perplexity (everything is the expected token).** "Essential component of modern digital strategy," "consistently outperform their competitors," "significant improvements in customer engagement" — every phrase is the highest-probability completion. No surprises anywhere.
+
+**4. No grounding.** Not a single number, company name, or concrete detail. Pure assertion without anchor is a classic AI pattern.
+
+---
+
+## Rewrite
+
+Here's what most marketing teams get backwards. The argument for content investment isn't "brand authority" — that phrase is real but too abstract to move a budget line — it's that companies publishing consistently in their category tend to hold the first page of search results for the terms their actual buyers use, often displacing competitors who spend significantly more on paid acquisition. Works, when done right. Not always and not automatically, but when the content is genuinely useful rather than keyword-padded, the compounding effect on organic traffic shows up clearly in attribution data in ways that ad spend rarely matches after month six. Conversion takes longer.
+
+---
+
+## Detector Signal Verification
+
+**Burstiness**
+- Shortest sentence: "Works, when done right." (4 words) ✓ target ≤5
+- Longest sentence: "The argument for content investment isn't 'brand authority'..." (54 words) ✓ target ≥35
+
+**Sentence openings (first 3)**
+1. "Here's" — adverb/expletive construction ✓ not SVO
+2. "The argument" — noun-SVO
+3. "Works" — verb opener ✓
+Variety: ✓ no two consecutive same type
+
+**Perplexity**
+- Specific references injected: "month six," "attribution data," "keyword-padded," "budget line," "first page of search results"
+- First sentence opener type: adverb/expletive — ✓ not SVO
+
+**Passes applied**: burstiness, sentence structure, perplexity, voice, structural disruption (fragment sentence)

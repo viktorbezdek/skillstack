@@ -1,0 +1,72 @@
+{
+  "expectations": [
+    {
+      "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+      "passed": true,
+      "evidence": "The opener reads: 'I noticed [specific thing about their company — a recent hire, a product launch, something they posted]. It made me think you're probably dealing with [specific problem].' Starts with a specific observation ('I noticed'), no landscape or era framing present."
+    },
+    {
+      "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+      "passed": true,
+      "evidence": "The closer reads: 'Worth a 20-minute call this week? I can show you how it works for [their industry/use case specifically].' None of the forbidden phrases appear in the email body. The phrase 'Don't hesitate to reach out at your earliest convenience' appears only as a quoted bad example in the 'What changed and why' commentary section, not in the rewrite itself."
+    },
+    {
+      "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+      "passed": true,
+      "evidence": "Subject line is: 'Quick question about [their specific pain point]'. Contains none of the forbidden words. The question format is specific and suggests a targeted, personalized outreach rather than a broadcast announcement."
+    },
+    {
+      "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+      "passed": true,
+      "evidence": "The email body contains \"you're probably dealing with\" (the contraction 'you're'). This appears in the opener paragraph of the rewritten email body."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": null,
+  "timing": null,
+  "claims": [
+    {
+      "claim": "The original opener 'In today's fast-paced landscape' is the #1 signal an email is AI-generated",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is an editorial assertion in the 'What changed and why' section — plausible and widely held, but not independently verifiable from the transcript or outputs alone."
+    },
+    {
+      "claim": "Starting with something you actually noticed about them shows the email wasn't blasted to 10,000 people",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewritten opener does contain personalization placeholders ('[specific thing about their company]', '[their industry/use case specifically]') consistent with this claim."
+    },
+    {
+      "claim": "The CTA 'Don't hesitate to reach out at your earliest convenience' was replaced with a concrete ask",
+      "type": "process",
+      "verified": true,
+      "evidence": "The 'What changed and why' section explicitly identifies this swap, and the rewrite's CTA is 'Worth a 20-minute call this week?' — a concrete time-bound ask."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+        "reason": "The subject 'Quick question about [their specific pain point]' still uses a bracket placeholder for the actual specificity. A rewrite that uses '[their specific pain point]' as the differentiator isn't demonstrably more specific than the original — it's a template. The assertion passes because forbidden words are absent, but a weak rewrite with placeholders satisfies it just as easily as a strong one. Consider requiring the subject to contain an actual concrete noun or benefit, not just a bracket."
+      },
+      {
+        "reason": "No assertion checks whether the email body itself avoids the archetypal AI-slop noun phrases ('comprehensive platform', 'actionable insights', 'data-driven decisions', 'seamless integration') — the 'What changed and why' section explicitly calls these out as replaced, but no expectation verifies their absence from the rewritten body."
+      },
+      {
+        "reason": "The contraction assertion is satisfied by a single 'you're' — even a heavily formal rewrite could contain one incidental contraction. A stronger assertion might require 2+ contractions or verify that they appear in multiple sentences, indicating a consistently conversational register rather than a one-off occurrence."
+      }
+    ],
+    "overall": "Assertions catch the most common surface failures (era framing, passive CTAs, filler subject words). The main gap is that bracket-placeholder rewrites pass all four checks while still being incomplete — the evals don't distinguish between a delivered rewrite and a template skeleton."
+  }
+}

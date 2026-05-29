@@ -1,0 +1,35 @@
+Here's the breakdown of what's broken, then the rewrite.
+
+**Blacklist hits in the original:** "fast-paced," "unprecedented," "forward-thinking," "leverage," "cutting-edge," "stay ahead of the curve," "comprehensive," "streamline," "transformative," "state-of-the-art," "actionable insights," "empower," "data-driven decisions," "unlock its full potential," "Don't hesitate to reach out," "We look forward to connecting at your earliest convenience," "Furthermore," "Now more than ever."
+
+The deeper problem: it says nothing. No product, no customer, no specific outcome. Just pressure + jargon.
+
+---
+
+**Subject:** Quick question about [Company]'s ops
+
+Hi [Name],
+
+I noticed [trigger — e.g., you recently hired a Head of Ops / you raised a Series A / you're expanding into enterprise]. Usually that means the manual work starts catching up with you.
+
+We built a platform that [one specific thing it does — e.g., connects your CRM, billing, and support tools so your team stops pulling reports by hand]. [Customer Name] went from [old state] to [new state] in [timeframe].
+
+Are you running into anything like that at [Company]?
+
+If yes, happy to show you how it works — 20 minutes, no deck. If it's not relevant, no follow-up.
+
+[Your Name]
+
+---
+
+**What changed:**
+
+- **Subject** — dropped "Innovative Solution," replaced with a specific trigger and a question
+- **Opener** — deleted the landscape paragraph entirely; replaced with a concrete observation about them
+- **Body** — forced a one-sentence product description (placeholders show you where specifics go); added a real customer example slot
+- **Closer** — "Don't hesitate to reach out" → a binary question they can actually answer, with an explicit out so it doesn't feel pushy
+- **Contractions** added throughout
+- **Sentence length** varied — short punchy sentences next to longer ones
+- **All blacklist words removed** — not synonym-swapped, structurally rewritten
+
+Fill in the bracketed placeholders with real data and it's ready to send.

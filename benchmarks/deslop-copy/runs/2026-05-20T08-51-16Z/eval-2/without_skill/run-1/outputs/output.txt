@@ -1,0 +1,28 @@
+Here's a full rewrite. I've used `[brackets]` where you'll need to fill in specifics — the specificity is exactly what makes cold email feel human.
+
+---
+
+**Subject: Quick question about [specific pain point at their company]**
+
+Hi [Name],
+
+I noticed [something specific — a recent hire, a job posting for ops roles, a product launch, a funding announcement]. Usually that means [the resulting headache — scaling workflows, onboarding chaos, reporting gaps].
+
+That's the exact problem [Company] helps with. [One concrete sentence on what it does — not "streamlines workflows," but e.g., "We cut the time ops teams spend on manual reconciliation from a few hours a week to about ten minutes."]
+
+[Reference a customer similar to them]: [Customer name], a [similar-sized company in their space], went from [before state] to [after state] in about [timeframe].
+
+Worth a 20-minute call to see if there's a fit? Here's my calendar: [link].
+
+[Your name]
+
+---
+
+**Why these changes:**
+
+- **Subject**: Asks a question about *them* instead of announcing your solution
+- **Opener**: References something real they did — shows you're not mass-blasting
+- **Body**: One specific outcome replaces four buzzword paragraphs; a named customer beats "numerous companies"
+- **Closer**: "Worth a 20-minute call?" is low-stakes and direct; "at your earliest convenience" is what robots say
+
+If you share what the product actually does and who you're sending to, I can make the specifics concrete instead of bracketed.

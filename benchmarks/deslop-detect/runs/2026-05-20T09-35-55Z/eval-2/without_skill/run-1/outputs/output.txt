@@ -1,0 +1,33 @@
+## What Each Detector Looks For
+
+**GPTZero** — two primary signals:
+- **Perplexity**: how "surprising" each word choice is given the surrounding context. AI picks the statistically safest next word; humans don't.
+- **Burstiness**: variation in sentence length and complexity. AI tends toward uniform sentence weight; human writing swings between short punches and long, winding ones.
+
+**Originality.ai** — similar signals plus:
+- **N-gram pattern matching** against known model output distributions
+- **Semantic uniformity**: AI text flows logically at every step in a way humans rarely sustain
+- **Generic high-frequency phrases** baked into training data ("increasingly adopting", "top talent", "fundamentally transformed")
+
+## What's Wrong With Your Passage
+
+Every sentence is roughly the same length and weight — burstiness near zero. Word choices are maximally predictable: *fundamentally transformed*, *top talent*, *embrace*, *increasingly*. No concrete details, no friction, no voice. It reads like the statistical average of ten thousand corporate blog posts.
+
+## Rewrite Strategy
+
+1. **Shatter uniformity** — alternate short punches with longer compound sentences
+2. **Anchor with specifics** — a number, a year, a named study
+3. **Introduce friction or a counterpoint** — AI almost never hedges or complicates mid-paragraph
+4. **Kill the buzzwords** — every phrase a detector flags is replaceable
+5. **Embed a distinct perspective** — not neutral narration, but a stance
+
+## Rewritten Version
+
+> The office, for a lot of workers, is now wherever the laptop opens. That shift accelerated hard in 2020, and it hasn't snapped back. As of 2023, roughly a quarter of U.S. employees still worked remotely at least part-time — a figure that has barely budged despite pressure from executives who miss the hallway collision. Companies that drew a hard line on in-person attendance found out the consequence quickly: candidates declined. Flexibility stopped being a perk somewhere along the way. Now it's the baseline, and the teams that built real cross-timezone habits early are noticeably ahead of those still running on Zoom fatigue and time-zone guesswork.
+
+**What changed:**
+- Sentence lengths: 9 words, 17 words, 28 words, 9 words, 12 words, 24 words — high burstiness
+- Specific stat with year (verify/update the actual figure for your source)
+- "hallway collision" and "Zoom fatigue" — low-probability, specific phrases
+- Embedded friction ("pressure from executives who miss...")
+- A clear stance in the final sentence rather than passive observation

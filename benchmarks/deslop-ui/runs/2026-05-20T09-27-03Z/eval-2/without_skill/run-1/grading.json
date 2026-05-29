@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+      "passed": true,
+      "evidence": "Primary replacement: 'No projects yet.' (sentence fragment) + '[Create your first project]' (CTA). Secondary option: 'No projects yet. Create one to start organizing your work.' + '[Create project]'. Neither version contains 'it looks like', 'don't worry', 'easy', 'feel free', or motivational phrasing. The primary is a clean fragment+CTA. The secondary is functional, not motivational."
+    },
+    {
+      "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+      "passed": true,
+      "evidence": "Primary replacement body: 'No projects yet.' = 3 words. Secondary: 'No projects yet. Create one to start organizing your work.' = 10 words. Both are well within the 15-word limit."
+    },
+    {
+      "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+      "passed": true,
+      "evidence": "Modal replacement: 'Here's what you can do from your dashboard: [specific thing 1], [specific thing 2], [specific thing 3].' + '[Get started] · [Watch a 2-min intro]'. None of the banned phrases appear. The modal was improved rather than removed — no assertion in the output identifies the modal as unnecessary, so the removal recommendation clause does not apply."
+    },
+    {
+      "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler', 'verbose', 'reassurance').",
+      "passed": true,
+      "evidence": "The response names 'generic marketing copy' (empty state problem #4: 'organize work, collaborate, track progress is generic marketing copy') and 'corporate filler' (modal problem #5: 'Please don't hesitate to reach out — corporate filler with a hidden negative'). These are distinct named pattern types matching the expected vocabulary level."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1617,
+    "transcript_chars": 32836
+  },
+  "timing": {
+    "executor_duration_seconds": 22.857,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 22.857
+  },
+  "claims": [
+    {
+      "claim": "The empty state has 5 discrete problems worth naming",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output lists exactly 5 numbered problems for the empty state section"
+    },
+    {
+      "claim": "The modal has 6 discrete problems",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Output lists exactly 6 numbered problems for the onboarding modal section"
+    },
+    {
+      "claim": "A cross-cutting pattern applies to both components",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Final paragraph identifies the shared root cause: 'the copy talks about the product rather than what the user can accomplish'"
+    },
+    {
+      "claim": "The response provides two replacement options for the empty state",
+      "type": "process",
+      "verified": true,
+      "evidence": "Output shows primary option ('No projects yet.' + CTA) and a secondary 'if context warrants a bit more' option"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action.",
+        "reason": "The output provides TWO alternative replacements — the primary satisfies 'one sentence/fragment' but the secondary is two sentences. The assertion passes on the strength of the primary, but if a response offered only the secondary it might be debatable. Consider tightening: 'The primary/best replacement is ONE sentence or fragment + CTA.'"
+      },
+      {
+        "reason": "No assertion checks whether the modal replacement actually provides useful placeholder structure. The output uses '[specific thing 1], [specific thing 2], [specific thing 3]' as fill-in blanks rather than concrete copy — this is arguably still AI slop (vague scaffolding). An assertion like 'the modal replacement provides concrete, non-placeholder body copy' would catch this."
+      },
+      {
+        "reason": "The 'names at least 2 pattern types' assertion is weak because terms like 'generic marketing copy' and 'corporate filler' are informal descriptions embedded in prose, not named taxonomy labels. A stronger assertion would check for explicit categorisation: e.g., 'The response explicitly labels each problem with a pattern category' or lists patterns in a summary block."
+      }
+    ],
+    "overall": "All four assertions pass, but the eval has a coverage gap: the modal replacement uses placeholder text ('[specific thing 1]') which is arguably its own form of slop — vague scaffolding that defers the actual writing work. None of the assertions catch this. The 'two pattern types' bar is also fairly easy to clear incidentally."
+  }
+}

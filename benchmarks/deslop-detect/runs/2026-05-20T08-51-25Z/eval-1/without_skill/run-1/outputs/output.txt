@@ -1,0 +1,27 @@
+## Why It Gets Flagged
+
+GPTZero scores on two main signals:
+
+**1. Low perplexity** — every word choice is the statistically safest, most predictable option. "Furthermore," "It is important to note that," "Additionally," "typically see significant improvements" — these are the words a language model reaches for because they're the highest-probability completions. Human writers make weirder, more personal choices.
+
+**2. Low burstiness** — your sentences are nearly identical in length and follow the same Subject → Verb → Object pattern. Humans naturally mix short punchy sentences with longer winding ones. This paragraph is metronomically uniform.
+
+**Specific red flags:**
+- "Furthermore" / "Additionally" / "It is important to note that" — AI transition words that real writers almost never use
+- The tricolon list ("brand authority, drives organic traffic, establishes thought leadership") — AI loves these
+- Zero concrete detail, no numbers, no named examples
+- Passive hedging: "consistently outperform," "typically see"
+
+---
+
+## Rewrite
+
+Content marketing is having a moment — and not just because everyone says so. The companies actually winning with it aren't publishing more; they're publishing smarter, using search data and customer questions to shape what they write before they write it.
+
+Good content does three things at once: it ranks, it persuades, and it builds the kind of trust that makes someone choose you over a cheaper competitor. That last one is hard to measure but easy to lose. HubSpot's been living proof of this model for a decade — their blog essentially replaced a sales team.
+
+The conversion case is real too, but it's slower than most CMOs want to admit. Six months before you see it in the numbers.
+
+---
+
+**What changed:** shorter sentences mixed with longer ones, a concrete example (HubSpot), a specific timeframe, a slightly skeptical tone, and none of the stock transition phrases.

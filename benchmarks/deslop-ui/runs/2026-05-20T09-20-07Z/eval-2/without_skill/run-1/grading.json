@@ -1,0 +1,75 @@
+{
+  "expectations": [
+    {
+      "text": "The empty state replacement is ONE sentence or sentence fragment (not a paragraph) followed by a call-to-action. The replacement does NOT contain 'it looks like', 'don't worry', 'easy', 'feel free', or any motivational phrase.",
+      "passed": true,
+      "evidence": "Replacement is: header 'No projects yet' (fragment) + single sentence 'Create your first project to organize work, collaborate, and track progress.' + CTA '[Create project]'. None of the banned phrases ('it looks like', 'don't worry', 'easy', 'feel free') appear. No motivational language present."
+    },
+    {
+      "text": "The empty state replacement is 15 words or fewer (not counting the CTA button label).",
+      "passed": true,
+      "evidence": "Header 'No projects yet' (3 words) + body 'Create your first project to organize work, collaborate, and track progress.' (11 words) = 14 words total, excluding the '[Create project]' CTA label. Under the 15-word limit."
+    },
+    {
+      "text": "The onboarding modal replacement does NOT contain 'seamless', 'intuitive', 'don't hesitate', 'please', or 'what matters most'. If the modal content is identified as unnecessary, the response recommends removing it entirely.",
+      "passed": true,
+      "evidence": "Modal replacement: 'Your dashboard / Your metrics, reports, and team activity live here. Start by connecting your first data source. / [Get started] [I'll explore on my own]'. None of the five banned phrases appear. The modal was not identified as unnecessary (a replacement was provided instead), so the 'recommend removal' branch of the assertion is vacuously satisfied."
+    },
+    {
+      "text": "The response names at least 2 specific AI slop pattern types found in the input (e.g., 'verbose empty state', 'gratuitous reassurance', 'corporate superlatives', 'hedge phrases', 'motivational filler').",
+      "passed": true,
+      "evidence": "The output names at least 7 distinct pattern types across both sections: 'hedging' (item 1, empty state), 'patronizing' (item 2), 'effort-signaling' (item 3), 'dead weight' (item 1, modal), 'self-congratulatory' (item 2), 'hollow filler' (item 3), 'corporate softening' (item 4). Exceeds the minimum of 2."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 1680,
+    "transcript_chars": 32053
+  },
+  "timing": {
+    "executor_duration_seconds": 20.971,
+    "total_duration_seconds": 20.971
+  },
+  "claims": [
+    {
+      "claim": "The original empty state copy contains 'It looks like', 'Don't worry', and 'Feel free'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The What's wrong section explicitly calls out 'It looks like' (item 1), 'Don't worry' (item 2), and 'Feel free to... whenever you're ready!' (item 4), matching the banned-phrase list in the eval."
+    },
+    {
+      "claim": "Length is the overarching anti-pattern across both pieces",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The closing paragraph states: 'the original copy treats length as a signal of helpfulness. It isn't — it's friction.' This is a coherent and accurate characterisation of what the replacements fixed."
+    },
+    {
+      "claim": "The modal replacement is shorter and more action-oriented than the original",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The replacement drops all five identified problem phrases and ends with two concrete CTAs ('[Get started] [I'll explore on my own]') rather than a vague support invitation."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response names at least 2 specific AI slop pattern types found in the input",
+        "reason": "The assertion accepts any named pattern (even invented ones like 'generic phrasing') and only requires 2, which almost any response that attempts the task will satisfy. Consider tightening to require that named patterns map to the canonical slop vocabulary used by the skill (e.g. 'gratuitous reassurance', 'corporate superlatives') rather than ad-hoc labels. Alternatively, raise the floor to 4+ patterns or require that at least one maps to an example term listed in the assertion itself."
+      },
+      {
+        "reason": "No assertion checks whether the banned phrases from the INPUT (e.g. 'It looks like', 'intuitive') were explicitly called out in the analysis section. The response does surface them, but a response that silently dropped them and wrote a clean replacement without any diagnostic commentary would pass all four assertions. An assertion like 'the response quotes or paraphrases at least 2 banned phrases from the input in its What's wrong analysis' would catch that gap."
+      }
+    ],
+    "overall": "Assertions are meaningful and cover the core outcomes. The word-count and banned-phrase checks (assertions 1-3) are strong discriminators. Assertion 4 is the weakest link — it passes too easily. One additional assertion on diagnostic depth would round out the suite."
+  }
+}

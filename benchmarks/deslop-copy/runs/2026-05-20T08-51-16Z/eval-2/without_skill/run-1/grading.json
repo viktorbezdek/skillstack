@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The rewritten opener does NOT begin with 'In today's', 'In an era', 'As we navigate', 'Now more than ever', or any landscape/era framing. It starts with a specific claim, question, or observation.",
+      "passed": true,
+      "evidence": "Opener is: 'I noticed [something specific — a recent hire, a job posting for ops roles, a product launch, a funding announcement]. Usually that means [the resulting headache — scaling workflows, onboarding chaos, reporting gaps].' None of the banned phrases appear. Starts with 'I noticed', a direct observation pattern."
+    },
+    {
+      "text": "The rewritten closer does NOT contain 'don't hesitate to reach out', 'at your earliest convenience', 'we look forward to', or 'unlock its full potential'. It uses a direct, specific ask (e.g., 'Reply if this sounds relevant. Happy to share more.').",
+      "passed": true,
+      "evidence": "Closer is: 'Worth a 20-minute call to see if there's a fit? Here's my calendar: [link].' None of the banned phrases appear. The output commentary even explicitly calls out 'at your earliest convenience' as what 'robots say', confirming deliberate avoidance. The ask is direct and action-specific (calendar link + 20-minute call)."
+    },
+    {
+      "text": "The subject line rewrite does NOT contain 'Transforming', 'Innovative', or 'Operations' used as a filler noun. It is specific enough to suggest what the email actually offers.",
+      "passed": true,
+      "evidence": "Subject line is: 'Quick question about [specific pain point at their company]'. None of the banned terms appear. The line is question-framed and anchored to the recipient's specific situation rather than the sender's solution, moving away from generic buzzword subjects."
+    },
+    {
+      "text": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+      "passed": true,
+      "evidence": "Multiple contractions present in the body: 'That's the exact problem' (That is → That's), 'there's a fit' (there is → there's), 'Here's my calendar' (Here is → Here's). Also 'I've used' in the framing preamble. Clearly conversational register."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1247,
+    "transcript_chars": 26910
+  },
+  "timing": {
+    "executor_duration_seconds": 21.38,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 21.38
+  },
+  "claims": [
+    {
+      "claim": "The rewrite used '[brackets]' to indicate where the user needs to fill in specifics",
+      "type": "process",
+      "verified": true,
+      "evidence": "Preamble states 'I've used `[brackets]` where you'll need to fill in specifics' and the body contains multiple bracketed placeholders like '[something specific]', '[Company]', '[link]'"
+    },
+    {
+      "claim": "The subject line was rewritten to ask a question about the recipient rather than announcing the sender's solution",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Commentary says 'Subject: Asks a question about *them* instead of announcing your solution'. Subject is 'Quick question about [specific pain point at their company]'"
+    },
+    {
+      "claim": "The closer replaces 'at your earliest convenience' with a low-stakes direct ask",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Commentary explicitly notes: '\"Worth a 20-minute call?\" is low-stakes and direct; \"at your earliest convenience\" is what robots say'. The closer uses 'Worth a 20-minute call to see if there's a fit? Here's my calendar: [link].'"
+    },
+    {
+      "claim": "The body replaces buzzword paragraphs with one specific outcome and a named customer reference",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Commentary: 'One specific outcome replaces four buzzword paragraphs; a named customer beats \"numerous companies\"'. The body template includes slots for a concrete metric and a named customer."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "All four assertions test for the ABSENCE of specific bad patterns rather than the PRESENCE of positive quality. A model that simply omits those phrases while producing a generic or incoherent rewrite would still pass. Consider adding an assertion that the body contains a specific, non-templated value claim or that the email is coherent as a standalone piece (not all-brackets)."
+      },
+      {
+        "assertion": "The rewrite contains at least one contraction (it's, don't, we'll, you're, they've, etc.) in the body — indicating a more conversational register than the original.",
+        "reason": "This assertion is trivially satisfied. Any non-AI-sounding rewrite will have contractions. It doesn't discriminate between a genuinely improved email and one that's merely less formal. Consider testing for register shift more specifically, e.g. absence of passive voice or nominalizations, or presence of first-person direct address."
+      },
+      {
+        "reason": "No assertion checks whether the rewrite actually addresses the content of the original email. The model produced a fully templated placeholder rewrite (all brackets, no concrete product claim), which passes all four assertions but isn't a complete rewrite — it's a template. An assertion like 'The rewrite contains at least one concrete, non-bracketed claim about the product or outcome' would catch this class of responses."
+      }
+    ],
+    "overall": "The assertions are structurally sound but mostly test for absence of specific AI-sloppy phrases. They pass on a bracketed template that isn't really a rewrite. Adding at least one positive-quality assertion (concrete claim, non-placeholder content) would better discriminate genuine rewrites from skeleton templates."
+  }
+}

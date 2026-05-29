@@ -1,0 +1,85 @@
+{
+  "expectations": [
+    {
+      "text": "The section header replacement is 1-2 words with no adjectives like 'comprehensive', 'powerful', 'advanced', or 'robust'. Examples: 'Analytics', 'Reports', 'Dashboard'.",
+      "passed": true,
+      "evidence": "output.txt line 9: replacement is 'Analytics' — one word, no padding adjectives. The original 'Comprehensive Analytics Dashboard' is reduced to a clean noun."
+    },
+    {
+      "text": "The status message replacement is in present tense active voice or a simple noun phrase. NOT 'is currently being processed' — something like 'Processing...' or 'Processing your data'.",
+      "passed": true,
+      "evidence": "output.txt line 17: replacement is 'Processing… this usually takes a few seconds' — present tense active, no passive construction. Starts with the gerund form as specified."
+    },
+    {
+      "text": "The form hint replacement does NOT contain 'please ensure', 'have been completed', or passive constructions. It is a direct imperative: 'Fill in all required fields' or similar.",
+      "passed": true,
+      "evidence": "output.txt lines 33-35: Primary suggestion is 'Remove entirely' and fallback is 'Fill in all required fields to continue' — a direct imperative. Neither contains 'please ensure', 'have been completed', or passive voice."
+    },
+    {
+      "text": "The file upload notification does NOT contain the word 'successfully'. It is 4 words or fewer: 'File uploaded', 'Uploaded', 'Done' or similar.",
+      "passed": true,
+      "evidence": "output.txt line 51: replacement is '[filename] uploaded' — no 'successfully', and it is 2 tokens (placeholder + verb). Matches the expected pattern exactly."
+    },
+    {
+      "text": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+      "passed": false,
+      "evidence": "output.txt contains six problem/replacement pairs, each with a 'Problem' narrative and a 'Replacement' line. There is no numeric score table, no multi-dimensional rating (Directness, Concision, Clarity, Authenticity or similar), and no structured quality scoring of any kind. The response is exactly the 'plain list of replacements with no quality rating' that the expectation explicitly excludes."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1484,
+    "transcript_chars": 31672
+  },
+  "timing": {
+    "executor_duration_seconds": 20.513,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 20.513
+  },
+  "claims": [
+    {
+      "claim": "The response fixed six patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "output.txt has six numbered sections: section header, status message, button, form hint, empty search, and file upload notification"
+    },
+    {
+      "claim": "Each replacement is accompanied by a problem diagnosis",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Every item has a 'Problem:' subsection explaining what is wrong before giving the replacement"
+    },
+    {
+      "claim": "The form hint is handled with primary/fallback options",
+      "type": "process",
+      "verified": true,
+      "evidence": "output.txt lines 33-35 offer 'Remove entirely' as the primary option and 'Fill in all required fields to continue' as the fallback, with justification"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response produces a before-and-after quality comparison — either a numeric score table, a rating across multiple dimensions (e.g., Directness, Concision, Clarity, Authenticity), or equivalent structured scoring. A plain list of replacements with no quality rating does NOT satisfy this.",
+        "reason": "This is a good discriminating assertion and correctly fails the without_skill output. However, it may also usefully test whether the 'with_skill' output produces a genuinely different format or just pads a table onto a similar list. Consider adding an assertion that checks at least two distinct named dimensions are scored, not just 'before/after' comparison prose."
+      },
+      {
+        "reason": "No assertion covers the button replacement ('Proceed to payment' → 'Pay now') even though the executor produced one. If this item is part of the eval prompt, adding an assertion (e.g., button label is ≤2 words and an action verb) would give broader coverage."
+      }
+    ],
+    "overall": "Four of five assertions are well-targeted and correctly pass on genuinely good replacements. The one FAIL (quality comparison) is the sharpest differentiator between with/without skill runs and is properly designed."
+  }
+}

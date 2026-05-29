@@ -1,0 +1,21 @@
+Synonym swapping doesn't work. AI detectors don't just flag individual words — they analyze statistical patterns: sentence-length variation, predictability of word sequences (perplexity), syntactic uniformity, and burstiness. Swapping "leverage" for "harness" leaves all of those intact.
+
+More importantly, that text has a deeper problem: it says nothing. "Comprehensive platform," "robust analytics," "seamless integrations," "transformative results" — these are placeholders, not claims. No synonym swap fixes that.
+
+**What actually works: rewrite with specifics.**
+
+The goal isn't to fool a detector — it's to write something a human would actually write, which means making concrete claims.
+
+Ask yourself:
+- What does the platform *actually do*? (not "leverage AI" — specifically what)
+- What do the analytics *show* that teams act on?
+- Which integrations? Slack? Salesforce? Ten? Two hundred?
+- What does "transformative results" mean? Faster decisions? Less time in spreadsheets? A number?
+
+A rewritten version might look like:
+
+> *Our platform pulls data from your existing tools — Salesforce, Jira, whatever you're already running — and surfaces the patterns your team was missing. Analytics update in real time, so you're not waiting on a weekly report to see what's working.*
+
+That's shorter, says more, and reads like a person wrote it because a person had to think about what the product actually does.
+
+The previous session you had on rewriting About page copy (#29812) hit the same issue — the fix there was also specificity over aspiration.

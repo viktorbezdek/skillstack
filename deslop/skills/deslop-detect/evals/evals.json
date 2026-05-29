@@ -1,0 +1,17 @@
+[
+  {
+    "query": "my article keeps flagging on GPTZero. The text: 'Content marketing has become an essential component of modern digital strategy. Furthermore, organizations that leverage data-driven approaches consistently outperform their competitors. It is important to note that quality content serves multiple purposes: it builds brand authority, drives organic traffic, and establishes thought leadership.'",
+    "files": [],
+    "expected_behavior": "Agent identifies the structural causes of detection: uniform sentence length (all 20-25 words), 'Furthermore' opener (AI transition), 'leverage' + 'data-driven' (AI vocabulary), 'It is important to note' (AI opener), list-of-three structure. Applies burstiness injection (adds short sentences), restructures sentence openings, injects a specific claim. Explains which detector signal each rewrite targets. Result clearly varies in sentence length."
+  },
+  {
+    "query": "explain why this piece would flag on Originality.ai and what to do about it: 'In today's competitive landscape, businesses must adapt to rapidly changing market conditions. By leveraging innovative technologies and robust processes, organizations can unlock new opportunities for growth. Our comprehensive approach ensures that every aspect of your business is optimized for success.'",
+    "files": [],
+    "expected_behavior": "Agent explains: Originality.ai is a trained classifier that looks at structural patterns, not just vocabulary. This text would flag because: uniform sentence structure, blacklist vocabulary (leveraging, robust, comprehensive, unlock, optimize), abstract outcome claims with no specifics, no personal voice or opinion. Provides a rewrite using Pass 1 (burstiness) + Pass 3 (perplexity via specifics) + Pass 4 (voice). Explains why synonym-swapping alone won't fix Originality.ai scores."
+  },
+  {
+    "query": "I need this to pass both GPTZero and Turnitin AI. Current text: 'Remote work has transformed the modern workplace. Companies are increasingly adopting flexible work arrangements to attract and retain talent. This shift has led to significant changes in how teams collaborate and communicate across different time zones.'",
+    "files": [],
+    "expected_behavior": "Agent acknowledges the dual-detector requirement. Notes this text would flag due to uniform 20-word sentences and zero structural variation. Applies all 5 passes: burstiness (adds 3-word and 35-word sentences), sentence opening diversity (starts one with 'And', one with a question, one with a preposition), perplexity (adds a specific example or number), voice (adds first-person or opinion), structural disruption (breaks list tendency). Provides the pre-publication checklist and confirms which signals are now addressed."
+  }
+]

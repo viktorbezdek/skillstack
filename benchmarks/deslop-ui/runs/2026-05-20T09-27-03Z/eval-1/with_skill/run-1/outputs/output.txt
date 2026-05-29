@@ -1,0 +1,25 @@
+**1. Button:** `Click here to proceed to the next step of the checkout process`
+
+- "Click here" is redundant — buttons are for clicking. "Proceed to the next step of the checkout process" is 8 words for a concept that needs 1.
+- **Replace:** `Continue`
+
+---
+
+**2. Error:** `There seems to have been an issue processing your payment at this time. Please try again later or contact support if the problem persists.`
+
+- "There seems to have been" is hedging — either it failed or it didn't. "At this time" is filler. The whole thing buries the actual problem.
+- **Replace:** `Payment failed. Try again or contact support.`
+
+---
+
+**3. Success:** `Your account has been successfully created and you can now begin using all of our features.`
+
+- "Successfully" is implicit in a success state. "Begin using all of our features" is corporate puffery that adds no information.
+- **Replace:** `Account created.`
+
+---
+
+**4. Tooltip:** `This is where you can leverage our comprehensive suite of powerful reporting tools to gain in-depth insights into your data.`
+
+- "Leverage", "comprehensive suite", "powerful", "in-depth insights" — four consecutive marketing terms. "This is where you can" is pure throat-clearing. The tooltip doesn't say what the tool actually does.
+- **Replace:** `Reports` (or `View reports and analytics` if the icon isn't self-explanatory)

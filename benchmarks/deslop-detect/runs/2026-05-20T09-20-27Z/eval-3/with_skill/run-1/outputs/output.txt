@@ -1,0 +1,38 @@
+**No, synonym spinning doesn't work.** Detectors measure sentence structure and token-sequence patterns — not vocabulary. Swapping "leverage" for "harness" leaves the statistical fingerprint intact. Originality.ai and Turnitin see right through it.
+
+What actually moves the needle: **burstiness** (sentence length variance) and **sentence structure diversity** (how sentences open grammatically). Here's your text rewritten applying those passes:
+
+---
+
+**Rewritten:**
+
+> Two things. The platform connects your existing stack — Salesforce, Looker, Slack, whatever your team is already running — and turns raw usage data into decisions your analysts can act on that same afternoon, not three weeks later when the quarterly report finally lands. Genuinely useful. For companies past a certain headcount, it also scales without hiring a dedicated data operations team to manage it.
+
+---
+
+## Detector Signal Verification
+
+**Burstiness**
+- Shortest sentence: "Two things." (2 words) ✓ target ≤5
+- Longest sentence: "The platform connects your existing stack — ... when the quarterly report finally lands." (43 words) ✓ target ≥35
+
+**Sentence openings (first 3)**
+1. "Two things." — Fragment ✓ not SVO
+2. "The platform..." — Noun-SVO
+3. "Genuinely useful." — Adjective fragment ✓
+
+Variety: ✓ no two consecutive same type
+
+**Perplexity**
+- Specific references injected: Salesforce, Looker, Slack, "that same afternoon," "three weeks later"
+- First sentence opener type: Fragment — ✓ not SVO
+
+**Passes applied:** burstiness, sentence structure, perplexity (concrete specifics), voice (opinion fragment), structural disruption (no lists, short/long alternation)
+
+---
+
+Key changes versus the original:
+- Removed every AI-slop phrase ("leverage," "empower," "robust," "seamless," "transformative," "innovative approach") — not by swapping synonyms, but by replacing the whole sentence structure
+- Added real tool names and a specific timeframe to raise perplexity
+- Opened with a 2-word fragment so no detector can tag it as SVO-first
+- Run through GPTZero + Originality.ai before publishing to confirm both clear

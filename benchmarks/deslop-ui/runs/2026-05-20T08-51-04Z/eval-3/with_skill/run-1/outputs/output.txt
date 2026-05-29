@@ -1,0 +1,25 @@
+Here's the audit with pattern identification and replacements:
+
+---
+
+### Audit Results
+
+| # | Original | AI Pattern | Replacement |
+|---|----------|------------|-------------|
+| 1 | `Comprehensive Analytics Dashboard` | Filler adjective — "comprehensive" adds no information, just signals effort | `Analytics` |
+| 2 | `Your data is currently being processed` | "Currently" is redundant in a live status; passive construction distances the system from the action | `Processing your data…` |
+| 3 | `Proceed to payment` | "Proceed" is formal/legalistic — no human says this | `Pay now` |
+| 4 | `Please ensure that all required fields have been completed before submitting` | Hedging opener ("Please ensure that"), passive voice ("have been completed"), redundant qualifier ("before submitting") | `Complete all required fields` |
+| 5 | `Unfortunately, no results were found matching your search criteria. Please try a different search term.` | Apologetic filler ("Unfortunately"), passive ("were found"), corporate phrase ("search criteria"), two sentences where one works | `No results for that search — try different keywords` |
+| 6 | `Your file has been successfully uploaded to our secure cloud storage` | "Successfully" is redundant on success, "secure cloud storage" is marketing in a status message | `File uploaded` |
+
+---
+
+### What to look for
+
+The patterns above cluster into four categories worth scanning for across your product:
+
+- **Redundant adverbs** — "successfully", "currently" — if the action happened, the adverb adds nothing
+- **"Please ensure that"** openers — always rewritable as a direct instruction
+- **Passive voice on system actions** — "was found", "have been completed" — own what the system does
+- **Marketing words in functional copy** — "comprehensive", "secure cloud storage" — save these for landing pages, not UI states

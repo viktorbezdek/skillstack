@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly states that synonym spinning does NOT effectively evade AI detectors — it must use language like 'won't work', 'doesn't address', 'fails', 'insufficient', or equivalent. A response that suggests synonym spinning as a valid primary technique fails this check.",
+      "passed": true,
+      "evidence": "The response opens with: 'Synonym swapping doesn't work.' This is an unambiguous, direct statement that synonym spinning does not work. It does not suggest synonym spinning as a valid technique — on the contrary, the entire response argues against it."
+    },
+    {
+      "text": "The response explains WHY synonym spinning fails: because detectors look at sentence structure, statistical patterns, or token sequences — not just individual word choices. The explanation must reference structural features, patterns, or statistics (not just 'they look for more than synonyms').",
+      "passed": true,
+      "evidence": "The response states: 'AI detectors analyze statistical patterns, sentence structure, perplexity, and burstiness — not word choice. Swapping \"leverage\" for \"harness\" changes nothing about those signals.' This explicitly names statistical patterns, sentence structure, perplexity, and burstiness — all structural/statistical features, not just a vague 'they look for more than synonyms'."
+    },
+    {
+      "text": "The rewrite completely restructures at least one sentence rather than word-swapping. The rewritten sentences must have different grammatical structures from the originals — not just different vocabulary in the same frame.",
+      "passed": true,
+      "evidence": "The draft rewrite provided is: '[Product] pulls your sales, support, and usage data into one place, flags trends automatically, and pushes summaries to Slack — so your team acts on numbers instead of hunting for them. Used by 50-person startups and Fortune 500 ops teams alike.' This is structurally different from typical AI-slop patterns like 'Our comprehensive platform leverages AI to empower teams' — it uses active verbs on specific objects, drops nominalizations, and appends a concrete outcome clause. The grammar is genuinely restructured, not synonym-swapped. Note: the response also provides a comparison table showing structural rewrites (e.g., 'empower teams' → 'so your analysts spend less time in spreadsheets'), which further demonstrates structural transformation."
+    },
+    {
+      "text": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+      "passed": true,
+      "evidence": "The actual draft rewrite text ('[Product] pulls your sales, support, and usage data into one place, flags trends automatically, and pushes summaries to Slack — so your team acts on numbers instead of hunting for them. Used by 50-person startups and Fortune 500 ops teams alike.') contains none of the forbidden words. The surrounding analysis does cite several of these words ('leverage', 'harness', 'robust', 'seamless', 'transformative', 'empower', 'comprehensive') as negative examples of AI slop to avoid, but these appear in quoted 'Before' positions or as cited examples of bad writing — not in the rewrite itself. The expectation scopes to 'the rewrite' and the actual rewritten content is clean."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1231,
+    "transcript_chars": 30936
+  },
+  "timing": {
+    "executor_duration_seconds": 23.148,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 23.148
+  },
+  "claims": [
+    {
+      "claim": "AI detectors analyze statistical patterns, sentence structure, perplexity, and burstiness — not word choice",
+      "type": "factual",
+      "verified": true,
+      "evidence": "This accurately describes how modern AI detection tools (e.g., GPTZero, Turnitin AI) work — they use perplexity scoring, burstiness metrics, and n-gram statistical models, not lexical word lookup. The claim is directionally correct."
+    },
+    {
+      "claim": "Swapping 'leverage' for 'harness' changes nothing about those signals",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed by the mechanism: synonym substitution preserves sentence structure, rhythm, and statistical distribution. The structural signals that detectors use remain unchanged."
+    },
+    {
+      "claim": "The draft rewrite 'passes any detector because it reads like a human who knows what they're selling'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "No detector was actually run. This is a directional claim — the rewrite is more concrete and specific than the original, which should reduce AI-detection scores, but 'passes any detector' is unverifiable from the transcript alone. Likely true in spirit but overstated."
+    },
+    {
+      "claim": "The rewrite is shorter and more specific than the original corporate text",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The draft rewrite is two sentences; the table shows the original phrases ('comprehensive platform', 'transformative results for organizations of all sizes') replaced by concrete, specific alternatives. The specificity improvement is observable."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite does NOT contain any of: 'comprehensive', 'extensive', 'leverage', 'harness', 'empower', 'robust', 'seamless', 'innovative', 'transformative', 'Furthermore'. All synonyms AND the originals must be absent.",
+        "reason": "The scope of 'the rewrite' is ambiguous. The overall response references 'leverage', 'harness', 'robust', 'seamless', 'transformative', 'empower', and 'comprehensive' as quoted negative examples. If the intent was to check the entire response (not just the draft rewrite section), this expectation would fail on several words — but it currently passes because only the rewrite text is checked. The assertion should clarify: 'the actual rewritten sentences' vs 'anywhere in the response'."
+      },
+      {
+        "reason": "No assertion checks whether the executor rewrote the SPECIFIC input text provided in the prompt, versus giving a generic hypothetical example. The response offers a draft rewrite 'assuming a B2B analytics tool — adjust to your actual product', which is a template, not a rewrite of the input. A discriminating assertion could verify that the rewrite addresses the actual text submitted, not a stand-in example."
+      }
+    ],
+    "overall": "All four assertions pass with solid evidence. The without_skill run performs well on this eval — the model correctly explains why synonym spinning fails and provides a structurally restructured rewrite without slop vocabulary. The two suggestions above would improve the eval's discriminating power: the forbidden-words assertion needs scope clarification, and a new assertion should verify the rewrite targets the actual input text rather than a hypothetical."
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+      "passed": true,
+      "evidence": "All 13 items are explicitly named in the flagged clichés list: (1) 'Leverage', (2) 'comprehensive, cutting-edge' [covers both], (3) 'empower your team', (4) 'unlock unprecedented growth' [covers both unlock+unprecedented], (5) 'innovative solution', (6) 'seamlessly integrates', (7) 'transformative results', (8) 'drive sustainable success' [covers drive], (10) 'robust analytics', (11) 'valuable insights', (12) 'enable informed decision-making at every level of your organization'. 13/13 items flagged, well above the 10/13 threshold."
+    },
+    {
+      "text": "The rewrite does NOT contain any of these words: leverage, comprehensive, cutting-edge, empower, unlock, unprecedented, innovative, seamlessly, transformative, sustainable, robust, furthermore.",
+      "passed": true,
+      "evidence": "The rewrite is: 'Stop digging through five different tools to answer one question. [Product] connects your existing stack and puts the numbers you actually need in one place — without a weeks-long setup. Your team sees what's working, what isn't, and what to do next. No analyst required.' None of the 12 banned words appear in this text."
+    },
+    {
+      "text": "The rewrite contains at least one specific claim (a number, a named outcome, a concrete scenario) rather than only abstract benefit claims like 'drive growth' or 'deliver results'.",
+      "passed": true,
+      "evidence": "The rewrite contains 'five different tools' (a specific number), 'without a weeks-long setup' (a concrete time-based claim), and 'No analyst required' (a concrete named outcome). All three qualify as specific claims rather than abstract benefit assertions."
+    },
+    {
+      "text": "The rewrite contains sentence length variation — at least one sentence of 7 words or fewer AND at least one sentence of 20 words or more. Uniform sentence length (all 15-25 words) fails this check.",
+      "passed": true,
+      "evidence": "'No analyst required.' = 3 words (satisfies ≤7 condition). '[Product] connects your existing stack and puts the numbers you actually need in one place — without a weeks-long setup.' = ~22 words (satisfies ≥20 condition). Both conditions met, with clear variation between a 3-word punchy close and a 22-word integration sentence."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1124,
+    "transcript_chars": 29499
+  },
+  "timing": {
+    "executor_duration_seconds": 22.635,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 22.635
+  },
+  "claims": [
+    {
+      "claim": "The rewrite 'makes a concrete promise (fewer tools to juggle, faster answers)'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'five different tools' and 'without a weeks-long setup' are concrete, not abstract. The promise is verifiable from the text."
+    },
+    {
+      "claim": "The rewrite 'implies the integration story without claiming it's magic'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The rewrite says '[Product] connects your existing stack' — implies integration without the word 'seamlessly' or magic language. Accurate."
+    },
+    {
+      "claim": "The rewrite is 'written for a generic analytics/workflow platform'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Rewrite mentions 'the numbers you actually need in one place' and 'what's working, what isn't' — clearly analytics-flavored. The executor correctly identifies it as generic and instructs the user to swap in real differentiators."
+    },
+    {
+      "claim": "The executor flagged 12 clichés",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Exactly 12 numbered items appear in the flagged clichés list. Note: items 2 and 4 each cover two words from the target list, giving 13 unique terms covered across 12 list items."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response explicitly flags ALL of the following words from the input: 'leverage', 'comprehensive', 'cutting-edge', 'empower', 'unlock', 'unprecedented', 'innovative', 'seamlessly', 'transformative', 'drive', 'robust', 'valuable insights', 'informed decision-making'. At least 10 of these 13 items must be explicitly named as AI slop.",
+        "reason": "The assertion only checks presence, not the quality of explanations. A model could list all 13 words with a single-word rationale ('bad') and pass. The without_skill model actually wrote substantive critique per flagged word — that quality signal goes unmeasured. Consider adding: 'each flagged item includes a specific reason why it fails (not just that it's a buzzword)'."
+      },
+      {
+        "assertion": null,
+        "reason": "No assertion checks whether the explanatory paragraph that follows the rewrite introduces any of the banned words. The executor kept it clean here, but a model could leak 'seamless' or 'robust' into the post-rewrite commentary without failing Expectation 2. Tightening Expectation 2 to cover the full response (not just the blockquoted rewrite) would prevent this."
+      },
+      {
+        "assertion": null,
+        "reason": "The assertion set does not check whether the flagged words were actually present in the original input copy. A model fabricating extra slop words not in the original could still pass all assertions. A 'flagged words are a subset of the input copy' check would add meaningful signal."
+      }
+    ],
+    "overall": "All four assertions pass with strong evidence. The rewrite is genuinely good — specific numbers, sentence rhythm variation, and zero slop recycling. The eval's weak point is that Expectation 1 is presence-only: it passes as long as the right words are named, regardless of whether the explanations are substantive or trivial. The other three assertions are well-calibrated."
+  }
+}

@@ -1,0 +1,24 @@
+No, synonym swapping doesn't work. AI detectors don't analyze vocabulary — they analyze statistical patterns: sentence rhythm, structural predictability, semantic vagueness, and how a piece of text behaves compared to large corpora of human vs. AI writing. Swapping "leverage" for "harness" changes nothing measurable.
+
+Your sample has several classic AI-writing signatures:
+
+- **Stacked generic adjectives**: "robust analytics," "seamless integrations," "transformative results" — high-frequency, low-information modifiers
+- **Vague subject**: "organizations of all sizes" — avoids committing to any specific claim
+- **Transitional filler**: "Furthermore" starting a sentence adds structure without content
+- **Passive empowerment language**: "empower teams," "innovative approach," "delivers results" — sounds substantive but says nothing concrete
+
+**What actually works: rewrite with specificity.**
+
+Instead of:
+> "Our comprehensive platform leverages AI to empower teams with robust analytics and seamless integrations."
+
+Try:
+> "Teams using [Product] cut reporting time by 40% — the AI surfaces anomalies in your data before your weekly review, and it connects to Salesforce, HubSpot, and Slack out of the box."
+
+The transformation requires:
+1. **Replace adjectives with numbers or examples** — "robust" → specific capability or metric
+2. **Name the actual thing** — what does the AI *do*, not just what it "empowers"
+3. **Specify the audience** — who exactly, not "organizations of all sizes"
+4. **Vary sentence structure** — mix lengths, use fragments, rhetorical questions, asides
+
+The deeper issue is that AI writing is detectable because it's trained to sound plausible and complete rather than to say true, specific things. Human writing has friction, specificity, and the occasional weird sentence. Synonyms don't add any of that.

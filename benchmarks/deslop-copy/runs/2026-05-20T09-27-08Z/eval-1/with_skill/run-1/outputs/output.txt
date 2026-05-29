@@ -1,0 +1,26 @@
+**Flagged clichés**
+
+1. **"Leverage"** — corporate verb that means "use"
+2. **"comprehensive"** — filler adjective, says nothing
+3. **"cutting-edge"** — every product claims this
+4. **"empower your team"** — HR-speak placeholder
+5. **"unlock unprecedented growth"** — abstract hype with no claim
+6. **"innovative solution"** — meaningless; all solutions call themselves innovative
+7. **"seamlessly integrates"** — tech marketing staple; real integrations are never seamless
+8. **"deliver transformative results"** — vague outcome with no specifics
+9. **"drive sustainable success"** — double-stacked empty nouns
+10. **"Furthermore"** — stilted AI transition word
+11. **"robust analytics"** — "robust" is automatic padding
+12. **"valuable insights"** — tautological (insights are by definition valuable)
+13. **"enable informed decision-making"** — bureaucratic passive construction
+14. **"at every level of your organization"** — corporate filler that inflates scope
+
+---
+
+**Rewrite**
+
+Your team ships faster when their tools talk to each other. [Product] connects to the apps you already use, keeps work from falling through the cracks, and shows you — in plain numbers — what's moving and what's stuck. No consultant required to read the dashboard.
+
+---
+
+The rewrite makes a concrete promise, acknowledges a real pain point (fragmented tools, opaque reporting), and drops the abstract nouns entirely. If you share what the product actually does, I can make the specifics sharper.

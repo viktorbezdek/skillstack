@@ -1,0 +1,41 @@
+## Slop Audit
+
+| # | Original | Type | Replacement |
+|---|---|---|---|
+| 1 | Comprehensive Analytics Dashboard | `superlative` | **Analytics** |
+| 2 | Your data is currently being processed | `passive` | **Processing…** |
+| 3 | Proceed to payment | `overlong` | **Pay now** |
+| 4 | Please ensure that all required fields have been completed before submitting | `verbose` | **Fill in all required fields** |
+| 5 | Unfortunately, no results were found matching your search criteria. Please try a different search term. | `verbose` + `passive` | **No results. Try a different term.** |
+| 6 | Your file has been successfully uploaded to our secure cloud storage | `passive` | **File uploaded** |
+
+**Types used:** superlative, passive, overlong, verbose
+
+---
+
+## Word Count Check
+
+| Item | Replacement | Budget | Status |
+|---|---|---|---|
+| 1 — section header | "Analytics" — 1 word | 2 words | ✓ |
+| 2 — status | "Processing…" — 1 word | no hard budget | ✓ |
+| 3 — button | "Pay now" — 2 words | 3 words | ✓ |
+| 4 — form hint | "Fill in all required fields" — 5 words | 8 words | ✓ |
+| 5 — empty state | "No results. Try a different term." — 7 words total | headline 8 / body 15 | ✓ |
+| 6 — notification | "File uploaded" — 2 words | 5 words | ✓ |
+
+---
+
+## Notes on Each Cut
+
+**#1** — "Comprehensive" describes what the user should *feel* about the feature, not what it is. "Dashboard" is redundant inside the dashboard. Drop both; the section is called *Analytics*.
+
+**#2** — "Currently being processed" is 3 words of passive filler. The ellipsis on *Processing…* carries the ongoing-state meaning without the construction.
+
+**#3** — "Proceed to" is the canonical button slop opener. Cut to the action. "Pay" alone works; "Pay now" if urgency helps conversion.
+
+**#4** — "Please ensure that all required fields have been completed" has passive voice, a hedge ("ensure"), and bureaucratic word order. Imperative voice ("Fill in") is shorter and clearer.
+
+**#5** — "Unfortunately" is an apology for search behavior. Cut the opener, convert passive "were found" to zero, and trim "search criteria" → "term". The result is half the length and faster to scan.
+
+**#6** — "Successfully" is redundant — the notification appearing *is* the success signal. "Our secure cloud storage" adds marketing copy inside a status message. The file is uploaded; nothing more needs saying.

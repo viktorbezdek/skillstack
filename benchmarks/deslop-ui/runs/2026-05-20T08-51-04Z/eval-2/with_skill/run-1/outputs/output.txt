@@ -1,0 +1,61 @@
+Both pieces have the same core problem: they talk about the product instead of helping the user. Here's a breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+| Pattern | Example | Problem |
+|---|---|---|
+| Hedging opener | "It looks like you haven't..." | The system *knows* — don't soften facts |
+| Patronizing reassurance | "Don't worry" | Users aren't worried; you're creating anxiety that wasn't there |
+| Passive CTA | "whenever you're ready!" | Removes urgency without giving a reason to act |
+| Generic benefit list | "organize, collaborate, track" | True of every project tool ever made — says nothing |
+| Exclamation marks | Two of them | Forced enthusiasm |
+
+**Rewrite:**
+
+> **No projects yet**
+> Create your first project to start organizing your work.
+> [Create project]
+
+That's it. The button is the CTA — the copy doesn't need to repeat it or sell it.
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+| Pattern | Example | Problem |
+|---|---|---|
+| Self-congratulation | "We've designed this to be intuitive..." | Nobody cares; show don't tell |
+| Zero information | "see your important metrics" | Which metrics? What should they do first? |
+| Corporate hedge | "Please don't hesitate to reach out" | Stiff and distant |
+| No next step | Entire modal | Modal ends with no action — so why does it exist? |
+
+**Rewrite:**
+
+> **Here's what to do first**
+> 1. Connect your data source — takes 2 minutes
+> 2. Invite your team
+> 3. Your first report auto-generates after your first sync
+>
+> [Get started] [Skip]
+
+Or, if it's truly just orienting:
+
+> **Your dashboard is ready**
+> You'll see live metrics here once you connect a data source.
+> [Connect now] [Explore first]
+
+---
+
+## The pattern to fix in both
+
+**Before:** Talk about what the product can do, hedge everything, end passively.
+
+**After:** State the situation plainly, give one clear next action, trust the user to click it.
+
+Cut length by ~70%. Users scan empty states in under a second — every word past the CTA is noise.

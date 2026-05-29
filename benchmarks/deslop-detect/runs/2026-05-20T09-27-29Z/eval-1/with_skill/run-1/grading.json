@@ -1,0 +1,82 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+      "passed": true,
+      "evidence": "Output section '## Why It Flags' opens with: '**Burstiness — the biggest problem.** All four sentences sit in the 11–23 word range. That's a flat line. GPTZero's burstiness score tanks when sentence lengths cluster like this.' The word 'burstiness' is used explicitly, and the uniform clustering of sentence lengths is named as the top signal."
+    },
+    {
+      "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+      "passed": true,
+      "evidence": "Output '**Classic AI transitions.**' section explicitly names three of the five signals: '\"Furthermore,\" \"Additionally,\" and \"It is important to note that\" are so common in AI output that they appear explicitly in detector training data.' Three signals identified (Furthermore, Additionally, It is important to note) — well above the required 2."
+    },
+    {
+      "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+      "passed": true,
+      "evidence": "The output's own 'Detector Signal Verification' section confirms: 'Shortest sentence: \"Here\\'s the thing.\" (3 words) ✓ target ≤5' and 'Longest sentence: \"Content isn\\'t just a blog strategy...\" (47 words) ✓ target ≥35'. Independent count of 'Content isn\\'t just a blog strategy or a way to fill editorial calendars — it\\'s how brands build the kind of durable visibility that paid ads can\\'t buy and competitors can\\'t easily copy, and the trajectory for companies that commit to it is pretty consistently upward across industries and company sizes.' yields ~50 words (≥30 ✓). 'Here\\'s the thing.' is 3 words (≤6 ✓)."
+    },
+    {
+      "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+      "passed": true,
+      "evidence": "The '## Rewrite' section contains only: 'Here\\'s the thing. / Content isn\\'t just a blog strategy or a way to fill editorial calendars... / According to most benchmarks... / And that gap compounds. / Unlike paid acquisition, which stops delivering...' None of the five banned tokens (Furthermore, Additionally, leverage, It is important to note, data-driven) appear anywhere in the rewrite block. They appear in the diagnosis section (Why It Flags) as examples of signals being called out — but not in the rewrite itself."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 2757,
+    "transcript_chars": 114300
+  },
+  "timing": {
+    "executor_duration_seconds": 65.32,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 65.32
+  },
+  "claims": [
+    {
+      "claim": "The output states 'Shortest sentence: \"Here's the thing.\" (3 words)'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed by reading the rewrite: 'Here's the thing.' is 3 words."
+    },
+    {
+      "claim": "The output states the longest sentence is 47 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The long sentence beginning 'Content isn't just a blog strategy...' counts to approximately 50 words on independent verification — close to 47 and clearly ≥30, satisfying the underlying requirement."
+    },
+    {
+      "claim": "GPTZero's burstiness score is explicitly cited as a reference detector",
+      "type": "process",
+      "verified": true,
+      "evidence": "Output states 'GPTZero's burstiness score tanks when sentence lengths cluster like this.' — a specific detector is named, not a generic claim."
+    },
+    {
+      "claim": "All five named AI tokens are absent from the rewrite",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Manually scanned the four rewrite sentences: no occurrence of Furthermore, Additionally, leverage, It is important to note, or data-driven."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+        "reason": "'leverage' and 'the three-item list structure' were not identified by the model, but the expectation still passed because 3 other signals were named. Consider requiring 3 of 5 or explicitly checking whether 'leverage' (which is one of the subtler AI-verb signals) and list structure (a structural pattern) are caught — a weaker model might only name the two most obvious transition words."
+      },
+      {
+        "reason": "No assertion checks whether the diagnosis correctly explains WHY these are detector signals (e.g., that classifiers are trained on them, that they raise probability mass, that burstiness is a GPTZero-specific metric). The current assertions only verify presence/absence of terms, not the quality of the explanation. A model could list all five signals with zero explanatory value and pass all assertions."
+      }
+    ],
+    "overall": "All four assertions passed with clear evidence. The evals do a solid job of testing measurable, verifiable outputs (word counts, token presence/absence). The main gap is depth-of-diagnosis — the assertions don't distinguish a shallow name-drop from a well-reasoned explanation of why each signal matters."
+  }
+}

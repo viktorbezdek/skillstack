@@ -1,0 +1,24 @@
+**Flagged clichés:**
+
+1. **"Leverage"** — hollow verb; means nothing here
+2. **"comprehensive"** — every product claims this; says nothing
+3. **"cutting-edge"** — worn out; signals nothing
+4. **"empower your team"** — vague corporate filler
+5. **"unlock unprecedented growth"** — "unlock" is SaaS boilerplate; "unprecedented" is unverifiable hyperbole
+6. **"innovative solution"** — every product is an "innovative solution"
+7. **"seamlessly integrates"** — "seamlessly" is nearly always empty; pairs with "integrates" to double down on saying nothing
+8. **"transformative results"** — transformation theater
+9. **"drive sustainable success"** — two jargon words doing zero work
+10. **"Furthermore"** — robotic academic connector in marketing copy
+11. **"robust analytics"** — "robust" is a filler adjective that means "we have it"
+12. **"valuable insights"** — tautological; insights are by definition valuable
+13. **"enable informed decision-making"** — bureaucratic padding
+14. **"at every level of your organization"** — corporate throat-clearing
+
+---
+
+**Rewrite:**
+
+> [Product] helps your team move faster without changing how they work. It connects to your existing tools in minutes, not months. And when the numbers shift, you'll know exactly where to look — and what to do about it.
+
+Short sentences. Concrete claims. One idea per sentence. No borrowed authority from meaningless adjectives.

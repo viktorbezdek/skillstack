@@ -1,0 +1,62 @@
+Both pieces share the same core problems: they're self-focused, padded with filler, and bury or omit the action. Here's a breakdown:
+
+---
+
+## Empty State
+
+**What's wrong:**
+
+- **"It looks like"** — the system knows exactly what's there. Hedging is noise.
+- **"Don't worry"** — presumes anxiety the user may not feel. Slightly condescending.
+- **Benefits list is generic** — "organize work, collaborate, track progress" describes every project tool ever made.
+- **Passive CTA** — "feel free to... whenever you're ready" diffuses urgency without adding warmth. It's polite to the point of being useless.
+- **Three exclamation marks** — forced enthusiasm.
+
+**Rewrite:**
+
+> **No projects yet**
+>
+> Create your first project to bring your work, team, and progress into one place.
+>
+> [Create a project]
+
+Or if you want slightly warmer:
+
+> **Start your first project**
+>
+> Projects keep your work organized and your team aligned. Takes about a minute to set up.
+>
+> [Create a project]
+
+---
+
+## Onboarding Modal
+
+**What's wrong:**
+
+- **"This is where you'll be able to see"** — tell them what they *can do*, not where things will eventually be visible.
+- **"We've designed this experience to be as intuitive and seamless as possible"** — pure self-congratulation. Users will judge that themselves. Cut it entirely.
+- **"Please don't hesitate to reach out"** — corporate filler. Either give a specific support path or skip it.
+- **No next step** — the modal ends with a whimper. What should the user do now?
+
+**Rewrite:**
+
+> **Welcome to your dashboard**
+>
+> Here you'll see your key metrics, recent activity, and team updates — updated in real time.
+>
+> Start by connecting your first data source, or explore the overview with sample data.
+>
+> [Connect data] [Explore with samples]
+
+---
+
+## The pattern to fix
+
+Both pieces follow the same broken formula:
+1. State the obvious
+2. Reassure unnecessarily
+3. Describe the product generically
+4. Weak or missing CTA
+
+Replace it with: **one clear statement of value + one specific action**. Cut everything that doesn't serve those two goals.

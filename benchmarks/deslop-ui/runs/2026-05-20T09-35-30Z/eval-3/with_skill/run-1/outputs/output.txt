@@ -1,0 +1,25 @@
+Each piece has distinct AI/corporate slop patterns. Here's the audit:
+
+---
+
+| # | Original | Pattern(s) | Replacement |
+|---|----------|-----------|-------------|
+| 1 | `Comprehensive Analytics Dashboard` | Filler adjective — "comprehensive" adds no information | `Analytics` |
+| 2 | `Your data is currently being processed` | "currently" is redundant in a present-state message; passive, detached | `Processing your data…` |
+| 3 | `Proceed to payment` | "Proceed" is bureaucratic — nobody says this | `Pay now` |
+| 4 | `Please ensure that all required fields have been completed before submitting` | Triple whammy: "Please ensure that", passive voice ("have been completed"), padded length | `Complete all required fields` |
+| 5 | `Unfortunately, no results were found matching your search criteria. Please try a different search term.` | Performative apology ("Unfortunately"), passive voice, "search criteria" jargon | `No results for "[term]". Try a different word or phrase.` |
+| 6 | `Your file has been successfully uploaded to our secure cloud storage` | "successfully" restates the success state; "secure cloud storage" is marketing in a status | `File uploaded.` |
+
+---
+
+**Patterns to watch for across the product:**
+
+- **Redundant adverbs** — "successfully", "currently", "fully" in success/status states
+- **Performative empathy** — "Unfortunately", "We're sorry to inform you"
+- **Filler adjectives** — "comprehensive", "powerful", "seamless", "robust"
+- **Passive voice** — "have been completed", "were found", "has been uploaded"
+- **"Please ensure that"** — almost always replaceable with a direct imperative
+- **Marketing copy in UI** — "secure cloud storage" belongs in a landing page, not a toast
+
+The general rule: if removing a word doesn't change the meaning, remove it.

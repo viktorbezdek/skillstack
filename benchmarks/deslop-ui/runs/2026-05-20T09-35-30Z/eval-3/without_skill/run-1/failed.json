@@ -1,0 +1,6 @@
+{
+  "failed": true,
+  "reason": "grader-invalid-json",
+  "details": "Expecting ',' delimiter: line 53 column 77 (char 2946)",
+  "timestamp": "2026-05-20T09:40:19Z"
+}

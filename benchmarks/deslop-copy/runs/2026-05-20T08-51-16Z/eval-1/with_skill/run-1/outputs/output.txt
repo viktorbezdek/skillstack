@@ -1,0 +1,32 @@
+**Flagged clichés (14 items):**
+
+| # | Phrase | Problem |
+|---|--------|---------|
+| 1 | `Leverage` | Blacklisted AI verb — means nothing beyond "use" |
+| 2 | `comprehensive` | Filler superlative — every platform claims this |
+| 3 | `cutting-edge` | Tired tech modifier — signals nothing |
+| 4 | `empower your team` | Corporate boilerplate — no concrete meaning |
+| 5 | `unlock unprecedented growth` | Double hit: "unlock" (abstract sense) + "unprecedented" |
+| 6 | `innovative solution` | "Innovative" is blacklisted; "solution" is tech-speak for "product" |
+| 7 | `seamlessly integrates` | Every SaaS product claims seamless — readers tune it out |
+| 8 | `transformative results` | "Transformative" is blacklisted; no specifics given |
+| 9 | `drive sustainable success` | Vague outcome pile — drive + sustainable + success |
+| 10 | `Furthermore` | AI essay connective — no human writer opens a paragraph with this |
+| 11 | `robust analytics` | "Robust" is blacklisted filler |
+| 12 | `valuable insights` | Blacklisted phrase — insights are by definition valuable |
+| 13 | `informed decision-making` | Corporate abstraction — says nothing about what decisions or how |
+| 14 | `at every level of your organization` | Grandiose padding — adds zero meaning |
+
+---
+
+**Rewrite:**
+
+> Your team is already doing the work. We make more of it stick.
+>
+> Connect your existing tools in minutes — no IT project, no migration doc, no six-week rollout. They just work together.
+>
+> The analytics show you what's moving and what's stalled: by team, by project, by week. So when something's off, you know before the end-of-quarter review.
+
+---
+
+The core moves: dropped every blacklisted word, broke up the uniform sentence rhythm, replaced abstract claims with concrete alternatives (specific timelines, specific analytics breakdowns), and used a contraction. The final sentence takes a quiet position — that quarterly-review surprises are bad — instead of making a vague promise about "decision-making."

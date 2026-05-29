@@ -1,0 +1,19 @@
+Here's a rewrite:
+
+---
+
+We started this company because we kept running into the same problem: most solutions in this space are built for demos, not for the people who have to use them every day.
+
+So we build for the people who have to use them every day.
+
+That means fewer features nobody asked for, fewer abstractions that make things "cleaner" on paper and messier in practice. It means saying no a lot — to scope creep, to flashy pivots, to clients whose problems aren't actually problems we can solve well.
+
+We're a small team, and we intend to stay that way. Not because we're precious about it, but because every time we've grown too fast, the work got worse. We'd rather do fewer things right than more things adequately.
+
+If you work with us, you'll talk to the people building your product. You'll get honest timelines, not optimistic ones. And if we think you're solving the wrong problem, we'll tell you.
+
+---
+
+**What changed:** Removed all the filler adjectives ("passionate," "cutting-edge," "holistic"), replaced vague claims with a specific stance, added actual opinions, and made the "we" feel like real people with a perspective rather than a press release.
+
+If you share what the company actually does, I can make it more concrete.

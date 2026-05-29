@@ -1,0 +1,27 @@
+Here's a full rewrite:
+
+---
+
+**Subject:** Quick question about [Company]'s ops
+
+Hi [Name],
+
+I came across [Company] while researching [industry/specific trigger] and wanted to reach out directly.
+
+We work with ops teams to cut the manual work out of [specific process — e.g., reporting, scheduling, data reconciliation]. Most of our customers find they're spending 6–10 hours a week on things that should take 30 minutes — and that's usually where we start.
+
+Would it make sense to jump on a 20-minute call this week? I can show you exactly how it works for a team your size, and if it's not a fit, I'll tell you.
+
+[Your name]
+
+---
+
+**What changed and why:**
+
+- **Subject** — specific and curiosity-inducing, not a features billboard
+- **Opener** — gives a reason for the email instead of a fake industry observation
+- **Body** — concrete time claim (6–10 hours) gives the reader something to react to; specificity signals you've done real work
+- **Closer** — direct ask with a specific time frame; "I'll tell you if it's not a fit" disarms skepticism and sounds human
+- **Removed entirely:** "fast-paced landscape," "unprecedented challenges," "actionable insights," "unlock full potential," "at your earliest convenience," "don't hesitate" — all clichés that signal AI or template-brain
+
+Fill in the bracketed parts and adjust the pain point to your actual product.

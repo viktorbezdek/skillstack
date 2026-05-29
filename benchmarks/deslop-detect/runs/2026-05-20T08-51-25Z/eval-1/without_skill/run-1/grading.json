@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies uniform sentence length (all sentences approximately the same length, 18-25 words each) as a detector signal. It must use the word 'burstiness', 'sentence length', or 'uniform' in the diagnosis.",
+      "passed": true,
+      "evidence": "Output section '2. Low burstiness' states: 'your sentences are nearly identical in length and follow the same Subject → Verb → Object pattern. Humans naturally mix short punchy sentences with longer winding ones. This paragraph is metronomically uniform.' Uses 'burstiness' directly as a signal label and 'uniform' at the end of the diagnosis paragraph."
+    },
+    {
+      "text": "The response identifies at least 2 of the following as AI signals in the input: 'Furthermore' (transition), 'leverage' (verb), 'It is important to note' (opener), 'Additionally' (transition), the three-item list structure.",
+      "passed": true,
+      "evidence": "The 'Specific red flags' section explicitly identifies: '\"Furthermore\" / \"Additionally\" / \"It is important to note that\" — AI transition words that real writers almost never use' and 'The tricolon list (\"brand authority, drives organic traffic, establishes thought leadership\") — AI loves these'. That is 4 of the 5 listed signals. 'leverage' is not mentioned."
+    },
+    {
+      "text": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+      "passed": false,
+      "evidence": "Counted all sentences in the rewrite paragraphs. Shortest: 'Six months before you see it in the numbers.' = 9 words (not ≤6). Longest: 'The companies actually winning with it aren't publishing more; they're publishing smarter, using search data and customer questions to shape what they write before they write it.' = 27 words (not ≥30). Neither threshold is met. The rewrite has more length variation than the original AI text but does not satisfy the hard word-count thresholds."
+    },
+    {
+      "text": "The rewrite does NOT contain 'Furthermore', 'Additionally', 'leverage', 'It is important to note', or 'data-driven'. These specific AI tokens must be absent from the rewritten version.",
+      "passed": true,
+      "evidence": "Searched the rewrite section (the three paragraphs between the '---' separators). None of the five banned tokens appear: no 'Furthermore', no 'Additionally', no 'leverage', no 'It is important to note', no 'data-driven'. The 'What changed' explanatory section also omits them."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1281,
+    "transcript_chars": 28428
+  },
+  "timing": {
+    "executor_duration_seconds": 24.949,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 24.949
+  },
+  "claims": [
+    {
+      "claim": "The input paragraph has sentences that are 'nearly identical in length'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The original input (typical AI content marketing prose) consistently uses 18-25 word sentences with identical SVO structure — the diagnosis correctly characterises this as low burstiness."
+    },
+    {
+      "claim": "HubSpot's blog 'essentially replaced a sales team'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "HubSpot is widely documented as a content marketing pioneer whose inbound blog strategy is credited with driving significant customer acquisition, making this a defensible and grounded concrete example."
+    },
+    {
+      "claim": "The rewrite has 'shorter sentences mixed with longer ones'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite's sentences range from 9 to 27 words, which is more varied than the AI original. However, the claim implies dramatic burstiness. The rewrite lacks any sentence ≤6 words or ≥30 words, so the variation is real but not as pronounced as the 'What changed' note implies."
+    },
+    {
+      "claim": "The rewrite uses 'none of the stock transition phrases'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed: 'Furthermore', 'Additionally', 'It is important to note', 'leverage', and 'data-driven' are all absent from the rewrite."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite contains at least one sentence of 6 words or fewer AND at least one sentence of 30 words or more. This is verifiable by counting words in the shortest and longest sentences of the rewrite.",
+        "reason": "This is a strong, verifiable assertion. However, without the skill the model still produced good rewrite quality — it just didn't hit the extreme word-count thresholds. The assertion correctly differentiates skill-guided output (which enforces hard burstiness rules) from capable-but-unguided output. Consider whether 6/30 are the right thresholds or whether 8/25 would better reflect the meaningful gap without being so strict that even expert human rewrites would fail."
+      },
+      {
+        "reason": "No assertion checks whether the diagnosis explicitly names the input's sentence count or average length. Without the skill, the model correctly identifies the burstiness signal qualitatively but never quantifies it (e.g., 'all sentences are 18-25 words'). An assertion checking for a quantitative characterisation would better distinguish skill-guided diagnosis from general pattern matching."
+      }
+    ],
+    "overall": "Three of four assertions are well-designed and clearly differentiate skill from no-skill. The sentence-length assertion (expectation 3) is the most discriminating and correctly catches the one real gap in the without-skill output. Eval coverage is solid; suggestions above are refinements, not critical gaps."
+  }
+}

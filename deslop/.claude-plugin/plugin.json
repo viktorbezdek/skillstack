@@ -1,0 +1,22 @@
+{
+  "name": "deslop",
+  "version": "1.0.0",
+  "description": "Remove AI slop from UI copy, marketing text, and product content. Three focused skills: UI microcopy cleanup, marketing and editorial humanization, and AI-detection prevention.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/deslop",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "deslop",
+    "ai-slop",
+    "humanization",
+    "marketing-copy",
+    "ux-writing",
+    "content-quality",
+    "ai-detection"
+  ]
+}

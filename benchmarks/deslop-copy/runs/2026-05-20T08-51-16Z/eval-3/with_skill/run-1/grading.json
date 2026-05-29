@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The rewrite does NOT contain any of: 'passionate', 'dedicated', 'exceptional value', 'innovative', 'cutting-edge', 'comprehensive solutions', 'holistic', 'transformative', 'empowering', 'seamless', 'leverage', 'full potential', 'diverse team', 'shared vision', 'better world'. At least 10 of these 15 must be absent.",
+      "passed": true,
+      "evidence": "All 15 banned terms are absent from the rewrite. The output contains none of: passionate, dedicated, exceptional value, innovative, cutting-edge, comprehensive solutions, holistic, transformative, empowering, seamless, leverage, full potential, diverse team, shared vision, better world. The notes section mentions 'cutting-edge / holistic / transformative' only in the context of explaining what was removed."
+    },
+    {
+      "text": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make (e.g., 'We help X do Y' is specific; 'We deliver exceptional value' is generic).",
+      "passed": true,
+      "evidence": "The rewrite contains at least two opinionated, non-generic statements: (1) 'No account managers shuttling messages between you and whoever actually does the work. You talk to the person solving your problem.' — this describes a specific operational model not all companies share. (2) 'We'll also tell you when we can't help — some problems aren't ours to solve.' — this is a specific differentiated philosophy. Note: the rewrite uses placeholder brackets ([specific problem area], [city], [year]) rather than filling in actual company details, so the specificity is structural/philosophical rather than domain-specific. This is sufficient to pass the threshold of the assertion as written."
+    },
+    {
+      "text": "The rewrite is equal to or shorter than the original in word count.",
+      "passed": false,
+      "evidence": "Original text word count: approximately 95 words. Rewrite (body only, excluding the Notes section): approximately 115 words. The rewrite runs longer because it expands the founding narrative ('We started because we kept running into the same problem: companies were leaving real money and time on the table, and the tools they had weren't fixing it.') and adds structural sentences ('So we built different ones.'). Even counting only the rewritten copy paragraphs without the explanatory notes, the rewrite exceeds the original."
+    },
+    {
+      "text": "The response includes a brief explanation of which humanization techniques were applied (e.g., sentence length variation, contractions, specificity, opinion) — not just the rewritten text.",
+      "passed": true,
+      "evidence": "The output includes a 'Notes on what changed and why' section that explicitly names: specificity ('Added specifics: team size, location, founding year — these are the details that make a company feel real'), opinion/point of view ('Gave it a point of view: they have opinions, they push back, they refer out when appropriate'), structural change ('Ended concretely instead of with a vision statement'), and explains why certain language was dropped ('these words have been emptied of meaning by overuse'). The explanation covers multiple humanization techniques by describing the reasoning, not merely listing them."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {},
+    "total_tool_calls": 0,
+    "total_steps": 1,
+    "errors_encountered": 0,
+    "output_chars": 1079,
+    "transcript_chars": 27684
+  },
+  "timing": {
+    "executor_duration_seconds": 17.684,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": 17.684
+  },
+  "claims": [
+    {
+      "claim": "The rewrite 'earns its words'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite is actually ~20% longer in word count than the original (~115 vs ~95 words), contradicting the implicit claim of being tighter. The rewrite is more readable and human-sounding, but not shorter."
+    },
+    {
+      "claim": "The output replaced the buzzwords with concrete, specific language",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All 15 listed buzzwords are absent. The rewrite replaces vague 'empowering clients' and 'transformative growth' language with concrete operational claims about direct client access and honest pushback."
+    },
+    {
+      "claim": "The notes explain what changed and why",
+      "type": "process",
+      "verified": true,
+      "evidence": "The notes section gives five distinct bullet points explaining specific changes: removed clichés, added specifics, gave a point of view, ended concretely."
+    },
+    {
+      "claim": "The rewrite uses placeholder brackets to indicate where company-specific details go",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The output uses [X], [specific problem area], [city], [year] as explicit placeholders, acknowledging that the skill does not have access to the actual company details."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewrite is equal to or shorter than the original in word count.",
+        "reason": "This assertion is correct to include, but the eval prompt itself invites longer output by asking for 'specific, opinionated, and direct' rewriting — specificity often requires more words. The assertion would be more discriminating if it checked whether the explanatory notes section is excluded from the word count (the notes are a legitimate separate artifact), or if it accepted up to 10-15% longer as acceptable for a humanized rewrite."
+      },
+      {
+        "assertion": "The rewrite contains at least one opinionated or specific statement that could only apply to this company — NOT a generic claim that any company could make.",
+        "reason": "The current input (a fictional, placeholder company) forces the model to use template placeholders. The assertion as written passes when the model produces placeholder-based specificity ('No account managers...') rather than true company-specific claims. Consider using an input with real company details so the assertion can verify that the rewrite reflects those actual details rather than structural templates."
+      },
+      {
+        "reason": "No assertion checks whether the explanation section names at least one standard humanization technique by name (e.g., 'contractions', 'sentence length variation', 'active voice'). The current expectation 4 passes with any explanatory notes about what changed, which is broader than checking for named techniques."
+      }
+    ],
+    "overall": "Three of four assertions are solid. The word count assertion catches a real failure (the rewrite is longer). The specificity assertion has a coverage gap when the input text is a fictional placeholder company — it passes on structural opinionatedness rather than genuine company-specific content."
+  }
+}

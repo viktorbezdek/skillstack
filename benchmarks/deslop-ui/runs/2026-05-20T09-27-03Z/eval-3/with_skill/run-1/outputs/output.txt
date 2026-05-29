@@ -1,0 +1,20 @@
+Here's the audit with pattern identification and direct replacements:
+
+| Original | AI Pattern | Replacement |
+|----------|------------|-------------|
+| `Comprehensive Analytics Dashboard` | Stacked filler adjective — "comprehensive" adds zero information | `Analytics` |
+| `Your data is currently being processed` | Passive + redundant adverb ("currently being") | `Processing…` |
+| `Proceed to payment` | Corporate ceremony — "proceed to" is throat-clearing | `Pay now` |
+| `Please ensure that all required fields have been completed before submitting` | Triple-hedge: "please ensure that" + passive + "before submitting" | `Complete all required fields` |
+| `Unfortunately, no results were found matching your search criteria. Please try a different search term.` | Apologetic opener + passive + restating what the user already knows + prescriptive advice | `No results for "[query]"` |
+| `Your file has been successfully uploaded to our secure cloud storage` | "successfully" filler + passive + unsolicited storage reassurance | `Uploaded` |
+
+**Patterns to watch for across the product:**
+
+- **Adverb padding** — "successfully", "currently", "unfortunately": cut by default
+- **Passive voice** — "has been completed", "were found": flip to active or drop the verb entirely
+- **Adjective stacking** — "comprehensive", "secure", "all required": if it's always true, it says nothing
+- **Ceremony openers** — "Please ensure that", "Proceed to": the action is the message, skip the preamble
+- **Restating context** — telling users what they already know ("your search criteria", "our cloud storage")
+
+Tightest heuristic: if removing a word doesn't change the meaning, remove it.
