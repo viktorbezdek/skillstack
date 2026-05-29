@@ -5,5 +5,16 @@ node_modules/
 .env
 .env.local
 *.log
-.claude/
 
+# Claude Code / agent runtime & session state
+.claude/
+.omc/
+.codegraph/
+.impeccable/
+.worktrees/
+*.pid
+
+# OS / editor cruft
+Thumbs.db
+.idea/
+*.swp
