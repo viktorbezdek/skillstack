@@ -1,0 +1,18 @@
+[
+  { "query": "What do I remember about the retain doc-id decision?", "should_trigger": true, "note": "recall/reflect over past decisions — core use" },
+  { "query": "Recall from my Hindsight memory anything about plugin versioning", "should_trigger": true, "note": "explicit recall against a bank" },
+  { "query": "Reflect on my past work with skillstack ports", "should_trigger": true, "note": "reflect = synthesized answer over the bank" },
+  { "query": "Retain this: we chose a lean CLI-backed port over the full Python plugin", "should_trigger": true, "note": "deliberate retain of a decision" },
+  { "query": "Save this decision to my memory bank for later sessions", "should_trigger": true, "note": "retain phrasing" },
+  { "query": "Is my Hindsight long-term memory working right now?", "should_trigger": true, "note": "health / is-memory-working" },
+  { "query": "How does the auto-recall hook decide what to inject before each prompt?", "should_trigger": true, "note": "explaining/tuning the hooks" },
+  { "query": "Show me the stats for my claude_code memory bank", "should_trigger": true, "note": "bank stats / inspection" },
+  { "query": "What entities has Hindsight extracted from my past conversations?", "should_trigger": true, "note": "entity curation" },
+
+  { "query": "Find all callers of the processOrder function in this repo", "should_trigger": false, "note": "code/structural search — CodeGraph/Semble, not memory" },
+  { "query": "What did you say two messages ago about the loop?", "should_trigger": false, "note": "short-term context already in the transcript" },
+  { "query": "Compare Mem0, Zep, and Letta and recommend a memory framework", "should_trigger": false, "note": "memory-architecture design — use memory-systems skill" },
+  { "query": "Add a useMemo to this React component to fix the re-render", "should_trigger": false, "note": "'memo' is unrelated; this is frontend perf" },
+  { "query": "Search the web for the latest Claude Code release notes", "should_trigger": false, "note": "web/doc lookup, not personal memory" },
+  { "query": "Write unit tests for the auth module", "should_trigger": false, "note": "testing task, no memory involvement" }
+]

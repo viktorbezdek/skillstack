@@ -2,11 +2,11 @@
 
 **Battle-tested skills for Claude Code.**
 
-**58** expert plugins covering development, DevOps, testing, design, strategy, research, context engineering, and agent architecture.
+**59** expert plugins covering development, DevOps, testing, design, strategy, research, context engineering, and agent architecture.
 
 **[Browse the catalog](https://viktorbezdek.github.io/skillstack/)** · **[Install](#quick-start)** · **[Contribute](https://github.com/viktorbezdek/skillstack/issues)**
 
-> **58** plugins · **9** categories · **11** collections · MIT License
+> **59** plugins · **9** categories · **11** collections · MIT License
 
 ---
 
@@ -25,9 +25,9 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 58 plugins</summary>
+<summary><strong>SkillStack</strong> — 59 plugins</summary>
 
-> The complete SkillStack library — 58 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.
+> The complete SkillStack library — 59 expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.
 
 Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-mental-states`, `brainstorm-swarm`, `cicd-pipelines`, `cloud-finops`, `code-review`, `coding-discipline`, `communication`, `consistency-standards`, `content-modelling`, `context-compression`, `context-degradation`, `context-fundamentals`, `context-optimization`, `creative-problem-solving`, `critical-intuition`, `debugging`, `deslop`, `docker-containerization`, `documentation-generator`, `edge-case-coverage`, `elicitation`, `example-design`, `filesystem-context`, `frontend-design`, `git-workflow`, `gws-cli`, `hosted-agents`, `mcp-server`, `memory-systems`, `multi-agent-patterns`, `navigation-design`, `nextjs-development`, `ontology-design`, `osint`, `outcome-orientation`, `persona-definition`, `persona-mapping`, `plugin-dev`, `prioritization`, `product-thinking`, `prompt-engineering`, `python-development`, `react-development`, `risk-management`, `skill-foundry`, `skillstack-workflows`, `storytelling`, `systems-thinking`, `technical-copywriting`, `test-driven-development`, `testing-framework`, `tool-design`, `typescript-development`, `user-journey-design`, `ux-writing`
 </details>
@@ -65,11 +65,11 @@ Plugins: `context-compression`, `context-degradation`, `context-fundamentals`, `
 </details>
 
 <details>
-<summary><strong>Agent Architecture</strong> — 8 plugins</summary>
+<summary><strong>Agent Architecture</strong> — 9 plugins</summary>
 
 > Build production LLM agents: multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, and project development methodology.
 
-Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `brainstorm-swarm`, `hosted-agents`, `memory-systems`, `multi-agent-patterns`, `tool-design`
+Plugins: `agent-evaluation`, `agent-project-development`, `bdi-mental-states`, `brainstorm-swarm`, `hindsight`, `hosted-agents`, `memory-systems`, `multi-agent-patterns`, `tool-design`
 </details>
 
 <details>

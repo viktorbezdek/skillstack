@@ -1,0 +1,22 @@
+[
+  {
+    "query": "What do I remember about why we picked the retain document-id scheme?",
+    "files": [],
+    "expected_behavior": "Recognizes this as a long-term-memory query. Uses `hindsight memory recall` or `hindsight memory reflect` against the bank (default claude_code) — NOT grep or CodeGraph. Prefers `reflect` because the user wants a conclusion, or recall then summarizes the ranked hits. Does not fabricate memories; reports what the bank returns."
+  },
+  {
+    "query": "Retain this decision: the skillstack hindsight plugin is external-API only, no local daemon.",
+    "files": [],
+    "expected_behavior": "Runs `hindsight memory retain <bank> \"<the decision>\" -c claude-code` to store the fact deliberately. Uses the default bank unless told otherwise. Does not invent a document id unless idempotent replacement is intended. Confirms what was stored."
+  },
+  {
+    "query": "My memory bank seems to be filling with duplicate echoes of earlier recalls. What's wrong?",
+    "files": ["scripts/lib/transcript.py"],
+    "expected_behavior": "Diagnoses the anti-feedback-loop hazard: the retain path must strip `<hindsight_memories>` / `<relevant_memories>` blocks before storing, or recalled memories get re-ingested as new ones. Points to `strip_memory_tags` in scripts/lib/transcript.py and that `tests/test_transcript.py` guards it. Does not propose disabling memory wholesale as the fix."
+  },
+  {
+    "query": "How do I point this plugin at a different memory bank per project and check it's reachable?",
+    "files": [],
+    "expected_behavior": "Explains setting `HINDSIGHT_CC_BANK_ID` (env var, namespaced HINDSIGHT_CC_*) to scope the bank, and using `hindsight health` (the SessionStart hook) to verify reachability. Notes the integration is external-API only and the CLI resolves the endpoint from HINDSIGHT_API_URL / profile. Does not reference a local daemon or LLM-provider config."
+  }
+]

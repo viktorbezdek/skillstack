@@ -1,0 +1,21 @@
+{
+  "name": "hindsight",
+  "version": "1.0.0",
+  "description": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed `hindsight` CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/viktorbezdek/skillstack/tree/main/hindsight",
+  "keywords": [
+    "claude-code",
+    "memory",
+    "hindsight",
+    "recall",
+    "retain",
+    "long-term-memory",
+    "hooks",
+    "semantic-memory"
+  ]
+}

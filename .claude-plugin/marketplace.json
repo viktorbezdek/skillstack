@@ -861,6 +861,21 @@
         "microcopy",
         "error-messages"
       ]
+    },
+    {
+      "name": "hindsight",
+      "source": "./hindsight",
+      "description": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed hindsight CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
+      "version": "1.0.0",
+      "category": "agent-architecture",
+      "tags": [
+        "memory",
+        "hindsight",
+        "recall",
+        "retain",
+        "long-term-memory",
+        "hooks"
+      ]
     }
   ]
 }

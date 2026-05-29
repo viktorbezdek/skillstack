@@ -1341,6 +1341,29 @@
       "platforms": [
         "claude-code"
       ]
+    },
+    {
+      "id": "hindsight",
+      "name": "Hindsight",
+      "type": "skill",
+      "category": "agent-architecture",
+      "description": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed hindsight CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "hindsight/skills/hindsight-memory",
+      "version": "1.0.0",
+      "tags": [
+        "memory",
+        "hindsight",
+        "recall",
+        "retain",
+        "long-term-memory",
+        "hooks"
+      ],
+      "documentation_path": "./hindsight/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
     }
   ],
   "collections": [
