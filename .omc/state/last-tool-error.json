@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"git check-ignore -v /Users/vbezdek/Work/skillstack/technical-copywriting/.claude-plugin/plugin.json 2>&1\",\"description\":\"Why is tc ignored?\"}",
-  "error": "Exit code 1",
-  "timestamp": "2026-04-28T09:25:48.820Z",
-  "retry_count": 2
-}
