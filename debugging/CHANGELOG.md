@@ -8,8 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Fix chrome devtools dependency alerts
 - update plugin changelogs [skip ci]
+- Fix chrome devtools dependency alerts
 - Prune obsolete skill coverage
 - misc cleanup and add .nvmrc
 - add per-plugin changelog generation workflow
