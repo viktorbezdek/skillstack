@@ -156,3 +156,44 @@ Documented in README.
 **Rationale:** First attempt with workflow agents (wf_00e2c383-ec1) failed — all 10 parallel batch agents completed without calling StructuredOutput tool after 2 in-conversation nudges. Schema-based structured output is unreliable for long-context batch tasks. Python script over pre-built JSON produces identical output deterministically at zero additional token cost.
 
 **Evidence:** wf_00e2c383-ec1 run log shows "subagent completed without calling StructuredOutput (after 2 in-conversation nudges)" x10 agents. `_gen_inventory.py` ran successfully and produced 176-line inventory on first attempt.
+
+---
+
+## Skillstack Restructure & Hardening — Phase 2 Decisions (2026-06-05)
+
+### D-008: filesystem-context merge rejected — keep distinct
+
+**Verdict:** Keep `filesystem-context` as a standalone plugin. Do NOT merge into `memory-systems`.
+
+**Rationale:** Trigger surfaces operate at different abstraction levels. `filesystem-context` = OS filesystem as a context mechanism during Claude Code sessions (scratch pads, plan persistence, dynamic skill loading). `memory-systems` = production agent memory frameworks (Mem0, Zep, GraphRAG, vector stores). A user asking "how do I persist agent plans" wants FS patterns; a user asking "implement agent memory" wants framework architecture.
+
+**Evidence:** `filesystem-context` NOT-for excludes KV-cache and summarization (context-engineering concerns). `memory-systems` NOT-for excludes hosted agent infrastructure (production deployment concern). Descriptions and trigger-evals confirm different output artifacts and different user intents.
+
+---
+
+### D-009: outcome-orientation merge rejected — keep distinct
+
+**Verdict:** Keep `outcome-orientation` as a standalone plugin. Do NOT merge into `product-thinking`.
+
+**Rationale:** Complementary handoff, not duplication. `outcome-orientation` handles OKR/KPI mechanics (write the OKRs, define the metrics). `product-thinking/outcome-oriented-thinking` skill handles philosophical product validation (is this really an outcome?). The two are explicitly designed to hand off: `product-thinking` trigger-evals FALSE entry routes "Write OKRs for the engineering team" AWAY from product-thinking and toward outcome-orientation.
+
+**Evidence:** `product-thinking/outcome-oriented-thinking` trigger-evals: `"Write OKRs for the engineering team this quarter."` has `should_trigger: false`. This query routes to `outcome-orientation`. Handoff is intentional.
+
+---
+
+### D-010: E/I/P/M boundary rules — canonical definitions
+
+**Verdict:** Adopt these boundary definitions as the stable rule for future plugin categorization.
+
+**Engineering (E):** Plugin helps you BUILD something — code, APIs, agents, infrastructure, pipelines. Output = working software artifact.
+
+**Meta-Infra (I):** Plugin helps Claude Code or LLM agents OPERATE BETTER — evaluate, remember, reason, manage context, author plugins. Output = improved CC/LLM behavior or process.
+
+**Managerial-Product (P):** Plugin helps make DECISIONS and PLANS — product strategy, prioritization, risk, stakeholder management. Output = decision artifact (PRD, OKR, risk register, journey map).
+
+**Marketing-Comms (M):** Plugin helps create CONTENT for human audiences — copy, editorial, interface text, narrative. Output = human-facing written content.
+
+**Boundary rules:**
+- Agent plugins: BUILD (multi-agent-patterns, agent-project-development) -> E; EVALUATE/OPERATE (agent-evaluation, memory-systems, prompt-engineering) -> I.
+- "Thinking" plugins: strategic/PM use (creative-problem-solving, systems-thinking) -> P; meta-cognitive/LLM reasoning (critical-intuition) -> I.
+- Ambiguous assignments (osint, gws-cli) noted in 02-taxonomy.md with monitoring notes.
