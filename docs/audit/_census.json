@@ -1,0 +1,1005 @@
+[
+  {
+    "plugin": "agent-evaluation",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "agent-evaluation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "agent-project-development",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "agent-project-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "api-design",
+    "category": "",
+    "version": "1.2.24",
+    "skills": 1,
+    "skill_names": [
+      "api-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "bdi-mental-states",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "bdi-mental-states"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "brainstorm-swarm",
+    "category": "",
+    "version": "1.1.0",
+    "skills": 4,
+    "skill_names": [
+      "custom-personas",
+      "interview-facilitation",
+      "swarm-protocol",
+      "swarm-synthesis"
+    ],
+    "agents": 12,
+    "cmds": 1,
+    "hooks": false,
+    "scripts": false,
+    "evals": 4,
+    "trig": 4,
+    "bench": [
+      "brainstorm-swarm-rules",
+      "swarm-protocol",
+      "brainstorm-swarm"
+    ]
+  },
+  {
+    "plugin": "cicd-pipelines",
+    "category": "",
+    "version": "1.1.24",
+    "skills": 1,
+    "skill_names": [
+      "cicd-pipelines"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "cloud-finops",
+    "category": "",
+    "version": "2.1.2",
+    "skills": 1,
+    "skill_names": [
+      "cloud-finops"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "code-review",
+    "category": "",
+    "version": "1.1.25",
+    "skills": 1,
+    "skill_names": [
+      "code-review"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "coding-discipline",
+    "category": "",
+    "version": "1.0.0",
+    "skills": 1,
+    "skill_names": [
+      "coding-discipline"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "communication",
+    "category": "",
+    "version": "1.0.1",
+    "skills": 5,
+    "skill_names": [
+      "clarity-editing",
+      "documentation-discipline",
+      "stakeholder-alignment",
+      "structured-writing",
+      "visual-communication"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": []
+  },
+  {
+    "plugin": "consistency-standards",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "consistency-standards"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "content-modelling",
+    "category": "",
+    "version": "1.0.12",
+    "skills": 1,
+    "skill_names": [
+      "content-modelling"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "context-compression",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "context-compression"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "context-degradation",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "context-degradation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "context-fundamentals",
+    "category": "",
+    "version": "1.0.6",
+    "skills": 1,
+    "skill_names": [
+      "context-fundamentals"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "context-optimization",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "context-optimization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "creative-problem-solving",
+    "category": "",
+    "version": "1.0.16",
+    "skills": 1,
+    "skill_names": [
+      "creative-problem-solving"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "critical-intuition",
+    "category": "",
+    "version": "1.0.16",
+    "skills": 1,
+    "skill_names": [
+      "critical-intuition"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "debugging",
+    "category": "",
+    "version": "1.1.27",
+    "skills": 1,
+    "skill_names": [
+      "debugging"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "deslop",
+    "category": "",
+    "version": "1.0.0",
+    "skills": 3,
+    "skill_names": [
+      "deslop-copy",
+      "deslop-detect",
+      "deslop-ui"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 3,
+    "trig": 3,
+    "bench": [
+      "deslop-ui",
+      "deslop-detect",
+      "deslop-copy"
+    ]
+  },
+  {
+    "plugin": "docker-containerization",
+    "category": "",
+    "version": "1.1.23",
+    "skills": 1,
+    "skill_names": [
+      "docker-containerization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "documentation-generator",
+    "category": "",
+    "version": "1.2.1",
+    "skills": 1,
+    "skill_names": [
+      "documentation-generator"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [
+      "documentation-generator"
+    ]
+  },
+  {
+    "plugin": "edge-case-coverage",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "edge-case-coverage"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "elicitation",
+    "category": "",
+    "version": "2.0.1",
+    "skills": 1,
+    "skill_names": [
+      "elicitation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "example-design",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "example-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "filesystem-context",
+    "category": "",
+    "version": "1.0.14",
+    "skills": 1,
+    "skill_names": [
+      "filesystem-context"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "frontend-design",
+    "category": "",
+    "version": "1.1.24",
+    "skills": 1,
+    "skill_names": [
+      "frontend-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "git-workflow",
+    "category": "",
+    "version": "1.1.21",
+    "skills": 1,
+    "skill_names": [
+      "git-workflow"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "gws-cli",
+    "category": "",
+    "version": "1.0.1",
+    "skills": 1,
+    "skill_names": [
+      "gws-cli"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "hindsight",
+    "category": "",
+    "version": "1.0.0",
+    "skills": 1,
+    "skill_names": [
+      "hindsight-memory"
+    ],
+    "agents": 0,
+    "cmds": 1,
+    "hooks": true,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "hosted-agents",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "hosted-agents"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "mcp-server",
+    "category": "",
+    "version": "1.2.21",
+    "skills": 1,
+    "skill_names": [
+      "mcp-server"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "memory-systems",
+    "category": "",
+    "version": "1.0.6",
+    "skills": 1,
+    "skill_names": [
+      "memory-systems"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "multi-agent-patterns",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "multi-agent-patterns"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "navigation-design",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "navigation-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "nextjs-development",
+    "category": "",
+    "version": "2.0.24",
+    "skills": 1,
+    "skill_names": [
+      "nextjs-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "ontology-design",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "ontology-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "osint",
+    "category": "",
+    "version": "1.0.1",
+    "skills": 1,
+    "skill_names": [
+      "osint"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "outcome-orientation",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "outcome-orientation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "persona-definition",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "persona-definition"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "persona-mapping",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "persona-mapping"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "plugin-dev",
+    "category": "",
+    "version": "1.2.0",
+    "skills": 8,
+    "skill_names": [
+      "plugin-architecture",
+      "plugin-composition",
+      "plugin-documenter",
+      "plugin-evaluation",
+      "plugin-hooks",
+      "plugin-ideation",
+      "plugin-research",
+      "plugin-validation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 8,
+    "trig": 8,
+    "bench": []
+  },
+  {
+    "plugin": "prioritization",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "prioritization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "product-thinking",
+    "category": "",
+    "version": "1.0.1",
+    "skills": 5,
+    "skill_names": [
+      "outcome-oriented-thinking",
+      "problem-definition",
+      "trade-off-analysis",
+      "user-needs-identification",
+      "value-proposition-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": []
+  },
+  {
+    "plugin": "prompt-engineering",
+    "category": "",
+    "version": "1.1.16",
+    "skills": 1,
+    "skill_names": [
+      "prompt-engineering"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "python-development",
+    "category": "",
+    "version": "1.1.25",
+    "skills": 1,
+    "skill_names": [
+      "python-development"
+    ],
+    "agents": 0,
+    "cmds": 6,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "react-development",
+    "category": "",
+    "version": "1.1.21",
+    "skills": 1,
+    "skill_names": [
+      "react-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "risk-management",
+    "category": "",
+    "version": "1.0.12",
+    "skills": 1,
+    "skill_names": [
+      "risk-management"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "skill-foundry",
+    "category": "",
+    "version": "2.2.2",
+    "skills": 1,
+    "skill_names": [
+      "skill-foundry"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [
+      "skill-foundry"
+    ]
+  },
+  {
+    "plugin": "skillstack-workflows",
+    "category": "",
+    "version": "2.2.1",
+    "skills": 20,
+    "skill_names": [
+      "api-to-production",
+      "build-a-plugin",
+      "build-ai-agent",
+      "content-platform-build",
+      "context-engineering-pipeline",
+      "debug-complex-issue",
+      "design-review-sprint",
+      "evaluate-and-improve-agent",
+      "evaluate-plugin-or-skill",
+      "legacy-rescue",
+      "llm-cost-optimization",
+      "onboard-to-codebase",
+      "pitch-sprint",
+      "product-story-to-ship",
+      "security-hardening-audit",
+      "storytelling-for-stakeholders",
+      "strategic-decision",
+      "update-a-plugin",
+      "user-research-to-insight",
+      "write-your-own-skill"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 20,
+    "trig": 20,
+    "bench": []
+  },
+  {
+    "plugin": "storytelling",
+    "category": "",
+    "version": "1.0.1",
+    "skills": 1,
+    "skill_names": [
+      "storytelling"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "systems-thinking",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "systems-thinking"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "technical-copywriting",
+    "category": "",
+    "version": "1.1.0",
+    "skills": 5,
+    "skill_names": [
+      "distribution-craft",
+      "engaging-craft",
+      "long-form-polish",
+      "long-form-structure",
+      "technical-research"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": [
+      "engaging-craft",
+      "distribution-craft",
+      "technical-copywriting"
+    ]
+  },
+  {
+    "plugin": "test-driven-development",
+    "category": "",
+    "version": "1.1.18",
+    "skills": 1,
+    "skill_names": [
+      "test-driven-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "testing-framework",
+    "category": "",
+    "version": "1.1.24",
+    "skills": 1,
+    "skill_names": [
+      "testing-framework"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "tool-design",
+    "category": "",
+    "version": "1.0.5",
+    "skills": 1,
+    "skill_names": [
+      "tool-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "typescript-development",
+    "category": "",
+    "version": "1.1.21",
+    "skills": 1,
+    "skill_names": [
+      "typescript-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "user-journey-design",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "user-journey-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  },
+  {
+    "plugin": "ux-writing",
+    "category": "",
+    "version": "1.0.11",
+    "skills": 1,
+    "skill_names": [
+      "ux-writing"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": []
+  }
+]

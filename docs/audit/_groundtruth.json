@@ -1,0 +1,2258 @@
+[
+  {
+    "plugin": "agent-evaluation",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
+    "skills": 1,
+    "skill_names": [
+      "agent-evaluation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-project-development",
+      "skill-foundry",
+      "skillstack-workflows",
+      "tool-design"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "agent-evaluation",
+        "has_NOT_for": true,
+        "desc": "This skill should be used when the user asks to \"evaluate agent performance\", \"build test framework\", \"measure agent quality\", \"create evaluation rubrics\", \"implement LLM-as-judge\", \"compare model outputs\", \"mitigate evaluation bias\", or mentions multi-dimensional evaluation, agent testing, quality gates, direct scoring, pairwise comparison, position bias, evaluation pipelines, or automated quality assessment for LLM agent systems. NOT for testing code or applications (use testing-framework), NOT for agent coordination or multi-agent design (use multi-agent-patterns).",
+        "desc_len": 574
+      }
+    ]
+  },
+  {
+    "plugin": "agent-project-development",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
+    "skills": 1,
+    "skill_names": [
+      "agent-project-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "prompt-engineering",
+      "skillstack-workflows"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "agent-project-development",
+        "has_NOT_for": true,
+        "desc": "This skill should be used when the user asks to \"start an LLM project\", \"design batch pipeline\", \"evaluate task-model fit\", \"structure agent project\", or mentions pipeline architecture, agent-assisted development, cost estimation, or choosing between LLM and traditional approaches. NOT for evaluating agent quality or building evaluation rubrics (use agent-evaluation), NOT for multi-agent coordination or agent handoffs (use multi-agent-patterns).",
+        "desc_len": 449
+      }
+    ]
+  },
+  {
+    "plugin": "api-design",
+    "category": "",
+    "version": "1.2.24",
+    "desc_plugin": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
+    "skills": 1,
+    "skill_names": [
+      "api-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "coding-discipline",
+      "content-modelling",
+      "example-design",
+      "filesystem-context",
+      "gws-cli",
+      "react-development",
+      "skillstack-workflows"
+    ],
+    "ref_count": 7,
+    "skill_detail": [
+      {
+        "skill": "api-design",
+        "has_NOT_for": true,
+        "desc": "Design production-grade REST, GraphQL, gRPC, and Python library APIs with correct schemas, error contracts, auth, and versioning. Use when the user asks to design an API, define endpoints, create an OpenAPI/Swagger spec, design a GraphQL schema, build a gRPC service, model request/response with Pydantic, add pagination, or review API contracts. NOT for building MCP server tools (use mcp-server). NOT for Node.js/Express API routes or backend patterns (use backend-patterns or typescript-development).",
+        "desc_len": 503
+      }
+    ]
+  },
+  {
+    "plugin": "bdi-mental-states",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
+    "skills": 1,
+    "skill_names": [
+      "bdi-mental-states"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "multi-agent-patterns"
+    ],
+    "ref_count": 1,
+    "skill_detail": [
+      {
+        "skill": "bdi-mental-states",
+        "has_NOT_for": true,
+        "desc": "This skill should be used when the user asks to \"model agent mental states\", \"implement BDI architecture\", \"create belief-desire-intention models\", \"transform RDF to beliefs\", \"build cognitive agent\", or mentions BDI ontology, mental state modeling, rational agency, or neuro-symbolic AI integration. NOT for multi-agent coordination or agent handoffs (use multi-agent-patterns), NOT for agent memory frameworks or persistence (use memory-systems).",
+        "desc_len": 448
+      }
+    ]
+  },
+  {
+    "plugin": "brainstorm-swarm",
+    "category": "",
+    "version": "1.1.0",
+    "desc_plugin": "Run a parallel persona-swarm interview to brainstorm any complex decision \u2014 feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the use",
+    "skills": 4,
+    "skill_names": [
+      "custom-personas",
+      "interview-facilitation",
+      "swarm-protocol",
+      "swarm-synthesis"
+    ],
+    "agents": 12,
+    "cmds": 1,
+    "hooks": false,
+    "scripts": false,
+    "evals": 4,
+    "trig": 4,
+    "bench": [
+      "brainstorm-swarm-rules",
+      "swarm-protocol",
+      "brainstorm-swarm"
+    ],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "custom-personas",
+        "has_NOT_for": true,
+        "desc": "Design ad-hoc personas for niche domains when the canonical 12 brainstorm- swarm personas don't fit. Covers: when a custom persona is justified (vs forcing canonical to fit), the persona-design template (voice, contribution shape, output format), anti-patterns (too-narrow personas, redundant personas, sock-puppet personas), and how to invoke a custom persona inline via Task() with a tailored prompt rather than a saved subagent definition. Use when running a brainstorm-swarm and the topic calls for a CFO, Security Engineer, Lawyer, Marketing, Customer Success, or other domain- specific perspect",
+        "desc_len": 855
+      },
+      {
+        "skill": "interview-facilitation",
+        "has_NOT_for": true,
+        "desc": "Structure the interview arc when a brainstorm-swarm interviews the user. Covers the divergent-then-convergent arc (open with breadth, close with depth), question design (open vs probing, leading vs neutral, what-vs-why- vs-how), depth-vs-breadth tradeoffs, and when to send a second round of follow-up questions to specific personas. Use when running a brainstorm swarm and the swarm-protocol skill has spawned the persona subagents \u2014 this skill teaches how those personas interact with the user during the interview phase. NOT for the persona swarm orchestration itself (use swarm-protocol). NOT for",
+        "desc_len": 787
+      },
+      {
+        "skill": "swarm-protocol",
+        "has_NOT_for": true,
+        "desc": "Orchestration logic for running a parallel persona-swarm brainstorm \u2014 when to invoke, which subset of the 12 canonical personas to spawn (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), how to spawn them in parallel via the Task() tool with persona-specific subagent types, how to handle their outputs, and when to do a second round. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skept",
+        "desc_len": 987
+      },
+      {
+        "skill": "swarm-synthesis",
+        "has_NOT_for": true,
+        "desc": "Combine a parallel persona-swarm's outputs into an actionable artifact \u2014 consensus matrix (what every persona agreed on), dissent log (where personas disagreed and why), open questions (what nobody could answer), recommended next move (synthesized decision). Preserves dissent rather than forcing consensus. Use when running a brainstorm-swarm and the swarm-protocol skill has collected the persona outputs \u2014 this skill produces the synthesis artifact. NOT for orchestrating the spawn (use swarm-protocol). NOT for designing the interview arc (use interview-facilitation). NOT for designing custom pe",
+        "desc_len": 728
+      }
+    ]
+  },
+  {
+    "plugin": "cicd-pipelines",
+    "category": "",
+    "version": "1.1.24",
+    "desc_plugin": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness.",
+    "skills": 1,
+    "skill_names": [
+      "cicd-pipelines"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "coding-discipline",
+      "debugging",
+      "docker-containerization",
+      "git-workflow",
+      "gws-cli",
+      "skillstack-workflows"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "cicd-pipelines",
+        "has_NOT_for": true,
+        "desc": "CI/CD pipeline design and DevOps automation \u2014 use when the user mentions GitHub Actions, GitLab CI, Jenkins, Terraform, infrastructure as code, DevSecOps, ArgoCD, Kubernetes deployment automation, or pipeline configuration YAML. NOT for release orchestration or semantic-release workflows (use git-workflow), NOT for Docker containers or Dockerfiles (use docker-containerization), NOT for git branching or commits (use git-workflow).",
+        "desc_len": 433
+      }
+    ]
+  },
+  {
+    "plugin": "cloud-finops",
+    "category": "",
+    "version": "2.1.2",
+    "desc_plugin": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-sp",
+    "skills": 1,
+    "skill_names": [
+      "cloud-finops"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "plugin-dev",
+      "skillstack-workflows"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "cloud-finops",
+        "has_NOT_for": true,
+        "desc": "Expert FinOps guidance covering cloud, AI, SaaS, and adjacent technology spend. Includes AI cost management, GenAI capacity planning, AI-powered FinOps automation, Anthropic billing, AWS (EC2, Bedrock, Savings Plans, CUR, commitment strategy), Azure (reservations, Savings Plans, AHB, OpenAI PTUs, portfolio liquidity), GCP (Vertex AI, Compute Engine, BigQuery), Kubernetes and container FinOps (OpenCost, Kubecost), serverless FinOps (Lambda, Functions, Cloud Run), data platforms (Kafka/MSK, Elasticsearch/OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS specification), tagging governan",
+        "desc_len": 1250
+      }
+    ]
+  },
+  {
+    "plugin": "code-review",
+    "category": "",
+    "version": "1.1.25",
+    "desc_plugin": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
+    "skills": 1,
+    "skill_names": [
+      "code-review"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "brainstorm-swarm",
+      "coding-discipline",
+      "debugging",
+      "edge-case-coverage",
+      "git-workflow",
+      "risk-management",
+      "skillstack-workflows",
+      "test-driven-development",
+      "testing-framework"
+    ],
+    "ref_count": 9,
+    "skill_detail": [
+      {
+        "skill": "code-review",
+        "has_NOT_for": true,
+        "desc": "Reviews existing code and pull requests using multi-agent swarm analysis covering security, performance, style, test coverage, and documentation quality. Extracts and prioritizes PR comments, performs security audits, and generates actionable fix plans with file:line references. Use when the user asks to review code, review a PR, audit code for security, assess code quality, analyze pull request comments, get feedback on existing code, or perform a code audit. NOT for writing new code or implementing features (use other development skills), NOT for finding and fixing runtime bugs or errors (us",
+        "desc_len": 749
+      }
+    ]
+  },
+  {
+    "plugin": "coding-discipline",
+    "category": "",
+    "version": "1.0.0",
+    "desc_plugin": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication \u2014 ea",
+    "skills": 1,
+    "skill_names": [
+      "coding-discipline"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "coding-discipline",
+        "has_NOT_for": true,
+        "desc": "Research-grounded 5-principle behavioral contract for production LLM coding agents \u2014 Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication. Each principle names its anti-patterns and failure modes with empirical backing (SWE-bench, FeatBench, DELEGATE-52, SE literature). Apply when implementing features, fixing bugs, refactoring, or any coding task where production engineering discipline must be enforced. Trigger phrases: \"coding discipline\", \"coding principles\", \"production engineering\", \"surgical changes\", \"goal-driven execution\", \"calib",
+        "desc_len": 1089
+      }
+    ]
+  },
+  {
+    "plugin": "communication",
+    "category": "",
+    "version": "1.0.1",
+    "desc_plugin": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-",
+    "skills": 5,
+    "skill_names": [
+      "clarity-editing",
+      "documentation-discipline",
+      "stakeholder-alignment",
+      "structured-writing",
+      "visual-communication"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": [],
+    "referenced_by": [
+      "brainstorm-swarm",
+      "coding-discipline",
+      "osint",
+      "persona-mapping",
+      "skillstack-workflows",
+      "technical-copywriting"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "clarity-editing",
+        "has_NOT_for": true,
+        "desc": "Edit written text for clarity and conciseness \u2014 active voice, hedge and weasel-word removal, jargon strip, sentence compression, nominalization fixes, and readability. Use when the user asks to tighten, shorten, edit, or clarify a paragraph or doc, remove hedges and weasel words, convert to active voice, cut jargon, kill passive voice, fix nominalizations, or improve readability. NOT for structuring the overall doc (use structured-writing). NOT for UI microcopy (use ux-writing). NOT for auto-generating docs from code (use documentation-generator). NOT for design-system content/tone (use consis",
+        "desc_len": 617
+      },
+      {
+        "skill": "documentation-discipline",
+        "has_NOT_for": true,
+        "desc": "Decide what and when to write down, and produce Architecture Decision Records (ADRs), one-pagers, runbooks, and decision logs. Use when the user asks whether something should be documented, wants to write an ADR, needs a runbook or operational playbook, wants to keep a decision log, or is trying to decide between a one-pager and an RFC. NOT for auto-generating docs from code (use documentation-generator). NOT for end-user tutorials or how-tos (use example-design). NOT for docs-site information architecture (use navigation-design). NOT for cross-team alignment via RFCs (use stakeholder-alignmen",
+        "desc_len": 603
+      },
+      {
+        "skill": "stakeholder-alignment",
+        "has_NOT_for": true,
+        "desc": "Align stakeholders in writing using RFCs, design docs, proposals, pre-reads, and decision docs with explicit role assignments (DACI, RAPID). Use when the user asks to write an RFC, design doc, proposal, pre-read, or decision doc, wants to align async stakeholders on a decision, needs to assign deciders vs consulted vs informed, wants to structure a cross-team proposal, or is preparing a pre-read for a decision meeting. NOT for structuring a generic memo (use structured-writing). NOT for stakeholder power maps (use persona-mapping). NOT for storytelling pitches or investor decks (use storytelli",
+        "desc_len": 621
+      },
+      {
+        "skill": "structured-writing",
+        "has_NOT_for": true,
+        "desc": "Structure a written piece using BLUF (Bottom Line Up Front), the Minto Pyramid Principle, inverted pyramid, or SPQR (Situation-Problem-Question- Resolution). Use when the user asks to write BLUF-style, apply the Pyramid Principle, structure a memo/email/doc, lead with the conclusion, outline a long message so it is skim-readable, or reorganize buried-lede writing. NOT for line-level clarity and concision editing (use clarity-editing). NOT for UI microcopy (use ux-writing). NOT for narrative or story arcs (use storytelling). NOT for slide decks (use frontend-slides).",
+        "desc_len": 572
+      },
+      {
+        "skill": "visual-communication",
+        "has_NOT_for": true,
+        "desc": "Communicate systems and flows visually using Mermaid (flowchart, sequence, state, ER, class), the C4 model, and diagram-as-code. Use when the user asks to draw a flow, sequence diagram, state machine, ER diagram, C4 model, architecture diagram, or wants Mermaid code for a system, wants to pick a diagram type, or wants to visualize a process as a flowchart. NOT for UI/UX mockups or visual design (use frontend-design). NOT for slide graphics or presentations (use frontend-slides). NOT for wireframes or design systems (use frontend-design).",
+        "desc_len": 543
+      }
+    ]
+  },
+  {
+    "plugin": "consistency-standards",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
+    "skills": 1,
+    "skill_names": [
+      "consistency-standards"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "content-modelling",
+      "ontology-design",
+      "skillstack-workflows"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "consistency-standards",
+        "has_NOT_for": true,
+        "desc": "Establish and enforce uniform naming conventions, taxonomy standards, style guides, and content reuse patterns across a project. Use when the user asks to audit for consistency, standardize naming, create a style guide, align terminology across docs, eliminate drift, or define reuse patterns across content or code. NOT for formal knowledge graphs or semantic ontologies (use ontology-design). NOT for CMS content types or editorial workflows (use content-modelling). NOT for language-specific code conventions (use typescript-development or python-development).",
+        "desc_len": 563
+      }
+    ]
+  },
+  {
+    "plugin": "content-modelling",
+    "category": "",
+    "version": "1.0.12",
+    "desc_plugin": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
+    "skills": 1,
+    "skill_names": [
+      "content-modelling"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "consistency-standards",
+      "navigation-design",
+      "ontology-design",
+      "skillstack-workflows",
+      "ux-writing"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "content-modelling",
+        "has_NOT_for": true,
+        "desc": "Design CMS content models \u2014 content types, fields, editorial workflows, governance rules, and COPE (Create Once, Publish Everywhere) patterns \u2014 for structured, multi-channel publishing. Use when the user asks to design a content model, define content types in a CMS, structure fields for editorial content, plan a headless CMS architecture, or design content reuse across channels. NOT for formal knowledge graphs, OWL/RDF ontologies, or semantic modeling (use ontology-design). NOT for naming conventions or taxonomy standards across code (use consistency-standards).",
+        "desc_len": 568
+      }
+    ]
+  },
+  {
+    "plugin": "context-compression",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
+    "skills": 1,
+    "skill_names": [
+      "context-compression"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-project-development",
+      "context-degradation",
+      "context-fundamentals",
+      "context-optimization",
+      "filesystem-context",
+      "skillstack-workflows"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "context-compression",
+        "has_NOT_for": true,
+        "desc": "REDUCING context size \u2014 summarization strategies, anchored iterative summarization, tokens-per-task optimization, compaction triggers, and probe-based evaluation. Use when the user asks to \"compress context\", \"summarize conversation history\", \"implement compaction\", \"reduce token usage\", or mentions structured summarization or long-running sessions exceeding context limits. NOT for diagnosing context failures or degradation patterns (use context-degradation), NOT for KV-cache optimization or context partitioning (use context-optimization), NOT for learning context theory or basics (use context",
+        "desc_len": 687
+      }
+    ]
+  },
+  {
+    "plugin": "context-degradation",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and model-agnostic degradation measurement.",
+    "skills": 1,
+    "skill_names": [
+      "context-degradation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "context-compression",
+      "context-fundamentals",
+      "context-optimization",
+      "multi-agent-patterns",
+      "skillstack-workflows"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "context-degradation",
+        "has_NOT_for": true,
+        "desc": "Diagnosing context FAILURES \u2014 lost-in-middle, poisoning, distraction, confusion, and clash patterns with model-agnostic measurement workflows. Use when the user asks to \"diagnose context problems\", \"fix lost-in-middle issues\", \"debug agent failures\", \"understand context poisoning\", or mentions context degradation, context clash, or agent performance degradation. NOT for learning context basics or theory (use context-fundamentals), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache optimization or partitioning (use context-optimization), NOT for building isol",
+        "desc_len": 658
+      }
+    ]
+  },
+  {
+    "plugin": "context-fundamentals",
+    "category": "",
+    "version": "1.0.6",
+    "desc_plugin": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
+    "skills": 1,
+    "skill_names": [
+      "context-fundamentals"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "agent-project-development",
+      "context-compression",
+      "context-degradation",
+      "context-optimization",
+      "filesystem-context",
+      "memory-systems",
+      "multi-agent-patterns",
+      "skillstack-workflows",
+      "tool-design"
+    ],
+    "ref_count": 10,
+    "skill_detail": [
+      {
+        "skill": "context-fundamentals",
+        "has_NOT_for": true,
+        "desc": "Foundational theory of context engineering \u2014 what context IS, how attention works, progressive disclosure principles, and context budgeting basics. Use when the user asks to \"understand context\", \"explain context windows\", \"learn context engineering\", or discusses context components, attention mechanics, or context budgets. NOT for fixing broken context or diagnosing failures (use context-degradation), NOT for compressing or summarizing context (use context-compression), NOT for KV-cache or partitioning performance optimization (use context-optimization), NOT for file-based context patterns or",
+        "desc_len": 639
+      }
+    ]
+  },
+  {
+    "plugin": "context-optimization",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
+    "skills": 1,
+    "skill_names": [
+      "context-optimization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "context-compression",
+      "context-degradation",
+      "context-fundamentals",
+      "filesystem-context",
+      "hosted-agents",
+      "memory-systems",
+      "multi-agent-patterns",
+      "skillstack-workflows"
+    ],
+    "ref_count": 9,
+    "skill_detail": [
+      {
+        "skill": "context-optimization",
+        "has_NOT_for": true,
+        "desc": "EXTENDING effective context capacity \u2014 KV-cache optimization, observation masking, context partitioning, and retrieval strategies. Use when the user asks to \"optimize context\", \"implement KV-cache\", \"partition context\", \"mask observations\", or mentions extending context capacity or cache-friendly prompt design. NOT for reducing or compressing content via summarization (use context-compression), NOT for diagnosing context failures or degradation patterns (use context-degradation), NOT for file-based context patterns or scratch pads (use filesystem-context), NOT for learning context basics (use ",
+        "desc_len": 622
+      }
+    ]
+  },
+  {
+    "plugin": "creative-problem-solving",
+    "category": "",
+    "version": "1.0.16",
+    "desc_plugin": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
+    "skills": 1,
+    "skill_names": [
+      "creative-problem-solving"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "critical-intuition",
+      "product-thinking",
+      "skillstack-workflows",
+      "systems-thinking"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "creative-problem-solving",
+        "has_NOT_for": true,
+        "desc": "Generate new ideas and breakthrough solutions using brainstorming, lateral thinking, SCAMPER, first principles reasoning, game theory, and strategic reframing. Use when the user asks to brainstorm, ideate, \"think outside the box\", generate alternatives, explore creative solutions, reframe a problem, or come up with ideas \u2014 especially when stuck in conventional thinking. NOT for stress-testing or finding flaws in existing ideas (use critical-intuition), NOT for making a final decision between options (use strategic-decision or prioritization), NOT for detecting bias or evaluating evidence quali",
+        "desc_len": 628
+      }
+    ]
+  },
+  {
+    "plugin": "critical-intuition",
+    "category": "",
+    "version": "1.0.16",
+    "desc_plugin": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
+    "skills": 1,
+    "skill_names": [
+      "critical-intuition"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "creative-problem-solving",
+      "risk-management",
+      "skillstack-workflows",
+      "systems-thinking"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "critical-intuition",
+        "has_NOT_for": true,
+        "desc": "Stress-test, critique, and challenge existing ideas through pattern recognition, bias detection, Bayesian reasoning, blind-spot exposure, and red-flag identification. Use when the user asks to stress-test a plan, challenge assumptions, find flaws, identify risks in an idea, expose hidden biases, audit a proposal for blind spots, or \"poke holes in this\". NOT for generating new ideas or solutions (use creative-problem-solving), NOT for structured risk registers or mitigation plans (use risk-management), NOT for brainstorming or divergent thinking (use creative-problem-solving).",
+        "desc_len": 582
+      }
+    ]
+  },
+  {
+    "plugin": "debugging",
+    "category": "",
+    "version": "1.1.27",
+    "desc_plugin": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
+    "skills": 1,
+    "skill_names": [
+      "debugging"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-project-development",
+      "cicd-pipelines",
+      "code-review",
+      "coding-discipline",
+      "context-compression",
+      "docker-containerization",
+      "hosted-agents",
+      "plugin-dev",
+      "product-thinking",
+      "risk-management",
+      "skillstack-workflows",
+      "test-driven-development",
+      "testing-framework",
+      "tool-design",
+      "typescript-development"
+    ],
+    "ref_count": 15,
+    "skill_detail": [
+      {
+        "skill": "debugging",
+        "has_NOT_for": true,
+        "desc": "Finds and fixes bugs through systematic root cause analysis, stack trace interpretation, browser DevTools automation, CI/CD pipeline debugging, performance profiling, test pollution detection, and AI-powered error analysis. Use when the user asks to debug, fix a bug, investigate an error, analyze a stack trace, find root cause of a failure, profile performance, diagnose test failures (unit/integration/E2E), troubleshoot CI/CD pipelines, debug flaky tests, use Chrome DevTools, or trace data flow to source. NOT for writing new tests or setting up test frameworks (use testing-framework), NOT for ",
+        "desc_len": 864
+      }
+    ]
+  },
+  {
+    "plugin": "deslop",
+    "category": "",
+    "version": "1.0.0",
+    "desc_plugin": "Remove AI slop from UI copy, marketing text, and product content. Three focused skills: UI microcopy cleanup, marketing and editorial humanization, and AI-detection prevention.",
+    "skills": 3,
+    "skill_names": [
+      "deslop-copy",
+      "deslop-detect",
+      "deslop-ui"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 3,
+    "trig": 3,
+    "bench": [
+      "deslop-ui",
+      "deslop-detect",
+      "deslop-copy"
+    ],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "deslop-copy",
+        "has_NOT_for": true,
+        "desc": "Remove AI slop from marketing copy, blog posts, product descriptions, emails, and editorial content \u2014 and humanize the result. Use when asked to deslop, humanize, or anti-slop marketing copy, landing pages, product descriptions, email campaigns, blog posts, or any AI-generated prose. Trigger phrases: \"deslop\", \"anti-slop\", \"remove AI slop\", \"humanize this copy\", \"this sounds AI-generated\", \"make this sound human\", \"clean up marketing copy\", \"remove AI clich\u00e9s\". NOT for UI microcopy or interface text (use deslop-ui). NOT for code cleanup (use ai-slop-cleaner). NOT for creating brand-new copy fr",
+        "desc_len": 723
+      },
+      {
+        "skill": "deslop-detect",
+        "has_NOT_for": true,
+        "desc": "Rewrite AI-generated content to evade AI content detectors by increasing perplexity, burstiness, and lexical entropy. Use when asked to make content pass GPTZero, Originality.ai, Turnitin AI detection, Copyleaks, or any AI content detector; when asked to make writing \"undetectable\"; or when existing deslop passes fail detection checks. Trigger phrases: \"pass AI detector\", \"evade AI detection\", \"make this undetectable\", \"GPTZero\", \"Originality.ai\", \"Turnitin\", \"AI detection score\", \"reduce AI score\", \"beat the detector\", \"bypass AI checker\". NOT for general copy quality improvement (use deslop-",
+        "desc_len": 802
+      },
+      {
+        "skill": "deslop-ui",
+        "has_NOT_for": true,
+        "desc": "Audit and rewrite UI copy to remove AI slop \u2014 overlong button labels, hedging error messages, corporate filler, and passive voice in interface text. Use when asked to clean up UI text, deslop interface copy, fix AI-sounding buttons or error messages, audit microcopy for AI patterns, or humanize product UI. Trigger phrases: \"deslop\", \"anti-slop\", \"remove AI slop from UI\", \"clean up button labels\", \"fix error messages\", \"humanize interface text\", \"UI copy review\". NOT for writing new UI copy from scratch (use ux-writing). NOT for marketing or editorial prose (use deslop-copy). NOT for code quali",
+        "desc_len": 633
+      }
+    ]
+  },
+  {
+    "plugin": "docker-containerization",
+    "category": "",
+    "version": "1.1.23",
+    "desc_plugin": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
+    "skills": 1,
+    "skill_names": [
+      "docker-containerization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "cicd-pipelines",
+      "debugging",
+      "skillstack-workflows"
+    ],
+    "ref_count": 3,
+    "skill_detail": [
+      {
+        "skill": "docker-containerization",
+        "has_NOT_for": true,
+        "desc": "Docker and container development \u2014 use when the user mentions Dockerfiles, multi-stage builds, Docker Compose, container optimization, image size reduction, DDEV, containerization, or dev environment setup with containers. NOT for CI/CD pipeline YAML or pipeline configuration (use cicd-pipelines), NOT for workflow orchestration or release automation (use workflow-automation), NOT for Kubernetes or container orchestration platforms (use cloud-native tooling).",
+        "desc_len": 462
+      }
+    ]
+  },
+  {
+    "plugin": "documentation-generator",
+    "category": "",
+    "version": "1.2.1",
+    "desc_plugin": "Generate repository documentation at the right scale, from lightweight README updates to full codebase documentation sets with API, architecture, quality, and gaps coverage.",
+    "skills": 1,
+    "skill_names": [
+      "documentation-generator"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [
+      "documentation-generator"
+    ],
+    "referenced_by": [
+      "communication",
+      "consistency-standards",
+      "example-design",
+      "skill-foundry",
+      "skillstack-workflows",
+      "storytelling",
+      "technical-copywriting",
+      "ux-writing"
+    ],
+    "ref_count": 8,
+    "skill_detail": [
+      {
+        "skill": "documentation-generator",
+        "has_NOT_for": true,
+        "desc": "Generate comprehensive documentation for a codebase by reading the repository and producing READMEs, API docs, architecture docs, and technical references. Use when the user asks to \"document this repo\", \"generate docs\", \"write a README\", \"create API documentation\", \"document this codebase\", \"write architecture docs\", or \"produce technical references\" for an existing project. NOT for UX copy, button labels, or interface microcopy (use ux-writing). NOT for pedagogical code examples or tutorials (use example-design). NOT for inline code comments. NOT for navigation or sitemap design (use navigat",
+        "desc_len": 612
+      }
+    ]
+  },
+  {
+    "plugin": "edge-case-coverage",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
+    "skills": 1,
+    "skill_names": [
+      "edge-case-coverage"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "risk-management",
+      "skillstack-workflows"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "edge-case-coverage",
+        "has_NOT_for": true,
+        "desc": "Identify and document boundary conditions, corner cases, error scenarios, and validation requirements that implementations must handle. Use when the user asks to find edge cases, identify corner cases, specify validation rules, enumerate error scenarios, harden a function against bad inputs, or think through what can go wrong at the boundaries of a system. NOT for writing the actual tests (use testing-framework or test-driven-development). NOT for structured risk registers around project-level risks (use risk-management). NOT for security vulnerability scanning (use code-review).",
+        "desc_len": 586
+      }
+    ]
+  },
+  {
+    "plugin": "elicitation",
+    "category": "",
+    "version": "2.0.1",
+    "desc_plugin": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
+    "skills": 1,
+    "skill_names": [
+      "elicitation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "brainstorm-swarm",
+      "persona-definition",
+      "product-thinking",
+      "skillstack-workflows",
+      "storytelling",
+      "user-journey-design"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "elicitation",
+        "has_NOT_for": true,
+        "desc": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (Miller & Rollnick OARS), values elicitation (Schwartz), schema detection (Young), and life review (Haight/Birren). Use when designing user interviews that need to reveal motivations rather than stated preferences, writing conversation flows for personal discovery, auditing interview scripts for interrogation anti-patterns, building conversational AI that understands users over time, drafting life story or personal history products, or critiquing a ",
+        "desc_len": 894
+      }
+    ]
+  },
+  {
+    "plugin": "example-design",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
+    "skills": 1,
+    "skill_names": [
+      "example-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "documentation-generator",
+      "skillstack-workflows"
+    ],
+    "ref_count": 3,
+    "skill_detail": [
+      {
+        "skill": "example-design",
+        "has_NOT_for": true,
+        "desc": "Design pedagogically effective code examples, tutorials, and runnable samples using progressive complexity and deliberate scaffolding. Use when the user asks to write a code example that teaches a concept, design a quickstart tutorial, create sample code for a library or API, build a runnable demo, or structure examples from simple to advanced. NOT for generating full repo documentation or READMEs (use documentation-generator). NOT for writing examples inside a skill file (use skill-foundry). NOT for API endpoint design (use api-design).",
+        "desc_len": 543
+      }
+    ]
+  },
+  {
+    "plugin": "filesystem-context",
+    "category": "",
+    "version": "1.0.14",
+    "desc_plugin": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
+    "skills": 1,
+    "skill_names": [
+      "filesystem-context"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "context-compression",
+      "context-fundamentals",
+      "context-optimization",
+      "hosted-agents",
+      "skillstack-workflows"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "filesystem-context",
+        "has_NOT_for": true,
+        "desc": "Using the FILE SYSTEM for context \u2014 scratch pads, plan persistence, dynamic skill loading, sub-agent file workspaces, and terminal log persistence. Use when the user asks to \"offload context to files\", \"implement scratch pads\", \"persist agent plans\", \"use filesystem for agent memory\", or mentions file-based context management, tool output persistence, or just-in-time context loading. NOT for in-context optimization like KV-cache or observation masking (use context-optimization), NOT for summarization or compression techniques (use context-compression), NOT for understanding context theory or f",
+        "desc_len": 639
+      }
+    ]
+  },
+  {
+    "plugin": "frontend-design",
+    "category": "",
+    "version": "1.1.24",
+    "desc_plugin": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
+    "skills": 1,
+    "skill_names": [
+      "frontend-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "navigation-design",
+      "nextjs-development",
+      "react-development",
+      "skillstack-workflows",
+      "ux-writing"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "frontend-design",
+        "has_NOT_for": true,
+        "desc": "Visual design systems, UI/UX styling, Tailwind CSS, CSS variables, component libraries (shadcn/ui, Radix UI), design tokens, accessibility (WCAG), responsive layout, dark mode, and Figma-to-code workflows. NOT for React component logic, hooks, or state management (use react-development). NOT for Next.js routing, SSR, or server components (use nextjs-development).",
+        "desc_len": 365
+      }
+    ]
+  },
+  {
+    "plugin": "git-workflow",
+    "category": "",
+    "version": "1.1.21",
+    "desc_plugin": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
+    "skills": 1,
+    "skill_names": [
+      "git-workflow"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "cicd-pipelines",
+      "skillstack-workflows"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "git-workflow",
+        "has_NOT_for": true,
+        "desc": "Git workflow management \u2014 use when the user mentions git, conventional commits, commit quality, branch management, worktree operations, GitFlow, changelog generation, semantic versioning, release notes, backlog management, or issue tracking integration. NOT for CI/CD pipelines or pipeline YAML (use cicd-pipelines), NOT for non-git workflow orchestration (use skillstack-workflows or multi-agent-patterns), NOT for code review content or PR quality assessment (use code-review).",
+        "desc_len": 479
+      }
+    ]
+  },
+  {
+    "plugin": "gws-cli",
+    "category": "",
+    "version": "1.0.1",
+    "desc_plugin": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
+    "skills": 1,
+    "skill_names": [
+      "gws-cli"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "gws-cli",
+        "has_NOT_for": true,
+        "desc": "Google Workspace CLI (gws) for managing all 18 Workspace APIs from the terminal. Use when running gws commands, listing Drive files, sending Gmail, reading Sheets, creating Calendar events, managing Tasks, querying Chat, pushing Apps Script, building cross-service automations, or when user mentions gws or Google Workspace CLI. NOT for building MCP servers (use mcp-server), NOT for general API design (use api-design), NOT for GCP infrastructure (use cicd-pipelines).",
+        "desc_len": 469
+      }
+    ]
+  },
+  {
+    "plugin": "hindsight",
+    "category": "",
+    "version": "1.0.0",
+    "desc_plugin": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed `hindsight` CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
+    "skills": 1,
+    "skill_names": [
+      "hindsight-memory"
+    ],
+    "agents": 0,
+    "cmds": 1,
+    "hooks": true,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-project-development"
+    ],
+    "ref_count": 1,
+    "skill_detail": [
+      {
+        "skill": "hindsight-memory",
+        "has_NOT_for": true,
+        "desc": "Interact with and integrate Hindsight long-term AI memory in Claude Code via the `hindsight` CLI. Use for recalling past context, reflecting over a memory bank, retaining facts/decisions, managing banks/entities/mental-models, and understanding the auto-recall/auto-retain hooks this plugin installs. Trigger phrases: \"what do I remember about\", \"recall from my memory\", \"reflect on my past work\", \"retain this\", \"save to my memory bank\", \"hindsight memory\", \"check my long-term memory\", \"is memory working\". NOT for short-term session context (Claude already has the transcript), NOT for code/struct",
+        "desc_len": 721
+      }
+    ]
+  },
+  {
+    "plugin": "hosted-agents",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
+    "skills": 1,
+    "skill_names": [
+      "hosted-agents"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "memory-systems",
+      "multi-agent-patterns",
+      "skill-foundry",
+      "skillstack-workflows"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "hosted-agents",
+        "has_NOT_for": true,
+        "desc": "Build and deploy hosted background coding agents with sandboxed VM execution, multiplayer sessions, and multi-client interfaces. Use when the user asks to \"build background agent\", \"create hosted coding agent\", \"set up sandboxed execution\", \"implement multiplayer agent\", or mentions background agents, sandboxed VMs, agent infrastructure, Modal sandboxes, self-spawning agents, or remote coding environments. NOT for agent coordination patterns or multi-agent design (use multi-agent-patterns), NOT for agent memory or persistence (use memory-systems), NOT for tool design or tool interfaces (use to",
+        "desc_len": 611
+      }
+    ]
+  },
+  {
+    "plugin": "mcp-server",
+    "category": "",
+    "version": "1.2.21",
+    "desc_plugin": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
+    "skills": 1,
+    "skill_names": [
+      "mcp-server"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "api-design",
+      "gws-cli",
+      "plugin-dev",
+      "prompt-engineering",
+      "skillstack-workflows",
+      "tool-design"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "mcp-server",
+        "has_NOT_for": true,
+        "desc": "MCP (Model Context Protocol) server development \u2014 use when the user mentions MCP, Model Context Protocol, FastMCP, MCP server, MCP tool, Claude Code plugin, or building agent tools with MCP. Covers server implementation in Python or TypeScript, evaluation testing, production deployment, and plugin packaging. NOT for designing tool interfaces or tool consolidation patterns for agents (use tool-design), NOT for prompt engineering or prompt optimization (use prompt-engineering).",
+        "desc_len": 480
+      }
+    ]
+  },
+  {
+    "plugin": "memory-systems",
+    "category": "",
+    "version": "1.0.6",
+    "desc_plugin": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
+    "skills": 1,
+    "skill_names": [
+      "memory-systems"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "bdi-mental-states",
+      "context-compression",
+      "context-optimization",
+      "filesystem-context",
+      "hindsight",
+      "hosted-agents",
+      "multi-agent-patterns",
+      "ontology-design",
+      "skillstack-workflows",
+      "tool-design"
+    ],
+    "ref_count": 10,
+    "skill_detail": [
+      {
+        "skill": "memory-systems",
+        "has_NOT_for": true,
+        "desc": "Guides implementation of agent memory systems, compares production frameworks (Mem0, Zep/Graphiti, Letta, LangMem, Cognee), and designs persistence architectures for cross-session knowledge retention. Use when the user asks to \"implement agent memory\", \"persist state across sessions\", \"build knowledge graph for agents\", \"track entities over time\", \"add long-term memory\", \"choose a memory framework\", or mentions temporal knowledge graphs, vector stores, entity memory, adaptive memory, dynamic memory, or memory benchmarks (LoCoMo, LongMemEval). NOT for multi-agent coordination or agent handoffs ",
+        "desc_len": 759
+      }
+    ]
+  },
+  {
+    "plugin": "multi-agent-patterns",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
+    "skills": 1,
+    "skill_names": [
+      "multi-agent-patterns"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "agent-project-development",
+      "bdi-mental-states",
+      "brainstorm-swarm",
+      "context-degradation",
+      "context-fundamentals",
+      "context-optimization",
+      "filesystem-context",
+      "git-workflow",
+      "hosted-agents",
+      "memory-systems",
+      "skillstack-workflows",
+      "tool-design"
+    ],
+    "ref_count": 13,
+    "skill_detail": [
+      {
+        "skill": "multi-agent-patterns",
+        "has_NOT_for": true,
+        "desc": "This skill should be used when the user asks to \"design multi-agent system\", \"implement supervisor pattern\", \"create swarm architecture\", \"coordinate multiple agents\", or mentions multi-agent patterns, context isolation, agent handoffs, sub-agents, or parallel agent execution. NOT for agent memory or persistence (use memory-systems), NOT for tool design or tool interfaces (use tool-design), NOT for hosted agent infrastructure or sandboxed VMs (use hosted-agents), NOT for BDI cognitive models or mental state modeling (use bdi-mental-states).",
+        "desc_len": 546
+      }
+    ]
+  },
+  {
+    "plugin": "navigation-design",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
+    "skills": 1,
+    "skill_names": [
+      "navigation-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "documentation-generator",
+      "skillstack-workflows",
+      "user-journey-design",
+      "ux-writing"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "navigation-design",
+        "has_NOT_for": true,
+        "desc": "Design information architecture, wayfinding systems, and navigation structures for documentation sites and applications. Use when the user asks to design navigation, plan a sitemap, structure a sidebar or menu, define content hierarchy, design breadcrumbs, or organize how users move through content. NOT for user journey maps or touchpoint flows across time (use user-journey-design). NOT for microcopy, labels, or button text in navigation (use ux-writing). NOT for Next.js routing, layouts, or parallel routes (use nextjs-development).",
+        "desc_len": 538
+      }
+    ]
+  },
+  {
+    "plugin": "nextjs-development",
+    "category": "",
+    "version": "2.0.24",
+    "desc_plugin": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
+    "skills": 1,
+    "skill_names": [
+      "nextjs-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "frontend-design",
+      "navigation-design",
+      "react-development",
+      "skillstack-workflows",
+      "typescript-development"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "nextjs-development",
+        "has_NOT_for": true,
+        "desc": "Next.js framework development including App Router, Server Components, Server Actions, SSR, SSG, ISR, caching, data fetching, middleware, layouts, parallel routes, and module architecture for Next.js 13+/15/16. NOT for generic React patterns, hooks, or component logic (use react-development). NOT for UI/CSS design systems or visual styling (use frontend-design).",
+        "desc_len": 364
+      }
+    ]
+  },
+  {
+    "plugin": "ontology-design",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
+    "skills": 1,
+    "skill_names": [
+      "ontology-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "consistency-standards",
+      "content-modelling",
+      "skillstack-workflows"
+    ],
+    "ref_count": 3,
+    "skill_detail": [
+      {
+        "skill": "ontology-design",
+        "has_NOT_for": true,
+        "desc": "Design formal knowledge models \u2014 classes, properties, relationships, hierarchies, and semantic graphs \u2014 for knowledge representation and reasoning. Use when the user asks to build an ontology, design a knowledge graph, model entity relationships formally, define class hierarchies, create a taxonomy for semantic reasoning, or structure data for RDF/OWL. NOT for CMS content types, editorial workflows, or publishing structures (use content-modelling). NOT for naming conventions or terminology standards across docs (use consistency-standards).",
+        "desc_len": 545
+      }
+    ]
+  },
+  {
+    "plugin": "osint",
+    "category": "",
+    "version": "1.0.1",
+    "desc_plugin": "OSINT intelligence skill \u2014 systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
+    "skills": 1,
+    "skill_names": [
+      "osint"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "osint",
+        "has_NOT_for": true,
+        "desc": "Conduct deep OSINT research on individuals \u2014 from name or handle to a scored dossier with psychoprofile (MBTI/Big Five), career map, and confidence-graded facts. Phased pipeline (0\u21926): tooling check, seed collection, internal intelligence, platform extraction, cross-reference, psychoprofile, completeness evaluation, dossier output. Swarm mode: 3-5 parallel Sonnet sub-agents. 55+ Apify actors. 7 search APIs. Trigger phrases: \"osint\", \"research person\", \"find everything about\", \"due diligence\", \"background check\", \"digital footprint\", \"build dossier\", \"profile someone\", \"\u043f\u0440\u043e\u0431\u0435\u0439\", \"\u0434\u043e\u0441\u044c\u0435\", \"\u0440\u0430\u0437\u0432\u0435",
+        "desc_len": 824
+      }
+    ]
+  },
+  {
+    "plugin": "outcome-orientation",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
+    "skills": 1,
+    "skill_names": [
+      "outcome-orientation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "creative-problem-solving",
+      "critical-intuition",
+      "persona-mapping",
+      "prioritization",
+      "product-thinking",
+      "skillstack-workflows"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "outcome-orientation",
+        "has_NOT_for": true,
+        "desc": "Reframe work around measurable outcomes using OKRs, KPIs, and the outcome-vs-output distinction. Use when the user asks to define success criteria, write OKRs, set KPIs, clarify what \"done\" means in terms of impact, distinguish outputs from outcomes, or make a goal statement measurable and time-bound. NOT for ranking or scoring features by priority (use prioritization). NOT for systemic feedback-loop analysis (use systems-thinking).",
+        "desc_len": 436
+      }
+    ]
+  },
+  {
+    "plugin": "persona-definition",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
+    "skills": 1,
+    "skill_names": [
+      "persona-definition"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "brainstorm-swarm",
+      "elicitation",
+      "persona-mapping",
+      "product-thinking",
+      "skillstack-workflows",
+      "storytelling",
+      "technical-copywriting",
+      "user-journey-design"
+    ],
+    "ref_count": 8,
+    "skill_detail": [
+      {
+        "skill": "persona-definition",
+        "has_NOT_for": true,
+        "desc": "Create individual user personas and customer archetypes \u2014 with demographics, goals, pain points, behaviors, and empathy maps \u2014 to represent the humans a product or system is built for. Use when the user asks to define personas, create user archetypes, describe target users, build empathy maps, or characterize the audience for a product or design decision. NOT for mapping stakeholders across an organization, RACI charts, or influence analysis (use persona-mapping). NOT for designing research interview flows (use elicitation).",
+        "desc_len": 530
+      }
+    ]
+  },
+  {
+    "plugin": "persona-mapping",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
+    "skills": 1,
+    "skill_names": [
+      "persona-mapping"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "brainstorm-swarm",
+      "communication",
+      "elicitation",
+      "persona-definition",
+      "prioritization",
+      "product-thinking",
+      "skillstack-workflows"
+    ],
+    "ref_count": 7,
+    "skill_detail": [
+      {
+        "skill": "persona-mapping",
+        "has_NOT_for": true,
+        "desc": "Map stakeholders across organizations using Power-Interest matrices, RACI charts, influence analysis, and salience models to understand who has authority, who is affected, and how to engage each group. Use when the user asks to map stakeholders, create a RACI matrix, analyze organizational influence, identify decision-makers, prioritize who to involve, or plan stakeholder communication. NOT for individual user personas or empathy maps for product design (use persona-definition). NOT for designing the product's target audience (use persona-definition).",
+        "desc_len": 557
+      }
+    ]
+  },
+  {
+    "plugin": "plugin-dev",
+    "category": "",
+    "version": "1.2.0",
+    "desc_plugin": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
+    "skills": 8,
+    "skill_names": [
+      "plugin-architecture",
+      "plugin-composition",
+      "plugin-documenter",
+      "plugin-evaluation",
+      "plugin-hooks",
+      "plugin-ideation",
+      "plugin-research",
+      "plugin-validation"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 8,
+    "trig": 8,
+    "bench": [],
+    "referenced_by": [
+      "skill-foundry",
+      "skillstack-workflows"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "plugin-architecture",
+        "has_NOT_for": true,
+        "desc": "Decides which Claude Code extension type to use for a given capability \u2014 skill, hook, MCP server, subagent, or slash command \u2014 and designs the plugin.json manifest around that decision. Use when designing a plugin, planning plugin structure, choosing between skill vs hook vs mcp, setting up plugin composition, laying out plugin components, or refactoring an existing plugin whose decomposition feels wrong. Covers the five extension types, the decision matrix (when each fits), plugin.json schema reference, directory layout, namespacing conventions, and worked examples from real plugins. NOT for ",
+        "desc_len": 718
+      },
+      {
+        "skill": "plugin-composition",
+        "has_NOT_for": true,
+        "desc": "Integrates multiple components inside a single Claude Code plugin \u2014 skills, hooks, MCPs, subagents, and commands \u2014 using the canonical directory layout and path substitution variables. Use when building a multi-component plugin, combining skills and hooks, laying out the plugin directory structure, working with CLAUDE_PLUGIN_ROOT or CLAUDE_PLUGIN_DATA, choosing where to put shared scripts inside a plugin, or debugging why a path reference is not resolving at runtime. Covers the canonical directory tree, path substitution variables (CLAUDE_PLUGIN_ROOT vs CLAUDE_PLUGIN_DATA vs CLAUDE_PROJECT_DIR",
+        "desc_len": 845
+      },
+      {
+        "skill": "plugin-documenter",
+        "has_NOT_for": true,
+        "desc": "Generates comprehensive documentation for any Claude Code plugin by fetching and analyzing all source files. Use when you need to document a Claude plugin, write a plugin README, explain how a plugin works, generate plugin usage guides, create plugin tutorials, analyze a plugin architecture for documentation, or produce installation and setup instructions. Takes a GitHub URL or local path, fetches all plugin files, maps the component architecture, identifies real use-case scenarios from skill descriptions and reference content, and produces a complete documentation package with problem stateme",
+        "desc_len": 910
+      },
+      {
+        "skill": "plugin-evaluation",
+        "has_NOT_for": true,
+        "desc": "Measures whether a Claude Code plugin actually works by running triggering evals (does the model pick the skill?) and output evals (does it produce correct results?). Use when you need to evaluate a plugin, run skill activation testing, set up an eval harness, measure plugin quality, write trigger rate tests, check output quality, compare plugin iterations, or iterate on a SKILL description based on eval results. Covers the two eval file formats (trigger-evals.json and evals.json), the grader/analyzer/comparator pattern from Anthropic's skill-creator, quality criteria for eval queries (realist",
+        "desc_len": 809
+      },
+      {
+        "skill": "plugin-hooks",
+        "has_NOT_for": true,
+        "desc": "Authoritative guide to Claude Code hooks \u2014 event-driven scripts that execute before or after tool calls, session events, file changes, and more. Use when writing a PreToolUse hook to block dangerous commands, a PostToolUse hook to auto-format after edits, a SessionStart hook to inject context, a Stop hook for session loops, a Notification hook for desktop alerts, a FileChanged hook for reactive environments, a WorktreeCreate hook for custom worktree provisioning, or current documented hook events. Covers handler types (command, http, mcp_tool, prompt, agent), matcher syntax (exact/OR-list/rege",
+        "desc_len": 786
+      },
+      {
+        "skill": "plugin-ideation",
+        "has_NOT_for": true,
+        "desc": "Turns a vague \"I want to build a Claude plugin\" into a concrete, problem-first plugin idea \u2014 or tells you to not build it. Use when you want to build a Claude plugin, have an idea for a plugin and don't know if it's worth pursuing, are asking \"should I build this as a plugin or is there already one\", are exploring plugin ideas for your team, or are mining your workflow for repeatable pain points that could become plugins. Covers pain-point mining (what workflow pains become plugins), the problem-worthy checklist (seven criteria a plugin idea must pass), the \"build for a problem, not for yourse",
+        "desc_len": 817
+      },
+      {
+        "skill": "plugin-research",
+        "has_NOT_for": true,
+        "desc": "Validates a plugin idea by surveying the marketplace, reading authoritative Anthropic sources, and deciding build-vs-fork-vs-skip before writing any code. Use when you want to research existing Claude Code plugins, check whether there is already a plugin for X, decide whether to build a new plugin or fork an existing one, run a marketplace survey before starting work, find authoritative documentation on a Claude Code feature, or gather primary sources for a plugin design. Covers the marketplace survey methodology, the canonical list of authoritative Anthropic URLs (code.claude.com, docs.claude",
+        "desc_len": 924
+      },
+      {
+        "skill": "plugin-validation",
+        "has_NOT_for": true,
+        "desc": "Validates the structural correctness of Claude Code plugins \u2014 plugin.json manifest fields, SKILL.md YAML frontmatter, reference cross-references, skill name-to-directory consistency, and plugin structure conventions. Use when checking whether a plugin is well-formed before shipping, when debugging \"plugin won't load\" errors, when setting up CI for a plugin repo, or when reviewing a third-party plugin for issues. NOT for functional evaluation (whether skills activate or produce correct output \u2014 use plugin-evaluation for that). NOT for single-skill SKILL.md quality review (use skill-foundry for ",
+        "desc_len": 606
+      }
+    ]
+  },
+  {
+    "plugin": "prioritization",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
+    "skills": 1,
+    "skill_names": [
+      "prioritization"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "context-degradation",
+      "creative-problem-solving",
+      "critical-intuition",
+      "outcome-orientation",
+      "persona-definition",
+      "persona-mapping",
+      "product-thinking",
+      "risk-management",
+      "skillstack-workflows",
+      "systems-thinking"
+    ],
+    "ref_count": 10,
+    "skill_detail": [
+      {
+        "skill": "prioritization",
+        "has_NOT_for": true,
+        "desc": "Apply RICE, MoSCoW, ICE, and effort-impact frameworks to rank options and decide what to work on next. Use when the user asks to prioritize a backlog, rank features, decide what to build first, apply RICE or MoSCoW scoring, cut scope, or compare items by effort vs impact. NOT for defining success metrics or OKRs (use outcome-orientation). NOT for making a strategic bet under uncertainty (use strategic-decision workflow).",
+        "desc_len": 424
+      }
+    ]
+  },
+  {
+    "plugin": "product-thinking",
+    "category": "",
+    "version": "1.0.1",
+    "desc_plugin": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
+    "skills": 5,
+    "skill_names": [
+      "outcome-oriented-thinking",
+      "problem-definition",
+      "trade-off-analysis",
+      "user-needs-identification",
+      "value-proposition-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": [],
+    "referenced_by": [
+      "outcome-orientation",
+      "persona-definition"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "outcome-oriented-thinking",
+        "has_NOT_for": true,
+        "desc": "Apply outcome-over-output product thinking \u2014 separating what gets built from what actually changes for the user, running the \"so what\" test to climb from output to outcome to impact, choosing leading vs lagging metrics, and identifying a North Star metric. Use when the user asks whether something is an outcome or an output in a product context, wants to run the \"so what\" test on a deliverable, wants a North Star metric, needs to choose leading indicators for a product bet, or is debating whether shipping a feature equals success. NOT for generic OKR authoring (use outcome-orientation). NOT for",
+        "desc_len": 703
+      },
+      {
+        "skill": "problem-definition",
+        "has_NOT_for": true,
+        "desc": "Frame the real user or business problem (not a code/test bug) using Jobs-To-Be-Done, the 5-whys ladder, and problem-vs-symptom separation. Use when the user asks \"are we solving the right problem\", wants to write a problem statement, needs to separate problems from symptoms, wants to apply 5-whys to a product or organizational issue, suspects a brief conflates a feature with a problem, or wants to surface assumptions about what problem is actually being solved. NOT for ideating or brainstorming candidate solutions (use creative-problem-solving). NOT for diagnosing code, test, or CI bugs (use d",
+        "desc_len": 669
+      },
+      {
+        "skill": "trade-off-analysis",
+        "has_NOT_for": true,
+        "desc": "Analyze trade-offs between competing product options using cost-benefit, opportunity cost, reversibility (one-way vs two-way doors), and second-order effects. Use when the user faces a product choice with non-trivial trade-offs, asks \"what are we giving up\", weighs short-term vs long-term impact, or needs to frame a decision before committing. NOT for scored prioritization of a backlog (use prioritization). NOT for quantified risk assessment (use risk-management). NOT for strategic go/no-go (use strategic-decision).",
+        "desc_len": 521
+      },
+      {
+        "skill": "user-needs-identification",
+        "has_NOT_for": true,
+        "desc": "Identify what users actually need using functional/emotional/social jobs, needs-vs-wants laddering, latent-need surfacing, and job statements. Use when the user asks what users truly need, wants to write a job statement (When/I-want-to/So-I-can), wants to move past stated wants to underlying needs, needs to separate functional jobs from emotional or social ones, or wants to spot latent needs the user cannot articulate. NOT for persona demographics (use persona-definition). NOT for stakeholder power maps (use persona-mapping). NOT for interview scripting (use elicitation).",
+        "desc_len": 578
+      },
+      {
+        "skill": "value-proposition-design",
+        "has_NOT_for": true,
+        "desc": "Design a product value proposition using the Value Proposition Canvas (jobs, pains, gains, pain relievers, gain creators) and the Kano model. Use when the user asks to write a value proposition, map pains and gains to product features, apply VPC, distinguish basic/performance/delighter features (Kano), or articulate why a product matters to a specific customer. NOT for marketing copy or microcopy (use ux-writing). NOT for pitching the value prop to stakeholders (use storytelling-for-stakeholders). NOT for generic slogans.",
+        "desc_len": 527
+      }
+    ]
+  },
+  {
+    "plugin": "prompt-engineering",
+    "category": "",
+    "version": "1.1.16",
+    "desc_plugin": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
+    "skills": 1,
+    "skill_names": [
+      "prompt-engineering"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "deslop",
+      "mcp-server",
+      "skill-foundry",
+      "skillstack-workflows"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "prompt-engineering",
+        "has_NOT_for": true,
+        "desc": "Design, evaluate, and iteratively improve prompts for LLMs \u2014 system prompts, few-shot examples, reasoning structures, and instruction templates. Use when the user asks to improve a prompt, write a system prompt, optimize LLM instructions, reduce hallucinations through prompt structure, test prompt variants, or apply prompting techniques (structured reasoning, ReAct, few-shot, structured output). NOT for building MCP tools or server implementation (use mcp-server). NOT for creating Claude Code SKILL.md files (use skill-foundry). NOT for building a full agent (use build-ai-agent workflow).",
+        "desc_len": 594
+      }
+    ]
+  },
+  {
+    "plugin": "python-development",
+    "category": "",
+    "version": "1.1.25",
+    "desc_plugin": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
+    "skills": 1,
+    "skill_names": [
+      "python-development"
+    ],
+    "agents": 0,
+    "cmds": 6,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "consistency-standards",
+      "nextjs-development",
+      "typescript-development"
+    ],
+    "ref_count": 3,
+    "skill_detail": [
+      {
+        "skill": "python-development",
+        "has_NOT_for": true,
+        "desc": "Python development \u2014 use when the user works with .py files, pyproject.toml, uv, ruff, mypy, pytest, async/await, MicroPython, CLI tools, or PyPI publishing. Covers modern tooling, best practices, library architecture, functional patterns, and production workflows. NOT for TypeScript or JavaScript development (use typescript-development), NOT for React component patterns (use react-development).",
+        "desc_len": 398
+      }
+    ]
+  },
+  {
+    "plugin": "react-development",
+    "category": "",
+    "version": "1.1.21",
+    "desc_plugin": "Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.",
+    "skills": 1,
+    "skill_names": [
+      "react-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "frontend-design",
+      "nextjs-development",
+      "python-development",
+      "skillstack-workflows",
+      "typescript-development"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "react-development",
+        "has_NOT_for": true,
+        "desc": "React-specific development patterns including hooks (useState, useEffect, useReducer, useContext), component architecture, state management, shadcn/ui integration, JSX/TSX, React testing, and Bulletproof React auditing. NOT for Next.js routing, SSR, or server components (use nextjs-development). NOT for CSS design systems, Tailwind utilities, or accessibility patterns (use frontend-design).",
+        "desc_len": 393
+      }
+    ]
+  },
+  {
+    "plugin": "risk-management",
+    "category": "",
+    "version": "1.0.12",
+    "desc_plugin": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
+    "skills": 1,
+    "skill_names": [
+      "risk-management"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "creative-problem-solving",
+      "critical-intuition",
+      "edge-case-coverage",
+      "persona-mapping",
+      "prioritization",
+      "product-thinking",
+      "skillstack-workflows",
+      "systems-thinking"
+    ],
+    "ref_count": 8,
+    "skill_detail": [
+      {
+        "skill": "risk-management",
+        "has_NOT_for": true,
+        "desc": "Systematically assess and mitigate risks using risk registers, probability-impact matrices, mitigation strategies, and contingency plans. Use when the user asks to assess risks, build a risk register, plan for failure modes, evaluate downside scenarios, prepare contingency plans, or quantify uncertainty before a decision or launch. NOT for finding conceptual flaws or blind spots in ideas (use critical-intuition). NOT for security vulnerability auditing in code (use code-review). NOT for identifying boundary conditions in code (use edge-case-coverage).",
+        "desc_len": 557
+      }
+    ]
+  },
+  {
+    "plugin": "skill-foundry",
+    "category": "",
+    "version": "2.2.2",
+    "desc_plugin": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
+    "skills": 1,
+    "skill_names": [
+      "skill-foundry"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [
+      "skill-foundry"
+    ],
+    "referenced_by": [
+      "example-design",
+      "plugin-dev",
+      "prompt-engineering",
+      "skillstack-workflows"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "skill-foundry",
+        "has_NOT_for": true,
+        "desc": "Author high-quality Claude Code SKILL.md files using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. Use when the user asks to write a skill file, create a new Claude Code skill, design a SKILL.md, review whether a skill's description will trigger correctly, or convert a workflow into a reusable skill. NOT for optimizing standalone prompts or system prompts (use prompt-engineering). NOT for full plugin development with hooks and MCP (use plugin-architecture). NOT for generating code documentation (use documentation-generator).",
+        "desc_len": 588
+      }
+    ]
+  },
+  {
+    "plugin": "skillstack-workflows",
+    "category": "",
+    "version": "2.2.1",
+    "desc_plugin": "Twenty composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, plugin updating, plugin/skill evaluation, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisi",
+    "skills": 20,
+    "skill_names": [
+      "api-to-production",
+      "build-a-plugin",
+      "build-ai-agent",
+      "content-platform-build",
+      "context-engineering-pipeline",
+      "debug-complex-issue",
+      "design-review-sprint",
+      "evaluate-and-improve-agent",
+      "evaluate-plugin-or-skill",
+      "legacy-rescue",
+      "llm-cost-optimization",
+      "onboard-to-codebase",
+      "pitch-sprint",
+      "product-story-to-ship",
+      "security-hardening-audit",
+      "storytelling-for-stakeholders",
+      "strategic-decision",
+      "update-a-plugin",
+      "user-research-to-insight",
+      "write-your-own-skill"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 20,
+    "trig": 20,
+    "bench": [],
+    "referenced_by": [
+      "git-workflow",
+      "plugin-dev"
+    ],
+    "ref_count": 2,
+    "skill_detail": [
+      {
+        "skill": "api-to-production",
+        "has_NOT_for": true,
+        "desc": "End-to-end workflow for taking an API from design through TDD, code review, CI/CD, and containerized deployment. Composes five phases \u2014 REST/GraphQL/gRPC design with schemas and error contracts (api-design), red-green-refactor on every endpoint (test-driven-development), multi-perspective code review (code-review), pipeline wiring with automated testing (cicd-pipelines), and Docker containerization with multi-stage builds and optimization (docker-containerization). Use when building a new API endpoint or service that needs to ship to production. Use when converting a prototype API into product",
+        "desc_len": 784
+      },
+      {
+        "skill": "build-a-plugin",
+        "has_NOT_for": true,
+        "desc": "End-to-end workflow for authoring a Claude Code plugin from idea to validated, evaluated artifact. Composes six phases \u2014 ideation with a 7-criteria kill gate (plugin-ideation), marketplace survey and build-vs-fork decision (plugin-research), skill/hook/MCP/subagent/command decomposition (plugin-architecture), component implementation (plugin-hooks + plugin-composition + skill-creator), structural validation (plugin-validation), and trigger plus output evaluation with iteration loop (plugin-evaluation). Use when building a full Claude Code plugin with multiple components, hooks, MCP servers, or",
+        "desc_len": 841
+      },
+      {
+        "skill": "build-ai-agent",
+        "has_NOT_for": true,
+        "desc": "Funnel workflow for going from \"I want an agent that does X\" to a deployed, evaluated, cost-monitored agent. Runs through nine phases starting with the is-this-task-agent-appropriate check (agent-project-development), then prompt design with eval criteria first (prompt-engineering), tool design and consolidation (tool-design), architecture selection for multi-step work (multi-agent-patterns), persistence decisions (memory-systems), context-window management (context-optimization), evaluation pipeline construction (agent-evaluation), deployment (hosted-agents), and ongoing cost and quality moni",
+        "desc_len": 800
+      },
+      {
+        "skill": "content-platform-build",
+        "has_NOT_for": true,
+        "desc": "Layering workflow for building a knowledge base, CMS, documentation site, or structured content platform from scratch. Builds the data model first (content-modelling), adds a formal knowledge-graph layer if needed (ontology-design), establishes naming and taxonomy conventions (consistency-standards), designs information architecture (navigation-design), fine-tunes voice and microcopy (ux-writing), fills the structure with examples (example-design), and adds tooling for scale (documentation-generator). Use when starting a content or docs system from scratch, migrating one to a structured model,",
+        "desc_len": 721
+      },
+      {
+        "skill": "context-engineering-pipeline",
+        "has_NOT_for": true,
+        "desc": "Diagnostic-and-fix pipeline for systematic context engineering \u2014 fix agent context, context engineering, context optimization pipeline, diagnose context problems. Chains context-fundamentals (attention, budgeting), context-optimization (KV-cache, partitioning, observation masking), context-compression (summarization, anchored iterative, tokens-per-task), context-degradation (lost-in-middle, poisoning, clash diagnosis), and filesystem-context (scratch pads, plan files, dynamic loading). Use when an agent's context is degrading, token costs are bloated, the agent forgets instructions mid-session",
+        "desc_len": 813
+      },
+      {
+        "skill": "debug-complex-issue",
+        "has_NOT_for": true,
+        "desc": "Loop workflow for debugging a complex issue you've been stuck on for more than 30 minutes. Runs systematic hypothesis formation (debugging skill), feedback-loop mapping when the bug looks like a dynamic problem (systems-thinking), context-pathology check when it's an LLM/agent bug (context-degradation), blast-radius assessment before any fix attempt (risk-management), and uses test-driven-development as the debugging oracle \u2014 write a failing test that reproduces the bug, then iterate fix \u2192 test until green. Use when a bug has defeated a first-pass attempt, when symptoms seem to shift under inv",
+        "desc_len": 828
+      },
+      {
+        "skill": "design-review-sprint",
+        "has_NOT_for": true,
+        "desc": "Sequential-audit workflow for running a full UX review pass across an application or product. Walks through five phases \u2014 visual audit of design system adherence (frontend-design), navigation and information architecture review (navigation-design), microcopy and error-message audit (ux-writing), end-to-end journey validation (user-journey-design), and cross-product consistency check (consistency-standards). Use when launching a new product version, onboarding a design system, preparing for an accessibility audit, or when user feedback signals \"something feels off\" but nobody can pinpoint what.",
+        "desc_len": 731
+      },
+      {
+        "skill": "evaluate-and-improve-agent",
+        "has_NOT_for": true,
+        "desc": "Diagnostic-loop workflow for improving an underperforming AI agent. Starts with baseline measurement using rubrics and LLM-as-judge scoring (agent-evaluation), then diagnoses architectural problems like task-model mismatch and pipeline bottlenecks (agent-project-development), redesigns the agent topology \u2014 supervisor, swarm, or specialized agents (multi-agent-patterns), adds the right memory framework when persistence is the gap (memory-systems), and re-evaluates against the original baseline to prove improvement. Use when an existing agent is underperforming, producing inconsistent results, f",
+        "desc_len": 804
+      },
+      {
+        "skill": "evaluate-plugin-or-skill",
+        "has_NOT_for": true,
+        "desc": "Use when evaluating a Claude Code plugin or single SKILL.md and a verdict is needed \u2014 ship-ready, needs improvement, or rework. Multi-pass audit workflow that composes plugin-dev's structural validation, plugin-evaluation's activation and output measurement, and skill-foundry's anti-pattern audit to grade quality across five dimensions: structure, activation reliability, content discipline, output behavior, and documentation completeness. Trigger phrases include \"evaluate this plugin\", \"review this skill\", \"audit this SKILL.md\", \"is this ready to publish\", \"check the quality of this plugin\", \"",
+        "desc_len": 1017
+      },
+      {
+        "skill": "legacy-rescue",
+        "has_NOT_for": true,
+        "desc": "Loop workflow for making real progress on a legacy codebase without breaking production. Starts by generating a codemap so you actually understand what exists (documentation-generator), identifies feedback-center modules (systems-thinking), gets a second perspective on areas you'll touch (code-review), builds a test safety net before any changes (test-driven-development), plans changes with rollback options (risk-management), makes small atomic commits (git-workflow), and loops through debugging as issues surface. Use when inheriting a codebase that's hard to change safely, when a production s",
+        "desc_len": 763
+      },
+      {
+        "skill": "llm-cost-optimization",
+        "has_NOT_for": true,
+        "desc": "Funnel-with-gate workflow for reducing LLM costs without degrading quality. Starts with diagnosing the cost surface using cloud-finops (specifically the finops-for-ai and finops-anthropic references), then applies context-optimization to reduce context per call, context-compression to compress what can't be reduced, prompt-engineering for shorter prompts and better model selection, and uses agent-evaluation as a mandatory gate \u2014 if any optimization degrades quality, roll it back. Finishes with prioritization of remaining opportunities and risk-management guardrails for future auto-scaling. Use",
+        "desc_len": 901
+      },
+      {
+        "skill": "onboard-to-codebase",
+        "has_NOT_for": true,
+        "desc": "Ramp-up workflow for understanding a new codebase fast \u2014 onboard to codebase, understand a repo, grok a project, ramp up on code. Generates a codemap so the structure is visible before you read any implementation (documentation-generator), then builds a system model of dependencies, feedback loops, and critical paths so you know which parts matter (systems-thinking), then traces key flows end-to-end through the code so you see how the pieces connect in practice (debugging), and finally builds a context strategy so you know what to keep in working memory and what to look up on demand (context-f",
+        "desc_len": 870
+      },
+      {
+        "skill": "pitch-sprint",
+        "has_NOT_for": true,
+        "desc": "Parallel-merge workflow for producing a pitch (investor deck, board proposal, internal funding request, customer sales narrative) in roughly a week. Runs three parallel streams (deep interviews via elicitation, market dynamics via systems-thinking, audience sharpening via persona-definition), merges them into a single storytelling spine, audits via critical-intuition, and polishes every line with ux-writing. Use when you have one week to produce a pitch that must actually land with a specific, named audience and every claim must be grounded in something real. NOT for internal status updates, f",
+        "desc_len": 668
+      },
+      {
+        "skill": "product-story-to-ship",
+        "has_NOT_for": true,
+        "desc": "PM funnel workflow for turning user research into prioritized engineering stories \u2014 product story, user research to backlog, user needs to stories, PM workflow. Chains elicitation (deep interviews that surface real needs), user-journey-design (touchpoints, pain points, emotions), persona-definition (who we're building for), outcome-orientation (measurable success criteria), and prioritization (RICE/MoSCoW/ICE scoring). Use when translating user research into engineering work, when the backlog is unranked feature requests, when launching a new product from interviews to sprint-ready stories, or",
+        "desc_len": 782
+      },
+      {
+        "skill": "security-hardening-audit",
+        "has_NOT_for": true,
+        "desc": "Systematic security audit workflow for hardening a codebase through structured multi-pass analysis. Composes four skills across five phases \u2014 threat surface mapping with attack vector identification (risk-management), security-focused code review targeting OWASP and language-specific vulnerabilities (code-review), boundary condition and validation gap analysis (edge-case-coverage), and security test suite construction with fuzzing and property-based tests (testing-framework). Use when hardening an existing codebase before launch, after a security incident, during compliance preparation, or for",
+        "desc_len": 846
+      },
+      {
+        "skill": "storytelling-for-stakeholders",
+        "has_NOT_for": true,
+        "desc": "Narrative-build workflow for turning data, technical results, or project outcomes into a compelling story for leadership, investors, or customers. Structures the narrative using proven story frameworks \u2014 3-act, SparkLines, situation-complication-resolution (storytelling), finds the surprising angle through lateral thinking and reframing (creative-problem-solving), anchors every claim to measurable business impact using OKRs and outcome vs output framing (outcome-orientation), then iterates through craft and polish. Use when presenting quarterly results to leadership, pitching a technical initi",
+        "desc_len": 882
+      },
+      {
+        "skill": "strategic-decision",
+        "has_NOT_for": true,
+        "desc": "Gate workflow for making a strategic decision under uncertainty when multiple options have merit and the stakes are high. Defines the success criteria first (outcome-orientation), maps what actually drives the outcome (systems-thinking), generates options including uncomfortable ones (creative-problem-solving), stress-tests each for blind spots and hidden assumptions (critical-intuition), assesses downside per option (risk-management), ranks using the original criteria (prioritization), and uses outcome-orientation as an end gate \u2014 does the top-ranked option actually achieve the outcome we def",
+        "desc_len": 827
+      },
+      {
+        "skill": "update-a-plugin",
+        "has_NOT_for": true,
+        "desc": "Workflow for modifying an existing Claude Code plugin \u2014 adding a new skill, fixing activation issues, improving content quality, adding hooks, or restructuring components. Composes five phases: audit current state (plugin-validation + plugin-evaluation), classify the change type, implement using the appropriate plugin-dev skills (skill-foundry / plugin-hooks / plugin-composition / plugin-architecture), regression-check via re-validation and re-evaluation, then version bump and README update. Use when extending or fixing an existing plugin with any component changes. NOT for building a new plug",
+        "desc_len": 743
+      },
+      {
+        "skill": "user-research-to-insight",
+        "has_NOT_for": true,
+        "desc": "Funnel workflow for turning user interviews into actionable product direction that the team actually acts on. Designs the research conversations using elicitation frameworks (OARS, narrative identity, values elicitation, schema detection), synthesizes findings into grounded personas (persona-definition), places them in the organizational landscape (persona-mapping), maps their journeys with touchpoints and friction (user-journey-design), audits for what the research missed (critical-intuition), and presents insights as narrative rather than report (storytelling). Use when you're running a rese",
+        "desc_len": 748
+      },
+      {
+        "skill": "write-your-own-skill",
+        "has_NOT_for": true,
+        "desc": "Meta-workflow for creating your own Claude Code skill that actually activates when needed and delivers genuine value. Starts with skill-creator as the canonical starting point, adds elicitation frameworks when the skill is for a human/domain area (interviewing, research, therapy-adjacent), designs the examples that will illustrate the skill (example-design), aligns with repo conventions (consistency-standards), writes structural validation tests before the content (test-driven-development), audits the draft against anti-patterns (critical-intuition), and generates the README with scenario tabl",
+        "desc_len": 812
+      }
+    ]
+  },
+  {
+    "plugin": "storytelling",
+    "category": "",
+    "version": "1.0.1",
+    "desc_plugin": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tob",
+    "skills": 1,
+    "skill_names": [
+      "storytelling"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "deslop",
+      "skillstack-workflows",
+      "technical-copywriting",
+      "ux-writing"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "storytelling",
+        "has_NOT_for": true,
+        "desc": "Expert guidance for writing, editing, and teaching stories across fiction, business, data, speech, UX, and interactive narrative. Covers canonical story structures (3-act, Hero's Journey, Story Circle, Save the Cat, Kish\u014dtenketsu, Freytag, Fichtean), business narrative frameworks (StoryBrand, Pixar Spine, Before-After-Bridge), data storytelling (Knaflic, situation-complication-resolution), speech writing (Duarte SparkLines, TED, Monroe's Motivated Sequence), narrative craft (character, scene, dialogue, POV), interactive narrative, and anti-pattern diagnostics. Use when writing or editing stori",
+        "desc_len": 961
+      }
+    ]
+  },
+  {
+    "plugin": "systems-thinking",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
+    "skills": 1,
+    "skill_names": [
+      "systems-thinking"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "creative-problem-solving",
+      "critical-intuition",
+      "outcome-orientation",
+      "product-thinking",
+      "skillstack-workflows"
+    ],
+    "ref_count": 5,
+    "skill_detail": [
+      {
+        "skill": "systems-thinking",
+        "has_NOT_for": true,
+        "desc": "Analyze complex problems through feedback loops, system dynamics, causal relationships, and leverage points to understand WHY a system behaves the way it does. Use when the user asks to map feedback loops, trace causal chains, identify why a problem keeps recurring, find leverage points for change, analyze emergent behavior, or understand a complex system before intervening. NOT for generating creative solutions (use creative-problem-solving). NOT for stress-testing specific assumptions (use critical-intuition). NOT for structured risk registers or mitigation plans (use risk-management).",
+        "desc_len": 594
+      }
+    ]
+  },
+  {
+    "plugin": "technical-copywriting",
+    "category": "",
+    "version": "1.1.0",
+    "desc_plugin": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's p",
+    "skills": 5,
+    "skill_names": [
+      "distribution-craft",
+      "engaging-craft",
+      "long-form-polish",
+      "long-form-structure",
+      "technical-research"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 5,
+    "trig": 5,
+    "bench": [
+      "engaging-craft",
+      "distribution-craft",
+      "technical-copywriting"
+    ],
+    "referenced_by": [],
+    "ref_count": 0,
+    "skill_detail": [
+      {
+        "skill": "distribution-craft",
+        "has_NOT_for": true,
+        "desc": "Engineer the distribution layer of a long-form technical article \u2014 title, dek (subtitle), meta description, social pull-quotes, and channel-specific framing. Most technical articles die at the title; this skill covers the craft of titles that earn the click without clickbait, deks that confirm the promise, social pull-quotes for X / LinkedIn / Hacker News / Reddit, open-graph metadata, and the practice of reframing the same article differently per channel. Use when the user asks to write a title for an article, suggest titles, write a dek or subtitle, write a meta description, pull social quot",
+        "desc_len": 1080
+      },
+      {
+        "skill": "engaging-craft",
+        "has_NOT_for": true,
+        "desc": "Apply proven copywriting techniques to long-form technical content so it holds attention from sentence to sentence \u2014 and humanize prose that reads AI-generated. Covers AIDA, PAS, Before-After-Bridge, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz's awareness levels, hook engineering, voice and tonality calibration, the concrete-over-abstract discipline, and the AI-prose-tell catalog (banned high-frequency AI words like delve / underscore / pivotal / leverage; AI transitions like \"that being said\" / \"at its core\"; reflex hedges; academic filler verbs; buzzwords like revolutionize / c",
+        "desc_len": 1205
+      },
+      {
+        "skill": "long-form-polish",
+        "has_NOT_for": true,
+        "desc": "Polish a long-form technical draft for pacing, scan-ability, and tightness. Cover paragraph and sentence rhythm, the scan reader's experience (headings, callouts, pull quotes, white space, lists, tables), the 30% cut discipline for removing filler, and the read-aloud test for finding bumps. Distinct from short-form line-level editing \u2014 this skill works at the paragraph and section level for pieces of 1500-5000+ words. Use when the user asks to polish a long article, fix pacing, improve scan-ability, run a cut pass, do a read-aloud test, tighten a draft, fix uneven sections, or prepare a draft ",
+        "desc_len": 924
+      },
+      {
+        "skill": "long-form-structure",
+        "has_NOT_for": true,
+        "desc": "Structure long-form technical articles around the hook \u2192 promise \u2192 setup \u2192 development \u2192 payoff contract. Pick from canonical templates (deep-dive, tutorial, opinion, case study, whitepaper, technical narrative). Engineer section transitions and signposting. Match length to ambition (when 800 vs 1500 vs 3000 vs 5000+ words is right). Use when the user asks to outline a technical article, structure a deep-dive, plan a tutorial, organize a whitepaper, pick an article template, fix pacing across sections, or audit the structure of an existing draft. NOT for short-form work writing like RFCs or me",
+        "desc_len": 871
+      },
+      {
+        "skill": "technical-research",
+        "has_NOT_for": true,
+        "desc": "Research before craft for long-form technical content. Profile the audience (knowledge level, jobs-to-be-done, prior beliefs), tier sources (primary > peer-reviewed > authoritative > popular > vendor), triangulate every load- bearing claim across three sources, manage evidence types (data, expert quotes, demonstrations, case studies, source code), and apply citation discipline (when, how, link-rot mitigation, footnote vs inline). Use when the user asks to research a technical article, profile an audience, find sources for a deep-dive, fact-check a draft, build a claim-evidence map, or audit ci",
+        "desc_len": 904
+      }
+    ]
+  },
+  {
+    "plugin": "test-driven-development",
+    "category": "",
+    "version": "1.1.18",
+    "desc_plugin": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
+    "skills": 1,
+    "skill_names": [
+      "test-driven-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "code-review",
+      "debugging",
+      "edge-case-coverage",
+      "python-development",
+      "skillstack-workflows",
+      "testing-framework"
+    ],
+    "ref_count": 6,
+    "skill_detail": [
+      {
+        "skill": "test-driven-development",
+        "has_NOT_for": true,
+        "desc": "Guides the Test-Driven Development methodology: the Red-Green-Refactor cycle of writing failing tests before implementation code, then making them pass with minimal code, then refactoring. Use when the user asks to do TDD, practice test-driven development, follow red-green-refactor, write tests first, apply test-first methodology, or implement a feature using TDD workflow with pytest, Vitest, ERT, or Zod. NOT for choosing or setting up test frameworks (use testing-framework), NOT for finding and fixing bugs or analyzing stack traces (use debugging), NOT for reviewing existing code or PRs (use ",
+        "desc_len": 613
+      }
+    ]
+  },
+  {
+    "plugin": "testing-framework",
+    "category": "",
+    "version": "1.1.24",
+    "desc_plugin": "Test framework router and infrastructure setup across multiple languages and platforms. Selects focused modules for unit, integration, E2E, accessibility, mutation, fuzz, and CI/CD test integration.",
+    "skills": 1,
+    "skill_names": [
+      "testing-framework"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "code-review",
+      "coding-discipline",
+      "debugging",
+      "docker-containerization",
+      "edge-case-coverage",
+      "react-development",
+      "skillstack-workflows",
+      "test-driven-development"
+    ],
+    "ref_count": 9,
+    "skill_detail": [
+      {
+        "skill": "testing-framework",
+        "has_NOT_for": true,
+        "desc": "Test framework router and infrastructure setup across multiple languages and platforms. Use when the user asks to choose a test framework, scaffold test infrastructure, add focused unit/integration/E2E/accessibility coverage, or integrate tests into CI/CD. Covers Rust, TypeScript/React, PHP/TYPO3, Shell, Playwright, accessibility, mutation, and fuzz testing as selectable modules. NOT for TDD methodology or red-green-refactor workflow (use test-driven-development), NOT for diagnosing and fixing bugs or analyzing errors (use debugging), NOT for reviewing existing code or PRs (use code-review).",
+        "desc_len": 598
+      }
+    ]
+  },
+  {
+    "plugin": "tool-design",
+    "category": "",
+    "version": "1.0.5",
+    "desc_plugin": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
+    "skills": 1,
+    "skill_names": [
+      "tool-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "agent-evaluation",
+      "agent-project-development",
+      "context-fundamentals",
+      "filesystem-context",
+      "hosted-agents",
+      "mcp-server",
+      "memory-systems",
+      "multi-agent-patterns",
+      "skillstack-workflows"
+    ],
+    "ref_count": 9,
+    "skill_detail": [
+      {
+        "skill": "tool-design",
+        "has_NOT_for": true,
+        "desc": "This skill should be used when the user asks to \"design agent tools\", \"create tool descriptions\", \"reduce tool complexity\", \"implement MCP tools\", or mentions tool consolidation, architectural reduction, tool naming conventions, or agent-tool interfaces. NOT for building MCP servers or MCP protocol implementation (use mcp-server), NOT for multi-agent coordination or agent handoffs (use multi-agent-patterns), NOT for agent memory or persistence (use memory-systems).",
+        "desc_len": 469
+      }
+    ]
+  },
+  {
+    "plugin": "typescript-development",
+    "category": "",
+    "version": "1.1.21",
+    "desc_plugin": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
+    "skills": 1,
+    "skill_names": [
+      "typescript-development"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": true,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "api-design",
+      "consistency-standards",
+      "python-development",
+      "react-development"
+    ],
+    "ref_count": 4,
+    "skill_detail": [
+      {
+        "skill": "typescript-development",
+        "has_NOT_for": true,
+        "desc": "TypeScript development \u2014 use when the user works with TypeScript, type system patterns, generics, Zod, tsconfig, NestJS, branded types, or runtime validation. Covers type system mastery, framework integration, architecture patterns, security, and testing strategies. NOT for Python development (use python-development), NOT for React component patterns or hooks (use react-development), NOT for Next.js framework specifics (use nextjs-development).",
+        "desc_len": 448
+      }
+    ]
+  },
+  {
+    "plugin": "user-journey-design",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
+    "skills": 1,
+    "skill_names": [
+      "user-journey-design"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "navigation-design",
+      "persona-mapping",
+      "skillstack-workflows"
+    ],
+    "ref_count": 3,
+    "skill_detail": [
+      {
+        "skill": "user-journey-design",
+        "has_NOT_for": true,
+        "desc": "Map user journeys with touchpoints, emotional states, pain points, and opportunities across the full arc of a user's experience over time. Use when the user asks to map a user journey, create a customer journey map, design a service blueprint, document touchpoints and friction points, or visualize the end-to-end experience of a user across multiple interactions. NOT for static navigation structure or sitemaps (use navigation-design). NOT for creating user personas or archetypes (use persona-definition). NOT for designing research interview flows (use elicitation). NOT for writing microcopy at ",
+        "desc_len": 638
+      }
+    ]
+  },
+  {
+    "plugin": "ux-writing",
+    "category": "",
+    "version": "1.0.11",
+    "desc_plugin": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
+    "skills": 1,
+    "skill_names": [
+      "ux-writing"
+    ],
+    "agents": 0,
+    "cmds": 0,
+    "hooks": false,
+    "scripts": false,
+    "evals": 1,
+    "trig": 1,
+    "bench": [],
+    "referenced_by": [
+      "communication",
+      "deslop",
+      "documentation-generator",
+      "navigation-design",
+      "product-thinking",
+      "skillstack-workflows",
+      "storytelling",
+      "technical-copywriting",
+      "user-journey-design"
+    ],
+    "ref_count": 9,
+    "skill_detail": [
+      {
+        "skill": "ux-writing",
+        "has_NOT_for": true,
+        "desc": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles. Use when crafting microcopy, UX copy, interface text, error messages, button labels, empty states, or conversational UI text. NOT for generating documentation (use documentation-generator). NOT for writing marketing copy or brand voice guidelines (use storytelling for narrative, not UI microcopy). NOT for designing the UI itself (use frontend-design or navigation-design). NOT for content strategy or information architecture (use content-modelling).",
+        "desc_len": 558
+      }
+    ]
+  }
+]
