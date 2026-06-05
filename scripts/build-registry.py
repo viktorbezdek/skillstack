@@ -83,17 +83,74 @@ def main():
     now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     plugins = discover_plugins()
 
-    # Plugins that belong in the "Meta-Skills" collection — they build skills/plugins/workflows
-    # themselves, independent of their primary category.
-    META_PLUGIN_IDS = {"plugin-dev", "skill-foundry", "skillstack-workflows"}
+    # 4-domain taxonomy collections
+    VALID_DOMAINS = ["Engineering", "Meta-Infra", "Managerial-Product", "Marketing-Comms"]
 
-    def category_ids(cat):
-        """Plugin IDs in a category, excluding those promoted to the meta collection."""
-        return [p["id"] for p in plugins if p["category"] == cat and p["id"] not in META_PLUGIN_IDS]
+    def domain_ids(domain: str) -> list[str]:
+        return [p["id"] for p in plugins if p["category"] == domain]
+
+    domain_descriptions = {
+        "Engineering": (
+            "skillstack-engineering",
+            "Engineering",
+            "Skills for building software: APIs, debugging, testing, DevOps, frontend, "
+            "language tooling (Python, TypeScript, React, Next.js), containerization, "
+            "MCP servers, multi-agent systems, and documentation generation."
+        ),
+        "Meta-Infra": (
+            "skillstack-meta-infra",
+            "Meta-Infra",
+            "Skills for improving how Claude Code and LLM agents operate: context engineering "
+            "(compression, degradation, fundamentals, optimization), memory systems, plugin "
+            "authoring, prompt engineering, skill evaluation, and workflow orchestration."
+        ),
+        "Managerial-Product": (
+            "skillstack-managerial-product",
+            "Managerial-Product",
+            "Skills for making decisions and shipping products: product thinking, prioritization, "
+            "risk management, brainstorm facilitation, personas, user journeys, outcome orientation, "
+            "ontology design, content modelling, cloud FinOps, and systems thinking."
+        ),
+        "Marketing-Comms": (
+            "skillstack-marketing-comms",
+            "Marketing-Comms",
+            "Skills for creating human-facing content: communication craft, AI-slop removal, "
+            "technical copywriting, UX writing, and storytelling."
+        ),
+    }
+
+    collections = [
+        {
+            "id": "skillstack-full",
+            "name": "SkillStack",
+            "description": (
+                f"The complete SkillStack library - {len(plugins)} expert plugins for Claude Code "
+                "spanning Engineering, Meta-Infra, Managerial-Product, and Marketing-Comms."
+            ),
+            "audience": "technical",
+            "auto_inferred_from_repo": REPO_ID,
+            "plugin_ids": [p["id"] for p in plugins],
+            "created_at": "2025-01-01T00:00:00Z"
+        }
+    ]
+    for domain in VALID_DOMAINS:
+        col_id, col_name, col_desc = domain_descriptions[domain]
+        ids = domain_ids(domain)
+        collections.append({
+            "id": col_id,
+            "name": col_name,
+            "description": col_desc,
+            "audience": "technical",
+            "plugin_ids": ids,
+            "created_at": "2025-01-01T00:00:00Z"
+        })
 
     registry = {
         "name": "skillstack",
-        "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
+        "description": (
+            "Battle-tested Claude Code plugins spanning Engineering, Meta-Infra, "
+            "Managerial-Product, and Marketing-Comms."
+        ),
         "owner": {
             "name": "Viktor Bezdek",
             "url": "https://github.com/viktorbezdek"
@@ -112,101 +169,14 @@ def main():
                 "last_synced_sha": sha,
                 "last_synced_at": now,
                 "integration_status": "active",
-                "context": f"{len(plugins)} battle-tested Claude Code skills covering development, DevOps, testing, design, strategic thinking, context engineering, agent architecture, documentation, and meta-skills."
+                "context": (
+                    f"{len(plugins)} battle-tested Claude Code plugins across 4 domains: "
+                    "Engineering, Meta-Infra, Managerial-Product, Marketing-Comms."
+                )
             }
         ],
         "plugins": plugins,
-        "collections": [
-            {
-                "id": "skillstack-full",
-                "name": "SkillStack",
-                "description": f"The complete SkillStack library — {len(plugins)} expert skills for Claude Code covering development, DevOps, quality, context engineering, agent architecture, strategic thinking, design, documentation, research, and meta-skills.",
-                "audience": "technical",
-                "auto_inferred_from_repo": REPO_ID,
-                "plugin_ids": [p["id"] for p in plugins],
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-development",
-                "name": "Development Core",
-                "description": "Core development skills for writing and shipping code: API design, debugging, frontend design, Google Workspace CLI, MCP server development, Next.js, prompt engineering, Python, React, and TypeScript.",
-                "audience": "technical",
-                "plugin_ids": category_ids("development"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-devops",
-                "name": "DevOps & Infrastructure",
-                "description": "Ship and operate software in production: CI/CD pipelines, cloud FinOps, Docker containerization, and Git workflow management.",
-                "audience": "technical",
-                "plugin_ids": category_ids("devops"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-quality",
-                "name": "Quality & Testing",
-                "description": "Ship reliable software: code review, test-driven development, testing frameworks, edge case coverage, and consistency standards.",
-                "audience": "technical",
-                "plugin_ids": category_ids("quality"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-context-engineering",
-                "name": "Context Engineering",
-                "description": "Master LLM context windows: fundamentals, degradation patterns, compression, optimization, and filesystem-based context management.",
-                "audience": "technical",
-                "plugin_ids": category_ids("context-engineering"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-agent-architecture",
-                "name": "Agent Architecture",
-                "description": "Build production LLM agents: multi-agent patterns, memory systems, tool design, hosted agents, BDI mental states, agent evaluation, and project development methodology.",
-                "audience": "technical",
-                "plugin_ids": category_ids("agent-architecture"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-thinking",
-                "name": "Strategic Thinking",
-                "description": "Think better about problems: creative problem-solving, critical intuition, systems thinking, prioritization, risk management, outcome orientation, and product thinking.",
-                "audience": "technical",
-                "plugin_ids": category_ids("thinking"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-design",
-                "name": "Design & UX",
-                "description": "Design products and experiences: content modelling, elicitation, navigation design, ontology design, persona definition/mapping, storytelling, user journey design, and UX writing.",
-                "audience": "technical",
-                "plugin_ids": category_ids("design"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-documentation",
-                "name": "Documentation & Communication",
-                "description": "Write, structure, and communicate: documentation generation, example design, and communication craft (structured writing, stakeholder alignment, ADRs, runbooks, diagram-as-code).",
-                "audience": "technical",
-                "plugin_ids": category_ids("documentation"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-research",
-                "name": "Research",
-                "description": "Research and intelligence-gathering skills that collect, organize, and assess evidence from external sources.",
-                "audience": "technical",
-                "plugin_ids": category_ids("research"),
-                "created_at": "2025-01-01T00:00:00Z"
-            },
-            {
-                "id": "skillstack-meta",
-                "name": "Meta-Skills",
-                "description": "Build skills and plugins for Claude Code: skill engineering framework, plugin authoring toolkit, and composable workflow playbooks.",
-                "audience": "technical",
-                "plugin_ids": [p["id"] for p in plugins if p["id"] in META_PLUGIN_IDS],
-                "created_at": "2025-01-01T00:00:00Z"
-            }
-        ]
+        "collections": collections
     }
 
     registry_path = ROOT / ".claude-plugin" / "registry.json"

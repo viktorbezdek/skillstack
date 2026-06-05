@@ -5,7 +5,7 @@
     "url": "https://github.com/viktorbezdek"
   },
   "metadata": {
-    "description": "Battle-tested Claude Code skills for development, DevOps, testing, design, strategy, context engineering, and agent architecture.",
+    "description": "Battle-tested Claude Code plugins spanning Engineering, Meta-Infra, Managerial-Product, and Marketing-Comms.",
     "version": "3.0.0"
   },
   "plugins": [
@@ -14,7 +14,7 @@
       "source": "./agent-evaluation",
       "description": "Comprehensive evaluation framework for LLM agent systems. Multi-dimensional rubrics, LLM-as-judge with bias mitigation, pairwise comparison, direct scoring, confidence calibration, and continuous monitoring.",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Meta-Infra",
       "tags": [
         "evaluation",
         "llm-as-judge",
@@ -28,7 +28,7 @@
       "source": "./agent-project-development",
       "description": "Methodology for LLM-powered project development. Task-model fit analysis, pipeline architecture (acquire-prepare-process-parse-render), file system state machines, cost estimation, and architectural reduction.",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Engineering",
       "tags": [
         "project-development",
         "pipeline",
@@ -41,7 +41,7 @@
       "source": "./api-design",
       "description": "Comprehensive API design skill for REST, GraphQL, gRPC, and Python library architectures. Design endpoints, schemas, authentication, pagination, error handling, and federation.",
       "version": "1.2.24",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "api",
         "rest",
@@ -55,7 +55,7 @@
       "source": "./bdi-mental-states",
       "description": "Belief-Desire-Intention cognitive architecture for LLM agents. Formal BDI ontology, T2B2T paradigm, RDF integration, SPARQL competency queries, and neuro-symbolic AI integration patterns.",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Engineering",
       "tags": [
         "bdi",
         "cognitive-architecture",
@@ -69,7 +69,7 @@
       "source": "./brainstorm-swarm",
       "description": "Run a parallel persona-swarm interview to brainstorm any complex decision \u2014 feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping).",
       "version": "1.1.0",
-      "category": "agent-architecture",
+      "category": "Managerial-Product",
       "tags": [
         "brainstorm",
         "swarm",
@@ -98,7 +98,7 @@
       "source": "./cicd-pipelines",
       "description": "Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness.",
       "version": "1.1.24",
-      "category": "devops",
+      "category": "Engineering",
       "tags": [
         "ci-cd",
         "github-actions",
@@ -112,7 +112,7 @@
       "source": "./cloud-finops",
       "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
       "version": "2.1.2",
-      "category": "devops",
+      "category": "Managerial-Product",
       "tags": [
         "finops",
         "cloud-cost",
@@ -135,7 +135,7 @@
       "source": "./code-review",
       "description": "Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans.",
       "version": "1.1.25",
-      "category": "quality",
+      "category": "Engineering",
       "tags": [
         "code-review",
         "security",
@@ -146,9 +146,9 @@
     {
       "name": "coding-discipline",
       "source": "./coding-discipline",
-      "description": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication — each with named anti-patterns, iteration budgets, and a structured completion schema.",
+      "description": "Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication \u2014 each with named anti-patterns, iteration budgets, and a structured completion schema.",
       "version": "1.0.0",
-      "category": "quality",
+      "category": "Engineering",
       "tags": [
         "coding-discipline",
         "production-coding",
@@ -164,7 +164,7 @@
       "source": "./communication",
       "description": "Five composable communication skills for people who write for work: structure a written piece (BLUF, Minto Pyramid), edit for clarity and conciseness (active voice, hedge removal), align stakeholders (RFCs, proposals, decision docs with DACI/RAPID roles), apply documentation discipline (ADRs, runbooks, decision logs), and communicate visually (Mermaid flowcharts, sequence diagrams, C4, diagram-as-code).",
       "version": "1.0.1",
-      "category": "documentation",
+      "category": "Marketing-Comms",
       "tags": [
         "communication",
         "structured-writing",
@@ -184,7 +184,7 @@
       "source": "./consistency-standards",
       "description": "Establish and maintain naming conventions, taxonomy standards, style guides, and reuse patterns across documentation and code.",
       "version": "1.0.11",
-      "category": "quality",
+      "category": "Meta-Infra",
       "tags": [
         "naming",
         "conventions",
@@ -196,7 +196,7 @@
       "source": "./content-modelling",
       "description": "Design content models with types, fields, relationships, and governance rules for structured content systems.",
       "version": "1.0.12",
-      "category": "design",
+      "category": "Managerial-Product",
       "tags": [
         "content",
         "cms",
@@ -209,7 +209,7 @@
       "source": "./context-compression",
       "description": "Production strategies for compressing LLM context windows. Anchored iterative summarization, opaque compression, tokens-per-task optimization, and probe-based evaluation.",
       "version": "1.0.11",
-      "category": "context-engineering",
+      "category": "Meta-Infra",
       "tags": [
         "context-compression",
         "summarization",
@@ -222,7 +222,7 @@
       "source": "./context-degradation",
       "description": "Patterns for recognizing and mitigating context failures in LLM agents. Covers lost-in-middle, context poisoning, distraction, confusion, clash, and model-agnostic degradation measurement.",
       "version": "1.0.11",
-      "category": "context-engineering",
+      "category": "Meta-Infra",
       "tags": [
         "context-degradation",
         "lost-in-middle",
@@ -235,7 +235,7 @@
       "source": "./context-fundamentals",
       "description": "Foundational understanding of context engineering for AI agent systems. Covers context anatomy, attention mechanics, progressive disclosure, context budgeting, and the quality-vs-quantity principle.",
       "version": "1.0.6",
-      "category": "context-engineering",
+      "category": "Meta-Infra",
       "tags": [
         "context-engineering",
         "attention",
@@ -248,7 +248,7 @@
       "source": "./context-optimization",
       "description": "Techniques for extending effective context capacity through compaction, observation masking, KV-cache optimization, and context partitioning. Double or triple effective context without larger models.",
       "version": "1.0.11",
-      "category": "context-engineering",
+      "category": "Meta-Infra",
       "tags": [
         "context-optimization",
         "kv-cache",
@@ -261,7 +261,7 @@
       "source": "./creative-problem-solving",
       "description": "Generate breakthrough solutions through lateral thinking, first principles reasoning, game theory, and strategic reframing.",
       "version": "1.0.16",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "problem-solving",
         "lateral-thinking",
@@ -273,7 +273,7 @@
       "source": "./critical-intuition",
       "description": "Detect hidden patterns, expose blind spots, and deliver rigorous critical analysis with intuition-level depth.",
       "version": "1.0.16",
-      "category": "thinking",
+      "category": "Meta-Infra",
       "tags": [
         "pattern-recognition",
         "bayesian-reasoning",
@@ -285,7 +285,7 @@
       "source": "./debugging",
       "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
       "version": "1.1.27",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "debugging",
         "devtools",
@@ -298,7 +298,7 @@
       "source": "./deslop",
       "description": "Remove AI slop from UI copy, marketing text, and product content. Three focused skills: UI microcopy cleanup, marketing and editorial humanization, and AI-detection prevention.",
       "version": "1.0.0",
-      "category": "design",
+      "category": "Marketing-Comms",
       "tags": [
         "deslop",
         "ai-slop",
@@ -312,7 +312,7 @@
       "source": "./docker-containerization",
       "description": "Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns.",
       "version": "1.1.23",
-      "category": "devops",
+      "category": "Engineering",
       "tags": [
         "docker",
         "containers",
@@ -325,7 +325,7 @@
       "source": "./documentation-generator",
       "description": "Generate repository documentation at the right scale, from lightweight README updates to full codebase documentation sets with API, architecture, quality, and gaps coverage.",
       "version": "1.2.1",
-      "category": "documentation",
+      "category": "Engineering",
       "tags": [
         "docs",
         "readme",
@@ -338,7 +338,7 @@
       "source": "./edge-case-coverage",
       "description": "Identify and document boundary conditions, error scenarios, corner cases, and validation requirements.",
       "version": "1.0.11",
-      "category": "quality",
+      "category": "Engineering",
       "tags": [
         "edge-cases",
         "boundary-conditions",
@@ -350,7 +350,7 @@
       "source": "./elicitation",
       "description": "Psychological elicitation and deep-interview design using narrative identity (McAdams), self-defining memories (Singer), Motivational Interviewing (OARS), values elicitation (Schwartz), schema detection (Young), life review (Haight/Birren), and linguistic analysis (Pennebaker/LIWC). Progressive-disclosure structure with 8 domain references.",
       "version": "2.0.1",
-      "category": "design",
+      "category": "Meta-Infra",
       "tags": [
         "elicitation",
         "deep-interview",
@@ -368,7 +368,7 @@
       "source": "./example-design",
       "description": "Design effective code examples, tutorials, and runnable samples with progressive complexity.",
       "version": "1.0.11",
-      "category": "documentation",
+      "category": "Meta-Infra",
       "tags": [
         "examples",
         "tutorials",
@@ -380,7 +380,7 @@
       "source": "./filesystem-context",
       "description": "Filesystem-based context engineering patterns for LLM agents. Scratch pads, plan persistence, sub-agent communication, dynamic skill loading, terminal persistence, and self-modification patterns.",
       "version": "1.0.14",
-      "category": "context-engineering",
+      "category": "Meta-Infra",
       "tags": [
         "filesystem",
         "context-management",
@@ -393,7 +393,7 @@
       "source": "./frontend-design",
       "description": "Comprehensive Frontend Design (UI/UX) skill combining UI design systems, component libraries, CSS/Tailwind styling, accessibility patterns, and visual design.",
       "version": "1.1.24",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "frontend",
         "ui-ux",
@@ -407,7 +407,7 @@
       "source": "./git-workflow",
       "description": "Comprehensive Git workflow management skill covering conventional commits, commit quality analysis, intelligent file grouping, worktree management with GitFlow conventions, issue tracking integration, changelog generation, semantic versioning, and hierarchical story backlog management.",
       "version": "1.1.21",
-      "category": "devops",
+      "category": "Engineering",
       "tags": [
         "git",
         "conventional-commits",
@@ -420,7 +420,7 @@
       "source": "./gws-cli",
       "description": "Google Workspace CLI (gws) skill for managing Drive, Gmail, Sheets, Calendar, Docs, Chat, Tasks, and 11 more Workspace APIs from the command line. Dynamic Discovery-based commands, helper shortcuts, schema introspection, and cross-service workflows.",
       "version": "1.0.1",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "google-workspace",
         "gws",
@@ -432,11 +432,26 @@
       ]
     },
     {
+      "name": "hindsight",
+      "source": "./hindsight",
+      "description": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed `hindsight` CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
+      "version": "1.0.0",
+      "category": "Meta-Infra",
+      "tags": [
+        "memory",
+        "hindsight",
+        "recall",
+        "retain",
+        "long-term-memory",
+        "hooks"
+      ]
+    },
+    {
       "name": "hosted-agents",
       "source": "./hosted-agents",
       "description": "Infrastructure patterns for hosted background agents. Sandbox environments, image registry pattern, self-spawning agents, multiplayer support, warm pools, and multi-client integration (Slack, web, Chrome).",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Engineering",
       "tags": [
         "hosted-agents",
         "sandbox",
@@ -450,7 +465,7 @@
       "source": "./mcp-server",
       "description": "Comprehensive MCP (Model Context Protocol) server development skill. Build, configure, and manage MCP servers using Python (FastMCP) or TypeScript. Covers agent-centric design, tool creation, evaluation testing, production deployment, Claude Code integration, and plugin development.",
       "version": "1.2.21",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "mcp",
         "model-context-protocol",
@@ -463,7 +478,7 @@
       "source": "./memory-systems",
       "description": "Production memory architectures for LLM agents. Compares Mem0, Zep/Graphiti, Letta, Cognee, LangMem with benchmarks. Covers temporal knowledge graphs, memory consolidation, and retrieval strategies.",
       "version": "1.0.6",
-      "category": "agent-architecture",
+      "category": "Meta-Infra",
       "tags": [
         "agent-memory",
         "mem0",
@@ -478,7 +493,7 @@
       "source": "./multi-agent-patterns",
       "description": "Architecture patterns for multi-agent LLM systems. Supervisor/orchestrator, peer-to-peer/swarm, hierarchical patterns, context isolation, consensus mechanisms, and the telephone game solution.",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Engineering",
       "tags": [
         "multi-agent",
         "supervisor",
@@ -492,7 +507,7 @@
       "source": "./navigation-design",
       "description": "Design information architecture, wayfinding systems, breadcrumbs, and navigation patterns for documentation and applications.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Engineering",
       "tags": [
         "navigation",
         "information-architecture",
@@ -504,7 +519,7 @@
       "source": "./nextjs-development",
       "description": "Comprehensive Next.js development skill covering App Router (13+/15/16), Server Components, Server Actions, Cache Components, data fetching patterns, and module architecture.",
       "version": "2.0.24",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "nextjs",
         "react",
@@ -517,7 +532,7 @@
       "source": "./ontology-design",
       "description": "Design knowledge models with classes, properties, relationships, and taxonomies for structured data representation.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Managerial-Product",
       "tags": [
         "ontology",
         "knowledge-models",
@@ -529,7 +544,7 @@
       "source": "./osint",
       "description": "OSINT intelligence skill \u2014 systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
       "version": "1.0.1",
-      "category": "research",
+      "category": "Meta-Infra",
       "tags": [
         "osint",
         "research",
@@ -543,7 +558,7 @@
       "source": "./outcome-orientation",
       "description": "Focus on measurable outcomes using OKRs, results-driven thinking, and outcome vs output distinction.",
       "version": "1.0.11",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "okrs",
         "outcomes",
@@ -555,7 +570,7 @@
       "source": "./persona-definition",
       "description": "Create detailed user personas with demographics, goals, pain points, behaviors, and empathy maps.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Managerial-Product",
       "tags": [
         "personas",
         "user-research",
@@ -567,7 +582,7 @@
       "source": "./persona-mapping",
       "description": "Map stakeholders and personas using Power-Interest matrices, RACI charts, and influence analysis.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Managerial-Product",
       "tags": [
         "stakeholders",
         "raci",
@@ -579,7 +594,7 @@
       "source": "./plugin-dev",
       "description": "End-to-end Claude Code plugin authoring toolkit. 8 skills covering the full lifecycle: ideation, research, architecture, hooks, composition, validation, evaluation, and documentation generation. Plus 4 runnable scripts: plugin scaffolder, structural validator, eval harness, and hook tester. Document any plugin by URL or local path with comprehensive README generation.",
       "version": "1.2.0",
-      "category": "development",
+      "category": "Meta-Infra",
       "tags": [
         "plugin-development",
         "plugin-authoring",
@@ -596,7 +611,7 @@
       "source": "./prioritization",
       "description": "Apply prioritization frameworks including RICE, MoSCoW, ICE scoring, and effort-impact matrices for decision-making.",
       "version": "1.0.11",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "rice",
         "moscow",
@@ -609,7 +624,7 @@
       "source": "./product-thinking",
       "description": "Five composable product-thinking skills: frame the real problem (JTBD, 5-whys), identify user needs (functional/emotional/social jobs), design value propositions (VPC, Kano), apply outcome-over-output thinking (North Star, leading/lagging metrics), and analyze trade-offs (cost-benefit, opportunity cost, reversibility, second-order effects).",
       "version": "1.0.1",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "product-thinking",
         "problem-definition",
@@ -629,7 +644,7 @@
       "source": "./prompt-engineering",
       "description": "Comprehensive prompt optimization system for LLMs. Design effective AI interactions, evaluate prompt quality, and perform iterative refinement for any LLM platform.",
       "version": "1.1.16",
-      "category": "development",
+      "category": "Meta-Infra",
       "tags": [
         "prompts",
         "llm",
@@ -642,7 +657,7 @@
       "source": "./python-development",
       "description": "Comprehensive Python development skill covering modern tooling (uv, ruff, mypy, pytest), best practices, coding standards, library architecture, functional patterns, async programming, MicroPython, and production-grade development workflows.",
       "version": "1.1.25",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "python",
         "uv",
@@ -657,7 +672,7 @@
       "source": "./react-development",
       "description": "Build production-grade React applications and component libraries with shadcn/ui components, optimized hooks, client-side state patterns, and Bulletproof React architecture.",
       "version": "1.1.21",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "react",
         "hooks",
@@ -670,7 +685,7 @@
       "source": "./risk-management",
       "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
       "version": "1.0.12",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "risk",
         "mitigation",
@@ -682,7 +697,7 @@
       "source": "./skill-foundry",
       "description": "Framework for creating Claude Code skills using philosophy-first design, evidence-based prompting, progressive disclosure, and anti-pattern prevention. 47 references, 25 scripts, 17 templates, 23 examples.",
       "version": "2.2.2",
-      "category": "development",
+      "category": "Meta-Infra",
       "tags": [
         "skill",
         "skill-foundry",
@@ -697,7 +712,7 @@
       "source": "./skillstack-workflows",
       "description": "Twenty composable workflow playbooks that orchestrate existing SkillStack plugins for real multi-stage problems: plugin authoring, plugin updating, plugin/skill evaluation, API-to-production, security hardening, codebase onboarding, product stories, context engineering, design review, agent improvement, stakeholder storytelling, pitch sprints, complex debugging, AI agent building, strategic decisions, content platforms, user research, legacy rescue, LLM cost optimization, and skill authoring. Each workflow is a self-contained playbook with phase-by-phase guidance, gates/loops, and explicit references to the underlying SkillStack skills.",
       "version": "2.2.1",
-      "category": "thinking",
+      "category": "Meta-Infra",
       "tags": [
         "workflow",
         "composition",
@@ -718,7 +733,7 @@
       "source": "./storytelling",
       "description": "Storytelling craft and application across fiction, business, data, speech, UX, and interactive narrative. Covers structural frameworks (3-act, Hero's Journey, Story Circle, Kish\u014dtenketsu, Save the Cat, StoryBrand, Pixar Spine, Monroe's Motivated Sequence), narrative craft (character design, scene construction, dialogue, POV, pacing), domain applications, narrative theory (Propp, Polti, Booker, Tobias, Campbell), and anti-patterns. Progressive-disclosure structure with 12 domain references.",
       "version": "1.0.1",
-      "category": "design",
+      "category": "Marketing-Comms",
       "tags": [
         "storytelling",
         "narrative",
@@ -739,7 +754,7 @@
       "source": "./systems-thinking",
       "description": "Apply systems thinking principles including feedback loops, leverage points, and system dynamics to analyze complex problems.",
       "version": "1.0.11",
-      "category": "thinking",
+      "category": "Managerial-Product",
       "tags": [
         "systems",
         "feedback-loops",
@@ -751,7 +766,7 @@
       "source": "./technical-copywriting",
       "description": "Five composable skills for writing long-form technical content for an audience \u2014 articles, deep-dives, tutorials, newsletters, whitepapers, technical essays. Covers research before craft (audience profiling, source tiering, triangulation, citation), long-form structure (article templates, hook-promise-payoff contract, section transitions, length strategy), engaging craft (AIDA, PAS, Bencivenga's pyramid, Sugarman's slippery slide, Schwartz awareness levels, hooks, voice, concrete-over-abstract), long-form polish (pacing, scan-ability, the 30% cut, read-aloud test), and distribution craft (titles, dek/meta, social pull-quotes, channel framing). Grounded in proven copywriting techniques and evidence-based research workflow. Use when writing a technical blog post, deep-dive, tutorial, newsletter issue, whitepaper, or 1500-5000+ word technical essay. NOT for code documentation (use documentation-generator), UX microcopy (use ux-writing), short-form work writing like RFCs and emails (use communication), fiction or narrative craft (use storytelling), or CMS content models (use content-modelling).",
       "version": "1.1.0",
-      "category": "documentation",
+      "category": "Marketing-Comms",
       "tags": [
         "technical-copywriting",
         "long-form",
@@ -790,7 +805,7 @@
       "source": "./test-driven-development",
       "description": "Comprehensive Test-Driven Development skill implementing Red-Green-Refactor cycle across Python, TypeScript, JavaScript, and Emacs Lisp. Covers pytest, Vitest, Playwright, ERT, and Zod.",
       "version": "1.1.18",
-      "category": "quality",
+      "category": "Engineering",
       "tags": [
         "tdd",
         "red-green-refactor",
@@ -803,7 +818,7 @@
       "source": "./testing-framework",
       "description": "Test framework router and infrastructure setup across multiple languages and platforms. Selects focused modules for unit, integration, E2E, accessibility, mutation, fuzz, and CI/CD test integration.",
       "version": "1.1.24",
-      "category": "quality",
+      "category": "Engineering",
       "tags": [
         "testing",
         "playwright",
@@ -817,7 +832,7 @@
       "source": "./tool-design",
       "description": "Design tools optimized for LLM agents rather than human developers. Consolidation principle, architectural reduction, tool description engineering, MCP naming, and the file system agent pattern.",
       "version": "1.0.5",
-      "category": "agent-architecture",
+      "category": "Engineering",
       "tags": [
         "tool-design",
         "mcp",
@@ -830,7 +845,7 @@
       "source": "./typescript-development",
       "description": "Comprehensive TypeScript development skill covering type system mastery, runtime validation (Zod, TypeBox, Valibot), framework integration (React 19, Next.js 16, NestJS, React Native), architecture patterns, security, tsconfig optimization, and testing strategies.",
       "version": "1.1.21",
-      "category": "development",
+      "category": "Engineering",
       "tags": [
         "typescript",
         "zod",
@@ -843,7 +858,7 @@
       "source": "./user-journey-design",
       "description": "Design user journey maps with touchpoints, emotional states, pain points, and opportunities.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Managerial-Product",
       "tags": [
         "user-journey",
         "touchpoints",
@@ -855,26 +870,11 @@
       "source": "./ux-writing",
       "description": "Write effective microcopy, error messages, button labels, and interface text using UX writing principles.",
       "version": "1.0.11",
-      "category": "design",
+      "category": "Marketing-Comms",
       "tags": [
         "ux-writing",
         "microcopy",
         "error-messages"
-      ]
-    },
-    {
-      "name": "hindsight",
-      "source": "./hindsight",
-      "description": "Long-term memory for Claude Code backed by Hindsight. Hooks recall relevant memories before every prompt and retain the conversation after each turn via the installed hindsight CLI (external API). Includes a skill for manual recall/reflect/retain and bank management.",
-      "version": "1.0.0",
-      "category": "agent-architecture",
-      "tags": [
-        "memory",
-        "hindsight",
-        "recall",
-        "retain",
-        "long-term-memory",
-        "hooks"
       ]
     }
   ]

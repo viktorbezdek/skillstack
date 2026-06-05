@@ -28,6 +28,14 @@ REGISTRY_PATH = REPO_ROOT / ".claude-plugin" / "registry.json"
 MARKETPLACE_PATH = REPO_ROOT / ".claude-plugin" / "marketplace.json"
 ROOT_README = REPO_ROOT / "README.md"
 
+VALID_CATEGORIES = {
+    "Engineering",
+    "Meta-Infra",
+    "Managerial-Product",
+    "Marketing-Comms",
+    "",  # allowed pre-migration; remove after all plugins are assigned
+}
+
 # Directories at repo root that are NOT plugins and should be ignored.
 NON_PLUGIN_ROOT_DIRS = {
     ".claude",
@@ -330,6 +338,13 @@ def validate_catalog(
                         name,
                         f"marketplace.json source='{source}' does not exist",
                     )
+            category = entry.get("category", "")
+            if category not in VALID_CATEGORIES:
+                report.err(
+                    name,
+                    f"marketplace.json category='{category}' is not a valid domain "
+                    f"(must be one of: {', '.join(sorted(c for c in VALID_CATEGORIES if c))})",
+                )
 
     # Orphans — catalog entries without matching plugin directories.
     for reg_id in reg_plugins:
