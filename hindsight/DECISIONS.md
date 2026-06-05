@@ -218,3 +218,35 @@ Documented in README.
 7. `competitive-intelligence` (P) — Market/competitor analysis. `product-thinking` and `osint` both exclude this use case.
 
 **Evidence:** Verified by reading all 102 skill descriptions. Checked `skillstack-workflows` for workflow-level partial coverage before declaring each gap. P2 gaps (10) deferred to demand-driven build.
+
+---
+
+## Skillstack Restructure & Hardening — Phase 4 Decisions (2026-06-05)
+
+### D-012: category field is the sole Phase 5 action
+
+**Verdict:** Phase 5 migration = setting `category` on all 59 `plugin.json` files + trio sync (marketplace.json + registry.json) + CHANGELOG + version bump. No other file changes.
+
+**Rationale:** `build-registry.py` already generates collections from the `category` field. The mechanism exists and works — it just has no input data. Setting category activates 4-domain collection grouping in the marketplace with zero code changes. All other reinforcement mechanisms (workflows, commands, hooks) are post-Phase-5 work.
+
+**Evidence:** Inspected `scripts/build-registry.py` lines 34-71. Category field read from marketplace.json; collections auto-generated. All 59 `plugin.json` files have `"category": ""` confirmed in Phase 1.
+
+---
+
+### D-013: Version bump strategy for category-only changes
+
+**Verdict:** Patch version bump (X.Y.Z -> X.Y.Z+1) for all 59 plugins in Phase 5. Batch by domain (4 commits, not 59).
+
+**Rationale:** Category change is non-breaking metadata — no SKILL.md content changes, no behavior change, no trigger surface change. Patch is correct semver signal. 4 domain-batch commits are cleaner history than 59 micro-commits; validator allows batch staging as long as all staged plugins have consistent trios.
+
+**Evidence:** `validate_plugins.py` runs across whole working tree — checks every plugin in the staged diff. Batching by domain (all E plugins in one commit) passes as long as all E plugin trios are updated together.
+
+---
+
+### D-014: Validator category gate — add post-Phase-5
+
+**Verdict:** Add category value validation to `validate_plugins.py` after Phase 5 completes. Gate on `{Engineering, Meta-Infra, Managerial-Product, Marketing-Comms}`.
+
+**Rationale:** Without a gate, a future plugin with a malformed or empty category silently produces a bad collection or no collection. The gate is a single `if category not in VALID_CATEGORIES` check — low cost, high value.
+
+**Evidence:** `validate_plugins.py` currently validates: version trio, path_in_repo, SKILL.md cross-refs. No category check exists. After Phase 5 sets all 59 categories, leaving category unchecked allows drift on the next new plugin.
