@@ -108,6 +108,14 @@
       ]
     },
     {
+      "name": "cloud-infrastructure",
+      "version": "1.0.0",
+      "description": "Infrastructure-as-code with Terraform and AWS CDK, cloud architecture patterns, cost optimisation, and multi-region deployment design.",
+      "source": "./cloud-infrastructure",
+      "category": "Engineering",
+      "tags": ["terraform", "aws", "cdk", "infrastructure", "iac", "cloud"]
+    },
+    {
       "name": "cloud-finops",
       "source": "./cloud-finops",
       "description": "Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0.",
@@ -178,6 +186,14 @@
         "diagram-as-code",
         "c4-model"
       ]
+    },
+    {
+      "name": "competitive-intelligence",
+      "version": "1.0.0",
+      "description": "Competitor analysis, market sizing, positioning maps, win/loss pattern synthesis, and battlecard creation for product and GTM decisions.",
+      "source": "./competitive-intelligence",
+      "category": "Managerial-Product",
+      "tags": ["competitive", "market", "positioning", "battlecard", "win-loss", "strategy"]
     },
     {
       "name": "consistency-standards",
@@ -281,6 +297,14 @@
       ]
     },
     {
+      "name": "database-design",
+      "version": "1.0.0",
+      "description": "SQL schema design, ORM patterns, migration strategies, query optimisation, and data-modelling for relational databases.",
+      "source": "./database-design",
+      "category": "Engineering",
+      "tags": ["database", "sql", "schema", "migrations", "orm", "query-optimization"]
+    },
+    {
       "name": "debugging",
       "source": "./debugging",
       "description": "Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis.",
@@ -344,6 +368,14 @@
         "boundary-conditions",
         "validation"
       ]
+    },
+    {
+      "name": "email-marketing",
+      "version": "1.0.0",
+      "description": "Email newsletters, drip sequences, subject line optimisation, onboarding emails, and plain-language transactional email copy.",
+      "source": "./email-marketing",
+      "category": "Marketing-Comms",
+      "tags": ["email", "newsletter", "drip", "onboarding", "subject-line", "copywriting"]
     },
     {
       "name": "elicitation",
@@ -681,6 +713,14 @@
       ]
     },
     {
+      "name": "research-synthesis",
+      "version": "1.0.0",
+      "description": "Multi-source research coordination, evidence triangulation, competing-hypothesis analysis, and structured synthesis for knowledge-intensive tasks.",
+      "source": "./research-synthesis",
+      "category": "Meta-Infra",
+      "tags": ["research", "synthesis", "evidence", "analysis", "triangulation", "knowledge"]
+    },
+    {
       "name": "risk-management",
       "source": "./risk-management",
       "description": "Apply risk assessment frameworks, mitigation strategies, risk registers, and monitoring practices.",
@@ -691,6 +731,14 @@
         "mitigation",
         "assessment"
       ]
+    },
+    {
+      "name": "security-engineering",
+      "version": "1.0.0",
+      "description": "Application security design, OWASP patterns, authentication architecture, secrets management, and threat-model-informed code review.",
+      "source": "./security-engineering",
+      "category": "Engineering",
+      "tags": ["security", "auth", "owasp", "jwt", "oauth", "secrets", "threat-modeling"]
     },
     {
       "name": "skill-foundry",
@@ -706,6 +754,14 @@
         "progressive-disclosure",
         "eval-driven"
       ]
+    },
+    {
+      "name": "social-media-content",
+      "version": "1.0.0",
+      "description": "LinkedIn posts, Twitter/X threads, short-form social content, platform-native tone adaptation, and engagement-optimised formatting.",
+      "source": "./social-media-content",
+      "category": "Marketing-Comms",
+      "tags": ["social-media", "linkedin", "twitter", "content", "posts", "threads", "engagement"]
     },
     {
       "name": "skillstack-workflows",

@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Design a complete authentication system for a multi-tenant SaaS: email/password + Google OAuth, JWT with refresh tokens, and remember-me functionality. What are the security requirements for each piece?",
+    "files": [],
+    "expected_behavior": "Produces a security-first auth architecture covering: (1) Password storage -- bcrypt/argon2id with work factor recommendations, no MD5/SHA1. (2) JWT design -- short-lived access tokens (15 min), long-lived refresh tokens (7-30 days) stored httpOnly cookies not localStorage, token family tracking for refresh rotation to detect token reuse. (3) Google OAuth -- PKCE flow, state parameter for CSRF, nonce for replay prevention, audience validation on ID token. (4) Remember-me -- separate long-lived token stored as httpOnly SameSite=Strict cookie, hashed in DB (not plaintext), device fingerprinting optional. (5) Multi-tenancy -- tenant isolation on every DB query (row-level security or tenant_id scoping), JWT claims include tenant_id. Flags common mistakes: storing tokens in localStorage (XSS risk), not rotating refresh tokens, missing rate limiting on /token endpoint."
+  },
+  {
+    "query": "Review this Python FastAPI endpoint for OWASP vulnerabilities:\n```python\n@app.get('/users/{user_id}/data')\nasync def get_data(user_id: str, db: Session = Depends(get_db)):\n    query = f\"SELECT * FROM users WHERE id = '{user_id}'\"\n    return db.execute(query).fetchall()\n```",
+    "files": [],
+    "expected_behavior": "Identifies at minimum: (1) SQL Injection -- string interpolation in raw SQL, provides parameterised query fix using SQLAlchemy text() with bindparams or ORM equivalent. (2) Missing authentication -- no current_user dependency, any caller can fetch any user_id. (3) Broken Object-Level Authorization (BOLA/IDOR) -- even with auth, must verify caller owns or has permission to access user_id. (4) SELECT * -- over-exposes columns including password hashes, internal fields. Provides corrected code with auth dependency, ownership check, parameterised query, and explicit column selection. Rates each finding by OWASP category and severity."
+  },
+  {
+    "query": "Our app needs to call five third-party APIs (Stripe, SendGrid, Twilio, OpenAI, GitHub). How should we manage and rotate those secrets across dev/staging/prod?",
+    "files": [],
+    "expected_behavior": "Recommends a tiered secrets management strategy: (1) Never in code or .env files committed to git -- use .gitignore + git-secrets or gitleaks pre-commit hook. (2) Local dev -- .env.local (gitignored), populated from a team password manager or dev vault. (3) CI/CD -- provider secrets (GitHub Actions secrets, not env vars printed in logs). (4) Production -- AWS Secrets Manager / GCP Secret Manager / HashiCorp Vault with IAM-scoped access (least privilege per service). Covers rotation: Stripe/SendGrid/Twilio support key rotation without downtime (create new, update app, delete old); recommends automated rotation via Lambda/Cloud Function triggered on schedule. Flags the 'two-key pattern' for zero-downtime rotation. Notes that OpenAI keys should be scoped per environment with separate billing limits."
+  }
+]

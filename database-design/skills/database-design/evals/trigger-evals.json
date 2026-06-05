@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Design a schema for a multi-tenant SaaS application",
+    "should_trigger": true,
+    "note": "Core schema design request"
+  },
+  {
+    "query": "Write an Alembic migration to add a non-null column to an existing table",
+    "should_trigger": true,
+    "note": "Migration strategy - classic non-null column problem"
+  },
+  {
+    "query": "This query takes 4 seconds, help me add the right index",
+    "should_trigger": true,
+    "note": "Query optimisation via indexing"
+  },
+  {
+    "query": "Should I use a junction table or an array column for tags?",
+    "should_trigger": true,
+    "note": "Normalisation trade-off decision"
+  },
+  {
+    "query": "Model a user -> orders -> line-items hierarchy in SQLAlchemy",
+    "should_trigger": true,
+    "note": "ORM relationship modelling"
+  },
+  {
+    "query": "What constraints should I add to prevent orphaned records?",
+    "should_trigger": true,
+    "note": "Data-integrity constraints"
+  },
+  {
+    "query": "Explain the difference between 3NF and BCNF",
+    "should_trigger": true,
+    "note": "Normalisation theory question"
+  },
+  {
+    "query": "Write a Drizzle ORM schema for a blog with posts, tags, and comments",
+    "should_trigger": true,
+    "note": "Specific ORM schema authoring"
+  },
+  {
+    "query": "How do I set up PostgreSQL connection pooling with pgBouncer?",
+    "should_trigger": false,
+    "note": "Connection pooling config - NOT data modelling"
+  },
+  {
+    "query": "Configure Redis as a session store",
+    "should_trigger": false,
+    "note": "NoSQL / caching - out of scope"
+  },
+  {
+    "query": "Set up a Kafka consumer for event streaming",
+    "should_trigger": false,
+    "note": "ETL / streaming pipeline - out of scope"
+  },
+  {
+    "query": "How do I back up my PostgreSQL database?",
+    "should_trigger": false,
+    "note": "Operations/DBA - not schema engineering"
+  }
+]

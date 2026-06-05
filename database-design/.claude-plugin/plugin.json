@@ -1,0 +1,24 @@
+{
+  "name": "database-design",
+  "version": "1.0.0",
+  "description": "SQL schema design, ORM patterns, migration strategies, query optimisation, and data-modelling for relational databases.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "database",
+    "sql",
+    "schema",
+    "migrations",
+    "orm",
+    "query-optimization",
+    "postgresql",
+    "sqlite"
+  ]
+}

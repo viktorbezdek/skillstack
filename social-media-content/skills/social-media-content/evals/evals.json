@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Write a LinkedIn post announcing that our open-source CLI tool just hit 10,000 GitHub stars. Audience: developers. Tone: proud but not braggy.",
+    "files": [],
+    "expected_behavior": "Produces a LinkedIn post (150-300 words) with: a hook in the first line that doesn't start with 'I' or 'We' (grabs the scroll-stopper before the 'see more' fold), the milestone stated with context (what the tool does, why 10k matters), a genuine thank-you to the community without excessive exclamation marks, a soft CTA (star/try/contribute), and 3-5 relevant hashtags. Tone is confident and community-first. Avoids corporate buzzwords, passive voice, and generic phrases like 'excited to announce'."
+  },
+  {
+    "query": "Turn this summary into a 6-tweet thread: 'Context engineering is more important than prompt engineering. Context = everything in the model's window. You control what goes in. Most people optimise the wrong thing.'",
+    "files": [],
+    "expected_behavior": "Produces a 6-tweet thread where: Tweet 1 is a bold hook/thesis (the most contrarian or surprising claim), tweets 2-5 each develop one sub-idea with a concrete example or analogy (not just restatements), tweet 6 ends with a memorable close or call to engage. Each tweet is under 280 characters. The thread reads sequentially but each tweet also has standalone value. Uses plain language, no excessive hashtags (1-2 in last tweet max), and the numbering format (1/ 2/ etc.) is used naturally."
+  },
+  {
+    "query": "Write 3 different hook variants for a LinkedIn post about why most code reviews waste time. We'll A/B test them.",
+    "files": [],
+    "expected_behavior": "Produces exactly 3 hook variants, each taking a different rhetorical approach: (1) a bold contrarian statement ('Most code reviews are theatre'), (2) a question that names the reader's pain ('How many PRs did you rubber-stamp last week?'), and (3) a specific number/stat lead ('The average code review takes 42 minutes and catches 2 real bugs'). Each variant is 1-2 sentences max, avoids starting with 'I', and creates enough curiosity/tension to earn the 'see more' click. Brief note on which performs best in different contexts (authority vs empathy vs data-driven audiences)."
+  }
+]

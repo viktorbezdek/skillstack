@@ -1,0 +1,26 @@
+{
+  "name": "cloud-infrastructure",
+  "version": "1.0.0",
+  "description": "Infrastructure-as-code with Terraform and AWS CDK, cloud architecture patterns, cost optimisation, and multi-region deployment design.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "terraform",
+    "aws",
+    "cdk",
+    "infrastructure",
+    "iac",
+    "cloud",
+    "gcp",
+    "azure",
+    "kubernetes",
+    "devops"
+  ]
+}

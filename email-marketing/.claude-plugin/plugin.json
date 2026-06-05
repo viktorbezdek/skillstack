@@ -1,0 +1,23 @@
+{
+  "name": "email-marketing",
+  "version": "1.0.0",
+  "description": "Email newsletters, drip sequences, subject line optimisation, onboarding emails, and plain-language transactional email copy.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "email",
+    "newsletter",
+    "drip",
+    "onboarding",
+    "subject-line",
+    "copywriting",
+    "marketing"
+  ]
+}

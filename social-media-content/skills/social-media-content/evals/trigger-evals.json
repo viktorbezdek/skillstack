@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Write a LinkedIn post announcing our product launch",
+    "should_trigger": true,
+    "note": "Core LinkedIn post request"
+  },
+  {
+    "query": "Turn this blog post into a Twitter thread",
+    "should_trigger": true,
+    "note": "Content repurposing to thread format"
+  },
+  {
+    "query": "Draft a thought leadership post about AI replacing junior developers",
+    "should_trigger": true,
+    "note": "Thought leadership content"
+  },
+  {
+    "query": "Write a hook for a LinkedIn post about our open-source library",
+    "should_trigger": true,
+    "note": "Hook writing for LinkedIn"
+  },
+  {
+    "query": "Make this technical announcement shareable on social media",
+    "should_trigger": true,
+    "note": "Social-first reformat request"
+  },
+  {
+    "query": "Write 5 hashtags for a post about remote work culture",
+    "should_trigger": true,
+    "note": "Hashtag strategy"
+  },
+  {
+    "query": "Draft a Twitter/X post celebrating our Series A funding",
+    "should_trigger": true,
+    "note": "Milestone social post"
+  },
+  {
+    "query": "Write a LinkedIn carousel outline about design systems",
+    "should_trigger": true,
+    "note": "Platform-native format (carousel)"
+  },
+  {
+    "query": "Write a 2000-word blog post about distributed systems",
+    "should_trigger": false,
+    "note": "Long-form blog - not short-form social"
+  },
+  {
+    "query": "Write an email newsletter for our customers",
+    "should_trigger": false,
+    "note": "Email content - use email-marketing skill"
+  },
+  {
+    "query": "Plan our Q3 content calendar",
+    "should_trigger": false,
+    "note": "Strategy/planning - not content creation"
+  },
+  {
+    "query": "Write a Google Ads headline for our SaaS tool",
+    "should_trigger": false,
+    "note": "Paid ad copy - different constraints"
+  }
+]

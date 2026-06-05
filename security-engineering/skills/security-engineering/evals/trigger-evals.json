@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Design a JWT-based authentication system with refresh token rotation",
+    "should_trigger": true,
+    "note": "Auth architecture design"
+  },
+  {
+    "query": "Review this login endpoint for security vulnerabilities",
+    "should_trigger": true,
+    "note": "Security code review"
+  },
+  {
+    "query": "How should I store API keys for third-party integrations?",
+    "should_trigger": true,
+    "note": "Secrets management"
+  },
+  {
+    "query": "Implement role-based access control for our multi-tenant app",
+    "should_trigger": true,
+    "note": "RBAC design"
+  },
+  {
+    "query": "This SQL query uses string concatenation - is it vulnerable to injection?",
+    "should_trigger": true,
+    "note": "SQLi analysis"
+  },
+  {
+    "query": "Threat model our new payment endpoint",
+    "should_trigger": true,
+    "note": "Threat modelling"
+  },
+  {
+    "query": "How do I prevent CSRF attacks in a SPA with cookie-based auth?",
+    "should_trigger": true,
+    "note": "CSRF prevention"
+  },
+  {
+    "query": "Design an OAuth2 authorization code flow with PKCE",
+    "should_trigger": true,
+    "note": "OAuth2 architecture"
+  },
+  {
+    "query": "Configure our AWS VPC security groups",
+    "should_trigger": false,
+    "note": "Network/infra security - cloud-infrastructure skill"
+  },
+  {
+    "query": "Help us pass our SOC2 Type II audit",
+    "should_trigger": false,
+    "note": "Compliance audit - out of scope"
+  },
+  {
+    "query": "Run a penetration test on our staging environment",
+    "should_trigger": false,
+    "note": "Offensive/pentest - out of scope"
+  },
+  {
+    "query": "Set up a WAF in front of our load balancer",
+    "should_trigger": false,
+    "note": "Infrastructure security - not application-layer"
+  }
+]

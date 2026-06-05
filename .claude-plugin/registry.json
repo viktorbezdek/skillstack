@@ -8,7 +8,7 @@
   "metadata": {
     "version": "3.0.0",
     "schema_version": 2,
-    "last_full_sync": "2026-06-05T15:44:31Z"
+    "last_full_sync": "2026-06-05T16:10:49Z"
   },
   "repositories": [
     {
@@ -16,10 +16,10 @@
       "url": "https://github.com/viktorbezdek/skillstack",
       "added_by": "viktorbezdek",
       "added_date": "2025-01-01",
-      "last_synced_sha": "eec8a7f123324736810d551fc5ebfdffabeef892",
-      "last_synced_at": "2026-06-05T15:44:31Z",
+      "last_synced_sha": "2f6776fff74f69bb2e5b75e6d05f87c9d6530612",
+      "last_synced_at": "2026-06-05T16:10:49Z",
       "integration_status": "active",
-      "context": "59 battle-tested Claude Code plugins across 4 domains: Engineering, Meta-Infra, Managerial-Product, Marketing-Comms."
+      "context": "66 battle-tested Claude Code plugins across 4 domains: Engineering, Meta-Infra, Managerial-Product, Marketing-Comms."
     }
   ],
   "plugins": [
@@ -201,6 +201,29 @@
       ]
     },
     {
+      "id": "cloud-infrastructure",
+      "name": "Cloud Infrastructure",
+      "type": "skill",
+      "category": "Engineering",
+      "description": "Infrastructure-as-code with Terraform and AWS CDK, cloud architecture patterns, cost optimisation, and multi-region deployment design.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "cloud-infrastructure/skills/cloud-infrastructure",
+      "version": "1.0.0",
+      "tags": [
+        "terraform",
+        "aws",
+        "cdk",
+        "infrastructure",
+        "iac",
+        "cloud"
+      ],
+      "documentation_path": "./cloud-infrastructure/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
       "id": "code-review",
       "name": "Code Review",
       "type": "skill",
@@ -268,6 +291,29 @@
         "c4-model"
       ],
       "documentation_path": "./communication/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "competitive-intelligence",
+      "name": "Competitive Intelligence",
+      "type": "skill",
+      "category": "Managerial-Product",
+      "description": "Competitor analysis, market sizing, positioning maps, win/loss pattern synthesis, and battlecard creation for product and GTM decisions.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "competitive-intelligence/skills/competitive-intelligence",
+      "version": "1.0.0",
+      "tags": [
+        "competitive",
+        "market",
+        "positioning",
+        "battlecard",
+        "win-loss",
+        "strategy"
+      ],
+      "documentation_path": "./competitive-intelligence/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -439,6 +485,29 @@
       ]
     },
     {
+      "id": "database-design",
+      "name": "Database Design",
+      "type": "skill",
+      "category": "Engineering",
+      "description": "SQL schema design, ORM patterns, migration strategies, query optimisation, and data-modelling for relational databases.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "database-design/skills/database-design",
+      "version": "1.0.0",
+      "tags": [
+        "database",
+        "sql",
+        "schema",
+        "migrations",
+        "orm",
+        "query-optimization"
+      ],
+      "documentation_path": "./database-design/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
       "id": "debugging",
       "name": "Debugging",
       "type": "skill",
@@ -564,6 +633,29 @@
         "psychological-profiling"
       ],
       "documentation_path": "./elicitation/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "email-marketing",
+      "name": "Email Marketing",
+      "type": "skill",
+      "category": "Marketing-Comms",
+      "description": "Email newsletters, drip sequences, subject line optimisation, onboarding emails, and plain-language transactional email copy.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "email-marketing/skills/email-marketing",
+      "version": "1.0.0",
+      "tags": [
+        "email",
+        "newsletter",
+        "drip",
+        "onboarding",
+        "subject-line",
+        "copywriting"
+      ],
+      "documentation_path": "./email-marketing/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -1071,6 +1163,29 @@
       ]
     },
     {
+      "id": "research-synthesis",
+      "name": "Research Synthesis",
+      "type": "skill",
+      "category": "Meta-Infra",
+      "description": "Multi-source research coordination, evidence triangulation, competing-hypothesis analysis, and structured synthesis for knowledge-intensive tasks.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "research-synthesis/skills/research-synthesis",
+      "version": "1.0.0",
+      "tags": [
+        "research",
+        "synthesis",
+        "evidence",
+        "analysis",
+        "triangulation",
+        "knowledge"
+      ],
+      "documentation_path": "./research-synthesis/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
       "id": "risk-management",
       "name": "Risk Management",
       "type": "skill",
@@ -1085,6 +1200,30 @@
         "assessment"
       ],
       "documentation_path": "./risk-management/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "security-engineering",
+      "name": "Security Engineering",
+      "type": "skill",
+      "category": "Engineering",
+      "description": "Application security design, OWASP patterns, authentication architecture, secrets management, and threat-model-informed code review.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "security-engineering/skills/security-engineering",
+      "version": "1.0.0",
+      "tags": [
+        "security",
+        "auth",
+        "owasp",
+        "jwt",
+        "oauth",
+        "secrets",
+        "threat-modeling"
+      ],
+      "documentation_path": "./security-engineering/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -1137,6 +1276,30 @@
         "skill-authoring"
       ],
       "documentation_path": "./skillstack-workflows/README.md",
+      "status": "active",
+      "platforms": [
+        "claude-code"
+      ]
+    },
+    {
+      "id": "social-media-content",
+      "name": "Social Media Content",
+      "type": "skill",
+      "category": "Marketing-Comms",
+      "description": "LinkedIn posts, Twitter/X threads, short-form social content, platform-native tone adaptation, and engagement-optimised formatting.",
+      "repo_id": "viktorbezdek-skillstack",
+      "path_in_repo": "social-media-content/skills/social-media-content",
+      "version": "1.0.0",
+      "tags": [
+        "social-media",
+        "linkedin",
+        "twitter",
+        "content",
+        "posts",
+        "threads",
+        "engagement"
+      ],
+      "documentation_path": "./social-media-content/README.md",
       "status": "active",
       "platforms": [
         "claude-code"
@@ -1368,7 +1531,7 @@
     {
       "id": "skillstack-full",
       "name": "SkillStack",
-      "description": "The complete SkillStack library - 59 expert plugins for Claude Code spanning Engineering, Meta-Infra, Managerial-Product, and Marketing-Comms.",
+      "description": "The complete SkillStack library - 66 expert plugins for Claude Code spanning Engineering, Meta-Infra, Managerial-Product, and Marketing-Comms.",
       "audience": "technical",
       "auto_inferred_from_repo": "viktorbezdek-skillstack",
       "plugin_ids": [
@@ -1379,9 +1542,11 @@
         "brainstorm-swarm",
         "cicd-pipelines",
         "cloud-finops",
+        "cloud-infrastructure",
         "code-review",
         "coding-discipline",
         "communication",
+        "competitive-intelligence",
         "consistency-standards",
         "content-modelling",
         "context-compression",
@@ -1390,12 +1555,14 @@
         "context-optimization",
         "creative-problem-solving",
         "critical-intuition",
+        "database-design",
         "debugging",
         "deslop",
         "docker-containerization",
         "documentation-generator",
         "edge-case-coverage",
         "elicitation",
+        "email-marketing",
         "example-design",
         "filesystem-context",
         "frontend-design",
@@ -1419,9 +1586,12 @@
         "prompt-engineering",
         "python-development",
         "react-development",
+        "research-synthesis",
         "risk-management",
+        "security-engineering",
         "skill-foundry",
         "skillstack-workflows",
+        "social-media-content",
         "storytelling",
         "systems-thinking",
         "technical-copywriting",
@@ -1444,8 +1614,10 @@
         "api-design",
         "bdi-mental-states",
         "cicd-pipelines",
+        "cloud-infrastructure",
         "code-review",
         "coding-discipline",
+        "database-design",
         "debugging",
         "docker-containerization",
         "documentation-generator",
@@ -1460,6 +1632,7 @@
         "nextjs-development",
         "python-development",
         "react-development",
+        "security-engineering",
         "test-driven-development",
         "testing-framework",
         "tool-design",
@@ -1488,6 +1661,7 @@
         "osint",
         "plugin-dev",
         "prompt-engineering",
+        "research-synthesis",
         "skill-foundry",
         "skillstack-workflows"
       ],
@@ -1501,6 +1675,7 @@
       "plugin_ids": [
         "brainstorm-swarm",
         "cloud-finops",
+        "competitive-intelligence",
         "content-modelling",
         "creative-problem-solving",
         "ontology-design",
@@ -1523,6 +1698,8 @@
       "plugin_ids": [
         "communication",
         "deslop",
+        "email-marketing",
+        "social-media-content",
         "storytelling",
         "technical-copywriting",
         "ux-writing"

@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Research the tradeoffs between gRPC and REST for internal microservice communication",
+    "should_trigger": true,
+    "note": "Multi-source synthesis on a technical decision"
+  },
+  {
+    "query": "Synthesise what the evidence says about daily standups harming deep work",
+    "should_trigger": true,
+    "note": "Evidence synthesis on a management practice"
+  },
+  {
+    "query": "Compare three sources on the effectiveness of TDD - what do they agree and disagree on?",
+    "should_trigger": true,
+    "note": "Cross-source comparison"
+  },
+  {
+    "query": "I have 5 conflicting reports on LLM inference costs - triangulate the actual picture",
+    "should_trigger": true,
+    "note": "Conflicting-source triangulation"
+  },
+  {
+    "query": "Do a literature sweep on context window utilisation patterns in production LLMs",
+    "should_trigger": true,
+    "note": "Literature sweep request"
+  },
+  {
+    "query": "Research prompt injection attack vectors and summarise defensive patterns",
+    "should_trigger": true,
+    "note": "Research + synthesis on a security topic"
+  },
+  {
+    "query": "What competing hypotheses exist for why the attention mechanism scales so well?",
+    "should_trigger": true,
+    "note": "Competing-hypothesis analysis"
+  },
+  {
+    "query": "Synthesise our internal incident post-mortems to find common root-cause patterns",
+    "should_trigger": true,
+    "note": "Internal document synthesis"
+  },
+  {
+    "query": "Run a customer survey to validate our product hypothesis",
+    "should_trigger": false,
+    "note": "Primary data collection - not synthesis"
+  },
+  {
+    "query": "Explore this codebase and find where authentication happens",
+    "should_trigger": false,
+    "note": "Code research - use CodeGraph/Semble"
+  },
+  {
+    "query": "Write a blog post about distributed systems",
+    "should_trigger": false,
+    "note": "Creative content generation - not evidence synthesis"
+  },
+  {
+    "query": "What is the capital of France?",
+    "should_trigger": false,
+    "note": "Single-fact lookup - no synthesis needed"
+  }
+]

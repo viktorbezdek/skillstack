@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Write Terraform to provision an RDS PostgreSQL instance with a read replica",
+    "should_trigger": true,
+    "note": "Terraform IaC authoring"
+  },
+  {
+    "query": "Design a multi-AZ VPC with public and private subnets for a 3-tier app",
+    "should_trigger": true,
+    "note": "Cloud architecture design"
+  },
+  {
+    "query": "Convert our Terraform S3 + CloudFront setup to AWS CDK TypeScript",
+    "should_trigger": true,
+    "note": "IaC translation CDK"
+  },
+  {
+    "query": "Our AWS bill doubled last month - what should we look at?",
+    "should_trigger": true,
+    "note": "Cost optimisation analysis"
+  },
+  {
+    "query": "Design a disaster-recovery architecture with RPO < 1 hour across two regions",
+    "should_trigger": true,
+    "note": "Multi-region DR design"
+  },
+  {
+    "query": "Write a Terraform module for an EKS cluster with managed node groups",
+    "should_trigger": true,
+    "note": "Kubernetes infra (EKS provisioning, not k8s manifests)"
+  },
+  {
+    "query": "Set up an IAM role with least-privilege access for a Lambda reading from S3",
+    "should_trigger": true,
+    "note": "IAM / security posture"
+  },
+  {
+    "query": "Architect a serverless API: API Gateway + Lambda + DynamoDB",
+    "should_trigger": true,
+    "note": "Serverless architecture design"
+  },
+  {
+    "query": "Write a Kubernetes Deployment and Service for our FastAPI app",
+    "should_trigger": false,
+    "note": "K8s application manifests - not infrastructure provisioning"
+  },
+  {
+    "query": "Set up a GitHub Actions workflow for blue-green deploys",
+    "should_trigger": false,
+    "note": "CI/CD pipeline - separate concern"
+  },
+  {
+    "query": "Debug why our Docker container crashes on startup",
+    "should_trigger": false,
+    "note": "App-layer debugging - not infra"
+  },
+  {
+    "query": "Write the FastAPI code for our API endpoint",
+    "should_trigger": false,
+    "note": "Application code - not infrastructure"
+  }
+]

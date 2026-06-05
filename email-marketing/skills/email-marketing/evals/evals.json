@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Write a 3-email onboarding sequence for users who signed up for a developer API platform (like Stripe or Twilio). They've created an account but haven't made their first API call yet.",
+    "files": [],
+    "expected_behavior": "Produces 3 emails with distinct jobs: Email 1 (immediate, Day 0) -- welcome + single CTA to make first API call; shows a literal curl example or code snippet to reduce friction; subject line focused on 'first call in 5 minutes' not 'welcome to X'. Email 2 (Day 2, no API call made) -- addresses the real blocker: 'Most developers get stuck at [specific step]'; links to quickstart doc, sandbox environment, or Postman collection; subject line names the blocker. Email 3 (Day 5, still no call) -- social proof from a developer who shipped fast + gentle urgency about trial days remaining; CTA to book a 15-min onboarding call as the fallback. Each email has: from name (a human name, not 'The Team'), subject + preview text pair, body under 200 words, single primary CTA. Avoids: 'exciting', 'amazing', 'as you may know', sycophantic openers."
+  },
+  {
+    "query": "Generate 7 subject line variants for a product update email announcing our new code search feature (like GitHub Copilot search). The audience is developers.",
+    "files": [],
+    "expected_behavior": "Produces 7 subject lines covering distinct rhetorical angles: (1) benefit-first ('Find any function in your codebase in under 3 seconds'), (2) curiosity gap ('We broke our own search and rebuilt it'), (3) pain point ('Ctrl+F across 50 files, or just use this'), (4) social proof signal ('How [Developer Name] shipped 40% faster with semantic search'), (5) specificity/number ('New: 6 search operators you probably didn't know you needed'), (6) question format ('Is your code search actually searching?'), (7) feature name direct ('Introducing semantic code search -- now in beta'). Notes open rate context: curiosity gap and pain-point styles typically outperform feature-name subject lines for developer audiences. Includes paired preview text for each variant."
+  },
+  {
+    "query": "Write a payment-failed email for a SaaS subscription. The customer's card was declined. Tone: helpful, not alarming. No technical jargon.",
+    "files": [],
+    "expected_behavior": "Produces a transactional email that: names the specific issue without alarming language ('Your payment didn't go through' not 'PAYMENT FAILURE'), leads with reassurance that their account/data is safe and service continues for a grace period (state specific days), gives one clear primary CTA ('Update payment method') with a direct link, explains what happens if not resolved (suspension date), offers alternatives (different card, PayPal, contact support), and closes warmly. Under 150 words in the body. Subject line is factual and low-alarm ('Action needed: update your payment method'). Avoids: 'Your card was declined' as the opener (shaming), passive voice ('a payment failure occurred'), overly formal tone, multiple competing CTAs."
+  }
+]

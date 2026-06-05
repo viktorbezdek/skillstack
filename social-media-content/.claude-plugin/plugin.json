@@ -1,0 +1,24 @@
+{
+  "name": "social-media-content",
+  "version": "1.0.0",
+  "description": "LinkedIn posts, Twitter/X threads, short-form social content, platform-native tone adaptation, and engagement-optimised formatting.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "social-media",
+    "linkedin",
+    "twitter",
+    "content",
+    "posts",
+    "threads",
+    "engagement",
+    "copywriting"
+  ]
+}

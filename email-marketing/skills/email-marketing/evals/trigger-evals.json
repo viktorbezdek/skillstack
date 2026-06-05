@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Write a 5-email onboarding sequence for new SaaS trial users",
+    "should_trigger": true,
+    "note": "Drip sequence / onboarding copy"
+  },
+  {
+    "query": "Write a monthly product newsletter for our developer tool",
+    "should_trigger": true,
+    "note": "Newsletter drafting"
+  },
+  {
+    "query": "Suggest 5 subject line variants for our product launch email",
+    "should_trigger": true,
+    "note": "Subject line optimisation"
+  },
+  {
+    "query": "Write a re-engagement email for users who haven't logged in for 30 days",
+    "should_trigger": true,
+    "note": "Re-engagement email"
+  },
+  {
+    "query": "Draft the welcome email for new subscribers to our blog",
+    "should_trigger": true,
+    "note": "Welcome email"
+  },
+  {
+    "query": "Write a plain-language payment failed email that doesn't alarm users",
+    "should_trigger": true,
+    "note": "Transactional email - payment failure"
+  },
+  {
+    "query": "Create a 3-email abandoned cart sequence for our e-commerce store",
+    "should_trigger": true,
+    "note": "Automated drip sequence"
+  },
+  {
+    "query": "Write preview text for 10 emails in our nurture sequence",
+    "should_trigger": true,
+    "note": "Preview text optimisation"
+  },
+  {
+    "query": "Configure SPF and DKIM for our SendGrid sending domain",
+    "should_trigger": false,
+    "note": "Email infrastructure - not content"
+  },
+  {
+    "query": "Write a cold outreach sequence to VPs of Engineering at Series A companies",
+    "should_trigger": false,
+    "note": "Sales prospecting - different constraints"
+  },
+  {
+    "query": "Write a Twitter thread about our email marketing strategy",
+    "should_trigger": false,
+    "note": "Social content - use social-media-content skill"
+  },
+  {
+    "query": "Set up a Mailchimp automation workflow",
+    "should_trigger": false,
+    "note": "ESP platform config - not copy"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Map the competitive landscape for AI code assistants (GitHub Copilot, Cursor, etc.)",
+    "should_trigger": true,
+    "note": "Competitor landscape mapping"
+  },
+  {
+    "query": "Create a battlecard for our sales team competing against Datadog",
+    "should_trigger": true,
+    "note": "Battlecard creation"
+  },
+  {
+    "query": "Analyse our last 50 win/loss notes - what patterns do you see?",
+    "should_trigger": true,
+    "note": "Win/loss synthesis"
+  },
+  {
+    "query": "How should we position against a competitor that's 10x larger?",
+    "should_trigger": true,
+    "note": "Positioning against stronger competitor"
+  },
+  {
+    "query": "Estimate the TAM for developer productivity tools in enterprise",
+    "should_trigger": true,
+    "note": "Market sizing"
+  },
+  {
+    "query": "What are the defensible moats in the observability market?",
+    "should_trigger": true,
+    "note": "Moat / differentiation analysis"
+  },
+  {
+    "query": "Identify the positioning gaps in the MLOps tool landscape",
+    "should_trigger": true,
+    "note": "Positioning gap identification"
+  },
+  {
+    "query": "Compare our feature set against three competitors in a matrix",
+    "should_trigger": true,
+    "note": "Feature comparison matrix"
+  },
+  {
+    "query": "Run customer interviews to validate our positioning hypothesis",
+    "should_trigger": false,
+    "note": "Primary research - not CI synthesis"
+  },
+  {
+    "query": "Build a three-year financial model for our go-to-market plan",
+    "should_trigger": false,
+    "note": "Financial modelling - out of scope"
+  },
+  {
+    "query": "Design our pricing tiers and annual contract structure",
+    "should_trigger": false,
+    "note": "Pricing strategy - separate concern"
+  },
+  {
+    "query": "Write a press release about our product launch",
+    "should_trigger": false,
+    "note": "Comms/PR - not competitive intelligence"
+  }
+]

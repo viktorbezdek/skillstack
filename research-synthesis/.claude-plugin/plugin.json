@@ -1,0 +1,23 @@
+{
+  "name": "research-synthesis",
+  "version": "1.0.0",
+  "description": "Multi-source research coordination, evidence triangulation, competing-hypothesis analysis, and structured synthesis for knowledge-intensive tasks.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "research",
+    "synthesis",
+    "evidence",
+    "analysis",
+    "literature-review",
+    "triangulation",
+    "knowledge"
+  ]
+}

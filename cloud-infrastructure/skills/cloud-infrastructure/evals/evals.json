@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Write a Terraform module for a production-ready RDS PostgreSQL instance: Multi-AZ, encrypted at rest, in a private subnet, with a security group allowing access only from an application subnet CIDR. Output the endpoint and port.",
+    "files": [],
+    "expected_behavior": "Produces a complete Terraform module with: (1) aws_db_instance resource with multi_az=true, storage_encrypted=true, db_subnet_group_name referencing a private subnet group, engine='postgres', engine_version pinned (e.g. '15.4'), instance_class parameterised via variable, backup_retention_period>=7, deletion_protection=true for prod. (2) aws_db_subnet_group pulling private subnet IDs from a variable. (3) aws_security_group with ingress rule allowing port 5432 from a variable app_subnet_cidr, egress restricted. (4) Variables with types, descriptions, and sane defaults. (5) Outputs for address and port. Module follows Terraform conventions (main.tf, variables.tf, outputs.tf). Notes that credentials should come from aws_secretsmanager_secret, not be hardcoded."
+  },
+  {
+    "query": "Design a multi-region active-passive architecture for a SaaS application on AWS targeting RPO < 15 minutes and RTO < 30 minutes. Primary: us-east-1. Failover: us-west-2.",
+    "files": [],
+    "expected_behavior": "Produces an architecture document covering: (1) Data layer - Aurora Global Database with cross-region replica (typical replication lag <1s, well within 15-min RPO); S3 cross-region replication for object storage; ElastiCache not replicated (warm-up acceptable for 30-min RTO). (2) Compute - primary region runs active load; standby region has pre-warmed ECS/EKS cluster at minimal size, scales on failover. (3) DNS failover - Route 53 health checks on primary ALB, failover routing policy to us-west-2 ALB (TTL <= 60s). (4) Failover runbook - Aurora promote replica, Route 53 DNS update, CDN origin switch. (5) RTO breakdown: DNS propagation (60s) + Aurora promotion (2-3 min) + ECS scale-out (5-10 min) = ~15 min, safely under 30-min RTO. Flags that Aurora promotion is irreversible - primary becomes a replica after failback requires re-setup."
+  },
+  {
+    "query": "Our AWS bill is $18,000/month. We're running 40 EC2 instances (mix of t3.medium and m5.large), 3 RDS instances, and significant data transfer costs. What should we investigate first?",
+    "files": [],
+    "expected_behavior": "Provides a prioritised cost investigation plan: (1) EC2 utilisation - pull CloudWatch CPU/memory for the 40 instances over 2 weeks; instances consistently <20% CPU are right-sizing candidates (downsizing or switching to Graviton3 t4g can save 30-40%). (2) Reserved Instance / Savings Plans coverage - check RI utilisation dashboard; on-demand for predictable workloads is 3x reserved price. Recommends 1-year Compute Savings Plans for flexibility. (3) Data transfer - check VPC flow logs and Cost Explorer data transfer breakdown; inter-AZ transfer (often overlooked at $0.01/GB) and NAT Gateway charges are frequent culprits; recommend VPC endpoints for S3/DynamoDB to eliminate NAT charges. (4) RDS - check multi-AZ necessity for non-prod instances, storage auto-scaling vs over-provisioned, snapshot retention period. (5) Tools: AWS Cost Explorer, Trusted Advisor, Compute Optimizer reports. Estimated savings range: 20-40% with right-sizing + RIs."
+  }
+]

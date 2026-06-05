@@ -1,0 +1,17 @@
+[
+  {
+    "query": "Design a schema for a subscription billing system with plans, subscriptions, invoices, and payments. Users can have multiple active subscriptions.",
+    "files": [],
+    "expected_behavior": "Produces a complete DDL schema (CREATE TABLE statements) with: users, plans (name, interval, price_cents), subscriptions (user_id FK, plan_id FK, status enum, current_period_start/end, cancel_at_period_end), invoices (subscription_id FK, amount_due, amount_paid, status, due_date), and invoice_line_items. Includes proper primary keys (UUID or BIGSERIAL), foreign key constraints with ON DELETE behaviour, NOT NULL annotations, unique constraints (e.g. active subscription per user per plan), and indexes on FK columns and status fields. Notes the normalisation choices made and flags the non-null migration challenge for status enum changes."
+  },
+  {
+    "query": "I need to add a non-null `role` column (default 'member') to an existing 500k-row `users` table without downtime. Write the Alembic migration.",
+    "files": [],
+    "expected_behavior": "Produces a three-step expand-migrate-contract migration: Step 1 - add column as nullable (ALTER TABLE users ADD COLUMN role VARCHAR(20) NULL). Step 2 - backfill in batches (UPDATE users SET role = 'member' WHERE role IS NULL with LIMIT batches to avoid lock escalation). Step 3 - add NOT NULL constraint and default. Explains why a single ALTER TABLE ... NOT NULL DEFAULT ... causes a full table rewrite in older PostgreSQL versions (pre-11), and recommends the three-step approach for zero-downtime safety. Migration code is syntactically correct Alembic (upgrade/downgrade functions)."
+  },
+  {
+    "query": "EXPLAIN ANALYZE shows a sequential scan on a 2M-row orders table filtered by (user_id, status, created_at). What index should I create?",
+    "files": [],
+    "expected_behavior": "Recommends a composite index on (user_id, status, created_at DESC) and explains column ordering rationale: equality predicates (user_id, status) first, range/sort predicate (created_at) last. Discusses index selectivity - if status has low cardinality (e.g. 3 values), it may be better as a partial index per status value. Provides CREATE INDEX CONCURRENTLY statement (non-blocking for live tables). Mentions covering indexes (INCLUDE clause for SELECT columns) to enable index-only scans. Notes that EXPLAIN ANALYZE output should be rechecked after index creation."
+  }
+]

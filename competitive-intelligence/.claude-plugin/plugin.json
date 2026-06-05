@@ -1,0 +1,24 @@
+{
+  "name": "competitive-intelligence",
+  "version": "1.0.0",
+  "description": "Competitor analysis, market sizing, positioning maps, win/loss pattern synthesis, and battlecard creation for product and GTM decisions.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "competitive",
+    "market",
+    "positioning",
+    "battlecard",
+    "win-loss",
+    "landscape",
+    "gtm",
+    "strategy"
+  ]
+}

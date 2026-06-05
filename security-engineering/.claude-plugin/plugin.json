@@ -1,0 +1,25 @@
+{
+  "name": "security-engineering",
+  "version": "1.0.0",
+  "description": "Application security design, OWASP patterns, authentication architecture, secrets management, and threat-model-informed code review.",
+  "author": {
+    "name": "Viktor Bezdek",
+    "url": "https://github.com/viktorbezdek"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viktorbezdek/skillstack"
+  },
+  "keywords": [
+    "security",
+    "auth",
+    "owasp",
+    "jwt",
+    "oauth",
+    "secrets",
+    "threat-modeling",
+    "encryption",
+    "appsec"
+  ]
+}
