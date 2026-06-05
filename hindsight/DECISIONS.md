@@ -197,3 +197,24 @@ Documented in README.
 - Agent plugins: BUILD (multi-agent-patterns, agent-project-development) -> E; EVALUATE/OPERATE (agent-evaluation, memory-systems, prompt-engineering) -> I.
 - "Thinking" plugins: strategic/PM use (creative-problem-solving, systems-thinking) -> P; meta-cognitive/LLM reasoning (critical-intuition) -> I.
 - Ambiguous assignments (osint, gws-cli) noted in 02-taxonomy.md with monitoring notes.
+
+---
+
+## Skillstack Restructure & Hardening — Phase 3 Decisions (2026-06-05)
+
+### D-011: Gap priority stack — P0/P1 forward roadmap
+
+**Verdict:** Two P0 gaps and four P1 gaps identified. Phase 5 migration does NOT include building new plugins. These are post-migration build targets.
+
+**P0 gaps (build first after Phase 5):**
+1. `database-design` (E) — SQL/ORM/migration coverage. Conspicuous absence from every backend workflow. Zero partial coverage.
+2. `social-media-content` (M) — Social-native short-form content. M domain is thin (5 plugins). Highest expected demand gap in M.
+
+**P1 gaps (second wave):**
+3. `security-engineering` (E) — Auth design + OWASP patterns. Audit workflow exists; design guidance does not.
+4. `cloud-infrastructure` (E) — Terraform/CDK/IaC. `cicd-pipelines` has shallow Terraform coverage only.
+5. `research-synthesis` (I) — Multi-source research + synthesis. `osint` and `elicitation` cover adjacent needs; general research methodology absent.
+6. `email-marketing` (M) — Newsletter/email sequences. No partial coverage.
+7. `competitive-intelligence` (P) — Market/competitor analysis. `product-thinking` and `osint` both exclude this use case.
+
+**Evidence:** Verified by reading all 102 skill descriptions. Checked `skillstack-workflows` for workflow-level partial coverage before declaring each gap. P2 gaps (10) deferred to demand-driven build.
