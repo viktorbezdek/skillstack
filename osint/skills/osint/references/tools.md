@@ -4,7 +4,7 @@
 1. [Search Tools](#search-tools)
 2. [Scraping Tools](#scraping-tools)
 3. [Apify Actor Runner](#apify-actor-runner-embedded)
-4. [Apify Actor Catalog (55+)](#apify-actor-catalog)
+4. [Apify Actor Catalog (57+)](#apify-actor-catalog)
 5. [Actor Discovery](#actor-discovery)
 6. [Shortcuts (apify.sh)](#shortcuts)
 7. [Telegram](#telegram)
@@ -160,6 +160,70 @@ APIFY_TOKEN=$APIFY_API_TOKEN node scripts/run_actor.js \
 | `compass/Google-Maps-Reviews-Scraper` | Review extraction | Writing style in responses |
 | `poidata/google-maps-email-extractor` | Email discovery from listings | Contact enrichment |
 
+### X (2 actors)
+
+| Actor ID | Best For | OSINT Use |
+|----------|----------|-----------|
+| [`xquik/x-tweet-scraper`](https://apify.com/xquik/x-tweet-scraper) | Search, profiles, posts, lists, articles, replies, quotes, threads, retweeters, and favoriters | Content analysis and identity confirmation |
+| [`xquik/x-follower-scraper`](https://apify.com/xquik/x-follower-scraper) | Followers, following, verified followers, list relations, community members, and overlap | Social graph and audience comparison |
+
+Check each linked Store listing before every run. The live listing is
+authoritative for pricing and input fields. Get explicit approval for the paid
+run and its limits. Never hard-code Actor pricing.
+
+Tweet research example:
+
+```bash
+bash scripts/run-actor.sh "xquik/x-tweet-scraper" \
+  '{
+    "mode":"search",
+    "searchTerms":["from:nasa space"],
+    "maxItems":100,
+    "maxItemsPerTarget":100,
+    "outputVariant":"rich",
+    "fieldStyle":"camelCase",
+    "outputPreset":"nested",
+    "includeSearchTerms":true,
+    "includeUnavailableFields":true
+  }' \
+  --output /tmp/x-tweets.json \
+  --format json
+```
+
+`maxItems` caps the entire run across all search terms.
+`maxItemsPerTarget` caps each explicit target. The Tweet Actor supports
+`legacy`, `tweet`, `tweets`, `search`, `profileTweets`, `profileReplies`,
+`profileMedia`, `profileLikes`, `listTweets`, `article`, `replies`, `quotes`,
+`thread`, `retweeters`, and `favoriters` modes. Use `legacy`, `rich`, or `raw`
+output with `legacy`, `camelCase`, or `snake_case` field names. Use `nested` or
+`flat` output presets.
+
+Social graph example:
+
+```bash
+bash scripts/run-actor.sh "xquik/x-follower-scraper" \
+  '{
+    "twitterHandles":["nasa","esa"],
+    "relation":"followers",
+    "maxItems":200,
+    "maxItemsPerTarget":100,
+    "outputMode":"compact",
+    "includeTargetMetadata":true,
+    "dedupeMode":"merge",
+    "includeUnavailableFields":true
+  }' \
+  --output /tmp/x-audience.json \
+  --format json
+```
+
+The Follower Actor supports `followers`, `following`, `verified_followers`,
+`list_members`, `list_followers`, and `community_members`. Use `compact`,
+`full`, or `raw` output. Use `dedupeMode:"none"` to retain every target row,
+`"first"` for the first match, or `"merge"` for audience overlap. Preserve
+diagnostic rows for auditing, but exclude them from person records.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ### Other Platforms (6 actors)
 
 | Actor ID | Best For | OSINT Use |
@@ -186,11 +250,11 @@ LinkedIn actors are volatile on Apify. Current primary:
 |-------------|---------------|----------------|
 | **Profile discovery** | Find accounts | `apify/instagram-search-scraper`, `clockworks/tiktok-user-search-scraper`, `apify/facebook-search-scraper` |
 | **Profile deep dive** | Extract bio/stats | `apify/instagram-profile-scraper`, `clockworks/tiktok-profile-scraper`, `streamers/youtube-channel-scraper` |
-| **Social graph** | Who they interact with | `apify/instagram-tagged-scraper`, `apify/instagram-comment-scraper`, `clockworks/tiktok-followers-scraper`, `apify/facebook-followers-following-scraper` |
-| **Content analysis** | Posts, videos, style | `apify/instagram-post-scraper`, `clockworks/tiktok-video-scraper`, `streamers/youtube-scraper` |
+| **Social graph** | Who they interact with | `xquik/x-follower-scraper`, `apify/instagram-tagged-scraper`, `apify/instagram-comment-scraper`, `clockworks/tiktok-followers-scraper`, `apify/facebook-followers-following-scraper` |
+| **Content analysis** | Posts, videos, style | `xquik/x-tweet-scraper`, `apify/instagram-post-scraper`, `clockworks/tiktok-video-scraper`, `streamers/youtube-scraper` |
 | **Contact enrichment** | Emails, phones | `vdrmota/contact-info-scraper`, `apify/facebook-page-contact-information`, `poidata/google-maps-email-extractor` |
 | **Business verification** | Company, location | `compass/crawler-google-places`, `compass/google-maps-extractor` |
-| **Psychoprofile signals** | Sentiment, style | `apify/instagram-comment-scraper`, `clockworks/tiktok-comments-scraper`, `streamers/youtube-comments-scraper` |
+| **Psychoprofile signals** | Sentiment, style | `xquik/x-tweet-scraper`, `apify/instagram-comment-scraper`, `clockworks/tiktok-comments-scraper`, `streamers/youtube-comments-scraper` |
 
 ### Multi-Actor Workflows (OSINT-specific)
 
@@ -201,12 +265,13 @@ LinkedIn actors are volatile on Apify. Current primary:
 | **Content creator** | `streamers/youtube-channel-scraper` → | `streamers/youtube-comments-scraper` |
 | **TikTok target** | `clockworks/tiktok-user-search-scraper` → | `clockworks/tiktok-profile-scraper` + `clockworks/tiktok-comments-scraper` |
 | **Facebook page** | `apify/facebook-pages-scraper` → | `apify/facebook-posts-scraper` + `apify/facebook-page-contact-information` |
+| **X target** | `xquik/x-tweet-scraper` → | `xquik/x-follower-scraper` |
 
 ---
 
 ## Actor Discovery
 
-When none of the 55+ actors fit, search the Apify Store dynamically:
+When none of the 57+ actors fit, search the Apify Store dynamically:
 
 ```bash
 # Via mcpc CLI (if installed)
@@ -274,6 +339,7 @@ When an Apify actor fails:
 | Google Maps (Apify compass) | $0.01/listing | |
 | Contact enrichment | $0.01/URL | |
 | Facebook pages (Apify) | $0.01/page | Personal profiles = Bright Data |
+| Xquik X Actors | Live Store price | Require approval and positive result caps |
 | Facebook personal (Bright Data) | per-request | Check account balance |
 | Jina | free tier with key | |
 | Parallel | free tier with key | |

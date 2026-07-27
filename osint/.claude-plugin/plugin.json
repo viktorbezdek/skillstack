@@ -1,7 +1,7 @@
 {
   "name": "osint",
   "version": "1.0.1",
-  "description": "OSINT intelligence skill — systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
+  "description": "OSINT intelligence skill: systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 57+ Apify actors, 7 search APIs, swarm mode.",
   "author": {
     "name": "smixs (original), Viktor Bezdek (skillstack packaging)",
     "url": "https://github.com/viktorbezdek"

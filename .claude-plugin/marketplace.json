@@ -574,7 +574,7 @@
     {
       "name": "osint",
       "source": "./osint",
-      "description": "OSINT intelligence skill \u2014 systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 55+ Apify actors, 7 search APIs, swarm mode.",
+      "description": "OSINT intelligence skill: systematic person research from name/handle to scored dossier with psychoprofile, career map, and confidence grades. 57+ Apify actors, 7 search APIs, swarm mode.",
       "version": "1.0.1",
       "category": "Meta-Infra",
       "tags": [
