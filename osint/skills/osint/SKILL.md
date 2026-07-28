@@ -38,7 +38,7 @@ All API keys via environment variables. Never hardcode tokens.
 - `PERPLEXITY_API_KEY` — Perplexity Sonar (fast answers + deep research)
 - `EXA_API_KEY` — Exa AI (semantic search, company/people research, deep research)
 - `TAVILY_API_KEY` — Tavily (agent-optimized search + extract, $0.005/req basic)
-- `APIFY_API_TOKEN` — Apify scraping (LinkedIn, Instagram, Facebook, X)
+- `APIFY_API_TOKEN`: Apify scraping (LinkedIn, Instagram, Facebook, X)
 - `JINA_API_KEY` — Jina reader/search/deepsearch
 - `PARALLEL_API_KEY` — Parallel AI search
 - `BRIGHTDATA_MCP_URL` — Bright Data MCP endpoint (full URL with token)
@@ -59,7 +59,7 @@ Each validates env vars, exits with descriptive error + URL to get the key.
 
 **Scraping:**
 - `apify.sh` — `linkedin <url>` | `instagram <handle>` | `run` | `results` | `store-search`
-- `run-actor.sh` — **universal Apify runner (57+ actors).** Embedded from [apify/agent-skills](https://github.com/apify/agent-skills).
+- `run-actor.sh`: **universal Apify runner (57+ actors).** Embedded from [apify/agent-skills](https://github.com/apify/agent-skills).
   Quick answer: `bash scripts/run-actor.sh "actor/id" '{"input":"json"}'`
   Export: `bash scripts/run-actor.sh "actor/id" '{"input":"json"}' --output /tmp/out.csv`
 - `jina.sh` — `read <url>` | `search <query>` | `deepsearch <query>`
