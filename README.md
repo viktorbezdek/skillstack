@@ -25,7 +25,7 @@ claude plugin add viktorbezdek/skillstack --plugin api-design
 ## Collections
 
 <details>
-<summary><strong>SkillStack</strong> — 66 plugins</summary>
+<summary><strong>SkillStack</strong>: 66 plugins</summary>
 
 > The complete SkillStack library - 66 expert plugins for Claude Code spanning Engineering, Meta-Infra, Managerial-Product, and Marketing-Comms.
 
@@ -33,7 +33,7 @@ Plugins: `agent-evaluation`, `agent-project-development`, `api-design`, `bdi-men
 </details>
 
 <details>
-<summary><strong>Engineering</strong> — 27 plugins</summary>
+<summary><strong>Engineering</strong>: 27 plugins</summary>
 
 > Skills for building software: APIs, debugging, testing, DevOps, frontend, language tooling (Python, TypeScript, React, Next.js), containerization, MCP servers, multi-agent systems, and documentation generation.
 
@@ -41,7 +41,7 @@ Plugins: `agent-project-development`, `api-design`, `bdi-mental-states`, `cicd-p
 </details>
 
 <details>
-<summary><strong>Meta-Infra</strong> — 18 plugins</summary>
+<summary><strong>Meta-Infra</strong>: 18 plugins</summary>
 
 > Skills for improving how Claude Code and LLM agents operate: context engineering (compression, degradation, fundamentals, optimization), memory systems, plugin authoring, prompt engineering, skill evaluation, and workflow orchestration.
 
@@ -49,7 +49,7 @@ Plugins: `agent-evaluation`, `consistency-standards`, `context-compression`, `co
 </details>
 
 <details>
-<summary><strong>Managerial-Product</strong> — 14 plugins</summary>
+<summary><strong>Managerial-Product</strong>: 14 plugins</summary>
 
 > Skills for making decisions and shipping products: product thinking, prioritization, risk management, brainstorm facilitation, personas, user journeys, outcome orientation, ontology design, content modelling, cloud FinOps, and systems thinking.
 
@@ -57,7 +57,7 @@ Plugins: `brainstorm-swarm`, `cloud-finops`, `competitive-intelligence`, `conten
 </details>
 
 <details>
-<summary><strong>Marketing-Comms</strong> — 7 plugins</summary>
+<summary><strong>Marketing-Comms</strong>: 7 plugins</summary>
 
 > Skills for creating human-facing content: communication craft, AI-slop removal, technical copywriting, UX writing, and storytelling.
 
@@ -78,7 +78,7 @@ Plugins: `communication`, `deslop`, `email-marketing`, `social-media-content`, `
 | [CI/CD Pipelines](cicd-pipelines/README.md) | `1.1.24` | Comprehensive CI/CD pipeline design, DevOps automation, infrastructure as code, GitOps deployment automation, security scanning, and enterprise pipeline readiness. |
 | [Cloud Infrastructure](cloud-infrastructure/README.md) | `1.0.0` | Infrastructure-as-code with Terraform and AWS CDK, cloud architecture patterns, cost optimisation, and multi-region deployment design. |
 | [Code Review](code-review/README.md) | `1.1.25` | Perform thorough code reviews with multi-agent swarm analysis covering security, performance, style, tests, and documentation. Analyze PRs, extract and prioritize comments, and generate actionable fix plans. |
-| [Coding Discipline](coding-discipline/README.md) | `1.0.0` | Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication — each with named anti-patterns, iteration budgets, and a structured completion schema. |
+| [Coding Discipline](coding-discipline/README.md) | `1.0.0` | Research-grounded 5-principle behavioral contract for production LLM coding agents. Addresses named failure modes (test-gaming, phantom changes, scope creep, ego-signaling, confident hallucination) with empirical backing from SWE-bench, FeatBench, DELEGATE-52, and SE literature. Covers Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution, and Calibrated Communication. Each has named anti-patterns, iteration budgets, and a structured completion schema. |
 | [Database Design](database-design/README.md) | `1.0.0` | SQL schema design, ORM patterns, migration strategies, query optimisation, and data-modelling for relational databases. |
 | [Debugging](debugging/README.md) | `1.1.27` | Comprehensive debugging skill combining systematic debugging methodology, browser DevTools automation, E2E testing with visual analysis, CI/CD pipeline debugging, performance profiling, and AI-powered error analysis. |
 | [Docker Containerization](docker-containerization/README.md) | `1.1.23` | Comprehensive Docker and containerization skill covering Docker basics, multi-stage builds, Docker Compose orchestration, container optimization, development environment setup, and infrastructure patterns. |
@@ -104,7 +104,7 @@ Plugins: `communication`, `deslop`, `email-marketing`, `social-media-content`, `
 
 | Plugin | Version | Description |
 |--------|---------|-------------|
-| [Brainstorm Swarm](brainstorm-swarm/README.md) | `1.1.0` | Run a parallel persona-swarm interview to brainstorm any complex decision — feature design, architecture choice, content piece, organizational change, product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping). |
+| [Brainstorm Swarm](brainstorm-swarm/README.md) | `1.1.0` | Run a parallel persona-swarm interview to brainstorm any complex decision: feature design, architecture choice, content piece, organizational change, or product strategy. Spawns 6-12 persona-distinct subagents in parallel (PM, Engineer, Designer, Skeptic, User Advocate, Pre-Mortem Specialist, Junior, Veteran, First-Principles Thinker, Constraint-Setter, Optimist, Operator), each interviewing the user from their perspective and contributing questions, concerns, and ideas. Synthesizes the multi-perspective output into consensus, dissent, and open-questions. Use when the user asks to brainstorm with multiple perspectives, run a persona swarm, get a virtual roundtable, workshop an idea from PM/engineer/designer/skeptic angles, pre-mortem a decision, or think through something from different angles. NOT for code review (use code-review). NOT for single-perspective interviews (use elicitation or deep-interview). NOT for executing or building (use team, autopilot, or multi-agent-patterns). NOT for creating product personas as artifacts (use persona-definition). NOT for stakeholder mapping (use persona-mapping). |
 | [Cloud FinOps](cloud-finops/README.md) | `2.1.2` | Expert Cloud FinOps guidance covering AI cost management, GenAI capacity planning, AI-powered FinOps automation, cloud billing (AWS, Azure, GCP, OCI), Kubernetes/container FinOps, serverless FinOps, data platform FinOps (Kafka, OpenSearch, Redis/Valkey), multi-cloud normalization (FOCUS spec), commitment strategy, tagging governance, SaaS asset management, ITAM, and GreenOps. Includes 26 domain-specific reference files grounded in enterprise delivery experience. Built by OptimNow and Viktor Bezdek, licensed CC BY-SA 4.0. |
 | [Competitive Intelligence](competitive-intelligence/README.md) | `1.0.0` | Competitor analysis, market sizing, positioning maps, win/loss pattern synthesis, and battlecard creation for product and GTM decisions. |
 | [Content Modelling](content-modelling/README.md) | `1.0.12` | Design content models with types, fields, relationships, and governance rules for structured content systems. |
